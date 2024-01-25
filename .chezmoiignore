@@ -1,0 +1,5 @@
+/Terminal/
+/install.sh
+/package.json
+*.txt
+*.log
