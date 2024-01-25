@@ -1,0 +1,9 @@
+{
+    "ExperimentalFeatures": [
+        "PSImplicitRemotingBatching",
+        "PSCommandNotFoundSuggestion",
+        "PSSubsystemPluginModel",
+        "PSCommandWithArgs",
+        "PSFeedbackProvider"
+    ]
+}
