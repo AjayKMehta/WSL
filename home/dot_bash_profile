@@ -1,0 +1,17 @@
+has_cmd() {
+	for opt in "$@"; do
+		command -v "$opt" >/dev/null
+	done
+}
+
+if has_cmd gh; then
+    eval "$(gh completion -s bash)"
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+if has_cmd fzf && has_cmd fd; then
+    # export FZF_DEFAULT_COMMAND='rg --files . 2> nul'
+    export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+fi
+
+export DOCKER_BUILDKIT=1

@@ -1,0 +1,20 @@
+# https://stackoverflow.com/questions/749544/pipe-to-from-the-clipboard-in-a-bash-script
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
+
+# ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+alias shutdown='wsl.exe -t $WSL_DISTRO_NAME'
+
+# EXTRA LOGS
+alias authlogs='sudo tail -f /var/log/auth.log'
+alias ufwlogs='sudo tail -f /var/log/ufw.log'
+
+alias nuget="mono /usr/local/bin/nuget.exe"
