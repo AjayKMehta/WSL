@@ -1,0 +1,35 @@
+bleopt history_lazyload=1
+bleopt info_display=top
+bleopt history_share=1
+
+# Disable ambiguous completion
+bleopt complete_ambiguous=
+
+# https://github.com/akinomyoga/ble.sh/wiki/Vi-%28Vim%29-editing-mode#with-blesh-setting-in-blerc
+# bleopt default_keymap=vi
+
+ble-bind -f C-w 'kill-region-or kill-uword'
+ble-bind -f M-w 'copy-region-or copy-uword'
+
+# blerc
+bleopt filename_ls_colors="$LS_COLORS"
+
+# https://github.com/akinomyoga/ble.sh/wiki/Recipes#r1-insert-date-through-sabbrev-date
+# Press <Space> + \date + <Space>
+function blerc/define-sabbrev-date {
+  ble-sabbrev -m '\date'='ble/util/assign COMPREPLY "date +%F"'
+}
+blehook/eval-after-load complete blerc/define-sabbrev-date
+
+# https://github.com/akinomyoga/ble.sh/wiki/Recipes#r2-insert-git-branch-name-from-menu-through-sabbrev-branch
+# Press <Space> + \branch + <Space>
+function blerc/define-sabbrev-branch {
+  function blerc/sabbrev-git-branch {
+    ble/util/assign-array COMPREPLY "git branch | sed 's/^\*\{0,1\}[[:space:]]*//'" 2>/dev/null
+  }
+  ble-sabbrev -m '\branch'=blerc/sabbrev-git-branch
+}
+blehook/eval-after-load complete blerc/define-sabbrev-branch
+
+# https://github.com/akinomyoga/ble.sh/wiki/Manual-%C2%A71-Introduction#134-bleopt-editor-v04
+bleopt editor=nano
