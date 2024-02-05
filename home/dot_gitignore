@@ -1,0 +1,15 @@
+.tmp-projections/
+*.bak
+*.cd
+*.ck
+tmux/resurrect
+*.uuid
+**/yarn.lock
+TAGS
+TAGS/
+.TAGS
+tags
+tags/
+.tags
+.ctags
+**/.ctags.d/

@@ -1,0 +1,220 @@
+[user]
+    name = {{ .name }}
+    email = {{ .email }}
+    signingkey = {{ .gpgkey }}
+[core]
+    excludesFile = .gitignore
+    editor = nvim
+    pager = less -RFX
+    splitIndex = true
+    untrackedCache = true
+    longpaths = true
+    symlinks = true
+    # https://stackoverflow.com/questions/72530302/git-warning-empty-last-update-token
+    fsmonitor = false
+    fsync = committed,added,commit-graph
+    fsyncMethod = batch
+    sshCommand = ssh -q
+    autocrlf = input
+[include]
+    path = themes.gitconfig
+    path = delta.gitconfig
+#     path = maintenance.gitconfig
+[pretty]
+    extended = format:%C(bold blue)%h% C(dim white)- %an %C(bold green)%ad%C(auto)%d%n %C(bold white)%s
+    alt = format:%C(yellow)%h %C(green)%ad %C(cyan)[%an] %C(reset)%s %C(auto)%d
+    alt-rel = format:%C(yellow)%h %C(green)%ar %C(cyan)[%an] %C(reset)%s %C(auto)%d
+    sub-auth = format:%C(red)%h %C(reset)| %s %C(bold blue)[%an] %C(green)(%cd)%C(auto)%d
+    twolines = "format:%C(green)%h% C(#00FFE3)%ad %C(bold yellow)%an%C(auto)%d%n%C(#AA75D0)%s%n"
+[alias]
+    ## Compare with remote
+    incoming = log ..@{u}
+    outgoing = log @{u}..
+    unpushed = log --branches --not --remotes=origin
+    compare = difftool -d -g @ @{u}
+
+    ## Diff
+    delta = -c core.pager=delta diff
+    delta-s = -c core.pager=delta -c 'delta.features=sideways decorations my-line-numbers emph' diff
+    compare2 = difftool -d -g @
+    difft = -c diff.externa=difft diff
+    difftd = -c core.pager=delta -c diff.externa=difft diff
+
+    ## Misc
+    it = !git init && git commit -m root --allow-empty
+    st = status --short --branch
+    so = show --pretty='parent %C(red)%p %C(reset)commit %C(red)%h%C(yellow)%d%C(reset)%n%n%w(72,2,2)%s%n%n%w(72,0,0)%C(cyan)%an %C(green)%ar'
+    show-rd = show --remerge-diff
+    ss = stash --staged
+    alias = config --get-regexp ^alias\\.
+    untracked = ls-files --others --exclude-standard
+    unstage = restore --staged
+    cnv = commit --no-verify
+
+    ## Push to remote
+    please = push --force-with-lease
+    pu = !git push origin `git branch --show-current`
+    push-origin = push --set-upstream origin
+
+    ## Log
+    grog = log --graph --decorate --pretty=extended
+    ldec = log --format='%cr%(decorate) (%h) %s'
+    l = log --pretty=alt --date=relative
+    lg = l --graph
+    lgb = lg --branches
+    ld = -c core.pager=delta log -p
+    lds = -c 'delta.features=sideways decorations my-line-numbers emph' -c core.pager=delta log -p
+    graph = lg --decorate --simplify-by-decoration
+    hist = log --graph --oneline --all --decorate --simplify-by-decoration
+
+    ## Refs
+    refs = for-each-ref --sort=-committerdate --format='%(color:red bold)%(refname:short)%(color:reset) %(color:yellow)%(committerdate:relative) %(color:magenta bold)%(authorname) %(color:green)%(objectname:short)%(color:reset) %(contents:subject)'
+    lbs = refs refs/heads
+    rbs = refs refs/remotes
+
+    ## Ignoring files
+    ignore = update-index --assume-unchanged
+    unignore = update-index --no-assume-unchanged
+    ignored = !git ls-files -v | grep ^[a-z]
+    hide = update-index --skip-worktree
+    unhide = update-index --no-skip-worktree
+
+    ## Rewrite hisory
+    rbi = rebase --autosquash -i HEAD@{upstream}
+    append = !git cherry-pick $(git merge-base HEAD $1)..$1
+    pop = reset HEAD^
+
+    ## Fetch commits
+    fa = fetch --all
+    fc = !git fetch origin $(git branch --show-current)
+    up = !git fetch && git rebase --autostash FETCH_HEAD
+    su = submodule update --recursive --remote
+
+    ## Merge
+    mnf = merge --no-ff
+    mffo = merge --ff-only
+    mnc = merge --no-commit
+[blame]
+    coloring = highlightRecent
+    markIgnoredLines = true
+    markUnblamableLines = true
+[rerere]
+    enabled = true
+    autoupdate = true
+[push]
+    followTags = true
+[fetch]
+    prune = true
+    parallel = 0
+    writeCommitGraph = true
+[pull]
+    rebase = true
+    twohead = ort
+[status]
+    showUntrackedFiles = all
+    showStash = true
+[diff]
+    tool = winmerge
+    guitool = winmerge
+    colorMoved = default
+    colorMovedWS = ignore-space-at-eol
+    mnemonicPrefix = true
+    renames = copies
+    renameLimit = 10000
+    wsErrorHighlight = all
+[difftool]
+    prompt = false
+    prompt = false
+[difftool "meld"]
+    cmd = meld "$LOCAL" "$REMOTE"
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
+[merge]
+    tool = meld
+    log = true
+    conflictStyle = diff3
+    renameLimit = 99999
+[mergetool]
+    prompt = false
+    keepBackup = false
+[mergetool "meld"]
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    trustExitCode = true
+[diff "rstats"]
+    xfuncname = "^[[:space:]]*([a-zA-z._]+)[[:space:]]*<-[[:space:]]*function"
+[rebase]
+    autoSquash = true
+    autoStash = false
+    missingCommitsCheck = error
+    updateRefs = true
+[submodule]
+    fetchJobs = 0
+    recurse = true
+[filter "lfs"]
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    features = decorations my-line-numbers emph
+    light = false# set to true if you're in a terminal w/ a light background color
+    navigate = true
+    hyperlinks = true
+    whitespace-error-style = magenta reverse
+    inspect-raw-lines = true
+    max-line-distance = 1.0
+    plus-style = "syntax #003800"
+    minus-style = "syntax #3f0001"
+    syntax-theme = TwoDark
+    map-styles = bold purple => syntax magenta, bold cyan => syntax blue
+[tag]
+    sort = version:refname
+[commit]
+    gpgsign = true
+# https://blog.jmorbegoso.com/post/configure-github-gpg-key-in-windows-and-wsl/
+[gpg]
+    program = /mnt/d/Apps/GnuPG/bin/gpg.exe
+[color]
+    ui = true
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
+[color "diff"]
+    meta = 11
+    frag = magenta bold
+    func = 146 bold
+    commit = yellow bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+[checkout]
+    workers = 0
+[index]
+    version = 4
+[help]
+    autoCorrect = prompt
+[transfer]
+    credentialsInUrl = warn
+[gc]
+    cruftPacks = true
+    maxCruftSize = 10M
+    rerereResolved = "6.months.ago"
+    rerereUnresolved = "2.months.ago"
+[log]
+    date = rfc
+[credential "https://huggingface.co"]
+    provider = generic
+[credential "https://github.com"]
+    helper =
+    helper = !/usr/bin/gh auth git-credential
+# https://stackoverflow.com/a/71904131/781045
+[safe]
+    directory = *
+[pager]
+    tag = cat
+    format-patch = cat
+    diff = delta
