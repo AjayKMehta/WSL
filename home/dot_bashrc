@@ -131,8 +131,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # oh my posh
 eval "$(oh-my-posh init bash)"
-# shellcheck source=/home/ajay/.oh-my-posh.sh
-source ~/.oh-my-posh.sh
 
 choose_theme() {
    x=$(gum file ~/.poshthemes/)
