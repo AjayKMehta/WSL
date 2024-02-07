@@ -1,0 +1,97 @@
+# https://tshafer.com/blog/2023/07/posit-package-manager-linux
+options(HTTPUserAgent = sprintf(
+  "R/%s R (%s)",
+  getRversion(),
+  paste(
+    getRversion(),
+    R.version["platform"],
+    R.version["arch"],
+    R.version["os"]
+  )
+))
+
+local({
+  r <- getOption("repos")
+  r["ropensci"] <- "https://ropensci.r-universe.dev"
+  r["CRAN"] <- "https://packagemanager.posit.co/cran/__linux__/jammy/latest"
+  r["INLA"] <- "https://inla.r-inla-download.org/R/stable"
+  options(repos = r)
+
+  options(
+    # Enable script file names and line numbers for tryCatchLog
+    keep.source = TRUE,
+    Ncpus = parallel::detectCores(),
+    warnPartialMatchAttr = TRUE,
+    warnPartialMatchDollar = TRUE,
+    warnPartialMatchArgs = TRUE,
+    # https://github.com/Ikuyadeu/vscode-R/wiki/RStudio-addin-support
+    vsc.rstudioapi = TRUE,
+    # https://www.tidyverse.org/blog/2021/03/clock-0-1-0/#production
+    clock.strict = TRUE,
+    rlang_backtrace_on_error = "full",
+    rlang_backtrace_on_error_report = "branch",
+    rlang_backtrace_on_warning = "full",
+    rlang_backtrace_on_warning_report = "branch",
+    # 5 min timeout for downloading files
+    timeout = 300
+  )
+
+  if (interactive()) {
+    auto.loads <- c("magrittr")
+
+    invisible(sapply(auto.loads, library, character.only = TRUE,
+                     warn.conflicts = FALSE, quietly = TRUE))
+
+    if (Sys.getenv("TERM_PROGRAM") == "vscode") {
+      # activate RStudio Addins on command pallete
+      options(vsc.rstudioapi = TRUE)
+
+      if ("httpgd" %in% .packages(all.available = TRUE)) {
+        # https://github.com/Ikuyadeu/vscode-R/wiki/R-Session-watcher
+        options(
+          vsc.plot = FALSE,
+          device = function(...) {
+            httpgd::hgd()
+            .vsc.browser(httpgd::hgd_url(), viewer = "Beside")
+          }
+        )
+
+        # How much of the object to show on hover and autocomplete detail?
+        # As controlled by max.level arg of str().
+        # Use 0 (or 1) is the default - literal value or object type and dimensions
+        # Use 2 to show list contents, data frame columns, and example values.
+        options(vsc.str.max.level = 2)
+      }
+    }
+
+    if (requireNamespace("progressr", quietly = TRUE)) {
+      ## progressr reporting without need for with_progress()
+      progressr::handlers(global = TRUE)
+
+      ## Use 'cli', if installed ...
+      if (requireNamespace("cli", quietly = TRUE)) {
+        progressr::handlers("cli")
+        ## Hand over all 'cli' progress reporting to 'progressr'
+        options(cli.progress_handlers = "progressr")
+      } else {
+        ## ... otherwise use the one that comes with R
+        progressr::handlers("txtprogressbar")
+      }
+      ## Reporting via RStudio, if running in the RStudio Console,
+      ## but not the terminal
+      if ((Sys.getenv("RSTUDIO") == "1") &&
+        !nzchar(Sys.getenv("RSTUDIO_TERM"))) {
+        progressr::handlers("rstudio", append = TRUE)
+      }
+    }
+
+    if (requireNamespace("rlang", quietly = TRUE)) {
+      # Promote base errors to rlang errors
+      options(error = rlang::entrace)
+      # Cause errors and warnings to be promoted to rlang conditions that
+      # include a backtrace.
+      rlang::global_entrace()
+    }
+    require(colorout)
+    }
+  })
