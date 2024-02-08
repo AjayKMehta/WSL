@@ -142,7 +142,24 @@ local plugins = {
 			},
 		},
 	},
-	{ "Hoffs/omnisharp-extended-lsp.nvim", ft = "cs" },
+	{
+		"iabdelkareem/csharp.nvim",
+		overrides = {
+			lsp = {
+				-- When set to true, csharp.nvim won't install omnisharp automatically and use it via mason.
+				-- Instead, the omnisharp instance in the cmd_path will be used.
+				cmd_path = "/home/ajay/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp",
+			},
+		},
+		ft = { "cs" },
+		dependencies = {
+			"williamboman/mason.nvim", -- Required, automatically installs omnisharp
+			"Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
+		},
+		config = function()
+			require("csharp").setup()
+		end,
+	},
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
