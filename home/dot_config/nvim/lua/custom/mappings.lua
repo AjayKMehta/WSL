@@ -567,19 +567,4 @@ M.node_action = {
 	},
 }
 
-M.omnisharp = {
-	n = {
-		["<C-K><C-D>"] = {
-			function()
-				vim.api.nvim_command("OmniSharpCodeFormat<cr>")
-			end,
-		},
-		["<F12>"] = {
-			function()
-				vim.api.nvim_command("OmniSharpPreviewDefinition<CR>")
-			end,
-		},
-	},
-}
-
 return M
