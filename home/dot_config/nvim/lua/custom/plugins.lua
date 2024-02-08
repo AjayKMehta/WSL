@@ -142,6 +142,7 @@ local plugins = {
 			},
 		},
 	},
+	{ "Hoffs/omnisharp-extended-lsp.nvim", ft = "cs" },
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {

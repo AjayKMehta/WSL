@@ -122,11 +122,20 @@ lspconfig.marksman.setup({
 	root_dir = require("lspconfig.util").root_pattern(".git", ".marksman.toml", "_quarto.yml"),
 })
 
+local pid = vim.fn.getpid()
+vim.g.OmniSharp_start_without_solution = 1
+vim.g.OmniSharp_timeout = 5
+-- https://github.com/Hoffs/omnisharp-extended-lsp.nvim/issues/29#issuecomment-1925437577
+local omnisharp_path = "/home/ajay/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp"
+
 lspconfig.omnisharp.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-	cmd = { "dotnet", "/home/ajay/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
-	-- Enables support for reading code style, naming convention and analyzer
+	handlers = {
+		["textDocument/definition"] = require("omnisharp_extended").handler,
+	},
+	cmd = { omnisharp_path, "--languageserver", "--hostPID", tostring(pid) },
+	-- Enables support for reading cod	e style, naming convention and analyzer
 	-- settings from .editorconfig.
 	enable_editorconfig_support = true,
 	-- If true, MSBuild project system will only load projects for files that
