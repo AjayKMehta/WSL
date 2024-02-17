@@ -29,9 +29,13 @@ local servers = {
 	"golangci_lint_ls",
 	"ltex",
 	"ast_grep",
-
+	-- Graphviz
+	"dotls",
 	-- "marksman",
+
+	-- Python
 	"ruff_lsp",
+	"pylyzer",
 
 	-- R
 	"r_language_server",
