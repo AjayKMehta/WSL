@@ -145,7 +145,7 @@ local plugins = {
 	{
 		"iabdelkareem/csharp.nvim",
 		opts = overrides.csharp,
-		ft = { "cs" },
+		ft = { "cs", "vb", "csproj", "sln", "slnx", "props" },
 		dependencies = {
 			"williamboman/mason.nvim", -- Required, automatically installs omnisharp
 			"Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
