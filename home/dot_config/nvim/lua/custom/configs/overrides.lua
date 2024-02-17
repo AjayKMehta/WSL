@@ -181,6 +181,8 @@ M.treesitter = {
 
 				["ac"] = { query = "@class.outer", desc = "Select outer part of a class" },
 				["ic"] = { query = "@class.inner", desc = "Select inner part of a class" },
+
+				["aq"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
 			},
 		},
 		move = {
@@ -226,6 +228,15 @@ M.treesitter = {
 				["<leader>pa"] = "@parameter.inner", -- swap parameters/argument with prev
 				["<leader>p:"] = "@property.outer", -- swap object property with prev
 				["<leader>pm"] = "@function.outer", -- swap function with previous
+			},
+		},
+		lsp_interop = {
+			enable = true,
+			border = "none",
+			floating_preview_opts = {},
+			peek_definition_code = {
+				["<leader>pf"] = "@function.outer",
+				["<leader>pF"] = "@class.outer",
 			},
 		},
 	},
