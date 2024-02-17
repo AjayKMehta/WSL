@@ -282,6 +282,7 @@ M.mason = {
 		"isort",
 		"mypy",
 		"ruff",
+		"pylyzer",
 
 		--Haskell
 		"haskell-language-server",
@@ -314,12 +315,11 @@ M.mason = {
 		"cspell",
 		"tree-sitter-cli",
 		"ast-grep",
+		"dot-language-server",
 
 		-- Markdown
 		"markdown-toc",
 		"markdownlint",
-		-- https://github.com/lukas-reineke/cbfmt
-		"cbfmt",
 		"marksman",
 
 		-- LaTeX
@@ -1064,7 +1064,7 @@ M.csharp = {
 		-- setting enabled OmniSharp may load fewer projects and may thus display
 		-- incomplete reference lists for symbols.
 		enable_ms_build_load_projects_on_demand = false,
-		capabilities = require("plugins.configs.lspconfig").capabilities,
+		capabilities = vim.lsp.protocol.make_client_capabilities(),
 	},
 }
 
