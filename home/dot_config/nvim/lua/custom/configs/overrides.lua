@@ -1042,4 +1042,30 @@ M.notify = {
 	end,
 }
 
+M.csharp = {
+	lsp = {
+		enable = true,
+		-- When set, csharp.nvim won't install omnisharp automatically and use it via mason.
+		-- Instead, the omnisharp instance in the cmd_path will be used.
+		-- cmd_path = "/home/ajay/.local/share/nvim/mason/packages/omnisharp/omnisharp",
+		-- Settings that'll be passed to the omnisharp server
+		enable_editor_config_support = true,
+		organize_imports = true,
+		load_projects_on_demand = false,
+		enable_analyzers_support = true,
+		enable_import_completion = true,
+		include_prerelease_sdks = true,
+		analyze_open_documents_only = false,
+		enable_package_auto_restore = true,
+		-- If true, MSBuild project system will only load projects for files that
+		-- were opened in the editor. This setting is useful for big C# codebases
+		-- and allows for faster initialization of code navigation features only
+		-- for projects that are relevant to code that is being edited. With this
+		-- setting enabled OmniSharp may load fewer projects and may thus display
+		-- incomplete reference lists for symbols.
+		enable_ms_build_load_projects_on_demand = false,
+		capabilities = require("plugins.configs.lspconfig").capabilities,
+	},
+}
+
 return M
