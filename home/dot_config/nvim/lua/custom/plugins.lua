@@ -584,6 +584,10 @@ local plugins = {
 	{
 		"jalvesaq/Nvim-R",
 		lazy = false,
+		ft = { "r", "rmd", "quarto" },
+		config = function()
+	require("cmp_nvim_r").setup({})
+		end,
 	},
 
 	-- JSON + YAML
