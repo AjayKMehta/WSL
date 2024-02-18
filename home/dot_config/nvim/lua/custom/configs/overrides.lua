@@ -1016,6 +1016,9 @@ M.neogen = {
 }
 
 M.actpreview = {
+	diff = {
+		algorithm = "patience",
+	},
 	telescope = {
 		sorting_strategy = "ascending",
 		layout_strategy = "vertical",
