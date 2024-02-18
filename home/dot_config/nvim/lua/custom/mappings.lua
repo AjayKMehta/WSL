@@ -248,6 +248,18 @@ M.dap = {
 		["<F10>"] = { "<cmd> DapStepOver <CR>", "Step over" },
 		["<F11>"] = { "<cmd> DapStepInto <CR>", "Step into" },
 		["<S-F11>"] = { "<cmd> DapStepOut <CR>", "Step out" },
+		["<leader>rb"] = {
+			function()
+				require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+			end,
+			"Set conditional breakpoint",
+		},
+		["<leader>rl"] = {
+			function()
+				require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+			end,
+			"Log message",
+		},
 	},
 }
 
@@ -258,6 +270,7 @@ M.dap_python = {
 			function()
 				require("dap-python").test_method()
 			end,
+			"Debug the closest method to cursor",
 		},
 	},
 }
