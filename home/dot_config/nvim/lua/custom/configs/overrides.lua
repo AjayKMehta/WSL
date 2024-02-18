@@ -315,7 +315,6 @@ M.mason = {
 		"cspell",
 		"tree-sitter-cli",
 		"ast-grep",
-		"dot-language-server",
 
 		-- Markdown
 		"markdown-toc",
