@@ -241,8 +241,13 @@ M.hover = {
 
 M.dap = {
 	plugin = true,
+	-- Keep same as VS + VS Code
 	n = {
-		["<leader>rb"] = { "<cmd> DapToggleBreakpoint <CR>", "Toggle breakpoint" },
+		["<F9>"] = { "<cmd> DapToggleBreakpoint <CR>", "Toggle breakpoint" },
+		["<F5>"] = { "<cmd> CapContinute<CR>", "Launch debugger" },
+		["<F10>"] = { "<cmd> DapStepOver <CR>", "Step over" },
+		["<F11>"] = { "<cmd> DapStepInto <CR>", "Step into" },
+		["<S-F11>"] = { "<cmd> DapStepOut <CR>", "Step out" },
 	},
 }
 
