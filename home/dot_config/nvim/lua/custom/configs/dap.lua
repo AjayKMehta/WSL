@@ -4,12 +4,25 @@
 -- Make sure to also have the snippet with the common helper functions in your config!
 
 local dap = require("dap")
+local utils = require("core.utils")
+
+-- Setup icons
+-- vim.fn.sign_define('DapBreakpoint', {text='', texthl='', linehl='', numhl=''})
+vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#990000" })
+vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#3d59a1" })
+vim.api.nvim_set_hl(0, "DapStopped", { fg = "#9ece6a" })
+
+vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+vim.fn.sign_define("DapLogPoint", { text = "󰣕", texthl = "DapLogPoint", linehl = "", numhl = "" })
+vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "", linehl = "", numhl = "" })
 
 local client_notifs = {}
 
 -- https://nvchad.com/docs/config/mappings#manually_load_mappings
-require("core.utils").load_mappings("dap")
-require("core.utils").load_mappings("dap_python")
+utils.load_mappings("dap")
+utils.load_mappings("dap_python")
 
 local function get_notif_data(client_id, token)
 	if not client_notifs[client_id] then
@@ -96,12 +109,19 @@ dap.adapters.coreclr = {
 
 dap.configurations.cs = {
 	{
-		type = "coreclr",
 		name = "launch - netcoredbg",
+		type = "coreclr",
 		request = "launch",
 		program = function()
-			return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
+			return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
 		end,
+	},
+	{
+		name = "debug unittests - netcoredbg",
+		type = "coreclr",
+		request = "attach",
+		processId = require("dap.utils").pick_process,
+		justMyCode = true, -- set to `true` in debug configuration and `false` in release configuration
 	},
 }
 
