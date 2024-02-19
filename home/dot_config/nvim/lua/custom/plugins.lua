@@ -30,6 +30,7 @@ Plugins divided into the following categories:
 local plugins = {
 
 	-- Debugging, diagnostics
+
 	{
 		"rcarriga/nvim-dap-ui",
 		dependencies = "mfussenegger/nvim-dap",
@@ -85,6 +86,7 @@ local plugins = {
 		end,
 		lazy = false,
 	},
+	{ "jbyuki/one-small-step-for-vimkind", module = "osv" },
 
 	--  Treesitter + LSP
 
