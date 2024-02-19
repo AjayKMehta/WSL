@@ -293,7 +293,12 @@ local plugins = {
 		},
 		cmd = "Octo",
 		config = function()
-			require("octo").setup()
+			require("octo").setup({
+				enable_builtin = true,
+				use_local_fs = true,
+			})
+			vim.cmd([[hi OctoEditable guibg=none]])
+			vim.treesitter.language.register("markdown", "octo")
 		end,
 	},
 	-- A Neovim plugin helping you establish good command workflow and habit

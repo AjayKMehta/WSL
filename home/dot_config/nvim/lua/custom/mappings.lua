@@ -591,4 +591,11 @@ M.outline = {
 	},
 }
 
+M.octo = {
+	n = {
+		["<leader>gO"] = { "<cmd>Octo<cr>", "Octo" },
+		["<leader>gp"] = { "<cmd>Octo pr list<cr>", "Octo PR list" },
+	},
+}
+
 return M
