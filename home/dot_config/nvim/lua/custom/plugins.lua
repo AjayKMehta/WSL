@@ -494,6 +494,26 @@ local plugins = {
 		end,
 	},
 	{
+		"mrjones2014/legendary.nvim",
+		-- since legendary.nvim handles all your keymaps/commands,
+		-- its recommended to load legendary.nvim before other plugins
+		priority = 10000,
+		lazy = false,
+		config = function()
+			require("legendary").setup({
+				extensions = {
+					nvim_tree = true,
+					lazy_nvim = { auto_register = true },
+					which_key = {
+						-- Automatically add which-key tables to legendary
+						-- see ./doc/WHICH_KEY.md for more details
+						auto_register = true,
+					},
+				},
+			})
+		end,
+	},
+	{
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 	},
@@ -745,6 +765,23 @@ local plugins = {
 	{
 		"stevearc/dressing.nvim",
 		lazy = false,
+		config = function()
+			require("dressing").setup({
+				select = {
+					get_config = function(opts)
+						if opts.kind == "legendary.nvim" then
+							return {
+								telescope = {
+									sorter = require("telescope.sorters").fuzzy_with_index_bias({}),
+								},
+							}
+						else
+							return {}
+						end
+					end,
+				},
+			})
+		end,
 	},
 	{
 		"akinsho/bufferline.nvim",

@@ -585,6 +585,23 @@ M.node_action = {
 	},
 }
 
+M.legend = {
+	n = {
+		["<leader>lk"] = {
+			function()
+				local filters = require("legendary.filters")
+				require("legendary").find({
+					filters = {
+						filters.current_mode(),
+						filters.keymaps(),
+					},
+				})
+			end,
+			"Legendary keymap (current mode)",
+		},
+	},
+}
+
 M.outline = {
 	n = {
 		["<leader>go"] = { "<cmd>Outline<cr>", "Toggle Outline" },
