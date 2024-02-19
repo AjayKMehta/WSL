@@ -585,4 +585,10 @@ M.node_action = {
 	},
 }
 
+M.outline = {
+	n = {
+		["<leader>go"] = { "<cmd>Outline<cr>", "Toggle Outline" },
+	},
+}
+
 return M
