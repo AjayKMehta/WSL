@@ -247,7 +247,7 @@ local plugins = {
 	{
 		"stevearc/aerial.nvim",
 		lazy = true,
-		cmd = "AerialToggle",
+		cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
 		opts = overrides.aerial,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
@@ -795,6 +795,8 @@ local plugins = {
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		config = load_config("headlines"),
 	},
+	-- A polished, IDE-like, highly-customizable winbar for Neovim
+	-- with drop-down menu support and multiple backends.
 
 	-- To make a plugin not be loaded
 	-- {

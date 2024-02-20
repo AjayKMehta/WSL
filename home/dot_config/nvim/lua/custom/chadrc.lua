@@ -5,11 +5,11 @@ local M = {}
 local highlights = require("custom.highlights")
 
 M.ui = {
-	theme = "decay",
+	theme = "tokyonight",
 	theme_toggle = {
-		"decay",
-		"decay",
-		"decay",
+		"tokyonight",
+		"tokyonight",
+		"tokyonight",
 		"catppuccin",
 		"github_light",
 		"night_owl",
