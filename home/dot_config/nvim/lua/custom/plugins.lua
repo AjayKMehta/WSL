@@ -796,6 +796,22 @@ local plugins = {
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		config = load_config("headlines"),
 	},
+	{
+		"xiantang/darcula-dark.nvim",
+		enabled = false,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
+	{
+		"craftzdog/solarized-osaka.nvim",
+		lazy = false,
+		enabled = false,
+		priority = 1000,
+		opts = {},
+	},
+	{ "kepano/flexoki-neovim", enabled = false },
+
 	-- A polished, IDE-like, highly-customizable winbar for Neovim
 	-- with drop-down menu support and multiple backends.
 
