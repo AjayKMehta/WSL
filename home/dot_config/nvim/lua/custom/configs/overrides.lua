@@ -278,7 +278,6 @@ M.mason = {
 		"pyright",
 		"ruff-lsp",
 		"debugpy",
-		"docformatter",
 		"isort",
 		"mypy",
 		"ruff",
@@ -312,12 +311,12 @@ M.mason = {
 		"sql-formatter",
 
 		-- Misc
-		"cspell",
+		"typos",
+		"typos-lsp",
 		"tree-sitter-cli",
 		"ast-grep",
 
 		-- Markdown
-		"markdown-toc",
 		"markdownlint",
 		"marksman",
 
