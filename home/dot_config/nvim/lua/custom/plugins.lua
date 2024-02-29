@@ -70,6 +70,10 @@ local plugins = {
 	},
 	{
 		"piersolenski/wtf.nvim",
+		opts = {
+			popup_type = "vertical",
+		},
+		cmd = { "WtfSearch", "Wtf" },
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 		},
