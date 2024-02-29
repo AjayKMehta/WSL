@@ -32,10 +32,15 @@ local sources = {
 	-- JSON, YAML, XML
 	lint.yamllint,
 
+	-- R
 	formatting.format_r,
 
 	-- https://github.com/ckolkey/ts-node-action#null-ls-integration
 	null_ls.builtins.code_actions.ts_node_action,
+
+	-- typos
+	require("typos").actions,
+	require("typos").diagnostics,
 }
 
 null_ls.setup({

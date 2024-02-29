@@ -95,6 +95,7 @@ local plugins = {
 		"Fildo7525/pretty_hover",
 		event = "LspAttach",
 	},
+	{ "poljar/typos.nvim", lazy = false },
 	{
 		"hedyhli/outline.nvim",
 		cmd = { "Outline", "OutlineOpen" },
