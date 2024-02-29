@@ -248,7 +248,7 @@ M.mason = {
 		-- lua stuff
 		"lua-language-server",
 		"stylua",
-		"luacheck",
+		"selene",
 
 		-- web dev
 		"css-lsp",
@@ -257,28 +257,18 @@ M.mason = {
 		"deno",
 		"json-lsp",
 		"jq-lsp",
+		-- fixjson is a JSON file fixer/formatter for humans using (relaxed) JSON5.
 		"fixjson",
-
-		-- c/cpp
-		"clangd",
-		"clang-format",
-		"cmake-language-server",
 
 		-- docker
 		"docker-compose-language-service",
 		"dockerfile-language-server",
 		"hadolint",
 
-		-- Go
-		"golangci-lint-langserver",
-		"golangci-lint",
-		"go-debug-adapter",
-
 		-- Python
 		"pyright",
 		"ruff-lsp",
 		"debugpy",
-		"isort",
 		"mypy",
 		"ruff",
 		"pylyzer",
@@ -298,6 +288,7 @@ M.mason = {
 		"bash-language-server",
 		"yaml-language-server",
 		"yamllint",
+		-- required for bash LSP
 		"shellcheck",
 		"codeql",
 		"yq",
