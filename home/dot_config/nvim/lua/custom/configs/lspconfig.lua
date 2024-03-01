@@ -13,12 +13,7 @@ local servers = {
 	"html",
 	"cssls",
 	"tsserver",
-	"eslint",
 	"jqls",
-
-	-- C/C++
-	"clangd",
-	"cmake",
 
 	"dockerls",
 
@@ -26,7 +21,6 @@ local servers = {
 	"codeqlls",
 
 	-- Misc
-	"golangci_lint_ls",
 	"ltex",
 	"ast_grep",
 	-- Graphviz
