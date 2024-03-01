@@ -242,87 +242,62 @@ M.treesitter = {
 	},
 }
 
-M.mason = {
+M.mason_lsp = {
 	-- https://mason-registry.dev/registry/list
 	ensure_installed = {
 		-- lua stuff
-		"lua-language-server",
-		"stylua",
-		"selene",
+		"lua_ls",
 
 		-- web dev
-		"css-lsp",
-		"html-lsp",
-		"typescript-language-server",
-		"deno",
-		"json-lsp",
-		"jq-lsp",
-		-- fixjson is a JSON file fixer/formatter for humans using (relaxed) JSON5.
-		"fixjson",
+		"cssls",
+		"html",
+		"tsserver",
+		"denols",
+		"jsonls",
+		"jqls",
 
 		-- docker
-		"docker-compose-language-service",
-		"dockerfile-language-server",
-		"hadolint",
+		"docker_compose_language_service",
+		"dockerls",
 
 		-- Python
 		"pyright",
-		"ruff-lsp",
-		"debugpy",
-		"mypy",
-		"ruff",
+		"ruff_lsp",
 		"pylyzer",
 
 		--Haskell
-		"haskell-language-server",
-		"haskell-debug-adapter",
+		"hls",
 
 		-- .NET
-		"csharp-language-server",
-		"csharpier",
+		"csharp_ls",
 		"omnisharp",
-		"powershell-editor-services",
-		"netcoredbg",
+		"powershell_es",
 
 		-- DevOps + Shell
-		"bash-language-server",
-		"yaml-language-server",
-		"yamllint",
+		"bashls",
+		"yamlls",
 		-- required for bash LSP
-		"shellcheck",
-		"codeql",
-		"yq",
-		"gh",
+		"codeqlls",
 
 		-- R
-		"r-languageserver",
+		"r_language_server",
 
 		-- SQL
-		"sqlls",
-		"sql-formatter",
+		"sqls",
 
 		-- Misc
-		"typos",
-		"typos-lsp",
-		"tree-sitter-cli",
-		"ast-grep",
+		"typos_lsp",
+		"ast_grep",
+		"vimls",
 
 		-- Markdown
-		"markdownlint",
 		"marksman",
 
 		-- LaTeX
-		"ltex-ls",
-		"latexindent",
+		"ltex",
 		"texlab",
 	},
 	automatic_installation = true,
-	-- ui = {
-	-- icons = {
-	--   package_pending = " ",
-	--   package_installed = "󰄳 ",
-	--   package_uninstalled = "󰇚 ",
-	-- },
 }
 
 local HEIGHT_RATIO = 0.8 -- You can change this
