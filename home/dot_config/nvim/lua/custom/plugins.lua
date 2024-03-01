@@ -53,9 +53,23 @@ local plugins = {
 			require("core.utils").load_mappings("dap_python")
 		end,
 	},
+	-- It's important that you set up the plugins in the following order:
+
+	-- mason.nvim
+	-- mason-lspconfig.nvim
+	-- Setup servers via lspconfig
 	{
 		"williamboman/mason.nvim",
-		opts = overrides.mason,
+		config = function(_, opts)
+			require("mason").setup()
+		end,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		opts = overrides.mason_lsp,
+		config = function(_, opts)
+			require("mason-lspconfig").setup(opts)
+		end,
 	},
 	{
 		"jay-babu/mason-nvim-dap.nvim",
@@ -186,6 +200,7 @@ local plugins = {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
+			{ "williamboman/mason-lspconfig.nvim" },
 			-- format & linting
 			{
 				-- "jose-elias-alvarez/null-ls.nvim",
