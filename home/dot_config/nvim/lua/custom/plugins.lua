@@ -72,6 +72,11 @@ local plugins = {
 		end,
 	},
 	{
+		-- It's important that you set up the plugins in the following order:
+
+		-- 1. mason.nvim
+		-- 2. mason-nvim-dap.nvim
+
 		"jay-babu/mason-nvim-dap.nvim",
 		dependencies = { "williamboman/mason.nvim" },
 		config = load_config("mason-nvim-dap"),
@@ -91,8 +96,9 @@ local plugins = {
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 		},
+		desc = "AI/search-engine powered diagnostic debugging",
 	},
-	-- A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.
+
 	{
 		"folke/trouble.nvim",
 		dependencies = {
@@ -103,6 +109,7 @@ local plugins = {
 			require("trouble").setup({})
 		end,
 		lazy = false,
+		desc = "A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.",
 	},
 	{ "jbyuki/one-small-step-for-vimkind", module = "osv" },
 
@@ -112,6 +119,7 @@ local plugins = {
 	{
 		"Fildo7525/pretty_hover",
 		event = "LspAttach",
+		desc = "Pretty hover messages.",
 	},
 	{ "poljar/typos.nvim", lazy = false },
 	{
@@ -135,18 +143,20 @@ local plugins = {
 		config = function(_, opts)
 			require("outline").setup(opts)
 		end,
+		desc = "Code outline sidebar powered by LSP.",
 	},
 	{
 		"ckolkey/ts-node-action",
 		dependencies = { "nvim-treesitter" },
 		opts = {},
+		desc = "A framework for running functions on Tree-sitter nodes, and updating the buffer with the result.",
 	},
 	{
-		-- Folds
 		"kevinhwang91/nvim-ufo",
 		dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
 		event = "BufRead",
-		configg = load_config("ufo"),
+		config = load_config("ufo"),
+		desc = "Enhanced folds",
 	},
 	-- Navigate your code with search labels, enhanced character motions, and Treesitter integration.
 	{
