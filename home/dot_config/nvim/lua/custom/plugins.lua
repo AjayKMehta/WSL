@@ -111,7 +111,6 @@ local plugins = {
 		lazy = false,
 		desc = "A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.",
 	},
-	{ "jbyuki/one-small-step-for-vimkind", module = "osv" },
 
 	--  Treesitter + LSP
 
@@ -121,7 +120,6 @@ local plugins = {
 		event = "LspAttach",
 		desc = "Pretty hover messages.",
 	},
-	{ "poljar/typos.nvim", lazy = false },
 	{
 		"hedyhli/outline.nvim",
 		cmd = { "Outline", "OutlineOpen" },
