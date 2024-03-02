@@ -1032,7 +1032,11 @@ M.csharp = {
 		-- setting enabled OmniSharp may load fewer projects and may thus display
 		-- incomplete reference lists for symbols.
 		enable_ms_build_load_projects_on_demand = false,
-		capabilities = vim.lsp.protocol.make_client_capabilities(),
+		capabilities = require("plugins.configs.lspconfig").capabilities,
+		on_attach = require("plugins.configs.lspconfig").on_attach,
+	},
+	dap = {
+		adapter_name = "coreclr",
 	},
 }
 
