@@ -121,23 +121,11 @@ local plugins = {
 		desc = "Pretty hover messages.",
 	},
 	{
+		-- Uses LSP instead of treesitter like aerial.
 		"hedyhli/outline.nvim",
 		cmd = { "Outline", "OutlineOpen" },
-		opts = {
-			outline_window = {
-				auto_jump = false,
-				wrap = true,
-			},
-			preview_window = { auto_preview = true },
-			symbol_folding = {
-				auto_unfold = {
-					only = 2,
-				},
-			},
-			outline_items = {
-				show_symbol_lineno = false,
-			},
-		},
+		enabled = false, -- Do not need both
+		opts = overrides.outline,
 		config = function(_, opts)
 			require("outline").setup(opts)
 		end,
