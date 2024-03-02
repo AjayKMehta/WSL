@@ -184,3 +184,41 @@ lspconfig.pyright.setup({
 		},
 	},
 })
+
+lspconfig.texlab.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	-- https://github.com/latex-lsp/texlab/wiki/configurations
+	settings = {
+		texlab = {
+			bibtexFormatter = "texlab",
+			build = {
+				auxDirectory = ".",
+				executable = "tectonic",
+				-- Use V1 CLI. See https://tectonic-typesetting.github.io/book/latest/ref/v2cli.html.
+				args = { "%f", "--synctex", "--keep-logs", "--keep-intermediates" },
+				forwardSearchAfter = false,
+				onSave = false,
+			},
+			chktex = {
+				onEdit = false,
+				onOpenAndSave = true,
+			},
+			diagnosticsDelay = 300,
+			-- TODO: Figuure this out
+			diagnostics = {
+				-- allowedPatterns = {},
+				-- ignoredPatterns = {"^22:"},
+			},
+			formatterLineLength = 80,
+			forwardSearch = {
+				executable = "zathura",
+				args = { "--synctex-forward", "%l:1:%f", "%p" },
+			},
+			latexFormatter = "latexindent",
+			latexindent = {
+				modifyLineBreaks = false,
+			},
+		},
+	},
+})
