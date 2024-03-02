@@ -61,7 +61,7 @@ cmp.setup.cmdline({ "/", "?" }, {
 			name = "buffer",
 			option = { keyword_pattern = [[\k\+]] },
 			keyword_length = 3,
-			max_item_count = 10,
+			max_item_count = 20,
 		},
 		{ name = "buffer-lines" },
 	},
@@ -124,7 +124,7 @@ cmp.setup.filetype({ "tex", "plaintex", "markdown" }, {
 			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
-			max_item_count = 10,
+			max_item_count = 100,
 			option = { show_autosnippets = true },
 		},
 		{
@@ -132,7 +132,7 @@ cmp.setup.filetype({ "tex", "plaintex", "markdown" }, {
 			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
-			max_item_count = 5,
+			max_item_count = 50,
 		},
 		{
 			name = "lua-latex-symbols",
@@ -145,7 +145,7 @@ cmp.setup.filetype({ "tex", "plaintex", "markdown" }, {
 			group_index = 1,
 			priority = 60,
 			keyword_length = 2,
-			max_item_count = 6,
+			max_item_count = 30,
 		},
 		{
 			name = "async_path",
@@ -157,7 +157,6 @@ cmp.setup.filetype({ "tex", "plaintex", "markdown" }, {
 			group_index = 3,
 			priority = 10,
 			keyword_length = 4,
-			max_item_count = 10,
 			option = buffer_option,
 		},
 		{
@@ -165,7 +164,7 @@ cmp.setup.filetype({ "tex", "plaintex", "markdown" }, {
 			group_index = 3,
 			priority = 5,
 			keyword_length = 4,
-			max_item_count = 10,
+			max_item_count = 50,
 			option = buffer_option,
 		},
 	},
@@ -207,7 +206,7 @@ cmp.setup.filetype("r", {
 			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
-			max_item_count = 10,
+			max_item_count = 100,
 			option = { show_autosnippets = true },
 		},
 		{
@@ -215,7 +214,7 @@ cmp.setup.filetype("r", {
 			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
-			max_item_count = 5,
+			max_item_count = 50,
 		},
 	}),
 })
@@ -257,7 +256,7 @@ cmp.setup.filetype("lua", {
 			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
-			max_item_count = 10,
+			max_item_count = 100,
 			option = { show_autosnippets = true },
 		},
 		{
@@ -265,7 +264,7 @@ cmp.setup.filetype("lua", {
 			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
-			max_item_count = 5,
+			max_item_count = 50,
 		},
 	}),
 })

@@ -1,6 +1,9 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
+capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 -- https://github.com/hrsh7th/cmp-nvim-lsp/issues/38#issuecomment-1815265121
 capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
