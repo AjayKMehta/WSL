@@ -82,10 +82,10 @@ local plugins = {
 		config = load_config("mason-nvim-dap"),
 	},
 	{
-		-- Code actions in telescope/nui
 		"aznhe21/actions-preview.nvim",
 		event = "VeryLazy",
 		opts = overrides.actpreview,
+		desc = "Preview code with LSP code actions applied.",
 	},
 	{
 		"piersolenski/wtf.nvim",
@@ -98,7 +98,6 @@ local plugins = {
 		},
 		desc = "AI/search-engine powered diagnostic debugging",
 	},
-
 	{
 		"folke/trouble.nvim",
 		dependencies = {
@@ -144,10 +143,10 @@ local plugins = {
 		config = load_config("ufo"),
 		desc = "Enhanced folds",
 	},
-	-- Navigate your code with search labels, enhanced character motions, and Treesitter integration.
 	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
+		desc = "Navigate your code with search labels, enhanced character motions, and Treesitter integration.",
 	},
 	{
 		"ray-x/lsp_signature.nvim",
@@ -156,6 +155,7 @@ local plugins = {
 		config = function(_, opts)
 			require("lsp_signature").setup(opts)
 		end,
+		desc = "Show function signature as you type.",
 	},
 	{
 		"mrded/nvim-lsp-notify",
@@ -167,6 +167,7 @@ local plugins = {
 				notify = require("notify"),
 			})
 		end,
+		desc = "Notify about LSP processes.",
 	},
 	{
 		"numToStr/Comment.nvim",
@@ -180,6 +181,7 @@ local plugins = {
 				config = load_config("ts-context-commentstring"),
 			},
 		},
+		desc = "Advanced comment plugin with Treesitter support.",
 	},
 	{
 		"iabdelkareem/csharp.nvim",
@@ -192,6 +194,7 @@ local plugins = {
 		config = function(_, opts)
 			require("csharp").setup(opts)
 		end,
+		desc = "C# plugin powered by omnisharp-roslyn.",
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -209,8 +212,8 @@ local plugins = {
 			require("plugins.configs.lspconfig")
 			require("custom.configs.lspconfig")
 		end, -- Override to setup mason-lspconfig
+		desc = "Quickstart configs for Neovim LSP.",
 	},
-	-- Generate comments based on treesitter
 	{
 		"danymat/neogen",
 		dependencies = "nvim-treesitter/nvim-treesitter",
@@ -218,6 +221,7 @@ local plugins = {
 		-- Uncomment next line if you want to follow only stable versions
 		version = "*",
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+		desc = "Generate comments based on treesitter.",
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
