@@ -115,7 +115,6 @@ local plugins = {
 
 	--#region Treesitter + LSP
 
-	-- More readable hover message
 	{
 		"Fildo7525/pretty_hover",
 		event = "LspAttach",
@@ -159,18 +158,6 @@ local plugins = {
 			require("lsp_signature").setup(opts)
 		end,
 		desc = "Show function signature as you type.",
-	},
-	{
-		"mrded/nvim-lsp-notify",
-		requires = { "rcarriga/nvim-notify" },
-		enabled = false,
-		event = "BufReadPre",
-		config = function()
-			require("lsp-notify").setup({
-				notify = require("notify"),
-			})
-		end,
-		desc = "Notify about LSP processes.",
 	},
 	{
 		"linrongbin16/lsp-progress.nvim",
@@ -315,6 +302,7 @@ local plugins = {
 		"HiPhish/rainbow-delimiters.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		event = { "BufReadPost", "BufNewFile" },
+		desc = "Rainbow delimiters with Treesitter",
 	},
 	{
 		"mfussenegger/nvim-lint",
