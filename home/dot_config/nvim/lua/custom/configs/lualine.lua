@@ -121,6 +121,10 @@ local config = {
 		},
 		lualine_c = {
 			{
+				-- invoke `progress` here.
+				require("lsp-progress").progress,
+			},
+			{
 				"filename",
 				cond = has_filename,
 				file_status = true,
@@ -161,3 +165,11 @@ local config = {
 }
 
 lualine.setup(config)
+
+-- Listen for lsp-progress event and refresh lualine
+vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
+vim.api.nvim_create_autocmd("User", {
+	group = "lualine_augroup",
+	pattern = "LspProgressStatusUpdated",
+	callback = lualine.refresh,
+})

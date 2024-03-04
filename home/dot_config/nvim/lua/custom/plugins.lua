@@ -173,6 +173,13 @@ local plugins = {
 		desc = "Notify about LSP processes.",
 	},
 	{
+		"linrongbin16/lsp-progress.nvim",
+		config = function()
+			require("lsp-progress").setup()
+		end,
+		desc = "Performant LSP progress status.",
+	},
+	{
 		"numToStr/Comment.nvim",
 		event = VeryLazy,
 		lazy = false,
