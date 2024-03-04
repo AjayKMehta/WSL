@@ -29,6 +29,50 @@ end
 local has_filename = function()
 	return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
 end
+local s = require("null-ls.sources")
+
+local function get_formatters(ft)
+	local formatters = s.get_supported(ft, "formatting")
+	table.sort(formatters)
+	return formatters
+end
+
+local function get_linters(ft)
+	local linters = s.get_supported(ft, "diagnostics")
+	table.sort(linters)
+	return linters
+end
+
+function lsp_info(msg)
+	msg = msg or "LSP Inactive"
+	local buf_clients = vim.lsp.buf_get_clients()
+	if next(buf_clients) == nil then
+		if type(msg) == "boolean" or #msg == 0 then
+			return "LS Inactive"
+		end
+		return msg
+	end
+	local buf_ft = vim.bo.filetype
+	local buf_client_names = {}
+
+	-- add client
+	for _, client in pairs(buf_clients) do
+		if client.name ~= "null-ls" and client.name ~= "copilot" then
+			table.insert(buf_client_names, client.name)
+		end
+	end
+	-- add formatter
+	local supported_formatters = get_formatters(buf_ft)
+	vim.list_extend(buf_client_names, supported_formatters)
+
+	-- add linter
+	local supported_linters = get_linters(buf_ft)
+	vim.list_extend(buf_client_names, supported_linters)
+
+	local unique_client_names = vim.fn.uniq(buf_client_names)
+	local language_servers = "[ " .. table.concat(unique_client_names, ", ") .. "]"
+	return language_servers
+end
 
 local config = {
 	options = {
@@ -85,39 +129,9 @@ local config = {
 				symbols = { added = "+", modified = "~", removed = "-" },
 				source = diff_source,
 			},
-			-- {
-			-- 	function(msg)
-			-- 		msg = msg or "LS Inactive"
-			-- 		local buf_clients = vim.lsp.buf_get_clients()
-			-- 		if next(buf_clients) == nil then
-			-- 			-- TODO: clean up this if statement
-			-- 			if type(msg) == "boolean" or #msg == 0 then
-			-- 				return "LS Inactive"
-			-- 			end
-			-- 			return msg
-			-- 		end
-			-- 		local buf_ft = vim.bo.filetype
-			-- 		local buf_client_names = {}
-
-			-- 		-- add client
-			-- 		for _, client in pairs(buf_clients) do
-			-- 			if client.name ~= "null-ls" and client.name ~= "copilot" then
-			-- 				table.insert(buf_client_names, client.name)
-			-- 			end
-			-- 		end
-			-- 		-- add formatter
-			-- 		local supported_formatters = formatters.list_registered(buf_ft)
-			-- 		vim.list_extend(buf_client_names, supported_formatters)
-
-			-- 		-- add linter
-			-- 		local supported_linters = linters.list_registered(buf_ft)
-			-- 		vim.list_extend(buf_client_names, supported_linters)
-
-			-- 		local unique_client_names = vim.fn.uniq(buf_client_names)
-			-- 		local language_servers = "[ " .. table.concat(unique_client_names, ", ") .. "]"
-			-- 		return language_servers
-			-- 	end,
-			-- },
+			{
+				lsp_info,
+			},
 		},
 		lualine_c = {
 			{
