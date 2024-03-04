@@ -127,7 +127,7 @@ local plugins = {
 		enabled = false, -- Do not need both
 		opts = overrides.outline,
 		config = function(_, opts)
-			require("outline").setup(opts)
+	require("outline").setup(opts)
 		end,
 		desc = "Code outline sidebar powered by LSP.",
 	},
@@ -154,7 +154,7 @@ local plugins = {
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		opts = {},
 		config = function(_, opts)
-			require("lsp_signature").setup(opts)
+	require("lsp_signature").setup(opts)
 		end,
 		desc = "Show function signature as you type.",
 	},
@@ -164,9 +164,9 @@ local plugins = {
 		enabled = false,
 		event = "BufReadPre",
 		config = function()
-			require("lsp-notify").setup({
-				notify = require("notify"),
-			})
+	require("lsp-notify").setup({
+		notify = require("notify"),
+	})
 		end,
 		desc = "Notify about LSP processes.",
 	},
@@ -193,7 +193,7 @@ local plugins = {
 			"Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
 		},
 		config = function(_, opts)
-			require("csharp").setup(opts)
+	require("csharp").setup(opts)
 		end,
 		desc = "C# plugin powered by omnisharp-roslyn.",
 	},
@@ -211,8 +211,8 @@ local plugins = {
 			},
 		},
 		config = function()
-			require("plugins.configs.lspconfig")
-			require("custom.configs.lspconfig")
+	require("plugins.configs.lspconfig")
+	require("custom.configs.lspconfig")
 		end, -- Override to setup mason-lspconfig
 		desc = "Quickstart configs for Neovim LSP.",
 	},
@@ -236,9 +236,9 @@ local plugins = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 		config = function(_, opts)
-			dofile(vim.g.base46_cache .. "syntax")
-			require("nvim-treesitter.configs").setup(opts)
-			require("nvim-treesitter.install").compilers = { "clang" }
+	dofile(vim.g.base46_cache .. "syntax")
+	require("nvim-treesitter.configs").setup(opts)
+	require("nvim-treesitter.install").compilers = { "clang" }
 		end,
 	},
 	{
@@ -280,7 +280,7 @@ local plugins = {
 			{ "<Leader>ta", "<CMD>AerialToggle<CR>", mode = { "n" }, desc = "Open or close the aerial window" },
 		},
 		config = function(_, opts)
-			vim.cmd([[
+	vim.cmd([[
 			hi link AerialClass Type
 			hi link AerialClassIcon Special
 			hi link AerialFunction Special
@@ -292,7 +292,7 @@ local plugins = {
 			hi AerialGuide1 guifg=Red
 			hi AerialGuide2 guifg=Blue
 			]])
-			require("aerial").setup(opts)
+	require("aerial").setup(opts)
 		end,
 		desc = "A code outline window for skimming and quick navigation.",
 	},
@@ -306,6 +306,51 @@ local plugins = {
 		"HiPhish/rainbow-delimiters.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		event = { "BufReadPost", "BufNewFile" },
+	},
+	{
+		"mfussenegger/nvim-lint",
+		-- TODO: Enable when finished configuring.
+		enabled = false,
+		event = {
+			"BufReadPre",
+			"BufNewFile",
+		},
+		config = load_config("lint"),
+	},
+	{
+		"stevearc/conform.nvim",
+		-- TODO: Enable when finished configuring.
+		enabled = false,
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+	local conform = require("conform")
+
+	conform.setup({
+		format_on_save = function(bufnr)
+			-- Disable with a global or buffer-local variable
+			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+				return
+			end
+			return { timeout_ms = 500, lsp_fallback = true }
+		end,
+		formatters_by_ft = {
+			lua = { "stylua" },
+			json = { { "prettierd", "prettier" } },
+			markdown = { { "prettierd", "prettier" } },
+			bash = { "beautysh" },
+			yaml = { "yamlfix" },
+			toml = { "taplo" },
+		},
+	})
+
+	vim.keymap.set({ "n", "v" }, "<leader>l", function()
+		conform.format({
+			lsp_fallback = true,
+			async = false,
+			timeout_ms = 1000,
+		})
+	end, { desc = "Format file or range (in visual mode)" })
+		end,
 	},
 
 	-- Test
@@ -333,12 +378,12 @@ local plugins = {
 		},
 		cmd = "Octo",
 		config = function()
-			require("octo").setup({
-				enable_builtin = true,
-				use_local_fs = true,
-			})
-			vim.cmd([[hi OctoEditable guibg=none]])
-			vim.treesitter.language.register("markdown", "octo")
+	require("octo").setup({
+		enable_builtin = true,
+		use_local_fs = true,
+	})
+	vim.cmd([[hi OctoEditable guibg=none]])
+	vim.treesitter.language.register("markdown", "octo")
 		end,
 	},
 	-- A Neovim plugin helping you establish good command workflow and habit
@@ -394,17 +439,17 @@ local plugins = {
 			{
 				"<leader>un",
 				function()
-					require("notify").dismiss({ silent = true, pending = true })
+	require("notify").dismiss({ silent = true, pending = true })
 				end,
 				desc = "Dismiss all Notifications",
 			},
 		},
 		opts = overrides.notify,
 		config = function(_, opts)
-			-- https://github.com/rcarriga/nvim-notify/wiki/Usage-Recipes#output-of-command
-			local notify = require("notify")
-			notify.setup(opts)
-			vim.notify = notify
+	-- https://github.com/rcarriga/nvim-notify/wiki/Usage-Recipes#output-of-command
+	local notify = require("notify")
+	notify.setup(opts)
+	vim.notify = notify
 		end,
 	},
 	{
@@ -429,8 +474,8 @@ local plugins = {
 		-- Doesn't work
 		-- event = { "InsertEnter", "CmdlineEnter" },
 		config = function(_, opts)
-			require("cmp").setup(opts)
-			require("custom.configs.cmp")
+	require("cmp").setup(opts)
+	require("custom.configs.cmp")
 		end,
 		dependencies = {
 			{
@@ -443,7 +488,7 @@ local plugins = {
 				event = "InsertEnter",
 				opts = { cache = true },
 				config = function(_, opts)
-					require("cmp").setup()
+	require("cmp").setup()
 				end,
 			},
 			{ "FelipeLema/cmp-async-path" },
@@ -468,9 +513,9 @@ local plugins = {
 			{
 				"doxnit/cmp-luasnip-choice",
 				config = function()
-					require("cmp_luasnip_choice").setup({
-						auto_open = true, -- Automatically open nvim-cmp on choice node (default: true)
-					})
+	require("cmp_luasnip_choice").setup({
+		auto_open = true, -- Automatically open nvim-cmp on choice node (default: true)
+	})
 				end,
 			},
 			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
@@ -508,7 +553,7 @@ local plugins = {
 				mappings = {
 					i = {
 						["<esc>"] = function(...)
-							require("telescope.actions").close(...)
+	require("telescope.actions").close(...)
 						end,
 					},
 				},
@@ -528,11 +573,11 @@ local plugins = {
 			"stevearc/aerial.nvim",
 		},
 		config = function(_, opts)
-			local telescope = require("telescope")
-			telescope.load_extension("fzf")
+	local telescope = require("telescope")
+	telescope.load_extension("fzf")
 	telescope.load_extension("aerial")
 	telescope.setup(opts)
-			require("telescope").load_extension("projects")
+	require("telescope").load_extension("projects")
 		end,
 	},
 	{
@@ -542,17 +587,17 @@ local plugins = {
 		priority = 10000,
 		lazy = false,
 		config = function()
-			require("legendary").setup({
-				extensions = {
-					nvim_tree = true,
-					lazy_nvim = { auto_register = true },
-					which_key = {
-						-- Automatically add which-key tables to legendary
-						-- see ./doc/WHICH_KEY.md for more details
-						auto_register = true,
-					},
-				},
-			})
+	require("legendary").setup({
+		extensions = {
+			nvim_tree = true,
+			lazy_nvim = { auto_register = true },
+			which_key = {
+				-- Automatically add which-key tables to legendary
+				-- see ./doc/WHICH_KEY.md for more details
+				auto_register = true,
+			},
+		},
+	})
 		end,
 	},
 	{
@@ -587,20 +632,20 @@ local plugins = {
 		ft = haskell_ft,
 		-- https://github.com/neovimhaskell/haskell-vim#configuration
 		config = function()
-			-- to enable highlighting of `forall`
-			vim.g.haskell_enable_quantification = 1
-			-- to enable highlighting of `mdo` and `rec`
-			vim.g.haskell_enable_recursivedo = 1
-			-- to enable highlighting of `proc`
-			vim.g.haskell_enable_arrowsyntax = 1
-			-- to enable highlighting of `pattern`
-			vim.g.haskell_enable_pattern_synonyms = 1
-			-- to enable highlighting of type roles
-			vim.g.haskell_enable_typeroles = 1
-			-- to enable highlighting of `static`
-			vim.g.haskell_enable_static_pointers = 1
-			-- to enable highlighting of backpack keywords
-			vim.g.haskell_backpack = 1
+	-- to enable highlighting of `forall`
+	vim.g.haskell_enable_quantification = 1
+	-- to enable highlighting of `mdo` and `rec`
+	vim.g.haskell_enable_recursivedo = 1
+	-- to enable highlighting of `proc`
+	vim.g.haskell_enable_arrowsyntax = 1
+	-- to enable highlighting of `pattern`
+	vim.g.haskell_enable_pattern_synonyms = 1
+	-- to enable highlighting of type roles
+	vim.g.haskell_enable_typeroles = 1
+	-- to enable highlighting of `static`
+	vim.g.haskell_enable_static_pointers = 1
+	-- to enable highlighting of backpack keywords
+	vim.g.haskell_backpack = 1
 		end,
 	},
 	{
@@ -616,10 +661,10 @@ local plugins = {
 			{ "nvim-telescope/telescope.nvim" },
 		},
 		config = function()
-			local ok, telescope = pcall(require, "telescope")
-			if ok then
-				telescope.load_extension("hoogle")
-			end
+	local ok, telescope = pcall(require, "telescope")
+	if ok then
+		telescope.load_extension("hoogle")
+	end
 		end,
 	},
 
@@ -629,16 +674,16 @@ local plugins = {
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			require("nvim-surround").setup({
-				-- configuration here, or leave empty to use defaults
-			})
+	require("nvim-surround").setup({
+		-- configuration here, or leave empty to use defaults
+	})
 		end,
 	},
 	{
 		"max397574/better-escape.nvim",
 		event = "InsertEnter",
 		config = function()
-			require("better_escape").setup()
+	require("better_escape").setup()
 		end,
 	},
 	{ "junegunn/vim-peekaboo" },
@@ -654,7 +699,7 @@ local plugins = {
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
 		config = function()
-			require("todo-comments").setup({})
+	require("todo-comments").setup({})
 		end,
 		event = "VeryLazy",
 	},
@@ -671,7 +716,7 @@ local plugins = {
 		lazy = false,
 		ft = { "r", "rmd", "quarto" },
 		config = function()
-			require("cmp_nvim_r").setup({})
+	require("cmp_nvim_r").setup({})
 		end,
 	},
 
@@ -684,7 +729,7 @@ local plugins = {
 			{ "nvim-telescope/telescope.nvim" },
 		},
 		config = function()
-			require("telescope").load_extension("yaml_schema")
+	require("telescope").load_extension("yaml_schema")
 		end,
 	},
 	{
@@ -709,7 +754,7 @@ local plugins = {
 	{
 		"AckslD/nvim-FeMaco.lua",
 		config = function()
-			require("femaco").setup()
+	require("femaco").setup()
 		end,
 	},
 	{
@@ -717,28 +762,28 @@ local plugins = {
 		ft = "markdown",
 		-- https://github.com/iamcco/markdown-preview.nvim/issues/616#issuecomment-1774970354
 		build = function()
-			local job = require("plenary.job")
-			local install_path = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim/app"
-			local cmd = "bash"
+	local job = require("plenary.job")
+	local install_path = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim/app"
+	local cmd = "bash"
 
-			if vim.fn.has("win64") == 1 then
-				cmd = "pwsh"
-			end
+	if vim.fn.has("win64") == 1 then
+		cmd = "pwsh"
+	end
 
-			job:new({
-				command = cmd,
-				args = { "-c", "npm install && git restore ." },
-				cwd = install_path,
-				on_exit = function()
-					print("Finished installing markdown-preview.nvim")
-				end,
-				on_stderr = function(_, data)
-					print(data)
-				end,
-			}):start()
+	job:new({
+		command = cmd,
+		args = { "-c", "npm install && git restore ." },
+		cwd = install_path,
+		on_exit = function()
+			print("Finished installing markdown-preview.nvim")
+		end,
+		on_stderr = function(_, data)
+			print(data)
+		end,
+	}):start()
 
-			-- Options
-			vim.g.mkdp_auto_close = 0
+	-- Options
+	vim.g.mkdp_auto_close = 0
 		end,
 		lazy = true,
 		keys = { { "gm", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" } },
