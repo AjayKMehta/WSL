@@ -815,10 +815,7 @@ local plugins = {
 	{
 		"nvim-lualine/lualine.nvim",
 		lazy = false,
-		opts = overrides.lualine,
-		config = function(_, opts)
-			require("lualine").setup(opts)
-		end,
+		config = load_config("lualine"),
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
