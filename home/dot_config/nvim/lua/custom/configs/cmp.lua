@@ -94,7 +94,7 @@ cmp.setup.filetype({ "help", "minifiles", "TelescopePrompt" }, {
 	enabled = false,
 })
 
-cmp.setup.filetype({ "tex", "plaintex", "markdown" }, {
+cmp.setup.filetype({ "tex", "plaintex", "markdown", "rmd" }, {
 	sources = {
 		{
 			name = "treesitter",
@@ -133,7 +133,12 @@ cmp.setup.filetype({ "tex", "plaintex", "markdown" }, {
 			priority = 75,
 			keyword_length = 2,
 		},
-
+		{
+			name = "dictionary",
+			priority = 60,
+			keyword_length = 2,
+			max_item_count = 30,
+		},
 		{
 			name = "async_path",
 			priority = 50,
