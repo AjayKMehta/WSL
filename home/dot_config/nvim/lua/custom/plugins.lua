@@ -744,6 +744,19 @@ local plugins = {
 		keys = { { "gm", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" } },
 		config = load_config("md-preview"),
 	},
+	{
+		"antonk52/markdowny.nvim",
+		ft = { "markdown" },
+		config = function()
+	require("markdowny").setup()
+		end,
+		desc = " Add key bindings for markdown.",
+
+		-- <C-k>: Adds a link to visually selected text.
+		-- <C-b>: Toggles visually selected text to bold.
+		-- <C-i>: Toggles visually selected text to italic.
+		-- <C-e>: Toggles visually selected text to inline code, and V-LINE selected text to a multiline code block.
+	},
 
 	-- LaTeX
 
