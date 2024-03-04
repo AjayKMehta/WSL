@@ -847,6 +847,15 @@ M.telescope = {
 		file_browser = {
 			hidden = { file_browser = true, folder_browser = true },
 		},
+		aerial = {
+			-- Display symbols as <root>.<parent>.<symbol>
+			show_nesting = {
+				["_"] = false, -- This key will be the default
+				json = true, -- You can set the option for specific filetypes
+				yaml = true,
+				xml = true,
+			},
+		},
 	},
 }
 
@@ -960,6 +969,22 @@ M.aerial = {
 	attach_mode = "window", -- 'window' | 'global'
 	nerd_font = "auto",
 	show_guides = true,
+	filter_kind = {
+		"Class",
+		"Constant",
+		"Constructor",
+		"Enum",
+		"Event",
+		"Field",
+		"Function",
+		"Interface",
+		"Method",
+		"Module",
+		"Namespace",
+		"Property",
+		"Struct",
+	},
+
 	-- Highlight the symbol in the source buffer when cursor is in the aerial win
 	highlight_on_hover = true,
 	ignore = {
