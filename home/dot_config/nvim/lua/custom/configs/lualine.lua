@@ -11,6 +11,7 @@ local colors = {
 	violet = "#a9a1e1",
 	magenta = "#c678dd",
 	blue = "#51afef",
+	lightblue = "#7fd6ee",
 	red = "#ec5f67",
 }
 
@@ -23,6 +24,10 @@ local function diff_source()
 			removed = gitsigns.removed,
 		}
 	end
+end
+
+local has_filename = function()
+	return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
 end
 
 local config = {
@@ -62,7 +67,10 @@ local config = {
 		lualine_b = {
 			{
 				"branch",
-				color = { gui = "bold" },
+				color = {
+					fg = colors.lightblue,
+					-- gui = "bold",
+				},
 			},
 			{
 				"diff",
@@ -114,9 +122,7 @@ local config = {
 		lualine_c = {
 			{
 				"filename",
-				cond = function()
-					return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
-				end,
+				cond = has_filename,
 				file_status = true,
 				newfile_status = true, -- Display new file status (new file means no write after created)
 			},
@@ -151,7 +157,7 @@ local config = {
 			},
 		},
 	},
-	extensions = { "nvim-tree", "lazy", "mason", "nvim-dap-ui", "trouble" },
+	extensions = { "nvim-tree", "lazy", "mason", "nvim-dap-ui", "trouble", "toggleterm", "quickfix" },
 }
 
 lualine.setup(config)
