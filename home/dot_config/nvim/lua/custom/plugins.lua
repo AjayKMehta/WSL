@@ -27,9 +27,9 @@ Plugins divided into the following categories:
 
 ---@diagnostic disable-next-line: undefined-doc-name
 ---@type NvPluginSpec[]
-local plugins = {
 
-	-- Debugging, diagnostics
+local plugins = {
+	--#region Debugging, diagnostics
 
 	{
 		"rcarriga/nvim-dap-ui",
@@ -111,7 +111,9 @@ local plugins = {
 		desc = "A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.",
 	},
 
-	--  Treesitter + LSP
+	--#endregion
+
+	--#region Treesitter + LSP
 
 	-- More readable hover message
 	{
@@ -324,6 +326,8 @@ local plugins = {
 		event = { "BufReadPre", "BufNewFile" },
 		config = load_config("conform"),
 	},
+
+	--#endregion
 
 	-- Test
 	{
