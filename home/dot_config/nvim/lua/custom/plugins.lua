@@ -119,6 +119,7 @@ local plugins = {
 		event = "LspAttach",
 		desc = "Pretty hover messages.",
 	},
+	{ "poljar/typos.nvim", lazy = false },
 	{
 		-- Uses LSP instead of treesitter like aerial.
 		"hedyhli/outline.nvim",
@@ -202,6 +203,7 @@ local plugins = {
 			{ "williamboman/mason-lspconfig.nvim" },
 			-- format & linting
 			{
+				-- TODO: Remove eventually
 				-- "jose-elias-alvarez/null-ls.nvim",
 				-- https://github.com/craftzdog/dotfiles-public/issues/132#issuecomment-1750030050
 				"nvimtools/none-ls.nvim",
@@ -215,6 +217,7 @@ local plugins = {
 		desc = "Quickstart configs for Neovim LSP.",
 	},
 	{
+		-- TODO: set up key bindings.
 		"danymat/neogen",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		opts = overrides.neogen,
@@ -254,6 +257,7 @@ local plugins = {
 				},
 			},
 		},
+		desc = "Show code context.",
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
@@ -261,6 +265,7 @@ local plugins = {
 			-- "nvim-treesitter/nvim-treesitter",
 		},
 		config = load_config("ts-textobjects"),
+		desc = "Syntax aware text-objects, select, move, swap, and peek support.",
 	},
 	{
 		"stevearc/aerial.nvim",
@@ -274,11 +279,28 @@ local plugins = {
 		keys = {
 			{ "<Leader>ta", "<CMD>AerialToggle<CR>", mode = { "n" }, desc = "Open or close the aerial window" },
 		},
+		config = function(_, opts)
+			vim.cmd([[
+			hi link AerialClass Type
+			hi link AerialClassIcon Special
+			hi link AerialFunction Special
+			hi AerialFunctionIcon guifg=#cb4b16 guibg=NONE guisp=NONE gui=NONE cterm=NONE
+			hi link AerialLine QuickFixLine
+			" You can customize the guides (if show_guide=true)
+			hi link AerialGuide Comment
+			" You can set a different guide color for each level
+			hi AerialGuide1 guifg=Red
+			hi AerialGuide2 guifg=Blue
+			]])
+			require("aerial").setup(opts)
+		end,
+		desc = "A code outline window for skimming and quick navigation.",
 	},
 	{
 		"ziontee113/syntax-tree-surfer",
 		event = "BufRead",
 		config = load_config("syntax-tree-surfer"),
+		desc = "Helps you navigate and move nodes around based on Treesitter API.",
 	},
 	{
 		"HiPhish/rainbow-delimiters.nvim",
@@ -503,11 +525,13 @@ local plugins = {
 			"Marskey/telescope-sg",
 			"tom-anders/telescope-vim-bookmarks.nvim",
 			"debugloop/telescope-undo.nvim",
+			"stevearc/aerial.nvim",
 		},
 		config = function(_, opts)
 			local telescope = require("telescope")
-			telescope.setup(opts)
 			telescope.load_extension("fzf")
+	telescope.load_extension("aerial")
+	telescope.setup(opts)
 			require("telescope").load_extension("projects")
 		end,
 	},
