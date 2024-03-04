@@ -98,30 +98,20 @@ cmp.setup.filetype({ "tex", "plaintex", "markdown" }, {
 	sources = {
 		{
 			name = "treesitter",
-			group_index = 1,
 			priority = 100,
 		},
 		{
 			name = "nvim_lsp",
-			group_index = 1,
 			priority = 100,
 			keyword_length = 3,
 			entry_filter = limit_lsp_types,
 		},
 		{
 			name = "nvim_lsp_signature_help",
-			group_index = 1,
 			priority = 100,
-		},
-		{
-			name = "rg",
-			group_index = 1,
-			priority = 100,
-			keyword_length = 3,
 		},
 		{
 			name = "luasnip",
-			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
 			max_item_count = 100,
@@ -129,39 +119,34 @@ cmp.setup.filetype({ "tex", "plaintex", "markdown" }, {
 		},
 		{
 			name = "luasnip-choice",
-			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
 			max_item_count = 50,
 		},
 		{
+			name = "rg",
+			priority = 80,
+			keyword_length = 3,
+		},
+		{
 			name = "lua-latex-symbols",
-			group_index = 1,
 			priority = 75,
 			keyword_length = 2,
 		},
-		{
-			name = "dictionary",
-			group_index = 1,
-			priority = 60,
-			keyword_length = 2,
-			max_item_count = 30,
-		},
+
 		{
 			name = "async_path",
-			group_index = 2,
 			priority = 50,
 		},
 		{
 			name = "buffer",
-			group_index = 3,
+
 			priority = 10,
 			keyword_length = 4,
 			option = buffer_option,
 		},
 		{
 			name = "buffer-lines",
-			group_index = 3,
 			priority = 5,
 			keyword_length = 4,
 			max_item_count = 50,
@@ -174,36 +159,25 @@ cmp.setup.filetype("r", {
 	sources = cmp.config.sources({
 		{
 			name = "cmp_nvim_r",
-			group_index = 1,
 			priority = 100,
 			keyword_length = 2,
 		},
 		{
 			name = "treesitter",
-			group_index = 1,
 			priority = 100,
 		},
 		{
 			name = "nvim_lsp",
-			group_index = 1,
 			priority = 100,
 			keyword_length = 2,
 			entry_filter = limit_lsp_types,
 		},
 		{
 			name = "nvim_lsp_signature_help",
-			group_index = 1,
 			priority = 100,
-		},
-		{
-			name = "rg",
-			group_index = 1,
-			priority = 100,
-			keyword_length = 3,
 		},
 		{
 			name = "luasnip",
-			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
 			max_item_count = 100,
@@ -211,10 +185,14 @@ cmp.setup.filetype("r", {
 		},
 		{
 			name = "luasnip-choice",
-			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
 			max_item_count = 50,
+		},
+		{
+			name = "rg",
+			priority = 80,
+			keyword_length = 3,
 		},
 	}),
 })
@@ -224,36 +202,26 @@ cmp.setup.filetype("lua", {
 		-- This source will complete neovim's Lua runtime API such vim.lsp.*.
 		{
 			name = "nvim_lua",
-			group_index = 1,
 			priority = 100,
 			keyword_length = 2,
 		},
 		{
 			name = "treesitter",
-			group_index = 1,
 			priority = 100,
 		},
 		{
 			name = "nvim_lsp",
-			group_index = 1,
 			priority = 100,
 			keyword_length = 2,
 			entry_filter = limit_lsp_types,
 		},
 		{
 			name = "nvim_lsp_signature_help",
-			group_index = 1,
 			priority = 100,
 		},
-		{
-			name = "rg",
-			group_index = 1,
-			priority = 100,
-			keyword_length = 3,
-		},
+
 		{
 			name = "luasnip",
-			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
 			max_item_count = 100,
@@ -261,10 +229,14 @@ cmp.setup.filetype("lua", {
 		},
 		{
 			name = "luasnip-choice",
-			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
 			max_item_count = 50,
+		},
+		{
+			name = "rg",
+			priority = 80,
+			keyword_length = 3,
 		},
 	}),
 })
