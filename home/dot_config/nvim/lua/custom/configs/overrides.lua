@@ -825,39 +825,6 @@ M.code_runner = {
 	},
 }
 
-M.aerial = {
-	backends = { "treesitter", "lsp", "markdown", "man" },
-	layout = {
-		default_direction = "prefer_right",
-		placement = "edge",
-	},
-	attach_mode = "window", -- 'window' | 'global'
-	nerd_font = "auto",
-	show_guides = true,
-	filter_kind = {
-		"Class",
-		"Constant",
-		"Constructor",
-		"Enum",
-		"Event",
-		"Field",
-		"Function",
-		"Interface",
-		"Method",
-		"Module",
-		"Namespace",
-		"Property",
-		"Struct",
-	},
-
-	-- Highlight the symbol in the source buffer when cursor is in the aerial win
-	highlight_on_hover = true,
-	ignore = {
-		-- Ignore unlisted buffers. See :help buflisted
-		unlisted_buffers = true,
-	},
-}
-
 M.neogen = {
 	enabled = true,
 	snippet_engine = "luasnip",
