@@ -256,7 +256,6 @@ local plugins = {
 		"stevearc/aerial.nvim",
 		lazy = true,
 		cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
-		opts = overrides.aerial,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",
@@ -264,21 +263,7 @@ local plugins = {
 		keys = {
 			{ "<Leader>ta", "<CMD>AerialToggle<CR>", mode = { "n" }, desc = "Open or close the aerial window" },
 		},
-		config = function(_, opts)
-			vim.cmd([[
-			hi link AerialClass Type
-			hi link AerialClassIcon Special
-			hi link AerialFunction Special
-			hi AerialFunctionIcon guifg=#cb4b16 guibg=NONE guisp=NONE gui=NONE cterm=NONE
-			hi link AerialLine QuickFixLine
-			" You can customize the guides (if show_guide=true)
-			hi link AerialGuide Comment
-			" You can set a different guide color for each level
-			hi AerialGuide1 guifg=Red
-			hi AerialGuide2 guifg=Blue
-			]])
-			require("aerial").setup(opts)
-		end,
+		config = load_config("aerial"),
 		desc = "A code outline window for skimming and quick navigation.",
 	},
 	{
