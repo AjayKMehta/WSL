@@ -241,17 +241,7 @@ local plugins = {
 		lazy = false,
 		event = "BufReadPost",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		opts = {
-			max_lines = 3,
-			min_window_height = 0,
-			patterns = {
-				default = {
-					"class",
-					"function",
-					"method",
-				},
-			},
-		},
+		opts = overrides.treesitter_context,
 		desc = "Show code context.",
 	},
 	{
