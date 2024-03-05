@@ -228,6 +228,18 @@ M.treesitter = {
 	},
 }
 
+M.treesitter_context = {
+	max_lines = 3,
+	min_window_height = 0,
+	patterns = {
+		default = {
+			"class",
+			"function",
+			"method",
+		},
+	},
+}
+
 M.mason_lsp = {
 	-- https://mason-registry.dev/registry/list
 	ensure_installed = {
