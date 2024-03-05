@@ -97,7 +97,7 @@ local config = {
 				-- Displays diagnostics for the defined severity types
 				sections = { "error", "warn", "info", "hint" },
 
-				symbols = { error = "", warn = "", info = "", hint = "󰌶" },
+				symbols = { error = "✘", warn = "▲", info = "", hint = "󰌶" },
 				update_in_insert = true, -- Update diagnostics in insert mode.
 				always_visible = false, -- Show diagnostics even if there are none.s
 				diagnostics_color = {

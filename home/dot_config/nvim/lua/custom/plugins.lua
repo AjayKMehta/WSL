@@ -200,7 +200,6 @@ local plugins = {
 			-- format & linting
 			{
 				-- TODO: Remove eventually
-				-- "jose-elias-alvarez/null-ls.nvim",
 				-- https://github.com/craftzdog/dotfiles-public/issues/132#issuecomment-1750030050
 				"nvimtools/none-ls.nvim",
 				config = load_config("null-ls"),
@@ -209,7 +208,7 @@ local plugins = {
 		config = function()
 			require("plugins.configs.lspconfig")
 			require("custom.configs.lspconfig")
-		end, -- Override to setup mason-lspconfig
+		end,
 		desc = "Quickstart configs for Neovim LSP.",
 	},
 	{
