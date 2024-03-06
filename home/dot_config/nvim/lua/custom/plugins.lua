@@ -161,9 +161,7 @@ local plugins = {
 	},
 	{
 		"linrongbin16/lsp-progress.nvim",
-		config = function()
-			require("lsp-progress").setup()
-		end,
+		config = load_config("lsp_progress"),
 		desc = "Performant LSP progress status.",
 	},
 	{
