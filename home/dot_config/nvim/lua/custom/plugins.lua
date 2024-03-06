@@ -277,6 +277,7 @@ local plugins = {
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		event = { "BufReadPost", "BufNewFile" },
 		desc = "Rainbow delimiters with Treesitter",
+		config = load_config("rainbow"),
 	},
 	{
 		"mfussenegger/nvim-lint",
