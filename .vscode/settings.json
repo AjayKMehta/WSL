@@ -27,5 +27,6 @@
         "titleBar.inactiveBackground": "#47894899",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.remoteColor": "#478948"
+    "peacock.remoteColor": "#478948",
+    "sarif-viewer.connectToGithubCodeScanning": "off"
 }
