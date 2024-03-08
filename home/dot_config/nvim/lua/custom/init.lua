@@ -88,3 +88,7 @@ vim.opt.scrolloff = 5
 
 -- https://stackoverflow.com/a/19184627/781045
 vim.api.nvim_set_keymap("i", "<C-q>", "<C-k>", { noremap = true })
+
+-- Resolve issue with lazy complaining!
+-- https://github.com/folke/lazy.nvim/pull/1326
+vim.g.maplocalleader = ","
