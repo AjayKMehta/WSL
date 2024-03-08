@@ -8,8 +8,9 @@ conform.setup({
 		end
 		return { timeout_ms = 500, lsp_fallback = true }
 	end,
+	-- If you specify more than one formatter, they will be executed in the order you list them.
 	formatters_by_ft = {
-		bash = { "beautysh" },
+		bash = { "shellcheck" },
 		json = { "jq", "fixjson" },
 		lua = { "stylua" },
 		markdown = { "markdownlint" },
@@ -21,6 +22,8 @@ conform.setup({
 	},
 })
 
+-- Keymap
+
 vim.keymap.set({ "n", "v" }, "<leader>lf", function()
 	conform.format({
 		lsp_fallback = true,
@@ -28,6 +31,8 @@ vim.keymap.set({ "n", "v" }, "<leader>lf", function()
 		timeout_ms = 1000,
 	})
 end, { desc = "Format file or range (in visual mode)" })
+
+--#region Commands
 
 vim.api.nvim_create_user_command("FormatDisable", function(args)
 	if args.bang then
@@ -47,3 +52,5 @@ vim.api.nvim_create_user_command("FormatEnable", function()
 end, {
 	desc = "Re-enable autoformat-on-save",
 })
+
+--endregion
