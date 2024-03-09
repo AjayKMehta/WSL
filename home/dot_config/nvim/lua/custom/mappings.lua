@@ -6,6 +6,7 @@ M.disabled = {
 	n = {
 		["<C-b>"] = "",
 		["gi"] = "", -- Clashes with Treesitter keymap
+		["<leader>lf"] = "", -- Clashes with conform keymap
 	},
 }
 
@@ -43,6 +44,13 @@ M.general = {
 				vim.lsp.buf.implementation()
 			end,
 			"LSP implementation",
+		},
+
+		["<leader>lF"] = {
+			function()
+				vim.diagnostic.open_float({ border = "rounded" })
+			end,
+			"Floating diagnostic",
 		},
 	},
 }
