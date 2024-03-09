@@ -593,7 +593,8 @@ M.cmp = {
 		completion = require("cmp.config.window").bordered({
 			winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
 		}),
-		documentation = false,
+		-- TODO: Figure out if this can be toggled.
+		-- documentation = false,
 	},
 }
 
