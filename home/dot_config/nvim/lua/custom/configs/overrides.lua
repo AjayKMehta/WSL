@@ -538,12 +538,6 @@ M.cmp = {
 			keyword_length = 3,
 		},
 		{
-			name = "rg",
-			group_index = 1,
-			priority = 100,
-			keyword_length = 3,
-		},
-		{
 			name = "nvim_lsp_signature_help",
 			group_index = 1,
 			priority = 100,
@@ -565,12 +559,18 @@ M.cmp = {
 		},
 		{
 			name = "emoji",
-			group_index = 2,
+			group_index = 1,
 			priority = 85,
 		},
 		{
+			name = "rg",
+			group_index = 1,
+			priority = 85,
+			keyword_length = 3,
+		},
+		{
 			name = "color_names",
-			group_index = 2,
+			group_index = 1,
 			priority = 80,
 		},
 	},
