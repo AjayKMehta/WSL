@@ -593,19 +593,6 @@ M.cmp = {
 	},
 }
 
-M.dict = {
-	exact_length = 2,
-	first_case_insensitive = false,
-	document = {
-		document_command = "wn %s -over",
-		enable = true,
-	},
-	async = true,
-	max_number_items = -1,
-	-- capacity = 5,
-	debug = false,
-}
-
 M.blankline = {
 	use_treesitter = true,
 	space_char_blankline = " ",

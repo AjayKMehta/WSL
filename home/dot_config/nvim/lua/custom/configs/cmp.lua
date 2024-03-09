@@ -134,12 +134,6 @@ cmp.setup.filetype({ "tex", "plaintex", "markdown", "rmd" }, {
 			keyword_length = 2,
 		},
 		{
-			name = "dictionary",
-			priority = 60,
-			keyword_length = 2,
-			max_item_count = 30,
-		},
-		{
 			name = "async_path",
 			priority = 50,
 		},
