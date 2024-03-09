@@ -295,7 +295,7 @@ local plugins = {
 
 	--#endregion
 
-	-- Test
+	--#region Test
 	{
 		"nvim-neotest/neotest",
 		dependencies = {
@@ -307,10 +307,17 @@ local plugins = {
 			"mrcjkb/neotest-haskell",
 		},
 		config = load_config("neotest"),
+		desc = "An extensible framework for interacting with tests.",
 	},
+	--#endregion
 
 	-- Utility
-	{ "akinsho/git-conflict.nvim", version = "*", config = true },
+	{
+		"akinsho/git-conflict.nvim",
+		version = "*",
+		config = true,
+		desc = "A plugin to visualise and resolve merge conflicts.",
+	},
 	{
 		"pwntester/octo.nvim",
 		dependencies = {
@@ -327,6 +334,7 @@ local plugins = {
 			vim.cmd([[hi OctoEditable guibg=none]])
 			vim.treesitter.language.register("markdown", "octo")
 		end,
+		desc = "Edit and review GitHub issues and pull requests from the Neovim.",
 	},
 	-- A Neovim plugin helping you establish good command workflow and habit
 	{
