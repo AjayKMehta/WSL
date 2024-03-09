@@ -197,9 +197,9 @@ local plugins = {
 			{ "williamboman/mason-lspconfig.nvim" },
 			-- format & linting
 			{
-				-- TODO: Remove eventually
-				-- https://github.com/craftzdog/dotfiles-public/issues/132#issuecomment-1750030050
 				"nvimtools/none-ls.nvim",
+				-- https://github.com/craftzdog/dotfiles-public/issues/132#issuecomment-1750030050
+				enabled = false,
 				config = load_config("null-ls"),
 			},
 		},
@@ -279,20 +279,18 @@ local plugins = {
 	},
 	{
 		"mfussenegger/nvim-lint",
-		-- TODO: Enable when finished configuring.
-		enabled = false,
-		event = {
-			"BufReadPre",
-			"BufNewFile",
-		},
+		enabled = true,
+		event = { "BufReadPre", "BufNewFile" },
 		config = load_config("lint"),
+		desc = "An asynchronous linter plugin.",
 	},
 	{
 		"stevearc/conform.nvim",
-		-- TODO: Enable when finished configuring.
-		enabled = false,
+		enabled = true,
+		cmd = { "ConformInfo" },
 		event = { "BufReadPre", "BufNewFile" },
 		config = load_config("conform"),
+		desc = "Lightweight formatter plugin.",
 	},
 
 	--#endregion
