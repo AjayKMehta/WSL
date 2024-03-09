@@ -429,11 +429,6 @@ local plugins = {
 		end,
 		dependencies = {
 			{
-				"uga-rosa/cmp-dictionary",
-				event = "InsertEnter",
-				opts = overrides.dict,
-			},
-			{
 				"amarakon/nvim-cmp-lua-latex-symbols",
 				event = "InsertEnter",
 				opts = { cache = true },
