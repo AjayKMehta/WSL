@@ -62,6 +62,10 @@ local plugins = {
 	-- Setup servers via lspconfig
 	{
 		"williamboman/mason.nvim",
+		-- https://github.com/williamboman/nvim-lsp-installer/discussions/509#discussioncomment-4009039
+		opts = {
+			PATH = "prepend", -- "skip" seems to cause the spawning error
+		},
 		config = function(_, opts)
 			require("mason").setup()
 		end,
@@ -212,7 +216,6 @@ local plugins = {
 		desc = "Quickstart configs for Neovim LSP.",
 	},
 	{
-		-- TODO: set up key bindings.
 		"danymat/neogen",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		opts = overrides.neogen,
@@ -298,6 +301,7 @@ local plugins = {
 	--#endregion
 
 	--#region Test
+
 	{
 		"nvim-neotest/neotest",
 		dependencies = {
