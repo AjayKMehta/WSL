@@ -111,6 +111,7 @@ local plugins = {
 		},
 		cmd = { "Trouble", "TroubleToggle", "TodoTrouble" },
 		config = function()
+			dofile(vim.g.base46_cache .. "trouble")
 			require("trouble").setup({})
 		end,
 		lazy = false,
@@ -327,6 +328,7 @@ local plugins = {
 		"nvim-tree/nvim-tree.lua",
 		opts = overrides.nvimtree,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		desc = "A file explorer tree.",
 	},
 	{
 		"MattesGroeger/vim-bookmarks",
