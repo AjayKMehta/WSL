@@ -823,8 +823,9 @@ M.neogen = {
 	languages = {
 		lua = {
 			template = {
-				annotation_convention = "emmylua", -- for more template configurations, see the language's configuration file in configurations/{lang}.lua
+				annotation_convention = "emmylua",
 			},
+			-- This is not working!
 			cs = { template = { annotation_convention = "xmldoc" } },
 		},
 	},

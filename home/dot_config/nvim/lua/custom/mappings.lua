@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-doc-name, inject-field
 ---@type MappingsTable
 local M = {}
 
@@ -34,11 +35,6 @@ M.general = {
 			end,
 			"Toggle theme",
 		},
-		--  https://www.youtube.com/watch?v=DzNmUNvnB04&list=WL&index=25
-		["<C-h>"] = { "<cmd> TmuxNavigateLeft<CR>", "window left" },
-		["<C-l>"] = { "<cmd> TmuxNavigateRight<CR>", "window right" },
-		["<C-j>"] = { "<cmd> TmuxNavigateDown<CR>", "window down" },
-		["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up" },
 		["gli"] = {
 			function()
 				vim.lsp.buf.implementation()
@@ -96,32 +92,15 @@ M.gitsigns = {
 	},
 }
 
-M.todocomments = {
-	n = {
-		-- https://github.com/JesperLundberg/dotfiles/blob/work/nvchad/.config/nvim/lua/custom/mappings.lua
-		["<leader>tc"] = { "<cmd>TodoTelescope<CR>", "Toggle todo comments" },
-		["]t"] = {
-			function()
-				require("todo-comments").jump_next()
-			end,
-			desc = "Next todo comment",
-		},
-		["[t"] = {
-			function()
-				require("todo-comments").jump_prev()
-			end,
-			desc = "Previous todo comment",
-		},
-	},
-}
-
 M.ghcup = {
+	plugin = true,
 	n = {
 		["<leader>gg"] = { "<cmd>GHCup <CR>", "ghcup" },
 	},
 }
 
 M.telescope = {
+	plugin = true,
 	n = {
 		-- find
 		["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "Telescope: Find files" },
@@ -150,6 +129,7 @@ M.telescope = {
 }
 
 M.minimove = {
+	plugin = true,
 	n = {
 		["<A-Left>"] = {
 			function()
