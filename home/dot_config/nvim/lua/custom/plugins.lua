@@ -201,13 +201,6 @@ local plugins = {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ "williamboman/mason-lspconfig.nvim" },
-			-- format & linting
-			{
-				"nvimtools/none-ls.nvim",
-				-- https://github.com/craftzdog/dotfiles-public/issues/132#issuecomment-1750030050
-				enabled = false,
-				config = load_config("null-ls"),
-			},
 		},
 		config = function()
 			require("plugins.configs.lspconfig")
