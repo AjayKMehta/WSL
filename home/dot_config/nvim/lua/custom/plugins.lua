@@ -23,6 +23,8 @@ Plugins divided into the following categories:
 11. Markdown
 12. LaTeX
 13. Appearance
+14. git
+
 ]]
 
 ---@diagnostic disable-next-line: undefined-doc-name
@@ -311,31 +313,7 @@ local plugins = {
 	},
 	--#endregion
 
-	-- Utility
-	{
-		"akinsho/git-conflict.nvim",
-		version = "*",
-		config = true,
-		desc = "A plugin to visualise and resolve merge conflicts.",
-	},
-	{
-		"pwntester/octo.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-			"nvim-tree/nvim-web-devicons",
-		},
-		cmd = "Octo",
-		config = function()
-			require("octo").setup({
-				enable_builtin = true,
-				use_local_fs = true,
-			})
-			vim.cmd([[hi OctoEditable guibg=none]])
-			vim.treesitter.language.register("markdown", "octo")
-		end,
-		desc = "Edit and review GitHub issues and pull requests from the Neovim.",
-	},
+	--#region Utility
 	-- A Neovim plugin helping you establish good command workflow and habit
 	{
 		"m4xshen/hardtime.nvim",
@@ -853,6 +831,35 @@ local plugins = {
 		opts = {},
 	},
 	{ "kepano/flexoki-neovim", enabled = false },
+
+	--#region git
+
+	{
+		"akinsho/git-conflict.nvim",
+		version = "*",
+		config = true,
+		desc = "A plugin to visualise and resolve merge conflicts.",
+	},
+	{
+		"pwntester/octo.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		cmd = "Octo",
+		config = function()
+			require("octo").setup({
+				enable_builtin = true,
+				use_local_fs = true,
+			})
+			vim.cmd([[hi OctoEditable guibg=none]])
+			vim.treesitter.language.register("markdown", "octo")
+		end,
+		desc = "Edit and review GitHub issues and pull requests from the Neovim.",
+	},
+
+	--#endregion
 
 	-- A polished, IDE-like, highly-customizable winbar for Neovim
 	-- with drop-down menu support and multiple backends.
