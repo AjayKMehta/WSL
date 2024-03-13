@@ -380,7 +380,6 @@ M.nvimtree = {
 		},
 	},
 	-- https://vonheikemen.github.io/devlog/tools/neovim-plugins-to-get-started/
-	hijack_cursor = false,
 	on_attach = function(bufnr)
 		-- See :help nvim-tree.api
 		local api = require("nvim-tree.api")
