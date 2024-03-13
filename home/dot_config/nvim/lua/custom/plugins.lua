@@ -314,37 +314,22 @@ local plugins = {
 	--#endregion
 
 	--#region Utility
-	-- A Neovim plugin helping you establish good command workflow and habit
-	{
-		"m4xshen/hardtime.nvim",
-		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-		opts = {},
-	},
+
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		cmd = { "ToggleTerm", "ToggleTermAll", "TermExec" },
 		config = load_config("toggleterm"),
+		desc = "Plugin to easily manage multiple terminal windows.",
 	},
 	{
-		"ahmedkhalf/project.nvim",
-		-- Even if you are pleased with the defaults, please note that setup {} must
-		-- be called for the plugin to start.
-		config = load_config("project"),
-	},
-	{ "folke/neodev.nvim" },
-	{
-		"christoomey/vim-tmux-navigator",
-		lazy = false,
+		"folke/neodev.nvim",
+		desc = "Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.",
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		opts = overrides.nvimtree,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-	},
-	{
-		"willothy/wezterm.nvim",
-		config = true,
 	},
 	{
 		"MattesGroeger/vim-bookmarks",
@@ -500,7 +485,6 @@ local plugins = {
 			telescope.load_extension("fzf")
 			telescope.load_extension("aerial")
 			telescope.setup(opts)
-			require("telescope").load_extension("projects")
 		end,
 	},
 	{
