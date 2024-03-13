@@ -1,6 +1,8 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
+dofile(vim.g.base46_cache .. "lsp")
+
 capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
