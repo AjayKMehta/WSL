@@ -93,3 +93,6 @@ vim.api.nvim_set_keymap("i", "<C-q>", "<C-k>", { noremap = true })
 -- https://github.com/folke/lazy.nvim/pull/1326
 -- This is the default but being explicit :)
 -- vim.g.maplocalleader = "\\"
+
+-- https://mambusskruj.github.io/posts/pub-neovim-for-markdown/
+vim.opt.conceallevel = 2
