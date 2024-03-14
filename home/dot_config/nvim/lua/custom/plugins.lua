@@ -197,6 +197,11 @@ local plugins = {
 		end,
 		desc = "C# plugin powered by omnisharp-roslyn.",
 	},
+	-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+	{
+		"folke/neodev.nvim",
+		desc = "Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.",
+	},
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -325,10 +330,7 @@ local plugins = {
 		config = load_config("toggleterm"),
 		desc = "Plugin to easily manage multiple terminal windows.",
 	},
-	{
-		"folke/neodev.nvim",
-		desc = "Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.",
-	},
+
 	{
 		"nvim-tree/nvim-tree.lua",
 		opts = overrides.nvimtree,
@@ -385,7 +387,8 @@ local plugins = {
 	},
 
 	--#endregion
-	-- Snippets + completion
+
+	--#region Snippets + completion
 	-- h/t https://gist.github.com/ianchesal/93ba7897f81618ca79af01bc413d0713
 	{
 		"hrsh7th/nvim-cmp",
