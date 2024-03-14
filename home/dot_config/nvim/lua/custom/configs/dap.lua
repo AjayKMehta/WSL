@@ -79,6 +79,7 @@ dap.listeners.before["event_progressStart"]["progress-notifications"] = function
 	notif_data.notification.spinner = 1, update_spinner("dap", body.progressId)
 end
 
+-- https://github.com/rcarriga/nvim-notify/wiki/Usage-Recipes#dap-status-updates
 dap.listeners.before["event_progressUpdate"]["progress-notifications"] = function(session, body)
 	local notif_data = get_notif_data("dap", body.progressId)
 	notif_data.notification = vim.notify(format_message(body.message, body.percentage), "info", {

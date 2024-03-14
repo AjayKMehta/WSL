@@ -202,10 +202,10 @@ M.trouble = {
 
 M.bookmark = {
 	n = {
-		["<leader>mt"] = { "<cmd> BookmarkToggle<CR>", "󰃅 Toggle bookmark" },
-		["<leader>mn"] = { "<cmd> BookmarkNext<CR>", "󰮰 Next bookmark" },
-		["<leader>mp"] = { "<cmd> BookmarkPrev<CR>", "󰮲 Prev bookmark" },
-		["<leader>mc"] = { "<cmd> BookmarkClear<CR>", "󰃢 Clear bookmarks" },
+		-- ["<leader>mt"] = { "<cmd> BookmarkToggle<CR>", "󰃅 Toggle bookmark" },
+		-- ["<leader>mn"] = { "<cmd> BookmarkNext<CR>", "󰮰 Next bookmark" },
+		-- ["<leader>mp"] = { "<cmd> BookmarkPrev<CR>", "󰮲 Prev bookmark" },
+		-- ["<leader>mc"] = { "<cmd> BookmarkClear<CR>", "󰃢 Clear bookmarks" },
 		["<leader>mm"] = { "<cmd>Telescope vim_bookmarks all<CR>", " Bookmark Menu" },
 	},
 }
