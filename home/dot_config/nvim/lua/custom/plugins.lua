@@ -408,7 +408,11 @@ local plugins = {
 				end,
 				desc = "Completion for LaTeX symbols",
 			},
-			{ "FelipeLema/cmp-async-path" },
+			{
+				"FelipeLema/cmp-async-path",
+				url = "https://codeberg.org/FelipeLema/cmp-async-path",
+				desc = "Completion for fs paths (async)",
+			},
 			{
 				"nat-418/cmp-color-names.nvim",
 				event = "InsertEnter",
