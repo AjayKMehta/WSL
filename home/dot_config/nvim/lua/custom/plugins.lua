@@ -330,7 +330,6 @@ local plugins = {
 		config = load_config("toggleterm"),
 		desc = "Plugin to easily manage multiple terminal windows.",
 	},
-
 	{
 		"nvim-tree/nvim-tree.lua",
 		opts = overrides.nvimtree,
@@ -389,6 +388,7 @@ local plugins = {
 	--#endregion
 
 	--#region Snippets + completion
+
 	-- h/t https://gist.github.com/ianchesal/93ba7897f81618ca79af01bc413d0713
 	{
 		"hrsh7th/nvim-cmp",

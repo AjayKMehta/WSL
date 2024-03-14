@@ -555,6 +555,17 @@ M.cmp = {
 			-- c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
 		}),
 	},
+	sorting = {
+		comparators = {
+			require("cmp").config.compare.offset,
+			require("cmp").config.compare.exact,
+			require("cmp").config.compare.score,
+			require("cmp").config.compare.kind,
+			require("cmp").config.compare.sort_text,
+			require("cmp").config.compare.length,
+			require("cmp").config.compare.order,
+		},
+	},
 	window = {
 		completion = require("cmp.config.window").bordered({
 			winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
