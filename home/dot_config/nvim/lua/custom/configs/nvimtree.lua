@@ -24,24 +24,3 @@ vim.api.nvim_create_autocmd("QuitPre", {
 		end
 	end,
 })
-
--- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#center-a-floating-nvim-tree-window
-
--- Automatically resize the floating window when neovim's window size changes
-
-local tree_api = require("nvim-tree")
-local tree_view = require("nvim-tree.view")
-
-vim.api.nvim_create_augroup("NvimTreeResize", {
-	clear = true,
-})
-
-vim.api.nvim_create_autocmd({ "VimResized" }, {
-	group = "NvimTreeResize",
-	callback = function()
-		if tree_view.is_visible() then
-			tree_view.close()
-			tree_api.open()
-		end
-	end,
-})
