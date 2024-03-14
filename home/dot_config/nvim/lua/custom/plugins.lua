@@ -329,6 +329,11 @@ local plugins = {
 		opts = overrides.nvimtree,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		desc = "A file explorer tree.",
+		config = function(_, opts)
+			dofile(vim.g.base46_cache .. "nvimtree")
+			require("custom.configs.nvimtree")
+			require("nvim-tree").setup(opts)
+		end,
 	},
 	{
 		"MattesGroeger/vim-bookmarks",

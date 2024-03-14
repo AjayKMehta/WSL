@@ -388,53 +388,20 @@ M.nvimtree = {
 			vim.keymap.set("n", lhs, rhs, { buffer = bufnr, desc = desc })
 		end
 
-		local function edit_or_open()
-			local node = api.tree.get_node_under_cursor()
+		local treeutils = require("custom.configs.treeutils")
 
-			if node.nodes ~= nil then
-				-- expand or collapse folder
-				api.node.open.edit()
-			else
-				-- open file
-				api.node.open.edit()
-				-- Close the tree if file was opened
-				api.tree.close()
-			end
-		end
-
-		-- open as vsplit on current node
-		local function vsplit_preview()
-			local node = api.tree.get_node_under_cursor()
-
-			if node.nodes ~= nil then
-				-- expand or collapse folder
-				api.node.open.edit()
-			else
-				-- open file as vsplit
-				api.node.open.vertical()
-			end
-
-			-- Finally refocus on tree if it was lost
-			api.tree.focus()
-		end
+		bufmap("<c-f>", treeutils.launch_find_files, "Launch Find Files")
+		bufmap("<c-g>", treeutils.launch_live_grep, "Launch Live Grep")
 
 		-- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#h-j-k-l-style-navigation-and-editing
-		bufmap("l", edit_or_open, "Expand folder or go to file")
-		bufmap("L", vsplit_preview, "VSplit Preview")
+		bufmap("l", treeutils.edit_or_open, "Expand folder or go to file")
+		bufmap("L", treeutils.vsplit_preview, "VSplit Preview")
 		bufmap("h", api.node.navigate.parent_close, "Close parent folder")
 		bufmap("H", api.tree.collapse_all, "Collapse All")
 		bufmap("gh", api.tree.toggle_hidden_filter, "Toggle hidden files")
 		bufmap("Y", api.fs.copy.relative_path, "Copy Relative Path")
 
-		-- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#git-stage-unstage-files-and-directories-from-the-tree
-		-- WARN: Code in above link causes null-ls to keep spinning. DON'T USE.
-
-		-- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#change-root-to-global-current-working-directory
-		local function change_root_to_global_cwd()
-			local global_cwd = vim.fn.getcwd(-1, -1)
-			api.tree.change_root(global_cwd)
-		end
-		bufmap("<C-c>", change_root_to_global_cwd, "Change Root To Global CWD")
+		bufmap("<C-c>", treeutils.change_root_to_global_cwd, "Change Root To Global CWD")
 	end,
 	-- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#center-a-floating-nvim-tree-window
 	view = {
