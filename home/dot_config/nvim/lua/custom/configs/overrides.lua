@@ -513,7 +513,7 @@ M.cmp = {
 			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
-			max_item_count = 10,
+			max_item_count = 100,
 			option = { show_autosnippets = true },
 		},
 		{
@@ -521,7 +521,7 @@ M.cmp = {
 			group_index = 1,
 			priority = 90,
 			keyword_length = 2,
-			max_item_count = 5,
+			max_item_count = 20,
 		},
 		{
 			name = "emoji",
