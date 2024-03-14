@@ -353,6 +353,7 @@ local plugins = {
 			"BookmarkSave",
 			"BookmarkLoad",
 		},
+		desc = "Vim bookmark plugin.",
 	},
 	-- https://github.com/tinyCatzilla/dots/blob/193cc61951579db692e9cc7f8f278ed33c8b52d4/.config/nvim/lua/custom/plugins.lua
 	{
@@ -373,20 +374,17 @@ local plugins = {
 			notify.setup(opts)
 			vim.notify = notify
 		end,
+		desc = "Configurable, notification manager",
 	},
 	{
 		"CRAG666/code_runner.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = overrides.code_runner,
-		event = "BufEnter", -- Lazy load when entering a buffer
-	},
-	{
-		"sindrets/diffview.nvim",
-		lazy = true,
-		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
-		config = load_config("diffview"),
+		event = "BufEnter",
+		desc = "Code runner",
 	},
 
+	--#endregion
 	-- Snippets + completion
 	-- h/t https://gist.github.com/ianchesal/93ba7897f81618ca79af01bc413d0713
 	{
@@ -397,29 +395,34 @@ local plugins = {
 		-- event = { "InsertEnter", "CmdlineEnter" },
 		config = function(_, opts)
 			require("cmp").setup(opts)
-			require("custom.configs.cmp")
+			load_config("cmp")()
 		end,
 		dependencies = {
 			{
 				"amarakon/nvim-cmp-lua-latex-symbols",
 				event = "InsertEnter",
 				opts = { cache = true },
+				-- Necessary to avoid runtime errors
 				config = function(_, opts)
-					require("cmp").setup()
+					require("cmp").setup(opts)
 				end,
+				desc = "Completion for LaTeX symbols",
 			},
 			{ "FelipeLema/cmp-async-path" },
 			{
 				"nat-418/cmp-color-names.nvim",
 				event = "InsertEnter",
+				desc = "Completion source for X11 / web color names",
 			},
 			{
 				"hrsh7th/cmp-emoji",
-				lazy = false,
+				event = "InsertEnter",
+				desc = "nvim-cmp source for emojis",
 			},
 			{
 				"hrsh7th/cmp-nvim-lua",
-				lazy = false,
+				event = "InsertEnter",
+				desc = "Completion for Neovim's Lua runtime API.",
 			},
 			-- Didn't work
 			-- { "hrsh7th/cmp-nvim-lsp-document-symbol" },
@@ -448,6 +451,7 @@ local plugins = {
 				config = load_config("cmp-git"),
 			},
 		},
+		desc = "Completion plugin",
 	},
 	{
 		"L3MON4D3/LuaSnip",
@@ -457,8 +461,8 @@ local plugins = {
 			"onsails/lspkind.nvim", -- vs-code like pictograms
 		},
 		build = "make install_jsregexp",
-
 		config = load_config("ls"),
+		desc = "Snippet Engine for Neovim",
 	},
 
 	-- Telescope
@@ -619,8 +623,6 @@ local plugins = {
 		end,
 		event = "VeryLazy",
 	},
-	-- Automatically configures lua-language-server for your Neovim config, Neovim runtime and plugin directories
-	-- { "folke/neodev.nvim" },
 
 	-- Languages
 	{
@@ -850,6 +852,12 @@ local plugins = {
 			vim.treesitter.language.register("markdown", "octo")
 		end,
 		desc = "Edit and review GitHub issues and pull requests from the Neovim.",
+	},
+	{
+		"sindrets/diffview.nvim",
+		lazy = true,
+		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+		config = load_config("diffview"),
 	},
 
 	--#endregion
