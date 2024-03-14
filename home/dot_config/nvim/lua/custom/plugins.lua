@@ -209,6 +209,12 @@ local plugins = {
 		desc = "Quickstart configs for Neovim LSP.",
 	},
 	{
+		"zeioth/garbage-day.nvim",
+		dependencies = "neovim/nvim-lspconfig",
+		event = "VeryLazy",
+		desc = "Garbage collector that stops inactive LSP clients to free RAM.",
+	},
+	{
 		"danymat/neogen",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		opts = overrides.neogen,
