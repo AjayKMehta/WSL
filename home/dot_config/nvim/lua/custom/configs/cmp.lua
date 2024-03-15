@@ -20,22 +20,6 @@ local function limit_lsp_types(entry, ctx)
 	return kind ~= cmp.lsp.CompletionItemKind.Text
 end
 
-local function toggle_comments(enable)
-	return function(entry, ctx)
-		-- keep command mode completion enabled when cursor is in a comment
-		if vim.api.nvim_get_mode().mode == "c" then
-			return true
-		else
-			local result = ctx.in_treesitter_capture("comment") and ctx.in_syntax_group("Comment")
-			if enable then
-				return result
-			else
-				return not result
-			end
-		end
-	end
-end
-
 -- Only select visible buffers of 1 MB or less size
 local buffer_option = {
 	get_bufnrs = function()
@@ -80,6 +64,7 @@ cmp.setup.cmdline(":", {
 	sources = cmp.config.sources({
 		{ name = "async_path" },
 		{ name = "cmdline" },
+		{ name = "buffer" },
 	}),
 })
 
