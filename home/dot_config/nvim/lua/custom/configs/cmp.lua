@@ -103,12 +103,11 @@ cmp.setup.filetype({ "tex", "plaintex", "markdown", "rmd" }, {
 			option = { show_autosnippets = true },
 		},
 		{
-			name = "luasnip-choice",
+			name = "luasnip_choice",
 			priority = 90,
 			keyword_length = 2,
 			max_item_count = 50,
 		},
-
 		{
 			name = "async_path",
 			priority = 50,
@@ -159,7 +158,7 @@ cmp.setup.filetype("r", {
 			option = { show_autosnippets = true },
 		},
 		{
-			name = "luasnip-choice",
+			name = "luasnip_choice",
 			priority = 90,
 			keyword_length = 2,
 			max_item_count = 50,
@@ -199,7 +198,7 @@ cmp.setup.filetype("lua", {
 			option = { show_autosnippets = true },
 		},
 		{
-			name = "luasnip-choice",
+			name = "luasnip_choice",
 			priority = 90,
 			keyword_length = 2,
 			max_item_count = 50,
