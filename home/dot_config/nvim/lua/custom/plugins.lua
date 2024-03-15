@@ -431,10 +431,12 @@ local plugins = {
 			{
 				"tzachar/cmp-fuzzy-buffer",
 				dependencies = { "tzachar/fuzzy.nvim" },
+				desc = "Fuzzy buffer completion",
 			},
 			{
 				"hrsh7th/cmp-cmdline",
 				lazy = false,
+				desc = "nvim-cmp source for cmdline",
 			},
 			{
 				"doxnit/cmp-luasnip-choice",
@@ -443,6 +445,7 @@ local plugins = {
 						auto_open = true, -- Automatically open nvim-cmp on choice node (default: true)
 					})
 				end,
+				desc = "Luasnip choice node completion source for nvim-cmp",
 			},
 			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 			{ "lukas-reineke/cmp-rg", enabled = false },
@@ -461,10 +464,13 @@ local plugins = {
 	},
 	{
 		"L3MON4D3/LuaSnip",
-		version = "v2.*",
 		dependencies = {
 			"rafamadriz/friendly-snippets", -- useful snippets
 			"onsails/lspkind.nvim", -- vs-code like pictograms
+		},
+		event = {
+			"InsertEnter",
+			"CmdlineEnter",
 		},
 		build = "make install_jsregexp",
 		config = load_config("ls"),
