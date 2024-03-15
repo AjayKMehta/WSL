@@ -220,5 +220,5 @@ end
 
 vim.api.nvim_create_user_command("NvimCmpToggle", toggle_autocomplete, {})
 
--- Set a keymap like this for example:
--- vim.api.nvim_set_keymap('n', '<Leader>a', ':NvimCmpToggle<CR>', { noremap = true, silent = true })
+-- Set a keymap:
+vim.api.nvim_set_keymap("n", "<Leader>tc", ":NvimCmpToggle<CR>", { noremap = true, silent = true })
