@@ -402,6 +402,7 @@ M.nvimtree = {
 		bufmap("Y", api.fs.copy.relative_path, "Copy Relative Path")
 
 		bufmap("<C-c>", treeutils.change_root_to_global_cwd, "Change Root To Global CWD")
+		bufmap("<C-]>", api.tree.change_root_to_node, "cd")
 	end,
 	-- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#center-a-floating-nvim-tree-window
 	view = {
@@ -471,7 +472,7 @@ M.cmp = {
 	performance = {
 		debounce = 300,
 		throttle = 60,
-		max_view_entries = 10,
+		max_view_entries = 30,
 		fetching_timeout = 200,
 	},
 	snippet = {
@@ -529,12 +530,6 @@ M.cmp = {
 			priority = 85,
 		},
 		{
-			name = "rg",
-			group_index = 1,
-			priority = 85,
-			keyword_length = 3,
-		},
-		{
 			name = "color_names",
 			group_index = 1,
 			priority = 80,
@@ -557,9 +552,11 @@ M.cmp = {
 	},
 	sorting = {
 		comparators = {
+			require("cmp_fuzzy_buffer.compare"),
 			require("cmp").config.compare.offset,
 			require("cmp").config.compare.exact,
 			require("cmp").config.compare.score,
+			require("cmp").config.compare.receently_used,
 			require("cmp").config.compare.kind,
 			require("cmp").config.compare.sort_text,
 			require("cmp").config.compare.length,
