@@ -170,6 +170,7 @@ cmp.setup.filetype("r", {
 cmp.setup.filetype("lua", {
 	sources = cmp.config.sources({
 		-- This source will complete neovim's Lua runtime API such vim.lsp.*.
+		-- No-op since nvim_lua is disabled.
 		{
 			name = "nvim_lua",
 			priority = 100,
