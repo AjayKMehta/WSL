@@ -469,11 +469,13 @@ M.cmp = {
 			hl_group = "Comment",
 		},
 	},
+	-- https://github.com/Aumnescio/dotfiles/blob/758be23d2f064a480915d1fc8339a6c0d2a71b77/nvim/lua/plugins/autocompletion.lua
 	performance = {
-		debounce = 300,
-		throttle = 60,
+		debounce = 25,
+		throttle = 50,
 		max_view_entries = 30,
 		fetching_timeout = 200,
+		async_budget = 50,
 	},
 	snippet = {
 		expand = function(args)
@@ -483,9 +485,9 @@ M.cmp = {
 	matching = {
 		disallow_fuzzy_matching = false,
 		disallow_fullfuzzy_matching = true,
-		disallow_partial_fuzzy_matching = true,
+		disallow_partial_fuzzy_matching = false,
 		disallow_partial_matching = false,
-		disallow_prefix_unmatching = true,
+		disallow_prefix_unmatching = false,
 	},
 	completion = {
 		completeopt = "menu,menuone,noinsert,noselect",
@@ -552,7 +554,6 @@ M.cmp = {
 	},
 	sorting = {
 		comparators = {
-			require("cmp_fuzzy_buffer.compare"),
 			require("cmp").config.compare.offset,
 			require("cmp").config.compare.exact,
 			require("cmp").config.compare.score,
