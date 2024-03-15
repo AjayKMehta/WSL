@@ -427,6 +427,8 @@ local plugins = {
 			{
 				"hrsh7th/cmp-nvim-lua",
 				event = "InsertEnter",
+				-- Not needed bc of neodev
+				enabled = false,
 				desc = "Completion for Neovim's Lua runtime API.",
 			},
 			{
