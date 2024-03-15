@@ -38,11 +38,12 @@ cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
 	enabled = true,
 	completion = {
-		keyword_length = 5,
+		keyword_length = 2,
 	},
 	sources = {
-		{ name = "fuzzy_buffer" },
-		{ name = "buffer-lines" },
+		{ name = "nvim_lsp_document_symbol", group_index = 1, priority = 100 },
+		{ name = "fuzzy_buffer", group_index = 1, priority = 60 },
+		{ name = "buffer-lines", group_index = 2, priority = 90 },
 	},
 	view = {
 		entries = { name = "custom", selection_order = "near_cursor" },
