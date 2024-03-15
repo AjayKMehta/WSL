@@ -34,6 +34,6 @@ require("ufo").setup({
 	provider_selector = function(bufnr, filetype, buftype)
 		return { "treesitter", "indent" }
 	end,
-	close_fold_kinds = { "imports", "comments" },
+	close_fold_kinds_for_ft = { "imports", "comments" },
 	fold_virt_text_handler = handler,
 })
