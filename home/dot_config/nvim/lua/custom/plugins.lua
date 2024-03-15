@@ -158,6 +158,7 @@ local plugins = {
 	{
 		"ray-x/lsp_signature.nvim",
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+		-- enabled = false,
 		opts = {},
 		config = function(_, opts)
 			require("lsp_signature").setup(opts)
@@ -445,13 +446,12 @@ local plugins = {
 				end,
 				desc = "Luasnip choice node completion source for nvim-cmp",
 			},
-			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 			{ "lukas-reineke/cmp-rg", enabled = false },
-			{ "amarakon/nvim-cmp-buffer-lines" },
+			{ "amarakon/nvim-cmp-buffer-lines", desc = "Completion for buffer lines" },
 			{ "L3MON4D3/LuaSnip" },
-			{ "ray-x/cmp-treesitter" },
-			{ "jalvesaq/cmp-nvim-r" },
-			{ "rcarriga/cmp-dap" },
+			{ "ray-x/cmp-treesitter", desc = "cmp source for treesitter" },
+			{ "jalvesaq/cmp-nvim-r", desc = "cmp source for R" },
+			{ "rcarriga/cmp-dap", desc = "cmp source for DAP" },
 			{
 				"petertriho/cmp-git",
 				dependencies = { "nvim-lua/plenary.nvim" },
