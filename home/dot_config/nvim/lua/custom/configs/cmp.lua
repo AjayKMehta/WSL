@@ -49,11 +49,6 @@ local default_sources = {
 		entry_filter = limit_lsp_types,
 	},
 	{
-		name = "nvim_lsp_signature_help",
-		group_index = 1,
-		priority = 100,
-	},
-	{
 		name = "luasnip",
 		group_index = 1,
 		priority = 90,
