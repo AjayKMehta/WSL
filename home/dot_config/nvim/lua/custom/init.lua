@@ -96,3 +96,13 @@ vim.api.nvim_set_keymap("i", "<C-q>", "<C-k>", { noremap = true })
 
 -- https://mambusskruj.github.io/posts/pub-neovim-for-markdown/
 vim.opt.conceallevel = 2
+
+local yank_highlight_id = vim.api.nvim_create_augroup("highlightyank", { clear = true })
+
+-- https://github.com/jakesjews/Dot-Files-And-Scripts/blob/088138f25c16f89f206af6be9756175b3bb682da/init.lua
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = yank_highlight_id,
+	callback = function()
+		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150, on_visual = true })
+	end,
+})
