@@ -415,11 +415,6 @@ local plugins = {
 				desc = "Completion for fs paths (async)",
 			},
 			{
-				"nat-418/cmp-color-names.nvim",
-				event = "InsertEnter",
-				desc = "Completion source for X11 / web color names",
-			},
-			{
 				"hrsh7th/cmp-emoji",
 				event = "InsertEnter",
 				desc = "nvim-cmp source for emojis",
