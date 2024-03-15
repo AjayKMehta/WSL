@@ -130,7 +130,8 @@ local config = {
 				},
 			},
 			"filetype",
-			{ "aerial" },
+			--  TODO: Uncomment if using aerial.
+			-- { "aerial" },
 			-- https://github.com/cuducos/yaml.nvim#showing-the-yaml-path-and-value
 			{
 				function(msg)

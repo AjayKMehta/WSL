@@ -130,7 +130,7 @@ local plugins = {
 		-- Uses LSP instead of treesitter like aerial.
 		"hedyhli/outline.nvim",
 		cmd = { "Outline", "OutlineOpen" },
-		enabled = false, -- Do not need both
+		enabled = true, -- Seems more reliablee than aerial.
 		opts = overrides.outline,
 		config = function(_, opts)
 			require("outline").setup(opts)
@@ -262,6 +262,7 @@ local plugins = {
 		"stevearc/aerial.nvim",
 		lazy = true,
 		cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
+		enabled = false,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",
@@ -503,12 +504,12 @@ local plugins = {
 			"Marskey/telescope-sg",
 			"tom-anders/telescope-vim-bookmarks.nvim",
 			"debugloop/telescope-undo.nvim",
-			"stevearc/aerial.nvim",
+			-- "stevearc/aerial.nvim",
 		},
 		config = function(_, opts)
 			local telescope = require("telescope")
 			telescope.load_extension("fzf")
-			telescope.load_extension("aerial")
+			-- telescope.load_extension("aerial")
 			telescope.setup(opts)
 		end,
 	},
