@@ -515,6 +515,16 @@ M.cmp = {
 			s = require("cmp").mapping.confirm({ select = true }),
 			-- c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
 		}),
+		["<M-d>"] = require("cmp").mapping({
+			i = function()
+				local cmp = require("cmp")
+				if cmp.visible_docs() then
+					cmp.close_docs()
+				else
+					cmp.open_docs()
+				end
+			end,
+		}),
 	},
 	sorting = {
 		comparators = {
