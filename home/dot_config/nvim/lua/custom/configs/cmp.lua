@@ -34,6 +34,49 @@ local buffer_option = {
 	end,
 }
 
+-- name is not the name of the plugin, it's the "id" of the plugin used when creating the source.
+local default_sources = {
+	{
+		name = "treesitter",
+		group_index = 1,
+		priority = 100,
+	},
+	{
+		name = "nvim_lsp",
+		group_index = 1,
+		priority = 100,
+		keyword_length = 3,
+		entry_filter = limit_lsp_types,
+	},
+	{
+		name = "nvim_lsp_signature_help",
+		group_index = 1,
+		priority = 100,
+	},
+	{
+		name = "luasnip",
+		group_index = 1,
+		priority = 90,
+		keyword_length = 2,
+		max_item_count = 100,
+		option = { show_autosnippets = true },
+	},
+	{
+		name = "luasnip_choice",
+		group_index = 1,
+		priority = 90,
+		keyword_length = 2,
+		max_item_count = 20,
+	},
+	{
+		name = "emoji",
+		group_index = 1,
+		priority = 85,
+	},
+}
+
+cmp.setup({ sources = cmp.config.sources(default_sources) })
+
 cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
 	enabled = true,
@@ -47,6 +90,12 @@ cmp.setup.cmdline({ "/", "?" }, {
 	},
 	view = {
 		entries = { name = "custom", selection_order = "near_cursor" },
+	},
+})
+
+cmp.setup.filetype({ "markdown", "help" }, {
+	window = {
+		documentation = cmp.config.disable,
 	},
 })
 
@@ -75,136 +124,52 @@ cmp.setup.filetype({ "help", "minifiles", "TelescopePrompt" }, {
 	enabled = false,
 })
 
-cmp.setup.filetype({ "tex", "plaintex", "markdown", "rmd" }, {
-	sources = {
-		{
-			name = "lua-latex-symbols",
-			priority = 100,
-			keyword_length = 2,
-		},
-		{
-			name = "treesitter",
-			priority = 100,
-		},
-		{
-			name = "nvim_lsp",
-			priority = 100,
-			keyword_length = 3,
-			entry_filter = limit_lsp_types,
-		},
-		{
-			name = "nvim_lsp_signature_help",
-			priority = 100,
-		},
-		{
-			name = "luasnip",
-			priority = 90,
-			keyword_length = 2,
-			max_item_count = 100,
-			option = { show_autosnippets = true },
-		},
-		{
-			name = "luasnip_choice",
-			priority = 90,
-			keyword_length = 2,
-			max_item_count = 50,
-		},
-		{
-			name = "async_path",
-			priority = 50,
-		},
-		{
-			name = "buffer",
+local tex_sources = vim.deepcopy(default_sources)
+local latex_source = {
+	name = "lua-latex-symbols",
+	priority = 100,
+	keyword_length = 2,
+}
 
-			priority = 10,
-			keyword_length = 4,
-			option = buffer_option,
-		},
-		{
-			name = "buffer-lines",
-			priority = 5,
-			keyword_length = 4,
-			max_item_count = 50,
-			option = buffer_option,
-		},
+table.insert(tex_sources, 1, latex_source)
+local other_latex_sources = {
+	{
+		name = "async_path",
+		priority = 50,
 	},
+	{
+		name = "buffer",
+
+		priority = 10,
+		keyword_length = 4,
+		option = buffer_option,
+	},
+	{
+		name = "buffer-lines",
+		priority = 5,
+		keyword_length = 4,
+		max_item_count = 50,
+		option = buffer_option,
+	},
+}
+for _, value in ipairs(other_latex_sources) do
+	table.insert(tex_sources, value)
+end
+
+cmp.setup.filetype({ "tex", "plaintex", "markdown", "rmd" }, {
+	sources = cmp.config.sources(tex_sources),
 })
+
+local r_sources = vim.deepcopy(default_sources)
+local r_source = {
+	name = "cmp_nvim_r",
+	priority = 100,
+	keyword_length = 2,
+}
+table.insert(r_sources, 1, r_source)
 
 cmp.setup.filetype("r", {
-	sources = cmp.config.sources({
-		{
-			name = "cmp_nvim_r",
-			priority = 100,
-			keyword_length = 2,
-		},
-		{
-			name = "treesitter",
-			priority = 100,
-		},
-		{
-			name = "nvim_lsp",
-			priority = 100,
-			keyword_length = 2,
-			entry_filter = limit_lsp_types,
-		},
-		{
-			name = "nvim_lsp_signature_help",
-			priority = 100,
-		},
-		{
-			name = "luasnip",
-			priority = 90,
-			keyword_length = 2,
-			max_item_count = 100,
-			option = { show_autosnippets = true },
-		},
-		{
-			name = "luasnip_choice",
-			priority = 90,
-			keyword_length = 2,
-			max_item_count = 50,
-		},
-	}),
-})
-
-cmp.setup.filetype("lua", {
-	sources = cmp.config.sources({
-		-- This source will complete neovim's Lua runtime API such vim.lsp.*.
-		-- No-op since nvim_lua is disabled.
-		{
-			name = "nvim_lua",
-			priority = 100,
-			keyword_length = 2,
-		},
-		{
-			name = "treesitter",
-			priority = 100,
-		},
-		{
-			name = "nvim_lsp",
-			priority = 100,
-			keyword_length = 2,
-			entry_filter = limit_lsp_types,
-		},
-		{
-			name = "nvim_lsp_signature_help",
-			priority = 100,
-		},
-
-		{
-			name = "luasnip",
-			priority = 90,
-			keyword_length = 2,
-			max_item_count = 100,
-			option = { show_autosnippets = true },
-		},
-		{
-			name = "luasnip_choice",
-			priority = 90,
-			keyword_length = 2,
-			max_item_count = 50,
-		},
-	}),
+	sources = cmp.config.sources(r_sources),
 })
 
 -- https://github.com/gitaarik/nvim-cmp-toggle/blob/b3bbf76cf6412738b7c9e48e1419f7bb78e71f99/plugin/nvim_cmp_toggle.lua

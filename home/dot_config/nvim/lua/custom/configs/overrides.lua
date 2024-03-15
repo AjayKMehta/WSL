@@ -501,45 +501,6 @@ M.cmp = {
 		completeopt = "menu,menuone,noinsert,noselect",
 		keyword_length = 2,
 	},
-	-- name is not the name of the plugin, it's the "id" of the plugin used when creating the source.
-	sources = {
-		{
-			name = "treesitter",
-			group_index = 1,
-			priority = 100,
-		},
-		{
-			name = "nvim_lsp",
-			group_index = 1,
-			priority = 100,
-			keyword_length = 3,
-		},
-		{
-			name = "nvim_lsp_signature_help",
-			group_index = 1,
-			priority = 100,
-		},
-		{
-			name = "luasnip",
-			group_index = 1,
-			priority = 90,
-			keyword_length = 2,
-			max_item_count = 100,
-			option = { show_autosnippets = true },
-		},
-		{
-			name = "luasnip_choice",
-			group_index = 1,
-			priority = 90,
-			keyword_length = 2,
-			max_item_count = 20,
-		},
-		{
-			name = "emoji",
-			group_index = 1,
-			priority = 85,
-		},
-	},
 	mapping = {
 		-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#safely-select-entries-with-cr
 		["<CR>"] = require("cmp").mapping({
