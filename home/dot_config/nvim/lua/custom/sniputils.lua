@@ -416,6 +416,7 @@ function utils.return_value()
 		c = true,
 		cpp = true,
 		java = true,
+		cs = true,
 	}
 
 	local snippet = { t({ "return " }), i(1, "value") }

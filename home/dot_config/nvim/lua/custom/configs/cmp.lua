@@ -3,20 +3,28 @@ local cmp = require("cmp")
 
 local function limit_lsp_types(entry, ctx)
 	local kind = entry:get_kind()
-	local line = ctx.cursor.line
-	local col = ctx.cursor.col
-	local char_before_cursor = string.sub(line, col - 1, col - 1)
-	local char_after_dot = string.sub(line, col, col)
-	local types = require("cmp.types")
 
-	if char_before_cursor == "." and char_after_dot:match("[a-zA-Z]") then
-		return kind == types.lsp.CompletionItemKind.Method
-			or kind == types.lsp.CompletionItemKind.Field
-			or kind == types.lsp.CompletionItemKind.Property
-	elseif string.match(line, "^%s+%w+$") then
-		return kind == types.lsp.CompletionItemKind.Function or kind == types.lsp.CompletionItemKind.Variable
+	local has_dot = {
+		cs = true,
+		lua = true,
+		java = true,
+		python = true,
+	}
+	if has_dot[vim.bo.filetype] then
+		local line = ctx.cursor.line
+		local col = ctx.cursor.col
+		local char_before_cursor = string.sub(line, col - 1, col - 1)
+		local char_after_dot = string.sub(line, col, col)
+		local types = require("cmp.types")
+
+		if char_before_cursor == "." and char_after_dot:match("[a-zA-Z]") then
+			return kind == types.lsp.CompletionItemKind.Method
+				or kind == types.lsp.CompletionItemKind.Field
+				or kind == types.lsp.CompletionItemKind.Property
+		elseif string.match(line, "^%s+%w+$") then
+			return kind == types.lsp.CompletionItemKind.Function or kind == types.lsp.CompletionItemKind.Variable
+		end
 	end
-
 	return kind ~= cmp.lsp.CompletionItemKind.Text
 end
 
