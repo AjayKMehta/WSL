@@ -41,12 +41,7 @@ cmp.setup.cmdline({ "/", "?" }, {
 		keyword_length = 5,
 	},
 	sources = {
-		{
-			name = "buffer",
-			option = { keyword_pattern = [[\k\+]] },
-			keyword_length = 3,
-			max_item_count = 20,
-		},
+		{ name = "fuzzy_buffer" },
 		{ name = "buffer-lines" },
 	},
 	view = {
@@ -62,9 +57,9 @@ cmp.setup.cmdline(":", {
 	},
 	enabled = true,
 	sources = cmp.config.sources({
-		{ name = "async_path" },
 		{ name = "cmdline" },
 		{ name = "buffer" },
+		{ name = "async_path" },
 	}),
 })
 
@@ -81,6 +76,11 @@ cmp.setup.filetype({ "help", "minifiles", "TelescopePrompt" }, {
 
 cmp.setup.filetype({ "tex", "plaintex", "markdown", "rmd" }, {
 	sources = {
+		{
+			name = "lua-latex-symbols",
+			priority = 100,
+			keyword_length = 2,
+		},
 		{
 			name = "treesitter",
 			priority = 100,
@@ -108,16 +108,7 @@ cmp.setup.filetype({ "tex", "plaintex", "markdown", "rmd" }, {
 			keyword_length = 2,
 			max_item_count = 50,
 		},
-		{
-			name = "rg",
-			priority = 80,
-			keyword_length = 3,
-		},
-		{
-			name = "lua-latex-symbols",
-			priority = 75,
-			keyword_length = 2,
-		},
+
 		{
 			name = "async_path",
 			priority = 50,
@@ -173,11 +164,6 @@ cmp.setup.filetype("r", {
 			keyword_length = 2,
 			max_item_count = 50,
 		},
-		{
-			name = "rg",
-			priority = 80,
-			keyword_length = 3,
-		},
 	}),
 })
 
@@ -217,10 +203,22 @@ cmp.setup.filetype("lua", {
 			keyword_length = 2,
 			max_item_count = 50,
 		},
-		{
-			name = "rg",
-			priority = 80,
-			keyword_length = 3,
-		},
 	}),
 })
+
+-- https://github.com/gitaarik/nvim-cmp-toggle/blob/b3bbf76cf6412738b7c9e48e1419f7bb78e71f99/plugin/nvim_cmp_toggle.lua
+local function toggle_autocomplete()
+	local current_setting = cmp.get_config().completion.autocomplete
+	if current_setting and #current_setting > 0 then
+		cmp.setup({ completion = { autocomplete = false } })
+		vim.notify("Autocomplete disabled")
+	else
+		cmp.setup({ completion = { autocomplete = { cmp.TriggerEvent.TextChanged } } })
+		vim.notify("Autocomplete enabled")
+	end
+end
+
+vim.api.nvim_create_user_command("NvimCmpToggle", toggle_autocomplete, {})
+
+-- Set a keymap like this for example:
+-- vim.api.nvim_set_keymap('n', '<Leader>a', ':NvimCmpToggle<CR>', { noremap = true, silent = true })

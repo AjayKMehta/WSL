@@ -28,7 +28,6 @@ Plugins divided into the following categories:
 ]]
 
 ---@diagnostic disable-next-line: undefined-doc-name
----@type NvPluginSpec[]
 
 local plugins = {
 	--#region Debugging, diagnostics
@@ -430,6 +429,10 @@ local plugins = {
 				desc = "Completion for Neovim's Lua runtime API.",
 			},
 			{
+				"tzachar/cmp-fuzzy-buffer",
+				dependencies = { "tzachar/fuzzy.nvim" },
+			},
+			{
 				"hrsh7th/cmp-cmdline",
 				lazy = false,
 			},
@@ -442,7 +445,7 @@ local plugins = {
 				end,
 			},
 			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
-			{ "lukas-reineke/cmp-rg" },
+			{ "lukas-reineke/cmp-rg", enabled = false },
 			{ "amarakon/nvim-cmp-buffer-lines" },
 			{ "L3MON4D3/LuaSnip" },
 			{ "ray-x/cmp-treesitter" },
