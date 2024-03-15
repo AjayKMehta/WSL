@@ -27,7 +27,8 @@ local servers = {
 
 	-- Misc
 	"ltex",
-	"ast_grep",
+	-- Comment out for now
+	-- "ast_grep",
 	-- Graphviz
 	"dotls",
 	-- "marksman",
@@ -92,6 +93,9 @@ lspconfig.lua_ls.setup({
 			},
 			telemetry = {
 				enable = false,
+			},
+			completion = {
+				callSnippet = "Replace",
 			},
 			workspace = {
 				checkThirdParty = false,
