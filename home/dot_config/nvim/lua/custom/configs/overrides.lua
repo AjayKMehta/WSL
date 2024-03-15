@@ -539,11 +539,6 @@ M.cmp = {
 			group_index = 1,
 			priority = 85,
 		},
-		{
-			name = "color_names",
-			group_index = 1,
-			priority = 80,
-		},
 	},
 	mapping = {
 		-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#safely-select-entries-with-cr
