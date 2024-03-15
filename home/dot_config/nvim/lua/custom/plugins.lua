@@ -393,9 +393,7 @@ local plugins = {
 	{
 		"hrsh7th/nvim-cmp",
 		opts = overrides.cmp,
-		lazy = false,
-		-- Doesn't work
-		-- event = { "InsertEnter", "CmdlineEnter" },
+		event = { "InsertEnter", "CmdlineEnter" },
 		config = function(_, opts)
 			require("cmp").setup(opts)
 			load_config("cmp")()
@@ -431,8 +429,6 @@ local plugins = {
 				event = "InsertEnter",
 				desc = "Completion for Neovim's Lua runtime API.",
 			},
-			-- Didn't work
-			-- { "hrsh7th/cmp-nvim-lsp-document-symbol" },
 			{
 				"hrsh7th/cmp-cmdline",
 				lazy = false,
