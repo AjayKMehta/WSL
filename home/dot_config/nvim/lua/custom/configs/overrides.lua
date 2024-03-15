@@ -528,7 +528,7 @@ M.cmp = {
 			option = { show_autosnippets = true },
 		},
 		{
-			name = "luasnip-choice",
+			name = "luasnip_choice",
 			group_index = 1,
 			priority = 90,
 			keyword_length = 2,

@@ -437,7 +437,7 @@ local plugins = {
 				desc = "nvim-cmp source for cmdline",
 			},
 			{
-				"doxnit/cmp-luasnip-choice",
+				"L3MON4D3/cmp-luasnip-choice",
 				config = function()
 					require("cmp_luasnip_choice").setup({
 						auto_open = true, -- Automatically open nvim-cmp on choice node (default: true)
