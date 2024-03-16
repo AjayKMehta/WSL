@@ -115,6 +115,12 @@ local config = {
 			{ LspStatus, cond = has_filename },
 		},
 		lualine_x = {
+			-- https://github.com/folke/lazy.nvim#-usage
+			{
+				require("lazy.status").updates,
+				cond = require("lazy.status").has_updates,
+				color = { fg = "#ff9e64" },
+			},
 			{
 				"encoding",
 				cond = function()
