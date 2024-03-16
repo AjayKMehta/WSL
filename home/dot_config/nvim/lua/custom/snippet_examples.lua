@@ -13,6 +13,7 @@ local i = ls.insert_node
 local f = ls.function_node
 local c = ls.choice_node
 local r = ls.restore_node
+local ai = require("luasnip.nodes.absolute_indexer")
 
 local function fn(
 	args, -- text from i(2) in this example i.e. { { "456" } }
@@ -42,6 +43,46 @@ local trig_snippet = s({ trig = "trig", desc = "Example using function node" }, 
 	i(0),
 })
 
+-- absolute_indexer allows accessing nodes by their unique jump-index path from the snippet-root. More error-prone.
+-- Use key indexer instead.
+local trig_ai_snippet = s({ trig = "trig_ai", desc = "Example using absolute indexer" }, {
+	i(1, "123"),
+	t({ "", "" }),
+	i(2, { "abc", "def" }),
+	t({ "", "" }),
+	f(function(args, snip)
+		-- just concat first lines of both.
+		return args[1][1] .. args[2][1]
+	end, { ai[2], ai[1] }),
+})
+
+local trig2_snippet = s(
+	{ trig = "trig2", desc = "Example using choice node with text, insert, and function child nodes (Ctrl+N/P)" },
+	c(1, {
+		t("Ugh boring, a text node"),
+		-- Jumpable nodes that normally expect an index as their first parameter
+		-- don't need one inside a choiceNode; their jump-index is the same as
+		-- the choiceNodes'.
+		i(nil, "At least I can edit something now..."),
+		f(function(args)
+			return "Still only counts as text!!"
+		end, {}),
+	})
+)
+
+-- In `sn(nil, {...nodes...})` nodes has to contain e.g. an i(1), otherwise luasnip will just "jump through" the nodes, making it impossible to change the choice.
+s(
+	"trig",
+	c(1, {
+		t("some text"), -- textNodes are just stopped at.
+		i(nil, "test"), -- likewise.
+		sn(nil, { t("some text") }), -- this will not work!
+		sn(nil, { i(1), t("some text") }), -- this will.
+		-- If no 0-th InsertNode is found in a snippet, one is automatically inserted after all other nodes.
+		i(0), -- When you reach here, snippet will be unlinked.
+	})
+)
+
 -- 1. When you expand this snippet, the cursor will be placed at the first insert node. The text node will insert two newlines after the cursor, moving the cursor to the next line.
 -- <@>\n\n
 -- 2. If you type "ABC" and then press the trigger key, the match node will check if the text "ABC" was entered.
@@ -50,9 +91,12 @@ local trig_snippet = s({ trig = "trig", desc = "Example using function node" }, 
 -- Result: ABC<@>\nA\n
 local match_snippet = s({ trig = "cond_match", desc = "Example using conditional logic. Type ABC to witness ✨" }, {
 	i(1),
+	-- Pass table with 2 entries to t() creates 2 lines with those entries!
 	t({ "", "" }),
 	m(1, "^ABC$", "A"),
 })
+
+-- s("foo") same as s({trig = "foo"})
 
 -- Press Ctrl-N/P to go to next/prev choice
 -- TODO: Describe how this works.
@@ -80,13 +124,34 @@ local num_capture_snippet = s(
 -- printf-like notation for defining snippets. It uses format
 -- string with placeholders similar to the ones used with Python's .format().
 local fmt1_snippet = s(
-	"fmt1",
-	fmt("To {title} {} {}.", {
+	{ trig = "fmt1", desc = "Example using fmt with choice node (Mr.| Ms.)" },
+	-- Escape {} by doubling
+	fmt("To {title} {} {}. {{This is escaped.}}", {
 		i(2, "Name"),
 		i(3, "Surname"),
 		title = c(1, { t("Mr."), t("Ms.") }),
 	})
 )
+
+-- Empty placeholders are numbered automatically starting from 1 or the last
+-- value of a numbered placeholder. Named placeholders do not affect numbering.
+
+-- <i2> A 1 <i1> 1
+local fmt2_snippet = s(
+	{ trig = "fmt2", desc = "Example using fmt with named and numbered placeholders" },
+	fmt("{} {a} {} {1} {}", {
+		i(1),
+		t("1"),
+		a = t("A"),
+	})
+)
+
+-- The delimiters can be changed from the default `{}` to something else.
+local fmt3_snippet = s({
+	trig = "fmt3",
+	desc = "Example using fmt with custom delimiters",
+	hidden = false, -- Default. Set to true to hide from cmp!
+}, fmt("foo() { return []; }", i(1, "x"), { delimiters = "[]" }))
 
 -- Using the condition, it's possible to allow expansion only in specific cases.
 -- TODO: Figure out why this is not working properly.
@@ -101,17 +166,10 @@ local cond_snippet = s("cond", {
 
 ls.add_snippets("all", {
 	trig_snippet,
+	trig_ai_snippet,
 	match_snippet,
 	paren_snippet,
 	num_capture_snippet,
-	-- s("trig", c(1, {
-	--   t "some text",                    -- textNodes are just stopped at.
-	--   i(nil, "test"),                   -- likewise.
-	--   sn(nil, { t "some text" }),       -- this will not work!
-	--   sn(nil, { i(1), t "some text" }), -- this will.
-	--   -- If no 0-th InsertNode is found in a snippet, one is automatically inserted after all other nodes.
-	--   i(0)                              -- When you reach here, snippet will be unlinked.
-	-- })),
 
 	-- When wordTrig is set to false, snippets may also expand inside other words.
 	ls.parser.parse_snippet({ trig = "te", wordTrig = false }, "${1:cond} ? ${2:true} : ${3:false}"),
@@ -130,19 +188,8 @@ ls.add_snippets("all", {
 		i(2, "Surname"),
 	}),
 
-	-- Empty placeholders are numbered automatically starting from 1 or the last
-	-- value of a numbered placeholder. Named placeholders do not affect numbering.
-	s(
-		"fmt2",
-		fmt("{} {a} {} {1} {}", {
-			i(1),
-			t("1"),
-			a = t("A"),
-		})
-	),
-
-	-- The delimiters can be changed from the default `{}` to something else.
-	s("fmt3", fmt("foo() { return []; }", i(1, "x"), { delimiters = "[]" })),
+	fmt2_snippet,
+	fmt3_snippet,
 
 	-- `fmta` is a convenient wrapper that uses `<>` instead of `{}`.
 	s("fmt4", fmta("foo() { return <>; }", i(1, "x"))),
@@ -170,14 +217,5 @@ ls.add_snippets("all", {
 	-- Shorthand for repeating the text in a given node.
 	s("repeat", { i(1, "text"), t({ "", "" }), rep(1) }),
 
-	s(
-		"trig2",
-		c(1, {
-			t("Ugh boring, a text node"),
-			i(nil, "At least I can edit something now..."),
-			f(function(args)
-				return "Still only counts as text!!"
-			end, {}),
-		})
-	),
+	trig2_snippet,
 })
