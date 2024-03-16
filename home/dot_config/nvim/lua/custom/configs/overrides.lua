@@ -315,6 +315,8 @@ local WIDTH_RATIO = 0.6 -- You can change this too
 
 M.nvimtree = {
 	filters = {
+		-- https://github.com/nvim-tree/nvim-tree.lua/pull/2706
+		enable = true,
 		dotfiles = false,
 		custom = { "node_modules" },
 	},
