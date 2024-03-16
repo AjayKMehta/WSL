@@ -385,6 +385,7 @@ local plugins = {
 		event = "BufEnter",
 		desc = "Code runner",
 	},
+	{ "kevinhwang91/nvim-bqf", ft = "qf", desc = "Better quickfix window" },
 
 	--#endregion
 
