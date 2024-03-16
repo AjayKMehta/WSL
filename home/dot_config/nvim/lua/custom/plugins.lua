@@ -458,13 +458,13 @@ local plugins = {
 				config = load_config("cmp-git"),
 			},
 		},
-		desc = "Completion plugin",
+		desc = "Completion plugin for git",
 	},
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = {
-			"rafamadriz/friendly-snippets", -- useful snippets
-			"onsails/lspkind.nvim", -- vs-code like pictograms
+			{ "rafamadriz/friendly-snippets", desc = "Useful snippets for different languages" },
+			{ "onsails/lspkind.nvim", desc = "VS Code like pictograms" },
 		},
 		event = {
 			"InsertEnter",
