@@ -424,8 +424,8 @@ local lua = {
 		"desc",
 		fmt(
 			[[
-    describe('{}', funcion()
-        it('{}', funcion()
+    describe('{}', function()
+        it('{}', function()
             {}
         end)
     end)
@@ -441,7 +441,7 @@ local lua = {
 		"it",
 		fmt(
 			[[
-    it('{}', funcion()
+    it('{}', function()
         {}
     end)
     ]],
