@@ -27,8 +27,7 @@ local servers = {
 
 	-- Misc
 	"ltex",
-	-- Comment out for now
-	-- "ast_grep",
+	"ast_grep",
 	-- Graphviz
 	"dotls",
 	-- "marksman",
