@@ -284,7 +284,7 @@ function utils.get_comment(text)
 	return comment_str or comment
 end
 
-function utils.saved_text(args, snip, old_state, user_args)
+function utils.saved_text(_, snip, old_state, user_args)
 	local nodes = {}
 	old_state = old_state or {}
 	user_args = user_args or {}

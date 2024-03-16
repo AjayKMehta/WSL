@@ -68,8 +68,8 @@ local function generic_pdoc(ilevel, args)
 	nodes[#nodes + 1] = t({ "", "", string.rep("\t", ilevel) .. "Args:" })
 
 	local a = vim.tbl_map(function(item)
-		local trimed = vim.trim(item)
-		return trimed
+		local trimmed = vim.trim(item)
+		return trimmed
 	end, vim.split(args[1][1], ",", true))
 
 	if args[1][1] == "" then

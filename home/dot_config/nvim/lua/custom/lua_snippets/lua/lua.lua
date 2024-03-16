@@ -40,6 +40,7 @@ print("${1:variable}:")
 dump($1)]]
 
 local map_cmd = [[<cmd>${0}<CR>]]
+
 local function highlight_choice()
 	return sn(nil, {
 		t({ "" }),
@@ -72,7 +73,6 @@ local require_var = function(args, _)
 	end
 
 	return sn(nil, {
-
 		c(1, options),
 	})
 end
@@ -150,6 +150,9 @@ local function require_import(_, parent, old_state)
 	return snip_node
 end
 
+-- Autosnippets:
+-- 1. set regTrig = true
+-- 2. Hidden by default
 local auto_snippets = {
 	s(
 		{ trig = "l(l?)fun", regTrig = true },
