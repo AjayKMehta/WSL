@@ -20,7 +20,8 @@ local opts = {
 	ext_opts = {
 		[require("luasnip.util.types").choiceNode] = {
 			active = {
-				virt_text = { { "●", "GruvboxOrange" } },
+				-- TODO: Figure out which values you can pass
+				virt_text = { { "●", "ErrorMsg" } },
 			},
 		},
 	},
