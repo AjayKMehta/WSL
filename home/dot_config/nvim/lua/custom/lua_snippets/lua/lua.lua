@@ -5,6 +5,7 @@ local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 local c = ls.choice_node
+-- Very similar to functionNode, but returns a snippetNode instead of just text
 local d = ls.dynamic_node
 local rep = require("luasnip.extras").rep
 local fmt = require("luasnip.extras.fmt").fmt
@@ -85,7 +86,7 @@ local function rec_val()
 				t({ ",", "\t" }),
 				i(1, "arg"),
 				t({ " = { " }),
-				r(1),
+				rep(1), -- repeat value from 1st jump index
 				t({ ", " }),
 				c(2, {
 					i(1, "'string'"),
@@ -114,7 +115,7 @@ local function require_import(_, parent, old_state)
 	if variable then
 		table.insert(nodes, t({ "local " }))
 		if call_func then
-			table.insert(nodes, r(2))
+			table.insert(nodes, rep(2))
 		else
 			table.insert(
 				nodes,
@@ -174,14 +175,6 @@ local auto_snippets = {
 		)
 	),
 
-	s({ trig = "iff(e?)", regTrig = true }, {
-		t({ "if " }),
-		i(1, "condition"),
-		t({ " then", "" }),
-		d(2, saved_text, {}, { user_args = { { indent = true } } }),
-		d(3, else_clause, {}, {}),
-		t({ "", "end" }),
-	}),
 	s({ trig = "l(l?)req(f?)", regTrig = true }, {
 		d(1, require_import, {}, {}),
 	}),
@@ -371,7 +364,7 @@ local lua = {
 		t({ "", "\t" }),
 		i(1, "arg"),
 		t({ " = { " }),
-		r(1),
+		rep(1),
 		t({ ", " }),
 		c(2, {
 			i(1, "'string'"),
