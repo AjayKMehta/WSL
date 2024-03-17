@@ -21,6 +21,7 @@ local isn = ls.indent_snippet_node
 -- This node can store and restore a snippetNode as is.
 local r = ls.restore_node
 local ai = require("luasnip.nodes.absolute_indexer")
+local l = require("luasnip.extras").lambda
 
 -- s("foo") same as s({trig = "foo"})
 
@@ -107,6 +108,8 @@ s(
 --#region Match
 -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#match
 
+-- Match can insert text based on a predicate
+
 -- 1. When you expand this snippet, the cursor will be placed at the first insert node. The text node will insert two newlines after the cursor, moving the cursor to the next line.
 -- <@>\n\n
 -- 2. If you type "ABC" and then press the trigger key, the match node will check if the text "ABC" was entered.
@@ -119,6 +122,17 @@ local match_snippet = s({ trig = "cond_match", desc = "Example using conditional
 	t({ "", "" }),
 	m(1, "^ABC$", "A"),
 })
+
+local match2_snippet = s(
+	{ trig = "palindrome", desc = "Example using conditional logic. Type a palindrome to witness ✨" },
+	{
+		i(1),
+		-- Pass table with 2 entries to t() creates 2 lines with those entries!
+		t({ "", "" }),
+		-- match(argnodes, condition, then, else)
+		m(1, l._1:match(l._1:reverse()), "PALINDROME", "NORMAL"),
+	}
+)
 
 --#endregion
 
@@ -156,6 +170,8 @@ local paren2_snippet = s({ trig = "paren_change2", desc = "Example of choice nod
 
 --#endregion
 
+--#region Regex
+
 -- Type b followed by number and then Tab to trigger.
 local num_capture_snippet = s(
 	{ trig = "b(%d)", regTrig = true, desc = "Example of regex triggered snippet" },
@@ -163,6 +179,8 @@ local num_capture_snippet = s(
 		return "Captured Text: " .. snip.captures[1] .. "."
 	end, {})
 )
+
+--#endregion
 
 --#region fmt
 
@@ -248,6 +266,7 @@ ls.add_snippets("all", {
 	trig_snippet,
 	trig_ai_snippet,
 	match_snippet,
+	match2_snippet,
 
 	paren_snippet,
 	paren2_snippet,
