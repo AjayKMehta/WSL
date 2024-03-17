@@ -21,6 +21,7 @@ local isn = ls.indent_snippet_node
 -- This node can store and restore a snippetNode as is.
 local r = ls.restore_node
 local ai = require("luasnip.nodes.absolute_indexer")
+local d = ls.dynamic_node
 local l = require("luasnip.extras").lambda
 
 -- s("foo") same as s({trig = "foo"})
@@ -170,6 +171,36 @@ local paren2_snippet = s({ trig = "paren_change2", desc = "Example of choice nod
 
 --#endregion
 
+--#region DynamicNode
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#dynamicnode
+
+-- Similar to functionNode, but returns a snippetNode instead of just text.
+
+local dynamic_snippet = s({ trig = "dyn", desc = "Dynamic snippet" }, {
+	t("original: "),
+	i(1),
+	t({ "", "copy: " }),
+	d(2, function(args)
+		return sn(nil, {
+			-- jump-indices are local to each snippetNode, so restart at 1.
+			i(1, args[1]),
+		})
+	end, { 1 }),
+})
+
+local dynamic2_snippet = s({ trig = "dyn_choice", desc = "Dynamic snippet with choice" }, {
+	t("original: "),
+	i(1),
+	t({ "", "copy: " }),
+	d(2, function(args)
+		return sn(nil, {
+			c(1, { i(1, args[1]), t("Test") }),
+		})
+	end, { 1 }),
+})
+
+--#endregion
+
 --#region Regex
 
 -- Type b followed by number and then Tab to trigger.
@@ -287,6 +318,9 @@ ls.add_snippets("all", {
 	multiline_snippet,
 	multiline2_snippet,
 	multiline3_snippet,
+
+	dynamic_snippet,
+	dynamic2_snippet,
 
 	fmt2_snippet,
 	fmt3_snippet,
