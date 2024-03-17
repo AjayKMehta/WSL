@@ -8,12 +8,24 @@ local m = require("luasnip.extras").match
 local s = ls.snippet
 -- Will error out if text node contains newline!
 local t = ls.text_node
+-- SnippetNodes directly insert their contents into the surrounding snippet. Syntax similar to s but require jump index.
 local sn = ls.snippet_node
+-- These Nodes contain editable text and can be jumped to and from
 local i = ls.insert_node
+-- Function Nodes insert text based on the content of other nodes using a user-defined function
 local f = ls.function_node
+-- ChoiceNodes allow choosing between multiple nodes.
 local c = ls.choice_node
 local r = ls.restore_node
 local ai = require("luasnip.nodes.absolute_indexer")
+
+-- s("foo") same as s({trig = "foo"})
+
+-- <@> denotes cursor position.
+-- <iN> denotes Nth insert node.
+
+--#region FunctionNode
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#functionnode
 
 local function fn(
 	args, -- text from i(2) in this example i.e. { { "456" } }
@@ -23,9 +35,6 @@ local function fn(
 	return "[" .. args[1][1] .. user_args .. "]"
 end
 
--- <@> denotes cursor position.
-
--- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#functionnode
 -- <i1><-i(1)<f(fn, {2}, { user_args = { "test" }})>i(2)-><i2><-i(2) i(0)->
 -- <i1> = "A", <i2> = "B" leads to
 -- A<-i(1)[Btest]i(2)->B<-i(2) i(0)->
@@ -43,8 +52,8 @@ local trig_snippet = s({ trig = "trig", desc = "Example using function node" }, 
 	i(0),
 })
 
--- absolute_indexer allows accessing nodes by their unique jump-index path from the snippet-root. More error-prone.
--- Use key indexer instead.
+-- absolute_indexer allows accessing nodes by their unique jump-index path from the snippet-root.
+-- More error-prone. Use key indexer instead.
 local trig_ai_snippet = s({ trig = "trig_ai", desc = "Example using absolute indexer" }, {
 	i(1, "123"),
 	t({ "", "" }),
@@ -62,13 +71,20 @@ local trig2_snippet = s(
 		t("Ugh boring, a text node"),
 		-- Jumpable nodes that normally expect an index as their first parameter
 		-- don't need one inside a choiceNode; their jump-index is the same as
-		-- the choiceNodes'.
+		-- the choiceNode's.
 		i(nil, "At least I can edit something now..."),
 		f(function(args)
 			return "Still only counts as text!!"
 		end, {}),
 	})
 )
+
+--#endregion
+
+--#region SnippetNode
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#snippetnode
+
+-- SnippetNodes directly insert their contents into the surrounding snippet.
 
 -- In `sn(nil, {...nodes...})` nodes has to contain e.g. an i(1), otherwise luasnip will just "jump through" the nodes, making it impossible to change the choice.
 s(
@@ -83,6 +99,11 @@ s(
 	})
 )
 
+--#endregion
+
+--#region Match
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#match
+
 -- 1. When you expand this snippet, the cursor will be placed at the first insert node. The text node will insert two newlines after the cursor, moving the cursor to the next line.
 -- <@>\n\n
 -- 2. If you type "ABC" and then press the trigger key, the match node will check if the text "ABC" was entered.
@@ -96,11 +117,14 @@ local match_snippet = s({ trig = "cond_match", desc = "Example using conditional
 	m(1, "^ABC$", "A"),
 })
 
--- s("foo") same as s({trig = "foo"})
+--#endregion
+
+--#region RestoreNode
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#restorenode
 
 -- Press Ctrl-N/P to go to next/prev choice
--- TODO: Describe how this works.
-local paren_snippet = s({ trig = "paren_change", desc = "Example of choice node" }, {
+-- Here the text entered into user_text is preserved upon changing choice.
+local paren_snippet = s({ trig = "paren_change", desc = "Example of choice node with restore node" }, {
 	c(1, {
 		sn(nil, { t("("), r(1, "user_text"), t(")") }),
 		sn(nil, { t("["), r(1, "user_text"), t("]") }),
@@ -113,6 +137,8 @@ local paren_snippet = s({ trig = "paren_change", desc = "Example of choice node"
 	},
 })
 
+--#endregion
+
 -- Type b followed by number and then Tab to trigger.
 local num_capture_snippet = s(
 	{ trig = "b(%d)", regTrig = true, desc = "Example of regex triggered snippet" },
@@ -120,6 +146,8 @@ local num_capture_snippet = s(
 		return "Captured Text: " .. snip.captures[1] .. "."
 	end, {})
 )
+
+--#region fmt
 
 -- printf-like notation for defining snippets. It uses format
 -- string with placeholders similar to the ones used with Python's .format().
@@ -152,6 +180,8 @@ local fmt3_snippet = s({
 	desc = "Example using fmt with custom delimiters",
 	hidden = false, -- Default. Set to true to hide from cmp!
 }, fmt("foo() { return []; }", i(1, "x"), { delimiters = "[]" }))
+
+--#endregion
 
 -- Using the condition, it's possible to allow expansion only in specific cases.
 -- TODO: Figure out why this is not working properly.
