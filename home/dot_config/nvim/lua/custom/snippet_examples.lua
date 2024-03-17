@@ -16,6 +16,9 @@ local i = ls.insert_node
 local f = ls.function_node
 -- ChoiceNodes allow choosing between multiple nodes.
 local c = ls.choice_node
+-- By default, all nodes are indented at least as deep as the trigger. With these nodes it's possible to override that behavior.
+local isn = ls.indent_snippet_node
+-- This node can store and restore a snippetNode as is.
 local r = ls.restore_node
 local ai = require("luasnip.nodes.absolute_indexer")
 
@@ -194,6 +197,39 @@ local cond_snippet = s("cond", {
 	end,
 })
 
+--#region IndentSnippetNode
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#indentsnippetnode
+
+-- No indent
+local multiline_snippet = s({
+	trig = "ml",
+	desc = "Example of multiline snippet",
+}, {
+	i(1, "Name"),
+	t({ "", "A", "B", "" }),
+	i(2, "Surname"),
+})
+
+-- Use InsertSnippetNode to add indent.
+local multiline2_snippet = s({
+	trig = "ml2",
+	desc = "Example of multiline snippet using IndentSnippetNode",
+}, {
+	-- All occurrences of "$PARENT_INDENT" are replaced with the actual indent of the parent.
+	isn(1, t({ "//This is", "A multiline", "comment" }), "$PARENT_INDENT//"),
+})
+
+-- Even works with insert node.
+local multiline3_snippet = s({
+	trig = "ml3",
+	desc = "Example of multiline snippet using IndentSnippetNode with insert node",
+}, {
+	-- All occurrences of "$PARENT_INDENT" are replaced with the actual indent of the parent.
+	isn(1, { t({ "//This is", "A multiline", "comment", "" }), i(1, "Hi!") }, "$PARENT_INDENT//"),
+})
+
+--#endregion
+
 ls.add_snippets("all", {
 	trig_snippet,
 	trig_ai_snippet,
@@ -212,11 +248,9 @@ ls.add_snippets("all", {
 	fmt1_snippet,
 
 	-- Multiline
-	s("ml", {
-		i(1, "Name"),
-		t({ "", "A", "B", "" }),
-		i(2, "Surname"),
-	}),
+	multiline_snippet,
+	multiline2_snippet,
+	multiline3_snippet,
 
 	fmt2_snippet,
 	fmt3_snippet,
