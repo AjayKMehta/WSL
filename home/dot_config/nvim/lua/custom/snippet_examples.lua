@@ -140,6 +140,20 @@ local paren_snippet = s({ trig = "paren_change", desc = "Example of choice node 
 	},
 })
 
+-- This works but default value is not there when triggered.
+local paren2_snippet = s({ trig = "paren_change2", desc = "Example of choice node with restore node" }, {
+	c(1, {
+		sn(nil, { t("("), r(1, "user_text"), t(")") }),
+		sn(nil, { t("["), r(1, "user_text"), t("]") }),
+		sn(nil, { t("{"), r(1, "user_text"), t("}") }),
+	}),
+}, {
+	{
+		-- key passed to restoreNodes.
+		["user_text"] = i(1, "default_text"),
+	},
+})
+
 --#endregion
 
 -- Type b followed by number and then Tab to trigger.
@@ -234,7 +248,10 @@ ls.add_snippets("all", {
 	trig_snippet,
 	trig_ai_snippet,
 	match_snippet,
+
 	paren_snippet,
+	paren2_snippet,
+
 	num_capture_snippet,
 
 	-- When wordTrig is set to false, snippets may also expand inside other words.
