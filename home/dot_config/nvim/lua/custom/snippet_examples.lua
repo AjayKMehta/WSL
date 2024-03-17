@@ -21,6 +21,8 @@ local isn = ls.indent_snippet_node
 -- This node can store and restore a snippetNode as is.
 local r = ls.restore_node
 local ai = require("luasnip.nodes.absolute_indexer")
+-- Better than referencing by jump index as allows referencing non-sibling nodes
+local k = require("luasnip.nodes.key_indexer").new_key
 local d = ls.dynamic_node
 local l = require("luasnip.extras").lambda
 
@@ -198,6 +200,27 @@ local dynamic2_snippet = s({ trig = "dyn_choice", desc = "Dynamic snippet with c
 		})
 	end, { 1 }),
 })
+--#endregion
+
+--#region KeyIndexer
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#key-indexer
+
+-- Allows you to address nodes by key and even works for non-sibling nodes.
+
+local key_snippet = s({ trig = "key", desc = "Snippet with key" }, {
+	i(1, "", { key = "first" }),
+	c(2, {
+		sn(nil, {
+			i(1),
+			t({ "", "" }),
+			t("can access the argnode :)"),
+			f(function(args)
+				return string.lower(args[1][1])
+			end, k("first")),
+		}),
+		t("sample_text"),
+	}),
+})
 
 --#endregion
 
@@ -330,6 +353,8 @@ ls.add_snippets("all", {
 
 	-- By default all args must be used. Use strict=false to disable the check
 	s("fmt5", fmt("use {} only", { t("this"), t("not this") }, { strict = false })),
+
+	key_snippet,
 
 	-- Set store_selection_keys = "<Tab>" (for example) in your
 	-- luasnip.config.setup() call to populate
