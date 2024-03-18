@@ -14,7 +14,6 @@ local parse = ls.parser.parse_snippet
 
 local sniputils = require("custom.sniputils")
 local saved_text = sniputils.saved_text
-local else_clause = sniputils.else_clause
 local surround_with_func = sniputils.surround_with_func
 
 local time = [[
@@ -42,6 +41,15 @@ dump($1)]]
 
 local map_cmd = [[<cmd>${0}<CR>]]
 
+--- Creates a snippet for defining text highlighting options.
+-- This function generates a snippet that allows users to specify various text highlighting
+-- options such as foreground color, background color, special color, and text styles like
+-- italic, bold, underline, and undercurl. The snippet is structured to support dynamic
+-- expansion and repetition of these options.
+--
+-- @return A snippet node that, when expanded, prompts the user to input values for
+-- various text highlighting options. The snippet includes dynamic nodes that allow for
+-- the repetition of the highlighting options as needed.
 local function highlight_choice()
 	return sn(nil, {
 		t({ "" }),
