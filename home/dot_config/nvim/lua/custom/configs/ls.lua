@@ -20,8 +20,12 @@ local opts = {
 	ext_opts = {
 		[require("luasnip.util.types").choiceNode] = {
 			active = {
-				-- TODO: Figure out which values you can pass
-				virt_text = { { "●", "ErrorMsg" } },
+				virt_text = { { "●", "St_SelectMode" } },
+			},
+		},
+		[require("luasnip.util.types").insertNode] = {
+			active = {
+				virt_text = { { "⎀", "St_InsertMode" } },
 			},
 		},
 	},
@@ -67,3 +71,5 @@ vim.keymap.set("i", "<c-u>", require("luasnip.extras.select_choice"))
 
 -- Uncomment to test snippet functionality
 require("custom.snippet_examples")
+
+-- TODO Add autocommand to show snippets.
