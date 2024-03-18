@@ -25,6 +25,8 @@ local ai = require("luasnip.nodes.absolute_indexer")
 local k = require("luasnip.nodes.key_indexer").new_key
 local d = ls.dynamic_node
 local l = require("luasnip.extras").lambda
+local dl = require("luasnip.extras").dynamic_lambda
+-- local conds_expand = require("luasnip.extras.conditions.expand")
 
 -- s("foo") same as s({trig = "foo"})
 
@@ -136,6 +138,16 @@ local match2_snippet = s(
 		m(1, l._1:match(l._1:reverse()), "PALINDROME", "NORMAL"),
 	}
 )
+
+--#endregion
+
+--#region Dynamic Lambda
+
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#dynamic-lambda
+
+-- Pretty much the same as lambda, but it inserts the resulting text as an insertNode, and, as such, it can be quickly overridden.
+
+local dl_snippet = s("dl", { i(1), t({ "", "" }), dl(2, l._1 .. l._1, 1) })
 
 --#endregion
 
@@ -377,4 +389,5 @@ ls.add_snippets("all", {
 	s("repeat", { i(1, "text"), t({ "", "" }), rep(1) }),
 
 	trig2_snippet,
+	dl_snippet,
 })
