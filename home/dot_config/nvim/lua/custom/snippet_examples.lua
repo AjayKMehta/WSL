@@ -347,7 +347,6 @@ ls.add_snippets("all", {
 	-- Type number then Tab to activate.
 	ls.parser.parse_snippet({ trig = "%d", regTrig = true }, "A Number!!"),
 
-	cond_snippet,
 	fmt1_snippet,
 
 	-- Multiline
@@ -393,5 +392,3 @@ ls.add_snippets("all", {
 	dl_snippet,
 	-- cond_snippet,
 })
-
--- TODO Add autocommand to show snippets.

@@ -72,6 +72,7 @@ local function highlight_choice()
 	})
 end
 
+-- args[1][1] = A.B.C then create choice node with C, B.C, A.B.C
 local require_var = function(args, _)
 	local text = args[1][1] or ""
 	local split = vim.split(text, ".", { plain = true })
