@@ -284,17 +284,6 @@ local fmt3_snippet = s({
 
 --#endregion
 
--- Using the condition, it's possible to allow expansion only in specific cases.
--- TODO: Figure out why this is not working properly.
-local cond_snippet = s("cond", {
-	t("will only expand in c-style comments"),
-}, {
-	condition = function(line_to_cursor, matched_trigger, captures)
-		-- optional whitespace followed by //
-		return line_to_cursor:match("^%s*//")
-	end,
-})
-
 --#region IndentSnippetNode
 -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#indentsnippetnode
 
@@ -325,6 +314,18 @@ local multiline3_snippet = s({
 	-- All occurrences of "$PARENT_INDENT" are replaced with the actual indent of the parent.
 	isn(1, { t({ "//This is", "A multiline", "comment", "" }), i(1, "Hi!") }, "$PARENT_INDENT//"),
 })
+
+--#endregion
+
+--#region Condition
+
+-- Using the condition, it's possible to allow expansion only in specific cases.
+-- TODO: Figure out why this is not working properly.
+-- local cond_snippet = s("cond_beg", {
+-- 	t("will only expand at the beginning of the line"),
+-- }, {
+-- 	condition = conds_expand.line_begin,
+-- })
 
 --#endregion
 
@@ -390,4 +391,7 @@ ls.add_snippets("all", {
 
 	trig2_snippet,
 	dl_snippet,
+	-- cond_snippet,
 })
+
+-- TODO Add autocommand to show snippets.
