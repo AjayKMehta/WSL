@@ -1,8 +1,8 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require("configs.overrides")
 
 local function load_config(plugin)
 	return function()
-		require("custom.configs." .. plugin)
+		require("configs." .. plugin)
 	end
 end
 
@@ -50,7 +50,6 @@ local plugins = {
 		config = function(_, opts)
 			local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
 			require("dap-python").setup(path)
-			require("core.utils").load_mappings("dap_python")
 		end,
 	},
 	-- It's important that you set up the plugins in the following order:
@@ -207,8 +206,8 @@ local plugins = {
 			{ "williamboman/mason-lspconfig.nvim" },
 		},
 		config = function()
-			require("plugins.configs.lspconfig")
-			require("custom.configs.lspconfig")
+			require("nvchad.configs.lspconfig")
+			require("configs.lspconfig")
 		end,
 		desc = "Quickstart configs for Neovim LSP.",
 	},
@@ -337,7 +336,7 @@ local plugins = {
 		desc = "A file explorer tree.",
 		config = function(_, opts)
 			dofile(vim.g.base46_cache .. "nvimtree")
-			require("custom.configs.nvimtree")
+			require("configs.nvimtree")
 			require("nvim-tree").setup(opts)
 		end,
 	},

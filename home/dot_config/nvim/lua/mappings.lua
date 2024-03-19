@@ -1,3 +1,4 @@
+require "nvchad.mappings"
 ---@diagnostic disable: undefined-doc-name, inject-field
 ---@type MappingsTable
 local M = {}
