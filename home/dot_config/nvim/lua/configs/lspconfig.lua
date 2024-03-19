@@ -1,5 +1,5 @@
-local on_attach = require("plugins.configs.lspconfig").on_attach
-local capabilities = require("plugins.configs.lspconfig").capabilities
+local on_attach = require("nvchad.configs.lspconfig").on_attach
+local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 dofile(vim.g.base46_cache .. "lsp")
 
@@ -173,7 +173,7 @@ lspconfig.yamlls.setup({
 	},
 })
 
-require("custom.configs.powershell")
+require("configs.powershell")
 
 lspconfig.pyright.setup({
 	on_attach = on_attach,

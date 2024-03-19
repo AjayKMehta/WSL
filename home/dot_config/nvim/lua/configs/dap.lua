@@ -4,7 +4,6 @@
 -- Make sure to also have the snippet with the common helper functions in your config!
 
 local dap = require("dap")
-local utils = require("core.utils")
 
 -- Setup icons
 -- vim.fn.sign_define('DapBreakpoint', {text='', texthl='', linehl='', numhl=''})
@@ -19,10 +18,6 @@ vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl =
 vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "", linehl = "", numhl = "" })
 
 local client_notifs = {}
-
--- https://nvchad.com/docs/config/mappings#manually_load_mappings
-utils.load_mappings("dap")
-utils.load_mappings("dap_python")
 
 local function get_notif_data(client_id, token)
 	if not client_notifs[client_id] then

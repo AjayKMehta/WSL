@@ -398,7 +398,7 @@ M.nvimtree = {
 			vim.keymap.set("n", lhs, rhs, { buffer = bufnr, desc = desc })
 		end
 
-		local treeutils = require("custom.configs.treeutils")
+		local treeutils = require("configs.treeutils")
 
 		bufmap("<c-f>", treeutils.launch_find_files, "Launch Find Files")
 		bufmap("<c-g>", treeutils.launch_live_grep, "Launch Live Grep")
@@ -833,8 +833,8 @@ M.csharp = {
 		-- setting enabled OmniSharp may load fewer projects and may thus display
 		-- incomplete reference lists for symbols.
 		enable_ms_build_load_projects_on_demand = false,
-		capabilities = require("plugins.configs.lspconfig").capabilities,
-		on_attach = require("plugins.configs.lspconfig").on_attach,
+		capabilities = require("nvchad.configs.lspconfig").capabilities,
+		on_attach = require("nvchad.configs.lspconfig").on_attach,
 	},
 	dap = {
 		adapter_name = "coreclr",

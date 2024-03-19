@@ -72,6 +72,6 @@ vim.api.nvim_set_keymap("s", "<C-p>", "<Plug>luasnip-prev-choice", {})
 vim.keymap.set("i", "<c-u>", require("luasnip.extras.select_choice"))
 
 -- Uncomment to test snippet functionality
-require("custom.snippet_examples")
+require("snippet_examples")
 
 -- TODO Add autocommand to show snippets.
