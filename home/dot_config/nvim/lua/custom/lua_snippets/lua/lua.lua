@@ -119,13 +119,9 @@ local function require_import(_, parent, old_state)
 	local nodes = {}
 
 	local variable = parent.captures[1] == "l"
-	local call_func = parent.captures[2] == "f"
 
 	if variable then
 		table.insert(nodes, t({ "local " }))
-		if call_func then
-			table.insert(nodes, rep(2))
-		else
 			table.insert(
 				nodes,
 				f(function(module)
@@ -138,22 +134,14 @@ local function require_import(_, parent, old_state)
 					return name[1] or "module"
 				end, { 1 })
 			)
-		end
 		table.insert(nodes, t({ " = " }))
 	end
 
 	table.insert(nodes, t({ "require" }))
 
-	if call_func then
-		table.insert(nodes, t({ "('" }))
-		table.insert(nodes, i(1, "module"))
-		table.insert(nodes, t({ "')." }))
-		table.insert(nodes, i(2, "func"))
-	else
 		table.insert(nodes, t({ " '" }))
 		table.insert(nodes, i(1, "module"))
 		table.insert(nodes, t({ "'" }))
-	end
 
 	local snip_node = sn(nil, nodes)
 	snip_node.old_state = old_state
@@ -183,8 +171,7 @@ local auto_snippets = {
 			}
 		)
 	),
-
-	s({ trig = "l(l?)req(f?)", regTrig = true }, {
+	s({ trig = "l(l?)req", regTrig = true, desc = "Require import" }, {
 		d(1, require_import, {}, {}),
 	}),
 	s(

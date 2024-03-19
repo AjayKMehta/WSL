@@ -72,6 +72,7 @@ function utils.get_comment(text)
 	return comment_str or comment
 end
 
+---Helper function to create snippet node
 function utils.saved_text(_, snip, old_state, user_args)
 	local nodes = {}
 	old_state = old_state or {}
@@ -81,9 +82,6 @@ function utils.saved_text(_, snip, old_state, user_args)
 
 	if snip.snippet.env and snip.snippet.env.SELECT_DEDENT and #snip.snippet.env.SELECT_DEDENT > 0 then
 		local lines = vim.deepcopy(snip.snippet.env.SELECT_DEDENT)
-		-- local indent_level = require'utils.buffers'.get_indent_block_level(lines)
-		-- lines = require'utils.buffers'.indent(lines, -indent_level)
-
 		for idx = 1, #lines do
 			local line = string.format("%s%s", indent, lines[idx] or "")
 			local node = idx == #lines and { line } or { line, "" }
