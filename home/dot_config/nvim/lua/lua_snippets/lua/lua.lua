@@ -12,7 +12,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
 local parse = ls.parser.parse_snippet
 
-local sniputils = require("custom.sniputils")
+local sniputils = require("sniputils")
 local saved_text = sniputils.saved_text
 local surround_with_func = sniputils.surround_with_func
 

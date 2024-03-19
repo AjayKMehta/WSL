@@ -18,8 +18,8 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local types = require("luasnip.util.types")
 -- local conds = require("luasnip.extras.expand_conditions")
 
-local saved_text = require("custom.sniputils").saved_text
-local else_clause = require("custom.sniputils").else_clause
+local saved_text = require("sniputils").saved_text
+local else_clause = require("sniputils").else_clause
 
 local function python_class_init(args, snip, old_state, placeholder)
 	local nodes = {}
