@@ -416,7 +416,7 @@ local lua = {
 	-- TODO: Finish reviewing.
 	s("snippet_node", {
 		t('s("'),
-		i(1, "snippet_title"),
+		i(1, "snippet_trigger"),
 		t({ '", {', "\t" }),
 		i(0, "snippet_body"),
 		t({ "", "})," }),
