@@ -104,7 +104,8 @@ function utils.surround_with_func(args, snip, old_state, user_args)
 	local nodes = {}
 	old_state = old_state or {}
 	user_args = user_args or {}
-
+	-- You need to select word (viw) then press <Tab> to set SELECT_RAW!
+	-- Can even select whole line though probably not as useful.
 	if snip.snippet.env and snip.snippet.env.SELECT_RAW and #snip.snippet.env.SELECT_RAW == 1 then
 		local node = snip.snippet.env.SELECT_RAW[1]
 		table.insert(nodes, t(node))
