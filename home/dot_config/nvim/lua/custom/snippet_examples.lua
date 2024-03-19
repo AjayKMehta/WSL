@@ -219,13 +219,13 @@ local dynamic2_snippet = s({ trig = "dyn_choice", desc = "Dynamic snippet with c
 
 -- Allows you to address nodes by key and even works for non-sibling nodes.
 
-local key_snippet = s({ trig = "key", desc = "Snippet with key" }, {
+local key_snippet = s({ trig = "key", desc = "Snippet with key. Converts insertion to lower-case!" }, {
 	i(1, "", { key = "first" }),
 	c(2, {
 		sn(nil, {
 			i(1),
 			t({ "", "" }),
-			t("can access the argnode :)"),
+			t("can access the argnode :"),
 			f(function(args)
 				return string.lower(args[1][1])
 			end, k("first")),
