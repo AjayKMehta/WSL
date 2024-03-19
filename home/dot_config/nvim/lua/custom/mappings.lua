@@ -125,6 +125,7 @@ M.telescope = {
 		},
 		["<leader>fd"] = { "<cmd>Telescope lsp_document_symbols<CR>", "Telescope: Search Document Symbols" },
 		["leader>sw"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Search Workspace Symbols" },
+		["<leader>fe"] = { "<cmd>Telescope emoji<CR>", "Telescope: Search emojis" },
 	},
 }
 
