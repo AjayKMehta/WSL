@@ -838,7 +838,7 @@ local plugins = {
 	},
 	{
 		"xiantang/darcula-dark.nvim",
-		enabled = false,
+		enabled = true,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
@@ -846,7 +846,7 @@ local plugins = {
 	{
 		"craftzdog/solarized-osaka.nvim",
 		lazy = false,
-		enabled = false,
+		enabled = true,
 		priority = 1000,
 		opts = {},
 	},
