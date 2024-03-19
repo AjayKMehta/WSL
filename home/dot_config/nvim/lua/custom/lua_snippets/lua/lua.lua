@@ -431,15 +431,6 @@ local lua = {
 		i(3, "arg??"),
 		t("), "),
 	}),
-
-	s("lua print var", {
-		t('print("'),
-		i(1, "desrc"),
-		t(': " .. '),
-		i(2, "the_variable"),
-		t(")"),
-	}),
-
 	s("fn basic", {
 		t("-- @param: "),
 		f(sniputils.copy, 2),
@@ -463,7 +454,7 @@ local lua = {
 		t(" = function("),
 		i(3, "fn param"),
 		t({ ")", "\t" }),
-		i(0), -- Last Placeholder, exit Point of the snippet. EVERY 'outer' SNIPPET NEEDS Placeholder 0.
+		i(0),
 		t({ "", "end" }),
 	}),
 
@@ -474,14 +465,6 @@ local lua = {
 		i(0),
 		t({ "", "end" }),
 	}),
-
-	s({ trig = "ee", wordTrig = true }, {
-		t({ "else", "\t" }),
-		i(0),
-	}),
-
-	-- LOOPS ----------------------------------------
-
 	s("for", {
 		t("for "),
 		c(1, {
@@ -501,16 +484,6 @@ local lua = {
 		i(0),
 		t({ "", "end" }),
 	}),
-
-	s("super", {
-		i(1, "ClassName"),
-		t(".super."),
-		i(2, "method"),
-		t("(self"),
-		i(0),
-		t(")"),
-	}),
-
 	s("s.", {
 		t("self."),
 		i(1, "thing"),
@@ -518,51 +491,6 @@ local lua = {
 		i(2),
 		i(0),
 	}),
-	s("lt", {
-		t("Log:trace("),
-		i(0),
-		t(")"),
-	}),
-
-	s("lti", {
-		t("Log:trace(vim.inspect("),
-		i(0),
-		t("))"),
-	}),
-
-	s("ld", {
-		t("Log:debug("),
-		i(0),
-		t(")"),
-	}),
-
-	s("ldi", {
-		t("Log:debug(vim.inspect("),
-		i(0),
-		t("))"),
-	}),
-	s("li", {
-		t("Log:info("),
-		i(0),
-		t(")"),
-	}),
-
-	s("lii", {
-		t("Log:info(vim.inspect("),
-		i(0),
-		t("))"),
-	}),
-	s("lw", {
-		t("Log:warn("),
-		i(0),
-		t(")"),
-	}),
-	s("lwi", {
-		t("Log:warn(vim.inspect("),
-		i(0),
-		t("))"),
-	}),
-
 	s("inc", {
 		i(1, "thing"),
 		t(" = "),
@@ -584,77 +512,6 @@ local lua = {
 		i(2, "1"),
 		i(0),
 	}),
-	s(
-		{
-			trig = "use",
-			name = "packer use",
-			dscr = {
-				"packer use plugin block",
-				"e.g.",
-				"use {'author/plugin'}",
-			},
-		},
-		-- = {
-		fmt([[{}("{}" {})]], {
-			d(1, function()
-				local files = vim.fn.globpath(vim.fn.stdpath("config") .. "/lua/modules", "*", true, true)
-				local valid = {}
-
-				for _, val in pairs(files) do
-					local parts = vim.split(vim.fn.fnamemodify(val, ":t"), "/", true)
-					local name = vim.split(parts[#parts], ".", true)[1]
-					table.insert(valid, name)
-				end
-
-				-- get last dir name so completoin/snippets/init.lua would return snippets
-				local parts = vim.split(vim.fn.fnamemodify(vim.fn.expand("%:p"), ":h"), "/", true)
-				local file_dir = parts[#parts]
-
-				for _, val in pairs(valid) do
-					-- if val is file_dir
-					if file_dir == val then
-						return s("", { t(val) })
-					end
-				end
-
-				local options = {}
-				for len = 0, #valid - 1 do
-					table.insert(options, t(valid[len + 1]))
-				end
-				return sn(nil, {
-					c(1, options),
-				})
-			end),
-			d(2, function()
-				-- Get the author and URL in the clipboard and auto populate the author and project
-				local default = s("", { i(1, "author"), t("/"), i(2, "plugin") })
-				local clip = vim.fn.getreg("*")
-				if not vim.startswith(clip, "https://github.com/") then
-					return default
-				end
-				local parts = vim.split(clip, "/")
-				if #parts < 2 then
-					return default
-				end
-				local author, project = parts[#parts - 1], parts[#parts]
-				author = "{" .. author
-				return s("", { t(author .. "/" .. project) })
-			end),
-			c(3, {
-				t(",config = true"),
-				fmt(
-					[[
-              , config = function()
-                require("{}").setup()
-              end
-          ]],
-					{
-						i(1, "module"),
-					}
-				),
-			}),
-		})
-	),
 }
 
 return lua, auto_snippets
