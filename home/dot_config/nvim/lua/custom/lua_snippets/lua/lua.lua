@@ -127,26 +127,26 @@ local function require_import(_, parent, old_state)
 
 	if variable then
 		table.insert(nodes, t({ "local " }))
-			table.insert(
-				nodes,
-				f(function(module)
-					local name = vim.split(module[1][1], ".", true)
-					if name[#name] and name[#name] ~= "" then
-						return name[#name]
-					elseif #name - 1 > 0 and name[#name - 1] ~= "" then
-						return name[#name - 1]
-					end
-					return name[1] or "module"
-				end, { 1 })
-			)
+		table.insert(
+			nodes,
+			f(function(module)
+				local name = vim.split(module[1][1], ".", true)
+				if name[#name] and name[#name] ~= "" then
+					return name[#name]
+				elseif #name - 1 > 0 and name[#name - 1] ~= "" then
+					return name[#name - 1]
+				end
+				return name[1] or "module"
+			end, { 1 })
+		)
 		table.insert(nodes, t({ " = " }))
 	end
 
 	table.insert(nodes, t({ "require" }))
 
-		table.insert(nodes, t({ " '" }))
-		table.insert(nodes, i(1, "module"))
-		table.insert(nodes, t({ "'" }))
+	table.insert(nodes, t({ " '" }))
+	table.insert(nodes, i(1, "module"))
+	table.insert(nodes, t({ "'" }))
 
 	local snip_node = sn(nil, nodes)
 	snip_node.old_state = old_state
@@ -167,7 +167,7 @@ end
 -- 2. Hidden by default
 local auto_snippets = {
 	s(
-		{ trig = "l(l?)fun", regTrig = true },
+		{ trig = "l(l?)fun", regTrig = true, desc = "Function" },
 		fmt(
 			[[
         {}function {}({})
@@ -189,7 +189,7 @@ local auto_snippets = {
 		d(1, require_import, {}, {}),
 	}),
 	s(
-		{ trig = "(n?)eq", regTrig = true },
+		{ trig = "(n?)eq", regTrig = true, desc = "assert are.same | are_not.same" },
 		fmt([[assert.{}({}, {})]], {
 			f(function(_, snip)
                 -- stylua: ignore
@@ -205,13 +205,13 @@ local auto_snippets = {
 		})
 	),
 	s(
-		{ trig = "is(_?)true", regTrig = true },
+		{ trig = "is(_?)true", regTrig = true, desc = "assert.is_true" },
 		fmt([[assert.is_true({})]], {
 			d(1, surround_with_func, {}, { user_args = { { text = "true" } } }),
 		})
 	),
 	s(
-		{ trig = "is(_?)false", regTrig = true },
+		{ trig = "is(_?)false", regTrig = true, desc = "assert.is_false" },
 		fmt([[assert.is_false({})]], {
 			d(1, surround_with_func, {}, { user_args = { { text = "false" } } }),
 		})
@@ -219,7 +219,7 @@ local auto_snippets = {
 }
 
 local lua = {
-	parse({ trig = "time" }, time),
+	parse({ trig = "time_elapsed" }, time),
 	parse({ trig = "M" }, module_snippet),
 	parse({ trig = "lf" }, loc_func),
 	parse({ trig = "cmd" }, map_cmd),
@@ -229,7 +229,7 @@ local lua = {
 	parse("mf", "-- Defined in $TM_FILE\nlocal $1.$2 = function($3)\n\t$0\nend"),
 
 	s(
-		"for",
+		{ trig = "for", desc = "for loop using ipairs" },
 		fmt(
 			[[
     for {}, {} in ipairs({}) do
@@ -240,7 +240,7 @@ local lua = {
 		)
 	),
 	s(
-		"forp",
+		{ trig = "forp", desc = "for loop using pairs" },
 		fmt(
 			[[
     for {}, {} in pairs({}) do
