@@ -205,13 +205,21 @@ local auto_snippets = {
 		})
 	),
 	s(
-		{ trig = "is(_?)true", regTrig = true, desc = "assert.is_true" },
+		{
+			trig = "is(_?)true",
+			regTrig = true,
+			desc = "Snippet for assert.is_true. Works on previously selected text if any.",
+		},
 		fmt([[assert.is_true({})]], {
 			d(1, surround_with_func, {}, { user_args = { { text = "true" } } }),
 		})
 	),
 	s(
-		{ trig = "is(_?)false", regTrig = true, desc = "assert.is_false" },
+		{
+			trig = "is(_?)false",
+			regTrig = true,
+			desc = "Snippet for assert.is_false. Works on previously selected text if any.",
+		},
 		fmt([[assert.is_false({})]], {
 			d(1, surround_with_func, {}, { user_args = { { text = "false" } } }),
 		})
@@ -229,7 +237,7 @@ local lua = {
 	parse("mf", "-- Defined in $TM_FILE\nlocal $1.$2 = function($3)\n\t$0\nend"),
 
 	s(
-		{ trig = "for", desc = "for loop using ipairs" },
+		{ trig = "fori", desc = "for loop using ipairs" },
 		fmt(
 			[[
     for {}, {} in ipairs({}) do
@@ -251,7 +259,7 @@ local lua = {
 		)
 	),
 	s(
-		"fori",
+		{ trig = "for", desc = "for loop using first and last" },
 		fmta(
 			[[
     for <idx> = <first>, <last> do
@@ -266,23 +274,8 @@ local lua = {
 			}
 		)
 	),
-
 	s(
-		"w",
-		fmt(
-			[[
-    while {} do
-    {}
-    end
-    ]],
-			{
-				i(1, "true"),
-				d(2, saved_text, {}, { user_args = { { indent = true } } }),
-			}
-		)
-	),
-	s(
-		"elif",
+		{ trig = "elif", desc = "else if" },
 		fmt(
 			[[
     elseif {} then
@@ -294,48 +287,8 @@ local lua = {
 			}
 		)
 	),
-
-	s(
-		"l",
-		fmt([[local {} = {}]], {
-			i(1, "var"),
-			i(2, "{}"),
-		})
-	),
-	s("ign", { t({ "-- stylua: ignore" }) }),
-	s("sty", { t({ "-- stylua: ignore" }) }),
-
-	-- ["n|gD"] = map_cmd("<cmd>lua vim.lsp.buf.declaration()<CR>"):with_noremap():with_silent(),
-	-- making a snippet for this
-	-- map_cmd should be choice snippets
-	s(
-		"map_",
-		fmt([[ ["{}|{}"] = {}({}):{}(), ]], {
-			c(1, {
-				t({ "n" }),
-				t({ "i" }),
-				t({ "x" }),
-				t({ "o" }),
-			}),
-			i(2, "key"),
-			c(3, {
-				t({ "map_cmd" }),
-				t({ "map_cr" }),
-				t({ "map_cu" }),
-				t({ "map_args" }),
-				t({ "map_key" }),
-			}),
-			i(4, "cmd"),
-
-			c(5, {
-				t({ "with_noremap" }),
-				t({ "with_silent" }),
-				t({ "with_expr" }),
-			}),
-		})
-	),
-
-	s("map", {
+	s({ trig = "ign", desc = "stylua ignore" }, { t({ "-- stylua: ignore" }) }),
+	s({ trig = "keymap", desc = "set keymap" }, {
 		t({ "vim.keymap.set(" }),
 		t({ "'" }),
 		i(1, "n"),
@@ -359,7 +312,7 @@ local lua = {
 		t({ "}" }),
 		t({ ")" }),
 	}),
-	s("val", {
+	s({ trig = "val", desc = "vim.validate" }, {
 		t({ "vim.validate {" }),
 		t({ "", "\t" }),
 		i(1, "arg"),
@@ -376,14 +329,20 @@ local lua = {
 		t({ "", "}" }),
 	}),
 	s(
-		"lext",
+		{
+			trig = "lext",
+			desc = "Snippet for vim.list_extend. Works on previously selected text if any.",
+		},
 		fmt([[vim.list_extend({}, {})]], {
 			d(1, surround_with_func, {}, { user_args = { { text = "tbl" } } }),
 			i(2, "'node'"),
 		})
 	),
 	s(
-		"text",
+		{
+			trig = "text",
+			desc = "Snippet for vim.tbl_extend. Works on previously selected text if any.",
+		},
 		fmt([[vim.tbl_extend('{}', {}, {})]], {
 			c(1, {
 				t({ "force" }),
@@ -395,7 +354,10 @@ local lua = {
 		})
 	),
 	s(
-		"not",
+		{
+			trig = "not",
+			desc = "Snippet for vim.notify. Works on previously selected text if any.",
+		},
 		fmt([[vim.notify("{}", "{}"{})]], {
 			d(1, surround_with_func, {}, { user_args = { { text = "msg" } } }),
 			c(2, {
@@ -411,67 +373,18 @@ local lua = {
 		})
 	),
 	s(
-		"desc",
-		fmt(
-			[[
-    describe('{}', function()
-        it('{}', function()
-            {}
-        end)
-    end)
-    ]],
-			{
-				i(1, "DESCRIPTION"),
-				i(2, "DESCRIPTION"),
-				i(3, "-- test"),
-			}
-		)
-	),
-	s(
-		"it",
-		fmt(
-			[[
-    it('{}', function()
-        {}
-    end)
-    ]],
-			{
-				i(1, "DESCRIPTION"),
-				i(2, "-- test"),
-			}
-		)
-	),
-
-	s(
-		"haserr",
-		fmt([[assert.has.error(function() {} end{})]], {
-			i(1, "error()"),
-			c(2, {
-				t({ "" }),
-				sn(nil, { t({ ", '" }), i(1, "error"), t({ "'" }) }),
-			}),
-		})
-	),
-
-	s(
-		"pr",
+		{
+			trig = "pr",
+			desc = "print",
+		},
 		fmt([[print({})]], {
 			i(1, "msg"),
 		})
 	),
-	s(
-		"istruthy",
-		fmt([[assert.is_truthy({})]], { d(1, surround_with_func, {}, { user_args = { { text = "true" } } }) })
-	),
-	s(
-		"isfalsy",
-		fmt([[assert.is_falsy({})]], { d(1, surround_with_func, {}, { user_args = { { text = "false" } } }) })
-	),
-	s("truthy", fmt([[assert.is_truthy({})]], { d(1, surround_with_func, {}, { user_args = { { text = "true" } } }) })),
-	s("falsy", fmt([[assert.is_falsy({})]], { d(1, surround_with_func, {}, { user_args = { { text = "false" } } }) })),
-
-	-- local _ = require "telescope.pickers.builtin"
-	s("high", {
+	s({
+		trig = "high",
+		desc = "Snippet for vim.api.nvim_set_hl.",
+	}, {
 		t({ 'vim.api.nvim_set_hl(0,"' }),
 		i(1, "group-name"),
 		t({ '",{' }),
@@ -479,25 +392,28 @@ local lua = {
 		t({ "})" }),
 		i(0),
 	}),
-	s("lreq", fmt("local {} = require('{}')", { i(1, "default"), rep(1) })), -- to lreq, bind parse the list
+	s(
+		{ trig = "lreq", desc = "local <f> = require(<i>)" },
+		fmt("local {} = require('{}')", { i(1, "default"), rep(1) })
+	),
 	s(
 		"req",
 		fmt([[local {} = require "{}"]], {
 			f(function(import_name)
 				local parts = vim.split(import_name[1][1], ".", true)
-				return parts[#parts] or ""
+				return parts[#parts] or "foo"
 			end, { 1 }),
 			i(1),
 		})
 	),
 	s(
-		"treq",
+		{ trig = "treq", desc = "require telescope" },
 		fmt([[local {} = require("telescope.{}")]], {
 			d(2, require_var, { 1 }),
 			i(1),
 		})
 	),
-
+	-- TODO: Finish reviewing.
 	s("snippet_node", {
 		t('s("'),
 		i(1, "snippet_title"),
@@ -506,7 +422,7 @@ local lua = {
 		t({ "", "})," }),
 	}),
 
-	s("function_node", {
+	s("func_node", {
 		t("f("),
 		i(1, "fn"),
 		t(", "),
