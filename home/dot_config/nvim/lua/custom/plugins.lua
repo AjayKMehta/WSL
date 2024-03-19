@@ -419,6 +419,7 @@ local plugins = {
 			{
 				"hrsh7th/cmp-emoji",
 				event = "InsertEnter",
+				enabled = false,
 				desc = "nvim-cmp source for emojis",
 			},
 			{
@@ -475,6 +476,18 @@ local plugins = {
 		config = load_config("ls"),
 		desc = "Snippet Engine for Neovim",
 	},
+	{
+		"allaman/emoji.nvim",
+		--   ft = "markdown", -- adjust to your needs
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+			"nvim-telescope/telescope.nvim",
+		},
+		opts = {
+			-- default is false
+			enable_cmp_integration = true,
+		},
+	},
 
 	-- Telescope
 	{
@@ -507,6 +520,7 @@ local plugins = {
 		config = function(_, opts)
 			local telescope = require("telescope")
 			telescope.load_extension("fzf")
+			telescope.load_extension("emoji")
 			-- telescope.load_extension("aerial")
 			telescope.setup(opts)
 		end,
