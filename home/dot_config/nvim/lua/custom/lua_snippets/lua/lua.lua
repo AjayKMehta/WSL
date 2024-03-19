@@ -87,6 +87,17 @@ local require_var = function(args, _)
 	})
 end
 
+local types_node = function(idx)
+	return c(idx, {
+		i(1, "'string'"),
+		i(1, "'table'"),
+		i(1, "'function'"),
+		i(1, "'number'"),
+		i(1, "'boolean'"),
+	})
+end
+
+--- Helper function to create entries for table passed to vim.validate
 local function rec_val()
 	return sn(nil, {
 		c(1, {
@@ -97,13 +108,7 @@ local function rec_val()
 				t({ " = { " }),
 				rep(1), -- repeat value from 1st jump index
 				t({ ", " }),
-				c(2, {
-					i(1, "'string'"),
-					i(1, "'table'"),
-					i(1, "'function'"),
-					i(1, "'number'"),
-					i(1, "'boolean'"),
-				}),
+				types_node(2),
 				c(3, {
 					t({ "" }),
 					t({ ", true" }),
@@ -146,6 +151,15 @@ local function require_import(_, parent, old_state)
 	local snip_node = sn(nil, nodes)
 	snip_node.old_state = old_state
 	return snip_node
+end
+
+local function for_nodes()
+	return {
+		i(1, "k"),
+		i(2, "v"),
+		i(3, "tbl"),
+		d(4, saved_text, {}, { user_args = { { indent = true } } }),
+	}
 end
 
 -- Autosnippets:
@@ -222,12 +236,7 @@ local lua = {
     {}
     end
     ]],
-			{
-				i(1, "k"),
-				i(2, "v"),
-				i(3, "tbl"),
-				d(4, saved_text, {}, { user_args = { { indent = true } } }),
-			}
+			for_nodes()
 		)
 	),
 	s(
@@ -238,12 +247,7 @@ local lua = {
     {}
     end
     ]],
-			{
-				i(1, "k"),
-				i(2, "v"),
-				i(3, "tbl"),
-				d(4, saved_text, {}, { user_args = { { indent = true } } }),
-			}
+			for_nodes()
 		)
 	),
 	s(
@@ -362,13 +366,7 @@ local lua = {
 		t({ " = { " }),
 		rep(1),
 		t({ ", " }),
-		c(2, {
-			i(1, "'string'"),
-			i(1, "'table'"),
-			i(1, "'function'"),
-			i(1, "'number'"),
-			i(1, "'boolean'"),
-		}),
+		types_node(2),
 		c(3, {
 			t({ "" }),
 			t({ ", true" }),
