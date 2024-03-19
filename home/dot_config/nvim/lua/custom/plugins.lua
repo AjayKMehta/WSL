@@ -750,9 +750,9 @@ local plugins = {
 
 	{
 		"lervag/vimtex",
-		lazy = false,
-		-- config = load_config("vimtex")
-		init = load_config("vimtex"),
+		ft = { "tex", "rmd" },
+		config = load_config("vimtex"),
+		-- init = load_config("vimtex"),
 	},
 	{
 		"iurimateus/luasnip-latex-snippets.nvim",
