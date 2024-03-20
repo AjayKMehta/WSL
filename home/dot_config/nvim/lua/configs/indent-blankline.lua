@@ -1,4 +1,4 @@
--- https://github.com/lukas-reineke/indent-blankline.nvim/tree/7206c77cb931f79885fc47f88ae18f99148392eb#rainbow-delimitersnvim-integration
+-- https://github.com/lukas-reineke/indent-blankline.nvim#rainbow-delimitersnvim-integration
 local highlight = {
     "RainbowRed",
     "RainbowYellow",
