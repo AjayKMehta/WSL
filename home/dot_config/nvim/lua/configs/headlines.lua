@@ -1,8 +1,8 @@
 require("headlines").setup({
-	markdown = {
-		query = vim.treesitter.parse_query(
-			"markdown",
-			[[
+    markdown = {
+        query = vim.treesitter.parse_query(
+            "markdown",
+            [[
                 (atx_heading [
                     (atx_h1_marker)
                     (atx_h2_marker)
@@ -21,21 +21,21 @@ require("headlines").setup({
                 (block_quote (paragraph (block_continuation) @quote))
                 (block_quote (block_continuation) @quote)
             ]]
-		),
-		headline_highlights = { "Headline" },
-		codeblock_highlight = "CodeBlock",
-		dash_highlight = "Dash",
-		dash_string = "-",
-		quote_highlight = "Quote",
-		quote_string = "┃",
-		fat_headlines = true,
-		fat_headline_upper_string = "▃",
-		fat_headline_lower_string = "🬂",
-	},
-	rmd = {
-		query = vim.treesitter.parse_query(
-			"markdown",
-			[[
+        ),
+        headline_highlights = { "Headline" },
+        codeblock_highlight = "CodeBlock",
+        dash_highlight = "Dash",
+        dash_string = "-",
+        quote_highlight = "Quote",
+        quote_string = "┃",
+        fat_headlines = true,
+        fat_headline_upper_string = "▃",
+        fat_headline_lower_string = "🬂",
+    },
+    rmd = {
+        query = vim.treesitter.parse_query(
+            "markdown",
+            [[
                 (atx_heading [
                     (atx_h1_marker)
                     (atx_h2_marker)
@@ -54,28 +54,28 @@ require("headlines").setup({
                 (block_quote (paragraph (block_continuation) @quote))
                 (block_quote (block_continuation) @quote)
             ]]
-		),
-		treesitter_language = "markdown",
-		headline_highlights = { "Headline" },
-		codeblock_highlight = "CodeBlock",
-		dash_highlight = "Dash",
-		dash_string = "-",
-		quote_highlight = "Quote",
-		quote_string = "┃",
-		fat_headlines = true,
-		fat_headline_upper_string = "▃",
-		fat_headline_lower_string = "🬂",
-	},
-	yaml = {
-		query = vim.treesitter.parse_query(
-			"yaml",
-			[[
+        ),
+        treesitter_language = "markdown",
+        headline_highlights = { "Headline" },
+        codeblock_highlight = "CodeBlock",
+        dash_highlight = "Dash",
+        dash_string = "-",
+        quote_highlight = "Quote",
+        quote_string = "┃",
+        fat_headlines = true,
+        fat_headline_upper_string = "▃",
+        fat_headline_lower_string = "🬂",
+    },
+    yaml = {
+        query = vim.treesitter.parse_query(
+            "yaml",
+            [[
                 (
                     (comment) @dash
                     (#match? @dash "^# ---+$")
                 )
             ]]
-		),
-		dash_highlight = "Dash",
-	},
+        ),
+        dash_highlight = "Dash",
+    },
 })

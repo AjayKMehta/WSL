@@ -4,29 +4,32 @@ require("diffview").setup({
     keymaps = {
         file_panel = {
             {
-                "n", "[c",
+                "n",
+                "[c",
                 actions.view_windo(function(layout_name, sym)
                     if sym == "b" then
                         vim.cmd("norm! [c")
                     end
-                end)
+                end),
             },
             {
-                "n", "]c",
+                "n",
+                "]c",
                 actions.view_windo(function(layout_name, sym)
                     if sym == "b" then
                         vim.cmd("norm! ]c")
                     end
-                end)
+                end),
             },
             {
-                "n", "x",
+                "n",
+                "x",
                 actions.view_windo(function(layout_name, sym)
                     if sym == "b" then
                         vim.cmd("diffget")
                     end
-                end)
+                end),
             },
-        }
+        },
     },
 })
