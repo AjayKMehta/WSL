@@ -63,9 +63,7 @@ local plugins = {
         opts = {
             PATH = "prepend", -- "skip" seems to cause the spawning error
         },
-        config = function(_, opts)
-            require("mason").setup()
-        end,
+        -- Use config from NvChad
     },
     {
         "williamboman/mason-lspconfig.nvim",
@@ -170,7 +168,7 @@ local plugins = {
     },
     {
         "numToStr/Comment.nvim",
-        event = VeryLazy,
+        event = "VeryLazy",
         lazy = false,
         config = load_config("comment"),
         dependencies = {
@@ -230,13 +228,24 @@ local plugins = {
         "nvim-treesitter/nvim-treesitter",
         opts = overrides.treesitter,
         event = { "BufReadPre", "BufNewFile" },
-        build = ":TSUpdate",
+        cmd = {
+            "TSInstall",
+            "TSInstallSync",
+            "TSInstallInfo",
+            "TSUpdate",
+            "TSUpdateSync",
+            "TSUninstall",
+        },
+        build = function()
+            require("nvim-treesitter.install").update({ with_sync = true })
+        end,
         dependencies = {
             "nvim-treesitter/nvim-treesitter-refactor",
             "nvim-treesitter/nvim-treesitter-textobjects",
         },
         config = function(_, opts)
             dofile(vim.g.base46_cache .. "syntax")
+            dofile(vim.g.base46_cache .. "treesitter")
             require("nvim-treesitter.configs").setup(opts)
             require("nvim-treesitter.install").compilers = { "clang" }
         end,
@@ -722,9 +731,6 @@ local plugins = {
                     print(data)
                 end,
             }):start()
-
-            -- Options
-            vim.g.mkdp_auto_close = 0
         end,
         lazy = true,
         keys = { { "gm", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" } },
