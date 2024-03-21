@@ -392,7 +392,41 @@ local plugins = {
         event = "BufEnter",
         desc = "Code runner",
     },
-    { "kevinhwang91/nvim-bqf", ft = "qf", desc = "Better quickfix window" },
+    {
+        "kevinhwang91/nvim-bqf",
+        ft = "qf",
+        desc = "Better quickfix window",
+        cmds = { "BqfEnable", "BqfDisable", "BqfToggle" },
+        opts = {
+            auto_enable = true,
+            auto_resize_height = true,
+            func_map = {
+                open = "<cr>",
+                openc = "o",
+                drop = "O",
+                vsplit = "v",
+                split = "s",
+                tab = "t",
+                tabc = "T",
+                stoggledown = "<Tab>",
+                stoggleup = "<S-Tab>",
+                stogglevm = "<Tab>",
+                sclear = "z<Tab>",
+                pscrollup = "<C-u>",
+                pscrolldown = "<C-d>",
+                fzffilter = "zf",
+                ptogglemode = "zp",
+                filter = "zn",
+                filterr = "zr",
+            },
+        },
+        dependencies = {
+            "junegunn/fzf",
+            build = function()
+                vim.fn["fzf#install"]()
+            end,
+        },
+    },
 
     --#endregion
 
