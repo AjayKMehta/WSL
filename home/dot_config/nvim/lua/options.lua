@@ -8,9 +8,6 @@ o.titlelen = 0
 
 -- o.cursorlineopt ='both' -- to enable cursorline!
 
--- https://mambusskruj.github.io/posts/pub-neovim-for-markdown/
-o.conceallevel = 2
-
 -- https://github.com/johanvx/nvim-config/commit/6e117eb10bfd9a109f998ee8cf3f28b559a23e4c#diff-4d7eb50f84b3feefd05e927bd6992f250653dc4f22645fb93d21035f1d17c492R54
 o.guifont = "DejaVuSansM Nerd Font"
 
@@ -37,3 +34,5 @@ o.wrap = true
 o.cursorcolumn = true
 
 o.scrolloff = 5
+
+o.termguicolors = true
