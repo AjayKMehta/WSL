@@ -87,11 +87,11 @@ map_desc({ "n", "v" }, "<A-Down>", fn_move("down"), "Move line down")
 --#endregion
 
 --#region trouble
-map_desc("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics <CR>", "Workspace diagnostics")
-map_desc("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics <CR>", "Document diagnostics")
-map_desc("n", "<leader>tL", "<cmd> TroubleToggle loclist <CR>", "Location List (Trouble)")
-map_desc("n", "<leader>tQ", "<cmd> TroubleToggle quickfix <CR>", "Quickfix List (Trouble)")
-map_desc("n", "<leader>tS", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Todo/Fix/Fixme")
+map_desc("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics <CR>", "Trouble: Workspace diagnostics")
+map_desc("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics <CR>", "Trouble: Document diagnostics")
+map_desc("n", "<leader>tL", "<cmd> TroubleToggle loclist <CR>", "Trouble: Location List")
+map_desc("n", "<leader>tQ", "<cmd> TroubleToggle quickfix <CR>", "Trouble: Quickfix List")
+map_desc("n", "<leader>tS", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Trouble: Todo/Fix/Fixme")
 
 --#endregion
 
@@ -109,36 +109,36 @@ map_desc("n", "<leader>mc", "<cmd> BookmarkClear<CR>", "󰃢 Clear bookmarks")
 
 map_desc("n", "<leader>ko", function()
     require("pretty_hover").hover()
-end, "Open hover")
+end, "Hover: Open")
 map_desc("n", "<leader>kq", function()
     require("pretty_hover").close()
-end, "Close hover")
+end, "Hover: Close")
 
 --#endregion
 
 --#region dap
 
 -- Keep same as VS + VS Code
-map_desc("n", "<F9>", "<cmd> DapToggleBreakpoint <CR>", "Toggle breakpoint")
-map_desc("n", "<F5>", "<cmd> DapContinue<CR>", "Launch debugger")
-map_desc("n", "<F10>", "<cmd> DapStepOver <CR>", "Step over")
-map_desc("n", "<F11>", "<cmd> DapStepInto <CR>", "Step into")
-map_desc("n", "<S-F11>", "<cmd> DapStepOut <CR>", "Step out")
+map_desc("n", "<F9>", "<cmd> DapToggleBreakpoint <CR>", "DAP: Toggle breakpoint")
+map_desc("n", "<F5>", "<cmd> DapContinue<CR>", "DAP: Launch debugger")
+map_desc("n", "<F10>", "<cmd> DapStepOver <CR>", "DAP: Step over")
+map_desc("n", "<F11>", "<cmd> DapStepInto <CR>", "DAP: Step into")
+map_desc("n", "<S-F11>", "<cmd> DapStepOut <CR>", "DAP: Step out")
 
 map_desc("n", "<leader>rb", function()
     require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-end, "Set conditional breakpoint")
+end, "DAP: Set conditional breakpoint")
 
 map_desc("n", "<leader>rl", function()
     require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-end, "Log message")
+end, "DAP: Log message")
 
 --#endregion
 
 --region dap_python
 map_desc("n", "<leader>rt", function()
     require("dap-python").test_method()
-end, "Debug the closest method to cursor")
+end, "DAP: Debug the closest method to cursor")
 
 --#endregion
 
@@ -158,7 +158,7 @@ local show_snippet_list = function(...)
     sl.open({ display = modified_default_display })
 end
 
-map_desc("n", "<leader>sl", show_snippet_list, "List snippets")
+map_desc("n", "<leader>sl", show_snippet_list, "Snippets: List")
 
 --#endregion
 
@@ -189,9 +189,9 @@ local neogen_gen = function(type)
     end
 end
 
-map_desc("n", "<leader>nc", neogen_gen("class"), "Generate annotation for class")
+map_desc("n", "<leader>nc", neogen_gen("class"), "neogen: Generate annotation for class")
 
-map_desc("n", "<leader>nf", neogen_gen("func"), "Generate annotation for function")
+map_desc("n", "<leader>nf", neogen_gen("func"), "neogen: Generate annotation for function")
 
 --#endregion
 
@@ -215,94 +215,66 @@ end, "Preview code actions.")
 
 --#endregion
 
-M.flash = {
-    [{ "n", "o", "x" }] = {
-        ["<leader>ss"] = {
-            function()
-                require("flash").jump()
-            end,
-            "Flash",
-        },
-        ["<leader>sS"] = {
-            function()
-                require("flash").treesitter()
-            end,
-            "Flash Treesitter",
-        },
-        ["<leader>sf"] = {
-            function()
-                require("flash").jump({
-                    search = { forward = true, wrap = false, multi_window = false },
-                })
-            end,
-            "Flash forward",
-        },
-        ["<leader>sb"] = {
-            function()
-                require("flash").jump({
-                    search = { forward = false, wrap = false, multi_window = false },
-                })
-            end,
-            "Flash backward",
-        },
-        ["<leader>sc"] = {
-            function()
-                require("flash").jump({
-                    search = { continue = true },
-                })
-            end,
-            "Continue search",
-        },
-        ["<leader>sd"] = {
-            function()
-                -- More advanced example that also highlights diagnostics:
-                require("flash").jump({
-                    matcher = function(win)
-                        ---@param diag Diagnostic
-                        return vim.tbl_map(function(diag)
-                            return {
-                                pos = { diag.lnum + 1, diag.col },
-                                end_pos = { diag.end_lnum + 1, diag.end_col - 1 },
-                            }
-                        end, vim.diagnostic.get(vim.api.nvim_win_get_buf(win)))
-                    end,
-                    action = function(match, state)
-                        vim.api.nvim_win_call(match.win, function()
-                            vim.api.nvim_win_set_cursor(match.win, match.pos)
-                            vim.diagnostic.open_float()
-                        end)
-                        state:restore()
-                    end,
-                })
-            end,
-            "Flash diagnostics",
-        },
-    },
-    o = {
-        ["r"] = {
-            function()
-                require("flash").remote()
-            end,
-            "Remote Flash",
-        },
-    },
-    [{ "o", "x" }] = {
-        ["R"] = {
-            function()
-                require("flash").treesitter_search()
-            end,
-            "Treesitter Search",
-        },
-    },
-    c = {
-        ["<c-s>"] = {
-            function()
-                require("flash").toggle()
-            end,
-            "Toggle Flash Search",
-        },
-    },
-}
+--#region Flash
+
+map_desc({ "n", "o", "x" }, "<leader>ss", function()
+    require("flash").jump()
+end, "Flash")
+
+map_desc({ "n", "o", "x" }, "<leader>sS", function()
+    require("flash").treesitter()
+end, "Flash Treesitter")
+map_desc({ "n", "o", "x" }, "<leader>sf", function()
+    require("flash").jump({
+        search = { forward = true, wrap = false, multi_window = false },
+    })
+end, "Flash forward")
+map_desc({ "n", "o", "x" }, "<leader>sb", function()
+    require("flash").jump({
+        search = { forward = false, wrap = false, multi_window = false },
+    })
+end, "Flash backward")
+
+map_desc({ "n", "o", "x" }, "<leader>sc", function()
+    require("flash").jump({
+        search = { continue = true },
+    })
+end, "Flash continue search")
+map_desc({ "n", "o", "x" }, "<leader>sd", function()
+    -- More advanced example that also highlights diagnostics:
+    require("flash").jump({
+        matcher = function(win)
+            ---@param diag Diagnostic
+            return vim.tbl_map(function(diag)
+                return {
+                    pos = { diag.lnum + 1, diag.col },
+                    end_pos = { diag.end_lnum + 1, diag.end_col - 1 },
+                }
+            end, vim.diagnostic.get(vim.api.nvim_win_get_buf(win)))
+        end,
+        action = function(match, state)
+            vim.api.nvim_win_call(match.win, function()
+                vim.api.nvim_win_set_cursor(match.win, match.pos)
+                vim.diagnostic.open_float()
+            end)
+            state:restore()
+        end,
+    })
+end, "Flash diagnostics")
+
+map_desc("o", "r", function()
+    require("flash").remote()
+end, "Flash remote")
+
+map_desc({ "o", "x" }, "R", function()
+    require("flash").treesitter_search()
+end, "Flash treesitter search")
+
+map_desc("c", "<c-s>", function()
+    require("flash").toggle()
+end, "Flash toggle search")
+
+--#endregion
 
 M.neotest = {
     n = {
