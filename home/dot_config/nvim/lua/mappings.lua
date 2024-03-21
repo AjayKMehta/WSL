@@ -1,608 +1,402 @@
-require "nvchad.mappings"
----@diagnostic disable: undefined-doc-name, inject-field
----@type MappingsTable
+-- See mappings here: https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/mappings.lua
+require("nvchad.mappings")
+
 local M = {}
 
+local map = vim.keymap.set
+
+-- First word in desc will be used for group heading in NvChad cheatsheet
+local map_desc = function(mode, keys, cmd, desc)
+    return map(mode, keys, cmd, { desc = desc })
+end
+
+-- map("n", ";", ":", { desc = "CMD enter command mode" })
+-- map("i", "jk", "<ESC>")
+-- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
 -- To disable mappings:
-M.disabled = {
-	n = {
-		["<C-b>"] = "",
-		["gi"] = "", -- Clashes with Treesitter keymap
-		["<leader>lf"] = "", -- Clashes with conform keymap
-	},
+local disabled = {
+    n = {
+        -- "<C-b>",
+        -- "gi", -- Clashes with Treesitter keymap
+        -- "<leader>lf", -- Clashes with conform keymap
+    },
 }
 
-M.general = {
-	n = {
-		-- [";"] = { ":", "enter command mode", opts = { nowait = true } },
-		-- https://nvchad.com/docs/api
-		["<A-left>"] = {
-			function()
-				-- move buffer left
-				require("nvchad.tabufline").move_buf(-1)
-			end,
-			"Move buffer left",
-		},
-		["<A-right>"] = {
-			function()
-				-- move buffer right
-				require("nvchad.tabufline").move_buf(1)
-			end,
-			"Move buffer right",
-		},
-		["<leader>tt"] = {
-			function()
-				require("base46").toggle_theme()
-			end,
-			"Toggle theme",
-		},
-		["gli"] = {
-			function()
-				vim.lsp.buf.implementation()
-			end,
-			"LSP implementation",
-		},
+-- https://github.com/NvChad/NvChad/issues/2688#issuecomment-1976174561
+for mode, mappings in pairs(disabled) do
+    for _, keys in pairs(mappings) do
+        vim.keymap.del(mode, keys)
+    end
+end
 
-		["<leader>lF"] = {
-			function()
-				vim.diagnostic.open_float({ border = "rounded" })
-			end,
-			"Floating diagnostic",
-		},
-	},
-}
+map_desc("n", "<leader>tt", function()
+    require("base46").toggle_theme()
+end, "Toggle theme")
 
--- more keybinds!
-M.gitsigns = {
-	n = {
-		-- Actions
-		["<leader>sh"] = {
-			function()
-				require("gitsigns").stage_hunk()
-			end,
-			"Stage hunk",
-		},
+map_desc("n", "gli", function()
+    vim.lsp.buf.implementation()
+end, "LSP implementation")
 
-		["<leader>uh"] = {
-			function()
-				require("gitsigns").undo_stage_hunk()
-			end,
-			"Undo stage hunk",
-		},
+--#region ghcup
 
-		["<leader>tb"] = {
-			function()
-				package.loaded.gitsigns.toggle_current_line_blame()
-			end,
-			"Toggle current line blame",
-		},
-	},
-	v = {
-		["<leader>sh"] = {
-			function()
-				require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-			end,
-			"Stage hunk",
-		},
-		["<leader>rh"] = {
-			function()
-				require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-			end,
-			"Reset hunk",
-		},
-	},
-}
+map_desc("n", "<leader>gg", "<cmd>GHCup <CR>", "ghcup")
 
-M.ghcup = {
-	plugin = true,
-	n = {
-		["<leader>gg"] = { "<cmd>GHCup <CR>", "ghcup" },
-	},
-}
+--#endregion
 
-M.telescope = {
-	plugin = true,
-	n = {
-		-- find
-		["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "Telescope: Find files" },
-		["<leader>fa"] = {
-			"<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
-			"Telescope: Find all",
-		},
-		["<leader>fw"] = { "<cmd> Telescope live_grep <CR>", "Telescope: Live grep" },
-		["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Telescope: Find buffers" },
-		["<leader>f?"] = { "<cmd> Telescope help_tags <CR>", "Telescope: Help page" },
-		["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Telescope: Find oldfiles" },
-		["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Telescope: Find in current buffer" },
-		["<leader>fh"] = { "<cmd> Telescope file_browser cwd=$HOME <CR>", "Telescope: Search home" },
-		["<leader>fc"] = { "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope: Search config" },
-		["<leader>fk"] = { "<cmd> Telescope keymaps <CR>", "Telescope: Keymap" },
-		["<leader>fu"] = { "<cmd>Telescope undo<CR>", "Telescope:  Undo tree" },
-		["<leader>fy"] = {
-			function()
-				require("telescope.builtin").buffers()
-			end,
-			"Telescope: Search buffers",
-		},
-		["<leader>fd"] = { "<cmd>Telescope lsp_document_symbols<CR>", "Telescope: Search Document Symbols" },
-		["leader>sw"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Search Workspace Symbols" },
-		["<leader>fe"] = { "<cmd>Telescope emoji<CR>", "Telescope: Search emojis" },
-	},
-}
+--#region Telescope
 
-M.minimove = {
-	plugin = true,
-	n = {
-		["<A-Left>"] = {
-			function()
-				require("mini.move").move_line("left")
-			end,
-			"move line left",
-		},
-		["<A-Right>"] = {
-			function()
-				require("mini.move").move_line("right")
-			end,
-			"move line right",
-		},
-		["<A-Down>"] = {
-			function()
-				require("mini.move").move_line("down")
-			end,
-			"move line down",
-		},
-		["<A-Up>"] = {
-			function()
-				require("mini.move").move_line("up")
-			end,
-			"move line up",
-		},
-	},
-	v = {
-		["<A-Left>"] = {
-			function()
-				require("mini.move").move_line("left")
-			end,
-			"move selection left",
-		},
-		["<A-Right>"] = {
-			function()
-				require("mini.move").move_line("right")
-			end,
-			"move selection right",
-		},
-		["<A-Down>"] = {
-			function()
-				require("mini.move").move_line("down")
-			end,
-			"move selection down",
-		},
-		["<A-Up>"] = {
-			function()
-				require("mini.move").move_line("up")
-			end,
-			"move selection up",
-		},
-	},
-}
+map_desc("n", "<leader>ff", "<cmd> Telescope find_files <CR>", "Telescope: Find files")
+map_desc(
+    "n",
+    "<leader>fa",
+    "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
+    "Telescope: Find all"
+)
+map_desc("n", "<leader>fw", "<cmd> Telescope live_grep <CR>", "Telescope: Live grep")
+map_desc("n", "<leader>fb", "<cmd> Telescope buffers <CR>", "Telescope: Find buffers")
+map_desc("n", "<leader>f?", "<cmd> Telescope help_tags <CR>", "Telescope: Help page")
+map_desc("n", "<leader>fo", "<cmd> Telescope oldfiles <CR>", "Telescope: Find oldfiles")
+map_desc("n", "<leader>fz", "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Telescope: Find in current buffer")
+map_desc("n", "<leader>fh", "<cmd> Telescope file_browser cwd=$HOME <CR>", "Telescope: Search home")
+map_desc("n", "<leader>fc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope: 🔍 Search config")
+map_desc("n", "<leader>fk", "<cmd> Telescope keymaps <CR>", "Telescope: ⌨ Keymap")
+map_desc("n", "<leader>fu", "<cmd>Telescope undo<CR>", "Telescope:  Undo tree")
+map_desc("n", "<leader>fy", function()
+    require("telescope.builtin").buffers()
+end, "Telescope: Search buffers")
+map_desc("n", "<leader>fd", "<cmd>Telescope lsp_document_symbols<CR>", "Telescope: Search Document Symbols")
+map_desc("n", "leader>sw", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Search Workspace Symbols")
+map_desc("n", "<leader>fe", "<cmd>Telescope emoji<CR>", "Telescope: Search emojis")
 
-M.trouble = {
-	n = {
-		["<leader>tw"] = {
-			"<cmd>TroubleToggle workspace_diagnostics <CR>",
-			"Workspace diagnostics",
-		},
-		["<leader>td"] = {
-			"<cmd>TroubleToggle document_diagnostics <CR>",
-			"Document diagnostics",
-		},
-		["<leader>tL"] = { "<cmd> TroubleToggle loclist <CR>", "Location List (Trouble)" },
-		["<leader>tQ"] = { "<cmd> TroubleToggle quickfix <CR>", "Quickfix List (Trouble)" },
-		["<leader>tS"] = { "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Todo/Fix/Fixme" },
-	},
-}
+--#endregion
 
-M.bookmark = {
-	n = {
-		-- ["<leader>mt"] = { "<cmd> BookmarkToggle<CR>", "󰃅 Toggle bookmark" },
-		-- ["<leader>mn"] = { "<cmd> BookmarkNext<CR>", "󰮰 Next bookmark" },
-		-- ["<leader>mp"] = { "<cmd> BookmarkPrev<CR>", "󰮲 Prev bookmark" },
-		-- ["<leader>mc"] = { "<cmd> BookmarkClear<CR>", "󰃢 Clear bookmarks" },
-		["<leader>mm"] = { "<cmd>Telescope vim_bookmarks all<CR>", " Bookmark Menu" },
-	},
-}
+--#region minimove
 
-M.hover = {
-	n = {
-		["<leader>ko"] = {
-			function()
-				require("pretty_hover").hover()
-			end,
-			"Open hover",
-		},
-		["<leader>kq"] = {
-			function()
-				require("pretty_hover").close()
-			end,
-			"Close hover",
-		},
-	},
-}
+local function fn_move(dir)
+    return function()
+        require("mini.move").move_line(dir)
+    end
+end
 
-M.dap = {
-	plugin = true,
-	-- Keep same as VS + VS Code
-	n = {
-		["<F9>"] = { "<cmd> DapToggleBreakpoint <CR>", "Toggle breakpoint" },
-		["<F5>"] = { "<cmd> CapContinute<CR>", "Launch debugger" },
-		["<F10>"] = { "<cmd> DapStepOver <CR>", "Step over" },
-		["<F11>"] = { "<cmd> DapStepInto <CR>", "Step into" },
-		["<S-F11>"] = { "<cmd> DapStepOut <CR>", "Step out" },
-		["<leader>rb"] = {
-			function()
-				require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-			end,
-			"Set conditional breakpoint",
-		},
-		["<leader>rl"] = {
-			function()
-				require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-			end,
-			"Log message",
-		},
-	},
-}
+map_desc({ "n", "v" }, "<A-Left>", fn_move("left"), "Move line left")
+map_desc({ "n", "v" }, "<A-Right>", fn_move("right"), "Move line right")
+map_desc({ "n", "v" }, "<A-Up>", fn_move("up"), "Move line up")
+map_desc({ "n", "v" }, "<A-Down>", fn_move("down"), "Move line down")
 
-M.dap_python = {
-	plugin = true,
-	n = {
-		["<leader>rt"] = {
-			function()
-				require("dap-python").test_method()
-			end,
-			"Debug the closest method to cursor",
-		},
-	},
-}
+--#endregion
 
-M.luasnip = {
-	n = {
-		["<leader><space>l"] = {
-			function(...)
-				local sl = require("luasnip.extras.snippet_list")
-				-- keeping the default display behavior but modifying window/buffer
-				local modified_default_display = sl.options.display({
-					buf_opts = { filetype = "lua" },
-					win_opts = { foldmethod = "manual" },
-					get_name = function(buf)
-						return "Custom Display buf " .. buf
-					end,
-				})
+--#region trouble
+map_desc("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics <CR>", "Workspace diagnostics")
+map_desc("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics <CR>", "Document diagnostics")
+map_desc("n", "<leader>tL", "<cmd> TroubleToggle loclist <CR>", "Location List (Trouble)")
+map_desc("n", "<leader>tQ", "<cmd> TroubleToggle quickfix <CR>", "Quickfix List (Trouble)")
+map_desc("n", "<leader>tS", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Todo/Fix/Fixme")
 
-				-- using it
-				sl.open({ display = modified_default_display })
-			end,
-			"List snippets",
-		},
-	},
-	-- This doesn't work!
-	-- i = {
-	--   ["<C-n>"] = { "<cmd> luasnip-next-choice <CR>", "Next choice" },
-	--   ["<C-p>"] = { "<cmd> luasnip-prev-choice <CR>", "Previous choice" }
-	-- },
-	-- s = {
-	--   ["<C-n>"] = { "<cmd> luasnip-next-choice <CR>", "Next choice" },
-	--   ["<C-p>"] = { "<cmd> luasnip-prev-choice <CR>", "Previous choice" }
-	-- },
-}
+--#endregion
 
-M.urlview = {
-	n = {
-		["<leader>uu"] = { "<cmd>UrlView<CR>", "Show local URLs" },
-	},
-}
+--#region bookmarks
 
--- This doesn't work! Get error about missing global STSSwapUpNormal_Dot.
+map_desc("n", "<leader>mm", "<cmd>Telescope vim_bookmarks all<CR>", " Bookmark Menu")
+map_desc("n", "<leader>mt", "<cmd> BookmarkToggle<CR>", "󰃅 Toggle bookmark")
+map_desc("n", "<leader>mn", "<cmd> BookmarkNext<CR>", "󰮰 Next bookmark")
+map_desc("n", "<leader>mp", "<cmd> BookmarkPrev<CR>", "󰮲 Prev bookmark")
+map_desc("n", "<leader>mc", "<cmd> BookmarkClear<CR>", "󰃢 Clear bookmarks")
 
--- M.treesurfer = {
---   n = {
+--#endregion
 
---     ["vU"] = {
---       function()
---         vim.opt.opfunc = "v:lua.STSSwapUpNormal_Dot"
---         return "g@l"
---       end,
---       'Swap master node with above',
---       opts = { silent = true, expr = true }
---     },
---     ["vD"] = {
---       function()
---         vim.opt.opfunc = "v:lua.STSSwapDownNormal_Dot"
---         return "g@l"
---       end,
---       'Swap master node with below',
---     }
---   }
--- }
+--#region pretty_hover
 
-M.code_runner = {
-	n = {
-		["<leader>rc"] = { "<cmd>RunCode<CR>" },
-		["<leader>rf"] = { "<cmd>RunFile<CR>" },
-		["<leader>rp"] = { "<cmd>RunProject<CR>" },
-		["<leader>rx"] = { "<cmd>RunClose<CR>" },
-		["<leader>crf"] = { "<cmd>CRFiletype<CR>" },
-		["<leader>crp"] = { "<cmd>CRProjects<CR>" },
-	},
-}
+map_desc("n", "<leader>ko", function()
+    require("pretty_hover").hover()
+end, "Open hover")
+map_desc("n", "<leader>kq", function()
+    require("pretty_hover").close()
+end, "Close hover")
 
-M.neogen = {
-	n = {
-		["<leader>nc"] = {
-			function()
-				require("neogen").generate({
-					type = "class",
-				})
-			end,
-			"Generate annotation for class",
-		},
-		["<leader>nf"] = {
-			function()
-				require("neogen").generate({
-					type = "func",
-				})
-			end,
-			"Generate annotation for function",
-		},
-	},
-}
+--#endregion
 
-M.wtf = {
-	n = {
-		["gw"] = {
-			function()
-				require("wtf").ai()
-			end,
-			"Debug diagnostic with AI",
-		},
-		["gW"] = {
-			function()
-				require("wtf").search()
-			end,
-			"Search diagnostic with Google",
-		},
-	},
-	x = {
-		["gw"] = {
-			function()
-				require("wtf").ai()
-			end,
-			"Debug diagnostic with AI",
-		},
-	},
-}
+--#region dap
 
-M.actpreview = {
-	n = {
-		["ga"] = {
-			function()
-				require("actions-preview").code_actions()
-			end,
-			"Preview code actions.",
-		},
-	},
-	v = {
-		["ga"] = {
-			function()
-				require("actions-preview").code_actions()
-			end,
-			"Preview code actions.",
-		},
-	},
-}
+-- Keep same as VS + VS Code
+map_desc("n", "<F9>", "<cmd> DapToggleBreakpoint <CR>", "Toggle breakpoint")
+map_desc("n", "<F5>", "<cmd> DapContinue<CR>", "Launch debugger")
+map_desc("n", "<F10>", "<cmd> DapStepOver <CR>", "Step over")
+map_desc("n", "<F11>", "<cmd> DapStepInto <CR>", "Step into")
+map_desc("n", "<S-F11>", "<cmd> DapStepOut <CR>", "Step out")
+
+map_desc("n", "<leader>rb", function()
+    require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end, "Set conditional breakpoint")
+
+map_desc("n", "<leader>rl", function()
+    require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+end, "Log message")
+
+--#endregion
+
+--region dap_python
+map_desc("n", "<leader>rt", function()
+    require("dap-python").test_method()
+end, "Debug the closest method to cursor")
+
+--#endregion
+
+--region luasnip
+
+local show_snippet_list = function(...)
+    local sl = require("luasnip.extras.snippet_list")
+    -- keeping the default display behavior but modifying window/buffer
+    local modified_default_display = sl.options.display({
+        buf_opts = { filetype = "lua" },
+        win_opts = { foldmethod = "manual" },
+        get_name = function(buf)
+            return "Custom Display buf " .. buf
+        end,
+    })
+
+    sl.open({ display = modified_default_display })
+end
+
+map_desc("n", "<leader>sl", show_snippet_list, "List snippets")
+
+--#endregion
+
+--#region urlview
+
+map_desc("n", "<leader>uu", "<cmd>UrlView<CR>", "Show local URLs")
+
+--#endregion
+
+--#region code_runner
+
+map("n", "<leader>rc", "<cmd>RunCode<CR>")
+map("n", "<leader>rf", "<cmd>RunFile<CR>")
+map("n", "<leader>rp", "<cmd>RunProject<CR>")
+map("n", "<leader>rx", "<cmd>RunClose<CR>")
+map("n", "<leader>crf", "<cmd>CRFiletype<CR>")
+map("n", "<leader>crp", "<cmd>CRProjects<CR>")
+
+--#endregion
+
+--#region neogen
+
+local neogen_gen = function(type)
+    return function()
+        require("neogen").generate({
+            type = type,
+        })
+    end
+end
+
+map_desc("n", "<leader>nc", neogen_gen("class"), "Generate annotation for class")
+
+map_desc("n", "<leader>nf", neogen_gen("func"), "Generate annotation for function")
+
+--#endregion
+
+--#region wtf
+
+map_desc({ "n", "x" }, "gw", function()
+    require("wtf").ai()
+end, "Debug diagnostic with AI")
+
+map_desc("n", "gW", function()
+    require("wtf").search()
+end, "Search diagnostic with Google")
+
+--#endregion
+
+--#region actpreview
+
+map_desc({ "n", "v" }, "ga", function()
+    require("actions-preview").code_actions()
+end, "Preview code actions.")
+
+--#endregion
 
 M.flash = {
-	[{ "n", "o", "x" }] = {
-		["<leader>ss"] = {
-			function()
-				require("flash").jump()
-			end,
-			"Flash",
-		},
-		["<leader>sS"] = {
-			function()
-				require("flash").treesitter()
-			end,
-			"Flash Treesitter",
-		},
-		["<leader>sf"] = {
-			function()
-				require("flash").jump({
-					search = { forward = true, wrap = false, multi_window = false },
-				})
-			end,
-			"Flash forward",
-		},
-		["<leader>sb"] = {
-			function()
-				require("flash").jump({
-					search = { forward = false, wrap = false, multi_window = false },
-				})
-			end,
-			"Flash backward",
-		},
-		["<leader>sc"] = {
-			function()
-				require("flash").jump({
-					search = { continue = true },
-				})
-			end,
-			"Continue search",
-		},
-		["<leader>sd"] = {
-			function()
-				-- More advanced example that also highlights diagnostics:
-				require("flash").jump({
-					matcher = function(win)
-						---@param diag Diagnostic
-						return vim.tbl_map(function(diag)
-							return {
-								pos = { diag.lnum + 1, diag.col },
-								end_pos = { diag.end_lnum + 1, diag.end_col - 1 },
-							}
-						end, vim.diagnostic.get(vim.api.nvim_win_get_buf(win)))
-					end,
-					action = function(match, state)
-						vim.api.nvim_win_call(match.win, function()
-							vim.api.nvim_win_set_cursor(match.win, match.pos)
-							vim.diagnostic.open_float()
-						end)
-						state:restore()
-					end,
-				})
-			end,
-			"Flash diagnostics",
-		},
-	},
-	o = {
-		["r"] = {
-			function()
-				require("flash").remote()
-			end,
-			"Remote Flash",
-		},
-	},
-	[{ "o", "x" }] = {
-		["R"] = {
-			function()
-				require("flash").treesitter_search()
-			end,
-			"Treesitter Search",
-		},
-	},
-	c = {
-		["<c-s>"] = {
-			function()
-				require("flash").toggle()
-			end,
-			"Toggle Flash Search",
-		},
-	},
+    [{ "n", "o", "x" }] = {
+        ["<leader>ss"] = {
+            function()
+                require("flash").jump()
+            end,
+            "Flash",
+        },
+        ["<leader>sS"] = {
+            function()
+                require("flash").treesitter()
+            end,
+            "Flash Treesitter",
+        },
+        ["<leader>sf"] = {
+            function()
+                require("flash").jump({
+                    search = { forward = true, wrap = false, multi_window = false },
+                })
+            end,
+            "Flash forward",
+        },
+        ["<leader>sb"] = {
+            function()
+                require("flash").jump({
+                    search = { forward = false, wrap = false, multi_window = false },
+                })
+            end,
+            "Flash backward",
+        },
+        ["<leader>sc"] = {
+            function()
+                require("flash").jump({
+                    search = { continue = true },
+                })
+            end,
+            "Continue search",
+        },
+        ["<leader>sd"] = {
+            function()
+                -- More advanced example that also highlights diagnostics:
+                require("flash").jump({
+                    matcher = function(win)
+                        ---@param diag Diagnostic
+                        return vim.tbl_map(function(diag)
+                            return {
+                                pos = { diag.lnum + 1, diag.col },
+                                end_pos = { diag.end_lnum + 1, diag.end_col - 1 },
+                            }
+                        end, vim.diagnostic.get(vim.api.nvim_win_get_buf(win)))
+                    end,
+                    action = function(match, state)
+                        vim.api.nvim_win_call(match.win, function()
+                            vim.api.nvim_win_set_cursor(match.win, match.pos)
+                            vim.diagnostic.open_float()
+                        end)
+                        state:restore()
+                    end,
+                })
+            end,
+            "Flash diagnostics",
+        },
+    },
+    o = {
+        ["r"] = {
+            function()
+                require("flash").remote()
+            end,
+            "Remote Flash",
+        },
+    },
+    [{ "o", "x" }] = {
+        ["R"] = {
+            function()
+                require("flash").treesitter_search()
+            end,
+            "Treesitter Search",
+        },
+    },
+    c = {
+        ["<c-s>"] = {
+            function()
+                require("flash").toggle()
+            end,
+            "Toggle Flash Search",
+        },
+    },
 }
 
 M.neotest = {
-	n = {
-		["<leader>tr"] = {
-			function()
-				vim.notify_once("Running single test", vim.log.levels.INFO, {
-					title = "Neotest",
-				})
-				require("neotest").run.run()
-			end,
-			"Run test",
-		},
-		["<leader>to"] = {
-			function()
-				require("neotest").output.open({
-					enter = true,
-					open_win = function(settings)
-						local height = math.min(settings.height, vim.o.lines - 2)
-						local width = math.min(settings.width, vim.o.columns - 2)
-						return vim.api.nvim_open_win(0, true, {
-							relative = "editor",
-							row = 7,
-							col = (vim.o.columns - width) / 2,
-							width = width,
-							height = height,
-							style = "minimal",
-							border = vim.g.floating_window_border,
-							noautocmd = true,
-						})
-					end,
-				})
-			end,
-			"Show test output",
-		},
-		["<leader>ts"] = {
-			function()
-				require("neotest").summary.toggle()
-			end,
-			"Show test summary",
-		},
-	},
+    n = {
+        ["<leader>tr"] = {
+            function()
+                vim.notify_once("Running single test", vim.log.levels.INFO, {
+                    title = "Neotest",
+                })
+                require("neotest").run.run()
+            end,
+            "Run test",
+        },
+        ["<leader>to"] = {
+            function()
+                require("neotest").output.open({
+                    enter = true,
+                    open_win = function(settings)
+                        local height = math.min(settings.height, vim.o.lines - 2)
+                        local width = math.min(settings.width, vim.o.columns - 2)
+                        return vim.api.nvim_open_win(0, true, {
+                            relative = "editor",
+                            row = 7,
+                            col = (vim.o.columns - width) / 2,
+                            width = width,
+                            height = height,
+                            style = "minimal",
+                            border = vim.g.floating_window_border,
+                            noautocmd = true,
+                        })
+                    end,
+                })
+            end,
+            "Show test output",
+        },
+        ["<leader>ts"] = {
+            function()
+                require("neotest").summary.toggle()
+            end,
+            "Show test summary",
+        },
+    },
 }
 
 M.ufo = {
-	n = {
-		["]z"] = {
-			function()
-				require("ufo").goNextClosedFold()
-			end,
-			"Go to next closed fold",
-		},
-		["[z"] = {
-			function()
-				require("ufo").goPreviousClosedFold()
-			end,
-			"Go to previous closed fold",
-		},
-		-- ["zp"] = {
-		-- 	function()
-		-- 		local winid = require("ufo").peekFoldedLinesUnderCursor()
-		-- 		if winid then
-		-- 			local bufnr = vim.api.nvim_win_get_buf(winid)
-		-- 			local keys = { "a", "i", "o", "A", "I", "O", "gd", "gr" }
-		-- 			for _, k in ipairs(keys) do
-		-- 				-- Add a prefix key to fire `trace` action,
-		-- 				-- if Neovim is 0.8.0 before, remap yourself
-		-- 				vim.keymap.set("n", k, "<CR>" .. k, { noremap = false, buffer = bufnr })
-		-- 			end
-		-- 		end
-		-- 	end,
-		-- 	"Peek folded lines under cursor",
-		-- },
-	},
+    n = {
+        ["]z"] = {
+            function()
+                require("ufo").goNextClosedFold()
+            end,
+            "Go to next closed fold",
+        },
+        ["[z"] = {
+            function()
+                require("ufo").goPreviousClosedFold()
+            end,
+            "Go to previous closed fold",
+        },
+    },
 }
 
 M.node_action = {
-	n = {
-		["gA"] = {
-			function()
-				require("ts-node-action").node_action()
-			end,
-			"Trigger Node Action",
-		},
-	},
+    n = {
+        ["gA"] = {
+            function()
+                require("ts-node-action").node_action()
+            end,
+            "Trigger Node Action",
+        },
+    },
 }
 
-M.legend = {
-	n = {
-		["<leader>lk"] = {
-			function()
-				local filters = require("legendary.filters")
-				require("legendary").find({
-					filters = {
-						filters.current_mode(),
-						filters.keymaps(),
-					},
-				})
-			end,
-			"Legendary keymap (current mode)",
-		},
-	},
-}
+--#region legendary
 
-M.outline = {
-	n = {
-		["<leader>go"] = { "<cmd>Outline<cr>", "Toggle Outline" },
-	},
-}
+map("n", "<leader>lk", function()
+    local filters = require("legendary.filters")
+    require("legendary").find({
+        filters = {
+            filters.current_mode(),
+            filters.keymaps(),
+        },
+    })
+end, { desc = "Legendary keymap (current mode)" })
 
-M.octo = {
-	n = {
-		["<leader>gO"] = { "<cmd>Octo<cr>", "Octo" },
-		["<leader>gp"] = { "<cmd>Octo pr list<cr>", "Octo PR list" },
-	},
-}
+--#endregion
 
-return M
+--#region outline
+
+map("n", "<leader>go", "<cmd>Outline<cr>", { desc = "Toggle Outline" })
+
+--#endregion
+
+--#region octo
+
+map("n", "<leader>gO", "<cmd>Octo<cr>", { desc = "Octo" })
+map("n", "<leader>gp", "<cmd>Octo pr list<cr>", { desc = "Octo PR list" })
+
+--#endregion
