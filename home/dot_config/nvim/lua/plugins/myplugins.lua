@@ -887,7 +887,51 @@ local plugins = {
         cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
         config = load_config("diffview"),
     },
+    {
+        "lewis6991/gitsigns.nvim",
+        opts = {
+            signs = {
+                add = { text = "│" },
+                change = { text = "│" },
+                delete = { text = "󰍵" },
+                topdelete = { text = "‾" },
+                changedelete = { text = "~" },
+                untracked = { text = "│" },
+            },
+            on_attach = function(bufnr)
+                local gs = package.loaded.gitsigns
 
+                local function opts(desc)
+                    return { buffer = bufnr, desc = desc }
+                end
+                local map = function(mode, keys, cmd, desc)
+                    return vim.keymap.set(mode, keys, cmd, { buffer = bufnr, desc = desc })
+                end
+
+                map("n", "<leader>sh", function()
+                    gs.stage_hunk()
+                end, "gitsigns: Stage hunk")
+
+                map("n", "<leader>uh", function()
+                    gs.undo_stage_hunk()
+                end, "gitsigns: Undo stage hunk")
+
+                map("n", "<leader>tb", function()
+                    package.loaded.gitsigns.toggle_current_line_blame()
+                end, "gitsigns: Toggle current line blame")
+
+                map("v", "<leader>sh", function()
+                    gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+                end, "gitsigns: Stage hunk")
+
+                map("v", "<leader>rh", function()
+                    gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+                end, "gitsigns: Reset hunk")
+
+                map("n", "<leader>sb", gs.stage_buffer, "gitsigns: Stage buffer")
+            end,
+        },
+    },
     --#endregion
 
     -- A polished, IDE-like, highly-customizable winbar for Neovim
