@@ -1,7 +1,10 @@
 -- For info on how to configure servers, see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md.
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
+
+-- TODO: Uncommenting the line below would disable semantic tokens. Need to look into this.
+-- local on_init = require("nvchad.configs.lspconfig").on_init
+
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 dofile(vim.g.base46_cache .. "lsp")
@@ -46,14 +49,14 @@ local servers = {
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup({
         on_attach = on_attach,
-        on_init = on_init,
+        -- on_init = on_init,
         capabilities = capabilities,
     })
 end
 
 lspconfig.jsonls.setup({
     on_attach = on_attach,
-    on_init = on_init,
+    -- on_init = on_init,
     capabilities = capabilities,
     settings = {
         json = {
@@ -65,7 +68,7 @@ lspconfig.jsonls.setup({
 
 lspconfig.hls.setup({
     on_attach = on_attach,
-    on_init = on_init,
+    -- on_init = on_init,
     capabilities = capabilities,
     filetypes = { "haskell", "lhaskell", "cabal" },
 })
@@ -108,88 +111,128 @@ lspconfig.lua_ls.setup({
 			},
 		},
 	},
+	on_attach = on_attach,
+	-- on_init = on_init,
+	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 150,
+	},
+	single_file_support = true,
+	-- https://github.com/NvChad/NvChad/issues/817
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+			telemetry = {
+				enable = false,
+			},
+			completion = {
+				callSnippet = "Replace",
+			},
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+					[vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types"] = true,
+					[vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
+				},
+				maxPreload = 100000,
+				preloadFileSize = 10000,
+			},
+			hint = {
+				enable = true,
+				setType = false,
+				paramType = true,
+			},
+			type = {
+				castNumberToInteger = true,
+			},
+		},
+	},
 })
 
 lspconfig.marksman.setup({
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-    -- also needs:
-    -- $home/.config/marksman/config.toml :
-    -- [core]
-    -- markdown.file_extensions = ["md", "markdown", "qmd"]
-    filetypes = { "markdown", "quarto" },
-    root_dir = require("lspconfig.util").root_pattern(".git", ".marksman.toml", "_quarto.yml"),
+	on_attach = on_attach,
+	-- on_init = on_init,
+	capabilities = capabilities,
+	-- also needs:
+	-- $home/.config/marksman/config.toml :
+	-- [core]
+	-- markdown.file_extensions = ["md", "markdown", "qmd"]
+	filetypes = { "markdown", "quarto" },
+	root_dir = require("lspconfig.util").root_pattern(".git", ".marksman.toml", "_quarto.yml"),
 })
 
 vim.g.OmniSharp_start_without_solution = 1
 vim.g.OmniSharp_timeout = 5
 
 lspconfig.yamlls.setup({
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-    settings = {
-        yaml = {
-            completion = true,
-            customTags = {
-                "!reference sequence", -- necessary for gitlab-ci.yaml files        "!And",
-                "!And sequence",
-                "!If",
-                "!If sequence",
-                "!Not",
-                "!Not sequence",
-                "!Equals",
-                "!Equals sequence",
-                "!Or",
-                "!Or sequence",
-                "!FindInMap",
-                "!FindInMap sequence",
-                "!Base64",
-                "!Join",
-                "!Join sequence",
-                "!Cidr",
-                "!Ref",
-                "!Sub",
-                "!Sub sequence",
-                "!GetAtt",
-                "!GetAZs",
-                "!ImportValue",
-                "!ImportValue sequence",
-                "!Select",
-                "!Select sequence",
-                "!Split",
-                "!Split sequence",
-            },
-            hover = true,
-            schemaStore = { enable = true },
-            validate = true,
-        },
-    },
+	on_attach = on_attach,
+	-- on_init = on_init,
+	capabilities = capabilities,
+	settings = {
+		yaml = {
+			completion = true,
+			customTags = {
+				"!reference sequence", -- necessary for gitlab-ci.yaml files        "!And",
+				"!And sequence",
+				"!If",
+				"!If sequence",
+				"!Not",
+				"!Not sequence",
+				"!Equals",
+				"!Equals sequence",
+				"!Or",
+				"!Or sequence",
+				"!FindInMap",
+				"!FindInMap sequence",
+				"!Base64",
+				"!Join",
+				"!Join sequence",
+				"!Cidr",
+				"!Ref",
+				"!Sub",
+				"!Sub sequence",
+				"!GetAtt",
+				"!GetAZs",
+				"!ImportValue",
+				"!ImportValue sequence",
+				"!Select",
+				"!Select sequence",
+				"!Split",
+				"!Split sequence",
+			},
+			hover = true,
+			schemaStore = { enable = true },
+			validate = true,
+		},
+	},
 })
 
 require("configs.powershell")
 
 lspconfig.pyright.setup({
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-    filetypes = { "python" },
-    settings = {
-        python = {
-            analysis = {
-                autoImportCompletions = true,
-                autoSearchPaths = true,
-                diagnosticMode = "workspace",
-                useLibraryCodeForTypes = true,
-            },
-        },
-    },
+	on_attach = on_attach,
+	-- on_init = on_init,
+	capabilities = capabilities,
+	filetypes = { "python" },
+	settings = {
+		python = {
+			analysis = {
+				autoImportCompletions = true,
+				autoSearchPaths = true,
+				diagnosticMode = "workspace",
+				useLibraryCodeForTypes = true,
+			},
+		},
+	},
 })
 
 lspconfig.texlab.setup({
     on_attach = on_attach,
-    on_init = on_init,
+    -- on_init = on_init,
     capabilities = capabilities,
     -- https://github.com/latex-lsp/texlab/wiki/configurations
     settings = {
@@ -208,7 +251,7 @@ lspconfig.texlab.setup({
                 onOpenAndSave = true,
             },
             diagnosticsDelay = 300,
-            -- TODO: Figure this out
+            -- TODO: Figuure this out
             diagnostics = {
                 -- allowedPatterns = {},
                 -- ignoredPatterns = {"^22:"},
