@@ -1,11 +1,11 @@
 require("nvchad.autocmds")
 
-local autocmd = vim.api.nvim_create_autocmd
+local autocmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 
 -- Disable persistent undo for files in /private directory
 autocmd("BufReadPre", { pattern = "/private/*", command = "set noundofile" })
 
-local yank_highlight_id = vim.api.nvim_create_augroup("highlightyank", { clear = true })
+local yank_highlight_id = augroup("highlightyank", { clear = true })
 
 -- https://github.com/jakesjews/Dot-Files-And-Scripts/blob/088138f25c16f89f206af6be9756175b3bb682da/init.lua
 autocmd("TextYankPost", {
@@ -41,5 +41,19 @@ autocmd("LspAttach", {
         vim.keymap.set("n", "<Leader>;", function()
             hover_close(vim.api.nvim_get_current_win())
         end, { remap = false, silent = true, buffer = ev.buf, desc = "Close hover window" })
+    end,
+})
+
+-- https://github.com/catgoose/nvim/blob/main/lua/config/autocmd.lua#L2
+local conceal_level_ft = {
+    "markdown",
+}
+local set_filetype = augroup("SetFileTypeOptLocalOptions", { clear = true })
+
+autocmd({ "FileType" }, {
+    group = set_filetype,
+    pattern = conceal_level_ft,
+    callback = function()
+        vim.opt_local.conceallevel = 2
     end,
 })
