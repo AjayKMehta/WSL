@@ -208,7 +208,7 @@ lspconfig.texlab.setup({
                 onOpenAndSave = true,
             },
             diagnosticsDelay = 300,
-            -- TODO: Figuure this out
+            -- TODO: Figure this out
             diagnostics = {
                 -- allowedPatterns = {},
                 -- ignoredPatterns = {"^22:"},
