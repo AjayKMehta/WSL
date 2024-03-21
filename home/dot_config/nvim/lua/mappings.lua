@@ -276,79 +276,62 @@ end, "Flash toggle search")
 
 --#endregion
 
-M.neotest = {
-    n = {
-        ["<leader>tr"] = {
-            function()
-                vim.notify_once("Running single test", vim.log.levels.INFO, {
-                    title = "Neotest",
-                })
-                require("neotest").run.run()
-            end,
-            "Run test",
-        },
-        ["<leader>to"] = {
-            function()
-                require("neotest").output.open({
-                    enter = true,
-                    open_win = function(settings)
-                        local height = math.min(settings.height, vim.o.lines - 2)
-                        local width = math.min(settings.width, vim.o.columns - 2)
-                        return vim.api.nvim_open_win(0, true, {
-                            relative = "editor",
-                            row = 7,
-                            col = (vim.o.columns - width) / 2,
-                            width = width,
-                            height = height,
-                            style = "minimal",
-                            border = vim.g.floating_window_border,
-                            noautocmd = true,
-                        })
-                    end,
-                })
-            end,
-            "Show test output",
-        },
-        ["<leader>ts"] = {
-            function()
-                require("neotest").summary.toggle()
-            end,
-            "Show test summary",
-        },
-    },
-}
+--#region neotest
 
-M.ufo = {
-    n = {
-        ["]z"] = {
-            function()
-                require("ufo").goNextClosedFold()
-            end,
-            "Go to next closed fold",
-        },
-        ["[z"] = {
-            function()
-                require("ufo").goPreviousClosedFold()
-            end,
-            "Go to previous closed fold",
-        },
-    },
-}
+map_desc("n", "<leader>tr", function()
+    vim.notify_once("Running single test", vim.log.levels.INFO, {
+        title = "Neotest",
+    })
+    require("neotest").run.run()
+end, "neotest: Run")
+map_desc("n", "<leader>to", function()
+    require("neotest").output.open({
+        enter = true,
+        open_win = function(settings)
+            local height = math.min(settings.height, vim.o.lines - 2)
+            local width = math.min(settings.width, vim.o.columns - 2)
+            return vim.api.nvim_open_win(0, true, {
+                relative = "editor",
+                row = 7,
+                col = (vim.o.columns - width) / 2,
+                width = width,
+                height = height,
+                style = "minimal",
+                border = vim.g.floating_window_border,
+                noautocmd = true,
+            })
+        end,
+    })
+end, "neotest: Show output")
 
-M.node_action = {
-    n = {
-        ["gA"] = {
-            function()
-                require("ts-node-action").node_action()
-            end,
-            "Trigger Node Action",
-        },
-    },
-}
+map_desc("n", "<leader>ts", function()
+    require("neotest").summary.toggle()
+end, "neotest: Show summary")
+
+--#endregion
+
+--#region ufo
+
+map_desc("n", "]z", function()
+    require("ufo").goNextClosedFold()
+end, "UFO: Go to next closed fold")
+map_desc("n", "[z", function()
+    require("ufo").goPreviousClosedFold()
+end, "UFO: Go to previous closed fold")
+
+--#endregion
+
+--#region node_action
+
+map_desc("n", "gA", function()
+    require("ts-node-action").node_action()
+end, "Trigger Node Action")
+
+--#endregion
 
 --#region legendary
 
-map("n", "<leader>lk", function()
+map_desc("n", "<leader>lk", function()
     local filters = require("legendary.filters")
     require("legendary").find({
         filters = {
@@ -356,19 +339,19 @@ map("n", "<leader>lk", function()
             filters.keymaps(),
         },
     })
-end, { desc = "Legendary keymap (current mode)" })
+end, "Legendary keymap (current mode)")
 
 --#endregion
 
 --#region outline
 
-map("n", "<leader>go", "<cmd>Outline<cr>", { desc = "Toggle Outline" })
+map_desc("n", "<leader>go", "<cmd>Outline<cr>", "Toggle Outline")
 
 --#endregion
 
 --#region octo
 
-map("n", "<leader>gO", "<cmd>Octo<cr>", { desc = "Octo" })
-map("n", "<leader>gp", "<cmd>Octo pr list<cr>", { desc = "Octo PR list" })
+map_desc("n", "<leader>gO", "<cmd>Octo<cr>", "Octo")
+map_desc("n", "<leader>gp", "<cmd>Octo pr list<cr>", "Octo PR list")
 
 --#endregion
