@@ -767,6 +767,11 @@ local plugins = {
             }):start()
         end,
         lazy = true,
+        cmd = {
+            "MarkdownPreviewToggle",
+            "MarkdownPreview",
+            "MarkdownPreviewStop",
+        },
         keys = { { "gm", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" } },
         config = load_config("md-preview"),
     },
