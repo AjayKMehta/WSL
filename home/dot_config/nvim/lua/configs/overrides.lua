@@ -271,7 +271,8 @@ M.mason_lsp = {
         "dockerls",
 
         -- Python
-        "pyright",
+        -- TODO: Configure
+        "basedpyright",
         "ruff_lsp",
         "pylyzer",
 
@@ -709,7 +710,7 @@ M.code_runner = {
                         preview.run({
                             command = "tectonic",
                             args = { "$fileName", "--keep-logs", "-o", "/tmp" },
-                            preview_cmd = preview_cmd,
+                            preview_cmd = "zathura --fork",
                             overwrite_output = "/tmp",
                         })
                     elseif opt == "Project" then
