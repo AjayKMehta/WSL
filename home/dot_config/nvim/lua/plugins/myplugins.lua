@@ -30,60 +30,6 @@ Plugins divided into the following categories:
 ---@diagnostic disable-next-line: undefined-doc-name
 
 local plugins = {
-    --#region Debugging, diagnostics
-
-    -- It's important that you set up the plugins in the following order:
-
-    -- mason.nvim
-    -- mason-lspconfig.nvim
-    -- Setup servers via lspconfig
-    {
-        "williamboman/mason.nvim",
-        -- https://github.com/williamboman/nvim-lsp-installer/discussions/509#discussioncomment-4009039
-        opts = {
-            PATH = "prepend", -- "skip" seems to cause the spawning error
-        },
-        -- Use config from NvChad
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        opts = overrides.mason_lsp,
-        config = function(_, opts)
-            require("mason-lspconfig").setup(opts)
-        end,
-    },
-    {
-        "aznhe21/actions-preview.nvim",
-        event = "VeryLazy",
-        opts = overrides.actpreview,
-        desc = "Preview code with LSP code actions applied.",
-    },
-    {
-        "piersolenski/wtf.nvim",
-        opts = {
-            popup_type = "vertical",
-        },
-        cmd = { "WtfSearch", "Wtf" },
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-        },
-        desc = "AI/search-engine powered diagnostic debugging",
-    },
-    {
-        "folke/trouble.nvim",
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-        cmd = { "Trouble", "TroubleToggle", "TodoTrouble" },
-        config = function()
-            require("trouble").setup({})
-        end,
-        lazy = false,
-        desc = "A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.",
-    },
-
-    --#endregion
-
     --#region Treesitter + LSP
 
     {
@@ -165,20 +111,9 @@ local plugins = {
     },
     -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
     {
+        -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
         "folke/neodev.nvim",
-        desc = "Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.",
-    },
-    {
-        "neovim/nvim-lspconfig",
-        dependencies = {
-            { "williamboman/mason-lspconfig.nvim" },
         },
-        config = function()
-            require("nvchad.configs.lspconfig")
-            require("configs.lspconfig")
-        end,
-        desc = "Quickstart configs for Neovim LSP.",
-    },
     {
         "zeioth/garbage-day.nvim",
         dependencies = "neovim/nvim-lspconfig",
