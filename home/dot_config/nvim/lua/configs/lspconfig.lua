@@ -40,7 +40,9 @@ local servers = {
 
     -- Python
     "ruff_lsp",
-    "pylyzer",
+    -- TODO: Re-enable in future.
+    -- "pylyzer",
+    "basedpyright",
 
     -- R
     "r_language_server",
