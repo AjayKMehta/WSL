@@ -252,65 +252,6 @@ M.treesitter_context = {
     },
 }
 
-M.mason_lsp = {
-    -- https://mason-registry.dev/registry/list
-    ensure_installed = {
-        -- lua stuff
-        "lua_ls",
-
-        -- web dev
-        "cssls",
-        "html",
-        "tsserver",
-        "denols",
-        "jsonls",
-        "jqls",
-
-        -- docker
-        "docker_compose_language_service",
-        "dockerls",
-
-        -- Python
-        -- TODO: Configure
-        "basedpyright",
-        "ruff_lsp",
-        "pylyzer",
-
-        --Haskell
-        "hls",
-
-        -- .NET
-        "csharp_ls",
-        "omnisharp",
-        "powershell_es",
-
-        -- DevOps + Shell
-        "bashls",
-        "yamlls",
-        -- required for bash LSP
-        "codeqlls",
-
-        -- R
-        "r_language_server",
-
-        -- SQL
-        "sqls",
-
-        -- Misc
-        "typos_lsp",
-        "ast_grep",
-        "vimls",
-
-        -- Markdown
-        "marksman",
-
-        -- LaTeX
-        "ltex",
-        "texlab",
-    },
-    automatic_installation = true,
-}
-
 local HEIGHT_RATIO = 0.8 -- You can change this
 local WIDTH_RATIO = 0.6 -- You can change this too
 
@@ -779,25 +720,6 @@ M.neogen = {
             },
             -- This is not working!
             cs = { template = { annotation_convention = "xmldoc" } },
-        },
-    },
-}
-
-M.actpreview = {
-    diff = {
-        algorithm = "patience",
-    },
-    telescope = {
-        sorting_strategy = "ascending",
-        layout_strategy = "vertical",
-        layout_config = {
-            width = 0.8,
-            height = 0.9,
-            prompt_position = "top",
-            preview_cutoff = 20,
-            preview_height = function(_, _, max_lines)
-                return max_lines - 15
-            end,
         },
     },
 }

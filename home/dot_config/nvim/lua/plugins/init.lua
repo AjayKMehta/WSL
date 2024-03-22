@@ -1,5 +1,3 @@
-local overrides = require("configs.overrides")
-
 return {
     -- It's important that you set up the plugins in the following order:
 
@@ -16,7 +14,64 @@ return {
     },
     {
         "williamboman/mason-lspconfig.nvim",
-        opts = overrides.mason_lsp,
+        opts = {
+            -- https://mason-registry.dev/registry/list
+            ensure_installed = {
+                -- lua stuff
+                "lua_ls",
+
+                -- web dev
+                "cssls",
+                "html",
+                "tsserver",
+                "denols",
+                "jsonls",
+                "jqls",
+
+                -- docker
+                "docker_compose_language_service",
+                "dockerls",
+
+                -- Python
+                -- TODO: Configure
+                "basedpyright",
+                "ruff_lsp",
+                "pylyzer",
+
+                --Haskell
+                "hls",
+
+                -- .NET
+                "csharp_ls",
+                "omnisharp",
+                "powershell_es",
+
+                -- DevOps + Shell
+                "bashls",
+                "yamlls",
+                -- required for bash LSP
+                "codeqlls",
+
+                -- R
+                "r_language_server",
+
+                -- SQL
+                "sqls",
+
+                -- Misc
+                "typos_lsp",
+                "ast_grep",
+                "vimls",
+
+                -- Markdown
+                "marksman",
+
+                -- LaTeX
+                "ltex",
+                "texlab",
+            },
+            automatic_installation = true,
+        },
         config = function(_, opts)
             require("mason-lspconfig").setup(opts)
         end,

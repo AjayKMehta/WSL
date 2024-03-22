@@ -1,5 +1,3 @@
-local overrides = require("configs.overrides")
-
 local function load_config(plugin)
     return function()
         require("configs." .. plugin)
