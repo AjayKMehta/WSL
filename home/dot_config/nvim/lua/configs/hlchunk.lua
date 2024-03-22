@@ -4,7 +4,7 @@ if not status_ok then
 end
 local ft = require("hlchunk.utils.filetype")
 
-local exclude_filetypes = vim.tbl_extend("force", ft.exclude_filetypes, {
+local exclude_filetypes = vim.tbl_deep_extend("force", ft.exclude_filetypes, {
     terminal = true,
     startify = true,
     FTerm = true,
@@ -37,23 +37,24 @@ hlchunk.setup({
     indent = {
         enable = true,
         use_treesitter = true,
-        chars = {
-            "│",
-        },
+        -- more codes can be found at https://unicodeplus.com/
+        chars = { "│", "¦", "┆", "┊" },
+        -- https://github.com/lukas-reineke/indent-blankline.nvim#rainbow-delimitersnvim-integration
         style = {
-            "#FF0000",
-            "#FF7F00",
-            "#FFFF00",
-            "#00FF00",
-            "#00FFFF",
-            "#0000FF",
-            "#8B00FF",
+            "#E06C75",
+            "#E5C07B",
+            "#61AFEF",
+            "#D19A66",
+            "#98C379",
+            "#C678DD",
+            "#56B6C2",
         },
         exclude_filetypes = exclude_filetypes,
     },
     line_num = {
         enable = true,
         use_treesitter = true,
+        -- Doesn't support different styles for diff. levels like indent
         style = "#806d9c", -- fg = "#87afaf"
         support_filetypes = ft.support_filetypes,
     },
