@@ -498,7 +498,7 @@ local plugins = {
             {
                 "petertriho/cmp-git",
                 dependencies = { "nvim-lua/plenary.nvim" },
-                config = load_config("cmp-git"),
+                config = load_config("cmpgit"),
             },
         },
         desc = "Completion plugin for git",
