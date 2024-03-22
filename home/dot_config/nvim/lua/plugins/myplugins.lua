@@ -382,7 +382,6 @@ local plugins = {
                 build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
             },
             "benfowler/telescope-luasnip.nvim",
-            "Marskey/telescope-sg",
             "tom-anders/telescope-vim-bookmarks.nvim",
             "debugloop/telescope-undo.nvim",
             -- "stevearc/aerial.nvim",
@@ -411,7 +410,16 @@ local plugins = {
             "nvim-telescope/telescope.nvim",
             "stevearc/dressing.nvim",
         },
-        opts = overrides.urlview,
+        opts = {
+            default_title = "URLs",
+            default_picker = "telescope",
+            default_action = "clipboard",
+            sorted = false,
+            jump = {
+                ["prev"] = "[u",
+                ["next"] = "]u",
+            },
+        },
     },
 
     -- Haskell
@@ -493,7 +501,7 @@ local plugins = {
     {
         -- Show all todo comments in solution
         "folke/todo-comments.nvim",
-        requires = "nvim-lua/plenary.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             require("todo-comments").setup({})
         end,
