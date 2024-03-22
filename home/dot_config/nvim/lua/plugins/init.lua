@@ -1,3 +1,5 @@
+local load_config = require("utils").load_config
+
 return {
     -- It's important that you set up the plugins in the following order:
 
@@ -81,10 +83,42 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = {
             { "williamboman/mason-lspconfig.nvim" },
+            {
+                "b0o/SchemaStore.nvim",
+                version = false, -- last release is way too old
+            },
         },
         config = function()
             require("nvchad.configs.lspconfig")
             require("configs.lspconfig")
         end,
+    },
+    {
+        "mrjones2014/legendary.nvim",
+        -- since legendary.nvim handles all your keymaps/commands,
+        -- its recommended to load legendary.nvim before other plugins
+        priority = 10000,
+        lazy = false,
+        config = function()
+    require("legendary").setup({
+        extensions = {
+            nvim_tree = true,
+            lazy_nvim = { auto_register = true },
+            which_key = {
+                -- Automatically add which-key tables to legendary
+                -- see ./doc/WHICH_KEY.md for more details
+                auto_register = true,
+            },
+        },
+    })
+        end,
+    },
+        {
+        -- Plugin to easily manage multiple terminal windows.
+        "akinsho/toggleterm.nvim",
+        version = "*",
+        cmd = { "ToggleTerm", "ToggleTermAll", "TermExec" },
+        -- TODO: Is this needed if NvChad already has nvterm module?
+        config = load_config("toggleterm"),
     },
 }

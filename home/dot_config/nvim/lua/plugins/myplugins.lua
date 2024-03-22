@@ -78,19 +78,6 @@ local plugins = {
             },
         },
     },
-    {
-        -- C# plugin powered by omnisharp-roslyn.
-        "iabdelkareem/csharp.nvim",
-        opts = overrides.csharp,
-        ft = { "cs", "vb", "csproj", "sln", "slnx", "props" },
-        dependencies = {
-            "williamboman/mason.nvim", -- Required, automatically installs omnisharp
-            "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
-        },
-        config = function(_, opts)
-            require("csharp").setup(opts)
-        end,
-    },
     -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
     {
         -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
@@ -196,13 +183,6 @@ local plugins = {
 
     --#region Utility
 
-    {
-        -- Plugin to easily manage multiple terminal windows.
-        "akinsho/toggleterm.nvim",
-        version = "*",
-        cmd = { "ToggleTerm", "ToggleTermAll", "TermExec" },
-        config = load_config("toggleterm"),
-    },
     {
         "nvim-tree/nvim-tree.lua",
         opts = overrides.nvimtree,
@@ -436,33 +416,10 @@ local plugins = {
             -- telescope.load_extension("aerial")
         end,
     },
-    {
-        "mrjones2014/legendary.nvim",
-        -- since legendary.nvim handles all your keymaps/commands,
-        -- its recommended to load legendary.nvim before other plugins
-        priority = 10000,
-        lazy = false,
-        config = function()
-            require("legendary").setup({
-                extensions = {
-                    nvim_tree = true,
-                    lazy_nvim = { auto_register = true },
-                    which_key = {
-                        -- Automatically add which-key tables to legendary
-                        -- see ./doc/WHICH_KEY.md for more details
-                        auto_register = true,
-                    },
-                },
-            })
-        end,
-    },
+
     {
         "nvim-telescope/telescope-file-browser.nvim",
         dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    },
-    {
-        "nvim-telescope/telescope-media-files.nvim",
-        dependencies = { "nvim-telescope/telescope.nvim" },
     },
     {
         "axieax/urlview.nvim",
@@ -560,43 +517,6 @@ local plugins = {
         event = "VeryLazy",
     },
 
-    -- Languages
-    {
-        "PProvost/vim-ps1",
-        ft = "powershell",
-    },
-    {
-        "jalvesaq/Nvim-R",
-        lazy = false,
-        ft = { "r", "rmd", "quarto" },
-        config = function()
-            require("cmp_nvim_r").setup({})
-        end,
-    },
-
-    -- JSON + YAML
-    {
-        "someone-stole-my-name/yaml-companion.nvim",
-        dependencies = {
-            { "neovim/nvim-lspconfig" },
-            { "nvim-lua/plenary.nvim" },
-            { "nvim-telescope/telescope.nvim" },
-        },
-        config = function()
-            require("telescope").load_extension("yaml_schema")
-        end,
-    },
-    {
-        "cuducos/yaml.nvim",
-        ft = { "yaml" }, -- optional
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-telescope/telescope.nvim", -- optional
-        },
-    },
-    -- JSON Schemas
-    { "b0o/schemastore.nvim" },
-
     -- Markdown
     {
         "tadmccorkle/markdown.nvim",
@@ -659,8 +579,6 @@ local plugins = {
         -- <C-e>: Toggles visually selected text to inline code, and V-LINE selected text to a multiline code block.
     },
 
-    -- LaTeX
-
     -- Appearance
     {
         "kevinhwang91/nvim-ufo",
@@ -681,28 +599,6 @@ local plugins = {
             vim.o.foldlevelstart = 99 -- start with all code unfolded
         end,
         config = load_config("ufo"),
-    },
-
-    {
-        "stevearc/dressing.nvim",
-        lazy = false,
-        config = function()
-            require("dressing").setup({
-                select = {
-                    get_config = function(opts)
-                        if opts.kind == "legendary.nvim" then
-                            return {
-                                telescope = {
-                                    sorter = require("telescope.sorters").fuzzy_with_index_bias({}),
-                                },
-                            }
-                        else
-                            return {}
-                        end
-                    end,
-                },
-            })
-        end,
     },
 
     --#region git
