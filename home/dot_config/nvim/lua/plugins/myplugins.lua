@@ -16,7 +16,6 @@ Plugins divided into the following categories:
 9. Languages
 10. JSON + YAML
 11. Markdown
-12. LaTeX
 14. git
 
 ]]
@@ -661,18 +660,6 @@ local plugins = {
     },
 
     -- LaTeX
-
-    {
-        "lervag/vimtex",
-        ft = { "tex", "rmd" },
-        config = load_config("vimtex"),
-    },
-    {
-        "iurimateus/luasnip-latex-snippets.nvim",
-        dependencies = { "L3MON4D3/LuaSnip" },
-        ft = { "tex", "markdown" },
-        config = load_config("ls-latex-snippets"),
-    },
 
     -- Appearance
     {
