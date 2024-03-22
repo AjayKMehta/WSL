@@ -164,23 +164,6 @@ local plugins = {
 
     --#endregion
 
-    --#region Test
-
-    {
-        -- An extensible framework for interacting with tests.
-        "nvim-neotest/neotest",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "antoinemadec/FixCursorHold.nvim",
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-neotest/neotest-python",
-            "Issafalcon/neotest-dotnet",
-            "mrcjkb/neotest-haskell",
-        },
-        config = load_config("neotest"),
-    },
-    --#endregion
-
     --#region Utility
 
     {
