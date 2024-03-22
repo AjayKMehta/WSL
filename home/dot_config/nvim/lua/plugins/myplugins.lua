@@ -534,22 +534,28 @@ local plugins = {
     {
         "nvim-telescope/telescope.nvim",
         -- if you load some function or module within your opt, wrap it with a function
-        opts = {
-            defaults = {
-                mappings = {
-                    i = {
-                        ["<esc>"] = function(...)
-                            require("telescope.actions").close(...)
-                        end,
-                    },
+        opts = function()
+            local conf = require("nvchad.configs.telescope")
+            conf.defaults.mappings.i = {
+                ["<C-j>"] = require("telescope.actions").move_selection_next,
+                ["<esc>"] = require("telescope.actions").close,
+            }
+            conf.extensions = {
+                fzf = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = "smart_case",
                 },
-            },
-        },
+            }
+            return conf
+        end,
         -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
         dependencies = {
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
                 build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+                desc = "FZF sorter for Telescope - use fzf syntax in Telescope.",
             },
             -- "debugloop/telescope-undo.nvim",
             "benfowler/telescope-luasnip.nvim",
@@ -559,11 +565,15 @@ local plugins = {
             -- "stevearc/aerial.nvim",
         },
         config = function(_, opts)
+            dofile(vim.g.base46_cache .. "telescope")
             local telescope = require("telescope")
+            telescope.setup(opts)
+
             telescope.load_extension("fzf")
             telescope.load_extension("emoji")
+            telescope.load_extension("themes")
+            telescope.load_extension("terms")
             -- telescope.load_extension("aerial")
-            telescope.setup(opts)
         end,
     },
     {
