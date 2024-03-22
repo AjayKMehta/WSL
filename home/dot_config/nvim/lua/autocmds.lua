@@ -3,7 +3,10 @@ require("nvchad.autocmds")
 local autocmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 
 -- Disable persistent undo for files in /private directory
+
 autocmd("BufReadPre", { pattern = "/private/*", command = "set noundofile" })
+
+-- Highlight yanked text
 
 local yank_highlight_id = augroup("highlightyank", { clear = true })
 
@@ -20,6 +23,8 @@ autocmd("TextYankPost", {
 --   pattern = "*",
 --   command = "tabdo wincmd =",
 -- })
+
+-- Create command for LSP attach to close hover window
 
 -- https://vi.stackexchange.com/a/43436
 local hover_close = function(base_win_id)
@@ -43,6 +48,8 @@ autocmd("LspAttach", {
         end, { remap = false, silent = true, buffer = ev.buf, desc = "Close hover window" })
     end,
 })
+
+-- Set conceallevel for markdown files
 
 -- https://github.com/catgoose/nvim/blob/main/lua/config/autocmd.lua#L2
 local conceal_level_ft = {

@@ -764,21 +764,4 @@ M.csharp = {
     },
 }
 
-M.outline = {
-    outline_window = {
-        auto_jump = false,
-        wrap = true,
-    },
-    -- Auto-open preview was annoying. `live = true` allows editing in preview window!
-    preview_window = { auto_preview = false, live = true },
-    symbol_folding = {
-        auto_unfold = {
-            only = 2,
-        },
-    },
-    outline_items = {
-        show_symbol_lineno = false,
-    },
-}
-
 return M
