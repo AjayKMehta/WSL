@@ -10,7 +10,6 @@ local haskell_ft = { "haskell", "lhaskell", "cabal", "cabalproject" }
 
 --[[
 Plugins divided into the following categories:
-1. Debugging, diagnostics
 2. Treesitter + LSP
 3. Test
 4. Utility
@@ -33,56 +32,46 @@ local plugins = {
     --#region Treesitter + LSP
 
     {
+        -- Pretty hover messages.
         "Fildo7525/pretty_hover",
         event = "LspAttach",
-        desc = "Pretty hover messages.",
     },
     { "poljar/typos.nvim", lazy = false },
+
     {
-        -- Uses LSP instead of treesitter like aerial.
-        "hedyhli/outline.nvim",
-        cmd = { "Outline", "OutlineOpen" },
-        enabled = true, -- Seems more reliablee than aerial.
-        opts = overrides.outline,
-        config = function(_, opts)
-            require("outline").setup(opts)
-        end,
-        desc = "Code outline sidebar powered by LSP.",
-    },
-    {
+        -- A framework for running functions on Tree-sitter nodes, and updating the buffer with the result.
         "ckolkey/ts-node-action",
         dependencies = { "nvim-treesitter" },
         opts = {},
-        desc = "A framework for running functions on Tree-sitter nodes, and updating the buffer with the result.",
     },
     {
+        -- Enhanced folds
         "kevinhwang91/nvim-ufo",
         dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
         event = "BufRead",
         config = load_config("ufo"),
-        desc = "Enhanced folds",
     },
     {
+        -- Navigate your code with search labels, enhanced character motions, and Treesitter integration.
         "folke/flash.nvim",
         event = "VeryLazy",
-        desc = "Navigate your code with search labels, enhanced character motions, and Treesitter integration.",
     },
     {
+        -- Show function signature as you type.
         "ray-x/lsp_signature.nvim",
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-        -- enabled = false,
         opts = {},
         config = function(_, opts)
             require("lsp_signature").setup(opts)
         end,
-        desc = "Show function signature as you type.",
     },
     {
+        -- Performant LSP progress status.
         "linrongbin16/lsp-progress.nvim",
         config = load_config("lsp_progress"),
-        desc = "Performant LSP progress status.",
     },
     {
+        -- Advanced comment plugin with Treesitter support.
         "numToStr/Comment.nvim",
         event = "VeryLazy",
         lazy = false,
@@ -94,9 +83,9 @@ local plugins = {
                 config = load_config("ts-context-commentstring"),
             },
         },
-        desc = "Advanced comment plugin with Treesitter support.",
     },
     {
+        -- C# plugin powered by omnisharp-roslyn.
         "iabdelkareem/csharp.nvim",
         opts = overrides.csharp,
         ft = { "cs", "vb", "csproj", "sln", "slnx", "props" },
@@ -107,27 +96,26 @@ local plugins = {
         config = function(_, opts)
             require("csharp").setup(opts)
         end,
-        desc = "C# plugin powered by omnisharp-roslyn.",
     },
     -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
     {
         -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
         "folke/neodev.nvim",
-        },
+    },
     {
+        -- Garbage collector that stops inactive LSP clients to free RAM.
         "zeioth/garbage-day.nvim",
         dependencies = "neovim/nvim-lspconfig",
         event = "VeryLazy",
-        desc = "Garbage collector that stops inactive LSP clients to free RAM.",
     },
     {
+        -- Generate comments based on treesitter.
         "danymat/neogen",
         dependencies = "nvim-treesitter/nvim-treesitter",
         opts = overrides.neogen,
         -- Uncomment next line if you want to follow only stable versions
         version = "*",
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-        desc = "Generate comments based on treesitter.",
     },
     {
         "nvim-treesitter/nvim-treesitter",
@@ -156,56 +144,41 @@ local plugins = {
         end,
     },
     {
+        -- Show code context.,
         "nvim-treesitter/nvim-treesitter-context",
         lazy = false,
         event = "BufReadPost",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = overrides.treesitter_context,
-        desc = "Show code context.",
     },
     {
+        -- Syntax aware text-objects, select, move, swap, and peek support.
         "nvim-treesitter/nvim-treesitter-textobjects",
         dependencies = {
             -- "nvim-treesitter/nvim-treesitter",
         },
         config = load_config("ts-textobjects"),
-        desc = "Syntax aware text-objects, select, move, swap, and peek support.",
     },
     {
-        "stevearc/aerial.nvim",
-        lazy = true,
-        cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
-        enabled = false,
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-tree/nvim-web-devicons",
-        },
-        keys = {
-            { "<Leader>ta", "<CMD>AerialToggle<CR>", mode = { "n" }, desc = "Open or close the aerial window" },
-        },
-        config = load_config("aerial"),
-        desc = "A code outline window for skimming and quick navigation.",
-    },
-    {
+        -- Helps you navigate and move nodes around based on Treesitter API.
         "ziontee113/syntax-tree-surfer",
         event = "BufRead",
         config = load_config("syntax-tree-surfer"),
-        desc = "Helps you navigate and move nodes around based on Treesitter API.",
     },
     {
+        -- Rainbow delimiters with Treesitter
         "HiPhish/rainbow-delimiters.nvim",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         event = { "BufReadPost", "BufNewFile" },
-        desc = "Rainbow delimiters with Treesitter",
         config = load_config("rainbow"),
     },
     {
+        -- Lightweight formatter plugin
         "stevearc/conform.nvim",
         enabled = true,
         cmd = { "ConformInfo" },
         event = { "BufReadPre", "BufNewFile" },
         config = load_config("conform"),
-        desc = "Lightweight formatter plugin.",
     },
 
     --#endregion
@@ -213,6 +186,7 @@ local plugins = {
     --#region Test
 
     {
+        -- An extensible framework for interacting with tests.
         "nvim-neotest/neotest",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -223,24 +197,22 @@ local plugins = {
             "mrcjkb/neotest-haskell",
         },
         config = load_config("neotest"),
-        desc = "An extensible framework for interacting with tests.",
     },
     --#endregion
 
     --#region Utility
 
     {
+        -- Plugin to easily manage multiple terminal windows.
         "akinsho/toggleterm.nvim",
         version = "*",
         cmd = { "ToggleTerm", "ToggleTermAll", "TermExec" },
         config = load_config("toggleterm"),
-        desc = "Plugin to easily manage multiple terminal windows.",
     },
     {
         "nvim-tree/nvim-tree.lua",
         opts = overrides.nvimtree,
         dependencies = { "nvim-tree/nvim-web-devicons" },
-        desc = "A file explorer tree.",
         config = function(_, opts)
             dofile(vim.g.base46_cache .. "nvimtree")
             require("configs.nvimtree")
@@ -260,18 +232,18 @@ local plugins = {
             "BookmarkSave",
             "BookmarkLoad",
         },
-        desc = "Vim bookmark plugin.",
     },
     -- https://github.com/tinyCatzilla/dots/blob/193cc61951579db692e9cc7f8f278ed33c8b52d4/.config/nvim/lua/custom/plugins.lua
     {
+        -- Configurable, notification manager
         "rcarriga/nvim-notify",
+        lazy = false,
         keys = {
             {
                 "<leader>un",
                 function()
                     require("notify").dismiss({ silent = true, pending = true })
                 end,
-                desc = "Dismiss all Notifications",
             },
         },
         opts = overrides.notify,
@@ -281,19 +253,17 @@ local plugins = {
             notify.setup(opts)
             vim.notify = notify
         end,
-        desc = "Configurable, notification manager",
     },
     {
         "CRAG666/code_runner.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = overrides.code_runner,
         event = "BufEnter",
-        desc = "Code runner",
     },
     {
+        -- Better quickfix window
         "kevinhwang91/nvim-bqf",
         ft = "qf",
-        desc = "Better quickfix window",
         cmds = { "BqfEnable", "BqfDisable", "BqfToggle" },
         opts = {
             auto_enable = true,
@@ -341,6 +311,7 @@ local plugins = {
         end,
         dependencies = {
             {
+                -- Completion for LaTeX symbols
                 "amarakon/nvim-cmp-lua-latex-symbols",
                 event = "InsertEnter",
                 opts = { cache = true },
@@ -348,64 +319,63 @@ local plugins = {
                 config = function(_, opts)
                     require("cmp").setup(opts)
                 end,
-                desc = "Completion for LaTeX symbols",
             },
             {
+                -- Completion for fs paths (async)
                 "FelipeLema/cmp-async-path",
                 url = "https://codeberg.org/FelipeLema/cmp-async-path",
-                desc = "Completion for fs paths (async)",
             },
             {
+                -- nvim-cmp source for emojis
                 "hrsh7th/cmp-emoji",
                 event = "InsertEnter",
                 enabled = false,
-                desc = "nvim-cmp source for emojis",
             },
             {
+                -- Completion for Neovim's Lua runtime API.
                 "hrsh7th/cmp-nvim-lua",
                 event = "InsertEnter",
                 -- Not needed bc of neodev
                 enabled = false,
-                desc = "Completion for Neovim's Lua runtime API.",
             },
             {
+                -- Fuzzy buffer completion
                 "tzachar/cmp-fuzzy-buffer",
                 dependencies = { "tzachar/fuzzy.nvim" },
-                desc = "Fuzzy buffer completion",
             },
             {
+                -- nvim-cmp source for cmdline
                 "hrsh7th/cmp-cmdline",
                 lazy = false,
-                desc = "nvim-cmp source for cmdline",
             },
             {
+                -- Luasnip choice node completion source for nvim-cmp
                 "L3MON4D3/cmp-luasnip-choice",
                 config = function()
                     require("cmp_luasnip_choice").setup({
                         auto_open = true, -- Automatically open nvim-cmp on choice node (default: true)
                     })
                 end,
-                desc = "Luasnip choice node completion source for nvim-cmp",
             },
-            { "lukas-reineke/cmp-rg", enabled = false },
-            { "amarakon/nvim-cmp-buffer-lines", desc = "Completion for buffer lines" },
+            { "amarakon/nvim-cmp-buffer-lines" },
             { "L3MON4D3/LuaSnip" },
-            { "ray-x/cmp-treesitter", desc = "cmp source for treesitter" },
-            { "jalvesaq/cmp-nvim-r", desc = "cmp source for R" },
-            { "rcarriga/cmp-dap", desc = "cmp source for DAP" },
+            { "ray-x/cmp-treesitter" },
+            { "jalvesaq/cmp-nvim-r" },
+            { "rcarriga/cmp-dap" },
             {
+                -- Completion plugin for git
                 "petertriho/cmp-git",
                 dependencies = { "nvim-lua/plenary.nvim" },
                 config = load_config("cmpgit"),
             },
         },
-        desc = "Completion plugin for git",
     },
     {
+        -- Snippet Engine for Neovim
         "L3MON4D3/LuaSnip",
         dependencies = {
-            { "rafamadriz/friendly-snippets", desc = "Useful snippets for different languages" },
-            { "onsails/lspkind.nvim", desc = "VS Code like pictograms" },
+            { "rafamadriz/friendly-snippets" },
+            { "onsails/lspkind.nvim" },
         },
         event = {
             "InsertEnter",
@@ -413,7 +383,6 @@ local plugins = {
         },
         build = "make install_jsregexp",
         config = load_config("ls"),
-        desc = "Snippet Engine for Neovim",
     },
     {
         "allaman/emoji.nvim",
@@ -451,11 +420,10 @@ local plugins = {
         -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
         dependencies = {
             {
+                -- Use fzf syntax in Telescope.
                 "nvim-telescope/telescope-fzf-native.nvim",
                 build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-                desc = "FZF sorter for Telescope - use fzf syntax in Telescope.",
             },
-            -- "debugloop/telescope-undo.nvim",
             "benfowler/telescope-luasnip.nvim",
             "Marskey/telescope-sg",
             "tom-anders/telescope-vim-bookmarks.nvim",
@@ -689,7 +657,7 @@ local plugins = {
         config = function()
             require("markdowny").setup()
         end,
-        desc = " Add key bindings for markdown.",
+        --  Add key bindings for markdown.,
 
         -- <C-k>: Adds a link to visually selected text.
         -- <C-b>: Toggles visually selected text to bold.
@@ -703,7 +671,6 @@ local plugins = {
         "lervag/vimtex",
         ft = { "tex", "rmd" },
         config = load_config("vimtex"),
-        -- init = load_config("vimtex"),
     },
     {
         "iurimateus/luasnip-latex-snippets.nvim",
@@ -797,7 +764,7 @@ local plugins = {
     {
         "craftzdog/solarized-osaka.nvim",
         lazy = false,
-        enabled = true,
+        enabled = false,
         priority = 1000,
         opts = {},
     },
@@ -806,12 +773,13 @@ local plugins = {
     --#region git
 
     {
+        -- A plugin to visualise and resolve merge conflicts.
         "akinsho/git-conflict.nvim",
         version = "*",
         config = true,
-        desc = "A plugin to visualise and resolve merge conflicts.",
     },
     {
+        -- Edit and review GitHub issues and pull requests from the Neovim.
         "pwntester/octo.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -827,7 +795,6 @@ local plugins = {
             vim.cmd([[hi OctoEditable guibg=none]])
             vim.treesitter.language.register("markdown", "octo")
         end,
-        desc = "Edit and review GitHub issues and pull requests from the Neovim.",
     },
     {
         "sindrets/diffview.nvim",
@@ -865,7 +832,7 @@ local plugins = {
                 end, "gitsigns: Undo stage hunk")
 
                 map("n", "<leader>tb", function()
-                    package.loaded.gitsigns.toggle_current_line_blame()
+                    gs.toggle_current_line_blame()
                 end, "gitsigns: Toggle current line blame")
 
                 map("v", "<leader>sh", function()
@@ -881,23 +848,6 @@ local plugins = {
         },
     },
     --#endregion
-
-    -- A polished, IDE-like, highly-customizable winbar for Neovim
-    -- with drop-down menu support and multiple backends.
-
-    -- To make a plugin not be loaded
-    -- {
-    --   "NvChad/nvim-colorizer.lua",
-    --   enabled = false
-    -- },
-
-    -- All NvChad plugins are lazy-loaded by default
-    -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
-    -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
-    -- {
-    --   "mg979/vim-visual-multi",
-    --   lazy = false,
-    -- }
 }
 
 return plugins
