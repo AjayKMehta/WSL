@@ -1,10 +1,5 @@
 local overrides = require("configs.overrides")
-
-local function load_config(plugin)
-    return function()
-        require("configs." .. plugin)
-    end
-end
+local utils = require("utils")
 
 return {
     {
@@ -46,6 +41,6 @@ return {
         keys = {
             { "<Leader>ta", "<CMD>AerialToggle<CR>", mode = { "n" }, desc = "Open or close the aerial window" },
         },
-        config = load_config("aerial"),
+        config = utils.load_config("aerial"),
     },
 }

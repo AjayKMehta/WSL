@@ -1,10 +1,6 @@
 local overrides = require("configs.overrides")
 
-local function load_config(plugin)
-    return function()
-        require("configs." .. plugin)
-    end
-end
+local load_config = require("utils").load_config
 
 local haskell_ft = { "haskell", "lhaskell", "cabal", "cabalproject" }
 
