@@ -20,7 +20,7 @@ M.get_width = function(percent, min_width, max_width)
 end
 
 M.get_buf_name = function(buf)
-    local max_name_len = get_width(0.334, 60, nil)
+    local max_name_len = M.get_width(0.334, 60, nil)
     local name = buf.name
     local len = name ~= nil and string.len(name) or 0
     if len > max_name_len then
@@ -30,6 +30,13 @@ M.get_buf_name = function(buf)
         name = left .. "…" .. right
     end
     return name
+end
+
+M.map = vim.keymap.set
+
+-- First word in desc will be used for group heading in NvChad cheatsheet
+M.map_desc = function(mode, keys, cmd, desc)
+    return M.map(mode, keys, cmd, { desc = desc })
 end
 
 return M

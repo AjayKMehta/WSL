@@ -1,14 +1,9 @@
 -- See mappings here: https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/mappings.lua
 require("nvchad.mappings")
 
-local M = {}
-
-local map = vim.keymap.set
-
--- First word in desc will be used for group heading in NvChad cheatsheet
-local map_desc = function(mode, keys, cmd, desc)
-    return map(mode, keys, cmd, { desc = desc })
-end
+local utils = require("utils")
+local map = utils.map
+local map_desc = utils.map_desc
 
 -- map("n", ";", ":", { desc = "CMD enter command mode" })
 -- map("i", "jk", "<ESC>")
