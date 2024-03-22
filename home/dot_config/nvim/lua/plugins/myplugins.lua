@@ -21,7 +21,6 @@ Plugins divided into the following categories:
 10. JSON + YAML
 11. Markdown
 12. LaTeX
-13. Appearance
 14. git
 
 ]]
@@ -680,8 +679,6 @@ local plugins = {
     },
 
     -- Appearance
-    { "tomasiser/vim-code-dark" },
-    { "samharju/synthweave.nvim" },
     {
         "kevinhwang91/nvim-ufo",
         dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
@@ -702,25 +699,7 @@ local plugins = {
         end,
         config = load_config("ufo"),
     },
-    {
-        "nvim-lualine/lualine.nvim",
-        lazy = false,
-        config = load_config("lualine"),
-    },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        enabled = false,
-        opts = overrides.blankline,
-        -- version = '*',
-        main = "ibl",
-        event = { "BufReadPre", "BufNewFile" },
-        config = load_config("indent-blankline"),
-    },
-    {
-        "shellRaining/hlchunk.nvim",
-        event = { "UIEnter" },
-        config = load_config("hlchunk"),
-    },
+
     {
         "stevearc/dressing.nvim",
         lazy = false,
@@ -742,33 +721,13 @@ local plugins = {
             })
         end,
     },
-    {
-        "akinsho/bufferline.nvim",
-        version = "*",
-        dependencies = "nvim-tree/nvim-web-devicons",
-        config = load_config("bufferline"),
-    },
+
     -- Adds horizontal highlights for text filetypes, like markdown, orgmode, and neorg
     {
         "lukas-reineke/headlines.nvim",
         dependencies = "nvim-treesitter/nvim-treesitter",
         config = load_config("headlines"),
     },
-    {
-        "xiantang/darcula-dark.nvim",
-        enabled = true,
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
-    },
-    {
-        "craftzdog/solarized-osaka.nvim",
-        lazy = false,
-        enabled = false,
-        priority = 1000,
-        opts = {},
-    },
-    { "kepano/flexoki-neovim", enabled = false },
 
     --#region git
 
