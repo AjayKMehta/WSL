@@ -167,16 +167,6 @@ local plugins = {
     --#region Utility
 
     {
-        "nvim-tree/nvim-tree.lua",
-        opts = overrides.nvimtree,
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        config = function(_, opts)
-            dofile(vim.g.base46_cache .. "nvimtree")
-            require("configs.nvimtree")
-            require("nvim-tree").setup(opts)
-        end,
-    },
-    {
         "MattesGroeger/vim-bookmarks",
         cmd = {
             "BookmarkToggle",
