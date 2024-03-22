@@ -705,13 +705,6 @@ local plugins = {
         end,
     },
 
-    -- Adds horizontal highlights for text filetypes, like markdown, orgmode, and neorg
-    {
-        "lukas-reineke/headlines.nvim",
-        dependencies = "nvim-treesitter/nvim-treesitter",
-        config = load_config("headlines"),
-    },
-
     --#region git
 
     {
