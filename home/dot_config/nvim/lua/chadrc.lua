@@ -5,9 +5,9 @@ local M = {}
 local highlights = require("highlights")
 
 M.ui = {
-    theme = "rosepine",
+    theme = "catppuccin",
     theme_toggle = {
-        "rosepine",
+        "solarized_osaka",
         "catppuccin",
         "github_light",
         "night_owl",

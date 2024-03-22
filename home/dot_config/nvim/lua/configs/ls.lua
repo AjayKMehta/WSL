@@ -4,6 +4,8 @@ local ft_func = require("luasnip.extras.filetype_functions")
 
 local fmt = require("luasnip.extras.fmt").fmt
 
+-- require("nvchad.configs.luasnip")
+
 -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#config-options
 local opts = {
     updateevents = "TextChanged,TextChangedI",
