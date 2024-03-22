@@ -200,13 +200,6 @@ local plugins = {
         config = load_config("rainbow"),
     },
     {
-        "mfussenegger/nvim-lint",
-        enabled = true,
-        event = { "BufReadPre", "BufNewFile" },
-        config = load_config("lint"),
-        desc = "An asynchronous linter plugin.",
-    },
-    {
         "stevearc/conform.nvim",
         enabled = true,
         cmd = { "ConformInfo" },
