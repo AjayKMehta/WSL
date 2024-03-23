@@ -554,6 +554,9 @@ local plugins = {
             "MarkdownPreview",
             "MarkdownPreviewStop",
         },
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
         keys = { { "gm", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" } },
         config = load_config("md_preview"),
     },

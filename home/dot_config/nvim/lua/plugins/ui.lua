@@ -9,10 +9,11 @@ return {
         config = load_config("lualine"),
     },
     {
-        -- Despite being part of NvChad, doesn't really work.
-        -- Tried rainbow-delimiters integration but no luck.
+        -- Despite being part of NvChad, doesn't work!
+        -- Tried rainbow-delimiters integration also but same story.
         "lukas-reineke/indent-blankline.nvim",
         enabled = false,
+        version = "*",
         event = { "BufReadPre", "BufNewFile" },
     },
     {
