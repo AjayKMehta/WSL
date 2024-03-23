@@ -4,7 +4,7 @@ return {
     {
         "rcarriga/nvim-dap-ui",
         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
-        config = load_config("dap-ui"),
+        config = load_config("dap_ui"),
     },
     {
         "mfussenegger/nvim-dap",
@@ -30,6 +30,11 @@ return {
 
         "jay-babu/mason-nvim-dap.nvim",
         dependencies = { "williamboman/mason.nvim" },
-        config = load_config("mason-nvim-dap"),
+        config = function()
+            require("mason").setup()
+            require("mason-nvim-dap").setup({
+                ensure_installed = { "python", "bash", "coreclr", "haskell", "jq", "stylua" },
+            })
+        end,
     },
 }

@@ -21,6 +21,8 @@ o.relativenumber = false
 o.undodir = vim.fn.stdpath("cache") .. "/undo"
 o.autoindent = true
 
+o.updatetime = 100
+
 -- Highlight trailing characters
 
 -- vim.o doesn't work!

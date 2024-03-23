@@ -74,7 +74,13 @@ local plugins = {
             {
                 "JoosepAlviste/nvim-ts-context-commentstring",
                 lazy = false,
-                config = load_config("ts-context-commentstring"),
+                config = function()
+                    -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring/wiki/Integrations#plugins-with-a-pre-comment-hook
+                    require("ts_context_commentstring").setup({
+                        enable_autocmd = false,
+                    })
+                    vim.g.skip_ts_context_commentstring_module = true
+                end,
             },
         },
     },
@@ -138,13 +144,13 @@ local plugins = {
         dependencies = {
             -- "nvim-treesitter/nvim-treesitter",
         },
-        config = load_config("ts-textobjects"),
+        config = load_config("ts_textobjects"),
     },
     {
         -- Helps you navigate and move nodes around based on Treesitter API.
         "ziontee113/syntax-tree-surfer",
         event = "BufRead",
-        config = load_config("syntax-tree-surfer"),
+        config = load_config("syntax_tree_surfer"),
     },
     {
         -- Rainbow delimiters with Treesitter
@@ -314,7 +320,7 @@ local plugins = {
                 -- Completion plugin for git
                 "petertriho/cmp-git",
                 dependencies = { "nvim-lua/plenary.nvim" },
-                config = load_config("cmpgit"),
+                config = load_config("cmp_git"),
             },
         },
     },
@@ -447,7 +453,11 @@ local plugins = {
         "mrcjkb/haskell-snippets.nvim",
         ft = haskell_ft,
         dependencies = { "L3MON4D3/LuaSnip" },
-        config = load_config("haskell-snippets"),
+        config = function()
+            local haskell_snippets = require("haskell-snippets").all
+
+            require("luasnip").add_snippets("haskell", haskell_snippets, { key = "haskell" })
+        end,
     },
     {
         "luc-tielen/telescope_hoogle",
@@ -545,7 +555,7 @@ local plugins = {
             "MarkdownPreviewStop",
         },
         keys = { { "gm", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" } },
-        config = load_config("md-preview"),
+        config = load_config("md_preview"),
     },
     {
         "antonk52/markdowny.nvim",
