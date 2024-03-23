@@ -14,7 +14,7 @@ local yank_highlight_id = augroup("highlightyank", { clear = true })
 autocmd("TextYankPost", {
     group = yank_highlight_id,
     callback = function()
-        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150, on_visual = true })
+        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200, on_visual = true })
     end,
 })
 
@@ -52,14 +52,11 @@ autocmd("LspAttach", {
 -- Set conceallevel for markdown files
 
 -- https://github.com/catgoose/nvim/blob/main/lua/config/autocmd.lua#L2
-local conceal_level_ft = {
-    "markdown",
-}
 local set_filetype = augroup("SetFileTypeOptLocalOptions", { clear = true })
 
 autocmd({ "FileType" }, {
     group = set_filetype,
-    pattern = conceal_level_ft,
+    pattern = { "*.*md" },
     callback = function()
         vim.opt_local.conceallevel = 2
     end,
