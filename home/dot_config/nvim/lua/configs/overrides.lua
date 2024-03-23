@@ -385,25 +385,6 @@ M.nvimtree = {
     },
 }
 
-M.gitsigns = {
-    attach_to_untracked = true,
-    current_line_blame = true,
-    current_line_blame_opts = {
-        virt_text = true,
-        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-        delay = 1000,
-        ignore_whitespace = false,
-    },
-    -- https://vonheikemen.github.io/devlog/tools/neovim-plugins-to-get-started/
-    signs = {
-        add = { text = "▎" },
-        change = { text = "▎" },
-        delete = { text = "➤" },
-        topdelete = { text = "➤" },
-        changedelete = { text = "▎" },
-    },
-}
-
 M.cmp = {
     -- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#disabling-completion-in-certain-contexts-such-as-comments
     enabled = function()

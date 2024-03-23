@@ -38,7 +38,7 @@ return {
                 add = { hl = "GitSignsAdd", text = "┃", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
                 change = {
                     hl = "GitSignsChange",
-                    text = "┃",
+                    text = "▎",
                     numhl = "GitSignsChangeNr",
                     linehl = "GitSignsChangeLn",
                 },
@@ -50,7 +50,7 @@ return {
                 },
                 topdelete = {
                     hl = "GitSignsDelete",
-                    text = "‾",
+                    text = "➤",
                     numhl = "GitSignsDeleteNr",
                     linehl = "GitSignsDeleteLn",
                 },
@@ -66,7 +66,7 @@ return {
             numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
             linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
             word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-            show_deleted = true, -- Toggle with `:Gitsigns toggle_deleted`
+            show_deleted = false, -- Toggle with `:Gitsigns toggle_deleted`
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
 
