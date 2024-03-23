@@ -27,7 +27,7 @@ hlchunk.setup({
             right_arrow = ">",
         },
         style = {
-            { fg = "#806d9c" }, -- fg = "#87afaf"
+            { fg = "#855cc4" }, -- fg = "#87afaf"
             { fg = "#c21f30" }, -- this fg is used to highlight wrong chunk
         },
         textobject = "",
@@ -36,9 +36,9 @@ hlchunk.setup({
     },
     indent = {
         enable = true,
-        use_treesitter = true,
+        use_treesitter = false,
         -- more codes can be found at https://unicodeplus.com/
-        chars = { "│", "¦", "┆", "┊" },
+        chars = { "┃", "│", "¦", "┆", "┊" },
         -- https://github.com/lukas-reineke/indent-blankline.nvim#rainbow-delimitersnvim-integration
         style = {
             "#E06C75",
