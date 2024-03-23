@@ -347,6 +347,5 @@ map_desc("n", "<leader>go", "<cmd>Outline<cr>", "Toggle Outline")
 --#region octo
 
 map_desc("n", "<leader>gO", "<cmd>Octo<cr>", "Octo")
-map_desc("n", "<leader>gp", "<cmd>Octo pr list<cr>", "Octo PR list")
 
 --#endregion

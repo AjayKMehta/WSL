@@ -191,6 +191,7 @@ local plugins = {
                 function()
                     require("notify").dismiss({ silent = true, pending = true })
                 end,
+                desc = "Dismiss notifications.",
             },
         },
         opts = overrides.notify,
@@ -618,44 +619,85 @@ local plugins = {
         "lewis6991/gitsigns.nvim",
         opts = {
             signs = {
-                add = { text = "│" },
-                change = { text = "│" },
-                delete = { text = "󰍵" },
-                topdelete = { text = "‾" },
-                changedelete = { text = "~" },
-                untracked = { text = "│" },
+                add = { hl = "GitSignsAdd", text = "┃", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+                change = {
+                    hl = "GitSignsChange",
+                    text = "┃",
+                    numhl = "GitSignsChangeNr",
+                    linehl = "GitSignsChangeLn",
+                },
+                delete = {
+                    hl = "GitSignsDelete",
+                    text = "󰍵",
+                    numhl = "GitSignsDeleteNr",
+                    linehl = "GitSignsDeleteLn",
+                },
+                topdelete = {
+                    hl = "GitSignsDelete",
+                    text = "‾",
+                    numhl = "GitSignsDeleteNr",
+                    linehl = "GitSignsDeleteLn",
+                },
+                changedelete = {
+                    hl = "GitSignsChange",
+                    text = "~",
+                    numhl = "GitSignsChangeNr",
+                    linehl = "GitSignsChangeLn",
+                },
+                untracked = { hl = "GitSignsAdd", text = "┆", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
             },
+            signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+            numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
+            linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+            word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
 
-                local function opts(desc)
-                    return { buffer = bufnr, desc = desc }
-                end
                 local map = function(mode, keys, cmd, desc)
                     return vim.keymap.set(mode, keys, cmd, { buffer = bufnr, desc = desc })
                 end
 
-                map("n", "<leader>sh", function()
-                    gs.stage_hunk()
-                end, "gitsigns: Stage hunk")
+                -- Stage
 
-                map("n", "<leader>uh", function()
-                    gs.undo_stage_hunk()
-                end, "gitsigns: Undo stage hunk")
+                map("n", "<leader>gs", gs.stage_hunk, "gitsigns: Stage hunk")
 
-                map("n", "<leader>tb", function()
-                    gs.toggle_current_line_blame()
-                end, "gitsigns: Toggle current line blame")
-
-                map("v", "<leader>sh", function()
+                map("v", "<leader>gs", function()
                     gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
                 end, "gitsigns: Stage hunk")
 
-                map("v", "<leader>rh", function()
+                map("n", "<leader>gS", gs.stage_buffer, "gitsigns: Stage buffer")
+
+                -- Undo stage
+
+                map("n", "<leader>gu", gs.undo_stage_hunk, "gitsigns: Undo stage hunk")
+
+                map("n", "<leader>gU", gs.reset_buffer_index, "gitsigns:  Unstage all hunks for current buffer")
+
+                -- Reset
+
+                map("n", "<leader>gr", gs.reset_hunk, "gitsigns: Reset hunk")
+
+                map("v", "<leader>gr", function()
                     gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
                 end, "gitsigns: Reset hunk")
 
-                map("n", "<leader>sb", gs.stage_buffer, "gitsigns: Stage buffer")
+                -- Blame
+
+                map("n", "<leader>tb", gs.toggle_current_line_blame, "gitsigns: Toggle current line blame")
+
+                map("n", "<leader>gb", function()
+                    gs.blame_line({ full = true, ignore_whitespace = false })
+                end, "gitsigns: blame line")
+
+                map("n", "<leader>gB", function()
+                    gs.blame_line({ full = true, ignore_whitespace = true })
+                end, "gitsigns: blame line (ignore whitespace)")
+
+                -- Navigation
+
+                map({ "n", "v" }, "]h", gs.prev_hunk, "gitsigns: Go to previous hunk")
+
+                map({ "n", "v" }, "[h", gs.next_hunk, "gitsigns: Go to next hunk")
             end,
         },
     },
