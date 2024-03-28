@@ -84,3 +84,20 @@ autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
         require("lint").try_lint()
     end),
 })
+
+-- https://nvchad.com/docs/recipes/#restore_cursor_position
+
+autocmd("BufReadPost", {
+    pattern = "*",
+    callback = function()
+        local line = vim.fn.line("'\"")
+        if
+            line > 1
+            and line <= vim.fn.line("$")
+            and vim.bo.filetype ~= "commit"
+            and vim.fn.index({ "xxd", "gitrebase" }, vim.bo.filetype) == -1
+        then
+            vim.cmd('normal! g`"')
+        end
+    end,
+})
