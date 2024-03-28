@@ -14,7 +14,11 @@ local disabled = {
     n = {
         -- "<C-b>",
         -- "gi", -- Clashes with Treesitter keymap
-        -- "<leader>lf", -- Clashes with conform keymap
+        "<leader>lf", -- NvChad maps this to Lsp floating diagnostics
+        "<leader>fm", -- Duplicate for above
+        "<leader>fh", -- NvChad maps this to Find help pages
+        "<leader>b", -- Use as prefix
+        "<leader>cc", -- Disabled blankline
     },
 }
 
@@ -30,12 +34,17 @@ map_desc("n", "<leader>tt", function()
 end, "Toggle theme")
 
 map_desc("n", "<leader>tT", function()
-	require("base46").toggle_transparency()
+    require("base46").toggle_transparency()
 end, "Toggle theme")
 
 map_desc("n", "gli", function()
     vim.lsp.buf.implementation()
 end, "LSP implementation")
+
+-- tabufline (NVChad plugin)
+-- NVChad maps this to <leader>b
+-- Use Tab and Shift+Tab to navigate between buffers
+map_desc("n", "<leader>bb", "<cmd>enew<CR>", "Buffer New")
 
 --#region ghcup
 
@@ -45,28 +54,29 @@ map_desc("n", "<leader>gg", "<cmd>GHCup <CR>", "ghcup")
 
 --#region Telescope
 
-map_desc("n", "<leader>ff", "<cmd> Telescope find_files <CR>", "Telescope: Find files")
-map_desc(
-    "n",
-    "<leader>fa",
-    "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
-    "Telescope: Find all"
-)
-map_desc("n", "<leader>fw", "<cmd> Telescope live_grep <CR>", "Telescope: Live grep")
-map_desc("n", "<leader>fb", "<cmd> Telescope buffers <CR>", "Telescope: Find buffers")
-map_desc("n", "<leader>f?", "<cmd> Telescope help_tags <CR>", "Telescope: Help page")
-map_desc("n", "<leader>fo", "<cmd> Telescope oldfiles <CR>", "Telescope: Find oldfiles")
-map_desc("n", "<leader>fz", "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Telescope: Find in current buffer")
-map_desc("n", "<leader>fh", "<cmd> Telescope file_browser cwd=$HOME <CR>", "Telescope: Search home")
-map_desc("n", "<leader>fc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope: 🔍 Search config")
-map_desc("n", "<leader>fk", "<cmd> Telescope keymaps <CR>", "Telescope: ⌨ Keymap")
-map_desc("n", "<leader>fu", "<cmd>Telescope undo<CR>", "Telescope:  Undo tree")
+map_desc("n", "<leader>f?", "<cmd> Telescope help_tags <CR>", "Telescope Help page")
+
+map_desc("n", "<leader>fh", "<cmd> Telescope file_browser cwd=$HOME <CR>", "Telescope Search home")
+map_desc("n", "<leader>fc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope 🔍 Search config")
+map_desc("n", "<leader>fk", "<cmd> Telescope keymaps <CR>", "Telescope ⌨ Keymap")
+map_desc("n", "<leader>fu", "<cmd>Telescope undo<CR>", "Telescope  Undo tree")
 map_desc("n", "<leader>fy", function()
     require("telescope.builtin").buffers()
 end, "Telescope: Search buffers")
-map_desc("n", "<leader>fd", "<cmd>Telescope lsp_document_symbols<CR>", "Telescope: Search Document Symbols")
-map_desc("n", "leader>sw", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Search Workspace Symbols")
-map_desc("n", "<leader>fe", "<cmd>Telescope emoji<CR>", "Telescope: Search emojis")
+map_desc("n", "<leader>fd", "<cmd>Telescope lsp_document_symbols<CR>", "Telescope Search Document Symbols")
+map_desc("n", "leader>sw", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Telescope Search Workspace Symbols")
+map_desc("n", "<leader>fe", "<cmd>Telescope emoji<CR>", "Telescope Search emojis")
+map_desc("n", "<leader>fn", function()
+    require("telescope").extensions.notify.notify()
+end, "Telescope notifications")
+map_desc("n", "<leader>fF<leader>", function()
+    require("telescope").extensions.frecency.frecency({})
+end, "Telescope frecency")
+map_desc("n", "<leader>fFc", function()
+    require("telescope").extensions.frecency.frecency({
+        workspace = "CWD",
+    })
+end, "Telescope frecency (CWD)")
 
 --#endregion
 
