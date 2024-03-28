@@ -343,6 +343,7 @@ local plugins = {
             "benfowler/telescope-luasnip.nvim",
             "tom-anders/telescope-vim-bookmarks.nvim",
             "debugloop/telescope-undo.nvim",
+            "nvim-telescope/telescope-frecency.nvim",
             -- "stevearc/aerial.nvim",
         },
         config = function(_, opts)
@@ -354,6 +355,7 @@ local plugins = {
             telescope.load_extension("emoji")
             telescope.load_extension("themes")
             telescope.load_extension("terms")
+            telescope.load_extension("notify")
             -- telescope.load_extension("aerial")
         end,
     },
