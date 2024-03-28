@@ -29,6 +29,10 @@ map_desc("n", "<leader>tt", function()
     require("base46").toggle_theme()
 end, "Toggle theme")
 
+map_desc("n", "<leader>tT", function()
+	require("base46").toggle_transparency()
+end, "Toggle theme")
+
 map_desc("n", "gli", function()
     vim.lsp.buf.implementation()
 end, "LSP implementation")
