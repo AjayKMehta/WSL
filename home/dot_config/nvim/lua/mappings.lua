@@ -70,6 +70,7 @@ map_desc("n", "<leader>fcc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>"
 map_desc("n", "<leader>fcC", function()
     require("telescope.builtin").commands()
 end, "Telescope Commands")
+
 map_desc("n", "<leader>fcs", function()
     require("telescope.builtin").colorscheme()
 end, "Telescope Colorschemes")
@@ -79,9 +80,11 @@ map_desc("n", "<leader>fu", "<cmd>Telescope undo<CR>", "Telescope Undo tree "
 map_desc("n", "<leader>fy", function()
     require("telescope.builtin").buffers()
 end, "Telescope: Search buffers")
-map_desc("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", "Telescope Search Document Symbols")
-map_desc("n", "<leader>fS", "<cmd>Telescope lsp_workspace_symbols<CR>", "Telescope Search Workspace Symbols")
-map_desc("n", "leader>sw", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Telescope Search Workspace Symbols")
+
+map_desc("n", "<leader>fls", "<cmd>Telescope lsp_document_symbols<CR>", "Telescope Search Document Symbols")
+map_desc("n", "<leader>flw", "<cmd>Telescope lsp_workspace_symbols<CR>", "Telescope Search Workspace Symbols")
+map_desc("n", "leader>fld", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Telescope Search Workspace Symbols")
+
 map_desc("n", "<leader>fe", "<cmd>Telescope emoji<CR>", "Telescope Search emojis")
 map_desc("n", "<leader>fn", function()
     require("telescope").extensions.notify.notify()
