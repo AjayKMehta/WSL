@@ -1,6 +1,7 @@
 -- https://github.com/sindrets/diffview.nvim/issues/386#issuecomment-1614398830
 local actions = require("diffview.actions")
 require("diffview").setup({
+    enhanced_diff_hl = true,
     keymaps = {
         file_panel = {
             {
