@@ -70,12 +70,24 @@ map_desc("n", "<leader>fcc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>"
 map_desc("n", "<leader>fcC", function()
     require("telescope.builtin").commands()
 end, "Telescope Commands")
+map_desc("n", "<leader>fch", function()
+    require("telescope.builtin").command_history()
+end, "Telescope Command History")
 
 map_desc("n", "<leader>fcs", function()
     require("telescope.builtin").colorscheme()
 end, "Telescope Colorschemes")
 
-map_desc("n", "<leader>fk", "<cmd> Telescope keymaps <CR>", "Telescope Keymap ⌨")
+map_desc("n", "<leader>fS", function()
+    require("telescope.builtin").search_history()
+end, "Telescope Search History")
+
+map_desc("n", "<leader>fk", function()
+    require("telescope.builtin").keymaps()
+end, "Telescope Keymap ⌨")
+map_desc("n", "<leader>fm", function()
+    require("telescope.builtin").man_pages()
+end, "Telescope Man Pages")
 map_desc("n", "<leader>fu", "<cmd>Telescope undo<CR>", "Telescope Undo tree ")
 map_desc("n", "<leader>fy", function()
     require("telescope.builtin").buffers()
@@ -96,6 +108,14 @@ end, "Telescope Jumplist")
 map_desc("n", "<leader>fR", function()
     require("telescope.builtin").registers()
 end, "Telescope Registers")
+-- Status: not working.
+-- See https://github.com/benfowler/telescope-luasnip.nvim/issues/22
+map_desc("n", "<leader>fs", function()
+    require("telescope").extensions.luasnip.luasnip()
+end, "Telescope LuaSnip")
+map_desc("n", "<leader>ft", function()
+    require("telescope.builtin").tags()
+end, "Telescope Tags")
 
 map_desc("n", "<leader>fF<leader>", function()
     require("telescope").extensions.frecency.frecency({})
@@ -106,12 +126,16 @@ map_desc("n", "<leader>fFc", function()
     })
 end, "Telescope frecency (CWD)")
 
+-- NVChad provides git status via <leader>gt
 map_desc("n", "<leader>ga", function()
     require("telescope.builtin").git_branches()
 end, "Telescope Checkout branch")
 map_desc("n", "<leader>gc", function()
     require("telescope.builtin").git_commits()
 end, "Telescope Checkout commit")
+map_desc("n", "<leader>gs", function()
+    require("telescope.builtin").git_stash()
+end, "Telescope git stash")
 
 --#endregion
 
