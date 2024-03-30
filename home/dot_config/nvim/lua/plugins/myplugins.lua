@@ -356,6 +356,8 @@ local plugins = {
             telescope.load_extension("themes")
             telescope.load_extension("terms")
             telescope.load_extension("notify")
+            telescope.load_extension("luasnip")
+            telescope.load_extension("undo")
             -- telescope.load_extension("aerial")
         end,
     },
