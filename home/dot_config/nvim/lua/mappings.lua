@@ -126,6 +126,14 @@ map_desc("n", "<leader>fFc", function()
     })
 end, "Telescope frecency (CWD)")
 
+map_desc("n", "<leader>fHl", function()
+    require("telescope-helpgrep").live_grep()
+end, "Telescope Grep help (live grep)")
+
+map_desc("n", "<leader>fHg", function()
+    require("telescope-helpgrep").grep_string()
+end, "Telescope Grep help (grep string)")
+
 -- NVChad provides git status via <leader>gt
 map_desc("n", "<leader>ga", function()
     require("telescope.builtin").git_branches()

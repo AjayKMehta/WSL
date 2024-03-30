@@ -344,6 +344,7 @@ local plugins = {
             "tom-anders/telescope-vim-bookmarks.nvim",
             "debugloop/telescope-undo.nvim",
             "nvim-telescope/telescope-frecency.nvim",
+			"catgoose/telescope-helpgrep.nvim",
             -- "stevearc/aerial.nvim",
         },
         config = function(_, opts)
@@ -358,10 +359,11 @@ local plugins = {
             telescope.load_extension("notify")
             telescope.load_extension("luasnip")
             telescope.load_extension("undo")
+	telescope.load_extension("helpgrep")
+	telescope.load_extension("file_browser")
             -- telescope.load_extension("aerial")
         end,
     },
-
     {
         "nvim-telescope/telescope-file-browser.nvim",
         dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
