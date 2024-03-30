@@ -16,9 +16,11 @@ local disabled = {
         -- "gi", -- Clashes with Treesitter keymap
         "<leader>lf", -- NvChad maps this to Lsp floating diagnostics
         "<leader>fm", -- Duplicate for above
+        "<leader>fb", -- NvChad maps this to Find buffers
         "<leader>fh", -- NvChad maps this to Find help pages
         "<leader>b", -- Use as prefix
         "<leader>cc", -- Disabled blankline
+        "<leader>cm", -- NvChad maps this to Telescope git commits
     },
 }
 
@@ -54,16 +56,16 @@ map_desc("n", "<leader>gg", "<cmd>GHCup <CR>", "ghcup")
 
 --#region Telescope
 
-map_desc("n", "<leader>f?", "<cmd> Telescope help_tags <CR>", "Telescope Help page")
+map_desc("n", "<leader>f?", function()
+    require("telescope.builtin").help_tags()
+end, "Telescope Help page")
 
 map_desc("n", "<leader>fh", "<cmd> Telescope file_browser cwd=$HOME <CR>", "Telescope Search home")
-map_desc("n", "<leader>fc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope 🔍 Search config")
-map_desc("n", "<leader>fk", "<cmd> Telescope keymaps <CR>", "Telescope ⌨ Keymap")
-map_desc("n", "<leader>fu", "<cmd>Telescope undo<CR>", "Telescope  Undo tree")
+map_desc("n", "<leader>fcc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope 🔍 Search config")
 map_desc("n", "<leader>fy", function()
     require("telescope.builtin").buffers()
 end, "Telescope: Search buffers")
-map_desc("n", "<leader>fd", "<cmd>Telescope lsp_document_symbols<CR>", "Telescope Search Document Symbols")
+map_desc("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", "Telescope Search Document Symbols")
 map_desc("n", "leader>sw", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Telescope Search Workspace Symbols")
 map_desc("n", "<leader>fe", "<cmd>Telescope emoji<CR>", "Telescope Search emojis")
 map_desc("n", "<leader>fn", function()
@@ -128,11 +130,21 @@ end, "Hover: Close")
 --#region dap
 
 -- Keep same as VS + VS Code
-map_desc("n", "<F9>", "<cmd> DapToggleBreakpoint <CR>", "DAP: Toggle breakpoint")
-map_desc("n", "<F5>", "<cmd> DapContinue<CR>", "DAP: Launch debugger")
-map_desc("n", "<F10>", "<cmd> DapStepOver <CR>", "DAP: Step over")
-map_desc("n", "<F11>", "<cmd> DapStepInto <CR>", "DAP: Step into")
-map_desc("n", "<S-F11>", "<cmd> DapStepOut <CR>", "DAP: Step out")
+map_desc("n", "<F9>", function()
+    require("dap").toggle_breakpoint()
+end, "DAP: Toggle breakpoint")
+map_desc("n", "<F5>", function()
+    require("dap").continue()
+end, "DAP: Launch debugger")
+map_desc("n", "<F10>", function()
+    require("dap").step_over()
+end, "DAP: Step over")
+map_desc("n", "<F11>", function()
+    require("dap").step_into()
+end, "DAP: Step into")
+map_desc("n", "<S-F11>", function()
+    require("dap").step_out()
+end, "DAP: Step out")
 
 map_desc("n", "<leader>rb", function()
     require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
