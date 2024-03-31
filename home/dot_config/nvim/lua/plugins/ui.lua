@@ -1,6 +1,11 @@
 local load_config = require("utils").load_config
 
 return {
+    {
+        -- Pretty hover messages.
+        "Fildo7525/pretty_hover",
+        event = "LspAttach",
+    },
     { "tomasiser/vim-code-dark" },
     { "samharju/synthweave.nvim" },
     {

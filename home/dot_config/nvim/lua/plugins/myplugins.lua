@@ -21,13 +21,6 @@ Plugins divided into the following categories:
 local plugins = {
     --#region Treesitter + LSP
 
-	{
-		-- Pretty hover messages.
-		"Fildo7525/pretty_hover",
-		event = "LspAttach",
-	},
-	{ "poljar/typos.nvim", lazy = false },
-
     {
         -- A framework for running functions on Tree-sitter nodes, and updating the buffer with the result.
         "ckolkey/ts-node-action",
@@ -132,14 +125,6 @@ local plugins = {
         event = { "BufReadPost", "BufNewFile" },
         config = load_config("rainbow"),
     },
-	{
-		-- Lightweight formatter plugin
-		"stevearc/conform.nvim",
-		enabled = true,
-		cmd = { "ConformInfo" },
-		event = { "BufReadPre", "BufNewFile" },
-		config = load_config("conform"),
-	},
 
     --#endregion
 
@@ -325,148 +310,95 @@ local plugins = {
         },
     },
 
-	-- Haskell
-	{
-		"hasufell/ghcup.vim",
-		lazy = false,
-		dependencies = {
-			{ "rbgrouleff/bclose.vim" },
-		},
-	},
-	-- TODO: Comment out later when switch extensions.
-	{
-		"neovimhaskell/haskell-vim",
-		ft = haskell_ft,
-		-- https://github.com/neovimhaskell/haskell-vim#configuration
-		config = function()
-	-- to enable highlighting of `forall`
-	vim.g.haskell_enable_quantification = 1
-	-- to enable highlighting of `mdo` and `rec`
-	vim.g.haskell_enable_recursivedo = 1
-	-- to enable highlighting of `proc`
-	vim.g.haskell_enable_arrowsyntax = 1
-	-- to enable highlighting of `pattern`
-	vim.g.haskell_enable_pattern_synonyms = 1
-	-- to enable highlighting of type roles
-	vim.g.haskell_enable_typeroles = 1
-	-- to enable highlighting of `static`
-	vim.g.haskell_enable_static_pointers = 1
-	-- to enable highlighting of backpack keywords
-	vim.g.haskell_backpack = 1
-		end,
-	},
-	{
-		"mrcjkb/haskell-snippets.nvim",
-		ft = haskell_ft,
-		dependencies = { "L3MON4D3/LuaSnip" },
-		config = function()
-	local haskell_snippets = require("haskell-snippets").all
+    -- Haskell
+    {
+        "hasufell/ghcup.vim",
+        lazy = false,
+        dependencies = {
+            { "rbgrouleff/bclose.vim" },
+        },
+    },
+    -- TODO: Comment out later when switch extensions.
+    {
+        "neovimhaskell/haskell-vim",
+        ft = haskell_ft,
+        -- https://github.com/neovimhaskell/haskell-vim#configuration
+        config = function()
+            -- to enable highlighting of `forall`
+            vim.g.haskell_enable_quantification = 1
+            -- to enable highlighting of `mdo` and `rec`
+            vim.g.haskell_enable_recursivedo = 1
+            -- to enable highlighting of `proc`
+            vim.g.haskell_enable_arrowsyntax = 1
+            -- to enable highlighting of `pattern`
+            vim.g.haskell_enable_pattern_synonyms = 1
+            -- to enable highlighting of type roles
+            vim.g.haskell_enable_typeroles = 1
+            -- to enable highlighting of `static`
+            vim.g.haskell_enable_static_pointers = 1
+            -- to enable highlighting of backpack keywords
+            vim.g.haskell_backpack = 1
+        end,
+    },
+    {
+        "mrcjkb/haskell-snippets.nvim",
+        ft = haskell_ft,
+        dependencies = { "L3MON4D3/LuaSnip" },
+        config = function()
+            local haskell_snippets = require("haskell-snippets").all
 
-	require("luasnip").add_snippets("haskell", haskell_snippets, { key = "haskell" })
-		end,
-	},
-	{
-		"luc-tielen/telescope_hoogle",
-		ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
-		dependencies = {
-			{ "nvim-telescope/telescope.nvim" },
-		},
-		config = function()
-	local ok, telescope = pcall(require, "telescope")
-	if ok then
-		telescope.load_extension("hoogle")
-	end
-		end,
-	},
+            require("luasnip").add_snippets("haskell", haskell_snippets, { key = "haskell" })
+        end,
+    },
+    {
+        "luc-tielen/telescope_hoogle",
+        ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
+        dependencies = {
+            { "nvim-telescope/telescope.nvim" },
+        },
+        config = function()
+            local ok, telescope = pcall(require, "telescope")
+            if ok then
+                telescope.load_extension("hoogle")
+            end
+        end,
+    },
 
-	-- Editing
-	{
-		"kylechui/nvim-surround",
-		version = "*", -- Use for stability; omit to use `main` branch for the latest features
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-	require("nvim-surround").setup({
-		-- configuration here, or leave empty to use defaults
-	})
-		end,
-	},
-	{
-		"max397574/better-escape.nvim",
-		event = "InsertEnter",
-		config = function()
-	require("better_escape").setup()
-		end,
-	},
-	{ "junegunn/vim-peekaboo" },
-	{
-		-- Move lines and blocks of code
-		"echasnovski/mini.move",
-		version = false,
-		opts = { options = { reindent_linewise = true } },
-		event = "VeryLazy",
-	},
-	{
-		-- Show all todo comments in solution
-		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-	require("todo-comments").setup({})
-		end,
-		event = "VeryLazy",
-	},
-
-	-- Markdown
-
-	{
-		"iamcco/markdown-preview.nvim",
-		ft = "markdown",
-		-- https://github.com/iamcco/markdown-preview.nvim/issues/616#issuecomment-1774970354
-		build = function()
-	local job = require("plenary.job")
-	local install_path = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim/app"
-	local cmd = "bash"
-
-	if vim.fn.has("win64") == 1 then
-		cmd = "pwsh"
-	end
-
-	job:new({
-		command = cmd,
-		args = { "-c", "npm install && git restore ." },
-		cwd = install_path,
-		on_exit = function()
-			print("Finished installing markdown-preview.nvim")
-		end,
-		on_stderr = function(_, data)
-			print(data)
-		end,
-	}):start()
-		end,
-		lazy = true,
-		cmd = {
-			"MarkdownPreviewToggle",
-			"MarkdownPreview",
-			"MarkdownPreviewStop",
-		},
-		init = function()
-	vim.g.mkdp_filetypes = { "markdown" }
-		end,
-		keys = { { "gm", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" } },
-		config = load_config("md_preview"),
-	},
-	{
-		"antonk52/markdowny.nvim",
-		ft = { "markdown" },
-		config = function()
-	require("markdowny").setup()
-		end,
-		--  Add key bindings for markdown.,
-
-		-- <C-k>: Adds a link to visually selected text.
-		-- <C-b>: Toggles visually selected text to bold.
-		-- <C-i>: Toggles visually selected text to italic.
-		-- <C-e>: Toggles visually selected text to inline code, and V-LINE selected text to a multiline code block.
-	},
+    -- Editing
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("nvim-surround").setup({
+                -- configuration here, or leave empty to use defaults
+            })
+        end,
+    },
+    {
+        "max397574/better-escape.nvim",
+        event = "InsertEnter",
+        config = function()
+            require("better_escape").setup()
+        end,
+    },
+    { "junegunn/vim-peekaboo" },
+    {
+        -- Move lines and blocks of code
+        "echasnovski/mini.move",
+        version = false,
+        opts = { options = { reindent_linewise = true } },
+        event = "VeryLazy",
+    },
+    {
+        -- Show all todo comments in solution
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("todo-comments").setup({})
+        end,
+        event = "VeryLazy",
+    },
 
     -- Appearance
     {
