@@ -179,18 +179,44 @@ lspconfig.yamlls.setup({
 
 require("configs.powershell")
 
-lspconfig.pyright.setup({
+lspconfig.basedpyright.setup({
     on_attach = on_attach,
     -- on_init = on_init,
     capabilities = capabilities,
     filetypes = { "python" },
     settings = {
-        python = {
+        basedpyright = {
+            -- Using Ruff's import organizer
+            disableOrganizeImports = true,
             analysis = {
-                autoImportCompletions = true,
                 autoSearchPaths = true,
-                diagnosticMode = "workspace",
+                diagnosticMode = "openFilesOnly",
                 useLibraryCodeForTypes = true,
+                typeCheckingMode = "standard",
+            },
+            -- https://detachhead.github.io/basedpyright/#/configuration?id=type-check-diagnostics-settingss
+            diagnosticSeverityOverrides = {
+                -- https://github.com/DetachHead/basedpyright/issues/168
+                reportMissingSuperCall = false,
+                reportUnusedImport = "warning",
+                reportUnnecessaryIsInstance = "warning",
+                reportImplicitStringConcatenation = "warning",
+                reportIgnoreCommentWithoutRule = "warning",
+                reportAny = true,
+                analyzeUnannotatedFunctions = false,
+                strictDictionaryInference = "warning",
+                strictListInference = "warning",
+                strictParameterNoneValue = "warning",
+                deprecateTypingAliases = "warning",
+                reportPropertyTypeMismatch = "warning",
+                true,
+                reportMissingImports = "warning",
+                reportDuplicateImport = "error",
+                reportImportCycles = "error",
+                reportConstantRedefinition = "error",
+                reportIncompatibleMethodOverride = "error",
+                reportUndefinedVariable = false, -- ruff handles this with F822
+                reportAssertAlwaysTrue = "error",
             },
         },
     },
