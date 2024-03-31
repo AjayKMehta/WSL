@@ -17,4 +17,20 @@ return {
         dependencies = "neovim/nvim-lspconfig",
         event = "VeryLazy",
     },
+    {
+        url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+            require("lsp_lines").setup()
+            require("lsp_lines").toggle()
+        end,
+        keys = {
+            {
+                "<leader>lt",
+                function()
+                    require("lsp_lines").toggle()
+                end,
+                desc = "LSP Toggle inline diagnostics",
+            },
+        },
+    },
 }
