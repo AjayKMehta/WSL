@@ -194,20 +194,19 @@ lspconfig.basedpyright.setup({
                 useLibraryCodeForTypes = true,
                 typeCheckingMode = "standard",
             },
-            -- https://detachhead.github.io/basedpyright/#/configuration?id=type-check-diagnostics-settingss
+            -- https://detachhead.github.io/basedpyright/#/configuration?id=type-check-diagnostics-settings
+            -- Severity level can be boolean or a string value of "none", "warning", "information", or "error".
             diagnosticSeverityOverrides = {
                 -- https://github.com/DetachHead/basedpyright/issues/168
                 reportMissingSuperCall = false,
                 reportUnusedImport = "warning",
                 reportUnnecessaryIsInstance = "warning",
                 reportImplicitStringConcatenation = "warning",
-                reportIgnoreCommentWithoutRule = "warning",
-                reportAny = true,
                 analyzeUnannotatedFunctions = false,
-                strictDictionaryInference = "warning",
-                strictListInference = "warning",
-                strictParameterNoneValue = "warning",
-                deprecateTypingAliases = "warning",
+                strictDictionaryInference = true,
+                strictListInference = true,
+                strictParameterNoneValue = true,
+                deprecateTypingAliases = true,
                 reportPropertyTypeMismatch = "warning",
                 true,
                 reportMissingImports = "warning",
@@ -216,7 +215,26 @@ lspconfig.basedpyright.setup({
                 reportConstantRedefinition = "error",
                 reportIncompatibleMethodOverride = "error",
                 reportUndefinedVariable = false, -- ruff handles this with F822
+                reportUnusedVariable = false, -- let ruff handle this
                 reportAssertAlwaysTrue = "error",
+                reportInconsistentOverload = "warning",
+                reportInvalidTypeArguments = "warning",
+                reportNoOverloadImplementation = "warning",
+                reportRedeclaration = "error",
+                reportUntypedNamedTuple = "warning",
+                reportPrivateUsage = "warning",
+                reportTypeCommentUsage = "warning", -- type comments are deprecated since Python 3.6
+                reportDeprecated = "warning",
+                reportInconsistentConstructor = "error",
+                reportUnnecessaryCast = "warning",
+                reportUntypedFunctionDecorator = "information",
+                reportSelfClsParameterName = "error",
+                reportUnnecessaryTypeIgnoreComment = "information",
+                -- Based options (not available in regular pyright)
+                reportUnreachable = "warning",
+                reportAny = true,
+                reportIgnoreCommentWithoutRule = "warning",
+                reportImplicitRelativeImport = "error",
             },
         },
     },
