@@ -13,7 +13,6 @@ Plugins divided into the following categories:
 6. Telescope
 7. Haskell
 8. Editing
-11. Markdown
 
 ]]
 

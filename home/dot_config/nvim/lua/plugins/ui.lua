@@ -17,23 +17,23 @@ return {
         event = { "BufReadPre", "BufNewFile" },
     },
     {
-        "shellRaining/hlchunk.nvim",
         -- Use this instead of indent-blankline
+        "shellRaining/hlchunk.nvim",
         enabled = true,
         event = { "UIEnter" },
         config = load_config("hlchunk"),
     },
     {
-        "craftzdog/solarized-osaka.nvim",
         -- Already included in NvChad.
+        "craftzdog/solarized-osaka.nvim",
         lazy = false,
         enabled = false,
         priority = 1000,
         opts = {},
     },
     {
-        "kepano/flexoki-neovim",
         -- Already included in NvChad.
+        "kepano/flexoki-neovim",
         enabled = false,
     },
     {

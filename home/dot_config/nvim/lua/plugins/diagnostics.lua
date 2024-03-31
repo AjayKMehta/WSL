@@ -45,4 +45,5 @@ return {
         end,
         lazy = false,
     },
+    { "poljar/typos.nvim", lazy = false },
 }

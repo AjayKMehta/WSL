@@ -41,7 +41,6 @@ return {
                 "dockerls",
 
                 -- Python
-                -- TODO: Configure
                 "basedpyright",
                 "ruff_lsp",
                 "pylyzer",
