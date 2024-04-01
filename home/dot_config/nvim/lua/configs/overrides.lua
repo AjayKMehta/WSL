@@ -472,6 +472,12 @@ M.cmp = {
         -- TODO: Figure out if this can be toggled.
         -- documentation = false,
     },
+    -- https://github.com/hrsh7th/nvim-cmp/commit/7aa3f71932c419d716290e132cacbafbaf5bea1c
+    view = {
+        entries = {
+            follow_cursor = true,
+        },
+    },
 }
 
 M.telescope = {
