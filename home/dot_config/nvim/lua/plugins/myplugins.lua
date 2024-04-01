@@ -284,6 +284,8 @@ local plugins = {
             telescope.load_extension("undo")
             telescope.load_extension("helpgrep")
             telescope.load_extension("file_browser")
+            -- Telescope hoogle
+            telescope.load_extension("hoogle")
             -- telescope.load_extension("aerial")
         end,
     },

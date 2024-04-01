@@ -14,11 +14,12 @@ return {
     {
         -- Garbage collector that stops inactive LSP clients to free RAM.
         "zeioth/garbage-day.nvim",
-        dependencies = "neovim/nvim-lspconfig",
+        dependencies = { "neovim/nvim-lspconfig" },
         event = "VeryLazy",
     },
     {
         url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        dependencies = { "neovim/nvim-lspconfig" },
         config = function()
             require("lsp_lines").setup()
             require("lsp_lines").toggle()
@@ -31,6 +32,15 @@ return {
                 end,
                 desc = "LSP Toggle inline diagnostics",
             },
+        },
+    },
+    {
+        "adoyle-h/lsp-toggle.nvim",
+        dependencies = { "neovim/nvim-lspconfig" },
+        cmd = { "ToggleLSP" },
+        opts = {
+            create_cmds = true, -- Whether to create user commands
+            telescope = true, -- Whether to load telescope extensions
         },
     },
 }
