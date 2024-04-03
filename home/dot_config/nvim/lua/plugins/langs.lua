@@ -32,7 +32,7 @@ return {
                 -- for projects that are relevant to code that is being edited.
                 enable_ms_build_load_projects_on_demand = false,
                 capabilities = require("nvchad.configs.lspconfig").capabilities,
-                on_attach = require("nvchad.configs.lspconfig").on_attach,
+                on_attach = require("utils.lsp").on_attach,
             },
             dap = {
                 adapter_name = "coreclr",

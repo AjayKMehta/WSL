@@ -1,7 +1,7 @@
 -- See mappings here: https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/mappings.lua
 require("nvchad.mappings")
 
-local utils = require("utils")
+local utils = require("utils.mappings")
 local map = utils.map
 local map_desc = utils.map_desc
 

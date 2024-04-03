@@ -1,6 +1,9 @@
 -- For info on how to configure servers, see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md.
 
-local on_attach = require("nvchad.configs.lspconfig").on_attach
+-- This clashes with noice: https://github.com/NvChad/NvChad/issues/1656#issuecomment-1304671629
+-- local on_attach = require("nvchad.configs.lspconfig").on_attach
+
+local on_attach = require("utils.lsp").on_attach
 
 -- TODO: Uncommenting the line below would disable semantic tokens. Need to look into this.
 -- local on_init = require("nvchad.configs.lspconfig").on_init
