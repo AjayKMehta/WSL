@@ -1,5 +1,4 @@
-local overrides = require("configs.overrides")
-local utils = require("utils")
+local load_config = require("utils").load_config
 
 return {
     {
@@ -7,7 +6,7 @@ return {
         -- Differs from aerial as it uses LSP instead of treesitter.
         "hedyhli/outline.nvim",
         cmd = { "Outline", "OutlineOpen" },
-        enabled = true, -- Seems more reliablee than aerial.
+        enabled = true, -- Seems more reliable than aerial.
         opts = {
             outline_window = {
                 auto_jump = false,
@@ -41,6 +40,6 @@ return {
         keys = {
             { "<Leader>ta", "<CMD>AerialToggle<CR>", mode = { "n" }, desc = "Open or close the aerial window" },
         },
-        config = utils.load_config("aerial"),
+        config = load_config("aerial"),
     },
 }
