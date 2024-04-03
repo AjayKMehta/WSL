@@ -531,7 +531,6 @@ M.telescope = {
         "frecency",
         "undo",
         "vim_bookmarks",
-        "harpoon",
         -- "noice",
         "ctags_plus",
         "luasnip",
@@ -541,6 +540,13 @@ M.telescope = {
         "file_browser",
         "themes",
         "terms",
+        "fzf",
+        "emoji",
+        "notify",
+        "luasnip",
+        "helpgrip",
+        "hoogle",
+        "lazy",
     },
     extensions = {
         fzf = {

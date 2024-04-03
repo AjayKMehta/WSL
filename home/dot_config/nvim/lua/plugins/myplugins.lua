@@ -268,6 +268,7 @@ local plugins = {
             "debugloop/telescope-undo.nvim",
             "nvim-telescope/telescope-frecency.nvim",
             "catgoose/telescope-helpgrep.nvim",
+            "tsakirist/telescope-lazy.nvim",
             -- "stevearc/aerial.nvim",
         },
         config = function(_, opts)
@@ -286,6 +287,11 @@ local plugins = {
             telescope.load_extension("file_browser")
             -- Telescope hoogle
             telescope.load_extension("hoogle")
+            -- :Telescope vim_bookmarks [current_file|all]
+            telescope.load_extension("vim_bookmarks")
+            -- Telescope lazy
+            -- FIXME: <C-o> 	Open selected plugin repository in browser not working
+            telescope.load_extension("lazy")
             -- telescope.load_extension("aerial")
         end,
     },
