@@ -629,7 +629,7 @@ M.code_runner = {
                         cr_au.stop_job() -- CodeRunnerJobPosWrite
                         -- Compile
                         os.execute("tectonic -X build --keep-logs --open &> /dev/null &")
-                        -- Command for hotreload
+                        -- Command for hot reload
                         local fn = function()
                             os.execute("tectonic -X build --keep-logs &> /dev/null &")
                         end
@@ -637,9 +637,6 @@ M.code_runner = {
                         -- Execute after write
                         cr_au.create_au_write(fn)
                     end
-                else
-                    local warn = require("utils").warn
-                    warn("Not Preview", "Preview")
                 end
             end)
         end,
