@@ -4,6 +4,8 @@ return {
     {
         -- Pretty hover messages.
         "Fildo7525/pretty_hover",
+        -- Noice takes care of this now
+        enabled = false,
         event = "LspAttach",
     },
     { "tomasiser/vim-code-dark" },

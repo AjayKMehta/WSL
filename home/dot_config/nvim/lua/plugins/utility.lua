@@ -39,8 +39,94 @@ return {
             -- https://github.com/rcarriga/nvim-notify/wiki/Usage-Recipes#output-of-command
             local notify = require("notify")
             notify.setup(opts)
-            vim.notify = notify
+            -- vim.notify = notify
         end,
+    },
+    -- lazy.nvim
+    {
+        "folke/noice.nvim",
+        enabled = true,
+        event = "VeryLazy",
+        opts = {
+            cmdline = {
+                format = {
+                    cmdline = {
+                        title = "",
+                        icon = "",
+                    },
+                    lua = {
+                        title = "",
+                        icon = " 󰢱 ",
+                    },
+                    help = {
+                        title = "",
+                        icon = " 󰋖 ",
+                    },
+                    input = {
+                        title = "",
+                        icon = "❓",
+                    },
+                    filter = {
+                        title = "",
+                        icon = "  ",
+                    },
+                    search_up = {
+                        icon = "    ",
+                    },
+                    search_down = {
+                        icon = "    ",
+                    },
+                },
+                opts = {
+                    win_options = {
+                        winhighlight = {
+                            -- Normal = "NormalFloat",
+                            FloatBorder = "FloatBorder",
+                        },
+                    },
+                },
+            },
+            lsp = {
+                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+                override = {
+                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                    ["vim.lsp.util.stylize_markdown"] = true,
+                    ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+                },
+                hover = {
+                    enabled = true,
+                    -- Do not show a message if hover is not available
+                    silent = true,
+                },
+                signature = {
+                    enabled = true,
+                },
+            },
+            -- you can enable a preset for easier configuration
+            presets = {
+                bottom_search = true, -- use a classic bottom cmdline for search
+                command_palette = true, -- position the cmdline and popupmenu together
+                long_message_to_split = true, -- long messages will be sent to a split
+                lsp_doc_border = true, -- add a border to hover docs and signature help
+            },
+            popupmenu = {
+                -- Doesn't work with cmp.
+                enabled = true,
+                ---@type 'nui'|'cmp'
+                backend = "nui", -- backend for regular cmdline completions
+            },
+            routes = {
+                {
+                    filter = { event = "notify", find = "No information available" },
+                    opts = { skip = true },
+                },
+            },
+        },
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            "rcarriga/nvim-notify",
+        },
     },
     {
         -- Better quickfix window
