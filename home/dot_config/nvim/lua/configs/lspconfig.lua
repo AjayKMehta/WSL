@@ -3,21 +3,17 @@
 -- This clashes with noice: https://github.com/NvChad/NvChad/issues/1656#issuecomment-1304671629
 -- local on_attach = require("nvchad.configs.lspconfig").on_attach
 
-local on_attach = require("utils.lsp").on_attach
+local lsp = require("utils.lsp")
+
+local on_attach = lsp.on_attach
 
 -- 💡 Uncommenting the line below would disable semantic tokens.
 -- https://github.com/NvChad/NvChad/blob/6833c60694a626615911e379d201dd723511546d/lua/nvchad/configs/lspconfig.lua#L39
 -- local on_init = require("nvchad.configs.lspconfig").on_init
 
-local capabilities = require("nvchad.configs.lspconfig").capabilities
+local capabilities = lsp.capabilities
 
 dofile(vim.g.base46_cache .. "lsp")
-
-capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
--- https://github.com/hrsh7th/cmp-nvim-lsp/issues/38#issuecomment-1815265121
-capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 local lspconfig = require("lspconfig")
 

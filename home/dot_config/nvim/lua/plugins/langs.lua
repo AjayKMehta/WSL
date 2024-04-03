@@ -1,3 +1,5 @@
+local lsp = require("utils.lsp")
+
 return {
     {
         "PProvost/vim-ps1",
@@ -31,8 +33,8 @@ return {
                 -- and allows for faster initialization of code navigation features only
                 -- for projects that are relevant to code that is being edited.
                 enable_ms_build_load_projects_on_demand = false,
-                capabilities = require("nvchad.configs.lspconfig").capabilities,
-                on_attach = require("utils.lsp").on_attach,
+                capabilities = lsp.capabilities,
+                on_attach = lsp.on_attach,
             },
             dap = {
                 adapter_name = "coreclr",
