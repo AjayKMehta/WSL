@@ -39,6 +39,10 @@ local servers = {
     -- Misc
     "ltex",
     "ast_grep",
+
+    -- TOML
+    "taplo",
+
     -- Graphviz
     "dotls",
 
