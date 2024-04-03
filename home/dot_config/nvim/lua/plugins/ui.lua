@@ -10,7 +10,7 @@ return {
     { "samharju/synthweave.nvim" },
     {
         "nvim-lualine/lualine.nvim",
-        lazy = false,
+        event = "VimEnter",
         config = load_config("lualine"),
     },
     {

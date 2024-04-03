@@ -86,22 +86,6 @@ return {
             vim.keymap.set("n", "<leader>ll", function()
                 lint.try_lint()
             end, { desc = "Trigger linting for current file" })
-
-            -- Commands
-
-            -- TODO: Uncomment and fix command below.
-            -- vim.api.nvim_create_user_command("LinterInfo", function()
-            --     local ft_linters = lint.linters_by_ft[vim.bo.filetype]
-            --     -- Add fallback linters
-            --     if #ft_linters == 0 then
-            --         vim.tbl_deep_extend("force", ft_linters, lint.linters_by_ft["_"] or {})
-            --     end
-
-            --     -- Add global linters.
-            --     vim.tbl_deep_extend("force", ft_linters, lint.linters_by_ft["*"] or {})
-
-            --     vim.notify(table.concat(ft_linters, "\n"), vim.log.levels.INFO, { title = "nvim-lint" })
-            -- end, {})
         end,
     },
 }
