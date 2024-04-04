@@ -3,7 +3,7 @@ using namespace Microsoft.PowerShell
 using namespace System.Management.Automation
 using namespace System.Management.Automation.Language
 
-$program = $env:TERM_PROGRAM
+$isVsCode = $env:TERM_PROGRAM -eq 'vscode'
 
 #region Options
 
@@ -11,7 +11,7 @@ $options = @{
     HistoryNoDuplicates           = $true
     HistorySearchCursorMovesToEnd = $true
 
-    HistorySaveStyle              = $program ? 'SaveNothing' : 'SaveIncrementally'
+    HistorySaveStyle              = $isVsCode ? 'SaveNothing' : 'SaveIncrementally'
     MaximumHistoryCount           = 10000
     AddToHistoryHandler           = {
         param([string]$line)
@@ -54,10 +54,6 @@ Remove-Variable colors
 # https://github.com/PowerShell/PSReadLine/issues/1643
 Set-PSReadLineKeyHandler -Key Enter -Function ValidateAndAcceptLine
 
-if ($program -ne 'vscode') {
-    Set-PSReadLineKeyHandler -Chord Ctrl+Alt+u -Function InvertCase
-}
-
 # Paste the clipboard text as a here string
 Set-PSReadLineKeyHandler -Chord Alt+v `
     -BriefDescription PasteAsHereString `
@@ -72,66 +68,6 @@ Set-PSReadLineKeyHandler -Chord Alt+v `
         [PSConsoleReadLine]::Insert("@'`n$text`n'@")
     } else {
         [PSConsoleReadLine]::Ding()
-    }
-}
-
-if (!$program) {
-    # Put parentheses around the selection or entire line and move the cursor to after the closing parenthesis.
-    Set-PSReadLineKeyHandler -Chord 'Ctrl+Shift+(' `
-        -BriefDescription ParenthesizeSelection `
-        -LongDescription 'Put parentheses around the selection or entire line and move the cursor to after the closing parenthesis' `
-        -ScriptBlock {
-        param($key, $arg)
-
-        $selectionStart = $null
-        $selectionLength = $null
-        [PSConsoleReadLine]::GetSelectionState([ref]$selectionStart, [ref]$selectionLength)
-
-        $line = $null
-        $cursor = $null
-        [PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
-        if ($selectionStart -ne -1) {
-            $replacement = '(' + $line.SubString($selectionStart, $selectionLength) + ')'
-            [PSConsoleReadLine]::Replace($selectionStart, $selectionLength, $replacement)
-            [PSConsoleReadLine]::SetCursorPosition($selectionStart + $selectionLength + 2)
-        } else {
-            [PSConsoleReadLine]::Replace(0, $line.Length, '(' + $line + ')')
-            [PSConsoleReadLine]::EndOfLine()
-        }
-    }
-
-    Set-PSReadLineKeyHandler -Key Ctrl+Shift+l `
-        -BriefDescription ToggleLowerCase `
-        -LongDescription 'Convert selection to lower case' `
-        -ScriptBlock {
-        $selectionStart = $null
-        $selectionLength = $null
-        [PSConsoleReadLine]::GetSelectionState([ref]$selectionStart, [ref]$selectionLength)
-
-        $line = $null
-        $cursor = $null
-        [PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
-
-        if ($selectionStart -ne -1) {
-            [PSConsoleReadLine]::Replace($selectionStart, $selectionLength, $line.SubString($selectionStart, $selectionLength).ToLower())
-        }
-    }
-
-    Set-PSReadLineKeyHandler -Key Ctrl+Shift+u `
-        -BriefDescription ToggleLowerCase `
-        -LongDescription 'Convert selection to upper case' `
-        -ScriptBlock {
-        $selectionStart = $null
-        $selectionLength = $null
-        [PSConsoleReadLine]::GetSelectionState([ref]$selectionStart, [ref]$selectionLength)
-
-        $line = $null
-        $cursor = $null
-        [PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
-
-        if ($selectionStart -ne -1) {
-            [PSConsoleReadLine]::Replace($selectionStart, $selectionLength, $line.SubString($selectionStart, $selectionLength).ToUpper())
-        }
     }
 }
 
@@ -229,41 +165,6 @@ Set-PSReadLineKeyHandler -Key '"', "'" `
     [PSConsoleReadLine]::Insert($quote)
 }
 
-# This example will replace any aliases on the command line with the resolved commands.
-Set-PSReadLineKeyHandler -Key 'Alt+%' `
-    -BriefDescription ExpandAliases `
-    -LongDescription 'Replace all aliases with the full command' `
-    -ScriptBlock {
-    param($key, $arg)
-
-    $ast = $null
-    $tokens = $null
-    $errors = $null
-    $cursor = $null
-    [PSConsoleReadLine]::GetBufferState([ref]$ast, [ref]$tokens, [ref]$errors, [ref]$cursor)
-
-    $startAdjustment = 0
-    foreach ($token in $tokens) {
-        if ($token.TokenFlags -band [TokenFlags]::CommandName) {
-            $alias = $ExecutionContext.InvokeCommand.GetCommand($token.Extent.Text, 'Alias')
-            if ($alias -ne $null) {
-                $resolvedCommand = $alias.ResolvedCommandName
-                if ($resolvedCommand -ne $null) {
-                    $extent = $token.Extent
-                    $length = $extent.EndOffset - $extent.StartOffset
-                    [PSConsoleReadLine]::Replace(
-                        $extent.StartOffset + $startAdjustment,
-                        $length,
-                        $resolvedCommand)
-
-                    # Our copy of the tokens won't have been updated, so we need to
-                    # adjust by the difference in length
-                    $startAdjustment += ($resolvedCommand.Length - $length)
-                }
-            }
-        }
-    } }
-
 #endregion
 
 #region Cursor movement functions
@@ -277,9 +178,8 @@ Set-PSReadLineKeyHandler -Key Alt+f -Function ShellForwardWord
 
 Set-PSReadLineKeyHandler -Key Ctrl+b -Function BeginningOfHistory
 
-# TODO: REMOVE AS DOESN'T WORK.
 # Save current line in history but do not execute
-Set-PSReadLineKeyHandler -Chord Shift+Alt+h `
+Set-PSReadLineKeyHandler -Chord 'Alt+h' `
     -BriefDescription SaveInHistory `
     -LongDescription 'Save current line in history but do not execute' `
     -ScriptBlock {
@@ -289,23 +189,26 @@ Set-PSReadLineKeyHandler -Chord Shift+Alt+h `
     $cursor = $null
     [PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
     $SaveStyle = (Get-PSReadLineOption).HistorySaveStyle
-    if ($SaveStyle -ne [HistorySaveStyle]::SaveIncrementally) {
-        try {
+    $saveInc = $SaveStyle -eq [HistorySaveStyle]::SaveIncrementally
+    try {
+        if (!$saveInc) {
             Set-PSReadLineOption -HistorySaveStyle SaveIncrementally
-            [PSConsoleReadLine]::AddToHistory($line)
-        } finally {
+        }
+        [PSConsoleReadLine]::AddToHistory($line)
+    } finally {
+        if (!$saveInc) {
             Set-PSReadLineOption -HistorySaveStyle $SaveStyle
         }
     }
     [PSConsoleReadLine]::RevertLine()
 }
 
-
-if ($program -ne 'vscode') {
+if (!$isVsCode) {
     # This key handler shows the entire or filtered history using Out-GridView. The
     # typed text is used as the substring pattern for filtering. A selected command
     # is inserted to the command line without invoking. Multiple command selection
     # is supported, e.g. selected by Ctrl + Click.
+    # TODO: Figure out how to resolve libssl error.
     Set-PSReadLineKeyHandler -Chord 'Alt+F7' `
         -BriefDescription History `
         -LongDescription 'Show command history' `
@@ -405,14 +308,7 @@ if ($program -ne 'vscode') {
         }
     }
     Set-PSReadLineKeyHandler @parameters
-}
 
-# https://www.petri.com/let-psreadline-handle-powershell-part-2
-Set-PSReadLineKeyHandler -Chord Ctrl+h -BriefDescription 'Open PSReadlineHistory' -ScriptBlock {
-    Invoke-Item -Path "$((Get-PSReadLineOption).HistorySavePath)"
-}
-
-if (!$program) {
     Set-PSReadLineKeyHandler -Key Alt+s `
         -BriefDescription ToggleSaveHistory `
         -LongDescription 'Toggle saving history' `
@@ -426,15 +322,18 @@ if (!$program) {
             }
         }
     }
+
+    Set-PSReadLineKeyHandler -Key 'F8' HistorySearchBackward
+    Set-PSReadLineKeyHandler -Key 'Shift+F8' HistorySearchForward
 }
 
 #endregion
 
 #region Predictive IntelliSense functions
 
-if ($program -ne 'vscode') {
-    Set-PSReadLineKeyHandler -Chord Ctrl+1 -Function AcceptSuggestion
-    Set-PSReadLineKeyHandler -Chord Ctrl+2 -Function AcceptNextSuggestionWord
+if (!$isVsCode) {
+    Set-PSReadLineKeyHandler -Chord Alt+1 -Function AcceptSuggestion
+    Set-PSReadLineKeyHandler -Chord Alt+2 -Function AcceptNextSuggestionWord
 }
 
 # `ForwardChar` accepts the entire suggestion text when the cursor is at the end of the line.
@@ -491,38 +390,6 @@ Set-PSReadLineKeyHandler -Key Shift+F1 -BriefDescription 'OnlineCommandHelp' -Lo
     }
 }
 
-if ($program -ne 'vscode') {
-    Set-PSReadLineKeyHandler -Key Alt+F1 -BriefDescription 'CommandHelp' -LongDescription 'Open the help window for the current command' -ScriptBlock {
-        param($key, $arg)
-
-        $ast = $null
-        $tokens = $null
-        $errors = $null
-        $cursor = $null
-        [PSConsoleReadLine]::GetBufferState([ref]$ast, [ref]$tokens, [ref]$errors, [ref]$cursor)
-
-        $commandAst = $ast.FindAll( {
-                $node = $args[0]
-                $node -is [System.Management.Automation.Language.CommandAst] -and
-                $node.Extent.StartOffset -le $cursor -and
-                $node.Extent.EndOffset -ge $cursor
-            }, $true) | Select-Object -Last 1
-
-        if ($commandAst) {
-            $commandName = $commandAst.GetCommandName()
-            if ($commandName) {
-                $command = $ExecutionContext.InvokeCommand.GetCommand($commandName, 'All')
-                if ($command -is [System.Management.Automation.AliasInfo]) {
-                    $commandName = $command.ResolvedCommandName
-                }
-
-                if ($commandName) {
-                    Get-Help $commandName -ShowWindow
-                }
-            }
-        }
-    }
-}
 #endregion
 
 #region Selection functions
@@ -533,12 +400,8 @@ Set-PSReadLineKeyHandler -Key Alt+F -Function SelectShellForwardWord
 #endregion
 
 #region Miscellaneous functions
-
-Set-PSReadLineKeyHandler -Function ShowKeyBindings -Chord 'Shift+Ctrl+?'
-
-if ($program -ne 'vscode') {
-    Set-PSReadLineKeyHandler -Chord Ctrl+k -Function CaptureScreen
-}
+Set-PSReadLineKeyHandler -Function ShowKeyBindings -Chord 'Escape,?'
+Set-PSReadLineKeyHandler -Function WhatIsKey -Chord 'Escape,/'
 
 #endregion
 
