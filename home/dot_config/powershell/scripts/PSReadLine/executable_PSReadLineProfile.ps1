@@ -541,3 +541,45 @@ if ($program -ne 'vscode') {
 }
 
 #endregion
+
+# Make consistent with Windows keybindings
+
+# SwapCharacters
+# Remove-PSReadLineKeyHandler -Chord 'Ctrl+t'
+
+# Mapped to BackwardKillInput
+Remove-PSReadLineKeyHandler -Chord 'Ctrl+x,Backspace'
+
+# Mapped to BackwardDeleteChar
+Remove-PSReadLineKeyHandler -Chord 'Ctrl+Backspace'
+
+# Mapped to BackwardKillWord
+Remove-PSReadLineKeyHandler -Chord 'Alt+Backspace'
+
+# Mapped to BackwardKillWord
+Remove-PSReadLineKeyHandler -Chord 'Escape,Backspace'
+
+# Mapped to CapitalizeWord
+Remove-PSReadLineKeyHandler -Chord 'Alt+c'
+
+# Mapped to ValidateAndAcceptLine
+Remove-PSReadLineKeyHandler -Chord 'Ctrl+m'
+
+# Mapped to BeginningOfLine
+Remove-PSReadLineKeyHandler -Chord 'Ctrl+a'
+
+# Mapped to BeginningOfHistory
+Remove-PSReadLineKeyHandler -Chord 'Alt+<'
+
+# Mapped to EndOfHistory
+Remove-PSReadLineKeyHandler -Chord 'Alt+>'
+
+Set-PSReadLineKeyHandler -Function BackwardKillWord -Chord 'Ctrl+Backspace'
+Set-PSReadLineKeyHandler -Function BackwardDeleteInput -Chord 'Ctrl+Home'
+Set-PSReadLineKeyHandler -Function Cut -Chord 'Ctrl+x'
+Set-PSReadLineKeyHandler -Function InsertLineAbove -Chord 'Ctrl+Enter'
+Set-PSReadLineKeyHandler -Function InsertLineBelow -Chord 'Shift+Ctrl+Enter'
+Set-PSReadLineKeyHandler -Function ForwardDeleteInput -Chord 'Ctrl+End'
+Set-PSReadLineKeyHandler -Key 'Ctrl+Delete' -Function KillWord
+Set-PSReadLineKeyHandler -Key 'Ctrl+v' -Function Paste
+Set-PSReadLineKeyHandler -Key 'Enter' -Function ValidateAndAcceptLine

@@ -19,6 +19,13 @@ $GitPromptSettings.EnableStashStatus = $true
 
 #endregion
 
+#region Map Windows drives
+
+New-PSDrive -Name C -PSProvider FileSystem -Root '/mnt/c/' | Out-Null
+New-PSDrive -Name D -PSProvider FileSystem -Root '/mnt/d/' | Out-Null
+
+#endregion
+
 # PowerShell parameter completion shim for the dotnet CLI
 Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
     param($commandName, $wordToComplete, $cursorPosition)
