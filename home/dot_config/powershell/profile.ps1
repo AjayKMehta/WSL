@@ -21,8 +21,14 @@ $GitPromptSettings.EnableStashStatus = $true
 
 #region Map Windows drives
 
-New-PSDrive -Name C -PSProvider FileSystem -Root '/mnt/c/' | Out-Null
-New-PSDrive -Name D -PSProvider FileSystem -Root '/mnt/d/' | Out-Null
+if (!(Get-PSDrive C -ErrorAction Ignore))
+{
+    New-PSDrive -Name C -PSProvider FileSystem -Root '/mnt/c/' | Out-Null
+}
+
+if (!(Get-PSDrive D -ErrorAction Ignore)) {
+    New-PSDrive -Name D -PSProvider FileSystem -Root '/mnt/d/' | Out-Null
+}
 
 #endregion
 
