@@ -292,6 +292,7 @@ local plugins = {
             -- Telescope lazy
             -- FIXME: <C-o> 	Open selected plugin repository in browser not working
             telescope.load_extension("lazy")
+            telescope.load_extension("noice")
             -- telescope.load_extension("aerial")
         end,
     },
