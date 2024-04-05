@@ -74,9 +74,11 @@ return {
                     },
                     search_up = {
                         icon = "    ",
+                        view = "cmdline",
                     },
                     search_down = {
                         icon = "    ",
+                        view = "cmdline",
                     },
                 },
                 opts = {
