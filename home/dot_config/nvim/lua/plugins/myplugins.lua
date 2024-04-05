@@ -144,17 +144,6 @@ local plugins = {
         config = load_config("rainbow"),
     },
 
-    --#endregion
-
-    {
-        "CRAG666/code_runner.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        opts = overrides.code_runner,
-        event = "BufEnter",
-    },
-
-    --#endregion
-
     --#region Snippets + completion
 
     -- h/t https://gist.github.com/ianchesal/93ba7897f81618ca79af01bc413d0713

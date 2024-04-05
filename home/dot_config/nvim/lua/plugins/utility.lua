@@ -167,4 +167,95 @@ return {
             end,
         },
     },
+    {
+        "CRAG666/code_runner.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            filetype = {
+                bash = "$dir/$fileName",
+                cpp = "cd $dir && g++ $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+                haskell = "stack runhaskell",
+                java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
+                javascript = "node",
+                lua = "lua",
+                python = "python3 -u",
+                r = "Rscript",
+                shell = "$dir/$fileName",
+                typescript = "deno run",
+                zsh = "$dir/$fileName",
+                excluded_buftypes = { "message" },
+                -- Using tectonic compiler
+                tex = function(...)
+                    local latexCompileOptions = {
+                        "Single",
+                        "Project",
+                    }
+                    local preview = require("code_runner.hooks.preview_pdf")
+                    local cr_au = require("code_runner.hooks.autocmd")
+                    vim.ui.select(latexCompileOptions, {
+                        prompt = "Select compile mode:",
+                    }, function(opt, _)
+                        if opt then
+                            if opt == "Single" then
+                                -- Single preview for latex files
+                                preview.run({
+                                    command = "tectonic",
+                                    args = { "$fileName", "--keep-logs", "-o", "/tmp" },
+                                    preview_cmd = "zathura --fork",
+                                    overwrite_output = "/tmp",
+                                })
+                            elseif opt == "Project" then
+                                -- Create command for stop job
+                                cr_au.stop_job() -- CodeRunnerJobPosWrite
+                                -- Compile
+                                os.execute("tectonic -X build --keep-logs --open &> /dev/null &")
+                                -- Command for hot reload
+                                local fn = function()
+                                    os.execute("tectonic -X build --keep-logs &> /dev/null &")
+                                end
+                                -- Create Job for hot reload latex compiler
+                                -- Execute after write
+                                cr_au.create_au_write(fn)
+                            end
+                        end
+                    end)
+                end,
+                markdown = function(...)
+                    local markdownCompileOptions = {
+                        Normal = "pdf",
+                        Presentation = "beamer",
+                    }
+                    vim.ui.select(vim.tbl_keys(markdownCompileOptions), {
+                        prompt = "Select preview mode:",
+                    }, function(opt, _)
+                        if opt then
+                            require("code_runner.hooks.preview_pdf").run({
+                                command = "pandoc",
+                                args = { "$fileName", "-o", "$tmpFile", "-t", markdownCompileOptions[opt] },
+                                preview_cmd = "/bin/zathura --fork",
+                            })
+                        else
+                            print("Not Preview")
+                        end
+                    end)
+                end,
+            },
+            mode = "float",
+            startinsert = true,
+            float = {
+                close_key = "q",
+                border = "rounded",
+                height = 0.8,
+                width = 0.8,
+                x = 0.5,
+                y = 0.5,
+                -- Highlight group for floating window/border (see ':h winhl')
+                border_hl = "FloatBorder",
+                float_hl = "Normal",
+                -- Transparency (see ':h winblend')
+                blend = 0,
+            },
+        },
+        event = "BufEnter",
+    },
 }
