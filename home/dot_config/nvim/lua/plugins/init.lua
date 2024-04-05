@@ -76,6 +76,9 @@ return {
                 -- LaTeX
                 "ltex",
                 "texlab",
+
+                -- XML
+                "lemminx"
             },
             automatic_installation = true,
         },

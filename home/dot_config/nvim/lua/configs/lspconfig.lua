@@ -310,3 +310,24 @@ lspconfig.texlab.setup({
         },
     },
 })
+
+-- TODO: Figure out how to add Directory.Build.props, etc.
+lspconfig.lemminx.setup({
+    filetypes = { "xml", "xsd", "xsl", "xslt", "svg", "csproj" },
+    settings = {
+        xml = {
+            format = {
+                enabled = true,
+                formatComments = true,
+                joinCDATALines = false,
+                joinCommentLines = false,
+                joinContentLines = false,
+                spaceBeforeEmptyCloseTag = true,
+                splitAttributes = false,
+            },
+            completion = {
+                autoCloseTags = true,
+            },
+        },
+    },
+})
