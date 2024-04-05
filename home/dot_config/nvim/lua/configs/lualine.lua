@@ -127,6 +127,18 @@ local config = {
                 cond = require("noice").api.statusline.mode.has,
                 color = { fg = "#ff9e64" },
             },
+            -- https://github.com/PheloiVim/PheloiVim/blob/1d831d8dfd7e0fa52fda19ee6b8dcfc20254a3d8/lua/plugins/lualine.lua
+            {
+                ---@diagnostic disable-next-line: undefined-field
+                function()
+                    return require("noice").api.status.command.get()
+                end,
+                ---@diagnostic disable-next-line: undefined-field
+                cond = function()
+                    return package.loaded["noice"] and require("noice").api.status.command.has()
+                end,
+                color = { fg = "pink" },
+            },
             {
                 "encoding",
                 cond = function()
