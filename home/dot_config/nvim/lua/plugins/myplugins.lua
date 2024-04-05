@@ -253,14 +253,6 @@ local plugins = {
                 ["<C-j>"] = require("telescope.actions").move_selection_next,
                 ["<esc>"] = require("telescope.actions").close,
             }
-            conf.extensions = {
-                fzf = {
-                    fuzzy = true,
-                    override_generic_sorter = true,
-                    override_file_sorter = true,
-                    case_mode = "smart_case",
-                },
-            }
             return conf
         end,
         -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
@@ -276,32 +268,9 @@ local plugins = {
             "nvim-telescope/telescope-frecency.nvim",
             "catgoose/telescope-helpgrep.nvim",
             "tsakirist/telescope-lazy.nvim",
+            "nvim-telescope/telescope-dap.nvim",
             -- "stevearc/aerial.nvim",
         },
-        config = function(_, opts)
-            dofile(vim.g.base46_cache .. "telescope")
-            local telescope = require("telescope")
-            telescope.setup(opts)
-
-            telescope.load_extension("fzf")
-            telescope.load_extension("emoji")
-            telescope.load_extension("themes")
-            telescope.load_extension("terms")
-            telescope.load_extension("notify")
-            telescope.load_extension("luasnip")
-            telescope.load_extension("undo")
-            telescope.load_extension("helpgrep")
-            telescope.load_extension("file_browser")
-            -- Telescope hoogle
-            telescope.load_extension("hoogle")
-            -- :Telescope vim_bookmarks [current_file|all]
-            telescope.load_extension("vim_bookmarks")
-            -- Telescope lazy
-            -- FIXME: <C-o> 	Open selected plugin repository in browser not working
-            telescope.load_extension("lazy")
-            telescope.load_extension("noice")
-            -- telescope.load_extension("aerial")
-        end,
     },
     {
         "nvim-telescope/telescope-file-browser.nvim",
