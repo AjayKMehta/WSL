@@ -11,7 +11,6 @@ Plugins divided into the following categories:
 5. Snippets + completion
 6. Telescope
 7. Haskell
-8. Editing
 
 ]]
 
@@ -347,65 +346,6 @@ local plugins = {
                 telescope.load_extension("hoogle")
             end
         end,
-    },
-
-    -- Editing
-    {
-        "kylechui/nvim-surround",
-        version = "*", -- Use for stability; omit to use `main` branch for the latest features
-        event = { "BufReadPre", "BufNewFile" },
-        config = function()
-            require("nvim-surround").setup({
-                -- configuration here, or leave empty to use defaults
-            })
-        end,
-    },
-    {
-        "max397574/better-escape.nvim",
-        event = "InsertEnter",
-        config = function()
-            require("better_escape").setup()
-        end,
-    },
-    { "junegunn/vim-peekaboo" },
-    {
-        -- Move lines and blocks of code
-        "echasnovski/mini.move",
-        version = false,
-        opts = { options = { reindent_linewise = true } },
-        event = "VeryLazy",
-    },
-    {
-        -- Show all todo comments in solution
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("todo-comments").setup({})
-        end,
-        event = "VeryLazy",
-    },
-    {
-        -- highlight-undo will remap the u and <C-r> keys (for undo and redo, by default) to highlight changed text after Undo / Redo operations.
-        "tzachar/highlight-undo.nvim",
-        opts = {
-            duration = 300,
-            undo = {
-                hlgroup = "HighlightUndo",
-                mode = "n",
-                lhs = "u",
-                map = "undo",
-                opts = {},
-            },
-            redo = {
-                hlgroup = "HighlightUndo",
-                mode = "n",
-                lhs = "<C-r>",
-                map = "redo",
-                opts = {},
-            },
-            highlight_for_count = true,
-        },
-        event = { "BufReadPre" },
     },
 
     -- Appearance
