@@ -183,18 +183,26 @@ lspconfig.yamlls.setup({
 
 -- https://github.com/PowerShell/PowerShellEditorServices/blob/89ce0867c6b119bef8af83ab21c249e10d0e77a2/docs/guide/getting_started.md
 
-local home_directory = os.getenv("HOME")
-if home_directory == nil then
-    home_directory = os.getenv("USERPROFILE")
-end
-
 -- The bundle_path is where PowerShell Editor Services was installed
-local bundle_path = home_directory .. "/PowerShellEditorServices"
+local bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services"
+
+-- Uncomment this to use custom PowerShellEditorServices
+-- local bundle_path = "~/PowerShellEditorServices/"
+
+local custom_settings_path = bundle_path .. "/PSScriptAnalyzer/1.22.0/PSScriptAnalyzer.psd1"
+local command_fmt =
+    [[& '%s/PowerShellEditorServices/Start-EditorServices.ps1' -BundledModulesPath '%s' -SessionDetailsPath '%s/powershell_es.session.json' -FeatureFlags @() -AdditionalModules @() -HostName nvim -HostProfileId 0 -HostVersion 1.0.0 -Stdio -LogLevel Normal]]
+local temp_path = vim.fn.stdpath("cache")
+local command = command_fmt:format(bundle_path, bundle_path, temp_path)
 
 lspconfig.powershell_es.setup({
     bundle_path = bundle_path,
+    cmd = { "pwsh", "-NoLogo", "-NoProfile", "-Command", command },
     on_attach = on_attach,
     capabilities = capabilities,
+    root_dir = function(fname)
+        return lspconfig.util.root_pattern(".git")(fname) or vim.loop.cwd()
+    end,
     settings = {
         powershell = {
             codeFormatting = {
@@ -207,6 +215,7 @@ lspconfig.powershell_es.setup({
                 UseCorrectCasing = true,
                 WhitespaceBetweenParameters = true,
             },
+            scriptAnalysis = { settingsPath = custom_settings_path },
         },
     },
 })
