@@ -434,13 +434,7 @@ M.telescope = {
     defaults = {
         preview = {
             mime_hook = function(filepath, bufnr, opts)
-                local is_image = function(filepath)
-                    local image_extensions = { "png", "jpg" } -- Supported image formats
-                    local split_path = vim.split(filepath:lower(), ".", { plain = true })
-                    local extension = split_path[#split_path]
-                    return vim.tbl_contains(image_extensions, extension)
-                end
-                if is_image(filepath) then
+                if require("utils").is_image(filepath) then
                     local term = vim.api.nvim_open_term(bufnr, {})
                     local function send_output(_, data, _)
                         for _, d in ipairs(data) do
