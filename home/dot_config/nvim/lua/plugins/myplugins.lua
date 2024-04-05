@@ -7,7 +7,6 @@ local haskell_ft = { "haskell", "lhaskell", "cabal", "cabalproject" }
 --[[
 Plugins divided into the following categories:
 2. Treesitter + LSP
-3. Test
 4. Utility
 5. Snippets + completion
 6. Telescope
@@ -45,7 +44,14 @@ local plugins = {
         "numToStr/Comment.nvim",
         event = "VeryLazy",
         lazy = false,
-        config = load_config("comment"),
+        config = function(_, opts)
+            local comment = require("Comment")
+            -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring/wiki/Integrations#commentnvim
+            local pre_hook = {
+                pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+            }
+            comment.setup(vim.tbl_deep_extend("force", opts, pre_hook))
+        end,
         dependencies = {
             {
                 "JoosepAlviste/nvim-ts-context-commentstring",
@@ -65,7 +71,19 @@ local plugins = {
         -- Generate comments based on treesitter.
         "danymat/neogen",
         dependencies = "nvim-treesitter/nvim-treesitter",
-        opts = overrides.neogen,
+        opts = {
+            enabled = true,
+            snippet_engine = "luasnip",
+            languages = {
+                lua = {
+                    template = {
+                        annotation_convention = "emmylua",
+                    },
+                    -- TODO: Figure out how to fix.
+                    cs = { template = { annotation_convention = "xmldoc" } },
+                },
+            },
+        },
         -- Uncomment next line if you want to follow only stable versions
         version = "*",
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
@@ -221,7 +239,7 @@ local plugins = {
             "CmdlineEnter",
         },
         build = "make install_jsregexp",
-        config = load_config("ls"),
+        config = load_config("luasnip"),
     },
     {
         "allaman/emoji.nvim",
