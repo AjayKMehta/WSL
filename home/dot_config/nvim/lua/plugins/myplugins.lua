@@ -119,7 +119,17 @@ local plugins = {
         lazy = false,
         event = "BufReadPost",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
-        opts = overrides.treesitter_context,
+        opts = {
+            max_lines = 3,
+            min_window_height = 0,
+            patterns = {
+                default = {
+                    "class",
+                    "function",
+                    "method",
+                },
+            },
+        },
     },
     {
         -- Syntax aware text-objects, select, move, swap, and peek support.
@@ -245,15 +255,8 @@ local plugins = {
     -- Telescope
     {
         "nvim-telescope/telescope.nvim",
-        -- if you load some function or module within your opt, wrap it with a function
-        opts = function()
-            local conf = require("nvchad.configs.telescope")
-            conf.defaults.mappings.i = {
-                ["<C-j>"] = require("telescope.actions").move_selection_next,
-                ["<esc>"] = require("telescope.actions").close,
-            }
-            return conf
-        end,
+        -- If you load some function or module within opts, wrap it within a function
+        opts = require("configs.telescope").config,
         -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
         dependencies = {
             {

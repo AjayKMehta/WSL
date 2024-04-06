@@ -1,6 +1,7 @@
 local overrides = require("configs.overrides")
 local load_config = require("utils").load_config
 
+
 return {
     -- It's important that you set up the plugins in the following order:
 
@@ -78,7 +79,7 @@ return {
                 "texlab",
 
                 -- XML
-                "lemminx"
+                "lemminx",
             },
             automatic_installation = true,
         },
