@@ -84,4 +84,15 @@ return {
             })
         end,
     },
+    {
+        "Bekaboo/dropbar.nvim",
+        cond = function()
+            return vim.fn.has("nvim-0.10") == 1
+        end,
+        event = { "BufReadPost", "BufNewFile" },
+        -- optional, but required for fuzzy finder support
+        dependencies = {
+            "nvim-telescope/telescope-fzf-native.nvim",
+        },
+    },
 }
