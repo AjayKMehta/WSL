@@ -60,6 +60,7 @@ map_desc("n", "<leader>f?", function()
     require("telescope.builtin").help_tags()
 end, "Telescope Help page")
 map_desc("n", "<leader>fb", ":Telescope file_browser<CR>", "Telescope File browser")
+map_desc("n", "<leader>fM", "<cmd>Telescope vim_bookmarks all<CR>", "Telescope Bookmarks ")
 map_desc("n", "<leader>fB", function()
     require("telescope.builtin").buffers()
 end, "Telescope Find buffers")
@@ -198,11 +199,10 @@ map_desc("n", "<leader>tS", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "T
 
 --#region bookmarks
 
-map_desc("n", "<leader>mm", "<cmd>Telescope vim_bookmarks all<CR>", " Bookmark Menu")
-map_desc("n", "<leader>mt", "<cmd> BookmarkToggle<CR>", "󰃅 Toggle bookmark")
-map_desc("n", "<leader>mn", "<cmd> BookmarkNext<CR>", "󰮰 Next bookmark")
-map_desc("n", "<leader>mp", "<cmd> BookmarkPrev<CR>", "󰮲 Prev bookmark")
-map_desc("n", "<leader>mc", "<cmd> BookmarkClear<CR>", "󰃢 Clear bookmarks")
+map_desc("n", "<leader>bt", "<cmd> BookmarkToggle<CR>", "󰃅 Toggle bookmark")
+map_desc("n", "<leader>bn", "<cmd> BookmarkNext<CR>", "󰮰 Next bookmark")
+map_desc("n", "<leader>bp", "<cmd> BookmarkPrev<CR>", "󰮲 Prev bookmark")
+map_desc("n", "<leader>bc", "<cmd> BookmarkClear<CR>", "󰃢 Clear bookmarks")
 
 --#endregion
 
