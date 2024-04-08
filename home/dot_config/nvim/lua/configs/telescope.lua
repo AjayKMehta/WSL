@@ -4,19 +4,48 @@ local M = {}
 M.config = function()
     local actions = require("telescope.actions")
     local actions_layout = require("telescope.actions.layout")
+
+    -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#dont-preview-binaries
+    local previewers = require("telescope.previewers")
+    local Job = require("plenary.job")
+    local new_maker = function(filepath, bufnr, opts)
+        filepath = vim.fn.expand(filepath)
+        Job:new({
+            command = "file",
+            args = { "--mime-type", "-b", filepath },
+            on_exit = function(j)
+                local mime_type = vim.split(j:result()[1], "/")[1]
+                if mime_type == "text" then
+                    previewers.buffer_previewer_maker(filepath, bufnr, opts)
+                else
+                    -- maybe we want to write something to the buffer here
+                    vim.schedule(function()
+                        vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "BINARY" })
+                    end)
+                end
+            end,
+        }):sync()
+    end
+
     local settings = {
         defaults = {
             mappings = {
                 i = {
                     ["<C-j>"] = actions.move_selection_next,
                     ["<esc>"] = actions.close,
+                    -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#mapping-c-d-to-delete-buffer
                     ["<M-d>"] = actions.delete_buffer + actions.move_to_top,
                     ["<M-p>"] = actions_layout.toggle_preview,
+                    -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#mapping-c-sc-a-to-cycle-previewer-for-git-commits-to-show-full-message
+                    ["<C-s>"] = actions.cycle_previewers_next,
+                    ["<C-a>"] = actions.cycle_previewers_prev,
                 },
                 n = {
+                    -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#add-mapping-to-toggle-the-preview
                     ["<M-p>"] = actions_layout.toggle_preview,
                 },
             },
+            -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#use-terminal-image-viewer-to-preview-images
             preview = {
                 mime_hook = function(filepath, bufnr, opts)
                     if require("utils").is_image(filepath) then
@@ -72,6 +101,7 @@ M.config = function()
             "themes",
             "undo",
             "vim_bookmarks",
+            -- https://github.com/benfowler/telescope-luasnip.nvim/issues/22
             "luasnip",
         },
         extensions = {
@@ -114,6 +144,18 @@ M.config = function()
                 },
             },
         },
+        -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#ripgrep-remove-indentation
+        vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--trim", -- add this value
+        },
+        buffer_previewer_maker = new_maker,
     }
     local conf = require("nvchad.configs.telescope")
     return vim.tbl_deep_extend("force", conf, settings)
