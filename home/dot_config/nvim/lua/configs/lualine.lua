@@ -61,6 +61,7 @@ local config = {
         theme = "dracula",
         icons_enabled = true,
         component_separators = "|",
+        section_separators = { left = "", right = "" },
         disabled_filetypes = {
             statusline = { "NvimTree", "dashboard" },
         },
@@ -88,10 +89,18 @@ local config = {
                     color_hint = { fg = colors.yellow },
                 },
             },
+            {
+                "buffers",
+                mode = 1,
+                cond = function()
+                    return false
+                end,
+            },
         },
         lualine_b = {
             {
                 "branch",
+                icon = "",
                 color = {
                     fg = colors.lightblue,
                     -- gui = "bold",
