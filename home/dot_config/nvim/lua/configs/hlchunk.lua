@@ -1,4 +1,4 @@
-local status_ok, hlchunk = pcall(require, "hlchunk")
+local status_ok, hlchunk = require("utils").is_loaded("hlchunk")
 if not status_ok then
     return
 end

@@ -1,4 +1,5 @@
 local lualine = require("lualine")
+local utils = require("utils")
 
 local colors = {
     bg = "#202328",
@@ -26,8 +27,9 @@ local function diff_source()
     end
 end
 
-local has_filename = function()
-    return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
+local function has_module(module)
+    local result, _ = utils.is_loaded(module)
+    return result
 end
 
 local function LspStatus()
@@ -121,19 +123,31 @@ local config = {
             },
         },
         lualine_c = {
-            { LspStatus, cond = has_filename },
+            { LspStatus, cond = utils.has_filename },
         },
         lualine_x = {
             -- https://github.com/folke/lazy.nvim#-usage
             {
                 require("lazy.status").updates,
-                cond = require("lazy.status").has_updates,
+                cond = function()
+                    local ok, ls = utils.is_loaded("lazy.status")
+                    if not ok then
+                        return false
+                    end
+                    return ls.has_updates
+                end,
                 color = { fg = "#ff9e64" },
             },
             -- https://github.com/folke/noice.nvim/wiki/A-Guide-to-Messages#showmode
             {
                 require("noice").api.statusline.mode.get,
-                cond = require("noice").api.statusline.mode.has,
+                cond = function()
+                    local ok, n = utils.is_loaded("noice")
+                    if not ok then
+                        return false
+                    end
+                    return n.api.statusline.mode.has
+                end,
                 color = { fg = "#ff9e64" },
             },
             -- https://github.com/PheloiVim/PheloiVim/blob/1d831d8dfd7e0fa52fda19ee6b8dcfc20254a3d8/lua/plugins/lualine.lua

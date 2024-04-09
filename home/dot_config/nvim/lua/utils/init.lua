@@ -39,4 +39,12 @@ M.is_image = function(filepath)
     return vim.tbl_contains(image_extensions, extension)
 end
 
+M.has_filename = function()
+    return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
+end
+
+M.is_loaded = function(module)
+    return pcall(require, module)
+end
+
 return M

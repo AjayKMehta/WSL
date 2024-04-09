@@ -54,7 +54,7 @@ M.capabilities.textDocument.completion.completionItem = {
 M.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+local ok, cmp_nvim_lsp = require("utils").is_loaded("cmp_nvim_lsp")
 
 if ok then
     -- https://github.com/hrsh7th/cmp-nvim-lsp/issues/38#issuecomment-1815265121

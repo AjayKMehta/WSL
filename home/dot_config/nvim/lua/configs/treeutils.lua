@@ -3,6 +3,7 @@ local api = require("nvim-tree.api")
 local openfile = require("nvim-tree.actions.node.open-file")
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
+local utils = require("utils")
 
 local M = {}
 
@@ -68,7 +69,7 @@ function M.launch_find_files(opts)
 end
 
 function M.launch_telescope(func_name, opts)
-    local telescope_status_ok, _ = pcall(require, "telescope")
+    local telescope_status_ok, _ = utils.is_loaded("telescope")
     if not telescope_status_ok then
         return
     end
