@@ -48,4 +48,48 @@ return {
         },
         event = { "BufReadPre" },
     },
+    {
+        "smoka7/multicursors.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "smoka7/hydra.nvim",
+        },
+        opts = function()
+            local N = require("multicursors.normal_mode")
+            local I = require("multicursors.insert_mode")
+            local U = require("multicursors.utils")
+            return {
+                normal_keys = {
+                    ["/"] = {
+                        method = function()
+                            U.call_on_selections(function(selection)
+                                vim.api.nvim_win_set_cursor(0, { selection.row + 1, selection.col + 1 })
+                                local line_count = selection.end_row - selection.row + 1
+                                vim.cmd("normal " .. line_count .. "gcc")
+                            end)
+                        end,
+                        opts = { desc = "comment selections" },
+                    },
+                    ["u"] = { method = N.upper_case, opts = { desc = "Upper case" } },
+                    ["l"] = { method = N.lower_case, opts = { desc = "lower case" } },
+                    ["<C-z>"] = {
+                        method = function()
+                            vim.cmd("normal U")
+                        end,
+                        opts = { desc = "Undo" },
+                    },
+                },
+            }
+        end,
+        cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
+        keys = {
+            {
+                mode = { "v", "n" },
+                "<Leader>m",
+                "<cmd>MCstart<cr>",
+                desc = "Create a selection for selected text or word under the cursor",
+            },
+        },
+    },
 }
