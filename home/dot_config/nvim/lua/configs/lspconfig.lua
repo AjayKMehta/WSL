@@ -138,6 +138,14 @@ lspconfig.marksman.setup({
 vim.g.OmniSharp_start_without_solution = 1
 vim.g.OmniSharp_timeout = 5
 
+lspconfig.typos_lsp.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    init_options = {
+        diagnosticSeverity = "hint",
+    },
+})
+
 lspconfig.yamlls.setup({
     on_attach = on_attach,
     -- on_init = on_init,
