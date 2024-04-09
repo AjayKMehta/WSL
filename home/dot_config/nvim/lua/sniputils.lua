@@ -16,9 +16,6 @@ local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
 local types = require("luasnip.util.types")
 
-local has_treesitter, ts = pcall(require, "vim.treesitter")
-local _, query = pcall(require, "vim.treesitter.query")
-
 local MATH_ENVIRONMENTS = {
     displaymath = true,
     eqnarray = true,
