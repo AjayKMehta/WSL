@@ -9,6 +9,7 @@ local exclude_filetypes = vim.tbl_deep_extend("force", ft.exclude_filetypes, {
     startify = true,
     FTerm = true,
     ["no-profile"] = true,
+    nvcheatsheet = true,
 })
 
 hlchunk.setup({

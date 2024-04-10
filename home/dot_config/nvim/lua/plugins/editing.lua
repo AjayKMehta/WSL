@@ -60,6 +60,20 @@ return {
             local I = require("multicursors.insert_mode")
             local U = require("multicursors.utils")
             return {
+                -- Uncomment if want to show in lualine instead
+                -- hint_config = false,
+                hint_config = {
+                    border = "rounded",
+                    position = "bottom-right",
+                },
+                generate_hints = {
+                    normal = true,
+                    insert = true,
+                    extend = true,
+                    config = {
+                        column_count = 1,
+                    },
+                },
                 normal_keys = {
                     ["/"] = {
                         method = function()
@@ -73,6 +87,7 @@ return {
                     },
                     ["u"] = { method = N.upper_case, opts = { desc = "Upper case" } },
                     ["l"] = { method = N.lower_case, opts = { desc = "lower case" } },
+                    -- https://github.com/smoka7/multicursors.nvim/issues/85
                     ["<C-z>"] = {
                         method = function()
                             vim.cmd("normal U")
