@@ -57,6 +57,19 @@ local function LspStatus()
     })
 end
 
+local function is_active()
+    local ok, hydra = pcall(require, "hydra.statusline")
+    return ok and hydra.is_active()
+end
+
+local function get_name()
+    local ok, hydra = pcall(require, "hydra.statusline")
+    if ok then
+        return hydra.get_name()
+    end
+    return ""
+end
+
 local config = {
     options = {
         ignore_focus = { "NvimTree", "lspInfo" },
@@ -121,6 +134,7 @@ local config = {
                 symbols = { added = "+", modified = "~", removed = "-" },
                 source = diff_source,
             },
+            -- { get_name, cond = is_active },
         },
         lualine_c = {
             { LspStatus, cond = utils.has_filename },
@@ -130,35 +144,29 @@ local config = {
             {
                 require("lazy.status").updates,
                 cond = function()
-                    local ok, ls = utils.is_loaded("lazy.status")
-                    if not ok then
-                        return false
-                    end
-                    return ls.has_updates
+                    return package.loaded["lazy"] and require("lazy.status").has_updates
                 end,
                 color = { fg = "#ff9e64" },
+            },
+            {
+                require("noice").api.status.command.get_hl,
+                cond = function()
+                    return package.loaded["noice"] and require("noice").api.status.command.has()
+                end,
+                color = { fg = "pink" },
             },
             -- https://github.com/folke/noice.nvim/wiki/A-Guide-to-Messages#showmode
             {
-                require("noice").api.statusline.mode.get,
+                require("noice").api.status.mode.get,
                 cond = function()
-                    local ok, n = utils.is_loaded("noice")
-                    if not ok then
-                        return false
-                    end
-                    return n.api.statusline.mode.has
+                    return package.loaded["noice"] and require("noice").api.status.mode.has()
                 end,
                 color = { fg = "#ff9e64" },
             },
-            -- https://github.com/PheloiVim/PheloiVim/blob/1d831d8dfd7e0fa52fda19ee6b8dcfc20254a3d8/lua/plugins/lualine.lua
             {
-                ---@diagnostic disable-next-line: undefined-field
-                function()
-                    return require("noice").api.status.command.get()
-                end,
-                ---@diagnostic disable-next-line: undefined-field
+                require("noice").api.status.search.get,
                 cond = function()
-                    return package.loaded["noice"] and require("noice").api.status.command.has()
+                    return package.loaded["noice"] and require("noice").api.status.search.has()
                 end,
                 color = { fg = "pink" },
             },
@@ -183,11 +191,7 @@ local config = {
             {
                 function(msg)
                     msg = require("yaml_nvim").get_yaml_key_and_value()
-                    if msg == nil then
-                        return ""
-                    else
-                        return msg
-                    end
+                    return msg or ""
                 end,
             },
         },
