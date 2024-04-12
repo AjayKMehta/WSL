@@ -56,8 +56,6 @@ return {
             "smoka7/hydra.nvim",
         },
         opts = function()
-            local N = require("multicursors.normal_mode")
-            local I = require("multicursors.insert_mode")
             local U = require("multicursors.utils")
             return {
                 -- Uncomment if want to show in lualine instead
@@ -84,15 +82,6 @@ return {
                             end)
                         end,
                         opts = { desc = "comment selections" },
-                    },
-                    ["u"] = { method = N.upper_case, opts = { desc = "Upper case" } },
-                    ["l"] = { method = N.lower_case, opts = { desc = "lower case" } },
-                    -- https://github.com/smoka7/multicursors.nvim/issues/85
-                    ["<C-z>"] = {
-                        method = function()
-                            vim.cmd("normal U")
-                        end,
-                        opts = { desc = "Undo" },
                     },
                 },
             }
