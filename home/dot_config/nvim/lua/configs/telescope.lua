@@ -86,7 +86,6 @@ M.config = function()
             },
         },
         extensions_list = {
-            -- "aerial",
             "dap",
             "emoji",
             "file_browser",
@@ -159,6 +158,11 @@ M.config = function()
         },
         buffer_previewer_maker = new_maker,
     }
+
+    if vim.g.use_aerial then
+        settings.extensions_list = table.insert(settings.extensions_list, "aerial")
+    end
+
     local conf = require("nvchad.configs.telescope")
     return vim.tbl_deep_extend("force", conf, settings)
 end

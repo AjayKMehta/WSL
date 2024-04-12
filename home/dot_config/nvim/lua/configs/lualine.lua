@@ -185,8 +185,12 @@ local config = {
                 },
             },
             "filetype",
-            --  TODO: Uncomment if using aerial.
-            -- { "aerial" },
+            {
+                "aerial",
+                cond = function()
+                    return vim.g.use_aerial
+                end,
+            },
             -- https://github.com/cuducos/yaml.nvim#showing-the-yaml-path-and-value
             {
                 function(msg)

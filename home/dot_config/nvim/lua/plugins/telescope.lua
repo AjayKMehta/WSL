@@ -34,7 +34,7 @@ return {
                     })
                 end,
             },
-            -- "stevearc/aerial.nvim",
+            "stevearc/aerial.nvim",
         },
     },
     {

@@ -4,9 +4,12 @@ return {
     {
         -- Code outline sidebar powered by LSP.
         -- Differs from aerial as it uses LSP instead of treesitter.
+        -- Seems more reliable than aerial.
         "hedyhli/outline.nvim",
         cmd = { "Outline", "OutlineOpen" },
-        enabled = true, -- Seems more reliable than aerial.
+        enabled = function()
+            return not vim.g.use_aerial
+        end,
         opts = {
             outline_window = {
                 auto_jump = false,
@@ -32,7 +35,9 @@ return {
         "stevearc/aerial.nvim",
         lazy = true,
         cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
-        enabled = false,
+        enabled = function()
+            return vim.g.use_aerial
+        end,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
