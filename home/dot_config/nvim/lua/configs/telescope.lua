@@ -103,6 +103,7 @@ M.config = function()
             "vim_bookmarks",
             -- https://github.com/benfowler/telescope-luasnip.nvim/issues/22
             "luasnip",
+            "telescope-tabs",
         },
         extensions = {
             fzf = {
