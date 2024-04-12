@@ -29,6 +29,7 @@ M.config = function()
 
     local settings = {
         defaults = {
+            set_env = { ["TERM"] = vim.env.TERM },
             mappings = {
                 i = {
                     ["<C-j>"] = actions.move_selection_next,
