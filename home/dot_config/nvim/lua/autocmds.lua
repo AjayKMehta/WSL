@@ -8,15 +8,15 @@ autocmd("BufReadPre", { pattern = "/private/*", command = "set noundofile" })
 
 -- Highlight yanked text
 
-local yank_highlight_id = augroup("highlightyank", { clear = true })
+-- local yank_highlight_id = augroup("highlightyank", { clear = true })
 
 -- https://github.com/jakesjews/Dot-Files-And-Scripts/blob/088138f25c16f89f206af6be9756175b3bb682da/init.lua
-autocmd("TextYankPost", {
-    group = yank_highlight_id,
-    callback = function()
-        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200, on_visual = true })
-    end,
-})
+-- autocmd("TextYankPost", {
+--     group = yank_highlight_id,
+--     callback = function()
+--         vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200, on_visual = true })
+--     end,
+-- })
 
 -- Auto resize panes when resizing nvim window
 -- autocmd("VimResized", {

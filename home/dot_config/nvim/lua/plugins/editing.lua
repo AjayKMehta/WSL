@@ -107,4 +107,14 @@ return {
             },
         },
     },
+    -- Copy data to system clipboard only when we are pressing 'y'. 'd', 'x' will be filtered out.
+    {
+        "ibhagwan/smartyank.nvim",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {
+            highlight = {
+                timeout = 1000,
+            },
+        },
+    },
 }
