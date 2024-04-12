@@ -18,7 +18,7 @@ return {
         "iabdelkareem/csharp.nvim",
         opts = {
             lsp = {
-                enable = true,
+                enable = false,
                 -- Settings that'll be passed to the omnisharp server
                 enable_editor_config_support = true,
                 organize_imports = true,

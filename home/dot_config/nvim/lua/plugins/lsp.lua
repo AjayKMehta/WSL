@@ -38,4 +38,13 @@ return {
             telescope = true, -- Whether to load telescope extensions
         },
     },
+    {
+        -- Show function signature as you type.
+        "ray-x/lsp_signature.nvim",
+        -- Displays overload info!
+        ft = { "cs", "python" },
+        -- Disabling this and setting lsp.signature.enabled for Noice to true doesn't work :(
+        enabled = true,
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    },
 }
