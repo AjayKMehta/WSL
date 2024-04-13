@@ -183,7 +183,9 @@ local plugins = {
                 -- nvim-cmp source for emojis
                 "hrsh7th/cmp-emoji",
                 event = "InsertEnter",
-                enabled = false,
+                enabled = function()
+                    return vim.g.use_cmp_emoji
+                end,
             },
             {
                 -- Completion for Neovim's Lua runtime API.
@@ -240,7 +242,10 @@ local plugins = {
     },
     {
         "allaman/emoji.nvim",
-        --   ft = "markdown", -- adjust to your needs
+        event = "InsertEnter",
+        enabled = function()
+            return not vim.g.use_cmp_emoji
+        end,
         dependencies = {
             "hrsh7th/nvim-cmp",
             "nvim-telescope/telescope.nvim",
