@@ -27,11 +27,6 @@ local function diff_source()
     end
 end
 
-local function has_module(module)
-    local result, _ = utils.is_loaded(module)
-    return result
-end
-
 local function LspStatus()
     return require("lsp-progress").progress({
         format = function(messages)
@@ -57,6 +52,7 @@ local function LspStatus()
     })
 end
 
+-- https://github.com/smoka7/multicursors.nvim#status-line-module
 local function is_active()
     local ok, hydra = pcall(require, "hydra.statusline")
     return ok and hydra.is_active()
@@ -134,10 +130,44 @@ local config = {
                 symbols = { added = "+", modified = "~", removed = "-" },
                 source = diff_source,
             },
-            -- { get_name, cond = is_active },
+            { get_name, cond = is_active },
         },
         lualine_c = {
-            { LspStatus, cond = utils.has_filename },
+            { LspStatus, cond = utils.has_filename, color = { fg = "#00FDAF" } },
+            {
+                function()
+                    local formatters = require("conform").list_formatters()
+                    local available_formatters = {}
+                    for _, fmt in ipairs(formatters) do
+                        if fmt.available then
+                            table.insert(available_formatters, fmt.name)
+                        end
+                    end
+
+                    local pretty_list_formatters = #available_formatters ~= 0
+                        and table.concat(available_formatters, ", ")
+                    return "[" .. pretty_list_formatters .. "]"
+                end,
+                color = { fg = "pink" },
+                padding = 0,
+                cond = function()
+                    return vim.g.show_formatters
+                end,
+            },
+            {
+                -- https://github.com/mfussenegger/nvim-lint#get-the-current-running-linters-for-your-buffer
+                function()
+                    local linters = require("lint").get_running()
+                    if #linters == 0 then
+                        return "󰦕 "
+                    end
+                    return "󱉶 " .. table.concat(linters, ", ")
+                end,
+                cond = function()
+                    return vim.g.show_linters
+                end,
+                color = { fg = "#FA32EA" },
+            },
         },
         lualine_x = {
             -- https://github.com/folke/lazy.nvim#-usage
