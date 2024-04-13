@@ -143,7 +143,7 @@ vim.g.OmniSharp_timeout = 5
 
 -- TODO: Look into disabling and using csharp_ls only.
 lspconfig.omnisharp.setup({
-    cmd = { "dotnet", "/home/ajay/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+    cmd = { "dotnet", vim.env.HOME .. ".local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
