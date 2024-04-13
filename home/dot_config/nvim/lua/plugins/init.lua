@@ -1,7 +1,6 @@
 local overrides = require("configs.overrides")
 local load_config = require("utils").load_config
 
-
 return {
     -- It's important that you set up the plugins in the following order:
 
@@ -98,7 +97,6 @@ return {
             },
         },
         config = function()
-    require("nvchad.configs.lspconfig")
     require("configs.lspconfig")
         end,
     },
@@ -112,7 +110,9 @@ return {
     require("legendary").setup({
         extensions = {
             nvim_tree = true,
-            lazy_nvim = { auto_register = true },
+            -- automatically load keymaps from lazy.nvim's `keys` option
+            lazy_nvim = true,
+            diffview = true,
             which_key = {
                 -- Automatically add which-key tables to legendary
                 -- see ./doc/WHICH_KEY.md for more details
