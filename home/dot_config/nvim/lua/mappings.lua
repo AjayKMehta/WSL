@@ -27,11 +27,11 @@ local disabled = {
 -- https://github.com/NvChad/NvChad/issues/2688#issuecomment-1976174561
 for mode, mappings in pairs(disabled) do
     for _, keys in pairs(mappings) do
-		if vim.api.nvim_get_keymap(mode)[keys] then
-			vim.keymap.del(mode, keys)
-		else
-			vim.notify("Keymap " .. keys .. "does not exist for mode " .. mode)
-		end
+        if vim.api.nvim_get_keymap(mode)[keys] then
+            vim.keymap.del(mode, keys)
+        else
+            vim.notify("Keymap " .. keys .. "does not exist for mode " .. mode)
+        end
     end
 end
 
