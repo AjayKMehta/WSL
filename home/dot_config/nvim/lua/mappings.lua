@@ -305,6 +305,9 @@ local neogen_gen = function(type)
     return function()
         require("neogen").generate({
             type = type,
+            annotation_convention = {
+                cs = "xmldoc",
+            },
         })
     end
 end

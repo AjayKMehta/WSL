@@ -39,7 +39,7 @@ return {
                     template = {
                         annotation_convention = "emmylua",
                     },
-                    -- TODO: Figure out how to fix.
+                    -- Even though specified here, still have to specify again when calling command or it will use default (doxygen)!
                     cs = { template = { annotation_convention = "xmldoc" } },
                 },
             },
