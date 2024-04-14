@@ -255,26 +255,6 @@ local plugins = {
     },
 
     -- Appearance
-    {
-        "kevinhwang91/nvim-ufo",
-        dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
-        -- Setting these in config was not working 😦
-        init = function()
-            vim.opt.fillchars = {
-                fold = " ",
-                foldopen = "",
-                foldsep = " ",
-                foldclose = "",
-                stl = " ",
-                eob = " ",
-            }
-            vim.o.foldcolumn = "1"
-            vim.o.foldenable = true -- enable fold for nvim-ufo
-            vim.o.foldlevel = 99 -- set high foldlevel for nvim-ufo
-            vim.o.foldlevelstart = 99 -- start with all code unfolded
-        end,
-        config = load_config("ufo"),
-    },
 }
 
 return plugins
