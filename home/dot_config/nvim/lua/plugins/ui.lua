@@ -95,4 +95,10 @@ return {
             "nvim-telescope/telescope-fzf-native.nvim",
         },
     },
+    {
+        -- Colorize text with ANSI escape sequences
+        "m00qek/baleia.nvim",
+        lazy = true,
+        tag = "v1.4.0",
+    },
 }

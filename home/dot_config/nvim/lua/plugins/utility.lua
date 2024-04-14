@@ -285,7 +285,6 @@ return {
             { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
         },
     },
-    { "norcalli/nvim-colorizer.lua", enabled = false },
     {
         "brenoprata10/nvim-highlight-colors",
         event = "BufEnter",
