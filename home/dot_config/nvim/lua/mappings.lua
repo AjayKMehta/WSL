@@ -21,6 +21,7 @@ local disabled = {
         "<leader>b", -- Use as prefix
         "<leader>cc", -- Disabled blankline
         "<leader>cm", -- NvChad maps this to Telescope git commits
+        "<leader>cc", -- NvChad maps this to Blankline command
     },
 }
 
@@ -472,6 +473,7 @@ map_desc("n", "<leader>go", "<cmd>Outline<cr>", "Toggle Outline")
 
 map_desc("n", "<leader>Oo", "<cmd>Octo<cr>", "Octo")
 map_desc("n", "<leader>Op", "<cmd>Octo pr list<cr>", "Octo PR List")
+
 --#endregion
 
 --#region Noice
@@ -512,4 +514,47 @@ map({ "n", "i", "s" }, "<c-b>", function()
         return "<c-b>"
     end
 end, { silent = true, expr = true })
+
+--#endregion
+
+--#region comment
+
+-- https://github.com/numToStr/Comment.nvim/wiki/Examples#smart-comment
+
+function _G.__toggle_contextual(vmode)
+    local cfg = require("Comment.config"):get()
+    local U = require("Comment.utils")
+    local Op = require("Comment.opfunc")
+    local range = U.get_region(vmode)
+    local same_line = range.srow == range.erow
+
+    local ctx = {
+        cmode = U.cmode.toggle,
+        range = range,
+        cmotion = U.cmotion[vmode] or U.cmotion.line,
+        ctype = same_line and U.ctype.linewise or U.ctype.blockwise,
+    }
+
+    local lcs, rcs = U.parse_cstr(cfg, ctx)
+    local lines = U.get_lines(range)
+
+    local params = {
+        range = range,
+        lines = lines,
+        cfg = cfg,
+        cmode = ctx.cmode,
+        lcs = lcs,
+        rcs = rcs,
+    }
+
+    if same_line then
+        Op.linewise(params)
+    else
+        Op.blockwise(params)
+    end
+end
+
+map_desc("n", "<Leader>cc", "<cmd>set operatorfunc=v:lua.__toggle_contextual<CR>g@", "Toggle comment")
+map_desc("x", "<Leader>cc", "<cmd>set operatorfunc=v:lua.__toggle_contextual<CR>g@", "Toggle comment")
+
 --#endregion
