@@ -133,9 +133,8 @@ export NVM_DIR="$HOME/.nvm"
 # Else, WSL uses node from Windows
 nvm use stable
 
-# asdf
-[ -s "$HOME/.asdf/asdf.sh" ] && . "$HOME/.asdf/asdf.sh"
-[ -s "$HOME/.asdf/completions/asdf.bash" ]  && . "$HOME/.asdf/completions/asdf.bash"
+# mise
+echo 'eval "$(mise activate bash)"' >> ~/.bashrc
 
 # oh my posh
 eval "$(oh-my-posh init bash)"

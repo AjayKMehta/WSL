@@ -1,0 +1,20 @@
+[settings]
+    experimental = true
+    # plugins can read the versions files used by other version managers (if enabled by the plugin)
+    # for example, .nvmrc in the case of node's nvm
+    legacy_version_file = true # enabled by default (unlike asdf)
+
+[tools]
+    # specify single or multiple versions
+    neovim = '0.9.5'
+    deno = '1.42.3'
+    lua-language-server = '3.7.4'
+    delta = '0.17.0'
+    chezmoi = '2.47.4'
+    difftastic = '0.57.0'
+    fzf = '0.50.0'
+    golang = '1.22.2'
+    docker-slim = '1.40.9'
+    stylua = '0.20.0'
+    zoxide = '0.9.4'
+    usage = "latest"

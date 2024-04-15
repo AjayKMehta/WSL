@@ -1,5 +1,3 @@
-. "$HOME/.asdf/asdf.ps1"
-
 $env:DELTA_PAGER = 'less -rFX'
 # https://ohmyposh.dev/docs/segments/git
 $env:POSH_GIT_ENABLED = $true
