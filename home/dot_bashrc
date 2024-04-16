@@ -134,7 +134,7 @@ export NVM_DIR="$HOME/.nvm"
 nvm use stable
 
 # mise
-echo 'eval "$(mise activate bash)"' >> ~/.bashrc
+eval "$(mise activate bash)"
 
 # oh my posh
 eval "$(oh-my-posh init bash)"
