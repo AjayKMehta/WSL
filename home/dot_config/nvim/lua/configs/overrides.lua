@@ -279,7 +279,7 @@ M.nvimtree = {
         bufmap("h", api.node.navigate.parent_close, "Close parent folder")
         bufmap("H", api.tree.collapse_all, "Collapse All")
         bufmap("gh", api.tree.toggle_hidden_filter, "Toggle hidden files")
-        bufmap("gl", api.tree.toggle_group_empty, "Toggle group empty")
+        bufmap("gl", api.node.open.toggle_group_empty, "Toggle group empty")
 
         bufmap("<C-c>", treeutils.change_root_to_global_cwd, "Change Root To Global CWD")
     end,
