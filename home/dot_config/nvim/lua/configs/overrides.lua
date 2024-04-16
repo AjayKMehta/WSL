@@ -272,6 +272,16 @@ M.nvimtree = {
 
         bufmap("<c-f>", treeutils.launch_find_files, "Launch Find Files")
         bufmap("<c-g>", treeutils.launch_live_grep, "Launch Live Grep")
+        bufmap("<m-r>", function()
+            local path = vim.fn.input("Enter root path:")
+            api.tree.change_root(path)
+        end, "Change root to input path")
+
+        local function print_node_path()
+            local node = api.tree.get_node_under_cursor()
+            print(node.absolute_path)
+        end
+        bufmap("<C-P>", print_node_path, "Print path")
 
         -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#h-j-k-l-style-navigation-and-editing
         bufmap("l", treeutils.edit_or_open, "Expand folder or go to file")
