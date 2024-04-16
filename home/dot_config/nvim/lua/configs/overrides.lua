@@ -268,6 +268,7 @@ M.nvimtree = {
         end
 
         local treeutils = require("configs.treeutils")
+        api.config.mappings.default_on_attach(bufnr)
 
         bufmap("<c-f>", treeutils.launch_find_files, "Launch Find Files")
         bufmap("<c-g>", treeutils.launch_live_grep, "Launch Live Grep")
@@ -278,10 +279,9 @@ M.nvimtree = {
         bufmap("h", api.node.navigate.parent_close, "Close parent folder")
         bufmap("H", api.tree.collapse_all, "Collapse All")
         bufmap("gh", api.tree.toggle_hidden_filter, "Toggle hidden files")
-        bufmap("Y", api.fs.copy.relative_path, "Copy Relative Path")
+        bufmap("gl", api.tree.toggle_group_empty, "Toggle group empty")
 
         bufmap("<C-c>", treeutils.change_root_to_global_cwd, "Change Root To Global CWD")
-        bufmap("<C-]>", api.tree.change_root_to_node, "cd")
     end,
     -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#center-a-floating-nvim-tree-window
     view = {
