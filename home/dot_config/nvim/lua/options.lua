@@ -38,3 +38,7 @@ o.cursorcolumn = true
 o.scrolloff = 5
 
 o.termguicolors = true
+
+-- https://www.reddit.com/r/neovim/comments/1c0bemk/using_ripgrep_as_grepprg_to_search_in_the_current/
+o.grepprg = "rg --vimgrep"
+o.grepformat = "%f:%l:%c:%m"
