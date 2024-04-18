@@ -376,7 +376,7 @@ M.cmp = {
                 end
             end,
             s = require("cmp").mapping.confirm({ select = true }),
-            -- c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
+            c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
         }),
         ["<M-d>"] = require("cmp").mapping({
             i = function()
@@ -388,6 +388,8 @@ M.cmp = {
                 end
             end,
         }),
+        ["<Down>"] = require("cmp").mapping(require("cmp").mapping.select_next_item({ behavior = require("cmp").SelectBehavior.Insert }), { "i" }), -- Alternative `Select Previous Item`
+        ["<Up>"] = require("cmp").mapping(require("cmp").mapping.select_prev_item({ behavior = require("cmp").SelectBehavior.Insert }), { "i" }), -- Alternative `Select Next Item`
     },
     sorting = {
         comparators = {
