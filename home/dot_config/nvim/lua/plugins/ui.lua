@@ -59,6 +59,7 @@ return {
     -- Adds horizontal highlights for text filetypes, like markdown, orgmode, and neorg
     {
         "lukas-reineke/headlines.nvim",
+        ft = { "markdown", "norg", "org", "rmd" },
         dependencies = "nvim-treesitter/nvim-treesitter",
         config = load_config("headlines"),
     },
