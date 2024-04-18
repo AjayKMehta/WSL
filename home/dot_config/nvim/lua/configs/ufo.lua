@@ -32,7 +32,10 @@ end
 -- check out `./lua/ufo.lua` and search `setFoldVirtTextHandler` for detail.
 require("ufo").setup({
     provider_selector = function(bufnr, filetype, buftype)
-        return { "treesitter", "indent" }
+        if filetype == "lua" then -- Not sure why this gives error with LSP!
+            return { "treesitter", "indent" }
+        end
+        return { "lsp", "indent" }
     end,
     close_fold_kinds_for_ft = { "imports", "comments" },
     fold_virt_text_handler = handler,
