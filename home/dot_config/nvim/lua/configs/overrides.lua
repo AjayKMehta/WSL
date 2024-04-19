@@ -89,10 +89,10 @@ M.treesitter = {
     incremental_selection = {
         enable = true,
         keymaps = {
-            init_selection = "gi",
-            node_incremental = "gk",
-            scope_incremental = "gs",
-            node_decremental = "gj",
+            init_selection = "<leader>ti",
+            node_incremental = "<leader>tk",
+            scope_incremental = "<leader>ts",
+            node_decremental = "<leader>tj",
         },
     },
     textobjects = {
