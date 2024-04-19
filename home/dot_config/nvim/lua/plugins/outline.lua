@@ -43,7 +43,7 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         keys = {
-            { "<Leader>ta", "<CMD>AerialToggle<CR>", mode = { "n" }, desc = "Open or close the aerial window" },
+            { "<Leader>ta", "<CMD>AerialToggle<CR>", mode = { "n" }, desc = "Toggle the aerial window" },
         },
         config = load_config("aerial"),
     },

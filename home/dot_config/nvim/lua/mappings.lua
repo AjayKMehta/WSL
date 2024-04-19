@@ -13,7 +13,7 @@ local map_desc = utils.map_desc
 local disabled = {
     n = {
         -- "<C-b>",
-        -- "gi", -- Clashes with Treesitter keymap
+        -- "gi", -- NvChad is overwriting builtin when attaching LSP
         "<leader>lf", -- NvChad maps this to Lsp floating diagnostics
         "<leader>fm", -- Duplicate for above
         "<leader>fb", -- NvChad maps this to Find buffers
