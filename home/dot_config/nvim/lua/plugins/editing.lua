@@ -106,4 +106,41 @@ return {
             },
         },
     },
+    -- Respect camelCase and the like in w,e,b motions)
+    {
+        "chrisgrieser/nvim-spider",
+        lazy = true,
+        -- Use commands to make them dot-repeatable!
+        keys = {
+            {
+                "<M-w>",
+                "<cmd>lua require('spider').motion('w')<CR>",
+                desc = "Spider w",
+                mode = { "n", "o", "x" },
+            },
+            { "<M-e>", "<cmd>lua require('spider').motion('e')<CR>", desc = "Spider e", mode = { "n", "o", "x" } },
+            { "<M-b>", "<cmd>lua require('spider').motion('b')<CR>", desc = "Spider b", mode = { "n", "o", "x" } },
+            { "gE", "<cmd>lua require('spider').motion('ge')<CR>", desc = "Spider ge", mode = { "n", "o", "x" } },
+            -- https://github.com/chrisgrieser/nvim-spider?tab=readme-ov-file#operator-pending-mode-the-case-of-cw
+            { "cw", "c<cmd>lua require('spider').motion('e')<CR>", mode = "n" },
+            {
+                "n",
+                "<cmd>lua require('spider').motion('w', { customPatterns = {'%d+'}})<CR>",
+                desc = "Spider number",
+                mode = "n",
+            },
+        },
+        opts = {
+            skipInsignificantPunctuation = true,
+            subwordMovement = true,
+            customPatterns = {},
+        },
+        dependencies = {
+            "theHamsta/nvim_rocks",
+            build = "pip3 install --user hererocks && python3 -mhererocks . -j2.1.0-beta3 -r3.0.0 && cp nvim_rocks.lua lua",
+            config = function()
+                require("nvim_rocks").ensure_installed("luautf8")
+            end,
+        },
+    },
 }
