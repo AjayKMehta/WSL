@@ -401,13 +401,13 @@ end, "Flash toggle search")
 
 --#region neotest
 
-map_desc("n", "<leader>tr", function()
+map_desc("n", "<leader>nr", function()
     vim.notify_once("Running single test", vim.log.levels.INFO, {
         title = "Neotest",
     })
     require("neotest").run.run()
 end, "neotest: Run")
-map_desc("n", "<leader>to", function()
+map_desc("n", "<leader>no", function()
     require("neotest").output.open({
         enter = true,
         open_win = function(settings)
@@ -427,7 +427,7 @@ map_desc("n", "<leader>to", function()
     })
 end, "neotest: Show output")
 
-map_desc("n", "<leader>ts", function()
+map_desc("n", "<leader>ns", function()
     require("neotest").summary.toggle()
 end, "neotest: Show summary")
 
