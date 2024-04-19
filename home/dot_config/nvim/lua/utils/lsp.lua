@@ -58,6 +58,11 @@ M.on_attach = function(client, bufnr)
     end, "Lsp NvRenamer")
 
     map_buf({ "n", "v" }, "<leader>lc", vim.lsp.buf.code_action, "Lsp Code action")
+
+    if client.name == "ruff" then
+        -- Disable hover in favor of basedpyright
+        client.server_capabilities.hoverProvider = false
+    end
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()

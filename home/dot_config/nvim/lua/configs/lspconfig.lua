@@ -43,7 +43,7 @@ local servers = {
     "dotls",
 
     -- Python
-    "ruff_lsp",
+    "ruff",
     -- TODO: Re-enable in future?
     -- "pylyzer",
     "basedpyright",

@@ -42,7 +42,7 @@ return {
 
                 -- Python
                 "basedpyright",
-                "ruff_lsp",
+                "ruff",
                 "pylyzer",
 
                 --Haskell
