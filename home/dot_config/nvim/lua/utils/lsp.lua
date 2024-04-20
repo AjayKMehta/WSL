@@ -67,6 +67,13 @@ end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
+-- https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
+-- Neovim hasn't added foldingRange to default capabilities, users must add it manually
+M.capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+}
+
 M.capabilities.textDocument.completion.completionItem = {
     documentationFormat = { "markdown", "plaintext" },
     snippetSupport = true,

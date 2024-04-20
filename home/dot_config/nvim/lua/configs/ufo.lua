@@ -31,12 +31,28 @@ end
 -- `handler` is the 2nd parameter of `setFoldVirtTextHandler`,
 -- check out `./lua/ufo.lua` and search `setFoldVirtTextHandler` for detail.
 require("ufo").setup({
+    open_fold_hl_timeout = 150,
+    close_fold_kinds_for_ft = {
+        default = { "imports", "comment" },
+        json = { "array" },
+        c = { "comment", "region" },
+    },
     provider_selector = function(bufnr, filetype, buftype)
         if filetype == "lua" then -- Not sure why this gives error with LSP!
             return { "treesitter", "indent" }
         end
         return { "lsp", "indent" }
     end,
-    close_fold_kinds_for_ft = { "imports", "comments" },
     fold_virt_text_handler = handler,
+    preview = {
+        -- https://github.com/kevinhwang91/nvim-ufo?tab=readme-ov-file#preview-function-table
+        mappings = {
+            scrollB = "<C-b>",
+            scrollF = "<C-f>",
+            scrollU = "<C-u>",
+            scrollD = "<C-d>",
+            jumpTop = "[",
+            jumpBot = "]",
+        },
+    },
 })
