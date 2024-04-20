@@ -326,12 +326,14 @@ M.nvimtree = {
 M.cmp = {
     -- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#disabling-completion-in-certain-contexts-such-as-comments
     enabled = function()
-        -- disable completion in comments
         local context = require("cmp.config.context")
+        if vim.api.nvim_buf_get_option(0, "filetype") == "TelescopePrompt" then
+            return false
         -- keep command mode completion enabled when cursor is in a comment
-        if vim.api.nvim_get_mode().mode == "c" then
+        elseif vim.api.nvim_get_mode().mode == "c" then
             return true
         else
+            -- disable completion in comments
             return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
         end
     end,
@@ -388,8 +390,21 @@ M.cmp = {
                 end
             end,
         }),
-        ["<Down>"] = require("cmp").mapping(require("cmp").mapping.select_next_item({ behavior = require("cmp").SelectBehavior.Insert }), { "i" }), -- Alternative `Select Previous Item`
-        ["<Up>"] = require("cmp").mapping(require("cmp").mapping.select_prev_item({ behavior = require("cmp").SelectBehavior.Insert }), { "i" }), -- Alternative `Select Next Item`
+        ["<Down>"] = require("cmp").mapping(
+            require("cmp").mapping.select_next_item({ behavior = require("cmp").SelectBehavior.Insert }),
+            { "i" }
+        ), -- Alternative `Select Previous Item`
+        ["<Up>"] = require("cmp").mapping(
+            require("cmp").mapping.select_prev_item({ behavior = require("cmp").SelectBehavior.Insert }),
+            { "i" }
+        ), -- Alternative `Select Next Item`
+        -- Complete common string (similar to shell completion behavior).
+        ["<C-l>"] = require("cmp").mapping(function(fallback)
+            if require("cmp").visible() then
+                return require("cmp").complete_common_string()
+            end
+            fallback()
+        end, { "i", "c" }),
     },
     sorting = {
         comparators = {
