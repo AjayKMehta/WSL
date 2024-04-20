@@ -1,0 +1,5 @@
+[tools]
+deno = "latest"
+zoxide = "latest"
+lua-language-server = "latest"
+github-cli = "latest"
