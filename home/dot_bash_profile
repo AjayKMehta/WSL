@@ -6,8 +6,9 @@ has_cmd() {
 
 if has_cmd gh; then
     eval "$(gh completion -s bash)"
-    export PATH="$HOME/.local/bin:$PATH"
 fi
+
+export PATH="$HOME/.local/bin:$PATH"
 
 if has_cmd fzf && has_cmd fd; then
     # export FZF_DEFAULT_COMMAND='rg --files . 2> nul'
