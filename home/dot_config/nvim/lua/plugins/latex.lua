@@ -4,7 +4,9 @@ return {
     {
         "lervag/vimtex",
         ft = { "tex", "rmd" },
-        config = load_config("vimtex"),
+        -- Setting to true will break the inverse-search mechanism
+        lazy = false,
+        init = load_config("vimtex"),
     },
     {
         "iurimateus/luasnip-latex-snippets.nvim",

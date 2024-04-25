@@ -134,6 +134,8 @@ M.config = function()
             file_browser = {
                 hidden = { file_browser = true, folder_browser = true },
                 hijack_netrw = true,
+                git_status = true,
+                create_from_prompt = false,
             },
             aerial = {
                 -- Display symbols as <root>.<parent>.<symbol>
