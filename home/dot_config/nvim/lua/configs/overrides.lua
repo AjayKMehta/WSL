@@ -378,7 +378,7 @@ M.cmp = {
                 end
             end,
             s = require("cmp").mapping.confirm({ select = true }),
-            c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
+            c = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = false }),
         }),
         ["<M-d>"] = require("cmp").mapping({
             i = function()
