@@ -16,3 +16,8 @@ if has_cmd fzf && has_cmd fd; then
 fi
 
 export DOCKER_BUILDKIT=1
+# https://github.com/razzmatazz/csharp-language-server/issues/66#issuecomment-1493328609
+export DONET_ROOT=/usr/share/dotnet
+
+export DOTNET_NOLOGO=1
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
