@@ -106,6 +106,7 @@ M.treesitter = {
                 ["=i"] = { query = "@assignment.inner", desc = "Select inner part of an assignment" },
                 ["=l"] = { query = "@assignment.lhs", desc = "Select left hand side of an assignment" },
                 ["=r"] = { query = "@assignment.rhs", desc = "Select right hand side of an assignment" },
+
                 ["aa"] = { query = "@parameter.outer", desc = "Select outer part of a parameter/argument" },
                 ["ia"] = { query = "@parameter.inner", desc = "Select inner part of a parameter/argument" },
 
@@ -124,7 +125,14 @@ M.treesitter = {
                 ["ac"] = { query = "@class.outer", desc = "Select outer part of a class" },
                 ["ic"] = { query = "@class.inner", desc = "Select inner part of a class" },
 
-                ["aq"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+                -- TODO: Fix. Doesn't work?
+                -- ["aS"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+
+                -- TODO: Figure out Treesitter syntax for this.
+                -- ["a:"] = { query = "@property.outer", desc = "Select outer part of an object property" },
+                -- ["i:"] = { query = "@property.inner", desc = "Select inner part of an object property" },
+                -- ["l:"] = { query = "@property.lhs", desc = "Select left part of an object property" },
+                -- ["r:"] = { query = "@property.rhs", desc = "Select right part of an object property" },
             },
         },
         move = {
@@ -133,9 +141,12 @@ M.treesitter = {
             goto_next_start = {
                 ["]f"] = { query = "@call.outer", desc = "Next function call start" },
                 ["]m"] = { query = "@function.outer", desc = "Next method/function def start" },
-                -- ["]c"] = { query = "@class.outer", desc = "Next class start" },
+                ["]c"] = { query = "@class.outer", desc = "Next class start" },
                 ["]i"] = { query = "@conditional.outer", desc = "Next conditional start" },
                 ["]l"] = { query = "@loop.outer", desc = "Next loop start" },
+
+                ["]S"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+                ["]Z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
             },
             goto_next_end = {
                 ["]F"] = { query = "@call.outer", desc = "Next function call end" },
@@ -147,7 +158,7 @@ M.treesitter = {
             goto_previous_start = {
                 ["[f"] = { query = "@call.outer", desc = "Prev function call start" },
                 ["[m"] = { query = "@function.outer", desc = "Prev method/function def start" },
-                -- ["[c"] = { query = "@class.outer", desc = "Prev class start" },
+                ["[c"] = { query = "@class.outer", desc = "Prev class start" },
                 ["[i"] = { query = "@conditional.outer", desc = "Prev conditional start" },
                 ["[l"] = { query = "@loop.outer", desc = "Prev loop start" },
             },
@@ -178,7 +189,7 @@ M.treesitter = {
             floating_preview_opts = {},
             peek_definition_code = {
                 ["<leader>pf"] = "@function.outer",
-                ["<leader>pF"] = "@class.outer",
+                ["<leader>pc"] = "@class.outer",
             },
         },
     },
