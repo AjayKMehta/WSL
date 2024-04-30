@@ -40,9 +40,22 @@ vim.g.use_cmp_emoji = false
 vim.g.csharp_lsp = false
 
 -- lualinne toggles
-
 vim.g.show_linters = false
 vim.g.show_formatters = false
 
 -- Prepend mise shims to PATH
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+
+-- https://www.youtube.com/watch?v=NecszftvMFI
+
+vim.filetype.add({
+	extension = {
+		csproj = 'xml',
+	},
+	filename = {
+	['Directory.Build.targets'] = 'xml',
+},
+pattern = {
+	['Directory.*.props'] = 'xml'
+}
+})
