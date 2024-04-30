@@ -36,6 +36,8 @@ vim.api.nvim_set_keymap("i", "<C-q>", "<C-k>", { noremap = true })
 -- If true, use aerial instead of outline
 vim.g.use_aerial = false
 vim.g.use_cmp_emoji = false
+-- If true, csharp.nvim enables LSP.
+vim.g.csharp_lsp = false
 
 -- lualinne toggles
 

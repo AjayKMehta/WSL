@@ -18,7 +18,8 @@ return {
         "iabdelkareem/csharp.nvim",
         opts = {
             lsp = {
-                enable = false,
+                -- Need to manually set up omnisharp LSP if false
+                enable = vim.g.csharp_lsp,
                 -- Settings that'll be passed to the omnisharp server
                 enable_editor_config_support = true,
                 organize_imports = true,
@@ -43,6 +44,7 @@ return {
         ft = { "cs", "vb", "csproj", "sln", "slnx", "props" },
         dependencies = {
             "williamboman/mason.nvim", -- Required, automatically installs omnisharp
+             "mfussenegger/nvim-dap",
             "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
         },
         config = function(_, opts)

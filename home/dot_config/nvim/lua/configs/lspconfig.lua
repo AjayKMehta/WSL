@@ -142,28 +142,30 @@ vim.g.OmniSharp_start_without_solution = 1
 vim.g.OmniSharp_timeout = 5
 
 -- TODO: Look into disabling and using csharp_ls only.
-lspconfig.omnisharp.setup({
-    cmd = { "dotnet", vim.env.HOME .. ".local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        FormattingOptions = {
-            EnableEditorConfigSupport = true,
-            OrganizeImports = true,
+if not vim.g.csharp_lsp then
+    lspconfig.omnisharp.setup({
+        cmd = { "dotnet", vim.env.HOME .. ".local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {
+            FormattingOptions = {
+                EnableEditorConfigSupport = true,
+                OrganizeImports = true,
+            },
+            MsBuild = {
+                LoadProjectsOnDemand = false,
+            },
+            RoslynExtensionsOptions = {
+                EnableAnalyzersSupport = true,
+                EnableImportCompletion = true,
+                AnalyzeOpenDocumentsOnly = false,
+            },
+            Sdk = {
+                IncludePrereleases = false,
+            },
         },
-        MsBuild = {
-            LoadProjectsOnDemand = false,
-        },
-        RoslynExtensionsOptions = {
-            EnableAnalyzersSupport = true,
-            EnableImportCompletion = true,
-            AnalyzeOpenDocumentsOnly = false,
-        },
-        Sdk = {
-            IncludePrereleases = false,
-        },
-    },
-})
+    })
+end
 
 lspconfig.typos_lsp.setup({
     on_attach = on_attach,
