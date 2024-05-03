@@ -74,7 +74,7 @@ local config = {
         component_separators = "|",
         section_separators = { left = "", right = "" },
         disabled_filetypes = {
-            statusline = { "NvimTree", "dashboard" },
+            statusline = { "NvimTree", "dashboard", "crunner" },
         },
     },
     -- This clobbers bufferline!
