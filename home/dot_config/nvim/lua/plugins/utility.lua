@@ -314,7 +314,22 @@ return {
     },
     {
         "moyiz/command-and-cursor.nvim",
+        desc = "Highlight cursor and visual selections in current buffer when entering command mode.",
         event = "VeryLazy",
         opts = {},
+    },
+    {
+        "yorickpeterse/nvim-tree-pairs",
+        desc = "NeoVim plugin for jumping to the other end of the current Tree-sitter node using `%`.",
+        config = function()
+            require("tree-pairs").setup()
+        end,
+    },
+    {
+        "NStefan002/screenkey.nvim",
+        desc = "Displays the keys you are typing in a floating window, just like screenkey does.",
+        cmd = "Screenkey",
+        version = "*",
+        config = true,
     },
 }
