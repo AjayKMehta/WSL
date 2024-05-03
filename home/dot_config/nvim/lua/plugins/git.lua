@@ -126,4 +126,29 @@ return {
             end,
         },
     },
+    {
+        "FabijanZulj/blame.nvim",
+        desc = "fugitive.vim style git blame visualizer for Neovim.",
+        cmd = {
+            "BlameToggle",
+        },
+        opts = {
+            date_format = "%d.%m.%Y",
+            virtual_style = "right",
+            merge_consecutive = true,
+            max_summary_width = 30,
+            colors = nil,
+            commit_detail_view = "vsplit",
+            mappings = {
+                commit_info = "i",
+                stack_push = "<TAB>",
+                stack_pop = "<BS>",
+                show_commit = "c", -- TODO: Fix. Doesn't work.
+                close = { "<esc>", "q" },
+            },
+        },
+        config = function(_, Opts)
+            require("blame").setup(opts)
+        end,
+    },
 }
