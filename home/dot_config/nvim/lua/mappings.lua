@@ -340,34 +340,51 @@ end, "Preview code actions.")
 
 --#region Flash
 
-map_desc({ "n", "o", "x" }, "<leader>ss", function()
+local function flash_jump()
     require("flash").jump()
-end, "Flash")
+end
 
-map_desc({ "n", "o", "x" }, "<leader>sS", function()
+map_desc("n", "<leader>ss", flash_jump, "Flash")
+map_desc({ "o", "x" }, "ss", flash_jump, "Flash")
+
+local function flash_ts()
     require("flash").treesitter()
-end, "Flash Treesitter")
-map_desc({ "n", "o", "x" }, "<leader>sf", function()
+end
+
+map_desc("n" , "<leader>sS", flash_ts, "Flash Treesitter")
+map_desc({ "o", "x" }, "sS", flash_ts, "Flash Treesitter")
+
+local function flash_fwd()
     require("flash").jump({
         search = { forward = true, wrap = false, multi_window = false },
     })
-end, "Flash forward")
-map_desc({ "n", "o", "x" }, "<leader>sb", function()
+end
+
+map_desc("n", "<leader>sf", flash_fwd, "Flash forward")
+map_desc({ "o", "x" }, "sf", flash_fwd, "Flash forward")
+
+local function flash_back()
     require("flash").jump({
         search = { forward = false, wrap = false, multi_window = false },
     })
-end, "Flash backward")
+end
 
-map_desc({ "n", "o", "x" }, "<leader>sc", function()
+map_desc("n", "<leader>sb", flash_back, "Flash backward")
+map_desc({ "o", "x" }, "sb", flash_back, "Flash backward")
+
+local function flash_cont()
     require("flash").jump({
         search = { continue = true },
     })
-end, "Flash continue search")
-map_desc({ "n", "o", "x" }, "<leader>sd", function()
+end
+
+map_desc("n", "<leader>sc", flash_cont, "Flash continue search")
+map_desc({ "o", "x" }, "sc", flash_cont, "Flash continue search")
+
+local function flash_diag()
     -- More advanced example that also highlights diagnostics:
     require("flash").jump({
         matcher = function(win)
-            ---@param diag Diagnostic
             return vim.tbl_map(function(diag)
                 return {
                     pos = { diag.lnum + 1, diag.col },
@@ -383,13 +400,16 @@ map_desc({ "n", "o", "x" }, "<leader>sd", function()
             state:restore()
         end,
     })
-end, "Flash diagnostics")
+end
 
-map_desc("o", "r", function()
+map_desc("n", "<leader>sd", flash_diag, "Flash diagnostics")
+map_desc({ "o", "x" }, "sd", flash_diag, "Flash diagnostics")
+
+map_desc("o", "sr", function()
     require("flash").remote()
 end, "Flash remote")
 
-map_desc({ "o", "x" }, "R", function()
+map_desc({ "o", "x" }, "sR", function()
     require("flash").treesitter_search()
 end, "Flash treesitter search")
 
