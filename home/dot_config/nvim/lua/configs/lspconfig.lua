@@ -44,7 +44,6 @@ local servers = {
 
     -- Python
     "ruff",
-    -- TODO: Re-enable in future?
     -- "pylyzer",
     "basedpyright",
 
@@ -357,7 +356,6 @@ lspconfig.texlab.setup({
     },
 })
 
--- TODO: Figure out how to add Directory.Build.props, etc.
 lspconfig.lemminx.setup({
     filetypes = { "xml", "xsd", "xsl", "xslt", "svg", "csproj" },
     settings = {
