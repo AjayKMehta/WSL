@@ -15,10 +15,10 @@
         "EnableAnalyzersSupport": true,
         "EnableDecompilationSupport": true,
         "LocationPaths": [
-            "/home/ajay/.vscode-server/extensions/josefpihrt-vscode.roslynator-4.12.1/roslyn/common",
-            "/home/ajay/.vscode-server/extensions/josefpihrt-vscode.roslynator-4.12.1/roslyn/analyzers",
-            "/home/ajay/.vscode-server/extensions/josefpihrt-vscode.roslynator-4.12.1/roslyn/refactorings",
-            "/home/ajay/.vscode-server/extensions/josefpihrt-vscode.roslynator-4.12.1/roslyn/fixes"
+            "/home/ajay/.vscode-server/extensions/josefpihrt-vscode.roslynator-4.12.2/roslyn/common",
+            "/home/ajay/.vscode-server/extensions/josefpihrt-vscode.roslynator-4.12.2/roslyn/analyzers",
+            "/home/ajay/.vscode-server/extensions/josefpihrt-vscode.roslynator-4.12.2/roslyn/refactorings",
+            "/home/ajay/.vscode-server/extensions/josefpihrt-vscode.roslynator-4.12.2/roslyn/fixes"
         ]
     },
     "fileOptions": {

@@ -178,5 +178,7 @@ source ~/.local/share/blesh/ble.sh
 # Must come after sourcing ble.sh!
 eval "$(atuin init bash --disable-up-arrow)"
 
+export DOTNET_ROOT=/usr/share/dotnet
+
 # Add this line at the end of .bashrc:
 [[ ${BLE_VERSION-} ]] && ble-attach
