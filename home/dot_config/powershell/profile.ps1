@@ -9,6 +9,9 @@ $FormatEnumerationLimit = 10
 # Native commands with non-zero exit codes issue errors according to $ErrorActionPreference.
 $PSNativeCommandUseErrorActionPreference = $true
 
+# Make sure mise and shims are in path
+$env:PATH += ';~/.local/bin/mise:~/.local/share/mise/shims'
+
 #region posh-git
 
 Import-Module 'posh-git' -Force
@@ -107,7 +110,7 @@ $env:FZF_DEFAULT_COMMAND = 'rg --files . 2> nul'
 $env:FZF_DEFAULT_OPTS = @'
 --color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
 --color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7
---bind alt-up:preview-page-up,alt-down:preview-page-down,alt-e:preview-top,alt-f:preview-bottom,ctrl-e:half-page-up,ctrl-f:half-page-down
+--bind alt-up:preview-page-up,alt-down:preview-page-down,alt-e:preview-top,alt-f:preview-bottom,ctrl-e:half-page-up,ctrl-f:half-page-down --highlight-line
 '@
 
 # junegunn/seoul256.vim (light)
@@ -128,11 +131,19 @@ function ifind() {
 }
 
 Import-Module -Name PSFzf
-Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+Shift+r'
+# Ctrl + t to select based on current PSProvider.
+Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+Shift+r' -PSReadlineChordProvider 'Ctrl+t'
 # Press Alt+C to set location based on selected directory.
-# Ctrl + T to select file in $pwd.
 # fe = fuzzy edit, fh = fuzzy history, fkill = fuzzy kill, fgs = fuzzy git status
-Set-PsFzfOption -EnableAliasFuzzyEdit -EnableAliasFuzzyHistory -EnableAliasFuzzyKillProcess -EnableAliasFuzzyGitStatus
+# <C-g> is leader for git key bindings.
+# <C-g>, <C-f> selects files.
+# <C-g>, <C-b> selects branches.
+# <C-g>, <C-t> selects tags.
+# <C-g>, <C-h> selects hashes (commits).
+# <C-g>, <C-s> selects stashes.
+Set-PsFzfOption -EnableAliasFuzzyEdit -EnableAliasFuzzyHistory -EnableAliasFuzzyKillProcess -EnableAliasFuzzyGitStatus -EnableFd -GitKeyBindings
+
+Set-Alias -Name ipfr -Value Invoke-PsFzfRipgrep
 
 #endregion
 
