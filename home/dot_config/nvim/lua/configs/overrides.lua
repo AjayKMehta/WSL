@@ -71,7 +71,7 @@ M.treesitter = {
             enable = true,
             -- Assign keymaps to false to disable them, e.g. `smart_rename = false`.
             keymaps = {
-                smart_rename = false, -- "grr"
+                smart_rename = "grr",
             },
         },
         navigation = {
@@ -191,6 +191,15 @@ M.treesitter = {
                 ["<leader>pf"] = "@function.outer",
                 ["<leader>pc"] = "@class.outer",
             },
+        },
+    },
+    textsubjects = {
+        enable = true,
+        prev_selection = ",", -- (Optional) keymap to select the previous selection
+        keymaps = {
+            ["."] = "textsubjects-smart",
+            [";"] = "textsubjects-container-outer",
+            ["i;"] = { "textsubjects-container-inner", desc = "Select inside containers (classes, functions, etc.)" },
         },
     },
     playground = {
