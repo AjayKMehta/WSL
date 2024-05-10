@@ -71,8 +71,23 @@ return {
 
             floating_window_off_x = 1, -- adjust float windows x position.
             -- can be either a number or function
-            floating_window_off_y = 0, -- adjust float windows y position. e.g -2 move window up 2 lines; 2 move down 2 lines
-            -- can be either number or function, see examples
+            floating_window_off_y = function() -- adjust float windows y position. e.g. set to -2 can make floating window move up 2 lines
+                local linenr = vim.api.nvim_win_get_cursor(0)[1] -- buf line number
+                local pumheight = vim.o.pumheight
+                local winline = vim.fn.winline() -- line number in the window
+                local winheight = vim.fn.winheight(0)
+
+                -- window top
+                if winline - 1 < pumheight then
+                    return pumheight
+                end
+
+                -- window bottom
+                if winheight - winline < pumheight then
+                    return -pumheight
+                end
+                return 0
+            end,
 
             close_timeout = 4000, -- close floating window after ms when last parameter is entered
             fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
@@ -103,13 +118,16 @@ return {
             shadow_blend = 36, -- if you using shadow as border use this set the opacity
             shadow_guibg = "Black", -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
             timer_interval = 200, -- default timer check interval set to lower value if you want to reduce latency
-            toggle_key = nil, -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
-            toggle_key_flip_floatwin_setting = false, -- true: toggle float setting after toggle key pressed
+            toggle_key = "<M-t>", -- toggle floating window key (must set below to true)
+            toggle_key_flip_floatwin_setting = true,
 
             -- DOESN'T WORK?
-            select_signature_key = nil, -- cycle to next signature, e.g. '<M-n>' function overloading
+            select_signature_key = "<M-n>", -- cycle to next signature, e.g. '<M-n>' function overloading
             move_cursor_key = "<M-w>", -- imap, use nvim_set_current_win to move cursor between current win and floating
         },
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+        config = function(_, opts)
+            require("lsp_signature").setup(opts)
+        end,
     },
 }
