@@ -19,7 +19,7 @@ local disabled = {
         "<leader>fb", -- NvChad maps this to Find buffers
         "<leader>fh", -- NvChad maps this to Find help pages
         "<leader>b", -- Use as prefix
-        "<leader>cc", -- Disabled blankline
+        -- "<leader>cc", -- Disabled blankline
         "<leader>cm", -- NvChad maps this to Telescope git commits
         "<leader>cc", -- NvChad maps this to Blankline command
     },
@@ -351,7 +351,7 @@ local function flash_ts()
     require("flash").treesitter()
 end
 
-map_desc("n" , "<leader>sS", flash_ts, "Flash Treesitter")
+map_desc("n", "<leader>sS", flash_ts, "Flash Treesitter")
 map_desc({ "o", "x" }, "sS", flash_ts, "Flash Treesitter")
 
 local function flash_fwd()
