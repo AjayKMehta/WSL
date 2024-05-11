@@ -32,8 +32,8 @@ M.config = function()
             set_env = { ["TERM"] = vim.env.TERM },
             mappings = {
                 i = {
-                    ["<C-j>"] = actions.move_selection_next,
-                    ["<esc>"] = actions.close,
+                    ["<M-q>"] = false, -- Clashes with SlickRun 🙁
+                    ["<M-a>"] = actions.send_selected_to_qflist + actions.open_qflist,
                     -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#mapping-c-d-to-delete-buffer
                     ["<M-d>"] = actions.delete_buffer + actions.move_to_top,
                     ["<M-p>"] = actions_layout.toggle_preview,
@@ -42,6 +42,8 @@ M.config = function()
                     ["<C-a>"] = actions.cycle_previewers_prev,
                 },
                 n = {
+                    ["<M-q>"] = false, -- Clashes with SlickRun 🙁
+                    ["<M-a>"] = actions.send_selected_to_qflist + actions.open_qflist,
                     -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#add-mapping-to-toggle-the-preview
                     ["<M-p>"] = actions_layout.toggle_preview,
                 },
