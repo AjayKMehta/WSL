@@ -16,6 +16,9 @@ if has_cmd fzf && has_cmd fd; then
 fi
 
 export DOCKER_BUILDKIT=1
+# https://martinheinz.dev/blog/111
+export BUILDX_EXPERIMENTAL=1
+
 # https://github.com/razzmatazz/csharp-language-server/issues/66#issuecomment-1493328609
 export DONET_ROOT=/usr/share/dotnet
 
