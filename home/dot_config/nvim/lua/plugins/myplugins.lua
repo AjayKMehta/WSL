@@ -2,18 +2,12 @@
 local haskell_ft = { "haskell", "lhaskell", "cabal", "cabalproject" }
 
 --[[
-Plugins divided into the following categories:
-2. Treesitter + LSP
 7. Haskell
 ]]
 
 ---@diagnostic disable-next-line: undefined-doc-name
 
-local plugins = {
-    --#region Treesitter + LSP
-
-
-
+return {
     -- Haskell
     {
         "hasufell/ghcup.vim",
@@ -62,7 +56,4 @@ local plugins = {
         },
     },
 
-    -- Appearance
 }
-
-return plugins

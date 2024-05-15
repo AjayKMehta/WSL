@@ -83,7 +83,7 @@ return {
             automatic_installation = true,
         },
         config = function(_, opts)
-    require("mason-lspconfig").setup(opts)
+            require("mason-lspconfig").setup(opts)
         end,
     },
     {
@@ -97,7 +97,7 @@ return {
             },
         },
         config = function()
-    require("configs.lspconfig")
+            require("configs.lspconfig")
         end,
     },
     {
@@ -107,19 +107,19 @@ return {
         priority = 10000,
         lazy = false,
         config = function()
-    require("legendary").setup({
-        extensions = {
-            nvim_tree = true,
-            -- automatically load keymaps from lazy.nvim's `keys` option
-            lazy_nvim = true,
-            diffview = true,
-            which_key = {
-                -- Automatically add which-key tables to legendary
-                -- see ./doc/WHICH_KEY.md for more details
-                auto_register = true,
-            },
-        },
-    })
+            require("legendary").setup({
+                extensions = {
+                    nvim_tree = true,
+                    -- automatically load keymaps from lazy.nvim's `keys` option
+                    lazy_nvim = true,
+                    diffview = true,
+                    which_key = {
+                        -- Automatically add which-key tables to legendary
+                        -- see ./doc/WHICH_KEY.md for more details
+                        auto_register = true,
+                    },
+                },
+            })
         end,
     },
     {
@@ -127,9 +127,9 @@ return {
         opts = overrides.nvimtree,
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function(_, opts)
-    dofile(vim.g.base46_cache .. "nvimtree")
-    require("configs.nvimtree")
-    require("nvim-tree").setup(opts)
+            dofile(vim.g.base46_cache .. "nvimtree")
+            require("configs.nvimtree")
+            require("nvim-tree").setup(opts)
         end,
     },
     {
