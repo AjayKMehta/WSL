@@ -20,6 +20,7 @@ return {
         "folke/flash.nvim",
         desc = "Navigate your code with search labels, enhanced character motions, and Treesitter integration.",
         event = "VeryLazy",
+        opts = { modes = { search = { enabled = true } } },
     },
     {
         "nvim-treesitter/nvim-treesitter",
