@@ -160,6 +160,8 @@ Set-CdExtrasOption CD_PATH -Value '/mnt/d/git'
 Import-Module Terminal-Icons
 
 # Docker
+$env:DOCKER_BUILDKIT=1
+$env:BUILDX_EXPERIMENTAL=1
 Import-Module -Name DockerCompletion, DockerComposeCompletion, DockerMachineCompletion
 
 # Nice formatting
@@ -168,3 +170,4 @@ Import-Module Posh
 if ($env:TERM_PROGRAM -eq 'vscode') { . "$(code --locate-shell-integration-path pwsh)" }
 
 Import-Module Microsoft.PowerShell.SecretStore, Microsoft.PowerShell.SecretManagement
+
