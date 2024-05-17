@@ -31,7 +31,7 @@ local function LspStatus()
     return require("lsp-progress").progress({
         format = function(messages)
             local buf_number = vim.api.nvim_get_current_buf()
-            local active_clients = vim.lsp.get_active_clients({ bufnr = buf_number })
+            local active_clients = vim.lsp.get_clients({ bufnr = buf_number })
             local client_count = #active_clients
             if #messages > 0 then
                 return " LSP:" .. client_count .. " " .. table.concat(messages, " ")

@@ -45,7 +45,7 @@ function utils.get_comment(text)
         text = {
             text,
             function(x)
-                return not x or type(x) == type("") or vim.tbl_islist(x)
+                return not x or type(x) == type("") or vim.islist(x)
             end,
             "text must be either a string or an array of lines",
         },
@@ -56,7 +56,7 @@ function utils.get_comment(text)
     end
     local comment_str
     if text then
-        if vim.tbl_islist(text) then
+        if vim.islist(text) then
             comment_str = {}
             for _, line in ipairs(text) do
                 table.insert(comment_str, comment:format(line))
