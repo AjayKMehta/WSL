@@ -14,14 +14,12 @@ local disabled = {
     n = {
         -- "<C-b>",
         -- "gi", -- NvChad is overwriting builtin when attaching LSP
-        "<leader>lf", -- NvChad maps this to Lsp floating diagnostics
-        "<leader>fm", -- Duplicate for above
-        "<leader>fb", -- NvChad maps this to Find buffers
-        "<leader>fh", -- NvChad maps this to Find help pages
-        "<leader>b", -- Use as prefix
-        -- "<leader>cc", -- Disabled blankline
-        "<leader>cm", -- NvChad maps this to Telescope git commits
-        "<leader>cc", -- NvChad maps this to Blankline command
+        -- "<leader>lf", -- NvChad maps this to Lsp floating diagnostics
+        -- "<leader>fm", -- Duplicate for above
+        -- "<leader>fb", -- NvChad maps this to Find buffers
+        -- "<leader>fh", -- NvChad maps this to Find help pages
+        -- "<leader>b", -- Use as prefix
+        -- "<leader>cc", -- NvChad maps this to Blankline command
     },
 }
 
@@ -31,7 +29,7 @@ for mode, mappings in pairs(disabled) do
         if vim.api.nvim_get_keymap(mode)[keys] then
             vim.keymap.del(mode, keys)
         else
-            vim.notify("Keymap " .. keys .. "does not exist for mode " .. mode)
+            vim.notify("Keymap " .. keys .. " does not exist for mode " .. mode)
         end
     end
 end
