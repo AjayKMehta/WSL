@@ -1,0 +1,38 @@
+[default]
+    check-filename = false
+    unicode = true
+    extend-re = [
+        "<leader>\\w+"
+    ]
+
+[default.extend-words]
+    "aiofiles" = "aiofiles"
+    "aiohttp" = "aiohttp"
+    "astype" = "astype"
+    "deps" = "deps"
+    "iloc" = "iloc"
+    "mlxtend" = "mlxtend"
+    "ndarray" = "ndarray"
+    "networkx" = "networkx"
+    "nums" = "nums"
+    "sklearn" = "sklearn"
+    "Noice" = "Noice"
+
+
+
+[files]
+    extend-exclude = [
+        "typos.toml",
+        "**/.git*",
+        ".env",
+        "*.csv",
+        "*.js",
+        "**/package-lock.json",
+        "**/node-modules/**",
+        "**/vscodeextension/**",
+        "**/.git/objects/**",
+        "**/.vscode/**",
+        "**/.vscode-insiders/**",
+        "**/.tmp-projections/**",
+        "**/*.interactive"
+    ]
