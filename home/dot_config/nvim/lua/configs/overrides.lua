@@ -370,6 +370,7 @@ M.cmp = {
         fetching_timeout = 200,
         async_budget = 50,
     },
+    -- Enable luasnip to handle snippet expansion for nvim-cmp
     snippet = {
         expand = function(args)
             require("luasnip").lsp_expand(args.body)
@@ -418,13 +419,32 @@ M.cmp = {
             require("cmp").mapping.select_prev_item({ behavior = require("cmp").SelectBehavior.Insert }),
             { "i" }
         ), -- Alternative `Select Next Item`
-        -- Complete common string (similar to shell completion behavior).
-        ["<C-l>"] = require("cmp").mapping(function(fallback)
-            if require("cmp").visible() then
-                return require("cmp").complete_common_string()
-            end
+        ["<C-y>"] = require("cmp").mapping(
+            require("cmp").mapping.ConfirmBehavior({ behavior = require("cmp").ConfirmBehavior.Insert, select = true }),
+            { "i", "c" }
+        ), -- Use to select current item
+        ["<C-k>"] = require("cmp").mapping(function(fallback)
+        if require("luasnip").expand_or_jumpable() then
+            require("luasnip").expand_or_jump()
+        else
             fallback()
-        end, { "i", "c" }),
+        end
+        end, { "i", "s" }),
+        ["<C-j>"] = require("cmp").mapping(function(fallback)
+        if require("luasnip").jumpable(-1) then
+            require("luasnip").jump(-1)
+        else
+            fallback()
+        end
+        end, { "i", "s" }),
+    -- Tab and Shift + Tab help navigate between snippet nodes.
+    -- Complete common string (similar to shell completion behavior).
+    ["<C-l>"] = require("cmp").mapping(function(fallback)
+        if require("cmp").visible() then
+            return require("cmp").complete_common_string()
+        end
+        fallback()
+    end, { "i", "c" }),
     },
     sorting = {
         comparators = {
