@@ -25,7 +25,7 @@ return {
                 function()
                     require("lsp_lines").toggle()
                 end,
-                desc = "LSP Toggle inline diagnostics",
+                desc = "Lsp Toggle inline diagnostics",
             },
         },
     },

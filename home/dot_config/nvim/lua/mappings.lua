@@ -40,11 +40,11 @@ end, "NvChad Toggle theme")
 
 map_desc("n", "<leader>tT", function()
     require("base46").toggle_transparency()
-end, "NvChad Toggle theme")
+end, "NvChad Toggle transparency")
 
 map_desc("n", "gli", function()
     vim.lsp.buf.implementation()
-end, "LSP Go to implementation")
+end, "Lsp Go to implementation")
 
 -- tabufline (NVChad plugin)
 -- NVChad maps this to <leader>b
@@ -188,10 +188,10 @@ local function fn_move(dir)
     end
 end
 
-map_desc({ "n", "v" }, "<A-Left>", fn_move("left"), "Move line left")
-map_desc({ "n", "v" }, "<A-Right>", fn_move("right"), "Move line right")
-map_desc({ "n", "v" }, "<A-Up>", fn_move("up"), "Move line up")
-map_desc({ "n", "v" }, "<A-Down>", fn_move("down"), "Move line down")
+map_desc({ "n", "v" }, "<A-Left>", fn_move("left"), "mini.move line left")
+map_desc({ "n", "v" }, "<A-Right>", fn_move("right"), "mini.move line right")
+map_desc({ "n", "v" }, "<A-Up>", fn_move("up"), "mini.move line up")
+map_desc({ "n", "v" }, "<A-Down>", fn_move("down"), "mini.move line down")
 
 --#endregion
 
@@ -441,11 +441,11 @@ map_desc("n", "<leader>no", function()
             })
         end,
     })
-end, "neotest: Show output")
+end, "Neotest Show output")
 
 map_desc("n", "<leader>ns", function()
     require("neotest").summary.toggle()
-end, "neotest: Show summary")
+end, "Neotest Show summary")
 
 --#endregion
 
