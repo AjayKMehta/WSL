@@ -86,6 +86,9 @@ M.config = function()
                     prompt_position = "bottom",
                 },
             },
+            -- https://www.reddit.com/r/neovim/comments/1cv2tha/comment/l4mmdtc
+            prompt_prefix = "󰼛 ",
+            selection_caret = "󱞩 ",
         },
         extensions_list = {
             "dap",
