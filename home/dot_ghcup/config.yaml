@@ -9,5 +9,6 @@ mirrors: null
 no-network: null
 no-verify: null
 platform-override: null
-url-source: null
+url-source:
+- https://raw.githubusercontent.com/haskell/ghcup-metadata/master/ghcup-vanilla-0.0.8.yaml
 verbose: null
