@@ -457,6 +457,9 @@ end, "UFO Go to next closed fold")
 map_desc("n", "[z", function()
     require("ufo").goPreviousClosedFold()
 end, "UFO Go to previous closed fold")
+map_desc("n", "zk", function()
+    require("ufo").peekFoldedLinesUnderCursor()
+end, "UFO Peek fold")
 --#endregion
 
 --#region node_action
