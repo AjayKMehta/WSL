@@ -11,6 +11,8 @@ local exclude_filetypes = vim.tbl_deep_extend("force", ft.exclude_filetypes, {
     ["no-profile"] = true,
     nvcheatsheet = true,
     crunner = true,
+    dropbar_menu = true,
+    Outline = true,
 })
 
 hlchunk.setup({

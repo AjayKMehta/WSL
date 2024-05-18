@@ -71,6 +71,7 @@ dap.listeners.before["event_progressStart"]["progress-notifications"] = function
         hide_from_history = false,
     })
 
+---@diagnostic disable-next-line: redundant-value
     notif_data.notification.spinner = 1, update_spinner("dap", body.progressId)
 end
 
