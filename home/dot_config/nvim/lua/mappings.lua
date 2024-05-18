@@ -196,20 +196,20 @@ map_desc({ "n", "v" }, "<A-Down>", fn_move("down"), "Move line down")
 --#endregion
 
 --#region trouble
-map_desc("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics <CR>", "Trouble: Workspace diagnostics")
-map_desc("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics <CR>", "Trouble: Document diagnostics")
+map_desc("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics <CR>", "Trouble Workspace diagnostics")
+map_desc("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics <CR>", "Trouble Document diagnostics")
 map_desc("n", "<leader>tL", "<cmd> TroubleToggle loclist <CR>", "Trouble: Location List")
-map_desc("n", "<leader>tQ", "<cmd> TroubleToggle quickfix <CR>", "Trouble: Quickfix List")
-map_desc("n", "<leader>tS", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Trouble: Todo/Fix/Fixme")
+map_desc("n", "<leader>tQ", "<cmd> TroubleToggle quickfix <CR>", "Trouble Quickfix List")
+map_desc("n", "<leader>tS", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Trouble Todo/Fix/Fixme")
 
 --#endregion
 
 --#region bookmarks
 
-map_desc("n", "<leader>bt", "<cmd> BookmarkToggle<CR>", "󰃅 Toggle bookmark")
-map_desc("n", "<leader>bn", "<cmd> BookmarkNext<CR>", "󰮰 Next bookmark")
-map_desc("n", "<leader>bp", "<cmd> BookmarkPrev<CR>", "󰮲 Prev bookmark")
-map_desc("n", "<leader>bc", "<cmd> BookmarkClear<CR>", "󰃢 Clear bookmarks")
+map_desc("n", "<leader>bt", "<cmd> BookmarkToggle<CR>", "Bookmark Toggle 󰃅")
+map_desc("n", "<leader>bn", "<cmd> BookmarkNext<CR>", "Bookmark Next 󰮰")
+map_desc("n", "<leader>bp", "<cmd> BookmarkPrev<CR>", "Bookmark Prev 󰮲")
+map_desc("n", "<leader>bc", "<cmd> BookmarkClear<CR>", "Bookmark Clear 󰃢")
 
 --#endregion
 
@@ -217,10 +217,10 @@ map_desc("n", "<leader>bc", "<cmd> BookmarkClear<CR>", "󰃢 Clear bookmarks")
 
 map_desc("n", "<leader>ko", function()
     require("pretty_hover").hover()
-end, "Hover: Open")
+end, "Hover Open")
 map_desc("n", "<leader>kq", function()
     require("pretty_hover").close()
-end, "Hover: Close")
+end, "Hover Close")
 
 --#endregion
 
@@ -229,34 +229,34 @@ end, "Hover: Close")
 -- Keep same as VS + VS Code
 map_desc("n", "<F9>", function()
     require("dap").toggle_breakpoint()
-end, "DAP: Toggle breakpoint")
+end, "DAP Toggle breakpoint")
 map_desc("n", "<F5>", function()
     require("dap").continue()
-end, "DAP: Launch debugger")
+end, "DAP Launch debugger")
 map_desc("n", "<F10>", function()
     require("dap").step_over()
-end, "DAP: Step over")
+end, "DAP Step over")
 map_desc("n", "<F11>", function()
     require("dap").step_into()
-end, "DAP: Step into")
+end, "DAP Step into")
 map_desc("n", "<S-F11>", function()
     require("dap").step_out()
-end, "DAP: Step out")
+end, "DAP Step out")
 
 map_desc("n", "<leader>rb", function()
     require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-end, "DAP: Set conditional breakpoint")
+end, "DAP Set conditional breakpoint")
 
 map_desc("n", "<leader>rl", function()
     require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-end, "DAP: Log message")
+end, "DAP Log message")
 
 --#endregion
 
 --region dap_python
 map_desc("n", "<leader>rt", function()
     require("dap-python").test_method()
-end, "DAP: Debug the closest method to cursor")
+end, "DAP Debug closest method to cursor")
 
 --#endregion
 
@@ -276,24 +276,22 @@ local show_snippet_list = function(...)
     sl.open({ display = modified_default_display })
 end
 
-map_desc("n", "<leader>sl", show_snippet_list, "Snippets: List")
+map_desc("n", "<leader>sl", show_snippet_list, "Snippets List")
 
 --#endregion
 
 --#region urlview
 
-map_desc("n", "<leader>uu", "<cmd>UrlView<CR>", "Show local URLs")
+map_desc("n", "<leader>uu", "<cmd>UrlView<CR>", "UrlView Show URLs")
 
 --#endregion
 
 --#region code_runner
 
-map("n", "<leader>rc", "<cmd>RunCode<CR>")
-map("n", "<leader>rf", "<cmd>RunFile<CR>")
-map("n", "<leader>rp", "<cmd>RunProject<CR>")
-map("n", "<leader>rx", "<cmd>RunClose<CR>")
-map("n", "<leader>crf", "<cmd>CRFiletype<CR>")
-map("n", "<leader>crp", "<cmd>CRProjects<CR>")
+map_desc("n", "<leader>rc", "<cmd>RunCode<CR>", "CodeRunner Run code")
+map_desc("n", "<leader>rf", "<cmd>RunFile<CR>", "CodeRunner Run file")
+map_desc("n", "<leader>rp", "<cmd>RunProject<CR>", "CodeRunner Run project")
+map_desc("n", "<leader>rx", "<cmd>RunClose<CR>", "CodeRunner Close runner")
 
 --#endregion
 
@@ -310,9 +308,9 @@ local neogen_gen = function(type)
     end
 end
 
-map_desc("n", "<leader>nc", neogen_gen("class"), "neogen: Generate annotation for class")
+map_desc("n", "<leader>nc", neogen_gen("class"), "Neogen Generate annotation for class")
 
-map_desc("n", "<leader>nf", neogen_gen("func"), "neogen: Generate annotation for function")
+map_desc("n", "<leader>nf", neogen_gen("func"), "Neogen Generate annotation for function")
 
 --#endregion
 
@@ -320,11 +318,11 @@ map_desc("n", "<leader>nf", neogen_gen("func"), "neogen: Generate annotation for
 
 map_desc({ "n", "x" }, "gw", function()
     require("wtf").ai()
-end, "Debug diagnostic with AI")
+end, "WTF Debug diagnostic with AI")
 
 map_desc("n", "gW", function()
     require("wtf").search()
-end, "Search diagnostic with Google")
+end, "WTF Search diagnostic with Google")
 
 --#endregion
 
@@ -332,7 +330,7 @@ end, "Search diagnostic with Google")
 
 map_desc({ "n", "v" }, "ga", function()
     require("actions-preview").code_actions()
-end, "Preview code actions.")
+end, "Preview Code action.")
 
 --#endregion
 
@@ -358,8 +356,8 @@ local function flash_fwd()
     })
 end
 
-map_desc("n", "<leader>sf", flash_fwd, "Flash forward")
-map_desc({ "o", "x" }, "sf", flash_fwd, "Flash forward")
+map_desc("n", "<leader>sf", flash_fwd, "Flash Forward")
+map_desc({ "o", "x" }, "sf", flash_fwd, "Flash Forward")
 
 local function flash_back()
     require("flash").jump({
@@ -367,8 +365,8 @@ local function flash_back()
     })
 end
 
-map_desc("n", "<leader>sb", flash_back, "Flash backward")
-map_desc({ "o", "x" }, "sb", flash_back, "Flash backward")
+map_desc("n", "<leader>sb", flash_back, "Flash Backward")
+map_desc({ "o", "x" }, "sb", flash_back, "Flash Backward")
 
 local function flash_cont()
     require("flash").jump({
@@ -376,8 +374,8 @@ local function flash_cont()
     })
 end
 
-map_desc("n", "<leader>sc", flash_cont, "Flash continue search")
-map_desc({ "o", "x" }, "sc", flash_cont, "Flash continue search")
+map_desc("n", "<leader>sc", flash_cont, "Flash Continue search")
+map_desc({ "o", "x" }, "sc", flash_cont, "Flash Continue search")
 
 local function flash_diag()
     -- More advanced example that also highlights diagnostics:
@@ -400,20 +398,20 @@ local function flash_diag()
     })
 end
 
-map_desc("n", "<leader>sd", flash_diag, "Flash diagnostics")
-map_desc({ "o", "x" }, "sd", flash_diag, "Flash diagnostics")
+map_desc("n", "<leader>sd", flash_diag, "Flash Diagnostics")
+map_desc({ "o", "x" }, "sd", flash_diag, "Flash Diagnostics")
 
 map_desc("o", "sr", function()
     require("flash").remote()
-end, "Flash remote")
+end, "Flash Remote")
 
 map_desc({ "o", "x" }, "sR", function()
     require("flash").treesitter_search()
-end, "Flash treesitter search")
+end, "Flash Treesitter search")
 
 map_desc("c", "<c-s>", function()
     require("flash").toggle()
-end, "Flash toggle search")
+end, "Flash Toggle search")
 
 --#endregion
 
@@ -424,7 +422,7 @@ map_desc("n", "<leader>nr", function()
         title = "Neotest",
     })
     require("neotest").run.run()
-end, "neotest: Run")
+end, "Neotest Run")
 map_desc("n", "<leader>no", function()
     require("neotest").output.open({
         enter = true,
@@ -455,18 +453,17 @@ end, "neotest: Show summary")
 
 map_desc("n", "]z", function()
     require("ufo").goNextClosedFold()
-end, "UFO: Go to next closed fold")
+end, "UFO Go to next closed fold")
 map_desc("n", "[z", function()
     require("ufo").goPreviousClosedFold()
-end, "UFO: Go to previous closed fold")
-
+end, "UFO Go to previous closed fold")
 --#endregion
 
 --#region node_action
 
 map_desc("n", "gA", function()
     require("ts-node-action").node_action()
-end, "Trigger Node Action")
+end, "Node-Action Trigger")
 
 --#endregion
 
@@ -480,13 +477,13 @@ map_desc("n", "<leader>lk", function()
             filters.keymaps(),
         },
     })
-end, "Legendary keymap (current mode)")
+end, "Legendary Keymap (current mode)")
 
 --#endregion
 
 --#region outline
 
-map_desc("n", "<leader>go", "<cmd>Outline<cr>", "Toggle Outline")
+map_desc("n", "<leader>go", "<cmd>Outline<cr>", "Outline Toggle")
 
 --#endregion
 
@@ -528,13 +525,13 @@ map({ "n", "i", "s" }, "<c-f>", function()
     if not require("noice.lsp").scroll(4) then
         return "<c-f>"
     end
-end, { silent = true, expr = true })
+end, { silent = true, expr = true, desc = "Noice Scroll forward" })
 
 map({ "n", "i", "s" }, "<c-b>", function()
     if not require("noice.lsp").scroll(-4) then
         return "<c-b>"
     end
-end, { silent = true, expr = true })
+end, { silent = true, expr = true, desc = "Noice Scroll backward" })
 
 --#endregion
 
