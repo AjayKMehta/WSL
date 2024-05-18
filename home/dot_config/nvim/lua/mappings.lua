@@ -36,15 +36,15 @@ end
 
 map_desc("n", "<leader>tt", function()
     require("base46").toggle_theme()
-end, "Toggle theme")
+end, "NvChad Toggle theme")
 
 map_desc("n", "<leader>tT", function()
     require("base46").toggle_transparency()
-end, "Toggle theme")
+end, "NvChad Toggle theme")
 
 map_desc("n", "gli", function()
     vim.lsp.buf.implementation()
-end, "LSP implementation")
+end, "LSP Go to implementation")
 
 -- tabufline (NVChad plugin)
 -- NVChad maps this to <leader>b
@@ -70,7 +70,7 @@ end, "Telescope Find buffers")
 
 map_desc("n", "<leader>fh", "<cmd> Telescope file_browser cwd=$HOME <CR>", "Telescope Search home")
 
-map_desc("n", "<leader>fcc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope 🔍 Search config")
+map_desc("n", "<leader>fcc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope Search config 🔍")
 map_desc("n", "<leader>fcC", function()
     require("telescope.builtin").commands()
 end, "Telescope Commands")
@@ -95,7 +95,7 @@ end, "Telescope Man Pages")
 map_desc("n", "<leader>fu", "<cmd>Telescope undo<CR>", "Telescope Undo tree ")
 map_desc("n", "<leader>fy", function()
     require("telescope.builtin").buffers()
-end, "Telescope: Search buffers")
+end, "Telescope Search buffers")
 
 map_desc("n", "<leader>fls", "<cmd>Telescope lsp_document_symbols<CR>", "Telescope Search Document Symbols")
 map_desc("n", "<leader>flw", "<cmd>Telescope lsp_workspace_symbols<CR>", "Telescope Search Workspace Symbols")
@@ -148,35 +148,35 @@ end, "Telescope Grep help (grep string)")
 -- NVChad provides git status via <leader>gt
 map_desc("n", "<leader>ga", function()
     require("telescope.builtin").git_branches()
-end, "Telescope Checkout branch")
+end, "git Checkout branch")
 map_desc("n", "<leader>gc", function()
     require("telescope.builtin").git_commits()
-end, "Telescope Checkout commit")
+end, "git Checkout commit")
 map_desc("n", "<leader>gs", function()
     require("telescope.builtin").git_stash()
-end, "Telescope git stash")
+end, "git stash")
 
 -- Nvim DAP
 
 map_desc("n", "<leader>fdb", function()
     require("telescope").extensions.dap.list_breakpoints()
-end, "Telescope DAP breakpoints")
+end, "DAP List breakpoints")
 
 map_desc("n", "<leader>fdc", function()
     require("telescope").extensions.dap.commands()
-end, "Telescope DAP commands")
+end, "DAP List commands")
 
 map_desc("n", "<leader>fdC", function()
     require("telescope").extensions.dap.configuration()
-end, "Telescope DAP configuration")
+end, "DAP List configuration")
 
 map_desc("n", "<leader>fdf", function()
     require("telescope").extensions.dap.frames()
-end, "Telescope DAP frames")
+end, "DAP List frames")
 
 map_desc("n", "<leader>fdv", function()
     require("telescope").extensions.dap.variables()
-end, "Telescope DAP variables")
+end, "DAP List variables")
 
 --#endregion
 
