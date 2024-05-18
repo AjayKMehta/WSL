@@ -420,7 +420,7 @@ M.cmp = {
             { "i" }
         ), -- Alternative `Select Next Item`
         ["<C-y>"] = require("cmp").mapping(
-            require("cmp").mapping.ConfirmBehavior({ behavior = require("cmp").ConfirmBehavior.Insert, select = true }),
+            require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Insert, select = true }),
             { "i", "c" }
         ), -- Use to select current item
         ["<C-k>"] = require("cmp").mapping(function(fallback)
