@@ -157,7 +157,7 @@ Set-CdExtrasOption ColorCompletion
 # Paths within $cde.CD_PATH are included in the completion results.
 Set-CdExtrasOption CD_PATH -Value '/mnt/d/git'
 
-Import-Module Terminal-Icons
+Import-Module Terminal-Icons, command-not-found
 
 # Docker
 $env:DOCKER_BUILDKIT=1
@@ -170,4 +170,3 @@ Import-Module Posh
 if ($env:TERM_PROGRAM -eq 'vscode') { . "$(code --locate-shell-integration-path pwsh)" }
 
 Import-Module Microsoft.PowerShell.SecretStore, Microsoft.PowerShell.SecretManagement
-
