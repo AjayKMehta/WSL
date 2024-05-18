@@ -1,4 +1,10 @@
 {
+    "Lua.diagnostics.globals": [
+        "vim"
+    ],
+    "peacock.remoteColor": "#478948",
+    "sarif-viewer.connectToGithubCodeScanning": "off",
+    "stylua.configPath": "~/stylua.toml",
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#5aa95b",
         "activityBar.background": "#5aa95b",
@@ -26,10 +32,5 @@
         "titleBar.border": "#478948",
         "titleBar.inactiveBackground": "#47894899",
         "titleBar.inactiveForeground": "#e7e7e799"
-    },
-    "peacock.remoteColor": "#478948",
-    "sarif-viewer.connectToGithubCodeScanning": "off",
-    "Lua.diagnostics.globals": [
-        "vim"
-    ]
+    }
 }
