@@ -281,7 +281,7 @@ M.nvimtree = {
             vim.keymap.set("n", lhs, rhs, { buffer = bufnr, desc = desc })
         end
 
-        local treeutils = require("configs.treeutils")
+        local treeutils = require("utils.tree")
         api.config.mappings.default_on_attach(bufnr)
 
         bufmap("<c-f>", treeutils.launch_find_files, "Launch Find Files")
