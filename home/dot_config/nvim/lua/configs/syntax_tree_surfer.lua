@@ -82,7 +82,7 @@ vim.keymap.set("n", "<A-p>", function()
 end, opts)
 
 -- Holds a node, or swaps the held node
-vim.keymap.set("n", "gnh", "<cmd>STSSwapOrHold<cr>", { noremap = true, silent = true, desc = "Hold or swap node." })
+vim.keymap.set("n", "gh", "<cmd>STSSwapOrHold<cr>", { noremap = true, silent = true, desc = "Hold or swap node." })
 vim.keymap.set(
     "x",
     "gnh",

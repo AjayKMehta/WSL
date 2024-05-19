@@ -127,12 +127,6 @@ M.treesitter = {
 
                 -- TODO: Fix. Doesn't work?
                 -- ["aS"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
-
-                -- TODO: Figure out Treesitter syntax for this.
-                -- ["a:"] = { query = "@property.outer", desc = "Select outer part of an object property" },
-                -- ["i:"] = { query = "@property.inner", desc = "Select inner part of an object property" },
-                -- ["l:"] = { query = "@property.lhs", desc = "Select left part of an object property" },
-                -- ["r:"] = { query = "@property.rhs", desc = "Select right part of an object property" },
             },
         },
         move = {
