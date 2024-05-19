@@ -16,12 +16,13 @@ return {
         url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         dependencies = { "neovim/nvim-lspconfig" },
         config = function()
-            require("lsp_lines").setup()
-            require("lsp_lines").toggle()
+            local lsp_lines = require("lsp_lines")
+            lsp_lines.setup()
+            lsp_lines.toggle()
         end,
         keys = {
             {
-                "<leader>lt",
+                "<leader>ltd",
                 function()
                     require("lsp_lines").toggle()
                 end,
@@ -124,6 +125,7 @@ return {
             -- DOESN'T WORK?
             select_signature_key = "<M-n>", -- cycle to next signature, e.g. '<M-n>' function overloading
             move_cursor_key = "<M-w>", -- imap, use nvim_set_current_win to move cursor between current win and floating
+            -- <M-d> and <M-u> are default keymaps to move cursor up and down in window
         },
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         config = function(_, opts)
