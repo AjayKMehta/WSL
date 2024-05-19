@@ -4,7 +4,6 @@ require("nvchad.mappings")
 local utils = require("utils.mappings")
 local map = utils.map
 local map_desc = utils.map_desc
-
 -- map("n", ";", ":", { desc = "CMD enter command mode" })
 -- map("i", "jk", "<ESC>")
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
@@ -25,7 +24,7 @@ local disabled = {
 
 -- https://github.com/NvChad/NvChad/issues/2688#issuecomment-1976174561
 for mode, mappings in pairs(disabled) do
-    for _, keys in pairs(mappings) do
+    for _, keys in ipairs(mappings) do
         if vim.api.nvim_get_keymap(mode)[keys] then
             vim.keymap.del(mode, keys)
         else
@@ -33,6 +32,8 @@ for mode, mappings in pairs(disabled) do
         end
     end
 end
+vim.cmd('unmap <leader>b')
+vim.cmd('unmap <leader>n')
 
 map_desc("n", "<leader>tt", function()
     require("base46").toggle_theme()
