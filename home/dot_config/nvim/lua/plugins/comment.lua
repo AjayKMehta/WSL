@@ -26,7 +26,6 @@ return {
             },
         },
     },
-
     {
         -- Generate comments based on treesitter.
         "danymat/neogen",

@@ -57,15 +57,15 @@ return {
         config = load_config("bufferline"),
     },
     {
+        -- Lets you change the color of the original devicons to any color you like.
     "dgox16/devicon-colorscheme.nvim",
-    dependencies = {"nvim-tree/nvim-web-devicons"},
-    desc = "Lets you change the color of the original devicons to any color you like."
+        dependencies = {"nvim-tree/nvim-web-devicons"},
     },
     {
+        -- Adds horizontal highlights for text filetypes, like markdown, orgmode, and neorg
         "lukas-reineke/headlines.nvim",
         ft = { "markdown", "norg", "org", "rmd" },
         dependencies = "nvim-treesitter/nvim-treesitter",
-        desc = "Adds horizontal highlights for text filetypes, like markdown, orgmode, and neorg",
         config = load_config("headlines"),
     },
     {

@@ -17,8 +17,8 @@ return {
         config = load_config("ufo"),
     },
     {
+        -- Navigate your code with search labels, enhanced character motions, and Treesitter integration.
         "folke/flash.nvim",
-        desc = "Navigate your code with search labels, enhanced character motions, and Treesitter integration.",
         event = "VeryLazy",
         opts = { modes = { search = { enabled = true } } },
     },

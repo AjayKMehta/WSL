@@ -127,8 +127,8 @@ return {
         },
     },
     {
+        -- fugitive.vim style git blame visualizer for Neovim.
         "FabijanZulj/blame.nvim",
-        desc = "fugitive.vim style git blame visualizer for Neovim.",
         cmd = {
             "BlameToggle",
         },
