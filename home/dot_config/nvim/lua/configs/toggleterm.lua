@@ -1,9 +1,9 @@
 require("toggleterm").setup({
-    direction = "float",
+    direction = "horizontal",
     open_mapping = [[<c-\>]],
     size = function(term)
         if term.direction == "horizontal" then
-            return vim.o.lines * 0.5
+            return vim.o.lines * 0.4
         elseif term.direction == "vertical" then
             return vim.o.columns * 0.4
         end
@@ -21,11 +21,30 @@ require("toggleterm").setup({
             return (h < 35) and 35 or h
         end,
     },
-    persist_size = true,
-    persist_mode = true,
+    persist_size = false,
+    persist_mode = false,
+    -- https://github.com/akinsho/toggleterm.nvim/wiki/Per-file-type-shell
+    shell = function()
+        local ft = vim.bo.filetype
+        vim.print("File type: " .. ft)
+        if ft == "r" then
+            Shell = "radian"
+        elseif ft == "ps1" then
+            Shell = "pwsh"
+        elseif ft == "python" then
+            Shell = "ipython"
+        elseif ft == "toggleterm" then
+            return Shell
+        else
+            Shell = vim.o.shell
+        end
+        return Shell
+    end,
 })
 
 -- https://github.com/akinsho/toggleterm.nvim#terminal-window-mappings
+-- There seems to be a weird interaction between these mappings and those from tmux-navigator. The latter will cause terminal windows to be non-modifiable.
+-- Works again after changing persist_* to false in setup 🤷‍♂️
 function _G.set_terminal_keymaps()
     local opts = { buffer = 0 }
     vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
@@ -34,5 +53,5 @@ function _G.set_terminal_keymaps()
     vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
 end
 
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+-- if you want these mappings for all terms use term://* instead
+vim.cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")
