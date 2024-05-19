@@ -13,6 +13,8 @@ local function is_diag_for_cur_pos()
 end
 
 M.on_attach = function(client, bufnr)
+    vim.lsp.inlay_hint.enable(true)
+
     local map_buf = require("utils.mappings").map_buf
 
     map_buf(bufnr, "n", "<leader>lD", vim.lsp.buf.declaration, "Lsp Go to declaration")
@@ -21,6 +23,15 @@ M.on_attach = function(client, bufnr)
     map_buf(bufnr, "n", "<F12>", vim.lsp.buf.definition, "Lsp Go to definition")
 
     map_buf(bufnr, "n", "<leader>lr", vim.lsp.buf.references, "Lsp Show references")
+
+    local function toggle_hints()
+        local enabled = vim.lsp.inlay_hint.is_enabled()
+        local start_msg = enabled and "Disabling" or "Enabling"
+        print(start_msg .. " inlay hints")
+        vim.lsp.inlay_hint.enable(not enabled)
+    end
+
+    map_buf(bufnr, "n", "<leader>lth", toggle_hints, "Lsp Toggle inlay hints")
 
     map_buf(bufnr, "n", "<leader>lT", vim.lsp.buf.type_definition, "Lsp Go to type definition")
 
