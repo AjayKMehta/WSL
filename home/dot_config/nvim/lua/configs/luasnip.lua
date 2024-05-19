@@ -1,7 +1,7 @@
 local ls = require("luasnip")
 local extras = require("luasnip.extras")
 local ft_func = require("luasnip.extras.filetype_functions")
-
+local types = require("luasnip.util.types")
 local fmt = require("luasnip.extras.fmt").fmt
 
 -- require("nvchad.configs.luasnip")
@@ -22,12 +22,12 @@ local opts = {
         html = { "javascript", "css", "graphql", "json" },
     }),
     ext_opts = {
-        [require("luasnip.util.types").choiceNode] = {
+        [types.choiceNode] = {
             active = {
                 virt_text = { { "●", "St_SelectMode" } },
             },
         },
-        [require("luasnip.util.types").insertNode] = {
+        [types.insertNode] = {
             active = {
                 virt_text = { { "⎀", "St_InsertMode" } },
             },
@@ -66,7 +66,11 @@ ls.filetype_extend("cs", { "csharpdoc" })
 ls.filetype_extend("cpp", { "cppdoc" })
 ls.filetype_extend("sh", { "shelldoc" })
 
-vim.keymap.set("i", "<c-u>", require("luasnip.extras.select_choice"))
+vim.keymap.set(
+    { 'i', 's' },
+    '<c-u>',
+    '<cmd>lua require("luasnip.extras.select_choice")()<cr>'
+)
 
 if vim.g.snippet_examples then
     require("snippet_examples")
