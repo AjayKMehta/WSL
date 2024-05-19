@@ -135,9 +135,7 @@ return {
     {
         -- Plugin to easily manage multiple terminal windows.
         "akinsho/toggleterm.nvim",
-        version = "*",
         cmd = { "ToggleTerm", "ToggleTermAll", "TermExec" },
-        -- TODO: Is this needed if NvChad already has nvterm module?
         config = load_config("toggleterm"),
     },
 }

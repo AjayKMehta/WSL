@@ -201,8 +201,8 @@ local python = {
                 return { "" }
             end
             local a = vim.tbl_map(function(item)
-                local trimed = vim.trim(item)
-                return "\t\tself." .. trimed .. " = " .. trimed
+                local trimmed = vim.trim(item)
+                return "\t\tself." .. trimmed .. " = " .. trimmed
             end, vim.split(args[1][1], ",", true))
             return a
         end, {
