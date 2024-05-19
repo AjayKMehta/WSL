@@ -281,24 +281,19 @@ lspconfig.basedpyright.setup({
                 reportUnnecessaryIsInstance = "warning",
                 reportImplicitStringConcatenation = "warning",
                 analyzeUnannotatedFunctions = false,
-                strictDictionaryInference = true,
-                strictListInference = true,
-                strictParameterNoneValue = true,
                 deprecateTypingAliases = true,
                 reportPropertyTypeMismatch = "warning",
-                true,
-                reportMissingImports = "warning",
-                reportDuplicateImport = "error",
+                reportMissingImports = false, -- ruff handles this
                 reportImportCycles = "error",
                 reportConstantRedefinition = "error",
-                reportIncompatibleMethodOverride = "error",
                 reportUndefinedVariable = false, -- ruff handles this with F822
                 reportUnusedVariable = false, -- let ruff handle this
                 reportAssertAlwaysTrue = "error",
                 reportInconsistentOverload = "warning",
                 reportInvalidTypeArguments = "warning",
                 reportNoOverloadImplementation = "warning",
-                reportRedeclaration = "error",
+                reportOptionalSubscript = "warning",
+                reportOptionalIterable = "warning",
                 reportUntypedNamedTuple = "warning",
                 reportPrivateUsage = "warning",
                 reportTypeCommentUsage = "warning", -- type comments are deprecated since Python 3.6
@@ -306,13 +301,14 @@ lspconfig.basedpyright.setup({
                 reportInconsistentConstructor = "error",
                 reportUnnecessaryCast = "warning",
                 reportUntypedFunctionDecorator = "information",
-                reportSelfClsParameterName = "error",
                 reportUnnecessaryTypeIgnoreComment = "information",
                 -- Based options (not available in regular pyright)
                 reportUnreachable = "warning",
                 reportAny = true,
                 reportIgnoreCommentWithoutRule = "warning",
                 reportImplicitRelativeImport = "error",
+                reportInvalidCast = "warning",
+                reportUnsafeMultipleInheritance = "warning"
             },
         },
     },
