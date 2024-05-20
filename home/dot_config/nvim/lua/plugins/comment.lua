@@ -2,8 +2,10 @@ return {
     {
         -- Advanced comment plugin with Treesitter support.
         "numToStr/Comment.nvim",
-        event = "VeryLazy",
-        lazy = false,
+        lazy = true,
+        enabled = function()
+            return not vim.g.nvim_comment
+        end,
         config = function(_, opts)
             local comment = require("Comment")
             -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring/wiki/Integrations#commentnvim

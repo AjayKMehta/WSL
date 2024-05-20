@@ -109,3 +109,15 @@ autocmd("BufReadPost", {
 --     pattern = { "[^l]*" },
 --     command = "cwindow",
 -- })
+
+if vim.g.nvim_comment then
+    -- https://github.com/neovim/neovim/pull/28176#issuecomment-2051944146
+    autocmd({ 'FileType' }, {
+    desc = 'Force commentstring to include spaces',
+    -- group = ...,
+    callback = function(event)
+        local cs = vim.bo[event.buf].commentstring
+        vim.bo[event.buf].commentstring = cs:gsub('(%S)%%s', '%1 %%s'):gsub('%%s(%S)', '%%s %1')
+    end,
+    })
+end

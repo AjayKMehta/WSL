@@ -87,6 +87,9 @@ vim.g.snippet_examples = true
 vim.g.show_linters = false
 vim.g.show_formatters = false
 
+-- if true, use native comment functionality added in nvim 0.10
+vim.g.nvim_comment = true
+
 -- Prepend mise shims to PATH
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
