@@ -5,5 +5,17 @@
         "PSSubsystemPluginModel",
         "PSCommandWithArgs",
         "PSFeedbackProvider"
-    ]
+    ],
+    "ModuleLogging": {
+        "EnableModuleLogging": false,
+        "ModuleNames": [
+            "PSReadLine",
+            "PowerShellGet"
+        ]
+    },
+    "ScriptBlockLogging": {
+        "EnableScriptBlockInvocationLogging": true,
+        "EnableScriptBlockLogging": true
+    },
+    "LogLevel": "Warning"
 }
