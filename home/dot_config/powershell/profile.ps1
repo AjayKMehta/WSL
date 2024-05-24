@@ -12,6 +12,8 @@ $PSNativeCommandUseErrorActionPreference = $true
 # Make sure mise and shims are in path
 $env:PATH += ';~/.local/bin/mise:~/.local/share/mise/shims'
 
+Import-Module PSudo
+
 #region posh-git
 
 Import-Module 'posh-git' -Force
