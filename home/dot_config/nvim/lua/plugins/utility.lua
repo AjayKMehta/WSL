@@ -123,6 +123,10 @@ return {
                     filter = { event = "notify", find = "No information available" },
                     opts = { skip = true },
                 },
+                {
+                    filter = { find = "method textDocument/codeLens is not supported"},
+                    opts = { skip = true },
+                },
             },
         },
         dependencies = {

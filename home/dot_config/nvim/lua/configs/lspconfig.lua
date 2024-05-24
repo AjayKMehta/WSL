@@ -267,6 +267,7 @@ lspconfig.basedpyright.setup({
             -- Using Ruff's import organizer
             disableOrganizeImports = true,
             analysis = {
+                autoFormatStrings = true,
                 autoSearchPaths = true,
                 diagnosticMode = "openFilesOnly",
                 useLibraryCodeForTypes = true,

@@ -407,11 +407,11 @@ M.cmp = {
         }),
         ["<Down>"] = require("cmp").mapping(
             require("cmp").mapping.select_next_item({ behavior = require("cmp").SelectBehavior.Insert }),
-            { "i" }
+            { "i", "c" }
         ), -- Alternative `Select Previous Item`
         ["<Up>"] = require("cmp").mapping(
             require("cmp").mapping.select_prev_item({ behavior = require("cmp").SelectBehavior.Insert }),
-            { "i" }
+            { "i", "c" }
         ), -- Alternative `Select Next Item`
         ["<C-y>"] = require("cmp").mapping(
             require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Insert, select = true }),
