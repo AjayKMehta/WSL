@@ -121,3 +121,15 @@ if vim.g.nvim_comment then
     end,
     })
 end
+
+-- https://www.reddit.com/r/neovim/comments/1cwd181/comment/l4wqmza/
+autocmd("BufEnter", {
+	callback = function(ctx)
+		local bufPath = ctx.file
+		local specialBuffer = vim.api.nvim_get_option_value("buftype", { buf = ctx.buf }) ~= ""
+		local exists = vim.uv.fs_stat(bufPath) ~= nil
+		if specialBuffer or not exists then return end
+		local root = vim.fs.root(0, {".git", "Makefile"})
+		if root then vim.uv.chdir(root) end
+	end,
+})
