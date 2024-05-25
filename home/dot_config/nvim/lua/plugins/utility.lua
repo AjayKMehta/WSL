@@ -183,6 +183,7 @@ return {
                 lua = "lua",
                 python = "python3 -u",
                 r = "Rscript",
+                ps1 = "pwsh -f $file",
                 shell = "$dir/$fileName",
                 typescript = "deno run",
                 zsh = "$dir/$fileName",
