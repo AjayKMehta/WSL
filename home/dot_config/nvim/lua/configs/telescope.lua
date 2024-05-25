@@ -50,6 +50,8 @@ M.config = function()
             },
             -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#use-terminal-image-viewer-to-preview-images
             preview = {
+                filesize_limit = 0.5, -- MB
+                -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#use-terminal-image-viewer-to-preview-images
                 mime_hook = function(filepath, bufnr, opts)
                     if require("utils").is_image(filepath) then
                         local term = vim.api.nvim_open_term(bufnr, {})
