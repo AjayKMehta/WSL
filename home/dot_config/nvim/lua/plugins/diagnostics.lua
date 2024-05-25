@@ -45,5 +45,9 @@ return {
         end,
         lazy = false,
     },
-    { "poljar/typos.nvim", lazy = false },
+    {
+        -- typos.nvim is a Neovim plugin that uses the typos-cli tool as a diagnostics source
+        "poljar/typos.nvim",
+        lazy = false
+    },
 }
