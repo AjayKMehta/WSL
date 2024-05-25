@@ -146,11 +146,20 @@ M.config = function()
                 -- Display symbols as <root>.<parent>.<symbol>
                 show_nesting = {
                     ["_"] = false, -- This key will be the default
-                    json = true, -- You can set the option for specific filetypes
+                    json = true,   -- You can set the option for specific filetypes
                     yaml = true,
                     xml = true,
                 },
             },
+            undo = {
+                use_delta = true,
+                entry_format = "󰣜 #$ID, $STAT, $TIME",
+                mappings = {
+                    i = {
+                        ["<C-s-cr>"] = require("telescope-undo.actions").restore,
+                    },
+                },
+            }
         },
         -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#ripgrep-remove-indentation
         vimgrep_arguments = {
