@@ -71,6 +71,10 @@ end, "Telescope Find buffers")
 
 map_desc("n", "<leader>fh", "<cmd> Telescope file_browser cwd=$HOME <CR>", "Telescope Search home")
 
+map_desc("n", "<leader>ff", function()
+    require('telescope').extensions.togglescope.find_files()
+end, "Telescope Find files")
+
 map_desc("n", "<leader>fcc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope Search config 🔍")
 map_desc("n", "<leader>fcC", function()
     require("telescope.builtin").commands()
@@ -94,6 +98,11 @@ map_desc("n", "<leader>fm", function()
     require("telescope.builtin").man_pages()
 end, "Telescope Man Pages")
 map_desc("n", "<leader>fu", "<cmd>Telescope undo<CR>", "Telescope Undo tree ")
+
+map_desc("n", "<leader>fw", function()
+    require('telescope').extensions.togglescope.live_grep()
+end, "Telescope Live grep")
+
 map_desc("n", "<leader>fy", function()
     require("telescope.builtin").buffers()
 end, "Telescope Search buffers")

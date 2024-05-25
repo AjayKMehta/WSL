@@ -10,6 +10,7 @@ return {
                 "nvim-telescope/telescope-fzf-native.nvim",
                 build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
             },
+            "Theo-Steiner/togglescope",
             "benfowler/telescope-luasnip.nvim",
             "tom-anders/telescope-vim-bookmarks.nvim",
             "debugloop/telescope-undo.nvim",
