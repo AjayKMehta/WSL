@@ -27,7 +27,7 @@ return {
         -- Use this instead of indent-blankline
         "shellRaining/hlchunk.nvim",
         enabled = true,
-        event = { "UIEnter" },
+        event = { "BufReadPre", "BufNewFile" },
         config = load_config("hlchunk"),
     },
     {

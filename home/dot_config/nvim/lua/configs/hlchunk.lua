@@ -34,7 +34,7 @@ hlchunk.setup({
             { fg = "#855cc4" }, -- fg = "#87afaf"
             { fg = "#c21f30" }, -- this fg is used to highlight wrong chunk
         },
-        textobject = "",
+        textobject = "iC",
         max_file_size = 1024 * 1024,
         error_sign = true,
     },
