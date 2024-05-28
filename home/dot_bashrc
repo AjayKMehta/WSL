@@ -182,8 +182,3 @@ export DOTNET_ROOT=/usr/share/dotnet
 
 # Add this line at the end of .bashrc:
 [[ ${BLE_VERSION-} ]] && ble-attach
-
-# https://gist.github.com/VPraharsha03/dce1692afccdb2d220fffff3ad8448f0#wsl-display
-export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-export LIBGL_ALWAYS_INDIRECT=0
-
