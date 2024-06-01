@@ -15,11 +15,18 @@ return {
         },
         -- Use config from NvChad
     },
-    -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
     {
-        -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
-        "folke/neodev.nvim",
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+            library = {
+                -- You can also add plugins you always want to have loaded.
+                -- Useful if the plugin has globals or types you want to use
+                -- vim.env.LAZY .. "/LazyVim", -- see below
+            },
+        },
     },
+    { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
     {
         "williamboman/mason-lspconfig.nvim",
         opts = {
