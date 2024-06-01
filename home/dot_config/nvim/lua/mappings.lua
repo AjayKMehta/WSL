@@ -128,6 +128,8 @@ map_desc("n", "<leader>fs", function()
     require("telescope").extensions.luasnip.luasnip()
 end, "Telescope LuaSnip")
 
+map_desc("n", "<leader>ftS", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Telescope Todo/Fix/Fixme")
+
 map_desc("n", "<leader>ftt", function()
     require("telescope.builtin").tags()
 end, "Telescope Tags")
@@ -202,15 +204,6 @@ map_desc({ "n", "v" }, "<A-Left>", fn_move("left"), "mini.move line left")
 map_desc({ "n", "v" }, "<A-Right>", fn_move("right"), "mini.move line right")
 map_desc({ "n", "v" }, "<A-Up>", fn_move("up"), "mini.move line up")
 map_desc({ "n", "v" }, "<A-Down>", fn_move("down"), "mini.move line down")
-
---#endregion
-
---#region trouble
-map_desc("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics <CR>", "Trouble Workspace diagnostics")
-map_desc("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics <CR>", "Trouble Document diagnostics")
-map_desc("n", "<leader>tL", "<cmd> TroubleToggle loclist <CR>", "Trouble: Location List")
-map_desc("n", "<leader>tQ", "<cmd> TroubleToggle quickfix <CR>", "Trouble Quickfix List")
-map_desc("n", "<leader>tS", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Trouble Todo/Fix/Fixme")
 
 --#endregion
 
