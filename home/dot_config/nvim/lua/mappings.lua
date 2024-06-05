@@ -540,6 +540,11 @@ map({ "n", "i", "s" }, "<c-b>", function()
     end
 end, { silent = true, expr = true, desc = "Noice Scroll backward" })
 
+-- Doesn't seem to work?
+map_desc("c", "<S-Enter>", function()
+  require("noice").redirect(vim.fn.getcmdline())
+end, "Redirect Cmdline")
+
 --#endregion
 
 --#region comment
