@@ -115,6 +115,7 @@ map_desc("n", "<leader>fe", "<cmd>Telescope emoji<CR>", "Telescope Search emojis
 map_desc("n", "<leader>fn", function()
     require("telescope").extensions.notify.notify()
 end, "Telescope Notifications")
+map_desc("n", "<leader>fN", "<cmd>Noice telescope <CR>", "Telescope Noice")
 map_desc("n", "<leader>fj", function()
     require("telescope.builtin").jumplist()
 end, "Telescope Jumplist")
