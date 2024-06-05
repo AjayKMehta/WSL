@@ -92,7 +92,7 @@ local config = {
 
                 symbols = { error = "", warn = "", info = "", hint = "󰌶" },
                 update_in_insert = true, -- Update diagnostics in insert mode.
-                always_visible = false, -- Show diagnostics even if there are none.s
+                always_visible = false,  -- Show diagnostics even if there are none.s
                 diagnostics_color = {
                     color_error = { fg = colors.red },
                     color_warn = { fg = colors.yellow },
@@ -178,27 +178,21 @@ local config = {
                 end,
                 color = { fg = "#ff9e64" },
             },
+            -- https://github.com/folke/noice.nvim?tab=readme-ov-file#-statusline-components
             {
-                require("noice").api.status.command.get_hl,
-                cond = function()
-                    return package.loaded["noice"] and require("noice").api.status.command.has()
-                end,
+                require("noice").api.status.message.get_hl,
+                cond = require("noice").api.status.message.has,
                 color = { fg = "pink" },
             },
-            -- https://github.com/folke/noice.nvim/wiki/A-Guide-to-Messages#showmode
             {
                 require("noice").api.status.mode.get,
-                cond = function()
-                    return package.loaded["noice"] and require("noice").api.status.mode.has()
-                end,
+                cond = require("noice").api.status.mode.has,
                 color = { fg = "#ff9e64" },
             },
             {
                 require("noice").api.status.search.get,
-                cond = function()
-                    return package.loaded["noice"] and require("noice").api.status.search.has()
-                end,
-                color = { fg = "pink" },
+                cond = require("noice").api.status.search.has,
+                color = { fg = "#ff9e64" },
             },
             {
                 "encoding",
