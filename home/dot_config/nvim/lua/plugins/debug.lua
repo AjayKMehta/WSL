@@ -7,9 +7,9 @@ return {
         dependencies = {
             {
                 "rcarriga/nvim-dap-ui",
-                dependencies = {  "nvim-neotest/nvim-nio" },
+                dependencies = { "nvim-neotest/nvim-nio" },
             },
-            {"theHamsta/nvim-dap-virtual-text"},
+            { "theHamsta/nvim-dap-virtual-text" },
             {
                 "mfussenegger/nvim-dap-python",
                 ft = "python",
@@ -19,6 +19,20 @@ return {
                     require("dap-python").setup(path)
                 end,
             },
+            {
+                "Willem-J-an/nvim-dap-powershell",
+                enabled = true,
+                dependencies = {
+                    "nvim-lua/plenary.nvim",
+                    {
+                        "m00qek/baleia.nvim",
+                        lazy = true,
+                    },
+                },
+                config = function()
+                    require("dap-powershell").setup()
+                end,
+            }
         }
     },
     {
@@ -36,22 +50,4 @@ return {
             })
         end,
     },
-    {
-    "Willem-J-an/nvim-dap-powershell",
-    -- TODO: Get this to work.
-    enabled = false,
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        "mfussenegger/nvim-dap",
-        "rcarriga/nvim-dap-ui",
-        {
-            "m00qek/baleia.nvim",
-            lazy = true,
-            tag = "v1.4.0",
-        },
-    },
-    config = function()
-        require("dap-powershell").setup()
-    end,
-}
 }
