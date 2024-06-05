@@ -17,16 +17,31 @@ conform.setup({
                 vim.env.HOME .. "/.cbfmt.toml",
             },
         },
-        ["markdownlint-cli"] = {
+        markdownlint = {
             prepend_args = {
                 "--config",
                 vim.env.HOME .. "/.markdownlint.json",
             },
         },
         injected = {
-            -- Set the options field
             options = {
+                -- Map of treesitter language to file extension
+                -- A temporary file name with this extension will be generated during formatting
+                -- because some formatters care about the filename.
+                lang_to_ext = {
+                    bash = "sh",
+                    c_sharp = "cs",
+                    julia = "jl",
+                    latex = "tex",
+                    markdown = "md",
+                    python = "py",
+                    ruby = "rb",
+                    rust = "rs",
+                    typescript = "ts",
+                    r = "r"
+                },
                 lang_to_formatters = {
+                    json = { "jq" },
                     python = "ruff",
                 },
             },
@@ -52,22 +67,24 @@ conform.setup({
     -- If you specify more than one formatter, they will be executed in the order you list them.
     formatters_by_ft = {
         bash = { "shellcheck" },
-        -- TODO: Figure out how to use dotnet format instead
-        -- cs = { "csharpier" },
+        -- dotnet format doesn't work on files or ranges 🙁
+        cs = { "csharpier" },
         cabal = { "cabal_fmt" },
         haskell = { "fourmolu" },
         json = { "fixjson" },
         json5 = { "fixjson" },
         jsonc = { "fixjson" },
         lua = { "stylua" },
-        markdown = { "markdownlint", "cbfmt" },
+        markdown = { "markdownlint", "cbfmt", "injected" },
         python = { "ruff" },
+        query = { "format-queries" },
         sql = { "sql-formatter" },
         tex = { "latexindent" },
         toml = { "taplo" },
+        xml = {"xmllint"},
         yaml = { "yamlfix" },
         -- Use the "*" filetype to run formatters on all filetypes.
-        -- ["*"] = { },
+        -- ["*"] = {},
         -- Use the "_" filetype to run formatters on filetypes that don't
         -- have other formatters configured.
         ["_"] = { "trim_whitespace" },
