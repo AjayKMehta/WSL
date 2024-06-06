@@ -22,7 +22,14 @@ return {
             library = {
                 -- You can also add plugins you always want to have loaded.
                 -- Useful if the plugin has globals or types you want to use
-                -- vim.env.LAZY .. "/LazyVim", -- see below
+                -- Library paths can be absolute
+                -- Or relative, which means they will be resolved from the plugin dir.
+                "lazy.nvim",
+                -- It can also be a table with trigger words / mods
+                -- Only load luvit types when the `vim.uv` word is found
+                { path = "luvit-meta/library", words = { "vim%.uv" } },
+                -- always load the LazyVim library
+                "LazyVim",
             },
         },
     },
