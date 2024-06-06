@@ -4,7 +4,6 @@
 -- local on_attach = require("nvchad.configs.lspconfig").on_attach
 
 local lsp = require("utils.lsp")
-
 local on_attach = lsp.on_attach
 
 -- 💡 Uncommenting the line below would disable semantic tokens.
@@ -16,6 +15,8 @@ local capabilities = lsp.capabilities
 dofile(vim.g.base46_cache .. "lsp")
 
 local lspconfig = require("lspconfig")
+
+local mason_path = vim.fn.stdpath("data") .. "/mason"
 
 -- if you just want default config for the servers then put them in a table
 -- for list: help lspconfig-server-configurations.
@@ -143,7 +144,7 @@ vim.g.OmniSharp_timeout = 5
 -- TODO: Look into disabling and using csharp_ls only.
 if not vim.g.csharp_lsp then
     lspconfig.omnisharp.setup({
-        cmd = { "dotnet", vim.env.HOME .. "/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+        cmd = { "dotnet", mason_path .. "/packages/omnisharp/libexec/OmniSharp.dll" },
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
@@ -221,7 +222,7 @@ lspconfig.yamlls.setup({
 -- https://github.com/PowerShell/PowerShellEditorServices/blob/89ce0867c6b119bef8af83ab21c249e10d0e77a2/docs/guide/getting_started.md
 
 -- The bundle_path is where PowerShell Editor Services was installed
-local bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services"
+local bundle_path = mason_path .. "/packages/powershell-editor-services"
 
 -- Uncomment this to use custom PowerShellEditorServices
 -- local bundle_path = "~/PowerShellEditorServices/"

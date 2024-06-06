@@ -17,7 +17,9 @@ return {
                 json = { "jsonlint" },
                 jsonc = { "jsonlint" },
                 lua = { "selene" },
-                markdown = { "markdownlint" },
+                -- Follow instructions at link below to avoid error:
+                -- https://docs.rockylinux.org/books/nvchad/vale_nvchad/#configuring-and-initializing-vale
+                markdown = { "markdownlint", "vale" },
                 python = { "mypy", "ruff" },
                 sh = { "shellcheck" },
                 tex = { "chktex", "lacheck" },
