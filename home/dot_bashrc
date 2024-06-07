@@ -176,6 +176,7 @@ source ~/.local/share/blesh/ble.sh
 # source "$HOME/.local/share/blesh/ble.sh" --rcfile "$HOME/.blerc"
 
 # Must come after sourcing ble.sh!
+# '--disable-ctrl-r' doesn't work!
 eval "$(atuin init bash --disable-up-arrow)"
 
 export DOTNET_ROOT=/usr/share/dotnet
