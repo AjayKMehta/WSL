@@ -6,6 +6,10 @@
 local lsp = require("utils.lsp")
 local on_attach = lsp.on_attach
 
+-- Prevent LSP from overwriting treesitter color settings
+-- https://github.com/NvChad/NvChad/issues/1907
+vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
+
 -- 💡 Uncommenting the line below would disable semantic tokens.
 -- https://github.com/NvChad/NvChad/blob/6833c60694a626615911e379d201dd723511546d/lua/nvchad/configs/lspconfig.lua#L39
 -- local on_init = require("nvchad.configs.lspconfig").on_init
