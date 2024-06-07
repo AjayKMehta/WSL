@@ -33,3 +33,11 @@ blehook/eval-after-load complete blerc/define-sabbrev-branch
 
 # https://github.com/akinomyoga/ble.sh/wiki/Manual-%C2%A71-Introduction#134-bleopt-editor-v04
 bleopt editor=nano
+
+# Setup fzf
+ble-import -d integration/fzf-completion
+ble-import -d integration/fzf-key-bindings
+
+# Add <C-G> shortcuts, e.g. <C-G><C-B> for branches
+_ble_contrib_fzf_git_config=key-binding:sabbrev:arpeggio
+ble-import -d integration/fzf-git
