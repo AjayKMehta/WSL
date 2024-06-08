@@ -90,18 +90,23 @@ vim.g.show_formatters = false
 -- if true, use native comment functionality added in nvim 0.10
 vim.g.nvim_comment = true
 
+-- if true, use custom PowerShelleditorServices instead of mason's.
+vim.g.use_custom_pses = false
+
+-- Misc
+
 -- Prepend mise shims to PATH
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
 -- https://www.youtube.com/watch?v=NecszftvMFI
 vim.filetype.add({
-	extension = {
-		csproj = 'xml',
-	},
-	filename = {
-	['Directory.Build.targets'] = 'xml',
-},
-pattern = {
-	['Directory.*.props'] = 'xml'
-}
+    extension = {
+        csproj = "xml",
+    },
+    filename = {
+        ["Directory.Build.targets"] = "xml",
+    },
+    pattern = {
+        ["Directory.*.props"] = "xml",
+    },
 })
