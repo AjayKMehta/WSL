@@ -38,6 +38,8 @@ bleopt editor=nano
 ble-import -d integration/fzf-completion
 ble-import -d integration/fzf-key-bindings
 
+# sabbrev below messes up typing gh, gb 🙁
+_ble_contrib_fzf_git_config=key-binding
+
 # Add <C-G> shortcuts, e.g. <C-G><C-B> for branches
-_ble_contrib_fzf_git_config=key-binding:sabbrev:arpeggio
 ble-import -d integration/fzf-git
