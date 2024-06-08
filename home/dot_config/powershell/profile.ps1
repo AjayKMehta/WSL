@@ -35,6 +35,9 @@ if (!(Get-PSDrive D -ErrorAction Ignore)) {
 
 #endregion
 
+$env:COMPLETION_SHELL_PREFERENCE = 'bash'
+Import-Module Microsoft.PowerShell.UnixTabCompletion
+
 # PowerShell parameter completion shim for the dotnet CLI
 Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
     param($commandName, $wordToComplete, $cursorPosition)
@@ -143,9 +146,25 @@ Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+Shift+r' -PSReadlineChordPr
 # <C-g>, <C-t> selects tags.
 # <C-g>, <C-h> selects hashes (commits).
 # <C-g>, <C-s> selects stashes.
-Set-PsFzfOption -EnableAliasFuzzyEdit -EnableAliasFuzzyHistory -EnableAliasFuzzyKillProcess -EnableAliasFuzzyGitStatus -EnableFd -GitKeyBindings
+$setPsFzfOptionSplat = @{
+    EnableAliasFuzzyEdit        = $true
+    EnableAliasFuzzyHistory     = $true
+    EnableAliasFuzzyKillProcess = $true
+    EnableAliasFuzzyGitStatus   = $true
+    EnableFd                    = $true
+    GitKeyBindings              = $true
+}
+Set-PsFzfOption @setPsFzfOptionSplat
 
-Set-Alias -Name ipfr -Value Invoke-PsFzfRipgrep
+Set-Alias -Name 'ipfr' -Value Invoke-PsFzfRipgrep
+
+if (!(Get-Alias -Name 'fgb' -ErrorAction Ignore)) {
+    Set-Alias -Name 'fgb' -Value Invoke-PsFzfGitBranches
+}
+
+if (!(Get-Alias -Name 'fgh' -ErrorAction Ignore)) {
+    Set-Alias -Name 'fgh' -Value Invoke-PsFzfGitHashes
+}
 
 #endregion
 
