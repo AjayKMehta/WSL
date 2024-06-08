@@ -228,23 +228,24 @@ lspconfig.yamlls.setup({
 -- The bundle_path is where PowerShell Editor Services was installed
 local bundle_path = mason_path .. "/packages/powershell-editor-services"
 
--- Uncomment this to use custom PowerShellEditorServices
--- local bundle_path = "~/PowerShellEditorServices/"
+if vim.g.use_custom_pses then
+    bundle_path = "~/PowerShellEditorServices/"
+end
 
 local custom_settings_path = bundle_path .. "/PSScriptAnalyzer/1.22.0/PSScriptAnalyzer.psd1"
+
 local command_fmt =
-    [[& '%s/PowerShellEditorServices/Start-EditorServices.ps1' -BundledModulesPath '%s' -SessionDetailsPath '%s/powershell_es.session.json' -FeatureFlags @() -AdditionalModules @() -HostName nvim -HostProfileId 0 -HostVersion 1.0.0 -Stdio -LogLevel Normal]]
+    [[& '%s/PowerShellEditorServices/Start-EditorServices.ps1' -BundledModulesPath '%s' -SessionDetailsPath '%s/powershell_es.session.json' -HostName nvim -HostProfileId 0 -HostVersion 1.0.0 -Stdio -LogLevel Normal]]
 local temp_path = vim.fn.stdpath("cache")
 local command = command_fmt:format(bundle_path, bundle_path, temp_path)
 
 lspconfig.powershell_es.setup({
+    filetypes = { "ps1" },
     bundle_path = bundle_path,
+    -- Contrary to docs, LSP doesn't work without cmd specified even if bundle_path is set.
     cmd = { "pwsh", "-NoLogo", "-NoProfile", "-Command", command },
     on_attach = on_attach,
     capabilities = capabilities,
-    root_dir = function(fname)
-        return lspconfig.util.root_pattern(".git")(fname) or vim.loop.cwd()
-    end,
     settings = {
         powershell = {
             codeFormatting = {
