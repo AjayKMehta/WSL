@@ -32,8 +32,8 @@ return {
                 config = function()
                     require("dap-powershell").setup()
                 end,
-            }
-        }
+            },
+        },
     },
     {
         -- It's important that you set up the plugins in the following order:
@@ -42,12 +42,23 @@ return {
         -- 2. mason-nvim-dap.nvim
 
         "jay-babu/mason-nvim-dap.nvim",
-        dependencies = { "williamboman/mason.nvim" },
+        dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap", },
         config = function()
             require("mason").setup()
             require("mason-nvim-dap").setup({
                 ensure_installed = { "python", "bash", "coreclr", "haskell", "jq", "stylua" },
             })
+            -- https://www.reddit.com/r/neovim/comments/1d11ahc/comment/l5rz54s
+            local vscode = require("dap.ext.vscode")
+            local _filetypes = require("mason-nvim-dap.mappings.filetypes")
+            local filetypes = vim.tbl_deep_extend("force", _filetypes, {
+                ["node"] = { "javascriptreact", "typescriptreact", "typescript", "javascript" },
+            })
+            local json = require("plenary.json")
+            vscode.json_decode = function(str)
+                return vim.json.decode(json.json_strip_comments(str))
+            end
+            vscode.load_launchjs(nil, filetypes)
         end,
     },
 }
