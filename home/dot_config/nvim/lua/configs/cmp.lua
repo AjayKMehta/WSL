@@ -165,8 +165,15 @@ for _, value in ipairs(other_latex_sources) do
     table.insert(tex_sources, value)
 end
 
-cmp.setup.filetype({ "tex", "plaintex", "markdown", "rmd" }, {
+cmp.setup.filetype({ "tex", "plaintex" }, {
     sources = cmp.config.sources(tex_sources),
+})
+
+local md_sources = vim.deepcopy(tex_sources)
+
+table.insert(md_sources, 1, { name = "otter", priority = 100 })
+cmp.setup.filetype({ "markdown", "rmd", "quarto" }, {
+    sources = cmp.config.sources(md_sources),
 })
 
 local r_sources = vim.deepcopy(default_sources)
