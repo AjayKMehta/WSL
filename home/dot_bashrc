@@ -195,3 +195,5 @@ export DOTNET_ROOT=/usr/share/dotnet
 
 # Add this line at the end of .bashrc:
 [[ ${BLE_VERSION-} ]] && ble-attach
+
+. "$HOME/.atuin/bin/env"
