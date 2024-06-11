@@ -100,7 +100,6 @@ M.config = function()
             "fzf",
             "helpgrep",
             "hoogle",
-            -- TODO: <C-o> 	Open selected plugin repository in browser not working
             "lazy",
             "noice",
             "notify",
@@ -108,7 +107,6 @@ M.config = function()
             "themes",
             "undo",
             "vim_bookmarks",
-            -- https://github.com/benfowler/telescope-luasnip.nvim/issues/22
             "luasnip",
             "telescope-tabs",
             "togglescope"
