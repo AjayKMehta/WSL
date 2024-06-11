@@ -147,7 +147,7 @@ return {
                 close = { "<esc>", "q" },
             },
         },
-        config = function(_, Opts)
+        config = function(_, opts)
             require("blame").setup(opts)
         end,
     },

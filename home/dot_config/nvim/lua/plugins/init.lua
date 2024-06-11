@@ -17,7 +17,7 @@ return {
     },
     {
         "folke/lazydev.nvim",
-        ft = "lua", -- only load on lua files
+        ft = "lua",
         opts = {
             library = {
                 -- You can also add plugins you always want to have loaded.
