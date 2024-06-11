@@ -5,9 +5,7 @@ return {
         "kylechui/nvim-surround",
         lazy = false,
         config = function()
-            require("nvim-surround").setup({
-
-            })
+            require("nvim-surround").setup({})
         end,
     },
     {
@@ -140,6 +138,37 @@ return {
             config = function()
                 require("nvim_rocks").ensure_installed("luautf8")
             end,
+        },
+    },
+    {
+        "ravibrock/spellwarn.nvim",
+        event = "VeryLazy",
+        config = {
+            event = { -- event(s) to refresh diagnostics on
+                "CursorHold",
+                "InsertLeave",
+                "TextChanged",
+                "TextChangedI",
+                "TextChangedP",
+                "TextChangedT",
+            },
+            ft_config = { -- spellcheck method: "cursor", "iter", or boolean
+                alpha = false,
+                help = false,
+                lazy = false,
+                lspinfo = false,
+                mason = false,
+                python = "iter"
+            },
+            ft_default = true, -- default option for unspecified filetypes
+            max_file_size = nil, -- maximum file size to check in lines (nil for no limit)
+            severity = { -- severity for each spelling error type (false to disable diagnostics for that type)
+                spellbad = "WARN",
+                spellcap = "HINT",
+                spelllocal = "HINT",
+                spellrare = "INFO",
+            },
+            prefix = "possible misspelling(s): ", -- prefix for each diagnostic message
         },
     },
 }

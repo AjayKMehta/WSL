@@ -47,3 +47,8 @@ o.grepformat = "%f:%l:%c:%m"
 -- https://www.reddit.com/r/neovim/comments/1d7sugh/comment/l71gilt
 o.breakindentopt = 'list:-1'
 o.breakindent = true
+
+-- Native spelling functionality
+
+vim.opt.spelllang = "en_us"
+vim.opt.spell = true

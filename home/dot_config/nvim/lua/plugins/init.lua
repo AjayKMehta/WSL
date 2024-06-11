@@ -80,7 +80,6 @@ return {
                 "sqls",
 
                 -- Misc
-                "typos_lsp",
                 "ast_grep",
                 "vimls",
 
@@ -88,7 +87,6 @@ return {
                 "marksman",
 
                 -- LaTeX
-                "ltex",
                 "texlab",
 
                 -- XML

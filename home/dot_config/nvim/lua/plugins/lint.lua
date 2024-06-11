@@ -8,7 +8,6 @@ return {
             -- Event to trigger linters
             events = { "BufWritePost", "BufReadPost", "InsertLeave" },
             linters_by_ft = {
-                ["*"] = { "typos" },
                 bash = { "shellcheck" },
                 dockerfile = { "hadolint" },
                 editorconfig = { "editorconfig-checker" },

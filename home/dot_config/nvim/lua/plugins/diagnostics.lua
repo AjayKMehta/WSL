@@ -54,9 +54,4 @@ return {
             {"<leader>tQ", "<cmd>Trouble qflist toggle<cr>", desc = "Trouble Quickfix List"},
         },
     },
-    {
-        -- typos.nvim is a Neovim plugin that uses the typos-cli tool as a diagnostics source
-        "poljar/typos.nvim",
-        lazy = false
-    },
 }

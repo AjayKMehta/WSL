@@ -38,7 +38,6 @@ local servers = {
     "bashls",
 
     -- Misc
-    "ltex",
     "ast_grep",
 
     -- TOML
@@ -170,15 +169,6 @@ if not vim.g.csharp_lsp then
         },
     })
 end
-
-lspconfig.typos_lsp.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    init_options = {
-        diagnosticSeverity = "hint",
-        config =  vim.env.HOME .."/typos.toml"
-    },
-})
 
 lspconfig.yamlls.setup({
     on_attach = on_attach,
