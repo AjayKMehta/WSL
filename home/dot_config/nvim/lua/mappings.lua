@@ -123,10 +123,9 @@ end, "Telescope Jumplist")
 map_desc("n", "<leader>fR", function()
     require("telescope.builtin").registers()
 end, "Telescope Registers")
--- Status: not working.
--- See https://github.com/benfowler/telescope-luasnip.nvim/issues/22
+
 map_desc("n", "<leader>fs", function()
-    require("telescope").extensions.luasnip.luasnip()
+    require("telescope").extensions["luasnip"].luasnip()
 end, "Telescope LuaSnip")
 
 map_desc("n", "<leader>ftS", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Telescope Todo/Fix/Fixme")
