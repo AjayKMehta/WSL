@@ -8,26 +8,18 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-    # shellcheck source=/dev/null # to ignore the error
-	. "$HOME/.bashrc"
-    fi
-fi
+# 🐳 environment variables
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+export DOCKER_BUILDKIT=1
+# https://martinheinz.dev/blog/111
+export BUILDX_EXPERIMENTAL=1
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+# .NET environment variables
 
-export XDG_CONFIG_HOME="$HOME/.config"
+# https://github.com/razzmatazz/csharp-language-server/issues/66#issuecomment-1493328609
+export DONET_ROOT=/usr/share/dotnet
+export DOTNET_NOLOGO=1
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 has_cmd() {
 	for opt in "$@"; do
@@ -39,19 +31,17 @@ if has_cmd gh; then
     eval "$(gh completion -s bash)"
 fi
 
-export PATH="$HOME/.local/bin:$PATH"
-
 if has_cmd fzf && has_cmd fd; then
     # export FZF_DEFAULT_COMMAND='rg --files . 2> nul'
     export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 fi
 
-export DOCKER_BUILDKIT=1
-# https://martinheinz.dev/blog/111
-export BUILDX_EXPERIMENTAL=1
 
-# https://github.com/razzmatazz/csharp-language-server/issues/66#issuecomment-1493328609
-export DONET_ROOT=/usr/share/dotnet
-
-export DOTNET_NOLOGO=1
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+    # shellcheck source=/dev/null # to ignore the error
+	. "$HOME/.bashrc"
+    fi
+fi
