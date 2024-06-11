@@ -137,11 +137,3 @@ autocmd("BufEnter", {
         end
     end,
 })
-
--- Disable DAP virtual text when a PowerShell file is opened
-autocmd({ "BufRead" }, {
-    pattern = { "*.ps1", "*.psm1" },
-    callback = function()
-        vim.cmd("DapVirtualTextDisable")
-    end,
-})
