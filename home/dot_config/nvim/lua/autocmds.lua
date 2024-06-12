@@ -137,3 +137,8 @@ autocmd("BufEnter", {
         end
     end,
 })
+
+autocmd({ "BufRead", "BufNewFile" }, { pattern = {
+    "*.log",
+    "*.log.gz",
+}, command = ":setlocal nospell" })
