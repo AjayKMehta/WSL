@@ -92,7 +92,7 @@ local config = {
 
                 symbols = { error = "", warn = "", info = "", hint = "󰌶" },
                 update_in_insert = true, -- Update diagnostics in insert mode.
-                always_visible = false,  -- Show diagnostics even if there are none.s
+                always_visible = false, -- Show diagnostics even if there are none.s
                 diagnostics_color = {
                     color_error = { fg = colors.red },
                     color_warn = { fg = colors.yellow },
@@ -116,6 +116,7 @@ local config = {
                     fg = colors.lightblue,
                     -- gui = "bold",
                 },
+                fmt=utils.trunc(120, 20, 60, false)
             },
             {
                 "diff",
@@ -181,7 +182,9 @@ local config = {
             -- https://github.com/folke/noice.nvim?tab=readme-ov-file#-statusline-components
             {
                 require("noice").api.status.message.get_hl,
-                cond = require("noice").api.status.message.has,
+                -- Way too noisy. Would be nice to be able to show only for 2 seconds.
+                cond = function() return false end,
+                -- cond = require("noice").api.status.message.has,
                 color = { fg = "pink" },
             },
             {
