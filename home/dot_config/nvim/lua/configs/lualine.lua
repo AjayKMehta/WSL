@@ -1,5 +1,8 @@
 local lualine = require("lualine")
 local utils = require("utils")
+local custom_fname = require("lualine.components.filename"):extend()
+local highlight = require("lualine.highlight")
+local default_status_colors = { saved = "#228B22", modified = "#C70039" }
 
 local colors = {
     bg = "#202328",
@@ -66,6 +69,35 @@ local function get_name()
     return ""
 end
 
+-- https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#changing-filename-color-based-on--modified-status
+function custom_fname:init(options)
+    custom_fname.super.init(self, options)
+    self.status_colors = {
+        saved = highlight.create_component_highlight_group(
+            { bg = default_status_colors.saved },
+            "filename_status_saved",
+            self.options
+        ),
+        modified = highlight.create_component_highlight_group(
+            { bg = default_status_colors.modified },
+            "filename_status_modified",
+            self.options
+        ),
+    }
+    if self.options.color == nil then
+        self.options.color = ""
+    end
+end
+
+function custom_fname:update_status()
+    local data = custom_fname.super.update_status(self)
+    data = highlight.component_format_highlight(
+        vim.bo.modified and self.status_colors.modified or self.status_colors.saved
+    ) .. data
+    return data
+end
+
+
 local config = {
     options = {
         ignore_focus = { "NvimTree", "lspInfo" },
@@ -83,6 +115,7 @@ local config = {
     -- },
     sections = {
         lualine_a = {
+            {"mason"},
             {
                 "diagnostics",
                 sources = { "nvim_diagnostic" },
@@ -110,13 +143,14 @@ local config = {
         },
         lualine_b = {
             {
-                "branch",
+                -- Use gitsigns
+                "b:gitsigns_head",
                 icon = "",
                 color = {
                     fg = colors.lightblue,
                     -- gui = "bold",
                 },
-                fmt=utils.trunc(120, 20, 60, false)
+                fmt = utils.trunc(120, 20, 60, false),
             },
             {
                 "diff",
@@ -134,6 +168,7 @@ local config = {
             { get_name, cond = is_active },
         },
         lualine_c = {
+            {custom_fname},
             { LspStatus, cond = utils.has_filename, color = { fg = "#00FDAF" } },
             {
                 function()
@@ -183,7 +218,9 @@ local config = {
             {
                 require("noice").api.status.message.get_hl,
                 -- Way too noisy. Would be nice to be able to show only for 2 seconds.
-                cond = function() return false end,
+                cond = function()
+                    return false
+                end,
                 -- cond = require("noice").api.status.message.has,
                 color = { fg = "pink" },
             },
