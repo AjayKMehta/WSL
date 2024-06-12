@@ -1,12 +1,6 @@
 
 local haskell_ft = { "haskell", "lhaskell", "cabal", "cabalproject" }
 
---[[
-7. Haskell
-]]
-
----@diagnostic disable-next-line: undefined-doc-name
-
 return {
     -- Haskell
     {
