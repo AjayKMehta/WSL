@@ -12,7 +12,6 @@ return {
             load_config("cmp")()
         end,
         dependencies = {
-            { "jmbuhr/otter.nvim" },
             {
                 -- Completion for LaTeX symbols
                 "amarakon/nvim-cmp-lua-latex-symbols",

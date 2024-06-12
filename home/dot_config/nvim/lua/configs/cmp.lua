@@ -110,9 +110,9 @@ cmp.setup.cmdline(":", {
     },
     enabled = true,
     sources = cmp.config.sources({
+        { name = "async_path" },
         { name = "cmdline" },
         { name = "buffer" },
-        { name = "async_path" },
     }),
 })
 
@@ -136,6 +136,7 @@ cmp.setup.filetype({ "help", "minifiles", "TelescopePrompt" }, {
 local tex_sources = vim.deepcopy(default_sources)
 local latex_source = {
     name = "lua-latex-symbols",
+    group_index = 1,
     priority = 100,
     keyword_length = 2,
 }
@@ -144,17 +145,19 @@ table.insert(tex_sources, 1, latex_source)
 local other_latex_sources = {
     {
         name = "async_path",
+        group_index = 2,
         priority = 50,
     },
     {
         name = "buffer",
-
+        group_index = 2,
         priority = 10,
         keyword_length = 4,
         option = buffer_option,
     },
     {
         name = "buffer-lines",
+        group_index = 2,
         priority = 5,
         keyword_length = 4,
         max_item_count = 50,
@@ -165,15 +168,8 @@ for _, value in ipairs(other_latex_sources) do
     table.insert(tex_sources, value)
 end
 
-cmp.setup.filetype({ "tex", "plaintex" }, {
+cmp.setup.filetype({ "tex", "plaintex",  "markdown", "rmd", "quarto" }, {
     sources = cmp.config.sources(tex_sources),
-})
-
-local md_sources = vim.deepcopy(tex_sources)
-
-table.insert(md_sources, 1, { name = "otter", priority = 100 })
-cmp.setup.filetype({ "markdown", "rmd", "quarto" }, {
-    sources = cmp.config.sources(md_sources),
 })
 
 local r_sources = vim.deepcopy(default_sources)

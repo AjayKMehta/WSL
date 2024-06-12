@@ -132,20 +132,4 @@ return {
             require("lsp_signature").setup(opts)
         end,
     },
-    -- otter.nvim for autocomplete in nvim code blocks
-    {
-        "jmbuhr/otter.nvim",
-        ft = { "markdown", "quarto", "rmd" },
-        opts = {
-            buffers = {
-                set_filetype = true,
-                write_to_disk = true,
-            },
-            handle_leading_whitespace = true,
-        },
-        dependencies = {
-            "neovim/nvim-lspconfig",
-            "nvim-treesitter/nvim-treesitter",
-        },
-    },
 }
