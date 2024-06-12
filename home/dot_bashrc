@@ -163,8 +163,6 @@ choose_theme() {
 #export DISPLAY=$(ip route list default | awk '{print $3}'):0
 #export LIBGL_ALWAYS_INDIRECT=1
 
-eval "$(pkgx --shellcode)"  #docs.pkgx.sh/shellcode
-
 # https://superuser.com/a/835047/448598
 bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
