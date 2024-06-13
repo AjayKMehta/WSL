@@ -156,11 +156,14 @@ return {
                 alpha = false,
                 help = false,
                 lazy = false,
+                checkhealth = false,
+                cabal = false,
                 lspinfo = false,
                 mason = false,
-                python = "iter"
+                python = "iter",
+                markdown = true
             },
-            ft_default = true, -- default option for unspecified filetypes
+            ft_default = false, -- default option for unspecified filetypes
             max_file_size = nil, -- maximum file size to check in lines (nil for no limit)
             severity = { -- severity for each spelling error type (false to disable diagnostics for that type)
                 spellbad = "WARN",
