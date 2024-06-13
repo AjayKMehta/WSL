@@ -1,5 +1,4 @@
-
-local haskell_ft = { "haskell", "lhaskell", "cabal", "cabalproject" }
+local load_config = require("utils").load_config
 
 return {
     -- Haskell
@@ -10,31 +9,18 @@ return {
             { "rbgrouleff/bclose.vim" },
         },
     },
-    -- TODO: Comment out later when switch extensions.
     {
-        "neovimhaskell/haskell-vim",
-        ft = haskell_ft,
-        -- https://github.com/neovimhaskell/haskell-vim#configuration
-        config = function()
-            -- to enable highlighting of `forall`
-            vim.g.haskell_enable_quantification = 1
-            -- to enable highlighting of `mdo` and `rec`
-            vim.g.haskell_enable_recursivedo = 1
-            -- to enable highlighting of `proc`
-            vim.g.haskell_enable_arrowsyntax = 1
-            -- to enable highlighting of `pattern`
-            vim.g.haskell_enable_pattern_synonyms = 1
-            -- to enable highlighting of type roles
-            vim.g.haskell_enable_typeroles = 1
-            -- to enable highlighting of `static`
-            vim.g.haskell_enable_static_pointers = 1
-            -- to enable highlighting of backpack keywords
-            vim.g.haskell_backpack = 1
-        end,
+        "mrcjkb/haskell-tools.nvim",
+        version = "^3", -- Recommended
+        lazy = false, -- This plugin is already lazy
+        dependencies = {
+            { "nvim-telescope/telescope.nvim", optional = true },
+        },
+        config = load_config("haskell")
     },
     {
         "mrcjkb/haskell-snippets.nvim",
-        ft = haskell_ft,
+        ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
         dependencies = { "L3MON4D3/LuaSnip" },
         config = function()
             local haskell_snippets = require("haskell-snippets").all
@@ -49,5 +35,4 @@ return {
             { "nvim-telescope/telescope.nvim" },
         },
     },
-
 }
