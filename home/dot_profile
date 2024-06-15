@@ -8,6 +8,9 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+# https://superuser.com/a/1368878/448598
+export BROWSER=wslview
+
 # 🐳 environment variables
 
 export DOCKER_BUILDKIT=1
