@@ -20,8 +20,7 @@ return {
         -- Tried rainbow-delimiters integration also but same story.
         "lukas-reineke/indent-blankline.nvim",
         enabled = false,
-        version = "*",
-        event = { "BufReadPre", "BufNewFile" },
+        main = "ibl",
     },
     {
         -- Use this instead of indent-blankline
@@ -58,8 +57,8 @@ return {
     },
     {
         -- Lets you change the color of the original devicons to any color you like.
-    "dgox16/devicon-colorscheme.nvim",
-        dependencies = {"nvim-tree/nvim-web-devicons"},
+        "dgox16/devicon-colorscheme.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     {
         -- Adds horizontal highlights for text filetypes, like markdown, orgmode, and neorg
