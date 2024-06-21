@@ -144,14 +144,6 @@ return {
         "ravibrock/spellwarn.nvim",
         event = "VeryLazy",
         config = {
-            event = { -- event(s) to refresh diagnostics on
-                "CursorHold",
-                "InsertLeave",
-                "TextChanged",
-                "TextChangedI",
-                "TextChangedP",
-                "TextChangedT",
-            },
             ft_config = { -- spellcheck method: "cursor", "iter", or boolean
                 alpha = false,
                 help = false,

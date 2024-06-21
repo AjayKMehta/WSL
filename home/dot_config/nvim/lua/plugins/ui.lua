@@ -99,6 +99,7 @@ return {
         dependencies = {
             "nvim-telescope/telescope-fzf-native.nvim",
         },
+        -- Not specifying config because defaults are great.
     },
     {
         "kevinhwang91/nvim-ufo",
