@@ -26,11 +26,44 @@ vim.g.haskell_tools = {
     tools = {
         hoogle = { mode = "auto" },
         definition = { hoogle_signature_fallback = true },
-        -- repl = {}
+        hover = { auto_focus = true },
+        repl = { handler = "toggleterm", prefer = "stack" },
     },
     hls = {
+        auto_attach = true,
+        debug = false, -- HLS debugging
         on_attach = on_attach,
         capabilities = lsp.capabilities,
+        default_settings = {
+            haskell = {
+                cabalFormattingProvider = "cabal-fmt",
+                formattingProvider = "fourmolu",
+                maxCompletions = 50,
+                plugin = {
+                    cabalFmt = { globalOn = true },
+                    explicitFixity = { globalOn = true },
+                    hlint = { codeActionsOn = true, diagnosticsOn = true },
+                    ormolu = { globalOn = true },
+                    alternateNumberFormat = { globalOn = true },
+                    cabal = {
+                        codeActionsOn = true,
+                        completionOn = true,
+                        diagnosticsOn = true,
+                    },
+                    callHierarchy = { globalOn = true },
+                    changeTypeSignature = { globalOn = true },
+                    class = {
+                        codeActionsOn = true,
+                        codeLensOn = true,
+                    },
+                    importLens = {
+                        codeActionsOn = true,
+                        codeLensOn = true,
+                    },
+                    moduleName = { globalOn = true },
+                },
+            },
+        },
         settings = {
             haskell = {
                 formattingProvider = "fourmolu",
@@ -38,6 +71,9 @@ vim.g.haskell_tools = {
             },
         },
     },
+    dap = {
+        logLevel ="Info",
+        auto_discover = true },
 }
 
 local ok, telescope = pcall(require, "telescope")
