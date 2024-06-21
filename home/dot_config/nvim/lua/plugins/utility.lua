@@ -337,4 +337,34 @@ return {
         version = "*",
         config = true,
     },
+    ---@type LazySpec
+{
+  "mikavilpas/yazi.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
+  event = "VeryLazy",
+  keys = {
+    -- 👇 in this section, choose your own keymappings!
+    {
+      "<leader>yy",
+      function()
+    require("yazi").yazi()
+      end,
+      desc = "Open yazi",
+    },
+    {
+      -- Open in the current working directory
+      "<leader>yw",
+      function()
+    require("yazi").yazi(nil, vim.fn.getcwd())
+      end,
+      desc = "Open yazi in working directory" ,
+    },
+  },
+  ---@type YaziConfig
+  opts = {
+    open_for_directories = false,
+  },
+}
 }
