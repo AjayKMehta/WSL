@@ -62,7 +62,7 @@ conform.setup({
         if bufname:match("/node_modules/") then
             return
         end
-        return { timeout_ms = 500, lsp_fallback = true }
+        return { timeout_ms = 500, lsp_format = "fallback" }
     end,
     -- If you specify more than one formatter, they will be executed in the order you list them.
     formatters_by_ft = {
@@ -96,7 +96,7 @@ conform.setup({
 -- In normal mode it will apply to the whole file, in visual mode it will apply to the current selection.
 vim.keymap.set({ "n", "v" }, "<leader>lf", function()
     conform.format({
-        lsp_fallback = true,
+        lsp_format = "fallback",
         async = false,
         timeout_ms = 5000,
     })
@@ -106,7 +106,7 @@ end, { desc = "Format file or range (in visual mode)" })
 
 vim.api.nvim_create_user_command("FormatDisable", function(args)
     if args.bang then
-        -- FormatDisable! will disable formatting just for this buffer
+        -- FormatDisable! will disable auto-formatting just for this buffer
         vim.b.disable_autoformat = true
     else
         vim.g.disable_autoformat = true
@@ -116,6 +116,7 @@ end, {
     bang = true,
 })
 
+-- Enable auto-format on save
 vim.api.nvim_create_user_command("FormatEnable", function()
     vim.b.disable_autoformat = false
     vim.g.disable_autoformat = false
