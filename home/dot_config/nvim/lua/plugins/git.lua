@@ -44,9 +44,17 @@ return {
             },
             signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
             numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
-            linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
-            word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-            show_deleted = false, -- Toggle with `:Gitsigns toggle_deleted`
+            linehl = true, -- Toggle with `:Gitsigns toggle_linehl`
+            word_diff = true, -- Toggle with `:Gitsigns toggle_word_diff`
+            show_deleted = false, -- Toggle with `:Gitsigns toggle_deleted`.
+            trouble = true,
+            current_line_blame_opts = {
+                virt_text = true,
+                virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+                delay = 300,
+                ignore_whitespace = false,
+                virt_text_priority = 100,
+            },
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
 
@@ -94,11 +102,27 @@ return {
 
                 map("n", "<leader>gd", gs.diffthis, "gitsigns Diff with index")
 
+                map("n", "<leader>gD", function()
+                    gs.diffthis("~1")
+                end, "gitsigns Diff with previous commit")
+
                 -- Navigation
 
-                map({ "n", "v" }, "]h", gs.prev_hunk, "gitsigns Go to previous hunk")
+                map({ "n", "v" }, "]h", function()
+                    gs.nav_hunk("prev")
+                end, "gitsigns Go to previous hunk")
 
-                map({ "n", "v" }, "[h", gs.next_hunk, "gitsigns Go to next hunk")
+                map({ "n", "v" }, "[h", function()
+                    gs.nav_hunk("next")
+                end, "gitsigns Go to next hunk")
+
+                map({ "n", "v" }, "]H", function()
+                    gs.nav_hunk("first")
+                end, "gitsigns Go to first hunk")
+
+                map({ "n", "v" }, "[H", function()
+                    gs.nav_hunk("last")
+                end, "gitsigns Go to next hunk")
 
                 -- Preview
 
