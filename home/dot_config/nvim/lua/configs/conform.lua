@@ -38,7 +38,7 @@ conform.setup({
                     ruby = "rb",
                     rust = "rs",
                     typescript = "ts",
-                    r = "r"
+                    r = "r",
                 },
                 lang_to_formatters = {
                     json = { "jq" },
@@ -81,7 +81,7 @@ conform.setup({
         sql = { "sql-formatter" },
         tex = { "latexindent" },
         toml = { "taplo" },
-        xml = {"xmllint"},
+        xml = { "xmllint" },
         yaml = { "yamlfix" },
         -- Use the "*" filetype to run formatters on all filetypes.
         -- ["*"] = {},
