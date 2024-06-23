@@ -4,7 +4,13 @@ local autocmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augrou
 
 -- Disable persistent undo for files in /private directory
 
-autocmd("BufReadPre", { pattern = "/private/*", command = "set noundofile" })
+local noundo_augroup = augroup("DisablePersistentUndoPrivate", { clear = true })
+
+autocmd("BufReadPre", {
+    group = noundo_augroup,
+    pattern = "/private/*",
+    command = "set noundofile",
+})
 
 -- Highlight yanked text
 
@@ -41,7 +47,10 @@ local hover_close = function(base_win_id)
 end
 
 -- Later, or in another file, when you create keymaps for LSP
+local lspattach_augroup = augroup("LspHoverClose", { clear = true })
+
 autocmd("LspAttach", {
+    group = lspattach_augroup,
     callback = function(ev)
         vim.keymap.set("n", "<Leader>;", function()
             hover_close(vim.api.nvim_get_current_win())
@@ -52,10 +61,10 @@ autocmd("LspAttach", {
 -- Set conceallevel for markdown files
 
 -- https://github.com/catgoose/nvim/blob/main/lua/config/autocmd.lua#L2
-local set_filetype = augroup("SetFileTypeOptLocalOptions", { clear = true })
+local conceallevel_augroup = augroup("SetConcealLevel", { clear = true })
 
 autocmd({ "FileType" }, {
-    group = set_filetype,
+    group = conceallevel_augroup,
     pattern = { "*.*md" },
     callback = function()
         vim.opt_local.conceallevel = 2
@@ -76,7 +85,7 @@ local function debounce(ms, fn)
     end
 end
 
-local lint_augroup = augroup("lint", { clear = true })
+local lint_augroup = augroup("Autolint", { clear = true })
 
 autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
     group = lint_augroup,
@@ -87,7 +96,10 @@ autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 
 -- https://nvchad.com/docs/recipes/#restore_cursor_position
 
+local restore_augroup = augroup("RestoreCursorPos", { clear = true })
+
 autocmd("BufReadPost", {
+    group = restore_augroup,
     pattern = "*",
     callback = function()
         local line = vim.fn.line("'\"")
@@ -112,7 +124,9 @@ autocmd("BufReadPost", {
 
 if vim.g.nvim_comment then
     -- https://github.com/neovim/neovim/pull/28176#issuecomment-2051944146
+    local comment_augroup = augroup("CommentIncSpaces", { clear = true })
     autocmd({ "FileType" }, {
+        group = comment_augroup,
         desc = "Force commentstring to include spaces",
         -- group = ...,
         callback = function(event)
@@ -138,7 +152,12 @@ end
 --     end,
 -- })
 
-autocmd({ "BufRead", "BufNewFile" }, { pattern = {
-    "*.log",
-    "*.log.gz",
-}, command = ":setlocal nospell" })
+local nospell_augroup = augroup("DisableSpell", { clear = true })
+autocmd({ "BufRead", "BufNewFile" }, {
+    group = nospell_augroup,
+    pattern = {
+        "*.log",
+        "*.log.gz",
+    },
+    command = ":setlocal nospell",
+})
