@@ -112,7 +112,7 @@ vim.api.nvim_create_user_command("FormatDisable", function(args)
         vim.g.disable_autoformat = true
     end
 end, {
-    desc = "Disable autoformat-on-save",
+    desc = "Disable autoformat on save",
     bang = true,
 })
 
@@ -121,7 +121,7 @@ vim.api.nvim_create_user_command("FormatEnable", function()
     vim.b.disable_autoformat = false
     vim.g.disable_autoformat = false
 end, {
-    desc = "Re-enable autoformat-on-save",
+    desc = "Enable autoformat on save",
 })
 
 --endregion

@@ -168,7 +168,7 @@ for _, value in ipairs(other_latex_sources) do
     table.insert(tex_sources, value)
 end
 
-cmp.setup.filetype({ "tex", "plaintex",  "markdown", "rmd", "quarto" }, {
+cmp.setup.filetype({ "tex", "plaintex", "markdown", "rmd", "quarto" }, {
     sources = cmp.config.sources(tex_sources),
 })
 
@@ -196,7 +196,7 @@ local function toggle_autocomplete()
     end
 end
 
-vim.api.nvim_create_user_command("NvimCmpToggle", toggle_autocomplete, {})
+vim.api.nvim_create_user_command("NvimCmpToggle", toggle_autocomplete, { desc = "Toggle nvim-cmp autocomplete." })
 
 -- Set a keymap:
 vim.api.nvim_set_keymap("n", "<Leader>tc", ":NvimCmpToggle<CR>", { noremap = true, silent = true })

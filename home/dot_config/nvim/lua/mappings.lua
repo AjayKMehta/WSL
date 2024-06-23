@@ -19,6 +19,7 @@ local disabled = {
         -- "<leader>fh", -- NvChad maps this to Find help pages
         -- "<leader>b", -- Use as prefix
         -- "<leader>cc", -- NvChad maps this to Blankline command
+        -- "<c-s>",
     },
 }
 
@@ -32,8 +33,8 @@ for mode, mappings in pairs(disabled) do
         end
     end
 end
-vim.cmd('unmap <leader>b')
-vim.cmd('unmap <leader>n')
+vim.cmd("unmap <leader>b")
+vim.cmd("unmap <leader>n")
 
 map_desc("n", "<leader>tt", function()
     require("base46").toggle_theme()
@@ -72,7 +73,7 @@ end, "Telescope Find buffers")
 map_desc("n", "<leader>fh", "<cmd> Telescope file_browser cwd=$HOME <CR>", "Telescope Search home")
 
 map_desc("n", "<leader>ff", function()
-    require('telescope').extensions.togglescope.find_files()
+    require("telescope").extensions.togglescope.find_files()
 end, "Telescope Find files")
 
 map_desc("n", "<leader>fcc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope Search config 🔍")
@@ -100,7 +101,7 @@ end, "Telescope Man Pages")
 map_desc("n", "<leader>fu", "<cmd>Telescope undo<CR>", "Telescope Undo tree ")
 
 map_desc("n", "<leader>fw", function()
-    require('telescope').extensions.togglescope.live_grep()
+    require("telescope").extensions.togglescope.live_grep()
 end, "Telescope Live grep")
 
 map_desc("n", "<leader>fy", function()
@@ -541,7 +542,7 @@ end, { silent = true, expr = true, desc = "Noice Scroll backward" })
 
 -- Doesn't seem to work?
 map_desc("c", "<S-Enter>", function()
-  require("noice").redirect(vim.fn.getcmdline())
+    require("noice").redirect(vim.fn.getcmdline())
 end, "Redirect Cmdline")
 
 --#endregion
