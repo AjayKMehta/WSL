@@ -12,6 +12,9 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# Initialize zoxide
+eval "$(zoxide init bash)"
+
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # If not running interactively, don't do anything
