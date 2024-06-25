@@ -50,7 +50,7 @@ return {
         event = "VeryLazy",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
-            "smoka7/hydra.nvim",
+            "nvimtools/hydra.nvim",
         },
         opts = function()
             local U = require("multicursors.utils")
@@ -58,7 +58,9 @@ return {
                 -- Uncomment if want to show in lualine instead
                 -- hint_config = false,
                 hint_config = {
-                    border = "rounded",
+                    float_opts = {
+                        border = "none",
+                    },
                     position = "bottom-right",
                 },
                 generate_hints = {
@@ -153,7 +155,7 @@ return {
                 lspinfo = false,
                 mason = false,
                 python = "iter",
-                markdown = true
+                markdown = true,
             },
             ft_default = false, -- default option for unspecified filetypes
             max_file_size = nil, -- maximum file size to check in lines (nil for no limit)
