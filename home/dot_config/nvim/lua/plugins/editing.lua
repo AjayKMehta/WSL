@@ -121,7 +121,7 @@ return {
             -- https://github.com/chrisgrieser/nvim-spider?tab=readme-ov-file#operator-pending-mode-the-case-of-cw
             { "cw", "c<cmd>lua require('spider').motion('e')<CR>", mode = "n" },
             {
-                "n",
+                "1",
                 "<cmd>lua require('spider').motion('w', { customPatterns = {'%d+'}})<CR>",
                 desc = "Spider number",
                 mode = "n",
@@ -143,7 +143,7 @@ return {
     {
         "ravibrock/spellwarn.nvim",
         event = "VeryLazy",
-        config = {
+        opts = {
             ft_config = { -- spellcheck method: "cursor", "iter", or boolean
                 alpha = false,
                 help = false,
