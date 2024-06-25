@@ -2,16 +2,17 @@ local load_config = require("utils").load_config
 
 return {
     {
+
         "tadmccorkle/markdown.nvim",
-        event = "VeryLazy",
-        -- Keymaps don't really work.
-        cond = false,
+        ft = "markdown",
         opts = {
             -- configuration here or empty for defaults
         },
     },
     {
+        -- Call :FeMaco with your cursor on a code-block. Edit the content, then save and/or close the popup to update the original buffer.
         "AckslD/nvim-FeMaco.lua",
+        ft = {"markdown", "quarto"},
         config = function()
             require("femaco").setup()
         end,
@@ -57,7 +58,7 @@ return {
         "antonk52/markdowny.nvim",
         ft = { "markdown" },
         config = function()
-            require("markdowny").setup()
+            require("markdowny").setup({ "markdown", "gitcommit", "quarto", "rmd" })
         end,
         --  Add key bindings for markdown.,
 

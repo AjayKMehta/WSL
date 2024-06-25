@@ -67,6 +67,7 @@ autocmd({ "FileType" }, {
     group = conceallevel_augroup,
     pattern = { "*.*md" },
     callback = function()
+        -- TODO: Look into changing this?
         vim.opt_local.conceallevel = 2
     end,
 })
