@@ -139,7 +139,7 @@ return {
         -- Better quickfix window
         "kevinhwang91/nvim-bqf",
         ft = "qf",
-        cmds = { "BqfEnable", "BqfDisable", "BqfToggle" },
+        cmd = { "BqfEnable", "BqfDisable", "BqfToggle" },
         opts = {
             auto_enable = true,
             auto_resize_height = true,
