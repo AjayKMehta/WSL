@@ -12,6 +12,7 @@ return {
             load_config("cmp")()
         end,
         dependencies = {
+            -- hrsh7th/cmp-nvim-lua not needed bc of neodev
             {
                 -- Completion for LaTeX symbols
                 "amarakon/nvim-cmp-lua-latex-symbols",
@@ -34,13 +35,6 @@ return {
                 enabled = function()
                     return vim.g.use_cmp_emoji
                 end,
-            },
-            {
-                -- Completion for Neovim's Lua runtime API.
-                "hrsh7th/cmp-nvim-lua",
-                event = "InsertEnter",
-                -- Not needed bc of neodev
-                cond = false,
             },
             {
                 -- Fuzzy buffer completion

@@ -1,6 +1,8 @@
 vim.cmd([[highlight Headline1 guifg=#FD585F gui=italic]])
 vim.cmd([[highlight Headline2 guifg=#58DB01 gui=italic]])
 vim.cmd([[highlight Headline3 guifg=#27CFFF gui=italic]])
+vim.cmd([[highlight Headline4 guifg=#39B877 gui=italic]])
+
 vim.cmd([[highlight Quote guifg=#0099EC]])
 
 local md_query = [[
@@ -26,7 +28,7 @@ local md_query = [[
 require("headlines").setup({
     markdown = {
         query = vim.treesitter.query.parse("markdown", md_query),
-        headline_highlights = { "Headline1", "Headline2", "Headline3" },
+        headline_highlights = { "Headline1", "Headline2", "Headline3", "Headline4" },
         bullets = false,
         codeblock_highlight = "CodeBlock",
         dash_highlight = "Dash",
