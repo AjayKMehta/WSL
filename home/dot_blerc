@@ -35,6 +35,8 @@ blehook/eval-after-load complete blerc/define-sabbrev-branch
 bleopt editor=nano
 
 # Setup fzf
+
+# Location: ~/.local/share/blesh/contrib/
 ble-import -d integration/fzf-completion
 ble-import -d integration/fzf-key-bindings
 
