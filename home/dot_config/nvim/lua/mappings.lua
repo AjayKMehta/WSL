@@ -217,16 +217,6 @@ map_desc("n", "<leader>bc", "<cmd> BookmarkClear<CR>", "Bookmark Clear 󰃢")
 
 --#endregion
 
---#region pretty_hover
-
-map_desc("n", "<leader>ko", function()
-    require("pretty_hover").hover()
-end, "Hover Open")
-map_desc("n", "<leader>kq", function()
-    require("pretty_hover").close()
-end, "Hover Close")
-
---#endregion
 
 --#region dap
 

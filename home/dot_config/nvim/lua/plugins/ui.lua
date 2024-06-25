@@ -7,6 +7,15 @@ return {
         -- Noice takes care of this now
         enabled = false,
         event = "LspAttach",
+        init = function()
+            local map_desc = require("utils.mappings").map_desc
+            map_desc("n", "<leader>ko", function()
+                require("pretty_hover").hover()
+            end, "Hover Open")
+            map_desc("n", "<leader>kq", function()
+                require("pretty_hover").close()
+            end, "Hover Close")
+        end,
     },
     { "tomasiser/vim-code-dark" },
     { "samharju/synthweave.nvim" },
