@@ -1,14 +1,16 @@
 vim.g.base46_cache = vim.fn.stdpath("data") .. "/nvchad/base46/"
+-- Set these before loading lazy.nvim
 vim.g.mapleader = " "
+-- This is the default but being explicit :)
+vim.g.maplocalleader = "\\"
 
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if not vim.loop.fs_stat(lazypath) then
-    local repo = "https://github.com/folke/lazy.nvim.git"
-    vim.fn.system({ "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath })
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end
-
 vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require("configs.lazy")
@@ -66,11 +68,6 @@ vim.cmd([[
 
 -- https://stackoverflow.com/a/19184627/781045
 vim.api.nvim_set_keymap("i", "<C-q>", "<C-k>", { noremap = true })
-
--- Resolve issue with lazy complaining!
--- https://github.com/folke/lazy.nvim/pull/1326
--- This is the default but being explicit :)
--- vim.g.maplocalleader = "\\"
 
 -- Plugin toggles
 
