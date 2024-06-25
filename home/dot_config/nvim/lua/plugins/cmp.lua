@@ -40,7 +40,7 @@ return {
                 "hrsh7th/cmp-nvim-lua",
                 event = "InsertEnter",
                 -- Not needed bc of neodev
-                enabled = false,
+                cond = false,
             },
             {
                 -- Fuzzy buffer completion

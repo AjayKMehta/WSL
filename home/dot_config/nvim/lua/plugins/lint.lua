@@ -2,7 +2,6 @@ return {
     {
         -- An asynchronous linter plugin
         "mfussenegger/nvim-lint",
-        enabled = true,
         event = { "BufReadPre", "BufNewFile" },
         opts = {
             -- Event to trigger linters

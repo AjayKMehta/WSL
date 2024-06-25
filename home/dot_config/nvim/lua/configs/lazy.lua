@@ -10,7 +10,8 @@ return {
             not_loaded = "",
         },
     },
-
+    -- automatically check for plugin updates
+    checker = { enabled = true },
     performance = {
         rtp = {
             disabled_plugins = {

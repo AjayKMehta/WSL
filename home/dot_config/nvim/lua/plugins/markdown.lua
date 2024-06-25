@@ -5,7 +5,7 @@ return {
         "tadmccorkle/markdown.nvim",
         event = "VeryLazy",
         -- Keymaps don't really work.
-        enabled = false,
+        cond = false,
         opts = {
             -- configuration here or empty for defaults
         },
