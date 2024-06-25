@@ -12,9 +12,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Initialize zoxide
-eval "$(zoxide init bash)"
-
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # If not running interactively, don't do anything
@@ -154,6 +151,14 @@ eval "$(mise activate bash)"
 # oh my posh
 eval "$(oh-my-posh init bash)"
 
+# Initialize zoxide
+# Not sure why it can't find it when location is in PATH!?
+if ! ( which zoxide > /dev/null ); then
+    echo "zoxide not found" >&2
+else
+    eval "$(zoxide init bash)"
+fi
+
 choose_theme() {
    x=$(gum file ~/.poshthemes/)
    eval "$(oh-my-posh init bash -c "$x")"
@@ -198,7 +203,7 @@ function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
+		cd -- "$cwd" || exit
 	fi
 	rm -f -- "$tmp"
 }
