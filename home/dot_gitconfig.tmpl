@@ -212,8 +212,6 @@
     date = rfc
 [credential "https://huggingface.co"]
     provider = generic
-[credential "https://github.com"]
-    helper = !gh auth git-credential
 # https://stackoverflow.com/a/71904131/781045
 [safe]
     directory = *
@@ -221,5 +219,12 @@
     tag = cat
     format-patch = cat
     diff = delta
+    show = delta
 [credential]
     helper = cache
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
