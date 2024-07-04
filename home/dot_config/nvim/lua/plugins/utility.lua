@@ -124,7 +124,7 @@ return {
                     opts = { skip = true },
                 },
                 {
-                    filter = { find = "method textDocument/codeLens is not supported"},
+                    filter = { find = "method textDocument/codeLens is not supported" },
                     opts = { skip = true },
                 },
             },
@@ -318,13 +318,13 @@ return {
         end,
     },
     {
-            -- Highlight cursor and visual selections in current buffer when entering command mode
+        -- Highlight cursor and visual selections in current buffer when entering command mode
         "moyiz/command-and-cursor.nvim",
         event = "VeryLazy",
         opts = {},
     },
     {
-            -- NeoVim plugin for jumping to the other end of the current Tree-sitter node using `%`
+        -- NeoVim plugin for jumping to the other end of the current Tree-sitter node using `%`
         "yorickpeterse/nvim-tree-pairs",
         config = function()
             require("tree-pairs").setup()
@@ -337,34 +337,28 @@ return {
         version = "*",
         config = true,
     },
-    ---@type LazySpec
-{
-  "mikavilpas/yazi.nvim",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
-  event = "VeryLazy",
-  keys = {
-    -- 👇 in this section, choose your own keymappings!
     {
-      "<leader>yy",
-      function()
-    require("yazi").yazi()
-      end,
-      desc = "Open yazi",
+        "mikavilpas/yazi.nvim",
+        event = "VeryLazy",
+        keys = {
+            {
+                "<leader>yy",
+                function()
+                    require("yazi").yazi()
+                end,
+                desc = "Open yazi",
+            },
+            {
+                -- Open in the current working directory
+                "<leader>yw",
+                function()
+                    require("yazi").yazi(nil, vim.fn.getcwd())
+                end,
+                desc = "Open yazi in working directory",
+            },
+        },
+        opts = {
+            open_for_directories = false,
+        },
     },
-    {
-      -- Open in the current working directory
-      "<leader>yw",
-      function()
-    require("yazi").yazi(nil, vim.fn.getcwd())
-      end,
-      desc = "Open yazi in working directory" ,
-    },
-  },
-  ---@type YaziConfig
-  opts = {
-    open_for_directories = false,
-  },
-}
 }
