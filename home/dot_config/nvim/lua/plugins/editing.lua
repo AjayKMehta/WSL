@@ -1,6 +1,4 @@
 return {
-    -- Press " to see registers' contents
-    { "junegunn/vim-peekaboo" },
     {
         "kylechui/nvim-surround",
         lazy = false,
