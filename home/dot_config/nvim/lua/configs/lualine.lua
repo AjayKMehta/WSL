@@ -248,7 +248,7 @@ local config = {
                     mac = "", -- e711
                 },
             },
-            "filetype",
+            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
             {
                 "aerial",
                 cond = function()

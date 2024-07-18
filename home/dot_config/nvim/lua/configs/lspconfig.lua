@@ -47,16 +47,15 @@ local servers = {
     "dotls",
 
     -- Python
-    "ruff",
     -- "pylyzer",
-    "basedpyright",
-
-    -- C#
-    "csharp_ls",
 
     -- R
     "r_language_server",
 }
+
+if vim.g.csharp_lsp then
+    table.insert(servers, "csharp_ls")
+end
 
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup({
@@ -242,6 +241,14 @@ lspconfig.powershell_es.setup({
                 WhitespaceBetweenParameters = true,
             },
             scriptAnalysis = { settingsPath = custom_settings_path },
+        },
+    },
+})
+
+lspconfig.ruff.setup({
+    init_options = {
+        settings = {
+            showSyntaxErrors = false,
         },
     },
 })
