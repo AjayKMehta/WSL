@@ -160,7 +160,7 @@ else
 fi
 
 choose_theme() {
-   x=$(gum file ~/.poshthemes/)
+   x=$(gum file /root/.cache/oh-my-posh/themes/)
    eval "$(oh-my-posh init bash -c "$x")"
 }
 
