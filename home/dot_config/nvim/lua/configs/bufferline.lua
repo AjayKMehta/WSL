@@ -16,6 +16,7 @@ require("bufferline").setup({
     options = {
         themable = true,
         diagnostics_indicator = diag_ind,
+        diagnostics_update_on_event = true,
         max_name_length = utils.get_width(0.334, 60, nil),
         max_prefix_length = utils.get_width(0.1, 10, 18),
         name_formatter = utils.get_buf_name,

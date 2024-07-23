@@ -60,13 +60,16 @@ return {
             { "ray-x/cmp-treesitter" },
             { "jalvesaq/cmp-nvim-r" },
             { "rcarriga/cmp-dap" },
-            {
-                -- Completion plugin for git
-                "petertriho/cmp-git",
-                dependencies = { "nvim-lua/plenary.nvim" },
-                config = load_config("cmp_git"),
-            },
         },
+    },
+    {
+        -- Completion plugin for git
+        "petertriho/cmp-git",
+        dependencies = { "hrsh7th/nvim-cmp", "nvim-lua/plenary.nvim" },
+        config = load_config("cmp_git"),
+        init = function()
+            table.insert(require("cmp").get_config().sources, { name = "git" })
+        end,
     },
     {
         -- Snippet Engine for Neovim

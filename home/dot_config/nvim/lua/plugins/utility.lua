@@ -127,6 +127,11 @@ return {
                     filter = { find = "method textDocument/codeLens is not supported" },
                     opts = { skip = true },
                 },
+                -- always route any messages with more than 20 lines to the split view
+                {
+                    view = "split",
+                    filter = { event = "msg_show", min_height = 20 },
+                },
             },
         },
         dependencies = {

@@ -4,7 +4,7 @@ return {
     {
 
         "tadmccorkle/markdown.nvim",
-        ft = "markdown",
+        ft = { "markdown", "gitcommit", "quarto", "rmd" },
         opts = {
             -- configuration here or empty for defaults
         },
@@ -12,14 +12,14 @@ return {
     {
         -- Call :FeMaco with your cursor on a code-block. Edit the content, then save and/or close the popup to update the original buffer.
         "AckslD/nvim-FeMaco.lua",
-        ft = {"markdown", "quarto"},
+        ft = { "markdown", "quarto" },
         config = function()
             require("femaco").setup()
         end,
     },
     {
         "iamcco/markdown-preview.nvim",
-        ft = "markdown",
+        ft = { "markdown", "gitcommit", "quarto", "rmd" },
         -- https://github.com/iamcco/markdown-preview.nvim/issues/616#issuecomment-1774970354
         build = function()
             local job = require("plenary.job")
@@ -56,7 +56,7 @@ return {
     },
     {
         "antonk52/markdowny.nvim",
-        ft = { "markdown" },
+        ft = { "markdown", "gitcommit", "quarto", "rmd" },
         config = function()
             require("markdowny").setup({ "markdown", "gitcommit", "quarto", "rmd" })
         end,
