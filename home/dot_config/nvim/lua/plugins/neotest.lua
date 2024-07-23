@@ -3,12 +3,15 @@ return {
         -- An extensible framework for interacting with tests.
         "nvim-neotest/neotest",
         dependencies = {
+            "nvim-neotest/nvim-nio",
             "nvim-lua/plenary.nvim",
-            "antoinemadec/FixCursorHold.nvim",
             "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim",
             "nvim-neotest/neotest-python",
             "Issafalcon/neotest-dotnet",
-            "mrcjkb/neotest-haskell",
+            -- https://github.com/mrcjkb/neotest-haskell/issues/179
+            -- Setting version to 2.0.0 doesn't work!😠
+            -- { "mrcjkb/neotest-haskell", version = "2.0.0" },
         },
         config = function()
             local neotest = require("neotest")
