@@ -246,8 +246,12 @@ lspconfig.powershell_es.setup({
 })
 
 lspconfig.ruff.setup({
+    cmd_env = { RUFF_TRACE = "messages" },
     init_options = {
         settings = {
+            lint = {
+                preview = true,
+            },
             showSyntaxErrors = false,
         },
     },
@@ -305,7 +309,7 @@ lspconfig.basedpyright.setup({
                 reportIgnoreCommentWithoutRule = "warning",
                 reportImplicitRelativeImport = "error",
                 reportInvalidCast = "warning",
-                reportUnsafeMultipleInheritance = "warning"
+                reportUnsafeMultipleInheritance = "warning",
             },
         },
     },
