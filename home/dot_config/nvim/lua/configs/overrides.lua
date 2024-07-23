@@ -30,6 +30,7 @@ M.treesitter = {
         "markdown_inline",
         "markdown",
         "mermaid",
+        "powershell",
         "python",
         "query",
         "r",
@@ -124,9 +125,6 @@ M.treesitter = {
 
                 ["ac"] = { query = "@class.outer", desc = "Select outer part of a class" },
                 ["ic"] = { query = "@class.inner", desc = "Select inner part of a class" },
-
-                -- TODO: Fix. Doesn't work?
-                -- ["aS"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
             },
         },
         move = {
