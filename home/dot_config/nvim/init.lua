@@ -15,6 +15,27 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require("configs.lazy")
 
+-- Plugin toggles
+
+-- If true, use aerial instead of outline
+vim.g.use_aerial = false
+vim.g.use_cmp_emoji = false
+-- If true, csharp.nvim enables LSP.
+vim.g.csharp_lsp = false
+
+-- If true, load snippet examples
+vim.g.snippet_examples = true
+
+-- lualine toggles
+vim.g.show_linters = false
+vim.g.show_formatters = false
+
+-- if true, use native comment functionality added in nvim 0.10
+vim.g.nvim_comment = true
+
+-- if true, use custom PowerShelleditorServices instead of mason's.
+vim.g.use_custom_pses = false
+
 -- load plugins
 require("lazy").setup({
     {
@@ -68,27 +89,6 @@ vim.cmd([[
 
 -- https://stackoverflow.com/a/19184627/781045
 vim.api.nvim_set_keymap("i", "<C-q>", "<C-k>", { noremap = true })
-
--- Plugin toggles
-
--- If true, use aerial instead of outline
-vim.g.use_aerial = false
-vim.g.use_cmp_emoji = false
--- If true, csharp.nvim enables LSP.
-vim.g.csharp_lsp = false
-
--- If true, load snippet examples
-vim.g.snippet_examples = true
-
--- lualine toggles
-vim.g.show_linters = false
-vim.g.show_formatters = false
-
--- if true, use native comment functionality added in nvim 0.10
-vim.g.nvim_comment = true
-
--- if true, use custom PowerShelleditorServices instead of mason's.
-vim.g.use_custom_pses = false
 
 -- Misc
 
