@@ -217,7 +217,6 @@ map_desc("n", "<leader>bc", "<cmd> BookmarkClear<CR>", "Bookmark Clear 󰃢")
 
 --#endregion
 
-
 --#region dap
 
 -- Keep same as VS + VS Code
@@ -341,8 +340,8 @@ local function flash_ts()
     require("flash").treesitter()
 end
 
-map_desc("n", "<leader>sS", flash_ts, "Flash Treesitter")
-map_desc({ "o", "x" }, "sS", flash_ts, "Flash Treesitter")
+map_desc("n", "<leader>st", flash_ts, "Flash Treesitter")
+map_desc({ "o", "x" }, "st", flash_ts, "Flash Treesitter")
 
 local function flash_fwd()
     require("flash").jump({
@@ -406,6 +405,15 @@ end, "Flash Treesitter search")
 map_desc("c", "<c-s>", function()
     require("flash").toggle()
 end, "Flash Toggle search")
+
+local flash_word = function()
+    local word = vim.fn.expand("<cword>")
+    if word ~= nil and #word > 0 then
+        require("flash").jump({ pattern = word })
+    end
+end
+
+map_desc("n", "<leader>sw", flash_word, "Flash current word")
 
 --#endregion
 
