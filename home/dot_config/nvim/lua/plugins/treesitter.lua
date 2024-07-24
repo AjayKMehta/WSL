@@ -19,8 +19,82 @@ return {
     {
         -- Navigate your code with search labels, enhanced character motions, and Treesitter integration.
         "folke/flash.nvim",
-        event = "VeryLazy",
-        opts = { modes = { search = { enabled = true } } },
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {
+            jump = {
+                autojump = true,
+            },
+            highlight = {
+                -- show a backdrop with hl FlashBackdrop
+                backdrop = true,
+                -- Highlight the search matches
+                matches = true,
+                -- extmark priority
+                priority = 5000,
+                groups = {
+                    match = "FlashMatch",
+                    current = "FlashCurrent",
+                    backdrop = "FlashBackdrop",
+                    label = "FlashLabel",
+                },
+            },
+            label = { rainbow = { enabled = true } },
+            modes = {
+                -- options used when flash is activated through
+                -- `f`, `F`, `t`, `T`, `;` and `,` motions
+                char = {
+                    enabled = true,
+                    multi_line = false,
+                    autohide = true,
+                    jump_labels = function(motion)
+                        return vim.v.count == 0
+                    end,
+                },
+                search = {
+                    -- when `true`, flash will be activated during regular search by default.
+                    -- You can always toggle when searching with `require("flash").toggle()`
+                    enabled = true,
+                },
+                treesitter = {
+                    highlight = {
+                        backdrop = false,
+                        matches = true,
+                    },
+                },
+            },
+            prompt = {
+                enabled = true,
+                prefix = { { " 󰉂 ", "FlashPromptIcon" } },
+            },
+            search = {
+                exclude = {
+                    "aerial",
+                    "checkhealth",
+                    "cmp_menu",
+                    "flash_prompt",
+                    "lazy",
+                    "help",
+                    "man",
+                    "mason",
+                    "noice",
+                    "notify",
+                    "NvimTree",
+                    "startify",
+                    "oil",
+                    "Outline",
+                    "qf",
+                    "startuptime",
+                    "TelescopePrompt",
+                    "toggleterm",
+                    "dropbar_menu",
+                    "Trouble",
+                    function(win)
+                        -- exclude non-focusable windows
+                        return not vim.api.nvim_win_get_config(win).focusable
+                    end,
+                },
+            },
+        },
     },
     {
         "nvim-treesitter/nvim-treesitter",
