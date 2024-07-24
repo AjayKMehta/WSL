@@ -1,5 +1,3 @@
-local overrides = require("configs.overrides")
-
 local load_config = require("utils").load_config
 
 return {
