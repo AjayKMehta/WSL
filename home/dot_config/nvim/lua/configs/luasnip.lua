@@ -66,11 +66,7 @@ ls.filetype_extend("cs", { "csharpdoc" })
 ls.filetype_extend("cpp", { "cppdoc" })
 ls.filetype_extend("sh", { "shelldoc" })
 
-vim.keymap.set(
-    { 'i', 's' },
-    '<c-u>',
-    '<cmd>lua require("luasnip.extras.select_choice")()<cr>'
-)
+vim.keymap.set({ "i", "s" }, "<c-u>", '<cmd>lua require("luasnip.extras.select_choice")()<cr>')
 
 if vim.g.snippet_examples then
     require("snippet_examples")
