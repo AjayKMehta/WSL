@@ -1,5 +1,8 @@
 local load_config = require("utils").load_config
 
+local HEIGHT_RATIO = 0.8
+local WIDTH_RATIO = 0.6
+
 return {
     -- It's important that you set up the plugins in the following order:
 
@@ -135,7 +138,132 @@ return {
     },
     {
         "nvim-tree/nvim-tree.lua",
-        opts = overrides.nvimtree,
+        opts = {
+            filters = {
+                -- https://github.com/nvim-tree/nvim-tree.lua/pull/2706
+                enable = true,
+                dotfiles = false,
+                custom = { "node_modules" },
+            },
+            -- git support in nvimtree
+            git = {
+                enable = true,
+                timeout = 10000,
+            },
+            diagnostics = {
+                enable = true,
+                show_on_dirs = true,
+                show_on_open_dirs = true,
+                debounce_delay = 50,
+                severity = {
+                    min = vim.diagnostic.severity.HINT,
+                    max = vim.diagnostic.severity.ERROR,
+                },
+            },
+
+            modified = {
+                enable = true,
+            },
+            renderer = {
+                root_folder_label = ":~:s?$?/..?",
+                add_trailing = true,
+                highlight_opened_files = "name",
+                highlight_git = "icon",
+                highlight_diagnostics = "icon",
+                highlight_modified = "name",
+                highlight_bookmarks = "icon",
+                special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+                symlink_destination = true,
+                indent_markers = {
+                    enable = true,
+                },
+                icons = {
+                    git_placement = "before",
+                    modified_placement = "after",
+                    show = {
+                        file = true,
+                        folder = true,
+                        folder_arrow = true,
+                        git = true,
+                        modified = true,
+                        diagnostics = true,
+                        bookmarks = true,
+                    },
+                    web_devicons = {
+                        file = {
+                            enable = true,
+                            color = true,
+                        },
+                        folder = {
+                            enable = false,
+                            color = true,
+                        },
+                    },
+                },
+            },
+            -- https://vonheikemen.github.io/devlog/tools/neovim-plugins-to-get-started/
+            on_attach = function(bufnr)
+                -- See :help nvim-tree.api
+                local api = require("nvim-tree.api")
+
+                local bufmap = function(lhs, rhs, desc)
+                    vim.keymap.set("n", lhs, rhs, { buffer = bufnr, desc = desc })
+                end
+
+                local treeutils = require("utils.tree")
+                api.config.mappings.default_on_attach(bufnr)
+
+                bufmap("<c-f>", treeutils.launch_find_files, "Launch Find Files")
+                bufmap("<c-g>", treeutils.launch_live_grep, "Launch Live Grep")
+                bufmap("<m-r>", function()
+                    local path = vim.fn.input("Enter root path:")
+                    api.tree.change_root(path)
+                end, "Change root to input path")
+
+                local function print_node_path()
+                    local node = api.tree.get_node_under_cursor()
+                    print(node.absolute_path)
+                end
+                bufmap("<C-P>", print_node_path, "Print path")
+
+                -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#h-j-k-l-style-navigation-and-editing
+                bufmap("l", treeutils.edit_or_open, "Expand folder or go to file")
+                bufmap("L", treeutils.vsplit_preview, "VSplit Preview")
+                bufmap("h", api.node.navigate.parent_close, "Close parent folder")
+                bufmap("H", api.tree.collapse_all, "Collapse All")
+                bufmap("gh", api.tree.toggle_hidden_filter, "Toggle hidden files")
+                bufmap("gl", api.node.open.toggle_group_empty, "Toggle group empty")
+
+                bufmap("<C-c>", treeutils.change_root_to_global_cwd, "Change Root To Global CWD")
+            end,
+            -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#center-a-floating-nvim-tree-window
+            view = {
+                float = {
+                    enable = true,
+                    open_win_config = function()
+                        local screen_w = vim.opt.columns:get()
+                        local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+                        local window_w = screen_w * WIDTH_RATIO
+                        local window_h = screen_h * HEIGHT_RATIO
+                        local window_w_int = math.floor(window_w)
+                        local window_h_int = math.floor(window_h)
+                        local center_x = (screen_w - window_w) / 2
+                        local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
+                        return {
+                            border = "rounded",
+                            relative = "editor",
+                            row = center_y,
+                            col = center_x,
+                            width = window_w_int,
+                            height = window_h_int,
+                        }
+                    end,
+                },
+                width = function()
+                    return require("utils").get_width(WIDTH_RATIO, nil, nil)
+                end,
+            },
+        },
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function(_, opts)
             dofile(vim.g.base46_cache .. "nvimtree")
