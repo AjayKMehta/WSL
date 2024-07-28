@@ -2,8 +2,12 @@ return {
     {
         "kylechui/nvim-surround",
         lazy = false,
-        config = function()
-            require("nvim-surround").setup({})
+        opts = { keymaps = {
+            normal_cur = "yr",
+            normal_cur_line = "yR",
+        } },
+        config = function(_, opts)
+            require("nvim-surround").setup(opts)
         end,
     },
     {

@@ -60,7 +60,7 @@ M.config = function()
                     -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#mapping-c-sc-a-to-cycle-previewer-for-git-commits-to-show-full-message
                     ["<C-s>"] = actions.cycle_previewers_next,
                     ["<C-a>"] = actions.cycle_previewers_prev,
-                    ["<c-s>"] = flash,
+                    ["<M-s>"] = flash,
                 },
                 n = {
                     ["<M-q>"] = false, -- Clashes with SlickRun 🙁
