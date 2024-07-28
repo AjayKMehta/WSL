@@ -28,7 +28,7 @@ require("rainbow-delimiters.setup").setup({
     },
     strategy = {
         [""] = rainbow.strategy["global"],
-        csharp = rainbow.strategy["local"],
+        c_sharp = rainbow.strategy["local"],
         latex = init_strategy,
         lua = init_strategy,
         vim = rainbow.strategy["local"],
