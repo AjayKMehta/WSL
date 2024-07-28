@@ -10,8 +10,7 @@ return {
             "nvim-neotest/neotest-python",
             "Issafalcon/neotest-dotnet",
             -- https://github.com/mrcjkb/neotest-haskell/issues/179
-            -- Setting version to 2.0.0 doesn't work!😠
-            -- { "mrcjkb/neotest-haskell", version = "2.0.0" },
+            { "mrcjkb/neotest-haskell", version = "2.0.0" },
         },
         config = function()
             local neotest = require("neotest")
