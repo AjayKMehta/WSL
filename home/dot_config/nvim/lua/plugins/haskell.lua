@@ -11,7 +11,7 @@ return {
     },
     {
         "mrcjkb/haskell-tools.nvim",
-        version = "^3", -- Recommended
+        version = "^4", -- Recommended
         lazy = false, -- This plugin is already lazy
         dependencies = {
             { "nvim-telescope/telescope.nvim", optional = true },
