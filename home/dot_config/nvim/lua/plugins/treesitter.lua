@@ -88,6 +88,7 @@ return {
                     "toggleterm",
                     "dropbar_menu",
                     "Trouble",
+                    "gitsigns-blame",
                     function(win)
                         -- exclude non-focusable windows
                         return not vim.api.nvim_win_get_config(win).focusable
