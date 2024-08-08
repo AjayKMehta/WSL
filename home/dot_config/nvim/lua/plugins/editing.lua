@@ -97,7 +97,7 @@ return {
             },
         },
     },
-    -- Copy data to system clipboard only when we are pressing 'y'. 'd', 'x' will be filtered out.
+    -- Copy data to system clipboard only when you press 'y'. 'd', 'x' will be filtered out.
     {
         "ibhagwan/smartyank.nvim",
         event = { "BufReadPost", "BufNewFile" },
@@ -158,6 +158,7 @@ return {
                 mason = false,
                 python = "iter",
                 markdown = true,
+                ["gitsigns-blame"] = false,
             },
             ft_default = false, -- default option for unspecified filetypes
             max_file_size = nil, -- maximum file size to check in lines (nil for no limit)
