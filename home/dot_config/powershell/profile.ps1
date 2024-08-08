@@ -79,7 +79,7 @@ function Set-PoshPrompt {
                     $CommandAst,
                     $FakeBoundParameters
                 )
-                Get-ChildItem ~/.poshthemes -Filter "$WordToComplete*.omp.json" |
+                Get-ChildItem '/root/.cache/oh-my-posh/themes' -Filter "$WordToComplete*.omp.json" |
                     ForEach-Object {
                         $file = "'$($_.FullName)'"
                         # 9 = ".omp.json".Length
@@ -101,7 +101,7 @@ if (Test-Path env:\TERM_PROGRAM) {
     Set-PSReadLineOption -HistorySaveStyle SaveNothing
 }
 
-Set-PoshPrompt -Theme '~/.poshthemes/night-owl.omp.json'
+Set-PoshPrompt -Theme '/root/.cache/oh-my-posh/themes/night-owl.omp.json'
 
 #endregion
 
