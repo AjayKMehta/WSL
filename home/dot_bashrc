@@ -159,6 +159,8 @@ else
     eval "$(zoxide init bash)"
 fi
 
+eval "$(register-python-argcomplete pipx)"
+
 choose_theme() {
    x=$(gum file /root/.cache/oh-my-posh/themes/)
    eval "$(oh-my-posh init bash -c "$x")"
@@ -212,3 +214,4 @@ function yy() {
 [[ ${BLE_VERSION-} ]] && ble-attach
 
 . "$HOME/.atuin/bin/env"
+. "$HOME/.cargo/env"

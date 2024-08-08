@@ -51,3 +51,4 @@ fi
 
 # shellcheck source=/dev/null
 . "$HOME/.atuin/bin/env"
+. "$HOME/.cargo/env"
