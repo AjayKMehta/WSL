@@ -243,7 +243,7 @@ return {
                 "TelescopePrompt",
                 "toggleterm",
                 "dropbar_menu",
-                "Trouble",
+                "trouble",
             },
         },
     },
