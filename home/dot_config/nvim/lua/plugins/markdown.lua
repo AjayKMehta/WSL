@@ -6,7 +6,37 @@ return {
         "tadmccorkle/markdown.nvim",
         ft = { "markdown", "gitcommit", "quarto", "rmd" },
         opts = {
-            -- configuration here or empty for defaults
+            on_attach = function(bufnr)
+                local function toggle(key)
+                    return "<Esc>gv<Cmd>lua require'markdown.inline'" .. ".toggle_emphasis_visual'" .. key .. "'<CR>"
+                end
+
+                vim.keymap.set("x", "<C-b>", toggle("b"), { buffer = bufnr, desc = "Toggle bold" })
+                vim.keymap.set("x", "<C-i>", toggle("i"), { buffer = bufnr, desc = "Toggle italic" })
+                vim.keymap.set("x", "<C-m><C-i>", toggle("c"), { buffer = bufnr, desc = "Toggle code span" })
+                vim.keymap.set("x", "<a-s>", toggle("s"), { buffer = bufnr, desc = "Toggle strikethrough" })
+
+                vim.keymap.set(
+                    "n",
+                    "<C-m><C-k>",
+                    "<Cmd>MDListItemAbove<CR>",
+                    { buffer = bufnr, desc = "Insert new markdown list item above" }
+                )
+
+                vim.keymap.set(
+                    "n",
+                    "<C-m><C-j>",
+                    "<Cmd>MDListItemBelow<CR>",
+                    { buffer = bufnr, desc = "Insert new markdown list item below" }
+                )
+
+                vim.keymap.set(
+                    "n",
+                    "<C-m><C-x>",
+                    "<Cmd>MDTaskToggle<CR>",
+                    { buffer = bufnr, desc = "Toggles the task(s) on current line" }
+                )
+            end,
         },
     },
     {
@@ -54,4 +84,4 @@ return {
         keys = { { "<leader>gm", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" } },
         config = load_config("md_preview"),
     },
-    }
+}
