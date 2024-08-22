@@ -199,4 +199,4 @@ end
 vim.api.nvim_create_user_command("NvimCmpToggle", toggle_autocomplete, { desc = "Toggle nvim-cmp autocomplete." })
 
 -- Set a keymap:
-vim.api.nvim_set_keymap("n", "<Leader>tc", ":NvimCmpToggle<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>tc", "<cmd>NvimCmpToggle<CR>", { noremap = true, silent = true })

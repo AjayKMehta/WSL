@@ -1,8 +1,5 @@
 -- For info on how to configure servers, see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md.
 
--- This clashes with noice: https://github.com/NvChad/NvChad/issues/1656#issuecomment-1304671629
--- local on_attach = require("nvchad.configs.lspconfig").on_attach
-
 local lsp = require("utils.lsp")
 local on_attach = lsp.on_attach
 
