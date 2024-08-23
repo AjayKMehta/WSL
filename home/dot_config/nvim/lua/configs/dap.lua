@@ -226,7 +226,7 @@ end
 
 dap.adapters.coreclr = {
     type = "executable",
-    command = "~/.local/share/nvim/mason/bin/netcoredbg",
+    command = vim.env.HOME .. "/.local/share/nvim/mason/bin/netcoredbg",
     args = { "--interpreter=vscode" },
 }
 
