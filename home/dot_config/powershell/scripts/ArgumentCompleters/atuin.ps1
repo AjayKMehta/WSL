@@ -35,13 +35,14 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('register', 'register', [CompletionResultType]::ParameterValue, 'Register with the configured server')
             [CompletionResult]::new('key', 'key', [CompletionResultType]::ParameterValue, 'Print the encryption key for transfer to another machine')
             [CompletionResult]::new('status', 'status', [CompletionResultType]::ParameterValue, 'Display the sync status')
-            [CompletionResult]::new('account', 'account', [CompletionResultType]::ParameterValue, 'account')
-            [CompletionResult]::new('kv', 'kv', [CompletionResultType]::ParameterValue, 'kv')
-            [CompletionResult]::new('store', 'store', [CompletionResultType]::ParameterValue, 'store')
-            [CompletionResult]::new('dotfiles', 'dotfiles', [CompletionResultType]::ParameterValue, 'dotfiles')
-            [CompletionResult]::new('init', 'init', [CompletionResultType]::ParameterValue, 'init')
+            [CompletionResult]::new('account', 'account', [CompletionResultType]::ParameterValue, 'Manage your sync account')
+            [CompletionResult]::new('kv', 'kv', [CompletionResultType]::ParameterValue, 'Get or set small key-value pairs')
+            [CompletionResult]::new('store', 'store', [CompletionResultType]::ParameterValue, 'Manage the atuin data store')
+            [CompletionResult]::new('dotfiles', 'dotfiles', [CompletionResultType]::ParameterValue, 'Manage your dotfiles with Atuin')
+            [CompletionResult]::new('init', 'init', [CompletionResultType]::ParameterValue, 'Print Atuin''s shell init script')
             [CompletionResult]::new('info', 'info', [CompletionResultType]::ParameterValue, 'Information about dotfiles locations and ENV vars')
-            [CompletionResult]::new('doctor', 'doctor', [CompletionResultType]::ParameterValue, 'doctor')
+            [CompletionResult]::new('doctor', 'doctor', [CompletionResultType]::ParameterValue, 'Run the doctor to check for common issues')
+            [CompletionResult]::new('daemon', 'daemon', [CompletionResultType]::ParameterValue, 'daemon')
             [CompletionResult]::new('default-config', 'default-config', [CompletionResultType]::ParameterValue, 'Print example configuration')
             [CompletionResult]::new('server', 'server', [CompletionResultType]::ParameterValue, 'Start an atuin server')
             [CompletionResult]::new('uuid', 'uuid', [CompletionResultType]::ParameterValue, 'Generate a UUID')
@@ -155,6 +156,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('zsh', 'zsh', [CompletionResultType]::ParameterValue, 'Import history from the zsh history file')
             [CompletionResult]::new('zsh-hist-db', 'zsh-hist-db', [CompletionResultType]::ParameterValue, 'Import history from the zsh history file')
             [CompletionResult]::new('bash', 'bash', [CompletionResultType]::ParameterValue, 'Import history from the bash history file')
+            [CompletionResult]::new('replxx', 'replxx', [CompletionResultType]::ParameterValue, 'Import history from the replxx history file')
             [CompletionResult]::new('resh', 'resh', [CompletionResultType]::ParameterValue, 'Import history from the resh history file')
             [CompletionResult]::new('fish', 'fish', [CompletionResultType]::ParameterValue, 'Import history from the fish history file')
             [CompletionResult]::new('nu', 'nu', [CompletionResultType]::ParameterValue, 'Import history from the nu history file')
@@ -180,6 +182,11 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;import;bash' {
+            [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'atuin;import;replxx' {
             [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -219,6 +226,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('zsh', 'zsh', [CompletionResultType]::ParameterValue, 'Import history from the zsh history file')
             [CompletionResult]::new('zsh-hist-db', 'zsh-hist-db', [CompletionResultType]::ParameterValue, 'Import history from the zsh history file')
             [CompletionResult]::new('bash', 'bash', [CompletionResultType]::ParameterValue, 'Import history from the bash history file')
+            [CompletionResult]::new('replxx', 'replxx', [CompletionResultType]::ParameterValue, 'Import history from the replxx history file')
             [CompletionResult]::new('resh', 'resh', [CompletionResultType]::ParameterValue, 'Import history from the resh history file')
             [CompletionResult]::new('fish', 'fish', [CompletionResultType]::ParameterValue, 'Import history from the fish history file')
             [CompletionResult]::new('nu', 'nu', [CompletionResultType]::ParameterValue, 'Import history from the nu history file')
@@ -238,6 +246,9 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;import;help;bash' {
+            break
+        }
+        'atuin;import;help;replxx' {
             break
         }
         'atuin;import;help;resh' {
@@ -354,8 +365,8 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('login', 'login', [CompletionResultType]::ParameterValue, 'Login to the configured server')
             [CompletionResult]::new('register', 'register', [CompletionResultType]::ParameterValue, 'register')
             [CompletionResult]::new('logout', 'logout', [CompletionResultType]::ParameterValue, 'Log out')
-            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'delete')
-            [CompletionResult]::new('change-password', 'change-password', [CompletionResultType]::ParameterValue, 'change-password')
+            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete your account, and all synced data')
+            [CompletionResult]::new('change-password', 'change-password', [CompletionResultType]::ParameterValue, 'Change your password')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -404,8 +415,8 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('login', 'login', [CompletionResultType]::ParameterValue, 'Login to the configured server')
             [CompletionResult]::new('register', 'register', [CompletionResultType]::ParameterValue, 'register')
             [CompletionResult]::new('logout', 'logout', [CompletionResultType]::ParameterValue, 'Log out')
-            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'delete')
-            [CompletionResult]::new('change-password', 'change-password', [CompletionResultType]::ParameterValue, 'change-password')
+            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete your account, and all synced data')
+            [CompletionResult]::new('change-password', 'change-password', [CompletionResultType]::ParameterValue, 'Change your password')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -483,13 +494,13 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
         'atuin;store' {
             [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help')
-            [CompletionResult]::new('status', 'status', [CompletionResultType]::ParameterValue, 'status')
-            [CompletionResult]::new('rebuild', 'rebuild', [CompletionResultType]::ParameterValue, 'rebuild')
-            [CompletionResult]::new('rekey', 'rekey', [CompletionResultType]::ParameterValue, 'rekey')
-            [CompletionResult]::new('purge', 'purge', [CompletionResultType]::ParameterValue, 'purge')
-            [CompletionResult]::new('verify', 'verify', [CompletionResultType]::ParameterValue, 'verify')
-            [CompletionResult]::new('push', 'push', [CompletionResultType]::ParameterValue, 'push')
-            [CompletionResult]::new('pull', 'pull', [CompletionResultType]::ParameterValue, 'pull')
+            [CompletionResult]::new('status', 'status', [CompletionResultType]::ParameterValue, 'Print the current status of the record store')
+            [CompletionResult]::new('rebuild', 'rebuild', [CompletionResultType]::ParameterValue, 'Rebuild a store (eg atuin store rebuild history)')
+            [CompletionResult]::new('rekey', 'rekey', [CompletionResultType]::ParameterValue, 'Re-encrypt the store with a new key (potential for data loss!)')
+            [CompletionResult]::new('purge', 'purge', [CompletionResultType]::ParameterValue, 'Delete all records in the store that cannot be decrypted with the current key')
+            [CompletionResult]::new('verify', 'verify', [CompletionResultType]::ParameterValue, 'Verify that all records in the store can be decrypted with the current key')
+            [CompletionResult]::new('push', 'push', [CompletionResultType]::ParameterValue, 'Push all records to the remote sync server (one way sync)')
+            [CompletionResult]::new('pull', 'pull', [CompletionResultType]::ParameterValue, 'Pull records from the remote sync server (one way sync)')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -536,13 +547,13 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;store;help' {
-            [CompletionResult]::new('status', 'status', [CompletionResultType]::ParameterValue, 'status')
-            [CompletionResult]::new('rebuild', 'rebuild', [CompletionResultType]::ParameterValue, 'rebuild')
-            [CompletionResult]::new('rekey', 'rekey', [CompletionResultType]::ParameterValue, 'rekey')
-            [CompletionResult]::new('purge', 'purge', [CompletionResultType]::ParameterValue, 'purge')
-            [CompletionResult]::new('verify', 'verify', [CompletionResultType]::ParameterValue, 'verify')
-            [CompletionResult]::new('push', 'push', [CompletionResultType]::ParameterValue, 'push')
-            [CompletionResult]::new('pull', 'pull', [CompletionResultType]::ParameterValue, 'pull')
+            [CompletionResult]::new('status', 'status', [CompletionResultType]::ParameterValue, 'Print the current status of the record store')
+            [CompletionResult]::new('rebuild', 'rebuild', [CompletionResultType]::ParameterValue, 'Rebuild a store (eg atuin store rebuild history)')
+            [CompletionResult]::new('rekey', 'rekey', [CompletionResultType]::ParameterValue, 'Re-encrypt the store with a new key (potential for data loss!)')
+            [CompletionResult]::new('purge', 'purge', [CompletionResultType]::ParameterValue, 'Delete all records in the store that cannot be decrypted with the current key')
+            [CompletionResult]::new('verify', 'verify', [CompletionResultType]::ParameterValue, 'Verify that all records in the store can be decrypted with the current key')
+            [CompletionResult]::new('push', 'push', [CompletionResultType]::ParameterValue, 'Push all records to the remote sync server (one way sync)')
+            [CompletionResult]::new('pull', 'pull', [CompletionResultType]::ParameterValue, 'Pull records from the remote sync server (one way sync)')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -573,16 +584,18 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
         'atuin;dotfiles' {
             [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help')
-            [CompletionResult]::new('alias', 'alias', [CompletionResultType]::ParameterValue, 'alias')
+            [CompletionResult]::new('alias', 'alias', [CompletionResultType]::ParameterValue, 'Manage shell aliases with Atuin')
+            [CompletionResult]::new('var', 'var', [CompletionResultType]::ParameterValue, 'Manage shell and environment variables with Atuin')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
         'atuin;dotfiles;alias' {
             [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help')
-            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'set')
-            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'delete')
-            [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'list')
+            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'Set an alias')
+            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete an alias')
+            [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'List all aliases')
+            [CompletionResult]::new('clear', 'clear', [CompletionResultType]::ParameterValue, 'Delete all aliases')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -601,10 +614,16 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help')
             break
         }
+        'atuin;dotfiles;alias;clear' {
+            [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
         'atuin;dotfiles;alias;help' {
-            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'set')
-            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'delete')
-            [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'list')
+            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'Set an alias')
+            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete an alias')
+            [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'List all aliases')
+            [CompletionResult]::new('clear', 'clear', [CompletionResultType]::ParameterValue, 'Delete all aliases')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -617,18 +636,68 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
         'atuin;dotfiles;alias;help;list' {
             break
         }
+        'atuin;dotfiles;alias;help;clear' {
+            break
+        }
         'atuin;dotfiles;alias;help;help' {
             break
         }
+        'atuin;dotfiles;var' {
+            [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'Set a variable')
+            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete a variable')
+            [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'List all variables')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'atuin;dotfiles;var;set' {
+            [CompletionResult]::new('-n', 'n', [CompletionResultType]::ParameterName, 'n')
+            [CompletionResult]::new('--no-export', 'no-export', [CompletionResultType]::ParameterName, 'no-export')
+            [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'atuin;dotfiles;var;delete' {
+            [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'atuin;dotfiles;var;list' {
+            [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'atuin;dotfiles;var;help' {
+            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'Set a variable')
+            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete a variable')
+            [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'List all variables')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'atuin;dotfiles;var;help;set' {
+            break
+        }
+        'atuin;dotfiles;var;help;delete' {
+            break
+        }
+        'atuin;dotfiles;var;help;list' {
+            break
+        }
+        'atuin;dotfiles;var;help;help' {
+            break
+        }
         'atuin;dotfiles;help' {
-            [CompletionResult]::new('alias', 'alias', [CompletionResultType]::ParameterValue, 'alias')
+            [CompletionResult]::new('alias', 'alias', [CompletionResultType]::ParameterValue, 'Manage shell aliases with Atuin')
+            [CompletionResult]::new('var', 'var', [CompletionResultType]::ParameterValue, 'Manage shell and environment variables with Atuin')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
         'atuin;dotfiles;help;alias' {
-            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'set')
-            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'delete')
-            [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'list')
+            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'Set an alias')
+            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete an alias')
+            [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'List all aliases')
+            [CompletionResult]::new('clear', 'clear', [CompletionResultType]::ParameterValue, 'Delete all aliases')
             break
         }
         'atuin;dotfiles;help;alias;set' {
@@ -638,6 +707,24 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;dotfiles;help;alias;list' {
+            break
+        }
+        'atuin;dotfiles;help;alias;clear' {
+            break
+        }
+        'atuin;dotfiles;help;var' {
+            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'Set a variable')
+            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete a variable')
+            [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'List all variables')
+            break
+        }
+        'atuin;dotfiles;help;var;set' {
+            break
+        }
+        'atuin;dotfiles;help;var;delete' {
+            break
+        }
+        'atuin;dotfiles;help;var;list' {
             break
         }
         'atuin;dotfiles;help;help' {
@@ -656,6 +743,11 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;doctor' {
+            [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'atuin;daemon' {
             [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -731,13 +823,14 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('register', 'register', [CompletionResultType]::ParameterValue, 'Register with the configured server')
             [CompletionResult]::new('key', 'key', [CompletionResultType]::ParameterValue, 'Print the encryption key for transfer to another machine')
             [CompletionResult]::new('status', 'status', [CompletionResultType]::ParameterValue, 'Display the sync status')
-            [CompletionResult]::new('account', 'account', [CompletionResultType]::ParameterValue, 'account')
-            [CompletionResult]::new('kv', 'kv', [CompletionResultType]::ParameterValue, 'kv')
-            [CompletionResult]::new('store', 'store', [CompletionResultType]::ParameterValue, 'store')
-            [CompletionResult]::new('dotfiles', 'dotfiles', [CompletionResultType]::ParameterValue, 'dotfiles')
-            [CompletionResult]::new('init', 'init', [CompletionResultType]::ParameterValue, 'init')
+            [CompletionResult]::new('account', 'account', [CompletionResultType]::ParameterValue, 'Manage your sync account')
+            [CompletionResult]::new('kv', 'kv', [CompletionResultType]::ParameterValue, 'Get or set small key-value pairs')
+            [CompletionResult]::new('store', 'store', [CompletionResultType]::ParameterValue, 'Manage the atuin data store')
+            [CompletionResult]::new('dotfiles', 'dotfiles', [CompletionResultType]::ParameterValue, 'Manage your dotfiles with Atuin')
+            [CompletionResult]::new('init', 'init', [CompletionResultType]::ParameterValue, 'Print Atuin''s shell init script')
             [CompletionResult]::new('info', 'info', [CompletionResultType]::ParameterValue, 'Information about dotfiles locations and ENV vars')
-            [CompletionResult]::new('doctor', 'doctor', [CompletionResultType]::ParameterValue, 'doctor')
+            [CompletionResult]::new('doctor', 'doctor', [CompletionResultType]::ParameterValue, 'Run the doctor to check for common issues')
+            [CompletionResult]::new('daemon', 'daemon', [CompletionResultType]::ParameterValue, 'daemon')
             [CompletionResult]::new('default-config', 'default-config', [CompletionResultType]::ParameterValue, 'Print example configuration')
             [CompletionResult]::new('server', 'server', [CompletionResultType]::ParameterValue, 'Start an atuin server')
             [CompletionResult]::new('uuid', 'uuid', [CompletionResultType]::ParameterValue, 'Generate a UUID')
@@ -778,6 +871,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('zsh', 'zsh', [CompletionResultType]::ParameterValue, 'Import history from the zsh history file')
             [CompletionResult]::new('zsh-hist-db', 'zsh-hist-db', [CompletionResultType]::ParameterValue, 'Import history from the zsh history file')
             [CompletionResult]::new('bash', 'bash', [CompletionResultType]::ParameterValue, 'Import history from the bash history file')
+            [CompletionResult]::new('replxx', 'replxx', [CompletionResultType]::ParameterValue, 'Import history from the replxx history file')
             [CompletionResult]::new('resh', 'resh', [CompletionResultType]::ParameterValue, 'Import history from the resh history file')
             [CompletionResult]::new('fish', 'fish', [CompletionResultType]::ParameterValue, 'Import history from the fish history file')
             [CompletionResult]::new('nu', 'nu', [CompletionResultType]::ParameterValue, 'Import history from the nu history file')
@@ -796,6 +890,9 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;help;import;bash' {
+            break
+        }
+        'atuin;help;import;replxx' {
             break
         }
         'atuin;help;import;resh' {
@@ -844,8 +941,8 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('login', 'login', [CompletionResultType]::ParameterValue, 'Login to the configured server')
             [CompletionResult]::new('register', 'register', [CompletionResultType]::ParameterValue, 'register')
             [CompletionResult]::new('logout', 'logout', [CompletionResultType]::ParameterValue, 'Log out')
-            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'delete')
-            [CompletionResult]::new('change-password', 'change-password', [CompletionResultType]::ParameterValue, 'change-password')
+            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete your account, and all synced data')
+            [CompletionResult]::new('change-password', 'change-password', [CompletionResultType]::ParameterValue, 'Change your password')
             break
         }
         'atuin;help;account;login' {
@@ -879,13 +976,13 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;help;store' {
-            [CompletionResult]::new('status', 'status', [CompletionResultType]::ParameterValue, 'status')
-            [CompletionResult]::new('rebuild', 'rebuild', [CompletionResultType]::ParameterValue, 'rebuild')
-            [CompletionResult]::new('rekey', 'rekey', [CompletionResultType]::ParameterValue, 'rekey')
-            [CompletionResult]::new('purge', 'purge', [CompletionResultType]::ParameterValue, 'purge')
-            [CompletionResult]::new('verify', 'verify', [CompletionResultType]::ParameterValue, 'verify')
-            [CompletionResult]::new('push', 'push', [CompletionResultType]::ParameterValue, 'push')
-            [CompletionResult]::new('pull', 'pull', [CompletionResultType]::ParameterValue, 'pull')
+            [CompletionResult]::new('status', 'status', [CompletionResultType]::ParameterValue, 'Print the current status of the record store')
+            [CompletionResult]::new('rebuild', 'rebuild', [CompletionResultType]::ParameterValue, 'Rebuild a store (eg atuin store rebuild history)')
+            [CompletionResult]::new('rekey', 'rekey', [CompletionResultType]::ParameterValue, 'Re-encrypt the store with a new key (potential for data loss!)')
+            [CompletionResult]::new('purge', 'purge', [CompletionResultType]::ParameterValue, 'Delete all records in the store that cannot be decrypted with the current key')
+            [CompletionResult]::new('verify', 'verify', [CompletionResultType]::ParameterValue, 'Verify that all records in the store can be decrypted with the current key')
+            [CompletionResult]::new('push', 'push', [CompletionResultType]::ParameterValue, 'Push all records to the remote sync server (one way sync)')
+            [CompletionResult]::new('pull', 'pull', [CompletionResultType]::ParameterValue, 'Pull records from the remote sync server (one way sync)')
             break
         }
         'atuin;help;store;status' {
@@ -910,13 +1007,15 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;help;dotfiles' {
-            [CompletionResult]::new('alias', 'alias', [CompletionResultType]::ParameterValue, 'alias')
+            [CompletionResult]::new('alias', 'alias', [CompletionResultType]::ParameterValue, 'Manage shell aliases with Atuin')
+            [CompletionResult]::new('var', 'var', [CompletionResultType]::ParameterValue, 'Manage shell and environment variables with Atuin')
             break
         }
         'atuin;help;dotfiles;alias' {
-            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'set')
-            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'delete')
-            [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'list')
+            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'Set an alias')
+            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete an alias')
+            [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'List all aliases')
+            [CompletionResult]::new('clear', 'clear', [CompletionResultType]::ParameterValue, 'Delete all aliases')
             break
         }
         'atuin;help;dotfiles;alias;set' {
@@ -928,6 +1027,24 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
         'atuin;help;dotfiles;alias;list' {
             break
         }
+        'atuin;help;dotfiles;alias;clear' {
+            break
+        }
+        'atuin;help;dotfiles;var' {
+            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'Set a variable')
+            [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete a variable')
+            [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'List all variables')
+            break
+        }
+        'atuin;help;dotfiles;var;set' {
+            break
+        }
+        'atuin;help;dotfiles;var;delete' {
+            break
+        }
+        'atuin;help;dotfiles;var;list' {
+            break
+        }
         'atuin;help;init' {
             break
         }
@@ -935,6 +1052,9 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;help;doctor' {
+            break
+        }
+        'atuin;help;daemon' {
             break
         }
         'atuin;help;default-config' {
