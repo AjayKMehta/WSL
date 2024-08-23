@@ -360,4 +360,11 @@ return {
             open_for_directories = false,
         },
     },
+    {
+        -- Toggle options
+        [1] = "gregorias/toggle.nvim",
+        version = "2.0",
+        lazy = false,
+        config = true,
+    },
 }
