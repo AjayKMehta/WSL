@@ -12,10 +12,13 @@ local opts = {
     delete_check_events = "TextChanged,CursorMoved",
     region_check_events = "CursorMoved,CursorHold,InsertEnter",
     enable_autosnippets = true,
-    history = true,
+    keep_roots = true,
+    link_roots = true,
+    link_children = true,
+    exit_roots = false,
     -- mapping for cutting selected text so it's usable as SELECT_DEDENT,
     -- SELECT_RAW or TM_SELECTED_TEXT (mapped via xmap).
-    store_selection_keys = "<Tab>",
+    cut_selection_keys = "<Tab>",
     ft_func = ft_func.from_pos_or_filetype,
     load_ft_func = ft_func.extend_load_ft({
         markdown = { "lua", "json", "html", "yaml", "css", "html", "javascript", "r", "python" },
