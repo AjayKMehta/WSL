@@ -84,4 +84,11 @@ return {
         keys = { { "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" } },
         config = load_config("md_preview"),
     },
+    {
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = { file_types = { "markdown", "quarto", "rmd" } },
+        cmd = { "RenderMarkdown" },
+        keys = { { "<leader>mt", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" } },
+        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    },
 }
