@@ -151,16 +151,6 @@ eval "$(mise activate bash)"
 # oh my posh
 eval "$(oh-my-posh init bash)"
 
-# Initialize zoxide
-# Not sure why it can't find it when location is in PATH!?
-if ! ( which zoxide > /dev/null ); then
-    echo "zoxide not found" >&2
-else
-    eval "$(zoxide init bash)"
-fi
-
-eval "$(register-python-argcomplete pipx)"
-
 choose_theme() {
    x=$(gum file /root/.cache/oh-my-posh/themes/)
    eval "$(oh-my-posh init bash -c "$x")"
@@ -214,6 +204,15 @@ function yy() {
 # Add this line at the end of .bashrc:
 [[ ${BLE_VERSION-} ]] && ble-attach
 
+eval "$(register-python-argcomplete --shell bash pipx)"
+
+# Initialize zoxide
+# Not sure why it can't find it when location is in PATH!?
+if ! ( which zoxide > /dev/null ); then
+    echo "zoxide not found" >&2
+else
+    eval "$(zoxide init bash)"
+fi
 
 # shellcheck source=/dev/null
 . "$HOME/.atuin/bin/env"
