@@ -202,7 +202,8 @@ eval "$(atuin init bash --disable-up-arrow)"
 export DOTNET_ROOT=/usr/share/dotnet
 
 function yy() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	local tmp
+    tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
 		cd -- "$cwd" || exit
@@ -213,5 +214,8 @@ function yy() {
 # Add this line at the end of .bashrc:
 [[ ${BLE_VERSION-} ]] && ble-attach
 
+
+# shellcheck source=/dev/null
 . "$HOME/.atuin/bin/env"
+# shellcheck source=/dev/null
 . "$HOME/.cargo/env"
