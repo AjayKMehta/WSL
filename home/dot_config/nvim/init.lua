@@ -101,6 +101,7 @@ vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 vim.filetype.add({
     extension = {
         csproj = "xml",
+        jq = "jq"
     },
     filename = {
         ["Directory.Build.targets"] = "xml",

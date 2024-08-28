@@ -35,7 +35,7 @@ require("ufo").setup({
     close_fold_kinds_for_ft = {
         default = { "imports", "comment" },
         json = { "array" },
-        c = { "comment", "region" },
+        cs = { "comment", "region" },
     },
     provider_selector = function(bufnr, filetype, buftype)
         if filetype == "lua" then -- Not sure why this gives error with LSP!
