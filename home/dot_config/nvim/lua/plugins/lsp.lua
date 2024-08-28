@@ -46,7 +46,7 @@ return {
         -- Displays overload info!
         ft = { "cs", "python" },
         -- Disabling this and setting lsp.signature.enabled for Noice to true doesn't work :(
-        enabled = true,
+        enabled = vim.g.use_lsp_sig,
         opts = {
             debug = false, -- set to true to enable debug logging
             log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on

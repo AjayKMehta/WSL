@@ -102,7 +102,7 @@ return {
                     silent = true,
                 },
                 signature = {
-                    enabled = false, -- use lsp_signature.nvim
+                    enabled = not vim.g.use_lsp_sig,
                 },
             },
             -- you can enable a preset for easier configuration
