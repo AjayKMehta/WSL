@@ -40,4 +40,19 @@ return {
             telescope = true, -- Whether to load telescope extensions
         },
     },
+    {
+        -- Display LSP inlay hints at the end of the line, rather than within the line.
+        "chrisgrieser/nvim-lsp-endhints",
+        event = "LspAttach",
+        opts = {}, -- required, even if empty
+        keys = {
+            {
+                "<leader>lte",
+                function()
+                    require("lsp-endhints").toggle()
+                end,
+                desc = "Lsp Toggle hints at end of line.",
+            },
+        },
+    },
 }
