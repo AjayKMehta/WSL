@@ -86,7 +86,28 @@ return {
     },
     {
         "MeanderingProgrammer/render-markdown.nvim",
-        opts = { file_types = { "markdown", "quarto", "rmd" } },
+        opts = {
+            file_types = { "markdown", "quarto", "rmd" },
+            quote = { repeat_linebreak = true },
+            win_options = {
+                showbreak = { default = "", rendered = "  " },
+                breakindent = { default = false, rendered = true },
+                breakindentopt = { default = "", rendered = "" },
+            },
+            checkbox = {
+                enabled = true,
+                position = "inline",
+                custom = {
+                    todo = { raw = "[-]", rendered = "󰥔 ", highlight = "RenderMarkdownTodo" },
+                    important = { raw = "[~]", rendered = "󰓎 ", highlight = "DiagnosticWarn" },
+                },
+            },
+            link = {
+                custom = {
+                    python = { pattern = "%.py$", icon = "󰌠 ", highlight = "RenderMarkdownLink" },
+                },
+            },
+        },
         cmd = { "RenderMarkdown" },
         keys = { { "<leader>mt", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" } },
         dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
