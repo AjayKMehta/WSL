@@ -1,0 +1,20 @@
+{
+    "Lua.workspace.library": [
+        "${env:VIMRUNTIME}/lua/",
+        "${env:VIMRUNTIME}/lua/vim/lsp",
+        "~/.local/share/nvim/lazy/ui/nvchad_types",
+        "~/.local/share/nvim/lazy/lazy.nvim/lua/lazy"
+    ],
+    "bashIde.enableSourceErrorDiagnostics": true,
+    "bashIde.includeAllWorkspaceSymbols": false,
+    "files.watcherExclude": {
+        "**/.cargo": true,
+        "**/.dotnet": true,
+        "**/.ghcup": true
+    },
+    "latex-utilities.countWord.docker.enabled": true,
+    "stylua.configPath": "~/stylua.toml",
+    "stylua.searchBinaryInPATH": true,
+    "stylua.searchParentDirectories": true,
+    "typos.config": "~/typos.toml"
+}
