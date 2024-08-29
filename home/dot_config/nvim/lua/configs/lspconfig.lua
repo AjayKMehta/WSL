@@ -151,9 +151,28 @@ if not vim.g.csharp_lsp then
                 EnableAnalyzersSupport = true,
                 EnableImportCompletion = true,
                 AnalyzeOpenDocumentsOnly = false,
+                InlayHintsOptions = {
+                    EnableForParameters = true,
+                    ForLiteralParameters = true,
+                    ForIndexerParameters = true,
+                    ForObjectCreationParameters = true,
+                    ForOtherParameters = true,
+                    SuppressForParametersThatDifferOnlyBySuffix = false,
+                    SuppressForParametersThatMatchMethodIntent = false,
+                    SuppressForParametersThatMatchArgumentName = false,
+                    EnableForTypes = true,
+                    ForImplicitVariableTypes = true,
+                    ForLambdaParameterTypes = true,
+                    ForImplicitObjectCreation = true,
+                },
             },
             Sdk = {
                 IncludePrereleases = false,
+            },
+            RenameOptions = {
+                RenameInComments = false,
+                RenameOverloads = false,
+                RenameInStrings = false,
             },
         },
     })

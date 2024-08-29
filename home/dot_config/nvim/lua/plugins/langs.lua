@@ -19,7 +19,7 @@ return {
         opts = {
             lsp = {
                 -- Need to manually set up omnisharp LSP if false
-                enable = vim.g.csharp_lsp,
+                enable = false,
                 -- Settings that'll be passed to the omnisharp server
                 enable_editor_config_support = true,
                 organize_imports = true,
