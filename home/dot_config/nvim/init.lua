@@ -22,8 +22,6 @@ vim.g.use_aerial = false
 vim.g.use_cmp_emoji = false
 -- If true, csharp.nvim enables LSP.
 vim.g.csharp_lsp = false
--- If true, use lsp_signature else noice
-vim.g.use_lsp_sig = true
 
 -- If true, load snippet examples
 vim.g.snippet_examples = true
