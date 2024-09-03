@@ -122,7 +122,6 @@ M.config = function()
             "fzf",
             "helpgrep",
             "hoogle",
-            "lazy",
             "noice",
             "notify",
             "terms",
@@ -130,7 +129,6 @@ M.config = function()
             "undo",
             "vim_bookmarks",
             "luasnip",
-            "telescope-tabs",
             "togglescope",
         },
         extensions = {
