@@ -127,9 +127,9 @@ M.config = function()
             "terms",
             "themes",
             "undo",
-            "vim_bookmarks",
             "luasnip",
             "togglescope",
+            "bookmarks"
         },
         extensions = {
             fzf = {

@@ -1,18 +1,29 @@
 return {
     {
-        "MattesGroeger/vim-bookmarks",
-        cmd = {
-            "BookmarkToggle",
-            "BookmarkClear",
-            "BookmarkClearAll",
-            "BookmarkNext",
-            "BookmarkPrev",
-            "BookmarkShowALl",
-            "BookmarkAnnotate",
-            "BookmarkSave",
-            "BookmarkLoad",
+        "tomasky/bookmarks.nvim",
+        opts = {
+            save_file = vim.fn.expand("$HOME/.bookmarks"), -- bookmarks save file path
+            keywords = {
+                ["@t"] = "☑️ ", -- mark annotation startswith @t ,signs this icon as `Todo`
+                ["@w"] = "⚠️ ", -- mark annotation startswith @w ,signs this icon as `Warn`
+                ["@f"] = "⛏ ", -- mark annotation startswith @f ,signs this icon as `Fix`
+                ["@n"] = " ", -- mark annotation startswith @n ,signs this icon as `Note`
+            },
+            on_attach = function(bufnr)
+                local bm = require("bookmarks")
+                local map_desc = require("utils.mappings").map_desc
+
+                map_desc("n", "<leader>bt", bm.bookmark_toggle, "Bookmark Toggle")
+                map_desc("n", "<leader>ba", bm.bookmark_ann, "Bookmark Annotate")
+                map_desc("n", "<leader>bc", bm.bookmark_clean, "Bookmark Clean all marks in local buffer")
+                map_desc("n", "<leader>bn", bm.bookmark_next, "Bookmark Next")
+                map_desc("n", "<leader>bp", bm.bookmark_prev, "Bookmark Previous")
+                map_desc("n", "<leader>bl", bm.bookmark_list, "Bookmark List")
+                map_desc("n", "<leader>bx", bm.bookmark_clear_all, "Bookmark Remove all")
+            end,
         },
-    }, -- https://github.com/tinyCatzilla/dots/blob/193cc61951579db692e9cc7f8f278ed33c8b52d4/.config/nvim/lua/custom/plugins.lua
+    },
+    -- https://github.com/tinyCatzilla/dots/blob/193cc61951579db692e9cc7f8f278ed33c8b52d4/.config/nvim/lua/custom/plugins.lua
     {
         -- Configurable, notification manager
         "rcarriga/nvim-notify",

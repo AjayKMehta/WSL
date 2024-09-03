@@ -12,7 +12,6 @@ return {
             },
             "Theo-Steiner/togglescope",
             "benfowler/telescope-luasnip.nvim",
-            "tom-anders/telescope-vim-bookmarks.nvim",
             "debugloop/telescope-undo.nvim",
             "nvim-telescope/telescope-frecency.nvim",
             "catgoose/telescope-helpgrep.nvim",
