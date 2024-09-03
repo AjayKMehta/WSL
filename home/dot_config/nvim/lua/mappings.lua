@@ -134,9 +134,7 @@ map_desc("n", "<leader>ftS", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "
 map_desc("n", "<leader>ftt", function()
     require("telescope.builtin").tags()
 end, "Telescope Tags")
-map_desc("n", "<leader>ftT", function()
-    require("telescope-tabs").list_tabs()
-end, "Telescope Tabs")
+
 map_desc("n", "<leader>fts", function()
     require("telescope.builtin").treesitter()
 end, "Telescope Treesitter")
@@ -205,15 +203,6 @@ map_desc({ "n", "v" }, "<A-Left>", fn_move("left"), "mini.move line left")
 map_desc({ "n", "v" }, "<A-Right>", fn_move("right"), "mini.move line right")
 map_desc({ "n", "v" }, "<A-Up>", fn_move("up"), "mini.move line up")
 map_desc({ "n", "v" }, "<A-Down>", fn_move("down"), "mini.move line down")
-
---#endregion
-
---#region bookmarks
-
-map_desc("n", "<leader>bt", "<cmd> BookmarkToggle<CR>", "Bookmark Toggle 󰃅")
-map_desc("n", "<leader>bn", "<cmd> BookmarkNext<CR>", "Bookmark Next 󰮰")
-map_desc("n", "<leader>bp", "<cmd> BookmarkPrev<CR>", "Bookmark Prev 󰮲")
-map_desc("n", "<leader>bc", "<cmd> BookmarkClear<CR>", "Bookmark Clear 󰃢")
 
 --#endregion
 
