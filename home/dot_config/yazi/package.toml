@@ -1,5 +1,5 @@
 [plugin]
-deps = [{ use = "Reledia/glow", commit = "536185a" }]
+deps = [{ use = "Reledia/glow", rev = "536185a" }, { use = "yazi-rs/plugins:git", rev = "118ae4d" }]
 
 [flavor]
-deps = [{ use = "yazi-rs/flavors#catppuccin-mocha", commit = "2d7dd2a" }, { use = "yazi-rs/flavors#catppuccin-macchiato", commit = "2d7dd2a" }]
+deps = [{ use = "yazi-rs/flavors:catppuccin-mocha", rev = "2d7dd2a" }, { use = "yazi-rs/flavors:catppuccin-macchiato", rev = "2d7dd2a" }]
