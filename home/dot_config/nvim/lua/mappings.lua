@@ -61,9 +61,7 @@ map_desc("n", "<leader>gg", "<cmd>GHCup <CR>", "ghcup")
 
 --#region Telescope
 
-map_desc("n", "<leader>f?", function()
-    require("telescope.builtin").help_tags()
-end, "Telescope Help page")
+
 map_desc("n", "<leader>fb", "<cmd>Telescope file_browser<CR>", "Telescope File browser")
 map_desc("n", "<leader>fM", "<cmd>Telescope bookmarks list<CR>", "Telescope Bookmarks ")
 map_desc("n", "<leader>fB", function()
@@ -107,6 +105,7 @@ end, "Telescope Live grep")
 map_desc("n", "<leader>fy", function()
     require("telescope.builtin").buffers()
 end, "Telescope Search buffers")
+map_desc("n", "<leader>fY","<cmd>Telescope yaml_schema<CR>", "Telescope YAML schemas")
 
 map_desc("n", "<leader>fls", "<cmd>Telescope lsp_document_symbols<CR>", "Telescope Search Document Symbols")
 map_desc("n", "<leader>flw", "<cmd>Telescope lsp_workspace_symbols<CR>", "Telescope Search Workspace Symbols")
@@ -155,6 +154,9 @@ end, "Telescope Grep help (live grep)")
 map_desc("n", "<leader>fHg", function()
     require("telescope-helpgrep").grep_string()
 end, "Telescope Grep help (grep string)")
+map_desc("n", "<leader>fHt", function()
+    require("telescope.builtin").help_tags()
+end, "Telescope Help tags")
 
 -- NVChad provides git status via <leader>gt
 map_desc("n", "<leader>ga", function()
