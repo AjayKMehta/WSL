@@ -48,7 +48,7 @@ local default_sources = {
         name = "nvim_lsp",
         group_index = 1,
         priority = 100,
-        keyword_length = 2,
+        keyword_length = 1, -- For C#, want to trigger when '_'
         entry_filter = limit_lsp_types,
     },
         {
