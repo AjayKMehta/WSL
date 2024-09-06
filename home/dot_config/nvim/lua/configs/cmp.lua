@@ -45,16 +45,17 @@ local buffer_option = {
 -- name is not the name of the plugin, it's the "id" of the plugin used when creating the source.
 local default_sources = {
     {
-        name = "treesitter",
-        group_index = 1,
-        priority = 100,
-    },
-    {
         name = "nvim_lsp",
         group_index = 1,
         priority = 100,
-        keyword_length = 3,
+        keyword_length = 2,
         entry_filter = limit_lsp_types,
+    },
+        {
+        name = "treesitter",
+        group_index = 1,
+        keyword_length = 2,
+        priority = 95,
     },
     {
         name = "luasnip",
@@ -78,7 +79,9 @@ local default_sources = {
     },
 }
 
-cmp.setup({ sources = cmp.config.sources(default_sources) })
+-- Do not use cmp.config.sources():
+-- https://github.com/hrsh7th/nvim-cmp/discussions/881
+cmp.setup({ sources = default_sources })
 
 cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
@@ -109,11 +112,11 @@ cmp.setup.cmdline(":", {
         keyword_length = 2, -- Otherwise, can't use :q!
     },
     enabled = true,
-    sources = cmp.config.sources({
-        { name = "async_path" },
-        { name = "cmdline" },
-        { name = "buffer" },
-    }),
+    sources = {
+        { name = "cmdline", group_index = 1, priority = 100 },
+        { name = "async_path", group_index = 1, priority = 80 },
+        { name = "fuzzy_buffer", group_index = 2, priority = 60 },
+    },
 })
 
 cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
@@ -149,7 +152,7 @@ local other_latex_sources = {
         priority = 50,
     },
     {
-        name = "buffer",
+        name = "fuzzy_buffer",
         group_index = 2,
         priority = 10,
         keyword_length = 4,
@@ -169,7 +172,7 @@ for _, value in ipairs(other_latex_sources) do
 end
 
 cmp.setup.filetype({ "tex", "plaintex", "markdown", "rmd", "quarto" }, {
-    sources = cmp.config.sources(tex_sources),
+    sources = tex_sources,
 })
 
 local r_sources = vim.deepcopy(default_sources)
@@ -181,7 +184,7 @@ local r_source = {
 table.insert(r_sources, 1, r_source)
 
 cmp.setup.filetype("r", {
-    sources = cmp.config.sources(r_sources),
+    sources = r_sources,
 })
 
 -- https://github.com/gitaarik/nvim-cmp-toggle/blob/b3bbf76cf6412738b7c9e48e1419f7bb78e71f99/plugin/nvim_cmp_toggle.lua
