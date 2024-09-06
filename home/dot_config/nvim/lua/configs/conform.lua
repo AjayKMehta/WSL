@@ -31,7 +31,6 @@ conform.setup({
                 lang_to_ext = {
                     bash = "sh",
                     c_sharp = "cs",
-                    julia = "jl",
                     latex = "tex",
                     markdown = "md",
                     python = "py",
