@@ -26,7 +26,6 @@ local servers = {
     "html",
     "cssls",
     "ts_ls",
-    "jqls",
 
     "dockerls",
 
@@ -37,8 +36,10 @@ local servers = {
     -- Misc
     "ast_grep",
 
-    -- TOML
+    -- Configs
     "taplo",
+    "jqls",
+    "yamlls",
 
     -- Graphviz
     "dotls",
@@ -177,49 +178,6 @@ if not vim.g.csharp_lsp then
         },
     })
 end
-
-lspconfig.yamlls.setup({
-    on_attach = on_attach,
-    -- on_init = on_init,
-    capabilities = capabilities,
-    settings = {
-        yaml = {
-            completion = true,
-            customTags = {
-                "!reference sequence", -- necessary for gitlab-ci.yaml files        "!And",
-                "!And sequence",
-                "!If",
-                "!If sequence",
-                "!Not",
-                "!Not sequence",
-                "!Equals",
-                "!Equals sequence",
-                "!Or",
-                "!Or sequence",
-                "!FindInMap",
-                "!FindInMap sequence",
-                "!Base64",
-                "!Join",
-                "!Join sequence",
-                "!Cidr",
-                "!Ref",
-                "!Sub",
-                "!Sub sequence",
-                "!GetAtt",
-                "!GetAZs",
-                "!ImportValue",
-                "!ImportValue sequence",
-                "!Select",
-                "!Select sequence",
-                "!Split",
-                "!Split sequence",
-            },
-            hover = true,
-            schemaStore = { enable = true },
-            validate = true,
-        },
-    },
-})
 
 -- https://github.com/PowerShell/PowerShellEditorServices/blob/89ce0867c6b119bef8af83ab21c249e10d0e77a2/docs/guide/getting_started.md
 
