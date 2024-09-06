@@ -99,12 +99,6 @@ cmp.setup.cmdline({ "/", "?" }, {
     },
 })
 
-cmp.setup.filetype({ "markdown", "help" }, {
-    window = {
-        documentation = cmp.config.disable,
-    },
-})
-
 -- Use cmdline & path source for ':'
 cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
@@ -124,12 +118,6 @@ cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
     sources = cmp.config.sources({
         { name = "dap" },
     }),
-})
-
-cmp.setup.filetype({ "markdown" }, {
-    window = {
-        documentation = cmp.config.disable,
-    },
 })
 
 cmp.setup.filetype({ "help", "minifiles", "TelescopePrompt" }, {

@@ -97,7 +97,6 @@ function custom_fname:update_status()
     return data
 end
 
-
 local config = {
     options = {
         ignore_focus = { "NvimTree", "lspInfo" },
