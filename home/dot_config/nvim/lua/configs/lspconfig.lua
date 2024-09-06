@@ -25,7 +25,7 @@ local servers = {
     -- Web
     "html",
     "cssls",
-    "tsserver",
+    "ts_ls",
     "jqls",
 
     "dockerls",
