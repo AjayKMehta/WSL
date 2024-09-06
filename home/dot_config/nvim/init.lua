@@ -106,5 +106,6 @@ vim.filetype.add({
     },
     pattern = {
         ["Directory.*.props"] = "xml",
+[".*/%.vscode/.*%.json"] = "jsonc",
     },
 })
