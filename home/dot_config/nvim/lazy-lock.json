@@ -4,8 +4,10 @@
   "LuaSnip": { "branch": "master", "commit": "45db5addf8d0a201e1cf247cae4cdce605ad3768" },
   "NvChad": { "branch": "v2.5", "commit": "b7a163e232524f1024a59a0a5c6ddf123530085c" },
   "Nvim-R": { "branch": "master", "commit": "b7cdc9bcd6879465023e20b4a3ae16968edda776" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "3436c0514e8c46162d0480c187e2cfcefecdffc6" },
-  "actions-preview.nvim": { "branch": "master", "commit": "9f52a01c374318e91337697ebed51c6fae57f8a4" },
+  "SchemaStore.nvim": {
+    "branch": "main",
+    "commit": "3436c0514e8c46162d0480c187e2cfcefecdffc6"
+  },
   "baleia.nvim": { "branch": "main", "commit": "880e97c02edf3148ba2bdc6305ac03eb3c3711e0" },
   "base46": { "branch": "v2.5", "commit": "5b58434a52f86a9bcc7ee89f8a4da81225b490a9" },
   "bclose.vim": { "branch": "master", "commit": "99018b4a2dd18aea1cbd3aa23565b01a0f8c5b73" },

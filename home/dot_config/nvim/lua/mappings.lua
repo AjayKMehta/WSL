@@ -310,14 +310,6 @@ end, "WTF Search diagnostic with Google")
 
 --#endregion
 
---#region actpreview
-
-map_desc({ "n", "v" }, "ga", function()
-    require("actions-preview").code_actions()
-end, "Preview Code action.")
-
---#endregion
-
 --#region Flash
 
 local function flash_jump()
