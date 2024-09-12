@@ -15,4 +15,5 @@ usage = "latest"
 eza = "latest"
 lazygit = "latest"
 python = "latest"
+ripgrep = "latest"
 
