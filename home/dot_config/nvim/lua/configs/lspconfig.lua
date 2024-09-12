@@ -33,9 +33,6 @@ local servers = {
     "codeqlls",
     "bashls",
 
-    -- Misc
-    "ast_grep",
-
     -- Configs
     "taplo",
     "jqls",
@@ -62,6 +59,10 @@ for _, lsp in ipairs(servers) do
         capabilities = capabilities,
     })
 end
+
+lspconfig.ast_grep.setup({
+filetypes = {"go", "java", "python", "css", "cs", "lua" }
+})
 
 lspconfig.jsonls.setup({
     on_attach = on_attach,
