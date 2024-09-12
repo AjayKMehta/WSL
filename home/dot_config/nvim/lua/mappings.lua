@@ -402,13 +402,13 @@ map_desc("n", "<leader>sw", flash_word, "Flash current word")
 
 --#region neotest
 
-map_desc("n", "<leader>nr", function()
+map_desc("n", "<leader>tr", function()
     vim.notify_once("Running single test", vim.log.levels.INFO, {
         title = "Neotest",
     })
     require("neotest").run.run()
 end, "Neotest Run")
-map_desc("n", "<leader>no", function()
+map_desc("n", "<leader>to", function()
     require("neotest").output.open({
         enter = true,
         open_win = function(settings)
@@ -428,7 +428,7 @@ map_desc("n", "<leader>no", function()
     })
 end, "Neotest Show output")
 
-map_desc("n", "<leader>ns", function()
+map_desc("n", "<leader>tS", function()
     require("neotest").summary.toggle()
 end, "Neotest Show summary")
 
