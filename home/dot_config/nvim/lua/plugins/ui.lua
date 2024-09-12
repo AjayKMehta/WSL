@@ -120,4 +120,57 @@ return {
         lazy = true,
         tag = "v1.4.0",
     },
+    {
+        "Isrothy/neominimap.nvim",
+        enabled = true,
+        event = { "BufReadPre", "BufNewFile" },
+        keys = {
+            -- Global Minimap Controls
+            { "<leader>ntg", "<cmd>Neominimap toggle<cr>", desc = "Toggle global minimap" },
+            { "<leader>nrg", "<cmd>Neominimap refresh<cr>", desc = "Refresh global minimap" },
+
+            -- Window-Specific Minimap Controls
+            { "<leader>ntw", "<cmd>Neominimap winToggle<cr>", desc = "Toggle minimap for current window" },
+            { "<leader>nrw", "<cmd>Neominimap winRefresh<cr>", desc = "Refresh minimap for current window" },
+
+            -- Tab-Specific Minimap Controls
+            { "<leader>ntt", "<cmd>Neominimap tabToggle<cr>", desc = "Toggle minimap for current tab" },
+            { "<leader>nrt", "<cmd>Neominimap tabRefresh<cr>", desc = "Refresh minimap for current tab" },
+
+            -- Buffer-Specific Minimap Controls
+            { "<leader>ntb", "<cmd>Neominimap bufToggle<cr>", desc = "Toggle minimap for current buffer" },
+            { "<leader>nrb", "<cmd>Neominimap bufRefresh<cr>", desc = "Refresh minimap for current buffer" },
+        },
+        init = function()
+            vim.g.neominimap = {
+                -- Enable the plugin by default
+                auto_enable = true,
+                minimap_width = 14,
+
+                -- Log level
+                log_level = vim.log.levels.WARN,
+
+                -- Notification level
+                notification_level = vim.log.levels.INFO,
+
+                -- Path to the log file
+                log_path = vim.fn.stdpath("data") .. "/neominimap.log",
+
+                -- Minimap will not be created for buffers of these types
+                exclude_filetypes = { "help", "" },
+
+                -- Minimap will not be created for buffers of these types
+                exclude_buftypes = {
+                    "nofile",
+                    "nowrite",
+                    "quickfix",
+                    "terminal",
+                    "prompt",
+                    "Outline",
+                    "nvcheatsheet",
+                    "git",
+                },
+            }
+        end,
+    },
 }
