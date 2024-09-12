@@ -49,6 +49,11 @@ return {
                     jump_labels = function(motion)
                         return vim.v.count == 0
                     end,
+                    jump = {
+                        -- Don't add to search register (/)
+                        register = false,
+                        autojump = true,
+                    },
                 },
                 search = {
                     -- when `true`, flash will be activated during regular search by default.
