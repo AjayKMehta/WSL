@@ -54,13 +54,6 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     {
-        -- Adds horizontal highlights for text filetypes, like markdown, orgmode, and neorg
-        "lukas-reineke/headlines.nvim",
-        ft = { "markdown", "norg", "org", "rmd" },
-        dependencies = "nvim-treesitter/nvim-treesitter",
-        config = load_config("headlines"),
-    },
-    {
         -- Neovim plugin to improve the default vim.ui interfaces
         "stevearc/dressing.nvim",
         lazy = false,
