@@ -38,7 +38,7 @@ return {
                 on_attach = lsp.on_attach,
             },
             dap = {
-                adapter_name = "coreclr",
+                adapter_name = "netcoredbg",
             },
         },
         ft = { "cs", "vb", "csproj", "sln", "slnx", "props" },
