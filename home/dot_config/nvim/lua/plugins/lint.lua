@@ -19,7 +19,7 @@ return {
                 python = { "mypy", "ruff" },
                 sh = { "shellcheck" },
                 tex = { "chktex", "lacheck" },
-                yaml = { "yamllint" },
+                yaml = { "yamllint", "yq" },
             },
         },
         config = function(_, opts)
