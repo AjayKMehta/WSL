@@ -133,7 +133,10 @@ return {
             -- Buffer-Specific Minimap Controls
             { "<leader>ntb", "<cmd>Neominimap bufToggle<cr>", desc = "Toggle minimap for current buffer" },
             { "<leader>nrb", "<cmd>Neominimap bufRefresh<cr>", desc = "Refresh minimap for current buffer" },
-        },
+
+            -- Focus
+            { "<leader>ntf", "<cmd>Neominimap toggleFocus<cr>", desc = "Toggle focus on minimap" },
+            },
         init = function()
             vim.g.neominimap = {
                 -- Enable the plugin by default
@@ -162,6 +165,9 @@ return {
                     "Outline",
                     "nvcheatsheet",
                     "git",
+                },
+                mark = {
+                    enabled = true,
                 },
             }
         end,

@@ -4,6 +4,20 @@ local custom_fname = require("lualine.components.filename"):extend()
 local highlight = require("lualine.highlight")
 local default_status_colors = { saved = "#228B22", modified = "#C70039" }
 
+local neominimap = require("neominimap.statusline")
+local minimap_extension = {
+    sections = {
+        lualine_c = {
+            neominimap.fullname,
+        },
+        lualine_z = {
+            neominimap.position,
+            "progress",
+        },
+    },
+    filetypes = { "neominimap" },
+}
+
 local colors = {
     bg = "#202328",
     fg = "#bbc2cf",
@@ -263,7 +277,7 @@ local config = {
             },
         },
     },
-    extensions = { "nvim-tree", "lazy", "mason", "nvim-dap-ui", "trouble", "toggleterm", "quickfix" },
+    extensions = { "nvim-tree", "lazy", "mason", "nvim-dap-ui", "trouble", "toggleterm", "quickfix", minimap_extension },
 }
 
 lualine.setup(config)
