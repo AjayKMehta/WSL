@@ -47,10 +47,10 @@ return {
                 -- web dev
                 "cssls",
                 "html",
-                "tsserver",
+                "ts_ls",
                 "denols",
                 "jsonls",
-                "jqls",
+                -- "jqls",
 
                 -- docker
                 "docker_compose_language_service",

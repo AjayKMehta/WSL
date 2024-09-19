@@ -35,7 +35,6 @@ local servers = {
 
     -- Configs
     "taplo",
-    "jqls",
     "yamlls",
 
     -- Graphviz
