@@ -108,6 +108,12 @@ return {
                     end
                     fallback()
                 end, { "i", "c" }),
+                -- https://www.dmsussman.org/resources/neovimsetup/
+                ["<C-Space>"] = require("cmp").mapping(require("cmp").mapping.complete(), { 'i', 'c' }),
+                ["<C-e>"] = require("cmp").mapping({
+                        i = require("cmp").mapping.abort(),
+                        c = require("cmp").mapping.close(),
+                    }),
             },
             sorting = {
                 comparators = {

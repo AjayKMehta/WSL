@@ -75,7 +75,7 @@ local trig_ai_snippet = s({ trig = "trig_ai", desc = "Example using absolute ind
 })
 
 local trig2_snippet = s(
-    { trig = "trig2", desc = "Example using choice node with text, insert, and function child nodes (Ctrl+N/P)" },
+    { trig = "trig2", desc = "Example using choice node with text, insert, and function child nodes. Press Ctrl+ U to select choice." },
     c(1, {
         t("Ugh boring, a text node"),
         -- Jumpable nodes that normally expect an index as their first parameter
@@ -97,7 +97,7 @@ local trig2_snippet = s(
 
 -- In `sn(nil, {...nodes...})` nodes has to contain e.g. an i(1), otherwise luasnip will just "jump through" the nodes, making it impossible to change the choice.
 s(
-    "trig",
+    { trig = "trig", desc = "Example using choice node with text, insert, and snippet child nodes. Press Ctrl+ U to select choice." },
     c(1, {
         t("some text"), -- textNodes are just stopped at.
         i(nil, "test"), -- likewise.
@@ -156,7 +156,7 @@ local dl_snippet = s("dl", { i(1), t({ "", "" }), dl(2, l._1 .. l._1, 1) })
 
 -- Press Ctrl-N/P to go to next/prev choice
 -- Here the text entered into user_text is preserved upon changing choice.
-local paren_snippet = s({ trig = "paren_change", desc = "Example of choice node with restore node" }, {
+local paren_snippet = s({ trig = "paren_change", desc = "Example of choice node with restore node." }, {
     c(1, {
         sn(nil, { t("("), r(1, "user_text"), t(")") }),
         sn(nil, { t("["), r(1, "user_text"), t("]") }),
@@ -202,7 +202,7 @@ local dynamic_snippet = s({ trig = "dyn", desc = "Dynamic snippet" }, {
     end, { 1 }),
 })
 
-local dynamic2_snippet = s({ trig = "dyn_choice", desc = "Dynamic snippet with choice" }, {
+local dynamic2_snippet = s({ trig = "dyn_choice", desc = "Dynamic snippet with choice. Press Ctrl + U to select from dropdown for choice node." }, {
     t("original: "),
     i(1),
     t({ "", "copy: " }),

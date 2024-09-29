@@ -51,7 +51,7 @@ local default_sources = {
         keyword_length = 1, -- For C#, want to trigger when '_'
         entry_filter = limit_lsp_types,
     },
-        {
+    {
         name = "treesitter",
         group_index = 1,
         keyword_length = 2,
@@ -90,9 +90,21 @@ cmp.setup.cmdline({ "/", "?" }, {
         keyword_length = 2,
     },
     sources = {
-        { name = "nvim_lsp_document_symbol", group_index = 1, priority = 100 },
-        { name = "fuzzy_buffer", group_index = 1, priority = 60 },
-        { name = "buffer-lines", group_index = 2, priority = 90 },
+        {
+            name = "nvim_lsp_document_symbol",
+            group_index = 1,
+            priority = 100
+        },
+        {
+            name = "fuzzy_buffer",
+            group_index = 1,
+            priority = 60
+        },
+        {
+            name = "buffer-lines",
+            group_index = 2,
+            priority = 90
+        },
     },
     view = {
         entries = { name = "custom", selection_order = "near_cursor" },
@@ -107,9 +119,21 @@ cmp.setup.cmdline(":", {
     },
     enabled = true,
     sources = {
-        { name = "cmdline", group_index = 1, priority = 100 },
-        { name = "async_path", group_index = 1, priority = 80 },
-        { name = "fuzzy_buffer", group_index = 2, priority = 60 },
+        {
+            name = "cmdline",
+            group_index = 1,
+            priority = 100
+        },
+        {
+            name = "async_path",
+            group_index = 1,
+            priority = 80
+        },
+        {
+            name = "fuzzy_buffer",
+            group_index = 2,
+            priority = 60
+        },
     },
 })
 
@@ -131,8 +155,15 @@ local latex_source = {
     priority = 100,
     keyword_length = 2,
 }
-
 table.insert(tex_sources, 1, latex_source)
+
+-- TODO: Do we need to list vimtex as source? Seems to work fine without it.
+-- table.insert(tex_sources, 2, {
+--     name = "vimtex",
+--     group_index = 1,
+--     priority = 95
+-- })
+
 local other_latex_sources = {
     {
         name = "async_path",
