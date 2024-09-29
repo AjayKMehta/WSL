@@ -14,7 +14,7 @@ g.vimtex_view_method = "zathura_simple"
 
 -- https://github.com/Neelfrost/nvim-config/blob/1b1e11bed240987bfe0eae30538394ec210f1aa9/lua/user/plugins/config/vimtex.lua#L34
 -- https://medium.com/@Pirmin/a-minimal-latex-setup-on-windows-using-wsl2-and-neovim-51259ff94734
--- Also, seehttps://github.com/lervag/vimtex/issues/2566#issuecomment-1322886643
+-- Also, see https://github.com/lervag/vimtex/issues/2566#issuecomment-1322886643
 -- g.vimtex_view_general_viewer = 'SumatraPDF'
 -- g.vimtex_view_method = 'SumatraPDF'
 -- g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
@@ -57,6 +57,7 @@ vim.g.vimtex_toc_config = {
 
 -- Disable imaps (using LuaSnip)
 g.vimtex_imaps_enabled = 0
+g.vimtex_imaps_leader ="`"
 
 g.vimtex_fold_levelmarker = ""
 g.vimtex_fold_enabled = 1

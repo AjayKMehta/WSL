@@ -119,6 +119,10 @@ return {
                     python = { pattern = "%.py$", icon = "󰌠 ", highlight = "RenderMarkdownLink" },
                 },
             },
+            pipe_table = {
+                preset = "round",
+                cell = "trimmed",
+            },
         },
         cmd = { "RenderMarkdown" },
         keys = {
