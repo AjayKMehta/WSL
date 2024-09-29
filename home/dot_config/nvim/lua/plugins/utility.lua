@@ -381,7 +381,6 @@ return {
         event = "VeryLazy",
     },
     {
-        -- TODO: Look into replacing with https://github.com/mrjones2014/smart-splits.nvim?tab=readme-ov-file
         "christoomey/vim-tmux-navigator",
         lazy = false,
         cmd = {
@@ -478,4 +477,14 @@ return {
         lazy = false,
         config = true,
     },
+    {
+        -- Decorations for vimdoc/help files in Neovim.
+        -- The plugin comes with the Helpview command.
+    "OXY2DEV/helpview.nvim",
+    lazy = false, -- Recommended
+   -- ft = "help",
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter"
+    }
+}
 }
