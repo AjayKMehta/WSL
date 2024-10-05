@@ -156,12 +156,6 @@ return {
         config = load_config("ts_textobjects"),
     },
     {
-        -- Helps you navigate and move nodes around based on Treesitter API.
-        "ziontee113/syntax-tree-surfer",
-        event = "BufRead",
-        config = load_config("syntax_tree_surfer"),
-    },
-    {
         -- Rainbow delimiters with Treesitter
         "HiPhish/rainbow-delimiters.nvim",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
