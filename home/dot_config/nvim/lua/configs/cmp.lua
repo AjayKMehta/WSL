@@ -58,19 +58,18 @@ local default_sources = {
         priority = 95,
     },
     {
+        name = "luasnip_choice",
+        group_index = 1,
+        priority = 95,
+        max_item_count = 20,
+    },
+    {
         name = "luasnip",
         group_index = 1,
         priority = 90,
         keyword_length = 2,
         max_item_count = 100,
         option = { show_autosnippets = true },
-    },
-    {
-        name = "luasnip_choice",
-        group_index = 1,
-        priority = 90,
-        keyword_length = 2,
-        max_item_count = 20,
     },
     {
         name = "emoji",
