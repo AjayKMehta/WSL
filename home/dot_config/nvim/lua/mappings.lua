@@ -18,7 +18,6 @@ local disabled = {
         -- "<leader>fb", -- NvChad maps this to Find buffers
         -- "<leader>fh", -- NvChad maps this to Find help pages
         -- "<leader>b", -- Use as prefix
-        -- "<leader>cc", -- NvChad maps this to Blankline command
         -- "<c-s>",
     },
 }

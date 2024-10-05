@@ -259,7 +259,7 @@ local fmt1_snippet = s(
         i(2, "Name"),
         i(3, "Surname"),
         title = c(1, { t("Mr."), t("Ms.") }),
-    })
+    }, { active = { hl_group = "Search"}} )
 )
 
 -- Empty placeholders are numbered automatically starting from 1 or the last
