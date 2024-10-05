@@ -9,7 +9,7 @@ return {
                 local context = require("cmp.config.context")
                 if vim.api.nvim_buf_get_option(0, "filetype") == "TelescopePrompt" then
                     return false
-                -- keep command mode completion enabled when cursor is in a comment
+                    -- keep command mode completion enabled when cursor is in a comment
                 elseif vim.api.nvim_get_mode().mode == "c" then
                     return true
                 else
@@ -111,9 +111,38 @@ return {
                 -- https://www.dmsussman.org/resources/neovimsetup/
                 ["<C-Space>"] = require("cmp").mapping(require("cmp").mapping.complete(), { 'i', 'c' }),
                 ["<C-e>"] = require("cmp").mapping({
-                        i = require("cmp").mapping.abort(),
-                        c = require("cmp").mapping.close(),
-                    }),
+                    i = require("cmp").mapping.abort(),
+                    c = require("cmp").mapping.close(),
+                }),
+                ['<C-n>'] = {
+                    i = function()
+                        local cmp = require('cmp')
+                        local ls = require("luasnip")
+
+                        if ls.choice_active() then
+                            ls.change_choice(1)
+                        elseif cmp.visible() then
+                            -- { behavior = cmp.SelectBehavior.Insert } is annoying!
+                            cmp.select_next_item()
+                        else
+                            cmp.complete()
+                        end
+                    end,
+                },
+                ['<C-p>'] = {
+                    i = function()
+                        local cmp = require('cmp')
+                        local ls = require("luasnip")
+
+                        if ls.choice_active() then
+                            ls.change_choice(-1)
+                        elseif cmp.visible() then
+                            cmp.select_prev_item()
+                        else
+                            cmp.complete()
+                        end
+                    end,
+                },
             },
             sorting = {
                 comparators = {
