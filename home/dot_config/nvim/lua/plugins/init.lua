@@ -277,4 +277,19 @@ return {
         cmd = { "ToggleTerm", "ToggleTermAll", "TermExec" },
         config = load_config("toggleterm"),
     },
+
+    { "nvchad/volt",          lazy = true },
+    {
+        "nvchad/menu",
+        lazy = true,
+        config = function()
+            -- mouse users + nvimtree users!
+            vim.keymap.set("n", "<RightMouse>", function()
+                vim.cmd.exec '"normal! \\<RightMouse>"'
+
+                local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+                require("menu").open(options, { mouse = true })
+            end, {})
+        end,
+    },
 }
