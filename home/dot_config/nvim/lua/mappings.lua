@@ -118,6 +118,8 @@ map_desc("n", "<leader>fj", function()
     require("telescope.builtin").jumplist()
 end, "Telescope Jumplist")
 
+
+map_desc("n", "<leader>fr<CR>", "<cmd>Telescope resume<cr>", "telescope resume previous search" )
 map_desc("n", "<leader>fR", function()
     require("telescope.builtin").registers()
 end, "Telescope Registers")
