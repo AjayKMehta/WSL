@@ -60,7 +60,7 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig.ast_grep.setup({
-filetypes = { "go", "java", "python", "css", "cs", "lua" }
+    filetypes = { "go", "java", "python", "css", "cs", "lua" }
 })
 
 lspconfig.jsonls.setup({
@@ -78,43 +78,37 @@ lspconfig.jsonls.setup({
 
 lspconfig.lua_ls.setup({
     on_attach = on_attach,
-    -- on_init = on_init,
-    capabilities = capabilities,
-    flags = {
-        debounce_text_changes = 150,
-    },
-    single_file_support = true,
-    -- https://github.com/NvChad/NvChad/issues/817
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-            telemetry = {
-                enable = false,
-            },
-            completion = {
-                callSnippet = "Replace",
+    on_init = function(client)
+        if client.workspace_folders then
+            local path = client.workspace_folders[1].name
+            if vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc') then
+                return
+            end
+        end
+
+        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+            runtime = {
+                -- Tell the language server which version of Lua you're using
+                -- (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT'
             },
             workspace = {
                 checkThirdParty = false,
                 library = {
-                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                    [vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types"] = true,
-                    [vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
+                    vim.env.VIMRUNTIME,
+                    vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
+                    vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
                 },
                 maxPreload = 100000,
                 preloadFileSize = 10000,
             },
-            hint = {
-                enable = true,
-                setType = false,
-                paramType = true,
-            },
-            type = {
-                castNumberToInteger = true,
-            },
+        })
+    end,
+
+    capabilities = capabilities,
+    single_file_support = true,
+    settings = {
+        Lua = {
         },
     },
 })
@@ -191,7 +185,7 @@ end
 local custom_settings_path = bundle_path .. "/PSScriptAnalyzer/1.22.0/PSScriptAnalyzer.psd1"
 
 local command_fmt =
-    [[& '%s/PowerShellEditorServices/Start-EditorServices.ps1' -BundledModulesPath '%s' -SessionDetailsPath '%s/powershell_es.session.json' -HostName nvim -HostProfileId 0 -HostVersion 1.0.0 -Stdio -LogLevel Normal]]
+[[& '%s/PowerShellEditorServices/Start-EditorServices.ps1' -BundledModulesPath '%s' -SessionDetailsPath '%s/powershell_es.session.json' -HostName nvim -HostProfileId 0 -HostVersion 1.0.0 -Stdio -LogLevel Normal]]
 local temp_path = vim.fn.stdpath("cache")
 local command = command_fmt:format(bundle_path, bundle_path, temp_path)
 
