@@ -11,29 +11,28 @@ local map_desc = utils.map_desc
 -- To disable mappings:
 local disabled = {
     n = {
-        -- "<C-b>",
-        -- "gi", -- NvChad is overwriting builtin when attaching LSP
-        -- "<leader>lf", -- NvChad maps this to Lsp floating diagnostics
-        -- "<leader>fm", -- Duplicate for above
-        -- "<leader>fb", -- NvChad maps this to Find buffers
-        -- "<leader>fh", -- NvChad maps this to Find help pages
-        -- "<leader>b", -- Use as prefix
-        -- "<c-s>",
+        "<C-b>", -- NvChad maps this to beginning of line
+        "<leader>fm", -- Duplicate for above
+        "<leader>fb", -- NvChad maps this to Find buffers
+        "<leader>fh", -- NvChad maps this to Find help pages
+        "<leader>n",  -- Use as prefix
+        "<leader>b", -- Use as prefix
+        "<A-i>", -- NvChad maps this to floating terminal
+        "<A-h>", -- NvChad maps this to horizontal terminal
+        "<A-v>", -- NvChad maps this to vertical terminal
     },
 }
 
 -- https://github.com/NvChad/NvChad/issues/2688#issuecomment-1976174561
 for mode, mappings in pairs(disabled) do
     for _, keys in ipairs(mappings) do
-        if vim.api.nvim_get_keymap(mode)[keys] then
+        if vim.fn.mapcheck(keys, mode) ~= "" then
             vim.keymap.del(mode, keys)
         else
             vim.notify("Keymap " .. keys .. " does not exist for mode " .. mode)
         end
     end
 end
-vim.cmd("unmap <leader>b")
-vim.cmd("unmap <leader>n")
 
 map_desc("n", "<leader>tt", function()
     require("base46").toggle_theme()
