@@ -165,6 +165,8 @@ return {
                     "Outline",
                     "nvcheatsheet",
                     "git",
+                    "VoltWindow",
+                    "FTerm",
                 },
                 mark = {
                     enabled = true,
