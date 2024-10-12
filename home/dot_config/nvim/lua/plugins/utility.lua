@@ -296,7 +296,6 @@ return {
                 shell = "$dir/$fileName",
                 typescript = "deno run",
                 zsh = "$dir/$fileName",
-                excluded_buftypes = { "message" },
                 -- Using tectonic compiler
                 tex = function(...)
                     local latexCompileOptions = {
