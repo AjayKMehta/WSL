@@ -8,7 +8,7 @@ local on_attach = lsp.on_attach
 vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
 
 -- 💡 Uncommenting the line below would disable semantic tokens.
--- https://github.com/NvChad/NvChad/blob/6833c60694a626615911e379d201dd723511546d/lua/nvchad/configs/lspconfig.lua#L39
+-- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/configs/lspconfig.lua#L29
 -- local on_init = require("nvchad.configs.lspconfig").on_init
 
 local capabilities = lsp.capabilities
@@ -60,7 +60,7 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig.ast_grep.setup({
-filetypes = {"go", "java", "python", "css", "cs", "lua" }
+filetypes = { "go", "java", "python", "css", "cs", "lua" }
 })
 
 lspconfig.jsonls.setup({
@@ -262,7 +262,7 @@ lspconfig.basedpyright.setup({
                 reportImportCycles = "error",
                 reportConstantRedefinition = "error",
                 reportUndefinedVariable = false, -- ruff handles this with F822
-                reportUnusedVariable = false, -- let ruff handle this
+                reportUnusedVariable = false,    -- let ruff handle this
                 reportAssertAlwaysTrue = "error",
                 reportInconsistentOverload = "warning",
                 reportInvalidTypeArguments = "warning",
