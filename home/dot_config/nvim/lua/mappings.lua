@@ -323,8 +323,8 @@ local function flash_ts()
     require("flash").treesitter()
 end
 
-map_desc("n", "<leader>st", flash_ts, "Flash Treesitter")
-map_desc({ "o", "x" }, "st", flash_ts, "Flash Treesitter")
+map_desc("n", "<leader>sT", flash_ts, "Flash Treesitter")
+map_desc({ "o", "x" }, "sT", flash_ts, "Flash Treesitter")
 
 local function flash_fwd()
     require("flash").jump({
@@ -385,7 +385,7 @@ map_desc({ "o", "x" }, "sR", function()
     require("flash").treesitter_search()
 end, "Flash Treesitter search")
 
-map_desc("c", "<c-s>", function()
+map_desc("c", "<leader>st", function()
     require("flash").toggle()
 end, "Flash Toggle search")
 
