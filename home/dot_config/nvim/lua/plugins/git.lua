@@ -26,6 +26,11 @@ return {
             require("octo").setup({
                 enable_builtin = true,
                 use_local_fs = true,
+                mappings_disable_default = true,
+                -- This doesn't work: gh auth refresh -s read:project
+                suppress_missing_scope = {
+                    projects_v2 = true,
+                },
             })
             vim.cmd([[hi OctoEditable guibg=none]])
             vim.treesitter.language.register("markdown", "octo")
@@ -42,10 +47,10 @@ return {
                 changedelete = { text = "~" },
                 untracked = { text = "┆" },
             },
-            signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-            numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
-            linehl = true, -- Toggle with `:Gitsigns toggle_linehl`
-            word_diff = true, -- Toggle with `:Gitsigns toggle_word_diff`
+            signcolumn = true,    -- Toggle with `:Gitsigns toggle_signs`
+            numhl = true,         -- Toggle with `:Gitsigns toggle_numhl`
+            linehl = true,        -- Toggle with `:Gitsigns toggle_linehl`
+            word_diff = true,     -- Toggle with `:Gitsigns toggle_word_diff`
             show_deleted = false, -- Toggle with `:Gitsigns toggle_deleted`.
             trouble = true,
             current_line_blame_opts = {
