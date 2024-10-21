@@ -16,4 +16,5 @@ eza = "latest"
 lazygit = "latest"
 python = "3.12.7"
 ripgrep = "latest"
+direnv = "latest"
 

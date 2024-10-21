@@ -194,3 +194,6 @@ Import-Module Microsoft.PowerShell.SecretStore, Microsoft.PowerShell.SecretManag
 
 # Zoxide
 . "$PSScriptRoot/scripts/zoxide.ps1"
+
+Invoke-Expression "$(direnv hook pwsh)"
+
