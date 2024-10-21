@@ -45,7 +45,7 @@ return {
             },
             highlight_for_count = true,
         },
-        event = { "BufReadPre" },
+        keys = { { "u" }, { "<C-r>" } },
     },
     {
         "smoka7/multicursors.nvim",
