@@ -188,7 +188,7 @@ Import-Module -Name DockerCompletion, DockerComposeCompletion, DockerMachineComp
 # Nice formatting
 Import-Module Posh
 
-if ($env:TERM_PROGRAM -eq 'vscode') { . "$(code --locate-shell-integration-path pwsh)" }
+# if ($env:TERM_PROGRAM -eq 'vscode') { . "$(code --locate-shell-integration-path pwsh)" }
 
 Import-Module Microsoft.PowerShell.SecretStore, Microsoft.PowerShell.SecretManagement
 
@@ -196,4 +196,3 @@ Import-Module Microsoft.PowerShell.SecretStore, Microsoft.PowerShell.SecretManag
 . "$PSScriptRoot/scripts/zoxide.ps1"
 
 Invoke-Expression "$(direnv hook pwsh)"
-
