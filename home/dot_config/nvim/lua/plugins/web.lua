@@ -1,5 +1,5 @@
 return {
-        {
+    {
         "rest-nvim/rest.nvim",
         ft = "http",
         cmd = "Rest",
@@ -9,8 +9,8 @@ return {
         config = function(_, opts)
             require("telescope").load_extension("rest")
         end,
-        },
-        {
+    },
+    {
         "axieax/urlview.nvim",
         cmd = { "UrlView" },
         dependencies = {
