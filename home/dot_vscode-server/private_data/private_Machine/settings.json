@@ -16,5 +16,6 @@
     "stylua.configPath": "~/stylua.toml",
     "stylua.searchBinaryInPATH": true,
     "stylua.searchParentDirectories": true,
-    "typos.config": "~/typos.toml"
+    "typos.config": "~/typos.toml",
+    "direnv.path.executable": "/home/ajay/.local/share/mise/installs/direnv/latest/bin/direnv"
 }
