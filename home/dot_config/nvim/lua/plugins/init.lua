@@ -11,9 +11,14 @@ return {
     -- Setup servers via lspconfig
     {
         "williamboman/mason.nvim",
-        -- https://github.com/williamboman/nvim-lsp-installer/discussions/509#discussioncomment-4009039
         opts = {
+            -- https://github.com/williamboman/nvim-lsp-installer/discussions/509#discussioncomment-4009039
             PATH = "prepend", -- "skip" seems to cause the spawning error
+            -- https://github.com/seblj/roslyn.nvim/issues/11#issuecomment-2294820871
+            registries = {
+                "github:mason-org/mason-registry",
+                "github:syndim/mason-registry",
+            },
         },
         -- Use config from NvChad
     },
