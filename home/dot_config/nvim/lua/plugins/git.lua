@@ -47,10 +47,10 @@ return {
                 changedelete = { text = "~" },
                 untracked = { text = "┆" },
             },
-            signcolumn = true,    -- Toggle with `:Gitsigns toggle_signs`
-            numhl = true,         -- Toggle with `:Gitsigns toggle_numhl`
-            linehl = true,        -- Toggle with `:Gitsigns toggle_linehl`
-            word_diff = true,     -- Toggle with `:Gitsigns toggle_word_diff`
+            signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+            numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
+            linehl = true, -- Toggle with `:Gitsigns toggle_linehl`
+            word_diff = true, -- Toggle with `:Gitsigns toggle_word_diff`
             show_deleted = false, -- Toggle with `:Gitsigns toggle_deleted`.
             trouble = true,
             current_line_blame_opts = {
@@ -152,7 +152,7 @@ return {
                 commit_info = "i",
                 stack_push = "<TAB>",
                 stack_pop = "<BS>",
-                show_commit = "c", -- TODO: Fix. Doesn't work.
+                show_commit = "c",
                 close = { "<esc>", "q" },
             },
         },

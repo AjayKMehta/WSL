@@ -95,6 +95,7 @@ conform.setup({
         -- have other formatters configured.
         ["_"] = { "trim_whitespace" },
     },
+    notify_on_error = true,
 })
 
 -- Keymap
