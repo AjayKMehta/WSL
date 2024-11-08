@@ -44,6 +44,7 @@
   "ghcup.vim": { "branch": "master", "commit": "6d805d1ffc2298c5b28d2f6ef470eef429e869ad" },
   "git-conflict.nvim": { "branch": "main", "commit": "bfd9fe6fba9a161fc199771d85996236a0d0faad" },
   "gitsigns.nvim": { "branch": "main", "commit": "4daf7022f1481edf1e8fb9947df13bb07c18e89a" },
+  "guess-indent.nvim": { "branch": "main", "commit": "6cd61f7a600bb756e558627cd2e740302c58e32d" },
   "haskell-snippets.nvim": { "branch": "master", "commit": "bd893770dd7a0c1a473601c3c919e61670745b36" },
   "haskell-tools.nvim": { "branch": "master", "commit": "0ecf6eb031f305587ba8bc401bb060d00a1443ec" },
   "helpview.nvim": { "branch": "main", "commit": "857aec1dab331252910da158ab6cbfbc65239c71" },

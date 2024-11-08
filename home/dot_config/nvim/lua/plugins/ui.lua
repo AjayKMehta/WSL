@@ -21,6 +21,36 @@ return {
         enabled = true,
         event = { "BufReadPre", "BufNewFile" },
         config = load_config("hlchunk"),
+dependencies = {
+            {
+                "nmac427/guess-indent.nvim",
+                -- TODO: Specify options.
+                config = function()
+                    require("guess-indent").setup({
+                        filetype_exclude = {
+                            "netrw",
+                            "tutor",
+                            "terminal",
+                            "startify",
+                            "FTerm",
+                            "no-profile",
+                            "nvcheatsheet",
+                            "crunner",
+                            "dropbar_menu",
+                            "Outline",
+                            "git",
+                            "VoltWindow",
+                        },
+                        buftype_exclude = {
+                            "help",
+                            "nofile",
+                            "terminal",
+                            "prompt",
+                        },
+                    })
+                end,
+            },
+        },
     },
     {
         -- Already included in NvChad.
