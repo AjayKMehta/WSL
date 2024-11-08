@@ -1,7 +1,7 @@
 local load_config = require("utils").load_config
 
-local HEIGHT_RATIO = 0.8
-local WIDTH_RATIO = 0.6
+local HEIGHT_RATIO = 0.7
+local WIDTH_RATIO = 0.4
 
 return {
     -- It's important that you set up the plugins in the following order:
