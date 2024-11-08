@@ -183,7 +183,7 @@ return {
                     enable = true,
                 },
                 icons = {
-                    git_placement = "before",
+                    git_placement = "after",
                     modified_placement = "after",
                     show = {
                         file = true,
@@ -240,11 +240,36 @@ return {
                 bufmap("gl", api.node.open.toggle_group_empty, "Toggle group empty")
 
                 bufmap("<C-c>", treeutils.change_root_to_global_cwd, "Change Root To Global CWD")
+
+                -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#git-stage-unstage-files-and-directories-from-the-tree
+                local git_add = function()
+                    local node = api.tree.get_node_under_cursor()
+                    local gs = node.git_status.file
+
+                    -- If the current node is a directory get children status
+                    if gs == nil then
+                        gs = (node.git_status.dir.direct ~= nil and node.git_status.dir.direct[1])
+                            or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
+                    end
+
+                    -- If the file is untracked, unstaged or partially staged, we stage it
+                    if gs == "??" or gs == "MM" or gs == "AM" or gs == " M" then
+                        vim.cmd("silent !git add " .. node.absolute_path)
+
+                        -- If the file is staged, we unstage
+                    elseif gs == "M " or gs == "A " then
+                        vim.cmd("silent !git restore --staged " .. node.absolute_path)
+                    end
+
+                    api.tree.reload()
+                end
+
+                bufmap("ga", git_add, "Stage/unstage file")
             end,
             -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#center-a-floating-nvim-tree-window
             view = {
                 float = {
-                    enable = true,
+                    enable = false,
                     open_win_config = function()
                         local screen_w = vim.opt.columns:get()
                         local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
@@ -264,6 +289,9 @@ return {
                         }
                     end,
                 },
+                -- TODO: Switch to adaptive width?
+                -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#toggle-adaptive-width
+
                 width = function()
                     return require("utils").get_width(WIDTH_RATIO, nil, nil)
                 end,
