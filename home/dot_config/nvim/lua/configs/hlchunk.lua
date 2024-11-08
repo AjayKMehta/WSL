@@ -21,9 +21,8 @@ hlchunk.setup({
     chunk = {
         enable = true,
         notify = true,
-        use_treesitter = true,
+        use_treesitter = false,
         -- details about support_filetypes and exclude_filetypes in https://github.com/shellRaining/hlchunk.nvim/blob/main/lua/hlchunk/utils/filetype.lua
-        support_filetypes = ft.support_filetypes,
         exclude_filetypes = exclude_filetypes,
         chars = {
             horizontal_line = "─",
@@ -34,7 +33,7 @@ hlchunk.setup({
         },
         style = {
             { fg = "#855cc4" }, -- fg = "#87afaf"
-            { fg = "#c21f30" }, -- this fg is used to highlight wrong chunk
+            { fg = "#c21f30" }, -- highlight chunk with error
         },
         textobject = "iC",
         max_file_size = 1024 * 1024,
@@ -43,8 +42,9 @@ hlchunk.setup({
     indent = {
         enable = true,
         use_treesitter = false,
+        ahead_lines = 10,
         -- more codes can be found at https://unicodeplus.com/
-        chars = { "┃", "│", "¦", "┆", "┊" },
+        chars = {  "┃", "│", "¦", "┆", "┊" , '|', "‖",},
         -- https://github.com/lukas-reineke/indent-blankline.nvim#rainbow-delimitersnvim-integration
         style = {
             "#E06C75",
@@ -62,7 +62,6 @@ hlchunk.setup({
         use_treesitter = true,
         -- Doesn't support different styles for diff. levels like indent
         style = "#806d9c", -- fg = "#87afaf"
-        support_filetypes = ft.support_filetypes,
     },
     blank = {
         exclude_filetypes = exclude_filetypes,
