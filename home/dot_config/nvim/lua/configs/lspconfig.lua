@@ -173,19 +173,18 @@ if not vim.g.csharp_lsp then
     })
 end
 
+-- TODO: Replace PS LSP setup with powershell.nvim!
+-- https://github.com/TheLeoP/powershell.nvim
+
 -- https://github.com/PowerShell/PowerShellEditorServices/blob/89ce0867c6b119bef8af83ab21c249e10d0e77a2/docs/guide/getting_started.md
 
 -- The bundle_path is where PowerShell Editor Services was installed
 local bundle_path = mason_path .. "/packages/powershell-editor-services"
 
-if vim.g.use_custom_pses then
-    bundle_path = "~/PowerShellEditorServices/"
-end
-
-local custom_settings_path = bundle_path .. "/PSScriptAnalyzer/1.22.0/PSScriptAnalyzer.psd1"
+local custom_settings_path = bundle_path .. "/PSScriptAnalyzer/1.23.0/PSScriptAnalyzer.psd1"
 
 local command_fmt =
-[[& '%s/PowerShellEditorServices/Start-EditorServices.ps1' -BundledModulesPath '%s' -SessionDetailsPath '%s/powershell_es.session.json' -HostName nvim -HostProfileId 0 -HostVersion 1.0.0 -Stdio -LogLevel Normal]]
+[[& '%s/PowerShellEditorServices/Start-EditorServices.ps1' -BundledModulesPath '%s' -SessionDetailsPath '%s/powershell_es.session.json' -HostName 'nvim' -HostProfileId 'nvim' -HostVersion '1.0.0' -LogLevel Normal]]
 local temp_path = vim.fn.stdpath("cache")
 local command = command_fmt:format(bundle_path, bundle_path, temp_path)
 

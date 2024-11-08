@@ -33,8 +33,6 @@ vim.g.show_formatters = false
 -- if true, use native comment functionality added in nvim 0.10
 vim.g.nvim_comment = true
 
--- if true, use custom PowerShelleditorServices instead of mason's.
-vim.g.use_custom_pses = false
 
 -- load plugins
 require("lazy").setup({
