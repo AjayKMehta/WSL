@@ -27,16 +27,22 @@ return {
         ft = "lua",
         opts = {
             library = {
-                -- You can also add plugins you always want to have loaded.
-                -- Useful if the plugin has globals or types you want to use
-                -- Library paths can be absolute
-                -- Or relative, which means they will be resolved from the plugin dir.
-                "lazy.nvim",
                 -- It can also be a table with trigger words / mods
                 -- Only load luvit types when the `vim.uv` word is found
                 { path = "luvit-meta/library", words = { "vim%.uv" } },
-                -- always load the LazyVim library
-                "LazyVim",
+                { "Bilal2453/luvit-meta",      lazy = true }, -- optional `vim.uv` typings
+                {
+                    -- TODO: change to blink completion source later
+                    -- optional cmp completion source for require statements and module annotations
+                    "hrsh7th/nvim-cmp",
+                    opts = function(_, opts)
+                        opts.sources = opts.sources or {}
+                        table.insert(opts.sources, {
+                            name = "lazydev",
+                            group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+                        })
+                    end,
+                },
             },
         },
     },
