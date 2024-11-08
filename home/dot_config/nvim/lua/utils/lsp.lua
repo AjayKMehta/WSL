@@ -99,4 +99,9 @@ if ok then
     M.capabilities = vim.tbl_deep_extend("force", M.capabilities, cmp_nvim_lsp.default_capabilities())
 end
 
+local ok, cmp_lsp_file_ops = require("utils").is_loaded("lsp-file-operations")
+if ok then
+    M.capabilities = vim.tbl_deep_extend("force", M.capabilities, cmp_lsp_file_ops.default_capabilities())
+end
+
 return M
