@@ -19,7 +19,6 @@
 [include]
     path = themes.gitconfig
     path = delta.gitconfig
-#     path = maintenance.gitconfig
 [pretty]
     extended = format:%C(bold blue)%h% C(dim white)- %an %C(bold green)%ad%C(auto)%d%n %C(bold white)%s
     alt = format:%C(yellow)%h %C(green)%ad %C(cyan)[%an] %C(reset)%s %C(auto)%d
@@ -77,13 +76,18 @@
     rbs = refs refs/remotes
 
     ## Ignoring files
-    ignore = update-index --assume-unchanged
-    unignore = update-index --no-assume-unchanged
-    ignored = !git ls-files -v | grep ^[a-z]
-    hide = update-index --skip-worktree
-    unhide = update-index --no-skip-worktree
+    # This ignores updates to file
+    pin = update-index --assume-unchanged
+    unpin = update-index --no-assume-unchanged
+    pinned = !git ls-files -v | rg -e '^h (.+)' -o --replace '$1' --color never
+    # https://stackoverflow.com/a/61311958/781045
+    ignored = ls-files --exclude-standard -oi
+    # This won't even check if file is in worktree. Useful for sparse checkout.
+    skip = update-index --skip-worktree
+    unskip = update-index --no-skip-worktree
+    skipped = !git ls-files -v | rg -e '^S (.+)' -o --replace '$1' --color never
 
-    ## Rewrite hisory
+    ## Rewrite history
     rbi = rebase --autosquash -i HEAD@{upstream}
     append = !git cherry-pick $(git merge-base HEAD $1)..$1
     pop = reset HEAD^
@@ -179,7 +183,7 @@
     gpgsign = true
 # https://blog.jmorbegoso.com/post/configure-github-gpg-key-in-windows-and-wsl/
 [gpg]
-    program = /mnt/d/Apps/GnuPG/bin/gpg.exe
+    program = /usr/bin/gpg
 [color]
     ui = true
 [color "diff-highlight"]
@@ -220,11 +224,12 @@
     format-patch = cat
     diff = delta
     show = delta
+    # Use a pager if the difftool output is larger than one screenful,
+    # consistent with the behaviour of `git diff`.
+    difftool = true
 [credential]
     helper = cache
 [credential "https://gist.github.com"]
-	helper =
-	helper = !gh auth git-credential
+    helper = !gh auth git-credential
 [credential "https://github.com"]
-	helper =
-	helper = !gh auth git-credential
+    helper = !gh auth git-credential
