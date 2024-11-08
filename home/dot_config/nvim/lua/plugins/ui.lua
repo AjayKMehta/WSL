@@ -20,8 +20,16 @@ return {
         "shellRaining/hlchunk.nvim",
         enabled = true,
         event = { "BufReadPre", "BufNewFile" },
+        cmd = {
+            "DisableHLChunk",
+            "DisableHLIndent",
+            "DisableLineNum",
+            "EnableHLChunk",
+            "EnableHLIndent",
+            "EnableLineNum",
+        },
         config = load_config("hlchunk"),
-dependencies = {
+        dependencies = {
             {
                 "nmac427/guess-indent.nvim",
                 -- TODO: Specify options.
@@ -166,7 +174,7 @@ dependencies = {
 
             -- Focus
             { "<leader>ntf", "<cmd>Neominimap toggleFocus<cr>", desc = "Toggle focus on minimap" },
-            },
+        },
         init = function()
             vim.g.neominimap = {
                 -- Enable the plugin by default
