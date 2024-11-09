@@ -13,7 +13,6 @@
         "**/.ghcup": true
     },
     "latex-utilities.countWord.docker.enabled": true,
-    "stylua.configPath": "~/stylua.toml",
     "stylua.searchBinaryInPATH": true,
     "stylua.searchParentDirectories": true,
     "typos.config": "~/typos.toml",
