@@ -60,7 +60,7 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig.ast_grep.setup({
-    filetypes = { "go", "java", "python", "css", "cs", "lua" }
+    filetypes = { "go", "java", "python", "css", "cs", "lua" },
 })
 
 lspconfig.jsonls.setup({
@@ -81,16 +81,16 @@ lspconfig.lua_ls.setup({
     on_init = function(client)
         if client.workspace_folders then
             local path = client.workspace_folders[1].name
-            if vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc') then
+            if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then
                 return
             end
         end
 
-        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+        client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
             runtime = {
                 -- Tell the language server which version of Lua you're using
                 -- (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT'
+                version = "LuaJIT",
             },
             workspace = {
                 checkThirdParty = false,
@@ -108,8 +108,7 @@ lspconfig.lua_ls.setup({
     capabilities = capabilities,
     single_file_support = true,
     settings = {
-        Lua = {
-        },
+        Lua = {},
     },
 })
 
@@ -184,7 +183,7 @@ local bundle_path = mason_path .. "/packages/powershell-editor-services"
 local custom_settings_path = bundle_path .. "/PSScriptAnalyzer/1.23.0/PSScriptAnalyzer.psd1"
 
 local command_fmt =
-[[& '%s/PowerShellEditorServices/Start-EditorServices.ps1' -BundledModulesPath '%s' -SessionDetailsPath '%s/powershell_es.session.json' -HostName 'nvim' -HostProfileId 'nvim' -HostVersion '1.0.0' -LogLevel Normal]]
+    [[& '%s/PowerShellEditorServices/Start-EditorServices.ps1' -BundledModulesPath '%s' -SessionDetailsPath '%s/powershell_es.session.json' -HostName 'nvim' -HostProfileId 'nvim' -HostVersion '1.0.0' -LogLevel Normal]]
 local temp_path = vim.fn.stdpath("cache")
 local command = command_fmt:format(bundle_path, bundle_path, temp_path)
 
@@ -255,7 +254,7 @@ lspconfig.basedpyright.setup({
                 reportImportCycles = "error",
                 reportConstantRedefinition = "error",
                 reportUndefinedVariable = false, -- ruff handles this with F822
-                reportUnusedVariable = false,    -- let ruff handle this
+                reportUnusedVariable = false, -- let ruff handle this
                 reportAssertAlwaysTrue = "error",
                 reportInconsistentOverload = "warning",
                 reportInvalidTypeArguments = "warning",

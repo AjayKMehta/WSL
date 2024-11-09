@@ -44,7 +44,7 @@ hlchunk.setup({
         use_treesitter = false,
         ahead_lines = 10,
         -- more codes can be found at https://unicodeplus.com/
-        chars = {  "┃", "│", "¦", "┆", "┊" , '|', "‖",},
+        chars = { "┃", "│", "¦", "┆", "┊", "|", "‖" },
         -- https://github.com/lukas-reineke/indent-blankline.nvim#rainbow-delimitersnvim-integration
         style = {
             "#E06C75",

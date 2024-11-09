@@ -92,17 +92,17 @@ cmp.setup.cmdline({ "/", "?" }, {
         {
             name = "nvim_lsp_document_symbol",
             group_index = 1,
-            priority = 100
+            priority = 100,
         },
         {
             name = "fuzzy_buffer",
             group_index = 1,
-            priority = 60
+            priority = 60,
         },
         {
             name = "buffer-lines",
             group_index = 2,
-            priority = 90
+            priority = 90,
         },
     },
     view = {
@@ -121,17 +121,17 @@ cmp.setup.cmdline(":", {
         {
             name = "cmdline",
             group_index = 1,
-            priority = 100
+            priority = 100,
         },
         {
             name = "async_path",
             group_index = 1,
-            priority = 80
+            priority = 80,
         },
         {
             name = "fuzzy_buffer",
             group_index = 2,
-            priority = 60
+            priority = 60,
         },
     },
 })

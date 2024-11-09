@@ -128,7 +128,7 @@ local config = {
     -- },
     sections = {
         lualine_a = {
-            {"mason"},
+            { "mason" },
             {
                 "diagnostics",
                 sources = { "nvim_diagnostic" },
@@ -181,7 +181,7 @@ local config = {
             { get_name, cond = is_active },
         },
         lualine_c = {
-            {custom_fname},
+            { custom_fname },
             { LspStatus, cond = utils.has_filename, color = { fg = "#00FDAF" } },
             {
                 function()
