@@ -32,7 +32,6 @@ return {
         dependencies = {
             {
                 "nmac427/guess-indent.nvim",
-                -- TODO: Specify options.
                 config = function()
                     require("guess-indent").setup({
                         filetype_exclude = {
