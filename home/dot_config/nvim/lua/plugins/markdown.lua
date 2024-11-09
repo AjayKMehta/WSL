@@ -6,6 +6,12 @@ return {
         "tadmccorkle/markdown.nvim",
         ft = { "markdown", "gitcommit", "quarto", "rmd" },
         opts = {
+            mappings = {
+                go_next_heading = "<leader>mh",
+                go_prev_heading = "<leader>mH",
+                go_parent_heading = "<leader>mp",
+                go_current_heading = "<leader>mc"
+            },
             on_attach = function(bufnr)
                 local function toggle(key)
                     return "<Esc>gv<Cmd>lua require'markdown.inline'" .. ".toggle_emphasis_visual'" .. key .. "'<CR>"
@@ -81,7 +87,7 @@ return {
         init = function()
             vim.g.mkdp_filetypes = { "markdown" }
         end,
-        keys = { { "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" } },
+        keys = { { "<leader>mP", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" } },
         config = load_config("md_preview"),
     },
     {
