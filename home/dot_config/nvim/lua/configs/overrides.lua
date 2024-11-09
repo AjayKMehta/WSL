@@ -204,5 +204,4 @@ M.treesitter = {
     },
 }
 
-
 return M

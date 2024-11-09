@@ -45,7 +45,7 @@ o.grepformat = "%f:%l:%c:%m"
 
 -- Hanging indent when word-wrap
 -- https://www.reddit.com/r/neovim/comments/1d7sugh/comment/l71gilt
-o.breakindentopt = 'list:-1'
+o.breakindentopt = "list:-1"
 o.breakindent = true
 
 -- Native spelling functionality

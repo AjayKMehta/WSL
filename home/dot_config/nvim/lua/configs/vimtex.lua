@@ -57,7 +57,7 @@ vim.g.vimtex_toc_config = {
 
 -- Disable imaps (using LuaSnip)
 g.vimtex_imaps_enabled = 0
-g.vimtex_imaps_leader ="`"
+g.vimtex_imaps_leader = "`"
 
 g.vimtex_fold_levelmarker = ""
 g.vimtex_fold_enabled = 1

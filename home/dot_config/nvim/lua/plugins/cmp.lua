@@ -109,14 +109,14 @@ return {
                     fallback()
                 end, { "i", "c" }),
                 -- https://www.dmsussman.org/resources/neovimsetup/
-                ["<C-Space>"] = require("cmp").mapping(require("cmp").mapping.complete(), { 'i', 'c' }),
+                ["<C-Space>"] = require("cmp").mapping(require("cmp").mapping.complete(), { "i", "c" }),
                 ["<C-e>"] = require("cmp").mapping({
                     i = require("cmp").mapping.abort(),
                     c = require("cmp").mapping.close(),
                 }),
-                ['<C-n>'] = {
+                ["<C-n>"] = {
                     i = function()
-                        local cmp = require('cmp')
+                        local cmp = require("cmp")
                         local ls = require("luasnip")
 
                         if ls.choice_active() then
@@ -129,9 +129,9 @@ return {
                         end
                     end,
                 },
-                ['<C-p>'] = {
+                ["<C-p>"] = {
                     i = function()
-                        local cmp = require('cmp')
+                        local cmp = require("cmp")
                         local ls = require("luasnip")
 
                         if ls.choice_active() then

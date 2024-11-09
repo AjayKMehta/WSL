@@ -11,7 +11,7 @@ local postfix = require("luasnip.extras.postfix").postfix
 
 -- use vimtex to determine if we are in a math context
 local function math()
-    return vim.api.nvim_eval('vimtex#syntax#in_mathzone()') == 1
+    return vim.api.nvim_eval("vimtex#syntax#in_mathzone()") == 1
 end
 
 -- 1+ characters that are either word characters (\w), periods (.), underscores (_), hyphens (-)
@@ -20,21 +20,23 @@ local pattern = "[%w%.%_%-]+$"
 
 --test whether the parent snippet has content from a visual selection (press TAB to select). If yes, put into a text node, if no then start an insert node
 local visualSelectionOrInsert = function(args, parent)
-  if (#parent.snippet.env.LS_SELECT_RAW > 0) then
-    return sn(nil, t( parent.snippet.env.LS_SELECT_RAW))
-  else  -- If LS_SELECT_RAW is empty, return a blank insert node
-    return sn(nil, i(1))
-  end
+    if #parent.snippet.env.LS_SELECT_RAW > 0 then
+        return sn(nil, t(parent.snippet.env.LS_SELECT_RAW))
+    else -- If LS_SELECT_RAW is empty, return a blank insert node
+        return sn(nil, i(1))
+    end
 end
 
 -- https://www.dmsussman.org/resources/luasnippets
 return {
     -- Type in math mode): ahat. Result : \hat{a}
-    postfix({trig="hat", match_pattern = pattern, snippetType="autosnippet",dscr="postfix hat when in math mode"},
-        {l("\\hat{" .. l.POSTFIX_MATCH .. "}")},
-        { condition=math }
+    postfix(
+        { trig = "hat", match_pattern = pattern, snippetType = "autosnippet", dscr = "postfix hat when in math mode" },
+        { l("\\hat{" .. l.POSTFIX_MATCH .. "}") },
+        { condition = math }
     ),
-    s({trig = "emph", dscr = "the emph command, either in insert mode or wrapping a visual selection"},
-        fmta("\\emph{<>}",{d(1, visualSelectionOrInsert),})
+    s(
+        { trig = "emph", dscr = "the emph command, either in insert mode or wrapping a visual selection" },
+        fmta("\\emph{<>}", { d(1, visualSelectionOrInsert) })
     ),
 }

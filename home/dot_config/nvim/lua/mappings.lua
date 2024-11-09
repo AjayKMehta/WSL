@@ -15,7 +15,7 @@ local disabled = {
         "<leader>fm", -- Duplicate for above
         "<leader>fb", -- NvChad maps this to Find buffers
         "<leader>fh", -- NvChad maps this to Find help pages
-        "<leader>n",  -- Use as prefix
+        "<leader>n", -- Use as prefix
         "<leader>b", -- Use as prefix
         "<A-i>", -- NvChad maps this to floating terminal
         "<A-h>", -- NvChad maps this to horizontal terminal
@@ -58,7 +58,6 @@ map_desc("n", "<leader>gg", "<cmd>GHCup <CR>", "ghcup")
 --#endregion
 
 --#region Telescope
-
 
 map_desc("n", "<leader>fb", "<cmd>Telescope file_browser<CR>", "Telescope File browser")
 map_desc("n", "<leader>fM", "<cmd>Telescope bookmarks list<CR>", "Telescope Bookmarks ")
@@ -103,11 +102,16 @@ end, "Telescope Live grep")
 map_desc("n", "<leader>fy", function()
     require("telescope.builtin").buffers()
 end, "Telescope Search buffers")
-map_desc("n", "<leader>fY","<cmd>Telescope yaml_schema<CR>", "Telescope YAML schemas")
+map_desc("n", "<leader>fY", "<cmd>Telescope yaml_schema<CR>", "Telescope YAML schemas")
 
 map_desc("n", "<leader>fls", "<cmd>Telescope lsp_document_symbols<CR>", "Telescope Search Document Symbols")
 map_desc("n", "<leader>flw", "<cmd>Telescope lsp_workspace_symbols<CR>", "Telescope Search Workspace Symbols")
-map_desc("n", "<leader>fld", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Telescope Search Dynamic Workspace Symbols")
+map_desc(
+    "n",
+    "<leader>fld",
+    "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+    "Telescope Search Dynamic Workspace Symbols"
+)
 
 map_desc("n", "<leader>fe", "<cmd>Telescope emoji<CR>", "Telescope Search emojis")
 map_desc("n", "<leader>fn", function()
@@ -118,8 +122,7 @@ map_desc("n", "<leader>fj", function()
     require("telescope.builtin").jumplist()
 end, "Telescope Jumplist")
 
-
-map_desc("n", "<leader>fr<CR>", "<cmd>Telescope resume<cr>", "telescope resume previous search" )
+map_desc("n", "<leader>fr<CR>", "<cmd>Telescope resume<cr>", "telescope resume previous search")
 map_desc("n", "<leader>fR", function()
     require("telescope.builtin").registers()
 end, "Telescope Registers")

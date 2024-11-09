@@ -75,7 +75,10 @@ local trig_ai_snippet = s({ trig = "trig_ai", desc = "Example using absolute ind
 })
 
 local trig2_snippet = s(
-    { trig = "trig2", desc = "Example using choice node with text, insert, and function child nodes. Press Ctrl+ U to select choice." },
+    {
+        trig = "trig2",
+        desc = "Example using choice node with text, insert, and function child nodes. Press Ctrl+ U to select choice.",
+    },
     c(1, {
         t("Ugh boring, a text node"),
         -- Jumpable nodes that normally expect an index as their first parameter
@@ -97,7 +100,10 @@ local trig2_snippet = s(
 
 -- In `sn(nil, {...nodes...})` nodes has to contain e.g. an i(1), otherwise luasnip will just "jump through" the nodes, making it impossible to change the choice.
 s(
-    { trig = "trig", desc = "Example using choice node with text, insert, and snippet child nodes. Press Ctrl+ U to select choice." },
+    {
+        trig = "trig",
+        desc = "Example using choice node with text, insert, and snippet child nodes. Press Ctrl+ U to select choice.",
+    },
     c(1, {
         t("some text"), -- textNodes are just stopped at.
         i(nil, "test"), -- likewise.
@@ -202,7 +208,10 @@ local dynamic_snippet = s({ trig = "dyn", desc = "Dynamic snippet" }, {
     end, { 1 }),
 })
 
-local dynamic2_snippet = s({ trig = "dyn_choice", desc = "Dynamic snippet with choice. Press Ctrl + U to select from dropdown for choice node." }, {
+local dynamic2_snippet = s({
+    trig = "dyn_choice",
+    desc = "Dynamic snippet with choice. Press Ctrl + U to select from dropdown for choice node.",
+}, {
     t("original: "),
     i(1),
     t({ "", "copy: " }),
@@ -259,7 +268,7 @@ local fmt1_snippet = s(
         i(2, "Name"),
         i(3, "Surname"),
         title = c(1, { t("Mr."), t("Ms.") }),
-    }, { active = { hl_group = "Search"}} )
+    }, { active = { hl_group = "Search" } })
 )
 
 -- Empty placeholders are numbered automatically starting from 1 or the last

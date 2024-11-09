@@ -47,7 +47,7 @@ return {
                     multi_line = false,
                     autohide = true,
                     jump_labels = function(motion)
-                        return vim.v.count == 0 and vim.fn.reg_executing() == ""  and vim.fn.reg_recording() == ""
+                        return vim.v.count == 0 and vim.fn.reg_executing() == "" and vim.fn.reg_recording() == ""
                     end,
                     jump = {
                         -- Don't add to search register (/)

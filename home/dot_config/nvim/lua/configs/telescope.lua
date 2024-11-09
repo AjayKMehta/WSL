@@ -129,7 +129,7 @@ M.config = function()
             "undo",
             "luasnip",
             "togglescope",
-            "bookmarks"
+            "bookmarks",
         },
         extensions = {
             fzf = {

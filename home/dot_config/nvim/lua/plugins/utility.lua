@@ -211,7 +211,14 @@ return {
                         ["ctrl-q"] = "signtoggle",
                         ["ctrl-c"] = "closeall",
                     },
-                    extra_opts = { "--bind", "ctrl-o:toggle-all", "--delimiter", "│", "--bind", "ctrl-/:toggle-wrap", },
+                    extra_opts = {
+                        "--bind",
+                        "ctrl-o:toggle-all",
+                        "--delimiter",
+                        "│",
+                        "--bind",
+                        "ctrl-/:toggle-wrap",
+                    },
                 },
             },
         },
@@ -483,15 +490,15 @@ return {
         lazy = false, -- Recommended
         -- ft = "help",
         dependencies = {
-            "nvim-treesitter/nvim-treesitter"
-        }
+            "nvim-treesitter/nvim-treesitter",
+        },
     },
     {
         "folke/snacks.nvim",
         priority = 1000,
         lazy = false,
         opts = {
-            bigfile = { size = 1.5 * 1024 * 1024, },
+            bigfile = { size = 1.5 * 1024 * 1024 },
             notifier = {
                 enabled = true,
                 timeout = 3000,
@@ -505,7 +512,20 @@ return {
             },
         },
         keys = {
-            { "]]", function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference" },
-            { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" }, }
-    }
+            {
+                "]]",
+                function()
+                    Snacks.words.jump(vim.v.count1)
+                end,
+                desc = "Next Reference",
+            },
+            {
+                "[[",
+                function()
+                    Snacks.words.jump(-vim.v.count1)
+                end,
+                desc = "Prev Reference",
+            },
+        },
+    },
 }

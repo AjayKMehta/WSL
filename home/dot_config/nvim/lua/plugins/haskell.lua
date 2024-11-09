@@ -16,7 +16,7 @@ return {
         dependencies = {
             { "nvim-telescope/telescope.nvim", optional = true },
         },
-        config = load_config("haskell")
+        config = load_config("haskell"),
     },
     {
         "mrcjkb/haskell-snippets.nvim",

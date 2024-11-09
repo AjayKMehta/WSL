@@ -13,13 +13,12 @@ local function is_diag_for_cur_pos()
 end
 
 M.on_attach = function(client, bufnr)
-
     local map_buf = require("utils.mappings").map_buf
     local has_client = client ~= nil
     if has_client and client.supports_method("codeLensProvider") then
         vim.lsp.codelens.refresh()
     end
-    if has_client and client.supports_method("inlayHintProvider")then
+    if has_client and client.supports_method("inlayHintProvider") then
         vim.lsp.inlay_hint.enable(true)
         local function toggle_hints()
             local enabled = vim.lsp.inlay_hint.is_enabled()
