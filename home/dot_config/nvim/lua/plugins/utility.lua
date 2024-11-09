@@ -76,7 +76,7 @@ return {
                     },
                     input = {
                         title = "",
-                        icon = "❓",
+                        icon = "󰥻 ",
                     },
                     filter = {
                         title = "",
@@ -479,11 +479,33 @@ return {
     {
         -- Decorations for vimdoc/help files in Neovim.
         -- The plugin comes with the Helpview command.
-    "OXY2DEV/helpview.nvim",
-    lazy = false, -- Recommended
-   -- ft = "help",
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter"
+        "OXY2DEV/helpview.nvim",
+        lazy = false, -- Recommended
+        -- ft = "help",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter"
+        }
+    },
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        opts = {
+            bigfile = { size = 1.5 * 1024 * 1024, },
+            notifier = {
+                enabled = true,
+                timeout = 3000,
+            },
+            quickfile = { enabled = false },
+            words = {
+                enabled = true,
+                debounce = 200,
+                notify_jump = true,
+                notify_end = true,
+            },
+        },
+        keys = {
+            { "]]", function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference" },
+            { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" }, }
     }
-}
 }
