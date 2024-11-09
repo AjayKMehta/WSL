@@ -10,7 +10,7 @@ return {
                 go_next_heading = "<leader>mh",
                 go_prev_heading = "<leader>mH",
                 go_parent_heading = "<leader>mp",
-                go_current_heading = "<leader>mc"
+                go_current_heading = "<leader>mc",
             },
             on_attach = function(bufnr)
                 local function toggle(key)
@@ -134,7 +134,8 @@ return {
         keys = {
             { "<leader>md", "<cmd>RenderMarkdown disable<cr>", desc = "Toggle Markdown Disable" },
             { "<leader>me", "<cmd>RenderMarkdown enable<cr>", desc = "Toggle Markdown Enable" },
-            { "<leader>mt", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" } },
+            { "<leader>mt", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" },
+        },
         dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
     },
 }

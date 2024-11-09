@@ -30,7 +30,7 @@ return {
                 -- It can also be a table with trigger words / mods
                 -- Only load luvit types when the `vim.uv` word is found
                 { path = "luvit-meta/library", words = { "vim%.uv" } },
-                { "Bilal2453/luvit-meta",      lazy = true }, -- optional `vim.uv` typings
+                { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
                 {
                     -- TODO: change to blink completion source later
                     -- optional cmp completion source for require statements and module annotations
@@ -317,14 +317,14 @@ return {
         config = load_config("toggleterm"),
     },
 
-    { "nvchad/volt",          lazy = true },
+    { "nvchad/volt", lazy = true },
     {
         "nvchad/menu",
         lazy = true,
         config = function()
             -- mouse users + nvimtree users!
             vim.keymap.set("n", "<RightMouse>", function()
-                vim.cmd.exec '"normal! \\<RightMouse>"'
+                vim.cmd.exec('"normal! \\<RightMouse>"')
 
                 local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
                 require("menu").open(options, { mouse = true })

@@ -44,7 +44,7 @@ return {
         ft = { "cs", "vb", "csproj", "sln", "slnx", "props" },
         dependencies = {
             "williamboman/mason.nvim", -- Required, automatically installs omnisharp
-             "mfussenegger/nvim-dap",
+            "mfussenegger/nvim-dap",
             "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
         },
         config = function(_, opts)
