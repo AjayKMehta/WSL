@@ -1,5 +1,6 @@
 -- Use buffer source for `/` and '?'
 local cmp = require("cmp")
+local lspkind = require("lspkind")
 
 local function limit_lsp_types(entry, ctx)
     local kind = entry:get_kind()
@@ -80,13 +81,53 @@ local default_sources = {
 
 -- Do not use cmp.config.sources():
 -- https://github.com/hrsh7th/nvim-cmp/discussions/881
-cmp.setup({ sources = default_sources })
+cmp.setup({
+    sources = default_sources,
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = "text_symbol",
+            maxwidth = {
+                -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                -- can also be a function to dynamically calculate max width such as
+                -- menu = function() return math.floor(0.45 * vim.o.columns) end,
+                menu = 50, -- leading text (labelDetails)
+                abbr = 50, -- actual suggestion item
+            },
+            ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            show_labelDetails = false, -- show labelDetails in menu. Disabled by default
+            preset = "default", --codicons",
 
-cmp.setup.filetype({"gitcommit", "octo"}, {
-    sources = cmp.config.sources({
-        { name = "git", },
+            -- The function below will be called before any actual modifications from lspkind
+            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+            before = function(entry, vim_item)
+                local menu_icon = {
+                    treesitter = "🌲",
+                    luasnip = "⋗",
+                    buffer = "Ω",
+                    path = "🖫",
+                    emoji = "✨",
+                }
+
+                local source = menu_icon[entry.source.name] or entry.source.name
+                if entry.source.name == "nvim_lsp" then
+                    local client = entry.source.source.client
+                    if client then
+                        source = string.format("λ [%s]", client.name)
+                    else
+                        source = "λ"
+                    end
+                end
+                vim_item.menu = source
+                return vim_item
+            end,
+        }),
     },
-    {
+})
+
+cmp.setup.filetype({ "gitcommit", "octo" }, {
+    sources = cmp.config.sources({
+        { name = "git" },
+    }, {
         { name = "buffer" },
     }),
 })
