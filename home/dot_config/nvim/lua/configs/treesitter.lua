@@ -1,6 +1,4 @@
-local M = {}
-
-M.treesitter = {
+local config = {
     -- ensure_installed = "all",
     ensure_installed = {
         "bash",
@@ -53,6 +51,10 @@ M.treesitter = {
     indent = { enable = true, disable = { "python", "css" } },
     autotag = {
         enable = true,
+    },
+    highlight = {
+        enable = true,
+        use_languagetree = true,
     },
     tree_setter = {
         enable = true,
@@ -204,4 +206,7 @@ M.treesitter = {
     },
 }
 
-return M
+dofile(vim.g.base46_cache .. "syntax")
+dofile(vim.g.base46_cache .. "treesitter")
+require("nvim-treesitter.configs").setup(config)
+require("nvim-treesitter.install").compilers = { "clang" }

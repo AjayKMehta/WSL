@@ -1,5 +1,3 @@
-local overrides = require("configs.overrides")
-
 local load_config = require("utils").load_config
 
 return {
@@ -105,7 +103,6 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter",
-        opts = overrides.treesitter,
         event = { "BufReadPre", "BufNewFile" },
         cmd = {
             "TSInstall",
@@ -123,12 +120,7 @@ return {
             "nvim-treesitter/nvim-treesitter-textobjects",
             "RRethy/nvim-treesitter-textsubjects",
         },
-        config = function(_, opts)
-            dofile(vim.g.base46_cache .. "syntax")
-            dofile(vim.g.base46_cache .. "treesitter")
-            require("nvim-treesitter.configs").setup(opts)
-            require("nvim-treesitter.install").compilers = { "clang" }
-        end,
+        config = load_config("treesitter"),
     },
     {
         -- Show code context.,
