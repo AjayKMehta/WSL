@@ -130,6 +130,9 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
 end
+dap.listeners.before.launch.dapui_config = function()
+    dapui.open()
+end
 
 -- Setup icons
 -- vim.fn.sign_define('DapBreakpoint', {text='', texthl='', linehl='', numhl=''})
