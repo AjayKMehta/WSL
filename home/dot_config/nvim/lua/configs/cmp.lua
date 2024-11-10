@@ -47,7 +47,7 @@ local default_sources = {
     {
         name = "nvim_lsp",
         group_index = 1,
-        priority = 100,
+        priority = 1000,
         keyword_length = 1, -- For C#, want to trigger when '_'
         entry_filter = limit_lsp_types,
     },
@@ -55,18 +55,18 @@ local default_sources = {
         name = "treesitter",
         group_index = 1,
         keyword_length = 2,
-        priority = 95,
+        priority = 750,
     },
     {
         name = "luasnip_choice",
         group_index = 1,
-        priority = 95,
-        max_item_count = 20,
+        priority = 650,
+        max_item_count = 700,
     },
     {
         name = "luasnip",
         group_index = 1,
-        priority = 90,
+        priority = 700,
         keyword_length = 2,
         max_item_count = 100,
         option = { show_autosnippets = true },
@@ -74,13 +74,31 @@ local default_sources = {
     {
         name = "emoji",
         group_index = 1,
-        priority = 85,
+        priority = 100,
     },
 }
 
 -- Do not use cmp.config.sources():
 -- https://github.com/hrsh7th/nvim-cmp/discussions/881
 cmp.setup({ sources = default_sources })
+
+cmp.setup.filetype({"gitcommit", "octo"}, {
+    sources = cmp.config.sources({
+        { name = "git", },
+    },
+    {
+        { name = "buffer" },
+    }),
+})
+
+cmp.setup.filetype({ "gitrebase" }, {
+    sources = cmp.config.sources({
+        { name = "git", priority = 100 },
+        { name = "async_path", priority = 50 },
+        { name = "fuzzy_buffer", priority = 50 },
+        { name = "emoji", insert = true, priority = 20 },
+    }),
+})
 
 cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
@@ -131,7 +149,7 @@ cmp.setup.cmdline(":", {
         {
             name = "fuzzy_buffer",
             group_index = 2,
-            priority = 60,
+            priority = 20,
         },
     },
 })
