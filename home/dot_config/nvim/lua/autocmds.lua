@@ -165,7 +165,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
 
 -- https://github.com/folke/snacks.nvim/blob/main/docs/rename.md#nvim-tree
 local prev = { new_name = "", old_name = "" } -- Prevents duplicate events
-vim.api.nvim_create_autocmd("User", {
+autocmd("User", {
     pattern = "NvimTreeSetup",
     callback = function()
         local events = require("nvim-tree.api").events

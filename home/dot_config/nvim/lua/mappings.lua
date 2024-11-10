@@ -229,6 +229,7 @@ end, "DAP Step into")
 map_desc("n", "<S-F11>", function()
     require("dap").step_out()
 end, "DAP Step out")
+map_desc("n", "<F12>", function() require("dap").step_out() end, "DAP Step out")
 
 map_desc("n", "<leader>rb", function()
     require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
