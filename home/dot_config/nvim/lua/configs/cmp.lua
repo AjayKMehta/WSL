@@ -127,7 +127,8 @@ cmp.setup({
 cmp.setup.filetype({ "gitcommit", "octo" }, {
     sources = cmp.config.sources({
         { name = "git" },
-    }, {
+    },
+    {
         { name = "buffer" },
     }),
 })
