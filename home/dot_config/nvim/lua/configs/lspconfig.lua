@@ -47,10 +47,6 @@ local servers = {
     "r_language_server",
 }
 
-if vim.g.csharp_lsp then
-    table.insert(servers, "csharp_ls")
-end
-
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup({
         on_attach = on_attach,
@@ -127,54 +123,6 @@ lspconfig.marksman.setup({
     filetypes = { "markdown", "quarto" },
     root_dir = require("lspconfig.util").root_pattern(".git", ".marksman.toml", "_quarto.yml"),
 })
-
-vim.g.OmniSharp_start_without_solution = 1
-vim.g.OmniSharp_timeout = 5
-
--- TODO: Look into disabling and using csharp_ls only.
-if not vim.g.csharp_lsp then
-    lspconfig.omnisharp.setup({
-        cmd = { "dotnet", mason_path .. "/packages/omnisharp/libexec/OmniSharp.dll" },
-        on_attach = on_attach,
-        capabilities = capabilities,
-        settings = {
-            FormattingOptions = {
-                EnableEditorConfigSupport = true,
-                OrganizeImports = true,
-            },
-            MsBuild = {
-                LoadProjectsOnDemand = false,
-            },
-            RoslynExtensionsOptions = {
-                EnableAnalyzersSupport = true,
-                EnableImportCompletion = true,
-                AnalyzeOpenDocumentsOnly = false,
-                InlayHintsOptions = {
-                    EnableForParameters = true,
-                    ForLiteralParameters = true,
-                    ForIndexerParameters = true,
-                    ForObjectCreationParameters = true,
-                    ForOtherParameters = true,
-                    SuppressForParametersThatDifferOnlyBySuffix = false,
-                    SuppressForParametersThatMatchMethodIntent = false,
-                    SuppressForParametersThatMatchArgumentName = false,
-                    EnableForTypes = true,
-                    ForImplicitVariableTypes = true,
-                    ForLambdaParameterTypes = true,
-                    ForImplicitObjectCreation = true,
-                },
-            },
-            Sdk = {
-                IncludePrereleases = false,
-            },
-            RenameOptions = {
-                RenameInComments = false,
-                RenameOverloads = false,
-                RenameInStrings = false,
-            },
-        },
-    })
-end
 
 -- TODO: Replace PS LSP setup with powershell.nvim!
 -- https://github.com/TheLeoP/powershell.nvim

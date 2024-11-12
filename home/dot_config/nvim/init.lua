@@ -20,8 +20,6 @@ local lazy_config = require("configs.lazy")
 -- If true, use aerial instead of outline
 vim.g.use_aerial = false
 vim.g.use_cmp_emoji = false
--- If true, csharp.nvim enables LSP.
-vim.g.csharp_lsp = false
 
 -- If true, load snippet examples
 vim.g.snippet_examples = true

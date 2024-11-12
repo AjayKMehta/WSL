@@ -14,41 +14,50 @@ return {
         end,
     },
     {
-        -- C# plugin powered by omnisharp-roslyn.
-        "iabdelkareem/csharp.nvim",
-        opts = {
-            lsp = {
-                -- Need to manually set up omnisharp LSP if false
-                enable = false,
-                -- Settings that'll be passed to the omnisharp server
-                enable_editor_config_support = true,
-                organize_imports = true,
-                load_projects_on_demand = false,
-                enable_analyzers_support = true,
-                enable_import_completion = true,
-                include_prerelease_sdks = true,
-                analyze_open_documents_only = false,
-                enable_package_auto_restore = true,
-                -- If true, MSBuild project system will only load projects for files that
-                -- were opened in the editor. This setting is useful for big C# codebases
-                -- and allows for faster initialization of code navigation features only
-                -- for projects that are relevant to code that is being edited.
-                enable_ms_build_load_projects_on_demand = false,
-                capabilities = lsp.capabilities,
-                on_attach = lsp.on_attach,
-            },
-            dap = {
-                adapter_name = "netcoredbg",
-            },
-        },
+        "seblj/roslyn.nvim",
         ft = { "cs", "vb", "csproj", "sln", "slnx", "props" },
-        dependencies = {
-            "williamboman/mason.nvim", -- Required, automatically installs omnisharp
-            "mfussenegger/nvim-dap",
-            "Tastyep/structlog.nvim", -- Optional, but highly recommended for debugging
-        },
         config = function(_, opts)
-            require("csharp").setup(opts)
+            local config = {
+                config = {
+                    settings = {
+                        ["csharp|background_analysis"] = {
+                            dotnet_analyzer_diagnostics_scope = "fullSolution",
+                            dotnet_compiler_diagnostics_scope = "fullSolution",
+                        },
+                        ["csharp|inlay_hints"] = {
+                            csharp_enable_inlay_hints_for_implicit_object_creation = false,
+                            csharp_enable_inlay_hints_for_implicit_variable_types = true,
+                            csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+                            csharp_enable_inlay_hints_for_types = true,
+                            dotnet_enable_inlay_hints_for_indexer_parameters = true,
+                            dotnet_enable_inlay_hints_for_literal_parameters = true,
+                            dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+                            dotnet_enable_inlay_hints_for_other_parameters = true,
+                            dotnet_enable_inlay_hints_for_parameters = true,
+                            dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+                            dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+                            dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+                        },
+                        ["csharp|code_lens"] = {
+                            dotnet_enable_references_code_lens = true,
+                            dotnet_enable_tests_code_lens = true,
+                        },
+                        ["csharp|completion"] = {
+                            dotnet_provide_regex_completions = true,
+                            otnet_show_completion_items_from_unimported_namespaces = true,
+                            dotnet_show_name_completion_suggestions = true,
+                        },
+                        ["csharp|symbol_search"] = {
+                            dotnet_search_reference_assemblies = true,
+                        },
+                    },
+                },
+            }
+            require("roslyn").setup(config)
         end,
+        exe = {
+            "dotnet",
+            vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+        },
     },
 }

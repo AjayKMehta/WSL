@@ -76,8 +76,6 @@ return {
                 "hls",
 
                 -- .NET
-                "csharp_ls",
-                "omnisharp",
                 "powershell_es",
 
                 -- DevOps + Shell
