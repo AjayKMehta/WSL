@@ -60,7 +60,7 @@ return {
             vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
         },
     },
-        {
+    {
         "GustavEikaas/easy-dotnet.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
         ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
