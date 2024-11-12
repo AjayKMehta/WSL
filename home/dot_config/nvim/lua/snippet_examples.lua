@@ -33,6 +33,30 @@ local dl = require("luasnip.extras").dynamic_lambda
 -- <@> denotes cursor position.
 -- <iN> denotes Nth insert node.
 
+--#region ChoiceNode
+
+local trigger_snippet = s(
+    {
+        trig = "trigger",
+        desc = "Example using choice node with text nodes and highlighting for 1st 2 choices and entire node. Press Ctrl+ U to select choice.",
+    },
+    c(1, {
+        t("Default Option 1"), -- First default choice
+        t("Default Option 2"), -- Second default choice
+        t("Other Option"),
+    }, {
+        active = {
+            -- Set the entire node as highlighted with "Search" highlight group.
+            -- Highlight the first two options specifically with "IncSearch" group.
+            hl_group = "Search",
+            [1] = { hl_group = "IncSearch" },
+            [2] = { hl_group = "IncSearch" },
+        },
+    })
+)
+
+--#endregion
+
 --#region FunctionNode
 -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#functionnode
 
@@ -339,6 +363,7 @@ local multiline3_snippet = s({
 --#endregion
 
 ls.add_snippets("all", {
+    trigger_snippet,
     trig_snippet,
     trig_ai_snippet,
     match_snippet,
