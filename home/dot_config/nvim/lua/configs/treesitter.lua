@@ -81,7 +81,8 @@ local config = {
             enable = true,
             -- Assign keymaps to false to disable them, e.g. `goto_definition = false`.
             keymaps = {
-                goto_definition = "gd",
+                goto_definition = false,
+                -- TODO: Test these out.
                 list_definitions = "gld",
                 list_definitions_toc = "glt",
                 goto_next_usage = "<a-*>",

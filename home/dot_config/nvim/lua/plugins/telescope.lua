@@ -13,7 +13,13 @@ return {
             "Theo-Steiner/togglescope",
             "benfowler/telescope-luasnip.nvim",
             "debugloop/telescope-undo.nvim",
-            "nvim-telescope/telescope-frecency.nvim",
+            {
+                "nvim-telescope/telescope-frecency.nvim",
+                opts = {
+                    enable_prompt_mappings = true,
+                    hide_current_buffer = true,
+                },
+            },
             "catgoose/telescope-helpgrep.nvim",
             "nvim-telescope/telescope-dap.nvim",
             "stevearc/aerial.nvim",
