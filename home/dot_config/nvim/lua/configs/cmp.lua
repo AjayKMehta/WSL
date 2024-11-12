@@ -43,6 +43,8 @@ local buffer_option = {
     end,
 }
 
+cmp.register_source("easy-dotnet", require("easy-dotnet").package_completion_source)
+
 -- name is not the name of the plugin, it's the "id" of the plugin used when creating the source.
 local default_sources = {
     {
@@ -77,6 +79,7 @@ local default_sources = {
         group_index = 1,
         priority = 100,
     },
+    { name = "easy-dotnet", group_index = 1 },
 }
 
 -- Do not use cmp.config.sources():

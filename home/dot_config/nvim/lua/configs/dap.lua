@@ -233,13 +233,36 @@ dap.adapters.coreclr = {
     args = { "--interpreter=vscode" },
 }
 
+local dotnet = require("easy-dotnet")
+local debug_dll = nil
+local function ensure_dll()
+    if debug_dll ~= nil then
+        return debug_dll
+    end
+    local dll = dotnet.get_debug_dll()
+    debug_dll = dll
+    return dll
+end
+
 dap.configurations.cs = {
     {
         name = "launch - netcoredbg",
         type = "coreclr",
         request = "launch",
+        justMyCode = false,
+        stopAtEntry = false,
+        env = function()
+            local dll = ensure_dll()
+            local vars = dotnet.get_environment_variables(dll.project_name, dll.relative_project_path)
+            return vars or nil
+        end,
         program = function()
-            return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
+            local dll = ensure_dll()
+            return dll.relative_dll_path
+        end,
+        cwd = function()
+            local dll = ensure_dll()
+            return dll.relative_project_path
         end,
     },
     {
@@ -250,6 +273,9 @@ dap.configurations.cs = {
         justMyCode = true, -- set to `true` in debug configuration and `false` in release configuration
     },
 }
+dap.listeners.before["event_terminated"]["easy-dotnet"] = function()
+    debug_dll = nil
+end
 
 -- Bash
 
