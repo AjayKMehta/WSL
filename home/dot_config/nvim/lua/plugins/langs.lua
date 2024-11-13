@@ -66,6 +66,45 @@ return {
         ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
         lazy = true,
         cmd = "Dotnet",
+        keys = {
+            {
+                "<leader>nb",
+                function()
+                    require("easy-dotnet").build_default_quickfix()
+                end,
+                desc = "build",
+            },
+            {
+                "<leader>nB",
+                function()
+                    require("easy-dotnet").build_quickfix()
+                end,
+                desc = "build solution",
+            },
+            {
+                "<leader>nr",
+                function()
+                    require("easy-dotnet").run_default()
+                end,
+                desc = "run",
+            },
+            {
+                "<leader>nR",
+                function()
+                    require("easy-dotnet").run_solution()
+                end,
+                desc = "run solution",
+            },
+            {
+                "<leader>nx",
+                function()
+                    require("easy-dotnet").clean()
+                end,
+                desc = "clean solution",
+            },
+            { "<leader>nA", "<cmd>Dotnet new<cr>", desc = "new item" },
+            { "<leader>nT", "<cmd>Dotnet testrunner<cr>", desc = "open test runner" },
+        },
         config = function()
             local dotnet = require("easy-dotnet")
 
@@ -98,46 +137,26 @@ return {
                 csproj_mappings = true,
                 fsproj_mappings = false,
                 auto_bootstrap_namespace = true,
-                keys = {
-                    {
-                        "<leader>nb",
-                        function()
-                            require("easy-dotnet").build_default_quickfix()
+                terminal = function(path, action, args)
+                    local commands = {
+                        run = function()
+                            return string.format("dotnet run --project %s %s", path, args)
                         end,
-                        desc = "build",
-                    },
-                    {
-                        "<leader>nB",
-                        function()
-                            require("easy-dotnet").build_quickfix()
+                        test = function()
+                            return string.format("dotnet test %s %s", path, args)
                         end,
-                        desc = "build solution",
-                    },
-                    {
-                        "<leader>nr",
-                        function()
-                            require("easy-dotnet").run_default()
+                        restore = function()
+                            return string.format("dotnet restore %s %s", path, args)
                         end,
-                        desc = "run",
-                    },
-                    {
-                        "<leader>nR",
-                        function()
-                            require("easy-dotnet").run_solution()
+                        build = function()
+                            return string.format("dotnet build %s %s", path, args)
                         end,
-                        desc = "run solution",
-                    },
-                    {
-                        "<leader>nx",
-                        function()
-                            require("easy-dotnet").clean()
-                        end,
-                        desc = "clean solution",
-                    },
-                    { "<leader>na", "<cmd>Dotnet new<cr>", desc = "new item" },
-                    { "<leader>nt", "<cmd>Dotnet testrunner<cr>", desc = "open test runner" },
-                    -- stylua: ignore end
-                },
+                    }
+
+                    local command = commands[action]() .. "\r"
+                    -- TODO: Make this window smaller.
+                    require("toggleterm").exec(command, nil, nil, nil, "horizontal")
+                end,
             }
 
             dotnet.setup(config)
