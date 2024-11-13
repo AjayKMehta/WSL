@@ -9,7 +9,23 @@ return {
                 "rcarriga/nvim-dap-ui",
                 dependencies = { "nvim-neotest/nvim-nio" },
             },
-            { "theHamsta/nvim-dap-virtual-text" },
+            {
+                "theHamsta/nvim-dap-virtual-text",
+                opts = {
+                    enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
+                    highlight_changed_variables = true,
+                    show_stop_reason = true, -- show stop reason when stopped for exceptions
+                },
+                config = function(_, opts)
+                    require("nvim-dap-virtual-text").setup(opts)
+                    vim.api.nvim_create_user_command("DapVirtualTextClear", function()
+                        require("nvim-dap-virtual-text.virtual_text").clear_virtual_text()
+                    end, {
+                        desc = "Clear all the virtual text displayed by nvim-dap-virtual-text",
+                        force = true,
+                    })
+                end,
+            },
             {
                 "mfussenegger/nvim-dap-python",
                 ft = "python",
