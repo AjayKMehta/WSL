@@ -124,45 +124,6 @@ lspconfig.marksman.setup({
     root_dir = require("lspconfig.util").root_pattern(".git", ".marksman.toml", "_quarto.yml"),
 })
 
--- TODO: Replace PS LSP setup with powershell.nvim!
--- https://github.com/TheLeoP/powershell.nvim
-
--- https://github.com/PowerShell/PowerShellEditorServices/blob/89ce0867c6b119bef8af83ab21c249e10d0e77a2/docs/guide/getting_started.md
-
--- The bundle_path is where PowerShell Editor Services was installed
-local bundle_path = mason_path .. "/packages/powershell-editor-services"
-
-local custom_settings_path = bundle_path .. "/PSScriptAnalyzer/1.23.0/PSScriptAnalyzer.psd1"
-
-local command_fmt =
-    [[& '%s/PowerShellEditorServices/Start-EditorServices.ps1' -BundledModulesPath '%s' -SessionDetailsPath '%s/powershell_es.session.json' -HostName 'nvim' -HostProfileId 'nvim' -HostVersion '1.0.0' -LogLevel Normal]]
-local temp_path = vim.fn.stdpath("cache")
-local command = command_fmt:format(bundle_path, bundle_path, temp_path)
-
-lspconfig.powershell_es.setup({
-    filetypes = { "ps1" },
-    bundle_path = bundle_path,
-    -- Contrary to docs, LSP doesn't work without cmd specified even if bundle_path is set.
-    cmd = { "pwsh", "-NoLogo", "-NoProfile", "-Command", command },
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-        powershell = {
-            codeFormatting = {
-                Preset = "OTBS",
-                AddWhitespaceAroundPipe = true,
-                IgnoreOneLineBlock = true,
-                PipelineIndentationStyle = "IncreaseIndentationForFirstPipeline",
-                TrimWhitespaceAroundPipe = true,
-                UseConstantStrings = true,
-                UseCorrectCasing = true,
-                WhitespaceBetweenParameters = true,
-            },
-            scriptAnalysis = { settingsPath = custom_settings_path },
-        },
-    },
-})
-
 lspconfig.ruff.setup({
     cmd_env = { RUFF_TRACE = "messages" },
     init_options = {

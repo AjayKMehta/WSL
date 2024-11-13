@@ -118,12 +118,7 @@ local dapui_config = {
 }
 
 dapui.setup(dapui_config)
-dap.listeners.after.event_initialized["dapui_config"] = function()
-    dapui.open({})
-    -- https://github.com/Willem-J-an/nvim-dap-powershell#repl-content-color-correction
-    -- Powershell Editor Services send back ANSI color coded error messages.
-    require("dap-powershell").correct_repl_colors()
-end
+
 dap.listeners.before.event_terminated["dapui_config"] = function()
     dapui.close()
 end

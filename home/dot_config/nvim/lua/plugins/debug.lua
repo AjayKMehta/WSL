@@ -19,20 +19,6 @@ return {
                     require("dap-python").setup(path)
                 end,
             },
-            {
-                "Willem-J-an/nvim-dap-powershell",
-                enabled = true,
-                dependencies = {
-                    "nvim-lua/plenary.nvim",
-                    {
-                        "m00qek/baleia.nvim",
-                        lazy = true,
-                    },
-                },
-                config = function()
-                    require("dap-powershell").setup()
-                end,
-            },
         },
     },
     {

@@ -148,4 +148,30 @@ return {
             end, {})
         end,
     },
+    {
+        "TheLeoP/powershell.nvim",
+        ft= {"ps1", "psm1"},
+        opts = {
+            capabilities = lsp.capabilities,
+            bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services",
+            settings = {
+                enableProfileLoading = false,
+                powershell = {
+                    codeFormatting = {
+                        Preset = "OTBS",
+                        AddWhitespaceAroundPipe = true,
+                        IgnoreOneLineBlock = true,
+                        PipelineIndentationStyle = "IncreaseIndentationForFirstPipeline",
+                        TrimWhitespaceAroundPipe = true,
+                        UseConstantStrings = true,
+                        UseCorrectCasing = true,
+                        WhitespaceBetweenParameters = true,
+                    },
+                },
+            },
+            init_options = {
+                enableProfileLoading = false,
+            },
+        },
+    },
 }
