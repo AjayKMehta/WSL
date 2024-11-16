@@ -192,5 +192,9 @@ return {
                 enableProfileLoading = false,
             },
         },
+        config = function(_, opts)
+            require("powershell").setup(opts)
+        end
+
     },
 }
