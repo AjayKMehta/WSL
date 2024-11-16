@@ -2,9 +2,24 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
+[manager]
+ratio = [1, 4, 3]
+linemode = "permissions"
+show_hidden = true
+show_symlink = true
+scrolloff = 5
+mouse_events = ["click", "scroll"]
+
 [opener]
 edit = [
-  { run = '${EDITOR:=nvim} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+  { run = '${EDITOR:=nvim} "$@"', desc = "$EDITOR", block = true, for = "linux" },
+]
+open = [{ run = 'xdg-open "$1"', desc = "Open", for = "linux" }]
+reveal = [
+  { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
+]
+extract = [
+  { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "linux" },
 ]
 
 [plugin]
