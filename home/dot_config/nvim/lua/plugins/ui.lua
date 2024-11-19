@@ -82,7 +82,11 @@ return {
     {
         "akinsho/bufferline.nvim",
         version = "*",
-        dependencies = "nvim-tree/nvim-web-devicons",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+            -- ChromaBuffer provides the color highlights you can use for configuring bufferline.
+            "mei28/chromabuffer",
+        },
         config = load_config("bufferline"),
     },
     {
