@@ -214,6 +214,7 @@ return {
             on_attach = function(bufnr)
                 -- See :help nvim-tree.api
                 local api = require("nvim-tree.api")
+                local preview = require("nvim-tree-preview")
 
                 local bufmap = function(lhs, rhs, desc)
                     vim.keymap.set("n", lhs, rhs, { buffer = bufnr, desc = desc })
@@ -228,6 +229,9 @@ return {
                     local path = vim.fn.input("Enter root path:")
                     api.tree.change_root(path)
                 end, "Change root to input path")
+
+                bufmap("P", preview.watch, "Preview (Watch)")
+                bufmap("<Esc>", preview.unwatch, "Close Preview/Unwatch")
 
                 local function print_node_path()
                     local node = api.tree.get_node_under_cursor()
@@ -269,6 +273,19 @@ return {
                 end
 
                 bufmap("ga", git_add, "Stage/unstage file")
+
+                -- https://github.com/b0o/nvim-tree-preview.lua
+                -- Smart tab behavior: Only preview files, expand/collapse directories (recommended)
+                bufmap("<Tab>", function()
+                    local ok, node = pcall(api.tree.get_node_under_cursor)
+                    if ok and node then
+                        if node.type == "directory" then
+                            api.node.open.edit()
+                        else
+                            preview.node(node, { toggle_focus = true })
+                        end
+                    end
+                end, "Preview")
             end,
             -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#center-a-floating-nvim-tree-window
             view = {
@@ -301,7 +318,7 @@ return {
                 end,
             },
         },
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        dependencies = { "nvim-tree/nvim-web-devicons", "b0o/nvim-tree-preview.lua" },
         config = function(_, opts)
             dofile(vim.g.base46_cache .. "nvimtree")
             require("configs.nvimtree")
