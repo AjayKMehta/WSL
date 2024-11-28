@@ -129,12 +129,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
-shopt -s extglob
-for f in ~/.config/bash_completions.d/!(*LICENSE*); do
+while IFS= read -r -d '' file; do
    # shellcheck source=/dev/null
-   . "$f"
-done
-shopt -u extglob
+   . "$file"
+done < <(find ~/.config/bash_completions.d -type f ! -name '*LICENSE*' -print0)
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
@@ -176,8 +174,13 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # shellcheck source=/home/ajay/.bash-preexec.sh
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 
-# shellcheck source=/home/ajay/.fzf.bash
+# shellcheck source=/dev/null
+[ -f ~/.config/bash_completions.d/fzf/completion.bash ] && source ~/.config/bash_completions.d/fzf/completion.bash
+# shellcheck source=/dev/null
+[ -f ~/.config/bash_completions.d/fzf/key-bindings.bash ] && source ~/.config/bash_completions.d/fzf/key-bindings.bash
+# # shellcheck source=/dev/null
 # Utility script with useful functions
+# shellcheck source=/dev/null
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 
