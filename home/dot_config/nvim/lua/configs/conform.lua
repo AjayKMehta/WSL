@@ -85,7 +85,7 @@ conform.setup({
         },
         query = { "format-queries" },
         sql = { "sql-formatter" },
-        tex = { "latexindent" },
+        tex = { "tex-fmt" },
         toml = { "taplo" },
         xml = { "xmllint" },
         yaml = { "yamlfix" },

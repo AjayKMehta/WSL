@@ -305,39 +305,22 @@ return {
                 zsh = "$dir/$fileName",
                 -- Using tectonic compiler
                 tex = function(...)
-                    local latexCompileOptions = {
-                        "Single",
-                        "Project",
-                    }
-                    local preview = require("code_runner.hooks.preview_pdf")
-                    local cr_au = require("code_runner.hooks.autocmd")
-                    vim.ui.select(latexCompileOptions, {
-                        prompt = "Select compile mode:",
-                    }, function(opt, _)
-                        if opt then
-                            if opt == "Single" then
-                                -- Single preview for latex files
-                                preview.run({
-                                    command = "tectonic",
-                                    args = { "$fileName", "--keep-logs", "-o", "/tmp" },
-                                    preview_cmd = "zathura --fork",
-                                    overwrite_output = "/tmp",
-                                })
-                            elseif opt == "Project" then
-                                -- Create command for stop job
-                                cr_au.stop_job() -- CodeRunnerJobPosWrite
-                                -- Compile
-                                os.execute("tectonic -X build --keep-logs --open &> /dev/null &")
-                                -- Command for hot reload
-                                local fn = function()
-                                    os.execute("tectonic -X build --keep-logs &> /dev/null &")
-                                end
-                                -- Create Job for hot reload latex compiler
-                                -- Execute after write
-                                cr_au.create_au_write(fn)
-                            end
-                        end
-                    end)
+                    require("code_runner.hooks.ui").select({
+                        Single = function()
+                            local preview = require("code_runner.hooks.preview_pdf")
+                            preview.run({
+                                command = "tectonic",
+                                args = { "$fileName", "--keep-logs", "-o", "/tmp" },
+                                preview_cmd = "zathura --fork",
+                                overwrite_output = "/tmp",
+                            })
+                        end,
+                        Project = function()
+                            -- this is my personal config for compiling a project with tectonic
+                            -- for example --keep-logs is used to keep the logs of the compilation, see tectonic -X build --help for more info
+                            require("code_runner.hooks.tectonic").build("zathura --fork", { "--keep-logs" }) -- Build the project, default command is tectonic -X build
+                        end,
+                    })
                 end,
                 markdown = function(...)
                     local markdownCompileOptions = {

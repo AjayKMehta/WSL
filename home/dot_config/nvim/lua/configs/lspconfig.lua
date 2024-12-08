@@ -40,9 +40,6 @@ local servers = {
     -- Graphviz
     "dotls",
 
-    -- Python
-    -- "pylyzer",
-
     -- R
     "r_language_server",
 }
