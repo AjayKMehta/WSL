@@ -51,4 +51,12 @@ fi
 
 # shellcheck source=/dev/null
 . "$HOME/.atuin/bin/env"
+# shellcheck source=/dev/null
 . "$HOME/.cargo/env"
+
+
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+  eval "$($HOME/.local/bin/mise activate bash --shims)"
+else
+  eval "$($HOME/.local/bin/mise activate bash)"
+fi
