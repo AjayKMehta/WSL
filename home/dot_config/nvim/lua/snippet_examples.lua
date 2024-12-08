@@ -425,4 +425,20 @@ ls.add_snippets("all", {
     trig2_snippet,
     dl_snippet,
     -- cond_snippet,
+    -- indent_string
+    -- NOTE: [[\t]] means '\\t'
+    s(
+        "indent_string",
+        fmt(
+            [[
+    line1: no indent
+    \tline3: '\\t' -> 1 indent ('\t')
+    \t\tline4: '\\t\\t' -> 2 indent ('\t\t')
+  ]],
+            {},
+            {
+                indent_string = [[\t]],
+            }
+        )
+    ),
 })
