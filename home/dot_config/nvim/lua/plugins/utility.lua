@@ -496,14 +496,14 @@ return {
         },
         keys = {
             {
-                "]]",
+                "<leader>s]",
                 function()
                     Snacks.words.jump(vim.v.count1)
                 end,
                 desc = "Next Reference",
             },
             {
-                "[[",
+                "<leader>s[",
                 function()
                     Snacks.words.jump(-vim.v.count1)
                 end,
