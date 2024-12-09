@@ -34,6 +34,9 @@ vim.g.nvim_comment = true
 -- if true, use base46 diffview integration.
 vim.g.diffview_base46 = true
 
+-- if true, use zathura_simple for viewing PDFs with vimtex
+vim.g.use_zathura_simple = true
+
 -- load plugins
 require("lazy").setup({
     {

@@ -1,26 +1,20 @@
--- https://github.com/tinyCatzilla/dots/blob/193cc61951579db692e9cc7f8f278ed33c8b52d4/.config/nvim/lua/custom/configs/vimtex.lua
+vim.g.tex_flavor = "latex"
 
-local g = vim.g
+-- #region View options
 
-g.tex_flavor = "latex"
--- g.vimtex_view_method = conf.vimtex_view_method
-g.vimtex_compiler_progname = "nvr"
+if vim.g.use_zathura_simple then
+    -- Do not rely on xodotool: https://github.com/lervag/vimtex/issues/2767
+    vim.g.vimtex_view_method = "zathura_simple"
+    vim.g.vimtex_view_general_viewer = "zathura"
+    vim.g.vimtex_view_general_options = "-r @line @pdf @tex"
+end
 
-g.vimtex_view_general_viewer = "zathura"
--- Stopped working! :(
--- g.vimtex_view_method = 'zathura'
--- Do not rely on xodotool: https://github.com/lervag/vimtex/issues/2767
-g.vimtex_view_method = "zathura_simple"
+vim.g.vimtex_view_skim_sync = 1
+vim.g.vimtex_view_skim_activate = 1
 
--- https://github.com/Neelfrost/nvim-config/blob/1b1e11bed240987bfe0eae30538394ec210f1aa9/lua/user/plugins/config/vimtex.lua#L34
--- https://medium.com/@Pirmin/a-minimal-latex-setup-on-windows-using-wsl2-and-neovim-51259ff94734
--- Also, see https://github.com/lervag/vimtex/issues/2566#issuecomment-1322886643
--- g.vimtex_view_general_viewer = 'SumatraPDF'
--- g.vimtex_view_method = 'SumatraPDF'
--- g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+--#endregion
 
-g.vimtex_view_skim_sync = 1
-g.vimtex_view_skim_activate = 1
+--#region Compiler options
 
 vim.g.vimtex_compiler_method = "latexmk"
 vim.g.vimtex_compiler_latexmk = {
@@ -35,15 +29,18 @@ vim.g.vimtex_compiler_latexmk = {
         "-interaction=nonstopmode",
     },
 }
+vim.g.vimtex_compiler_progname = "nvr"
+
+--#endregion
 
 -- vim.g['vimtex_mappings_enabled'] = 0
-g.vimtex_indent_enabled = 0
-g.vimtex_quickfix_mode = 0
+vim.g.vimtex_indent_enabled = 0
+vim.g.vimtex_quickfix_mode = 0
 
 -- Using Treesitter requires these settings
 vim.g.vimtex_syntax_enabled = 0
 -- https://github.com/lervag/vimtex/blob/5e6a8ff1405f0f2480c37bb10fa69ddfb1b6713f/doc/vimtex.txt#L4841
-g.vimtex_syntax_conceal_disable = 1
+vim.g.vimtex_syntax_conceal_disable = 1
 
 -- https://github.com/ofseed/nvim/blob/351ad3c7a8de6e03deab32e0705398169d4f3b8d/lua/plugins/filetype/tex.lua
 vim.g.vimtex_toc_config = {
@@ -56,18 +53,18 @@ vim.g.vimtex_toc_config = {
 }
 
 -- Disable imaps (using LuaSnip)
-g.vimtex_imaps_enabled = 0
-g.vimtex_imaps_leader = "`"
+vim.g.vimtex_imaps_enabled = 0
+vim.g.vimtex_imaps_leader = "`"
 
-g.vimtex_fold_levelmarker = ""
-g.vimtex_fold_enabled = 1
-g.vimtex_fold_manual = 1
-g.tex_comment_nospell = 1
+vim.g.vimtex_fold_levelmarker = ""
+vim.g.vimtex_fold_enabled = 1
+vim.g.vimtex_fold_manual = 1
+vim.g.tex_comment_nospell = 1
 
-g.vimtex_format_enabled = 1
+vim.g.vimtex_format_enabled = 1
 
 -- Latex warnings to ignore
-g.vimtex_quickfix_ignore_filters = {
+vim.g.vimtex_quickfix_ignore_filters = {
     "Command terminated with space",
     "LaTeX Font Warning: Font shape",
     "Package caption Warning: The option",
@@ -85,7 +82,7 @@ g.vimtex_quickfix_ignore_filters = {
 -- Error suppression:
 -- https://github.com/lervag/vimtex/blob/master/doc/vimtex.txt
 
-g.vimtex_log_ignore = {
+vim.g.vimtex_log_ignore = {
     "Underfull",
     "Overfull",
     "specifier changed to",
