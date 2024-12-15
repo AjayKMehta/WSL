@@ -123,7 +123,6 @@ M.config = function()
             "helpgrep",
             "hoogle",
             "noice",
-            "notify",
             "terms",
             "themes",
             "undo",
