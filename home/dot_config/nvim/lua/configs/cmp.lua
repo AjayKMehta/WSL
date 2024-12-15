@@ -251,8 +251,15 @@ for _, value in ipairs(other_latex_sources) do
     table.insert(tex_sources, value)
 end
 
-cmp.setup.filetype({ "tex", "plaintex", "markdown", "rmd", "quarto" }, {
+cmp.setup.filetype({ "tex", "plaintex" }, {
     sources = tex_sources,
+})
+
+local markdown_sources = vim.deepcopy(tex_sources)
+-- Completions for both checkboxes and callouts
+table.insert(markdown_sources, { name = "render-markdown", group_index = 1, priority = 80 })
+cmp.setup.filetype({ "markdown", "rmd", "quarto" }, {
+    sources = markdown_sources,
 })
 
 local r_sources = vim.deepcopy(default_sources)
