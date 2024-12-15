@@ -6,7 +6,6 @@ if vim.g.use_zathura_simple then
     -- Do not rely on xodotool: https://github.com/lervag/vimtex/issues/2767
     vim.g.vimtex_view_method = "zathura_simple"
     vim.g.vimtex_view_general_viewer = "zathura"
-    vim.g.vimtex_view_general_options = "-r @line @pdf @tex"
 end
 
 vim.g.vimtex_view_skim_sync = 1
@@ -32,6 +31,8 @@ vim.g.vimtex_compiler_latexmk = {
 vim.g.vimtex_compiler_progname = "nvr"
 
 --#endregion
+
+vim.g.vimtex_complete_close_braces = 1
 
 -- vim.g['vimtex_mappings_enabled'] = 0
 vim.g.vimtex_indent_enabled = 0
