@@ -12,54 +12,6 @@ autocmd("BufReadPre", {
     command = "set noundofile",
 })
 
--- Highlight yanked text
-
--- local yank_highlight_id = augroup("highlightyank", { clear = true })
-
--- https://github.com/jakesjews/Dot-Files-And-Scripts/blob/088138f25c16f89f206af6be9756175b3bb682da/init.lua
--- autocmd("TextYankPost", {
---     group = yank_highlight_id,
---     callback = function()
---         vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200, on_visual = true })
---     end,
--- })
-
--- Auto resize panes when resizing nvim window
--- autocmd("VimResized", {
---   pattern = "*",
---   command = "tabdo wincmd =",
--- })
-
--- Create command for LSP attach to close hover window
-
--- https://vi.stackexchange.com/a/43436
-local hover_close = function(base_win_id)
-    local windows = vim.api.nvim_tabpage_list_wins(0)
-    for _, win_id in ipairs(windows) do
-        if win_id ~= base_win_id then
-            local win_cfg = vim.api.nvim_win_get_config(win_id)
-            if win_cfg.relative == "win" and win_cfg.win == base_win_id then
-                vim.api.nvim_win_close(win_id, {})
-                break
-            end
-        end
-    end
-end
-
--- Later, or in another file, when you create keymaps for LSP
-local lspattach_augroup = augroup("LspHoverClose", { clear = true })
-
-autocmd("LspAttach", {
-    group = lspattach_augroup,
-    callback = function(ev)
-        vim.keymap.set("n", "<Leader>;", function()
-            hover_close(vim.api.nvim_get_current_win())
-        end, { remap = false, silent = true, buffer = ev.buf, desc = "Close hover window" })
-    end,
-})
-
--- Set conceallevel for markdown files
-
 -- https://github.com/catgoose/nvim/blob/main/lua/config/autocmd.lua#L2
 local conceallevel_augroup = augroup("SetConcealLevel", { clear = true })
 

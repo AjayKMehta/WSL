@@ -66,8 +66,6 @@ local config = {
     tree_setter = {
         enable = true,
     },
-    -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring/issues/82#issuecomment-1817659634
-    -- context_commentstring = { enable = true },
     matchup = { enable = true },
     -- https://github.com/nvim-treesitter/nvim-treesitter-refactor
     refactor = {
