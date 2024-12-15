@@ -93,7 +93,7 @@ return {
     {
         "MeanderingProgrammer/render-markdown.nvim",
         opts = {
-            file_types = { "markdown", "quarto", "rmd", "org", "norg" },
+            file_types = { "markdown", "quarto", "rmd", "org", "norg",  "codecompanion" },
             quote = { repeat_linebreak = true },
             -- Mimic org-indent-mode behavior by indenting everything under a heading based on the
             -- level of the heading. Indenting starts from level 2 headings onward.
