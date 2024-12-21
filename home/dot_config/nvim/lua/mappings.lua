@@ -49,7 +49,7 @@ end, "Lsp Go to implementation")
 -- tabufline (NVChad plugin)
 -- NVChad maps this to <leader>b
 -- Use Tab and Shift+Tab to navigate between buffers
-map_desc("n", "<leader>bb", "<cmd>enew<CR>", "Buffer New")
+map_desc("n", "<leader>bb", "<cmd>enew<CR>", "Buffer New") -- spellchecker:disable-line
 
 --#region ghcup
 
@@ -60,7 +60,6 @@ map_desc("n", "<leader>gg", "<cmd>GHCup <CR>", "ghcup")
 --#region Telescope
 
 map_desc("n", "<leader>fb", "<cmd>Telescope file_browser<CR>", "Telescope File browser")
-map_desc("n", "<leader>fM", "<cmd>Telescope bookmarks list<CR>", "Telescope Bookmarks ")
 map_desc("n", "<leader>fB", function()
     require("telescope.builtin").buffers()
 end, "Telescope Find buffers")
@@ -154,13 +153,11 @@ local live_multigrep = function(opts)
             prompt_title = "Live Multi Grep",
             previewer = conf.grep_previewer(opts),
             sorters = sorters.empty(),
-            finder = finder
+            finder = finder,
         })
         :find()
 end
-map_desc("n", "<leader>f/", live_multigrep
-, "Telescope Live multigrep")
-
+map_desc("n", "<leader>f/", live_multigrep, "Telescope Live multigrep")
 
 map_desc("n", "<leader>fy", function()
     require("telescope.builtin").buffers()
@@ -274,24 +271,13 @@ map_desc({ "n", "v" }, "<A-Down>", fn_move("down"), "mini.move line down")
 --#region dap
 
 -- Keep same as VS + VS Code
-map_desc("n", "<F9>", function()
-    require("dap").toggle_breakpoint()
-end, "DAP Toggle breakpoint")
-map_desc("n", "<F5>", function()
-    require("dap").continue()
-end, "DAP Launch debugger")
-map_desc("n", "<F10>", function()
-    require("dap").step_over()
-end, "DAP Step over")
-map_desc("n", "<F11>", function()
-    require("dap").step_into()
-end, "DAP Step into")
-map_desc("n", "<S-F11>", function()
-    require("dap").step_out()
-end, "DAP Step out")
-map_desc("n", "<F12>", function()
-    require("dap").step_out()
-end, "DAP Step out")
+map_desc("n", "<F9>", "<cmd>DapToggleBreakpoint<CR>", "DAP Toggle breakpoint")
+-- <C-S-F9> doesn't work!
+map_desc("n", "<F8>", "<cmd>DapClearBreakpoints<CR>", "DAP Clear breakpoints")
+map_desc("n", "<F5>", "<cmd>DapContinue<CR>", "DAP Launch debugger")
+map_desc("n", "<F10>", "<cmd>DapStepOver<CR>", "DAP Step over")
+map_desc("n", "<F11>", "<cmd>DapStepInto<CR>", "DAP Step into")
+map_desc("n", "<S-F11>", "<cmd>DapStepOut<CR>", "DAP Step out")
 
 map_desc("n", "<leader>rb", function()
     require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
