@@ -219,6 +219,11 @@ local config = {
             },
         },
         lualine_x = {
+            {
+                "rest",
+                icon = "",
+                fg = "#428890",
+            },
             -- https://github.com/folke/lazy.nvim#-usage
             {
                 require("lazy.status").updates,

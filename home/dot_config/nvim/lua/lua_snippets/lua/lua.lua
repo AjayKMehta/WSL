@@ -300,7 +300,7 @@ local lua = {
         i(3, "RHS"),
         t({ "', " }),
         t({ "\t{" }),
-        -- todo make this a table option
+        -- TODO make this a table option
         c(4, {
             i(1, "noremap = true"),
             i(1, "silent = true"),

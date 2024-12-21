@@ -18,7 +18,7 @@ end
 
 require("bufferline").setup({
     options = {
-        themable = true,
+        themable = true, -- allows highlight groups to be overridden
         diagnostics = "nvim_lsp",
         diagnostics_indicator = diag_ind,
         diagnostics_update_on_event = true,
@@ -28,6 +28,7 @@ require("bufferline").setup({
         mode = "buffers",
         separator_style = "thin",
         always_show_bufferline = true,
+        show_buffer_icons = true,
         show_buffer_close_icons = false,
         show_close_icon = false,
         color_icons = true,
