@@ -136,7 +136,6 @@
   "telescope-undo.nvim": { "branch": "main", "commit": "2971cc9f193ec09e0c5de3563f99cbea16b63f10" },
   "telescope.nvim": { "branch": "master", "commit": "2eca9ba22002184ac05eddbe47a7fe2d5a384dfc" },
   "telescope_hoogle": { "branch": "master", "commit": "5c2ae51bcf905a7101134a597e6f7be2dc05f975" },
-  "todo-comments.nvim": { "branch": "main", "commit": "ae0a2afb47cf7395dc400e5dc4e05274bf4fb9e0" },
   "toggle.nvim": { "branch": "main", "commit": "50769ba8982d3d3a8fbd1d1a2e5cad63c73df662" },
   "togglescope": { "branch": "main", "commit": "56f422e46f504ab278d433fff8eff21cd9a91b92" },
   "toggleterm.nvim": { "branch": "main", "commit": "87b2d6a3cab8e2bd9a0255427074285f0365398d" },
