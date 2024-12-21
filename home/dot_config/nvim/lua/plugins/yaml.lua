@@ -49,8 +49,10 @@ return {
             },
         },
         config = function(_, opts)
-            -- require("yaml-companion").setup(opts)
-            require("lspconfig")["yamlls"].setup(opts)
+            local cfg = require("yaml-companion").setup(opts)
+            local lsp = require("utils.lsp")
+            cfg = vim.tbl_deep_extend("force", cfg, { on_attach = lsp.on_attach, capabilities = lsp.capabilities })
+            require("lspconfig")["yamlls"].setup(cfg)
             require("telescope").load_extension("yaml_schema")
         end,
     },
