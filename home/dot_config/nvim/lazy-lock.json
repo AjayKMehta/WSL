@@ -140,6 +140,7 @@
   "toggle.nvim": { "branch": "main", "commit": "50769ba8982d3d3a8fbd1d1a2e5cad63c73df662" },
   "togglescope": { "branch": "main", "commit": "56f422e46f504ab278d433fff8eff21cd9a91b92" },
   "toggleterm.nvim": { "branch": "main", "commit": "87b2d6a3cab8e2bd9a0255427074285f0365398d" },
+  "treewalker.nvim": { "branch": "main", "commit": "e591604021cf8be6df081ee4c4853e29d48da9af" },
   "trouble.nvim": { "branch": "main", "commit": "46cf952fc115f4c2b98d4e208ed1e2dce08c9bf6" },
   "ts-node-action": { "branch": "master", "commit": "6d3b60754fd87963d70eadaa2f77873b447eac26" },
   "ui": { "branch": "v3.0", "commit": "9a4ecb0bbaecd7208471c678e7dbacdeba517648" },
