@@ -160,25 +160,25 @@ return {
             func_map = {
                 open = "<cr>",
                 openc = "o",
-                drop = "O",
+                drop = "O", -- open the item, and close quickfix window
                 vsplit = "v",
                 split = "s",
-                tab = "t",
-                tabc = "T",
-                ptoggleitem = "p",
-                ptoggleauto = "P",
+                tab = "t", -- open the item in a new tab
+                tabc = "T", -- open the item in a new tab, and close quickfix window
+                ptoggleitem = "p", -- toggle preview for a quickfix list item
+                ptoggleauto = "P", -- toggle auto-preview when cursor moves
                 prevfile = "<C-p>",
                 nextfile = "<C-n>",
-                stoggledown = "<Tab>",
-                stoggleup = "<S-Tab>",
-                stogglevm = "<Tab>",
+                stoggledown = "<Tab>", -- toggle sign and move cursor down
+                stoggleup = "<S-Tab>", -- toggle sign and move cursor up
+                stogglevm = "<Tab>", -- toggle multiple signs in visual mode
                 sclear = "z<Tab>",
                 pscrollup = "<C-u>",
                 pscrolldown = "<C-d>",
-                fzffilter = "zf",
+                fzffilter = "zf", -- enter fzf mode
                 ptogglemode = "zp",
-                filter = "zn",
-                filterr = "zr",
+                filter = "zn", -- create new list for signed items
+                filterr = "zr", -- create new list for non-signed items
             },
             filter = {
                 fzf = {
@@ -335,15 +335,6 @@ return {
             },
         },
         event = "BufEnter",
-    },
-    {
-        -- Show all todo comments in solution
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("todo-comments").setup({})
-        end,
-        event = "VeryLazy",
     },
     {
         "christoomey/vim-tmux-navigator",
