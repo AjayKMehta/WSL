@@ -93,9 +93,9 @@ return {
 
                 -- Blame
 
-                map("n", "<leader>tb", gs.toggle_current_line_blame, "gitsigns Toggle current line blame")
+                map("n", "<leader>gbt", gs.toggle_current_line_blame, "gitsigns Toggle current line blame")
 
-                map("n", "<leader>gb", function()
+                map("n", "<leader>gbl", function()
                     gs.blame_line({ full = true, ignore_whitespace = false })
                 end, "gitsigns blame line")
 
@@ -113,21 +113,21 @@ return {
 
                 -- Navigation
 
-                map({ "n", "v" }, "]h", function()
+                map({ "n", "v" }, "[h", function()
                     gs.nav_hunk("prev")
                 end, "gitsigns Go to previous hunk")
 
-                map({ "n", "v" }, "[h", function()
+                map({ "n", "v" }, "]h", function()
                     gs.nav_hunk("next")
                 end, "gitsigns Go to next hunk")
 
-                map({ "n", "v" }, "]H", function()
+                map({ "n", "v" }, "[H", function()
                     gs.nav_hunk("first")
                 end, "gitsigns Go to first hunk")
 
-                map({ "n", "v" }, "[H", function()
+                map({ "n", "v" }, "]H", function()
                     gs.nav_hunk("last")
-                end, "gitsigns Go to next hunk")
+                end, "gitsigns Go to last hunk")
 
                 -- Preview
 
