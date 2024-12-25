@@ -45,6 +45,7 @@ return {
             },
             highlight_for_count = true,
         },
+        -- Real mapping defined in config
         keys = { { "u" }, { "<C-r>" } },
     },
     {

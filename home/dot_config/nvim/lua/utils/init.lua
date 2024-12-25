@@ -6,7 +6,6 @@ function M.load_config(plugin)
     end
 end
 
--- https://github.com/linrongbin16/lin.nvim/blob/c8e5ecbca422938a52126022b89395e93281c11c/lua/builtin/utils/layout.lua
 M.get_width = function(percent, min_width, max_width)
     local editor_w = vim.o.columns
     local result = math.floor(editor_w * percent)
