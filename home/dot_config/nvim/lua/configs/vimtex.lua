@@ -28,15 +28,15 @@ vim.g.vimtex_compiler_latexmk = {
         "-interaction=nonstopmode",
     },
 }
+
 vim.g.vimtex_compiler_progname = "nvr"
 
 --#endregion
 
 vim.g.vimtex_complete_close_braces = 1
 
--- vim.g['vimtex_mappings_enabled'] = 0
 vim.g.vimtex_indent_enabled = 0
-vim.g.vimtex_quickfix_mode = 0
+
 
 -- Using Treesitter requires these settings
 vim.g.vimtex_syntax_enabled = 0
@@ -53,7 +53,7 @@ vim.g.vimtex_toc_config = {
     show_numbers = 1,
 }
 
--- Disable imaps (using LuaSnip)
+-- imaps don't work :(
 vim.g.vimtex_imaps_enabled = 0
 vim.g.vimtex_imaps_leader = "`"
 
@@ -63,6 +63,8 @@ vim.g.vimtex_fold_manual = 1
 vim.g.tex_comment_nospell = 1
 
 vim.g.vimtex_format_enabled = 1
+
+-- # region Quickfix
 
 -- Latex warnings to ignore
 vim.g.vimtex_quickfix_ignore_filters = {
@@ -79,6 +81,11 @@ vim.g.vimtex_quickfix_ignore_filters = {
     "Package hyperref Warning: Token not allowed in a PDF string",
     [[Overfull \\hbox ([0-9]*.[0-9]*pt too wide) in paragraph at lines]],
 }
+vim.g.vimtex_quickfix_autoclose_after_keystrokes = 1
+vim.g.vimtex_quickfix_mode = 2 -- open automatically if errors
+
+-- #endregion
+
 
 -- Error suppression:
 -- https://github.com/lervag/vimtex/blob/master/doc/vimtex.txt
