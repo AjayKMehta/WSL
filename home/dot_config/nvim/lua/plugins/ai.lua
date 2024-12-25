@@ -8,6 +8,12 @@ return {
         "stevearc/dressing.nvim",
         "github/copilot.vim",
     },
+    cmd = {
+        "CodeCompanion",
+        "CodeCompanionChat",
+        "CodeCompanionActions",
+        "CodeCompanionCmd",
+    },
     keys = {
         { "cc", "CodeCompanion", mode = "ca" },
         { "ccc", "CodeCompanionChat", mode = "ca" },
