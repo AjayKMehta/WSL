@@ -14,7 +14,6 @@
     usage = "latest"
     eza = {version = "latest", postinstall = 'gh download https://github.com/eza-community/eza/blob/main/completions/bash/eza --outfile ~/.config/bash_completions.d/eza' }
     lazygit = "latest"
-    python = "3.12.7"
     ripgrep = "latest"
     direnv = "latest"
     act = "latest"

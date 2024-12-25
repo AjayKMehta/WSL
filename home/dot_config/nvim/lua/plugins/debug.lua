@@ -31,8 +31,7 @@ return {
                 ft = "python",
                 dependencies = { "HiPhish/debugpy.nvim" },
                 config = function(_, opts)
-                    local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-                    require("dap-python").setup(path)
+                    require("dap-python").setup("uv")
                 end,
             },
         },
