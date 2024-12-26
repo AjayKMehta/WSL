@@ -171,6 +171,7 @@ return {
     },
     {
         "kevinhwang91/nvim-ufo",
+        event = "BufRead",
         dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
         -- Setting these in config was not working 😦
         init = function()

@@ -8,13 +8,6 @@ return {
         opts = {},
     },
     {
-        -- Enhanced folds
-        "kevinhwang91/nvim-ufo",
-        dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
-        event = "BufRead",
-        config = load_config("ufo"),
-    },
-    {
         -- Navigate your code with search labels, enhanced character motions, and Treesitter integration.
         "folke/flash.nvim",
         event = { "BufReadPost", "BufNewFile" },
@@ -157,6 +150,8 @@ return {
     },
     {
         "aaronik/treewalker.nvim",
+        event = { "BufReadPost", "BufNewFile" },
+        cmd = {"Treewalker"},
         opts = {
             highlight = true, -- Whether to briefly highlight the node after jumping to it
             highlight_duration = 250, -- How long should above highlight last (in ms)
