@@ -523,7 +523,12 @@ end, "Legendary Keymap (current mode)")
 
 --#region outline
 
-map_desc("n", "<leader>go", "<cmd>Outline<cr>", "Outline Toggle")
+map_desc("n", "<leader>oo", "<cmd>OutlineOpen<cr>", "Outline Open")
+map_desc("n", "<leader>oc", "<cmd>OutlineClose<cr>", "Outline close")
+map_desc("n", "<leader>ot", "<cmd>Outline<cr>", "Outline Toggle")
+map_desc("n", "<leader>ofo", "<cmd>OutlineFocusOutline<cr>", "Outline Focus")
+map_desc("n", "<leader>ofc", "<cmd>OutlineFocusCode<cr>", "Outline Focus code")
+map_desc("n", "<leader>oF", "<cmd>OutlineFollow<cr>", "Outline Follow")
 
 --#endregion
 
