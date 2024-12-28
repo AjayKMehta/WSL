@@ -169,7 +169,7 @@ batdiff() {
 }
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-# shellcheck source=/home/ajay/.bash-preexec.sh
+# shellcheck source=/dev/null
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 
 # shellcheck source=/dev/null
