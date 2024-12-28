@@ -84,7 +84,7 @@ conform.setup({
             "ruff_organize_imports",
         },
         query = { "format-queries" },
-        sql = { "sql-formatter" },
+        sql = { "sql_formatter" },
         tex = { "tex-fmt" },
         toml = { "taplo" },
         xml = { "xmllint" },

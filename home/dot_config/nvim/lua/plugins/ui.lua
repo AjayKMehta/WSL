@@ -223,8 +223,8 @@ return {
         init = function()
             vim.g.neominimap = {
                 -- Enable the plugin by default
-                auto_enable = true,
-                minimap_width = 14,
+                auto_enable = false,
+                minimap_width = 12,
 
                 -- Log level
                 log_level = vim.log.levels.WARN,
@@ -254,6 +254,10 @@ return {
                 mark = {
                     enabled = true,
                 },
+
+                buf_filter = function(bufnr)
+                    return vim.bo[bufnr].filetype ~= "bigfile"
+                end,
             }
         end,
     },
