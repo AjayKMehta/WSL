@@ -2,10 +2,6 @@ local lsp = require("utils.lsp")
 
 return {
     {
-        "PProvost/vim-ps1",
-        ft = "powershell",
-    },
-    {
         "jalvesaq/Nvim-R",
         lazy = false,
         ft = { "r", "rmd", "quarto" },
