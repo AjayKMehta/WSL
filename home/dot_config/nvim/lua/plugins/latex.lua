@@ -11,7 +11,7 @@ return {
     {
         "iurimateus/luasnip-latex-snippets.nvim",
         dependencies = { "L3MON4D3/LuaSnip" },
-        ft = { "tex", "markdown" },
+        ft = { "tex", "markdown", "rmd", "quarto" },
         config = function()
             require("luasnip-latex-snippets").setup({
                 -- use treesitter to determine if cursor is in math mode; if false, vimtex is used

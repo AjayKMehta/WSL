@@ -29,13 +29,14 @@ return {
         config = load_config("treesitter"),
     },
     {
-        -- Show code context.,
+        -- Show code context.
         "nvim-treesitter/nvim-treesitter-context",
         lazy = false,
         event = "BufReadPost",
+        cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {
-            max_lines = 3,
+            multiline_threshold = 10,
             min_window_height = 0,
             patterns = {
                 default = {
@@ -45,6 +46,10 @@ return {
                 },
             },
         },
+        init = function()
+            vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true })
+            vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", { underline = true })
+        end,
     },
     {
         -- Syntax aware text-objects, select, move, swap, and peek support.
@@ -64,7 +69,7 @@ return {
     {
         "aaronik/treewalker.nvim",
         event = { "BufReadPost", "BufNewFile" },
-        cmd = {"Treewalker"},
+        cmd = { "Treewalker" },
         opts = {
             highlight = true, -- Whether to briefly highlight the node after jumping to it
             highlight_duration = 250, -- How long should above highlight last (in ms)
