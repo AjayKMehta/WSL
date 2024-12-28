@@ -69,6 +69,7 @@ return {
                     require("easy-dotnet").build_default_quickfix()
                 end,
                 desc = "build",
+                ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
             },
             {
                 "<leader>nB",
@@ -76,6 +77,7 @@ return {
                     require("easy-dotnet").build_quickfix()
                 end,
                 desc = "build solution",
+                ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
             },
             {
                 "<leader>nr",
@@ -83,6 +85,7 @@ return {
                     require("easy-dotnet").run_default()
                 end,
                 desc = "run",
+                ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
             },
             {
                 "<leader>nR",
@@ -90,6 +93,7 @@ return {
                     require("easy-dotnet").run_solution()
                 end,
                 desc = "run solution",
+                ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
             },
             {
                 "<leader>nx",
@@ -97,9 +101,20 @@ return {
                     require("easy-dotnet").clean()
                 end,
                 desc = "clean solution",
+                ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
             },
-            { "<leader>nA", "<cmd>Dotnet new<cr>", desc = "new item" },
-            { "<leader>nT", "<cmd>Dotnet testrunner<cr>", desc = "open test runner" },
+            {
+                "<leader>nA",
+                "<cmd>Dotnet new<cr>",
+                desc = "new item",
+                ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
+            },
+            {
+                "<leader>nT",
+                "<cmd>Dotnet testrunner<cr>",
+                desc = "open test runner",
+                ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
+            },
         },
         config = function()
             local dotnet = require("easy-dotnet")
@@ -165,7 +180,7 @@ return {
     },
     {
         "TheLeoP/powershell.nvim",
-        ft= {"ps1", "psm1"},
+        ft = { "ps1", "psm1" },
         opts = {
             capabilities = lsp.capabilities,
             bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services",
@@ -190,7 +205,6 @@ return {
         },
         config = function(_, opts)
             require("powershell").setup(opts)
-        end
-
+        end,
     },
 }
