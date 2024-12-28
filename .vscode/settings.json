@@ -1,6 +1,7 @@
 {
     "Lua.diagnostics.globals": [
-        "vim"
+        "vim",
+        "Snacks"
     ],
     "peacock.remoteColor": "#478948",
     "sarif-viewer.connectToGithubCodeScanning": "off",
