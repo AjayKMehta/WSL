@@ -137,9 +137,9 @@ done < <(find ~/.config/bash_completions.d -type f ! -name '*LICENSE*' -print0)
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
 # Else, WSL uses node from Windows
 nvm use stable
@@ -152,7 +152,9 @@ choose_theme() {
    eval "$(oh-my-posh init bash -c "$x")"
 }
 
-[ -f "/home/ajay/.ghcup/env" ] && source "/home/ajay/.ghcup/env" # ghcup-env
+# ghcup-env
+# shellcheck source=/dev/null
+[[ -f ~/.ghcup/env ]] && source ~/.ghcup/env
 
 # https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2
 
