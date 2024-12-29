@@ -10,7 +10,7 @@ return {
             "nvim-neotest/neotest-python",
             "Issafalcon/neotest-dotnet",
             -- https://github.com/mrcjkb/neotest-haskell/issues/179
-            { "mrcjkb/neotest-haskell", version = "2.0.0" },
+            { "mrcjkb/neotest-haskell", version = "2.1.0" },
         },
         config = function()
             local neotest = require("neotest")
@@ -24,8 +24,9 @@ return {
                             justMyCode = false,
                             console = "integratedTerminal",
                         },
-                        args = { "--log-level", "DEBUG", "--quiet" },
+                        args = { "--log-level", "INFO", "--quiet" },
                         runner = "pytest",
+                        pytest_discover_instances = true,
                     }),
                     -- https://github.com/Issafalcon/neotest-dotnet
                     require("neotest-dotnet")({
