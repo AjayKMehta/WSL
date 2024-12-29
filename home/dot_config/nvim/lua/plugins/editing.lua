@@ -225,7 +225,6 @@ return {
                 NextParagraph = { text = "}", prio = 8 },
             },
             disabled_fts = {
-                "aerial",
                 "checkhealth",
                 "cmp_menu",
                 "flash_prompt",
@@ -305,7 +304,6 @@ return {
             },
             search = {
                 exclude = {
-                    "aerial",
                     "checkhealth",
                     "cmp_menu",
                     "flash_prompt",

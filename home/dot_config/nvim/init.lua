@@ -17,8 +17,6 @@ local lazy_config = require("configs.lazy")
 
 -- Plugin toggles
 
--- If true, use aerial instead of outline
-vim.g.use_aerial = false
 vim.g.use_cmp_emoji = false
 
 -- If true, load snippet examples

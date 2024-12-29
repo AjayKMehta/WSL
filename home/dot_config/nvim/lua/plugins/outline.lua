@@ -3,13 +3,9 @@ local load_config = require("utils").load_config
 return {
     {
         -- Code outline sidebar powered by LSP.
-        -- Differs from aerial as it uses LSP instead of treesitter.
-        -- Seems more reliable than aerial.
+        -- More reliable than aerial.
         "hedyhli/outline.nvim",
         cmd = { "Outline", "OutlineOpen" },
-        enabled = function()
-            return not vim.g.use_aerial
-        end,
         dependencies = { "epheien/outline-treesitter-provider.nvim" },
         opts = {
             providers = {
@@ -52,22 +48,5 @@ return {
         config = function(_, opts)
             require("outline").setup(opts)
         end,
-    },
-    {
-        -- A code outline window for skimming and quick navigation.
-        "stevearc/aerial.nvim",
-        lazy = true,
-        cmd = { "AerialToggle", "AerialOpen", "AerialInfo" },
-        enabled = function()
-            return vim.g.use_aerial
-        end,
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-tree/nvim-web-devicons",
-        },
-        keys = {
-            { "<Leader>ta", "<CMD>AerialToggle<CR>", mode = { "n" }, desc = "Toggle the aerial window" },
-        },
-        config = load_config("aerial"),
     },
 }

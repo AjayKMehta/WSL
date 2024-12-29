@@ -161,15 +161,6 @@ M.config = function()
                 git_status = true,
                 create_from_prompt = false,
             },
-            aerial = {
-                -- Display symbols as <root>.<parent>.<symbol>
-                show_nesting = {
-                    ["_"] = false, -- This key will be the default
-                    json = true, -- You can set the option for specific filetypes
-                    yaml = true,
-                    xml = true,
-                },
-            },
             undo = {
                 use_delta = true,
                 entry_format = "󰣜 #$ID, $STAT, $TIME",
@@ -218,10 +209,6 @@ M.config = function()
         },
         buffer_previewer_maker = new_maker,
     }
-
-    if vim.g.use_aerial then
-        settings.extensions_list = table.insert(settings.extensions_list, "aerial")
-    end
 
     local conf = require("nvchad.configs.telescope")
     return vim.tbl_deep_extend("force", conf, settings)

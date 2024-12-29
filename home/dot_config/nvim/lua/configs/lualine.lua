@@ -267,12 +267,6 @@ local config = {
                 },
             },
             { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-            {
-                "aerial",
-                cond = function()
-                    return vim.g.use_aerial
-                end,
-            },
             -- https://github.com/cuducos/yaml.nvim#showing-the-yaml-path-and-value
             {
                 function(msg)

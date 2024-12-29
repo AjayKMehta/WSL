@@ -22,7 +22,6 @@ return {
             },
             "catgoose/telescope-helpgrep.nvim",
             "nvim-telescope/telescope-dap.nvim",
-            "stevearc/aerial.nvim",
         },
     },
     {
