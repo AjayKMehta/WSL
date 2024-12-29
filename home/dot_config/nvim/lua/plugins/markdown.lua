@@ -46,14 +46,6 @@ return {
         },
     },
     {
-        -- Call :FeMaco with your cursor on a code-block. Edit the content, then save and/or close the popup to update the original buffer.
-        "AckslD/nvim-FeMaco.lua",
-        ft = { "markdown", "quarto" },
-        config = function()
-            require("femaco").setup()
-        end,
-    },
-    {
         "iamcco/markdown-preview.nvim",
         ft = { "markdown", "gitcommit", "quarto", "rmd" },
         -- https://github.com/iamcco/markdown-preview.nvim/issues/616#issuecomment-1774970354
