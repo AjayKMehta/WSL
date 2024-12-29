@@ -35,6 +35,10 @@ vim.g.diffview_base46 = true
 -- if true, use zathura_simple for viewing PDFs with vimtex
 vim.g.use_zathura_simple = true
 
+-- if true, use lsp_lines.nvim instead of nvim-lsp-endhints for displaying LSP
+-- diagnostics
+vim.g.lsp_inline = true
+
 -- load plugins
 require("lazy").setup({
     {
