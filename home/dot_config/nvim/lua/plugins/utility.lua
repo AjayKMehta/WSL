@@ -4,6 +4,7 @@ return {
         -- Configurable, notification manager
         "rcarriga/nvim-notify",
         lazy = false,
+        cmd = { "Notifications", "NotificationsClear" },
         keys = {
             {
                 "<leader>un",
