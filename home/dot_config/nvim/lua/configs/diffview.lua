@@ -77,6 +77,6 @@ if vim.g.diffview_base46 then
     }
 end
 
-require("diffview").setup(config)
 dofile(vim.g.base46_cache .. "git")
 dofile(vim.g.base46_cache .. "diffview")
+require("diffview").setup(config)

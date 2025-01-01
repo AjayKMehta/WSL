@@ -16,6 +16,8 @@ local function diag_ind(count, level, diagnostics_dict, context)
     return " " .. icon .. count
 end
 
+dofile(vim.g.base46_cache .. "bufferline")
+
 require("bufferline").setup({
     options = {
         themable = true, -- allows highlight groups to be overridden

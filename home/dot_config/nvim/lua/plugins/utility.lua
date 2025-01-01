@@ -26,6 +26,7 @@ return {
             end,
         },
         config = function(_, opts)
+            dofile(vim.g.base46_cache .. "notify")
             -- https://github.com/rcarriga/nvim-notify/wiki/Usage-Recipes#output-of-command
             local notify = require("notify")
             notify.setup(opts)

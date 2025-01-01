@@ -12,6 +12,8 @@ local function init_strategy(bufnr)
     return rainbow.strategy["local"]
 end
 
+dofile(vim.g.base46_cache .."rainbowdelimiters")
+
 require("rainbow-delimiters.setup").setup({
     query = {
         [""] = "rainbow-delimiters",
