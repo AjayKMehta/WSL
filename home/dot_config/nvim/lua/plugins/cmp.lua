@@ -208,14 +208,6 @@ return {
                 url = "https://codeberg.org/FelipeLema/cmp-async-path",
             },
             {
-                -- nvim-cmp source for emojis
-                "hrsh7th/cmp-emoji",
-                event = "InsertEnter",
-                enabled = function()
-                    return vim.g.use_cmp_emoji
-                end,
-            },
-            {
                 -- Fuzzy buffer completion
                 "tzachar/cmp-fuzzy-buffer",
                 dependencies = { "tzachar/fuzzy.nvim" },
@@ -252,9 +244,6 @@ return {
     {
         "allaman/emoji.nvim",
         event = "InsertEnter",
-        enabled = function()
-            return not vim.g.use_cmp_emoji
-        end,
         dependencies = {
             "hrsh7th/nvim-cmp",
             "nvim-telescope/telescope.nvim",

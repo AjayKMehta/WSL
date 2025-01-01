@@ -17,8 +17,6 @@ local lazy_config = require("configs.lazy")
 
 -- Plugin toggles
 
-vim.g.use_cmp_emoji = false
-
 -- If true, load snippet examples
 vim.g.snippet_examples = true
 
