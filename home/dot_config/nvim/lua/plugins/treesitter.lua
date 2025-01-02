@@ -54,6 +54,13 @@ return {
     {
         -- Syntax aware text-objects, select, move, swap, and peek support.
         "nvim-treesitter/nvim-treesitter-textobjects",
+        cmd = {
+            "TSTextobjectSelect",
+            "TSTextobjectSwapNext",
+            "TSTextobjectSwapPrevious",
+            "TSTextobjectGotoNextStart",
+            "TSTextobjectGotoPreviousStart",
+        },
         dependencies = {
             -- "nvim-treesitter/nvim-treesitter",
         },

@@ -8,8 +8,6 @@ local dapui = require("dapui")
 
 dofile(vim.g.base46_cache .. "dap")
 
-require("nvim-dap-virtual-text").setup(virt_text_config)
-
 local dapui_config = {
     controls = {
         element = "repl",
