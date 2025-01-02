@@ -43,6 +43,8 @@ local buffer_option = {
     end,
 }
 
+dofile(vim.g.base46_cache .. "cmp")
+
 cmp.register_source("easy-dotnet", require("easy-dotnet").package_completion_source)
 
 -- name is not the name of the plugin, it's the "id" of the plugin used when creating the source.
@@ -112,6 +114,7 @@ cmp.setup({
                         buffer = "Ω",
                         path = "🖫",
                         emoji = "✨",
+                        cmp_nvim_r = "R",
                     }
 
                     local source = menu_icon[entry.source.name] or entry.source.name
