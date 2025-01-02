@@ -15,6 +15,26 @@ M.base46 = {
         "tomorrow_night",
         "yoru",
     },
+    integrations = {
+        "cmp",
+        "defaults",
+        "devicons",
+        "git",
+        "lsp",
+        "mason",
+        "nvcheatsheet",
+        "nvimtree",
+        "statusline",
+        "syntax",
+        "telescope",
+        "whichkey",
+        "dap",
+        "treesitter",
+        "rainbowdelimiters",
+        "diffview",
+        "trouble",
+        "notify",
+    },
 
     hl_override = highlights.override,
     hl_add = highlights.add,
@@ -23,5 +43,16 @@ M.base46 = {
 
 -- https://github.com/NvChad/NvChad/issues/1656#issuecomment-2082408141
 M.lsp = { signature = false }
+
+M.colorify = {
+    enabled = true,
+    mode = "virtual", -- fg, bg, virtual
+    virt_text = "󱓻 ",
+
+    highlight = {
+        hex = true,
+        lspvars = true,
+    },
+}
 
 return M
