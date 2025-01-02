@@ -49,7 +49,6 @@ return {
                 {
                     "mfussenegger/nvim-dap-python",
                     ft = "python",
-                    dependencies = { "HiPhish/debugpy.nvim" },
                     config = function(_, opts)
                         require("dap-python").test_runner = "pytest"
                         require("dap-python").setup("uv")
