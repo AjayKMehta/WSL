@@ -6,6 +6,19 @@ return {
         lazy = false,
         ft = { "r", "rmd", "quarto" },
         config = function()
+            vim.g.Rout_more_colors = 1
+
+            local languages = { "r", "python" }
+            vim.g.markdown_fenced_languages = languages
+            vim.g.rmd_fenced_languages = languages
+            vim.g.R_assign_map = "<M-->"
+            vim.g.R_rmd_environment = "new.env()" -- compile .Rmd in a fresh environment
+
+            vim.g.R_objbr_auto_start = 1
+            vim.g.R_objbr_opendf = 1 -- Show data.frame elements
+            vim.g.R_objbr_openlist = 1 -- Show list elements
+            vim.g.R_objbr_allnames = 1 -- Show hidden objects
+
             require("cmp_nvim_r").setup({})
         end,
     },
