@@ -6,6 +6,9 @@
 local dap = require("dap")
 local dapui = require("dapui")
 
+-- https://github.com/mfussenegger/nvim-dap/blob/master/doc/dap.txt
+require("dap.ext.vscode").json_decode = require("json5").parse
+
 dofile(vim.g.base46_cache .. "dap")
 
 local dapui_config = {

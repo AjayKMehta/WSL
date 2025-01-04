@@ -9,6 +9,10 @@ return {
             config = load_config("dap"),
             dependencies = {
                 {
+                    {
+                        "Joakker/lua-json5",
+                        build = "./install.sh",
+                    },
                     "theHamsta/nvim-dap-virtual-text",
                     opts = {
                         enabled = true, -- enable this plugin (the default)
