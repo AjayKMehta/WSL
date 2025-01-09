@@ -37,7 +37,7 @@ return {
                 opts = {},
             },
             redo = {
-                hlgroup = "HighlightUndo",
+                hlgroup = "HighlightRedo",
                 mode = "n",
                 lhs = "<C-r>",
                 map = "redo",
@@ -46,7 +46,7 @@ return {
             highlight_for_count = true,
         },
         -- Real mapping defined in config
-        keys = { { "u" }, { "<C-r>" } },
+        keys = { { "u" }, { "<C-r>" }, },
     },
     {
         "smoka7/multicursors.nvim",
