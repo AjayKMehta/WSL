@@ -2053,7 +2053,7 @@ _uv() {
             return 0
             ;;
         uv__pip__freeze)
-            opts="-p -n -q -v -h -V --exclude-editable --strict --no-strict --python --system --no-system --disable-pip-version-check --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version"
+            opts="-p -n -q -v -h -V --exclude-editable --strict --no-strict --python --path --system --no-system --disable-pip-version-check --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -2064,6 +2064,10 @@ _uv() {
                     return 0
                     ;;
                 -p)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --path)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -3113,12 +3117,16 @@ _uv() {
             return 0
             ;;
         uv__python__list)
-            opts="-n -q -v -h -V --all-versions --all-platforms --all-arches --only-installed --only-downloads --show-urls --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version"
+            opts="-n -q -v -h -V --all-versions --all-platforms --all-arches --only-installed --only-downloads --show-urls --output-format --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
+                --output-format)
+                    COMPREPLY=($(compgen -W "text json" -- "${cur}"))
+                    return 0
+                    ;;
                 --cache-dir)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0

@@ -1344,6 +1344,7 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
             break
         }
         'uv;python;list' {
+            [CompletionResult]::new('--output-format', '--output-format', [CompletionResultType]::ParameterName, 'Select the output format')
             [CompletionResult]::new('--cache-dir', '--cache-dir', [CompletionResultType]::ParameterName, 'Path to the cache directory')
             [CompletionResult]::new('--python-preference', '--python-preference', [CompletionResultType]::ParameterName, 'Whether to prefer uv-managed or system Python installations')
             [CompletionResult]::new('--python-fetch', '--python-fetch', [CompletionResultType]::ParameterName, 'Deprecated version of [`Self::python_downloads`]')
@@ -2003,6 +2004,7 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
         'uv;pip;freeze' {
             [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'The Python interpreter for which packages should be listed.')
             [CompletionResult]::new('--python', '--python', [CompletionResultType]::ParameterName, 'The Python interpreter for which packages should be listed.')
+            [CompletionResult]::new('--path', '--path', [CompletionResultType]::ParameterName, 'Restrict to the specified installation path for listing packages (can be used multiple times)')
             [CompletionResult]::new('--cache-dir', '--cache-dir', [CompletionResultType]::ParameterName, 'Path to the cache directory')
             [CompletionResult]::new('--python-preference', '--python-preference', [CompletionResultType]::ParameterName, 'Whether to prefer uv-managed or system Python installations')
             [CompletionResult]::new('--python-fetch', '--python-fetch', [CompletionResultType]::ParameterName, 'Deprecated version of [`Self::python_downloads`]')
@@ -2045,7 +2047,7 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
         }
         'uv;pip;list' {
             [CompletionResult]::new('--exclude', '--exclude', [CompletionResultType]::ParameterName, 'Exclude the specified package(s) from the output')
-            [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'Select the output format between: `columns` (default), `freeze`, or `json`')
+            [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'Select the output format')
             [CompletionResult]::new('--index', '--index', [CompletionResultType]::ParameterName, 'The URLs to use when resolving dependencies, in addition to the default index')
             [CompletionResult]::new('--default-index', '--default-index', [CompletionResultType]::ParameterName, 'The URL of the default package index (by default: <https://pypi.org/simple>)')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, '(Deprecated: use `--default-index` instead) The URL of the Python package index (by default: <https://pypi.org/simple>)')
