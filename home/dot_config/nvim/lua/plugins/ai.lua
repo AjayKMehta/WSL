@@ -15,9 +15,10 @@ return {
         "CodeCompanionCmd",
     },
     keys = {
-        { "cc", "CodeCompanion", mode = "ca" },
-        { "ccc", "CodeCompanionChat", mode = "ca" },
-        { "cca", "CodeCompanionAction", mode = "ca" },
+        { "<leader>ci", "<cmd>CodeCompanion<cr>", mode = { "n", "v" }, desc = "CodeCompanion Inline Prompt" },
+        { "<leader>cc", "<cmd>CodeCompanionChat<cr>", mode = { "n", "v" }, desc = "CodeCompanion Open Chat " },
+        { "<leader>ca", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "CodeCompanion Actions" },
+        { "<leader>cA", "<cmd>CodeCompanionAdd<cr>", mode = { "v" }, desc = "CodeCompanion Add to the Chat" },
     },
     opts = {
         adapters = {

@@ -11,10 +11,11 @@ local map_desc = utils.map_desc
 -- To disable mappings:
 local disabled = {
     n = {
-        "<C-b>", -- NvChad maps this to beginning of line
         "<leader>fm", -- Duplicate for above
         "<leader>fb", -- NvChad maps this to Find buffers
         "<leader>fh", -- NvChad maps this to Find help pages
+        "<leader>ch", -- NvChad maps this to Toggle nvcheatsheet
+        "<leader>cm", -- NvChad maps this to Telescope git commits
         "<leader>n", -- Use as prefix
         "<leader>b", -- Use as prefix
         "<A-i>", -- NvChad maps this to floating terminal
