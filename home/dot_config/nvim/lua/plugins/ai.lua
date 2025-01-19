@@ -22,6 +22,14 @@ return {
     },
     opts = {
         adapters = {
+            copilot = function()
+                return require("codecompanion.adapters").extend("copilot", {
+                    schema = {
+                        model = { default = "claude-3.5-sonnet" },
+                        max_tokens = { default = 8192 },
+                    },
+                })
+            end,
             ollama = function()
                 return require("codecompanion.adapters").extend("ollama", {
                     env = {
@@ -36,10 +44,13 @@ return {
                     schema = {
                         name = "qwen2.5-coder",
                         model = {
-                            default = "qwen2.5-coder:7b",
+                            default = "qwen2.5-coder:14b",
                         },
                         num_ctx = {
-                            default = 32768,
+                            default = 8192,
+                        },
+                        num_predict = {
+                            default = -1,
                         },
                     },
                 })
@@ -47,7 +58,7 @@ return {
         },
         strategies = {
             chat = {
-                adapter = "ollama",
+                adapter = "openai", -- "copilot" OR "ollama"
                 slash_commands = {
                     ["buffer"] = {
                         opts = {
@@ -72,10 +83,10 @@ return {
                 },
             },
             inline = {
-                adapter = "ollama",
+                adapter = "openai",
             },
             agent = {
-                adapter = "ollama",
+                adapter = "openai",
             },
         },
     },
