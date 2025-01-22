@@ -196,7 +196,7 @@ return {
                 log_path = vim.fn.stdpath("data") .. "/neominimap.log",
 
                 -- Minimap will not be created for buffers of these types
-                exclude_filetypes = { "help", "", "bigfile" },
+                exclude_filetypes = { "help", "", "bigfile", "codecompanion" },
 
                 -- Minimap will not be created for buffers of these types
                 exclude_buftypes = {
