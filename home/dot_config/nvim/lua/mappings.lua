@@ -220,7 +220,7 @@ map_desc("n", "<leader>fHt", function()
 end, "Telescope Help tags")
 
 -- NVChad provides git status via <leader>gt
-map_desc("n", "<leader>ga", function()
+map_desc("n", "<leader>gb", function()
     require("telescope.builtin").git_branches()
 end, "git Checkout branch")
 map_desc("n", "<leader>gc", function()
@@ -505,14 +505,6 @@ end, "UFO Go to previous closed fold")
 map_desc("n", "zK", function()
     require("ufo").peekFoldedLinesUnderCursor()
 end, "UFO Peek fold")
---#endregion
-
---#region node_action
-
-map_desc("n", "gA", function()
-    require("ts-node-action").node_action()
-end, "Node-Action Trigger")
-
 --#endregion
 
 --#region legendary
