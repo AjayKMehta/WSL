@@ -54,7 +54,6 @@ return {
             numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
             linehl = true, -- Toggle with `:Gitsigns toggle_linehl`
             word_diff = true, -- Toggle with `:Gitsigns toggle_word_diff`
-            show_deleted = false, -- Toggle with `:Gitsigns toggle_deleted`.
             trouble = true,
             current_line_blame_opts = {
                 virt_text = true,
@@ -82,7 +81,7 @@ return {
 
                 -- Undo stage
 
-                map("n", "<leader>gu", gs.undo_stage_hunk, "gitsigns Undo stage hunk")
+                -- Use stage_hunk() on staged lines
 
                 map("n", "<leader>gU", gs.reset_buffer_index, "gitsigns Unstage all hunks for current buffer")
 
@@ -135,6 +134,13 @@ return {
                 -- Preview
 
                 map("n", "<leader>gp", gs.preview_hunk, "gitsigns Preview hunk")
+                map("n", "<leader>gi", gs.preview_hunk_inline, "gitsigns Preview hunk inline")
+
+                -- Quickfix list
+
+                map("n", "<leader>gq", function()
+                    gs.setqflist("all")
+                end, "gitsigns Populate quickfix list with hunks")
             end,
         },
     },
