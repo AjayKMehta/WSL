@@ -15,6 +15,7 @@ local exclude_filetypes = vim.tbl_deep_extend("force", ft.exclude_filetypes, {
     Outline = true,
     git = true,
     VoltWindow = true,
+    codecompanion = true,
 })
 
 hlchunk.setup({

@@ -17,8 +17,9 @@ return {
     keys = {
         { "<leader>ci", "<cmd>CodeCompanion<cr>", mode = { "n", "v" }, desc = "CodeCompanion Inline Prompt" },
         { "<leader>cc", "<cmd>CodeCompanionChat<cr>", mode = { "n", "v" }, desc = "CodeCompanion Open Chat " },
+        { "<leader>cA", "<cmd>CodeCompanionChat Add<cr>", mode = { "v" }, desc = "CodeCompanion Add To Chat " },
         { "<leader>ca", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "CodeCompanion Actions" },
-        { "<leader>cA", "<cmd>CodeCompanionAdd<cr>", mode = { "v" }, desc = "CodeCompanion Add to the Chat" },
+        { "<leader>cC", "<cmd>CodeCompanionCmd<cr>", mode = { "n", "v" }, desc = "CodeCompanion Generate Command" },
     },
     opts = {
         adapters = {
@@ -30,7 +31,39 @@ return {
                     },
                 })
             end,
-            ollama = function()
+            llama3 = function()
+                return require("codecompanion.adapters").extend("ollama", {
+                    name = "llama3", -- Give this adapter a different name to differentiate it from the default ollama adapter
+                    schema = {
+                        model = {
+                            default = "llama3.2:latest",
+                        },
+                        num_ctx = {
+                            default = 16384,
+                        },
+                        num_predict = {
+                            default = -1,
+                        },
+                    },
+                })
+            end,
+            codellama = function()
+                return require("codecompanion.adapters").extend("ollama", {
+                    name = "llama3",
+                    schema = {
+                        model = {
+                            default = "codellama:13b",
+                        },
+                        num_ctx = {
+                            default = 16384,
+                        },
+                        num_predict = {
+                            default = -1,
+                        },
+                    },
+                })
+            end,
+            qwen = function()
                 return require("codecompanion.adapters").extend("ollama", {
                     env = {
                         url = "http://localhost:11434",
@@ -41,10 +74,10 @@ return {
                     parameters = {
                         sync = true,
                     },
+                    name = "qwen2.5-coder",
                     schema = {
-                        name = "qwen2.5-coder",
                         model = {
-                            default = "qwen2.5-coder:14b",
+                            default = "qwen2.5-coder:latest",
                         },
                         num_ctx = {
                             default = 8192,
@@ -55,6 +88,27 @@ return {
                     },
                 })
             end,
+        },
+        display = {
+            action_palette = {
+                width = 95,
+                height = 10,
+                prompt = "Prompt ", -- Prompt used for interactive LLM calls
+                provider = "telescope", -- default|telescope|mini_pick
+                opts = {
+                    show_default_actions = true, -- Show the default actions in the action palette?
+                    show_default_prompt_library = true, -- Show the default prompt library in the action palette?
+                },
+            },
+            chat = {
+                intro_message = "Welcome to CodeCompanion ✨! Press ? for options",
+                show_header_separator = false, -- Show header separators in the chat buffer? Set this to false if you're using an external markdown formatting plugin
+                separator = "─", -- The separator between the different messages in the chat buffer
+                show_references = true, -- Show references (from slash commands and variables) in the chat buffer?
+                show_settings = true, -- Show LLM settings at the top of the chat buffer?
+                show_token_count = true, -- Show the token count for each response?
+                start_in_insert_mode = false, -- Open the chat buffer in insert mode?
+            },
         },
         strategies = {
             chat = {
