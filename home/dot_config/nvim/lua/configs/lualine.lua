@@ -69,6 +69,7 @@ local function LspStatus()
     })
 end
 
+-- https://codecompanion.olimorris.dev/usage/events#example-lualine-nvim-integration
 local function create_codecompanion_component()
     local M = require("lualine.component"):extend()
     M.processing = false

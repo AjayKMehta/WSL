@@ -35,7 +35,7 @@ vim.g.use_zathura_simple = true
 
 -- if true, use lsp_lines.nvim instead of nvim-lsp-endhints for displaying LSP
 -- diagnostics
-vim.g.lsp_inline = true
+vim.g.lsp_inline = false
 
 -- if true, use radian instead of R console.
 vim.g.use_radian = true
