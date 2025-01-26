@@ -214,8 +214,6 @@ source ~/.local/share/blesh/ble.sh
 # '--disable-ctrl-r' doesn't work!
 eval "$(atuin init bash --disable-up-arrow)"
 
-export DOTNET_ROOT=/usr/share/dotnet
-
 function yy() {
 	local tmp
     tmp="$(mktemp -t "yazi-cwd.XXXXXX")"

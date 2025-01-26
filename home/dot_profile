@@ -23,6 +23,7 @@ export BUILDX_EXPERIMENTAL=1
 export DONET_ROOT=/usr/share/dotnet
 export DOTNET_NOLOGO=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export DOTNET_UPGRADEASSISTANT_TELEMETRY_OPTOUT=1
 
 has_cmd() {
 	for opt in "$@"; do
