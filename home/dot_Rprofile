@@ -13,7 +13,7 @@ options(HTTPUserAgent = sprintf(
 local({
   r <- getOption("repos")
   r["ropensci"] <- "https://ropensci.r-universe.dev"
-  r["CRAN"] <- "https://packagemanager.posit.co/cran/__linux__/jammy/latest"
+  r["CRAN"] <- "https://packagemanager.posit.co/cran/__linux__/noble/latest"
   r["INLA"] <- "https://inla.r-inla-download.org/R/stable"
   options(repos = r)
 
