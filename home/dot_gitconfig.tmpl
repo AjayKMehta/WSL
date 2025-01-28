@@ -233,3 +233,6 @@
     helper = !gh auth git-credential
 [credential "https://github.com"]
     helper = !gh auth git-credential
+# Avoid error when updating Lazy plugins with submodules
+[includeIf "gitdir:lazy"]
+    path = ~/lazy.gitconfig
