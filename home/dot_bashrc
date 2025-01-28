@@ -3,14 +3,9 @@
 # for examples
 
 # set PATH so it includes user's bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+for dir in "$HOME/bin" "$HOME/.local/bin"; do
+    [ -d "$dir" ] && PATH="$dir:$PATH"
+done
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
@@ -20,8 +15,6 @@ case $- in
       *) return;;
 esac
 
-# sh_script=$(code --locate-shell-integration-path bash)
-# [[ "$TERM_PROGRAM" == "vscode" ]] && . $sh_script
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -100,9 +93,6 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -112,11 +102,10 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Alias definitions.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.bash_aliases ]; then
+for file in ~/.bash_aliases ~/.bash-preexec.sh; do
     # shellcheck source=/dev/null
-    . ~/.bash_aliases
-fi
+    [ -f "$file" ] && source "$file"
+done
 
 # Enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -129,6 +118,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Load additional shell integrations.
 while IFS= read -r -d '' file; do
    # shellcheck source=/dev/null
    . "$file"
@@ -136,8 +126,8 @@ done < <(find ~/.config/bash_completions.d -type f ! -name '*LICENSE*' -print0)
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+# initialize NVM.
 export NVM_DIR="$HOME/.nvm"
-
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
@@ -171,8 +161,6 @@ batdiff() {
 }
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-# shellcheck source=/dev/null
-[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 
 # shellcheck source=/dev/null
 [ -f ~/.config/bash_completions.d/fzf/completion.bash ] && source ~/.config/bash_completions.d/fzf/completion.bash
@@ -215,13 +203,22 @@ source ~/.local/share/blesh/ble.sh
 eval "$(atuin init bash --disable-up-arrow)"
 
 function yy() {
-	local tmp
-    tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd" || exit
-	fi
-	rm -f -- "$tmp"
+    local tmp cwd
+
+    # Ensure the cleanup of the temporary file
+    trap 'rm -f -- "$tmp"' EXIT
+
+    # Create a temporary file and check its creation
+    if tmp=$(mktemp -t "yazi-cwd.XXXXXX"); then
+        yazi "$@" --cwd-file="$tmp"
+        if cwd=$(cat -- "$tmp") && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+            # Change to the new directory if possible
+            cd -- "$cwd" || exit
+        fi
+    else
+        echo "Failed to create temporary file" >&2
+        exit 1
+    fi
 }
 
 # Add this line at the end of .bashrc:
@@ -247,9 +244,7 @@ eval "$(direnv hook bash)"
 
 # https://github.com/direnv/direnv/wiki/Python#bash
 show_virtual_env() {
-  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-    echo "($(basename $VIRTUAL_ENV))"
-  fi
+    [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]] && echo "($(basename "$VIRTUAL_ENV"))"
 }
 export -f show_virtual_env
 PS1='$(show_virtual_env)'$PS1
