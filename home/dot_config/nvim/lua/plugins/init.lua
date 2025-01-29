@@ -231,7 +231,7 @@ return {
                     api.tree.change_root(path)
                 end, "Change root to input path")
 
-                bufmap("P", preview.watch, "Preview (Watch)")
+                bufmap("<S-Tab>", preview.watch, "Preview (Watch)")
                 bufmap("<Esc>", preview.unwatch, "Close Preview/Unwatch")
 
                 local function print_node_path()
@@ -244,8 +244,6 @@ return {
                 bufmap("l", treeutils.edit_or_open, "Expand folder or go to file")
                 bufmap("L", treeutils.vsplit_preview, "VSplit Preview")
                 bufmap("h", api.node.navigate.parent_close, "Close parent folder")
-                bufmap("H", api.tree.collapse_all, "Collapse All")
-                bufmap("gh", api.tree.toggle_hidden_filter, "Toggle hidden files")
                 bufmap("gl", api.node.open.toggle_group_empty, "Toggle group empty")
 
                 bufmap("<C-c>", treeutils.change_root_to_global_cwd, "Change Root To Global CWD")
