@@ -59,7 +59,6 @@
   "legendary.nvim": { "branch": "master", "commit": "0fa970f5199d826d33d98e9dce76d4cf606d317f" },
   "lsp-progress.nvim": { "branch": "main", "commit": "f3df1df8f5ea33d082db047b5d2d2b83cc01cd8a" },
   "lsp-toggle.nvim": { "branch": "master", "commit": "501d647de54398373d87ba3c8ea638e2edc2cbe9" },
-  "lsp_lines.nvim": { "branch": "main", "commit": "a92c755f182b89ea91bd8a6a2227208026f27b4d" },
   "lspkind.nvim": { "branch": "master", "commit": "d79a1c3299ad0ef94e255d045bed9fa26025dab6" },
   "lua-json5": { "branch": "master", "commit": "18d8308656f79fdaa5936b4e42bb07b4bbd2354e" },
   "lualine.nvim": { "branch": "master", "commit": "2a5bae925481f999263d6f5ed8361baef8df4f83" },
