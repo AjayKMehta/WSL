@@ -52,7 +52,7 @@ return {
                     name = "llama3",
                     schema = {
                         model = {
-                            default = "codellama:13b",
+                            default = "codellama:7b",
                         },
                         num_ctx = {
                             default = 16384,
@@ -77,7 +77,7 @@ return {
                     name = "qwen2.5-coder",
                     schema = {
                         model = {
-                            default = "qwen2.5-coder:latest",
+                            default = "qwen2.5-coder:7b",
                         },
                         num_ctx = {
                             default = 8192,
