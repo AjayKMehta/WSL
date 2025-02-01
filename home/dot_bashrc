@@ -134,6 +134,9 @@ export NVM_DIR="$HOME/.nvm"
 # Else, WSL uses node from Windows
 nvm use stable
 
+# Mise
+eval "$(mise activate bash)"
+
 # oh my posh
 eval "$(oh-my-posh init bash)"
 
