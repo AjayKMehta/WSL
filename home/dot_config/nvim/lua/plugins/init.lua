@@ -18,7 +18,7 @@ return {
             registries = {
                 "github:mason-org/mason-registry",
                 "github:syndim/mason-registry",
-                "github:Crashdummyy/mason-registry"
+                "github:Crashdummyy/mason-registry",
             },
         },
         -- Use config from NvChad
@@ -285,6 +285,15 @@ return {
                         end
                     end
                 end, "Preview")
+
+                -- https://github.com/nvim-tree/nvim-tree.lua/pull/3040#discussion_r1912634104
+                bufmap("BW", function()
+                    api.node.buffer.wipe(api.tree.get_node_under_cursor(), { force = false })
+                end, "Wipe")
+
+                bufmap("BD", function()
+                    api.node.buffer.wipe(api.tree.get_node_under_cursor(), { force = true })
+                end, "Delete")
             end,
             -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#center-a-floating-nvim-tree-window
             view = {
