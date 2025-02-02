@@ -165,10 +165,12 @@ batdiff() {
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 
-# shellcheck source=/dev/null
-[ -f ~/.config/bash_completions.d/fzf/completion.bash ] && source ~/.config/bash_completions.d/fzf/completion.bash
-# shellcheck source=/dev/null
-[ -f ~/.config/bash_completions.d/fzf/key-bindings.bash ] && source ~/.config/bash_completions.d/fzf/key-bindings.bash
+# https://github.com/akinomyoga/blesh-contrib/blob/master/integration/fzf.md#option-1-set-up-in-blerc
+if [[ ! ${BLE_VERSION-} ]]; then
+  # Set up fzf key bindings and fuzzy completion
+  eval "$(fzf --bash)"
+fi
+
 # # shellcheck source=/dev/null
 # Utility script with useful functions
 # shellcheck source=/dev/null

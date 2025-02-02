@@ -40,8 +40,12 @@ bleopt editor=nano
 ble-import -d integration/fzf-completion
 ble-import -d integration/fzf-key-bindings
 
-# sabbrev below messes up typing gh, gb 🙁
+# https://github.com/akinomyoga/blesh-contrib/blob/master/integration/fzf.md#pencil-integrationfzf-git
+# Using sabbrev below messes up typing gh, gb 🙁
 _ble_contrib_fzf_git_config=key-binding
 
 # Add <C-G> shortcuts, e.g. <C-G><C-B> for branches
 ble-import -d integration/fzf-git
+
+# https://github.com/akinomyoga/blesh-contrib/blob/master/integration/fzf.md#pencil-integrationfzf-menu
+ble-import -d integration/fzf-menu
