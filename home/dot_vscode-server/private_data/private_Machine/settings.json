@@ -16,4 +16,5 @@
     "stylua.searchBinaryInPATH": true,
     "stylua.searchParentDirectories": true,
     "typos.config": "${env:HOME}/typos.toml",
+    "terminal.integrated.defaultProfile.linux": "bash"
 }
