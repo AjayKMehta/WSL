@@ -216,6 +216,7 @@ return {
                 -- See :help nvim-tree.api
                 local api = require("nvim-tree.api")
                 local preview = require("nvim-tree-preview")
+                local luv = vim.loop
 
                 local bufmap = function(lhs, rhs, desc)
                     vim.keymap.set("n", lhs, rhs, { buffer = bufnr, desc = desc })
@@ -223,6 +224,70 @@ return {
 
                 local treeutils = require("utils.tree")
                 api.config.mappings.default_on_attach(bufnr)
+
+                local function add_ref_to_chat(chat, path, pinned)
+                    chat.references:add({
+                        id = "<file>" .. path .. "</file>",
+                        path = path,
+                        source = "codecompanion.strategies.chat.slash_commands.file",
+                        opts = {
+                            pinned = pinned,
+                        },
+                    })
+                end
+                -- Function to recursively add files in a directory to chat references
+                local function traverse_directory(path, chat, pinned)
+                    local handle, err = luv.fs_scandir(path)
+                    if not handle then
+                        return print("Error scanning directory: " .. err)
+                    end
+
+                    while true do
+                        local name, type = luv.fs_scandir_next(handle)
+                        if not name then
+                            break
+                        end
+
+                        local item_path = path .. "/" .. name
+                        if type == "file" then
+                            add_ref_to_chat(chat, item_path, pinned)
+                        elseif type == "directory" then
+                            -- recursive call for a subdirectory
+                            traverse_directory(item_path, chat)
+                        end
+                    end
+                end
+
+                local function add_refs_to_chat(pinned)
+                    return function()
+                        local node = api.tree.get_node_under_cursor()
+                        local path = node.absolute_path
+                        local codecompanion = require("codecompanion")
+                        local chat = codecompanion.last_chat()
+                        -- create chat if none exists
+                        if chat == nil then
+                            chat = codecompanion.chat()
+                        end
+
+                        local attr = luv.fs_stat(path)
+                        if attr and attr.type == "directory" then
+                            -- Recursively traverse the directory
+                            traverse_directory(path, chat, pinned)
+                        else
+                            -- if already added, ignore
+                            for _, ref in ipairs(chat.refs) do
+                                if ref.path == path then
+                                    return print("Already added")
+                                end
+                            end
+                            add_ref_to_chat(chat, path, pinned)
+                        end
+                    end
+                end
+
+                -- https://github.com/olimorris/codecompanion.nvim/discussions/641#discussioncomment-11836380
+                vim.keymap.set("n", "<leader>ca", add_refs_to_chat(false), { buffer = bufnr, desc = "Add file(s) to Chat" })
+                vim.keymap.set("n", "<leader>cp", add_refs_to_chat(true), { buffer = bufnr, desc = "Pin file(s) to Chat" })
 
                 bufmap("<c-f>", treeutils.launch_find_files, "Launch Find Files")
                 bufmap("<c-g>", treeutils.launch_live_grep, "Launch Live Grep")
