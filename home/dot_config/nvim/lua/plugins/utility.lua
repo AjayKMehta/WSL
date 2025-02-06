@@ -440,6 +440,13 @@ return {
         -- The plugin comes with the Helpview command.
         "OXY2DEV/helpview.nvim",
         lazy = false, -- Recommended
+        ft = "help",
+        cmd = "Helpview",
+        opts = {
+            preview = {
+                icon_provider = "devicons", -- "mini" or "devicons"
+            },
+        },
         -- ft = "help",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
