@@ -105,7 +105,7 @@ return {
                 show_header_separator = false, -- Show header separators in the chat buffer? Set this to false if you're using an external markdown formatting plugin
                 separator = "─", -- The separator between the different messages in the chat buffer
                 show_references = true, -- Show references (from slash commands and variables) in the chat buffer?
-                show_settings = true, -- Show LLM settings at the top of the chat buffer?
+                show_settings = false, -- Show LLM settings at the top of the chat buffer?
                 show_token_count = true, -- Show the token count for each response?
                 start_in_insert_mode = false, -- Open the chat buffer in insert mode?
             },
@@ -113,6 +113,20 @@ return {
         strategies = {
             chat = {
                 adapter = "openai", -- "copilot" OR "ollama"
+                -- Below are default values - included for reference.
+                roles = {
+                    ---The header name for the LLM's messages
+                    llm = function(adapter)
+                        return string.format(
+                            " %s%s",
+                            adapter.formatted_name,
+                            adapter.schema.model.default and " (" .. adapter.schema.model.default .. ")" or ""
+                        )
+                    end,
+
+                    ---The header name for your messages
+                    user = "Me",
+                },
                 slash_commands = {
                     ["buffer"] = {
                         opts = {
@@ -138,6 +152,16 @@ return {
             },
             inline = {
                 adapter = "openai",
+                keymaps = {
+                    accept_change = {
+                        modes = { n = "<leader>ca" },
+                        description = "Accept the suggested change",
+                    },
+                    reject_change = {
+                        modes = { n = "<leader>cr" },
+                        description = "Reject the suggested change",
+                    },
+                },
             },
             agent = {
                 adapter = "openai",
