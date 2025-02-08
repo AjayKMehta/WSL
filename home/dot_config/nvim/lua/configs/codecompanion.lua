@@ -126,6 +126,7 @@ local prompt_library = {
     ["Advanced Commit Message"] = require("prompts.commit_advanced"),
     ["Review"] = require("prompts.review"),
     ["Mindmap"] = require("prompts.mindmap"),
+    ["Documentation Comments"] = require("prompts.doc_comments"),
 }
 
 local config = {
