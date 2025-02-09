@@ -469,6 +469,7 @@ return {
                 notify_jump = true,
                 notify_end = true,
             },
+            picker = { enabled = true },
         },
         keys = {
             {

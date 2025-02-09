@@ -90,8 +90,8 @@ local config = {
                 -- TODO: Test these out.
                 list_definitions = "gld",
                 list_definitions_toc = "glt",
-                goto_next_usage = "<a-*>",
-                goto_previous_usage = "<a-#>",
+                goto_next_usage = "]U",
+                goto_previous_usage = "[U",
             },
         },
     },
