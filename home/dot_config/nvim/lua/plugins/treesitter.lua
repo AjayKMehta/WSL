@@ -18,7 +18,6 @@ return {
         dependencies = {
             "nvim-treesitter/nvim-treesitter-refactor",
             "nvim-treesitter/nvim-treesitter-textobjects",
-            "RRethy/nvim-treesitter-textsubjects",
         },
         config = load_config("treesitter"),
     },
@@ -54,9 +53,6 @@ return {
             "TSTextobjectSwapPrevious",
             "TSTextobjectGotoNextStart",
             "TSTextobjectGotoPreviousStart",
-        },
-        dependencies = {
-            -- "nvim-treesitter/nvim-treesitter",
         },
         config = load_config("ts_textobjects"),
     },
