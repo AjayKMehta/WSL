@@ -1,36 +1,24 @@
 return {
-    -- https://github.com/tinyCatzilla/dots/blob/193cc61951579db692e9cc7f8f278ed33c8b52d4/.config/nvim/lua/custom/plugins.lua
     {
-        -- Configurable, notification manager
-        "rcarriga/nvim-notify",
-        lazy = false,
-        cmd = { "Notifications", "NotificationsClear" },
-        keys = {
-            {
-                "<leader>un",
-                function()
-                    require("notify").dismiss({ silent = true, pending = true })
-                end,
-                desc = "Dismiss notifications.",
-            },
-        },
-        opts = {
-            timeout = 3000,
-            render = "wrapped-compact",
-            stages = "slide",
-            max_height = function()
-                return math.floor(vim.o.lines * 0.75)
-            end,
-            max_width = function()
-                return math.floor(vim.o.columns * 0.75)
-            end,
-        },
-        config = function(_, opts)
-            dofile(vim.g.base46_cache .. "notify")
-            -- https://github.com/rcarriga/nvim-notify/wiki/Usage-Recipes#output-of-command
-            local notify = require("notify")
-            notify.setup(opts)
-            -- vim.notify = notify
+        "j-hui/fidget.nvim",
+        config = function()
+            require("fidget").setup({
+                progress = {
+                    ignore_done_already = true,
+                    ignore_empty_message = true,
+                    display = {
+                        progress_ttl = 10,
+                        skip_history = false
+                    },
+                },
+                notification = {
+                    -- Automatically override vim.notify() with fidget
+                    override_vim_notify = true,
+                },
+                integration = {
+                    ["nvim-tree"] = { enable = true },
+                },
+            })
         end,
     },
     {
@@ -129,8 +117,6 @@ return {
         },
         dependencies = {
             "MunifTanjim/nui.nvim",
-            --   `nvim-notify` is only needed, if you want to use the notification view.
-            "rcarriga/nvim-notify",
         },
     },
     {
