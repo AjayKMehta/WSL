@@ -221,4 +221,8 @@ return {
             }
         end,
     },
+    {
+        "stevearc/stickybuf.nvim",
+        opts = {},
+    },
 }

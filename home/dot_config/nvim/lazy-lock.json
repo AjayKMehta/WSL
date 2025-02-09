@@ -124,6 +124,7 @@
   "smartyank.nvim": { "branch": "master", "commit": "0a4554a4ea4cad73dab0a15e559f2128ca03c7b2" },
   "snacks.nvim": { "branch": "main", "commit": "a386e4270b7c083c95028bcaa1b062b57537817b" },
   "spellwarn.nvim": { "branch": "main", "commit": "12734b47b008d912b4925c0bc2c1248eb534409d" },
+  "stickybuf.nvim": { "branch": "master", "commit": "61ec81b9de2a76bfcfaa579f16bf88395b58b814" },
   "synthweave.nvim": { "branch": "master", "commit": "50cb17af14dbdf8a2af634c40b9b20298f67aba0" },
   "telescope-dap.nvim": { "branch": "master", "commit": "783366bd6c1e7fa0a5c59c07db37f49c805a28df" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "626998e5c1b71c130d8bc6cf7abb6709b98287bb" },
