@@ -21,6 +21,8 @@ local disabled = {
         "<A-i>", -- NvChad maps this to floating terminal
         "<A-h>", -- NvChad maps this to horizontal terminal
         "<A-v>", -- NvChad maps this to vertical terminal
+        "]d",
+        "[d",
     },
 }
 
@@ -34,6 +36,21 @@ for mode, mappings in pairs(disabled) do
         end
     end
 end
+
+local next_integrations = require("nvim-next.integrations")
+local nndiag = next_integrations.diagnostic()
+map_desc(
+"n",
+    "[d",
+    nndiag.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } }),
+    "Go to previous diagnostic"
+)
+map_desc(
+    "n",
+    "]d",
+    nndiag.goto_next({ severity = { min = vim.diagnostic.severity.WARN } }),
+    "Go to next diagnostic"
+)
 
 map_desc("n", "<leader>tt", function()
     require("base46").toggle_theme()

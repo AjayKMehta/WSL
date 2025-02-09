@@ -115,12 +115,16 @@ return {
 
                 -- Navigation
 
+                local next_integrations = require("nvim-next.integrations")
+
+                local nngs = next_integrations.gitsigns(gs)
+
                 map({ "n", "v" }, "[h", function()
-                    gs.nav_hunk("prev")
+                    nngs.prev_hunk()
                 end, "gitsigns Go to previous hunk")
 
                 map({ "n", "v" }, "]h", function()
-                    gs.nav_hunk("next")
+                    nngs.next_hunk()
                 end, "gitsigns Go to next hunk")
 
                 map({ "n", "v" }, "[H", function()
