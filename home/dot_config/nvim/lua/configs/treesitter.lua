@@ -135,41 +135,6 @@ local config = {
                 ["ic"] = { query = "@class.inner", desc = "Select inner part of a class" },
             },
         },
-        move = {
-            enable = true,
-            set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-                ["]f"] = { query = "@call.outer", desc = "Next function call start" },
-                ["]m"] = { query = "@function.outer", desc = "Next method/function def start" },
-                ["]c"] = { query = "@class.outer", desc = "Next class start" },
-                ["]i"] = { query = "@conditional.outer", desc = "Next conditional start" },
-                ["]l"] = { query = "@loop.outer", desc = "Next loop start" },
-
-                ["]S"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
-                ["]Z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
-            },
-            goto_next_end = {
-                ["]F"] = { query = "@call.outer", desc = "Next function call end" },
-                ["]M"] = { query = "@function.outer", desc = "Next method/function def end" },
-                ["]C"] = { query = "@class.outer", desc = "Next class end" },
-                ["]I"] = { query = "@conditional.outer", desc = "Next conditional end" },
-                ["]L"] = { query = "@loop.outer", desc = "Next loop end" },
-            },
-            goto_previous_start = {
-                ["[f"] = { query = "@call.outer", desc = "Prev function call start" },
-                ["[m"] = { query = "@function.outer", desc = "Prev method/function def start" },
-                ["[c"] = { query = "@class.outer", desc = "Prev class start" },
-                ["[i"] = { query = "@conditional.outer", desc = "Prev conditional start" },
-                ["[l"] = { query = "@loop.outer", desc = "Prev loop start" },
-            },
-            goto_previous_end = {
-                ["[F"] = { query = "@call.outer", desc = "Prev function call end" },
-                ["[M"] = { query = "@function.outer", desc = "Prev method/function def end" },
-                ["[C"] = { query = "@class.outer", desc = "Prev class end" },
-                ["[I"] = { query = "@conditional.outer", desc = "Prev conditional end" },
-                ["[L"] = { query = "@loop.outer", desc = "Prev loop end" },
-            },
-        },
         swap = {
             enable = true,
             swap_next = {
@@ -201,10 +166,51 @@ local config = {
         use_virtual_text = true,
         lint_events = { "BufWrite", "CursorHold" },
     },
+    nvim_next = {
+        enable = true,
+        textobjects = {
+            move = {
+                enable = true,
+                set_jumps = true, -- whether to set jumps in the jumplist
+                goto_next_start = {
+                    ["]f"] = { query = "@call.outer", desc = "Next function call start" },
+                    ["]m"] = { query = "@function.outer", desc = "Next method/function def start" },
+                    ["]c"] = { query = "@class.outer", desc = "Next class start" },
+                    ["]i"] = { query = "@conditional.outer", desc = "Next conditional start" },
+                    ["]l"] = { query = "@loop.outer", desc = "Next loop start" },
+
+                    ["]S"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+                    ["]Z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
+                },
+                goto_next_end = {
+                    ["]F"] = { query = "@call.outer", desc = "Next function call end" },
+                    ["]M"] = { query = "@function.outer", desc = "Next method/function def end" },
+                    ["]C"] = { query = "@class.outer", desc = "Next class end" },
+                    ["]I"] = { query = "@conditional.outer", desc = "Next conditional end" },
+                    ["]L"] = { query = "@loop.outer", desc = "Next loop end" },
+                },
+                goto_previous_start = {
+                    ["[f"] = { query = "@call.outer", desc = "Prev function call start" },
+                    ["[m"] = { query = "@function.outer", desc = "Prev method/function def start" },
+                    ["[c"] = { query = "@class.outer", desc = "Prev class start" },
+                    ["[i"] = { query = "@conditional.outer", desc = "Prev conditional start" },
+                    ["[l"] = { query = "@loop.outer", desc = "Prev loop start" },
+                },
+                goto_previous_end = {
+                    ["[F"] = { query = "@call.outer", desc = "Prev function call end" },
+                    ["[M"] = { query = "@function.outer", desc = "Prev method/function def end" },
+                    ["[C"] = { query = "@class.outer", desc = "Prev class end" },
+                    ["[I"] = { query = "@conditional.outer", desc = "Prev conditional end" },
+                    ["[L"] = { query = "@loop.outer", desc = "Prev loop end" },
+                },
+            },
+        },
+    },
 }
 
 dofile(vim.g.base46_cache .. "syntax")
 -- dofile(vim.g.base46_cache .. "semantic_tokens")
 dofile(vim.g.base46_cache .. "treesitter")
+require("nvim-next.integrations").treesitter_textobjects()
 require("nvim-treesitter.configs").setup(config)
 require("nvim-treesitter.install").compilers = { "clang" }
