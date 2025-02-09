@@ -54,7 +54,6 @@ return {
             "TSTextobjectGotoNextStart",
             "TSTextobjectGotoPreviousStart",
         },
-        config = load_config("ts_textobjects"),
     },
     {
         -- Rainbow delimiters with Treesitter
