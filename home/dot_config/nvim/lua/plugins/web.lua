@@ -13,6 +13,7 @@ return {
     {
         "axieax/urlview.nvim",
         cmd = { "UrlView" },
+        ft = {"html", "markdown", "quarto", "rmd"},
         dependencies = {
             "nvim-telescope/telescope.nvim",
             "stevearc/dressing.nvim",

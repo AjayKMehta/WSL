@@ -177,7 +177,7 @@ local rstatus = function()
 end
 
 local rsttcolor = function()
-    if not vim.g.rplugin then
+    if not vim.g.rplugin or not vim.g.rplugin.jobs then
         return { fg = "#000000" }
     end
     if vim.g.rplugin.jobs.R ~= 0 then
