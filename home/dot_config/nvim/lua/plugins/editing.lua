@@ -46,7 +46,7 @@ return {
             highlight_for_count = true,
         },
         -- Real mapping defined in config
-        keys = { { "u" }, { "<C-r>" }, },
+        keys = { { "u" }, { "<C-r>" } },
     },
     {
         "smoka7/multicursors.nvim",
@@ -280,6 +280,7 @@ return {
                     jump_labels = function(motion)
                         return vim.v.count == 0 and vim.fn.reg_executing() == "" and vim.fn.reg_recording() == ""
                     end,
+                    keys = { "f", "F", "t", "T", [";"] = "L", [","] = "H" },
                     jump = {
                         -- Don't add to search register (/)
                         register = false,

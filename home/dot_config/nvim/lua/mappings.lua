@@ -445,7 +445,7 @@ map_desc({ "o", "x" }, "sR", function()
     require("flash").treesitter_search()
 end, "Flash Treesitter search")
 
-map_desc("c", "<leader>st", function()
+map_desc({"n", "v"}, "<leader>st", function()
     require("flash").toggle()
 end, "Flash Toggle search")
 
