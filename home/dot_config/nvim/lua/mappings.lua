@@ -358,18 +358,6 @@ map_desc("n", "<leader>nf", neogen_gen("func"), "Neogen Generate annotation for 
 
 --#endregion
 
---#region wtf
-
-map_desc({ "n", "x" }, "gw", function()
-    require("wtf").ai()
-end, "WTF Debug diagnostic with AI")
-
-map_desc("n", "gW", function()
-    require("wtf").search()
-end, "WTF Search diagnostic with Google")
-
---#endregion
-
 --#region Flash
 
 local function flash_jump()
@@ -445,7 +433,7 @@ map_desc({ "o", "x" }, "sR", function()
     require("flash").treesitter_search()
 end, "Flash Treesitter search")
 
-map_desc({"n", "v"}, "<leader>st", function()
+map_desc({ "n", "v" }, "<leader>st", function()
     require("flash").toggle()
 end, "Flash Toggle search")
 

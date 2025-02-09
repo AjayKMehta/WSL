@@ -1,16 +1,5 @@
 return {
     {
-        -- AI/search-engine powered diagnostic debugging
-        "piersolenski/wtf.nvim",
-        opts = {
-            popup_type = "vertical",
-        },
-        cmd = { "WtfSearch", "Wtf" },
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-        },
-    },
-    {
         -- A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.
         "folke/trouble.nvim",
         dependencies = {
