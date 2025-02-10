@@ -342,6 +342,12 @@ return {
                 repeat_style = "directional",
             },
         },
+        config = function(_, opts)
+            require("nvim-next").setup(opts)
+            local next_quickfix = require("nvim-next.integrations").quickfix()
+            vim.keymap.set("n", "[q", next_quickfix.cprevious, { desc = "previous quickfix list item" })
+            vim.keymap.set("n", "]q", next_quickfix.cnext, { desc = "next quickfix list item" })
+        end,
     },
     {
         "chrisgrieser/nvim-various-textobjs",

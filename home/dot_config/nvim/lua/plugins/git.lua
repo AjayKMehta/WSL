@@ -115,16 +115,24 @@ return {
 
                 -- Navigation
 
-                local next_integrations = require("nvim-next.integrations")
+                local next_loaded, next_integrations = require("utils").is_loaded("nvim-next.integrations")
 
                 local nngs = next_integrations.gitsigns(gs)
 
                 map({ "n", "v" }, "[h", function()
-                    nngs.prev_hunk()
+                    if next_loaded then
+                        nngs.prev_hunk()
+                    else
+                        gs.nav_hunk("prev")
+                    end
                 end, "gitsigns Go to previous hunk")
 
                 map({ "n", "v" }, "]h", function()
-                    nngs.next_hunk()
+                    if next_loaded then
+                        nngs.next_hunk()
+                    else
+                        gs.nav_hunk("next")
+                    end
                 end, "gitsigns Go to next hunk")
 
                 map({ "n", "v" }, "[H", function()

@@ -1,3 +1,4 @@
+local map_desc = require("utils.mappings").map_desc
 return {
     {
         "j-hui/fidget.nvim",
@@ -8,7 +9,7 @@ return {
                     ignore_empty_message = true,
                     display = {
                         progress_ttl = 10,
-                        skip_history = false
+                        skip_history = false,
                     },
                 },
                 notification = {
@@ -457,21 +458,24 @@ return {
             },
             picker = { enabled = true },
         },
-        keys = {
-            {
-                "<leader>s]",
-                function()
-                    Snacks.words.jump(vim.v.count1)
-                end,
-                desc = "Next Reference",
-            },
-            {
-                "<leader>s[",
-                function()
-                    Snacks.words.jump(-vim.v.count1)
-                end,
-                desc = "Prev Reference",
-            },
-        },
+        config = function(_, opts)
+            require("snacks").setup(opts)
+            local next_loaded, next_move = require("utils").is_loaded("nvim-next.move")
+            local nav_ref = function(dir)
+                return function()
+                    Snacks.words.jump(dir * vim.v.count1)
+                end
+            end
+
+            local next_ref, prev_ref
+            if next_loaded then
+                prev_ref, next_ref = next_move.make_repeatable_pair(nav_ref(-1), nav_ref(1))
+            else
+                prev_ref = nav_ref(-1)
+                next_ref = nav_ref(1)
+            end
+            map_desc("n", "]r", next_ref, "Next Reference")
+            map_desc("n", "[r", prev_ref, "Prev Reference")
+        end,
     },
 }

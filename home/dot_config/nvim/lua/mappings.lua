@@ -37,20 +37,23 @@ for mode, mappings in pairs(disabled) do
     end
 end
 
-local next_integrations = require("nvim-next.integrations")
-local nndiag = next_integrations.diagnostic()
-map_desc(
-"n",
-    "[d",
-    nndiag.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } }),
-    "Go to previous diagnostic"
-)
-map_desc(
-    "n",
-    "]d",
-    nndiag.goto_next({ severity = { min = vim.diagnostic.severity.WARN } }),
-    "Go to next diagnostic"
-)
+local next_loaded, next_integrations = require("utils").is_loaded("nvim-next.integrations")
+
+if next_loaded then
+    local nndiag = next_integrations.diagnostic()
+    map_desc(
+        "n",
+        "[d",
+        nndiag.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } }),
+        "Go to previous diagnostic"
+    )
+    map_desc(
+        "n",
+        "]d",
+        nndiag.goto_next({ severity = { min = vim.diagnostic.severity.WARN } }),
+        "Go to next diagnostic"
+    )
+end
 
 map_desc("n", "<leader>tt", function()
     require("base46").toggle_theme()
