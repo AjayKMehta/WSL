@@ -1965,6 +1965,10 @@ _uv() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                -p)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --no-binary)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
@@ -1974,10 +1978,6 @@ _uv() {
                     return 0
                     ;;
                 --python-version)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                -p)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -3429,7 +3429,7 @@ _uv() {
             return 0
             ;;
         uv__run)
-            opts="-m -s -i -f -U -P -C -p -n -q -v -h -V --extra --all-extras --no-extra --no-all-extras --dev --no-dev --group --no-group --no-default-groups --only-group --all-groups --module --only-dev --no-editable --inexact --exact --env-file --no-env-file --with --with-editable --with-requirements --isolated --active --no-active --no-sync --locked --frozen --script --gui-script --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --all-packages --package --no-project --python --show-resolution --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version"
+            opts="-m -s -i -f -U -P -C -p -n -q -v -h -V --extra --all-extras --no-extra --no-all-extras --dev --no-dev --group --no-group --no-default-groups --only-group --all-groups --module --only-dev --no-editable --inexact --exact --env-file --no-env-file --with --with-editable --with-requirements --isolated --active --no-active --no-sync --locked --frozen --script --gui-script --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --all-packages --package --no-project --python --show-resolution --max-recursion-depth --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3575,6 +3575,10 @@ _uv() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                --max-recursion-depth)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --cache-dir)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
@@ -3711,7 +3715,7 @@ _uv() {
             return 0
             ;;
         uv__sync)
-            opts="-i -f -U -P -C -p -n -q -v -h -V --extra --all-extras --no-extra --no-all-extras --dev --no-dev --only-dev --group --no-group --no-default-groups --only-group --all-groups --no-editable --inexact --exact --active --no-active --no-install-project --no-install-workspace --no-install-package --locked --frozen --dry-run --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --all-packages --package --python --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version"
+            opts="-i -f -U -P -C -p -n -q -v -h -V --extra --all-extras --no-extra --no-all-extras --dev --no-dev --only-dev --group --no-group --no-default-groups --only-group --all-groups --no-editable --inexact --exact --active --no-active --no-install-project --no-install-workspace --no-install-package --locked --frozen --dry-run --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --all-packages --package --script --python --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3834,6 +3838,10 @@ _uv() {
                     return 0
                     ;;
                 --package)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --script)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
