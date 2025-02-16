@@ -24,30 +24,32 @@ return {
         opts = { options = { reindent_linewise = true } },
         event = "VeryLazy",
     },
-    {
-        -- highlight-undo will remap the u and <C-r> keys (for undo and redo, by default) to highlight changed text after Undo / Redo operations.
-        "tzachar/highlight-undo.nvim",
-        opts = {
-            duration = 300,
-            undo = {
-                hlgroup = "HighlightUndo",
-                mode = "n",
-                lhs = "u",
-                map = "undo",
-                opts = {},
-            },
-            redo = {
-                hlgroup = "HighlightRedo",
-                mode = "n",
-                lhs = "<C-r>",
-                map = "redo",
-                opts = {},
-            },
-            highlight_for_count = true,
-        },
-        -- Real mapping defined in config
-        keys = { { "u" }, { "<C-r>" } },
-    },
+ {
+  "y3owk1n/undo-glow.nvim",
+  event = { "VeryLazy" },
+  opts = function(_, opts)
+    -- How i set up the colors using catppuccin
+    local has_catppuccin, catppuccin = pcall(require, "catppuccin.palettes")
+
+    if has_catppuccin then
+        local colors = catppuccin.get_palette()
+        opts.undo_hl_color = { bg = colors.red, fg = colors.base }
+        opts.redo_hl_color = { bg = colors.flamingo, fg = colors.base }
+    else
+        opts.undo_hl_color = { fg = "#DD0000"  }
+        opts.redo_hl_color = { fg = "#8edd6a"  }
+    end
+  end,
+  config = function(_, opts)
+    local undo_glow = require("undo-glow")
+
+    undo_glow.setup(opts)
+
+    vim.keymap.set("n", "u", undo_glow.undo, { noremap = true, silent = true })
+    -- I like to use U to redo instead
+    vim.keymap.set("n", "<c-r>", undo_glow.redo, { noremap = true, silent = true })
+  end,
+ },
     {
         "smoka7/multicursors.nvim",
         event = "VeryLazy",
