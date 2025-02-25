@@ -42,6 +42,7 @@ local servers = {
 
     -- R
     "r_language_server",
+    "air",
 }
 
 for _, lsp in ipairs(servers) do
@@ -87,7 +88,7 @@ lspconfig.lua_ls.setup({
                 -- Tell the language server which version of Lua you're using
                 -- (most likely LuaJIT in the case of Neovim)
                 version = "LuaJIT",
-                path = runtime_path
+                path = runtime_path,
             },
             workspace = {
                 checkThirdParty = false,
