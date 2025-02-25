@@ -21,7 +21,7 @@ return {
         "pwntester/octo.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim",
+            "folke/snacks.nvim",
             "nvim-tree/nvim-web-devicons",
         },
         cmd = "Octo",
@@ -30,6 +30,7 @@ return {
                 enable_builtin = true,
                 use_local_fs = true,
                 mappings_disable_default = true,
+                picker = "snacks",
                 -- This doesn't work: gh auth refresh -s read:project
                 suppress_missing_scope = {
                     projects_v2 = true,
@@ -115,24 +116,12 @@ return {
 
                 -- Navigation
 
-                local next_loaded, next_integrations = require("utils").is_loaded("nvim-next.integrations")
-
-                local nngs = next_integrations.gitsigns(gs)
-
                 map({ "n", "v" }, "[h", function()
-                    if next_loaded then
-                        nngs.prev_hunk()
-                    else
-                        gs.nav_hunk("prev")
-                    end
+                   gs.nav_hunk("prev")
                 end, "gitsigns Go to previous hunk")
 
                 map({ "n", "v" }, "]h", function()
-                    if next_loaded then
-                        nngs.next_hunk()
-                    else
-                        gs.nav_hunk("next")
-                    end
+                    gs.nav_hunk("next")
                 end, "gitsigns Go to next hunk")
 
                 map({ "n", "v" }, "[H", function()

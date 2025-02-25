@@ -24,32 +24,32 @@ return {
         opts = { options = { reindent_linewise = true } },
         event = "VeryLazy",
     },
- {
-  "y3owk1n/undo-glow.nvim",
-  event = { "VeryLazy" },
-  opts = function(_, opts)
-    -- How i set up the colors using catppuccin
-    local has_catppuccin, catppuccin = pcall(require, "catppuccin.palettes")
+    {
+        "y3owk1n/undo-glow.nvim",
+        event = { "VeryLazy" },
+        opts = function(_, opts)
+            -- How i set up the colors using catppuccin
+            local has_catppuccin, catppuccin = pcall(require, "catppuccin.palettes")
 
-    if has_catppuccin then
-        local colors = catppuccin.get_palette()
-        opts.undo_hl_color = { bg = colors.red, fg = colors.base }
-        opts.redo_hl_color = { bg = colors.flamingo, fg = colors.base }
-    else
-        opts.undo_hl_color = { fg = "#DD0000"  }
-        opts.redo_hl_color = { fg = "#8edd6a"  }
-    end
-  end,
-  config = function(_, opts)
-    local undo_glow = require("undo-glow")
+            if has_catppuccin then
+                local colors = catppuccin.get_palette()
+                opts.undo_hl_color = { bg = colors.red, fg = colors.base }
+                opts.redo_hl_color = { bg = colors.flamingo, fg = colors.base }
+            else
+                opts.undo_hl_color = { fg = "#DD0000" }
+                opts.redo_hl_color = { fg = "#8edd6a" }
+            end
+        end,
+        config = function(_, opts)
+            local undo_glow = require("undo-glow")
 
-    undo_glow.setup(opts)
+            undo_glow.setup(opts)
 
-    vim.keymap.set("n", "u", undo_glow.undo, { noremap = true, silent = true })
-    -- I like to use U to redo instead
-    vim.keymap.set("n", "<c-r>", undo_glow.redo, { noremap = true, silent = true })
-  end,
- },
+            vim.keymap.set("n", "u", undo_glow.undo, { noremap = true, silent = true })
+            -- I like to use U to redo instead
+            vim.keymap.set("n", "<c-r>", undo_glow.redo, { noremap = true, silent = true })
+        end,
+    },
     {
         "smoka7/multicursors.nvim",
         event = "VeryLazy",
@@ -282,7 +282,7 @@ return {
                     jump_labels = function(motion)
                         return vim.v.count == 0 and vim.fn.reg_executing() == "" and vim.fn.reg_recording() == ""
                     end,
-                    keys = { "f", "F", "t", "T", [";"] = "L", [","] = "H" },
+                    keys = { "f", "F", "t", "T"; ";", "," },
                     jump = {
                         -- Don't add to search register (/)
                         register = false,
@@ -335,21 +335,6 @@ return {
                 },
             },
         },
-    },
-    {
-        -- Repeatable motions
-        "ghostbuster91/nvim-next",
-        opts = {
-            default_mappings = {
-                repeat_style = "directional",
-            },
-        },
-        config = function(_, opts)
-            require("nvim-next").setup(opts)
-            local next_quickfix = require("nvim-next.integrations").quickfix()
-            vim.keymap.set("n", "[q", next_quickfix.cprevious, { desc = "previous quickfix list item" })
-            vim.keymap.set("n", "]q", next_quickfix.cnext, { desc = "next quickfix list item" })
-        end,
     },
     {
         "chrisgrieser/nvim-various-textobjs",

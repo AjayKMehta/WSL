@@ -21,8 +21,6 @@ local disabled = {
         "<A-i>", -- NvChad maps this to floating terminal
         "<A-h>", -- NvChad maps this to horizontal terminal
         "<A-v>", -- NvChad maps this to vertical terminal
-        "]d",
-        "[d",
     },
 }
 
@@ -35,24 +33,6 @@ for mode, mappings in pairs(disabled) do
             vim.notify("Keymap " .. keys .. " does not exist for mode " .. mode)
         end
     end
-end
-
-local next_loaded, next_integrations = require("utils").is_loaded("nvim-next.integrations")
-
-if next_loaded then
-    local nndiag = next_integrations.diagnostic()
-    map_desc(
-        "n",
-        "[d",
-        nndiag.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } }),
-        "Go to previous diagnostic"
-    )
-    map_desc(
-        "n",
-        "]d",
-        nndiag.goto_next({ severity = { min = vim.diagnostic.severity.WARN } }),
-        "Go to next diagnostic"
-    )
 end
 
 map_desc("n", "<leader>tt", function()
