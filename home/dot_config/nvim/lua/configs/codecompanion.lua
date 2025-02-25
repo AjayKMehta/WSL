@@ -25,15 +25,16 @@ local adapters = {
     llama3 = function()
         return create_ollama_adapter("llama3", "llama3.2:latest", 16384)
     end,
-    codellama = create_ollama_adapter("codellama", "codellama:7b", 16384),
+    codellama = create_ollama_adapter("codellama", "codellama:13b", 16384),
     qwen = function()
         return ca.extend("ollama", {
             env = { url = ollama_url },
             headers = { ["Content-Type"] = "application/json" },
             parameters = { sync = true },
             name = "qwen2.5-coder",
+            -- https://github.com/ollama/ollama/blob/main/docs/modelfile.md#parameter
             schema = {
-                model = { default = "qwen2.5-coder:7b" },
+                model = { default = "qwen2.5-coder:14b" },
                 num_ctx = { default = 8192 },
                 num_predict = { default = -1 },
             },
@@ -83,22 +84,39 @@ local strategies = {
         slash_commands = {
             ["buffer"] = {
                 opts = {
-                    provider = "telescope",
+                    provider = "snacks",
                 },
             },
             ["fetch"] = {
                 opts = {
-                    provider = "telescope",
+                    provider = "snacks",
                 },
             },
             ["file"] = {
                 opts = {
-                    provider = "telescope",
+                    provider = "snacks",
                 },
             },
             ["symbols"] = {
                 opts = {
-                    provider = "telescope",
+                    provider = "snacks",
+                },
+            },
+            -- https://codecompanion.olimorris.dev/configuration/chat-buffer.html#slash-commands
+            ["git_files"] = {
+                description = "List git files",
+                callback = function(chat)
+                    local handle = io.popen("git ls-files")
+                    if handle ~= nil then
+                        local result = handle:read("*a")
+                        handle:close()
+                        chat:add_reference({ content = result }, "git", "<git_files>")
+                    else
+                        return vim.notify("No git files available", vim.log.levels.INFO, { title = "CodeCompanion" })
+                    end
+                end,
+                opts = {
+                    contains_code = false,
                 },
             },
         },
