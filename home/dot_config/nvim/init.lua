@@ -108,3 +108,12 @@ vim.filetype.add({
         [".*/%.vscode/.*%.json"] = "jsonc",
     },
 })
+
+-- https://www.reddit.com/r/neovim/comments/1ixsk40/comment/meqnilu
+-- Example: :Dump !ls -a
+vim.api.nvim_create_user_command("Dump", function(x)
+    vim.cmd(string.format("put =execute('%s')", x.args))
+end, {
+    nargs = "+",
+    desc = "Dump the output of a command at the cursor position",
+})
