@@ -47,6 +47,9 @@ map_desc("n", "gli", function()
     vim.lsp.buf.implementation()
 end, "Lsp Go to implementation")
 
+-- Courtesy of https://www.reddit.com/r/neovim/comments/1ixsk40/comment/mep7kp1/
+map_desc("n", "gV", "`[v`]", "Select the previous yanked area")
+
 -- tabufline (NVChad plugin)
 -- NVChad maps this to <leader>b
 -- Use Tab and Shift+Tab to navigate between buffers
