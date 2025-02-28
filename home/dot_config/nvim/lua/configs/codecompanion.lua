@@ -1,4 +1,6 @@
+local cc = require("codecompanion")
 local ca = require("codecompanion.adapters")
+
 local ollama_url = "http://localhost:11434"
 
 local function create_ollama_adapter(name, model, num_ctx)
@@ -155,4 +157,4 @@ local config = {
 }
 
 ---@diagnostic disable-next-line: different-requires
-require("codecompanion").setup(config)
+cc.setup(config)
