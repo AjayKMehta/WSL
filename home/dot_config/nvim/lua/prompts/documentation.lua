@@ -2,7 +2,7 @@ local utils = require("utils.codecompanion")
 
 return {
     description = "Add documentation to the selected code",
-    strategy = "chat",
+    strategy = "inline",
     opts = {
         -- Getting marksman error so disabled for now.
         -- pre_hook = function()
@@ -13,7 +13,7 @@ return {
         -- end,
         auto_submit = true,
         is_slash_cmd = true,
-        modes = { "n", "v" },
+        modes = "v",
         short_name = "doc",
         stop_context_insertion = true,
         user_prompt = false,
@@ -41,7 +41,7 @@ return {
         {
             role = "user",
             content = function(context)
-                local text = utils.get_text(context)
+                local text = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
                 local lang = context.filetype or ""
                 return "Please document the selected code:\n\n```" .. lang .. "\n" .. text .. "\n```\n\n"
             end,
