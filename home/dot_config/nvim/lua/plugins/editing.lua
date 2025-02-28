@@ -27,27 +27,72 @@ return {
     {
         "y3owk1n/undo-glow.nvim",
         event = { "VeryLazy" },
-        opts = function(_, opts)
-            -- How i set up the colors using catppuccin
-            local has_catppuccin, catppuccin = pcall(require, "catppuccin.palettes")
-
-            if has_catppuccin then
-                local colors = catppuccin.get_palette()
-                opts.undo_hl_color = { bg = colors.red, fg = colors.base }
-                opts.redo_hl_color = { bg = colors.flamingo, fg = colors.base }
-            else
-                opts.undo_hl_color = { fg = "#DD0000" }
-                opts.redo_hl_color = { fg = "#8edd6a" }
-            end
-        end,
+        opts = {
+            animation = {
+                enabled = true,
+                duration = 300,
+            },
+            highlights = {
+                undo = {
+                    hl_color = { bg = "#DD0000" },
+                },
+                redo = {
+                    hl_color = { bg = "#59dc1c" },
+                },
+                yank = {
+                    hl_color = { bg = "#5A513C" },
+                },
+                paste = {
+                    hl_color = { bg = "#5A496E" },
+                },
+                search = {
+                    hl_color = { bg = "#6D4B5E" },
+                },
+                comment = {
+                    hl_color = { bg = "#6D5640" },
+                },
+            },
+        },
         config = function(_, opts)
             local undo_glow = require("undo-glow")
 
             undo_glow.setup(opts)
 
-            vim.keymap.set("n", "u", undo_glow.undo, { noremap = true, silent = true })
-            -- I like to use U to redo instead
-            vim.keymap.set("n", "<c-r>", undo_glow.redo, { noremap = true, silent = true })
+            vim.keymap.set("n", "u", undo_glow.undo, { noremap = true, desc = "Undo with highlight" })
+            vim.keymap.set("n", "U", undo_glow.redo, { noremap = true, desc = "Redo with highlight" })
+            vim.keymap.set("n", "p", undo_glow.paste_below, { noremap = true, desc = "Paste below with highlight" })
+            vim.keymap.set("n", "P", undo_glow.paste_above, { noremap = true, desc = "Paste above with highlight" })
+            vim.keymap.set("n", "n", undo_glow.search_next, { noremap = true, desc = "Search next with highlight" })
+            vim.keymap.set("n", "N", undo_glow.search_prev, { noremap = true, desc = "Search previous with highlight" })
+            vim.keymap.set("n", "*", undo_glow.search_star, { noremap = true, desc = "Search * with highlight" })
+
+            vim.keymap.set({ "n", "x" }, "gc", function()
+                -- Restore cursor after comment
+                local pos = vim.fn.getpos(".")
+                vim.schedule(function()
+                    vim.fn.setpos(".", pos)
+                end)
+                return undo_glow.comment()
+            end, { expr = true, noremap = true, desc = "Toggle comment with highlight" })
+
+            vim.keymap.set(
+                "o",
+                "gc",
+                undo_glow.comment_textobject,
+                { noremap = true, desc = "Comment textobject with highlight" }
+            )
+
+            vim.keymap.set(
+                "n",
+                "gcc",
+                undo_glow.comment_line,
+                { expr = true, noremap = true, desc = "Toggle comment line with highlight" }
+            )
+
+            vim.api.nvim_create_autocmd("TextYankPost", {
+                desc = "Highlight when yanking (copying) text",
+                callback = require("undo-glow").yank,
+            })
         end,
     },
     {
@@ -282,7 +327,7 @@ return {
                     jump_labels = function(motion)
                         return vim.v.count == 0 and vim.fn.reg_executing() == "" and vim.fn.reg_recording() == ""
                     end,
-                    keys = { "f", "F", "t", "T"; ";", "," },
+                    keys = { "f", "F", "t", "T", ";", "," },
                     jump = {
                         -- Don't add to search register (/)
                         register = false,
