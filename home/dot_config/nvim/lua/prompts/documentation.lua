@@ -13,7 +13,7 @@ return {
         -- end,
         auto_submit = true,
         is_slash_cmd = true,
-        modes = "v",
+        modes = {"v"},
         short_name = "doc",
         stop_context_insertion = true,
         user_prompt = false,
