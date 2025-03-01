@@ -31,6 +31,7 @@ return {
             animation = {
                 enabled = true,
                 duration = 300,
+                animation_type = "zoom",
             },
             highlights = {
                 undo = {
@@ -56,39 +57,28 @@ return {
         },
         config = function(_, opts)
             local undo_glow = require("undo-glow")
+            local m = require("utils.mappings")
 
             undo_glow.setup(opts)
 
-            vim.keymap.set("n", "u", undo_glow.undo, { noremap = true, desc = "Undo with highlight" })
-            vim.keymap.set("n", "U", undo_glow.redo, { noremap = true, desc = "Redo with highlight" })
-            vim.keymap.set("n", "p", undo_glow.paste_below, { noremap = true, desc = "Paste below with highlight" })
-            vim.keymap.set("n", "P", undo_glow.paste_above, { noremap = true, desc = "Paste above with highlight" })
-            vim.keymap.set("n", "n", undo_glow.search_next, { noremap = true, desc = "Search next with highlight" })
-            vim.keymap.set("n", "N", undo_glow.search_prev, { noremap = true, desc = "Search previous with highlight" })
-            vim.keymap.set("n", "*", undo_glow.search_star, { noremap = true, desc = "Search * with highlight" })
+            m.map_desc("n", "u", undo_glow.undo, "Undo with highlight")
+            m.map_desc("n", "U", undo_glow.redo, "Redo with highlight")
+            m.map_desc("n", "p", undo_glow.paste_below, "Paste below with highlight")
+            m.map_desc("n", "P", undo_glow.paste_above, "Paste above with highlight")
+            -- Don't create keymaps for search because interfere with flash.nvim.
 
-            vim.keymap.set({ "n", "x" }, "gc", function()
+            m.map_desc_dynamic({ "n", "x" }, "gc", function()
                 -- Restore cursor after comment
                 local pos = vim.fn.getpos(".")
                 vim.schedule(function()
                     vim.fn.setpos(".", pos)
                 end)
                 return undo_glow.comment()
-            end, { expr = true, noremap = true, desc = "Toggle comment with highlight" })
+            end, "Toggle comment with highlight")
 
-            vim.keymap.set(
-                "o",
-                "gc",
-                undo_glow.comment_textobject,
-                { noremap = true, desc = "Comment textobject with highlight" }
-            )
+            m.map_desc("o", "gc", undo_glow.comment_textobject, "Comment textobject with highlight")
 
-            vim.keymap.set(
-                "n",
-                "gcc",
-                undo_glow.comment_line,
-                { expr = true, noremap = true, desc = "Toggle comment line with highlight" }
-            )
+            m.map_desc_dynamic("n", "gcc", undo_glow.comment_line, "Toggle comment line with highlight")
 
             vim.api.nvim_create_autocmd("TextYankPost", {
                 desc = "Highlight when yanking (copying) text",
@@ -391,5 +381,8 @@ return {
                 disabledDefaults = { "ii", "ai", "aI" },
             },
         },
+        config = function(_, opts)
+            require("various-textobjs").setup(opts)
+        end,
     },
 }
