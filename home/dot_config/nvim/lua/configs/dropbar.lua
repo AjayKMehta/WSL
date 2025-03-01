@@ -2,6 +2,7 @@ local dropbar = require("dropbar")
 local dropbar_api = require("dropbar.api")
 local sources = require("dropbar.sources")
 local utils = require("dropbar.utils")
+local map_desc = require("utils.mappings").map_desc
 
 vim.api.nvim_set_hl(0, "DropBarFileName", { fg = "#FFFFFF", italic = true })
 
@@ -74,6 +75,6 @@ local opts = {
     },
 }
 dropbar.setup(opts)
-vim.keymap.set("n", "<Leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
-vim.keymap.set("n", "[;", dropbar_api.goto_context_start, { desc = "Go to start of current context" })
-vim.keymap.set("n", "];", dropbar_api.select_next_context, { desc = "Select next context" })
+map_desc("n", "<Leader>;", dropbar_api.pick, "Pick symbols in winbar")
+map_desc("n", "[;", dropbar_api.goto_context_start, "Go to start of current context" )
+map_desc("n", "];", dropbar_api.select_next_context, "Select next context" )

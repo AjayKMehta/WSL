@@ -1,3 +1,5 @@
+local map_desc = require("utils.mappings").map_desc
+
 vim.g.base46_cache = vim.fn.stdpath("data") .. "/nvchad/base46/"
 -- Set these before loading lazy.nvim
 vim.g.mapleader = " "
@@ -73,9 +75,9 @@ vim.env.OPENAI_API_HOST = "api.openai.com"
 
 -- https://nvchad.com/docs/api
 for i = 1, 9, 1 do
-    vim.keymap.set("n", string.format("<A-%s>", i), function()
+    map_desc("n", string.format("<A-%s>", i), function()
         vim.api.nvim_set_current_buf(vim.t.bufs[i])
-    end)
+    end, "Switch to buffer " .. i)
 end
 
 vim.cmd([[

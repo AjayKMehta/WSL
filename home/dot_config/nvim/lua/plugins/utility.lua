@@ -1,4 +1,3 @@
-local map_desc = require("utils.mappings").map_desc
 return {
     {
         "j-hui/fidget.nvim",
