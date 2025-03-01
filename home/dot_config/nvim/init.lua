@@ -13,7 +13,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
     vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end
-vim.opt.rtp:prepend(lazypath)
+vim.opt.runtimepath:prepend(lazypath)
 
 local lazy_config = require("configs.lazy")
 
@@ -118,4 +118,23 @@ vim.api.nvim_create_user_command("Dump", function(x)
 end, {
     nargs = "+",
     desc = "Dump the output of a command at the cursor position",
+})
+
+vim.api.nvim_create_user_command("GrepWord", function(input)
+    if not input.args then
+        vim.notify("Error: Please provide a word to grep for")
+        return
+    end
+
+    -- Execute the command sequence
+    local cmd = 'vnew | 0r!grep "' .. input.args .. '" #'
+
+    -- Try to execute the command
+    local success, err = pcall(vim.api.nvim_command, cmd)
+    if not success then
+        vim.notify("Error executing grep command: " .. tostring(err))
+    end
+end, {
+    desc = "Dump output of grep in a new tab (vertical split)",
+    nargs = "+",
 })
