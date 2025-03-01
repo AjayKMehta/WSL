@@ -40,18 +40,19 @@ return {
                     hl_color = { bg = "#59dc1c" },
                 },
                 yank = {
-                    hl_color = { bg = "#5A513C" },
+                    hl_color = { bg = "#F1D13C" },
                 },
                 paste = {
-                    hl_color = { bg = "#5A496E" },
-                },
-                search = {
-                    hl_color = { bg = "#6D4B5E" },
+                    hl_color = { bg = "#85496E" },
                 },
                 comment = {
-                    hl_color = { bg = "#6D5640" },
+                    hl_color = { bg = "#605640" },
+                },
+                cursor = {
+                    hl_color = { bg = "#FA8D06" },
                 },
             },
+            priority = 4096, -- so that it will work with render-markdown.nvim
         },
         config = function(_, opts)
             local undo_glow = require("undo-glow")
