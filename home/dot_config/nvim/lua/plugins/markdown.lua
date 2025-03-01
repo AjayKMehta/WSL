@@ -15,32 +15,18 @@ return {
                 local function toggle(key)
                     return "<Esc>gv<Cmd>lua require'markdown.inline'" .. ".toggle_emphasis_visual'" .. key .. "'<CR>"
                 end
+                local map_buf = require("utils.mappings").map_buf
 
-                vim.keymap.set("x", "<C-b>", toggle("b"), { buffer = bufnr, desc = "Toggle bold" })
-                vim.keymap.set("x", "<C-i>", toggle("i"), { buffer = bufnr, desc = "Toggle italic" })
-                vim.keymap.set("x", "<C-m><C-i>", toggle("c"), { buffer = bufnr, desc = "Toggle code span" })
-                vim.keymap.set("x", "<a-s>", toggle("s"), { buffer = bufnr, desc = "Toggle strikethrough" })
+                map_buf(bufnr, "x", "<C-b>", toggle("b"), "Toggle bold")
+                map_buf(bufnr, "x", "<C-i>", toggle("i"), "Toggle italic")
+                map_buf(bufnr, "x", "<C-m><C-i>", toggle("c"), "Toggle code span")
+                map_buf(bufnr, "x", "<a-s>", toggle("s"), "Toggle strikethrough")
 
-                vim.keymap.set(
-                    "n",
-                    "<C-m><C-k>",
-                    "<Cmd>MDListItemAbove<CR>",
-                    { buffer = bufnr, desc = "Insert new markdown list item above" }
-                )
+                map_buf(bufnr, "n", "<C-m><C-k>", "<Cmd>MDListItemAbove<CR>", "Insert new markdown list item above")
 
-                vim.keymap.set(
-                    "n",
-                    "<C-m><C-j>",
-                    "<Cmd>MDListItemBelow<CR>",
-                    { buffer = bufnr, desc = "Insert new markdown list item below" }
-                )
+                map_buf(bufnr, "n", "<C-m><C-j>", "<Cmd>MDListItemBelow<CR>", "Insert new markdown list item below")
 
-                vim.keymap.set(
-                    "n",
-                    "<C-m><C-x>",
-                    "<Cmd>MDTaskToggle<CR>",
-                    { buffer = bufnr, desc = "Toggles the task(s) on current line" }
-                )
+                map_buf(bufnr, "n", "<C-m><C-x>", "<Cmd>MDTaskToggle<CR>", "Toggles the task(s) on current line")
             end,
         },
     },

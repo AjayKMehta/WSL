@@ -211,7 +211,6 @@ return {
                     },
                 },
             },
-            -- https://vonheikemen.github.io/devlog/tools/neovim-plugins-to-get-started/
             on_attach = function(bufnr)
                 -- See :help nvim-tree.api
                 local api = require("nvim-tree.api")
@@ -286,8 +285,8 @@ return {
                 end
 
                 -- https://github.com/olimorris/codecompanion.nvim/discussions/641#discussioncomment-11836380
-                vim.keymap.set("n", "<leader>ca", add_refs_to_chat(false), { buffer = bufnr, desc = "Add file(s) to Chat" })
-                vim.keymap.set("n", "<leader>cp", add_refs_to_chat(true), { buffer = bufnr, desc = "Pin file(s) to Chat" })
+                bufmap("<leader>ca", add_refs_to_chat(false), "Add file(s) to Chat" )
+                bufmap( "<leader>cp", add_refs_to_chat(true), "Pin file(s) to Chat" )
 
                 bufmap("<c-f>", treeutils.launch_find_files, "Launch Find Files")
                 bufmap("<c-g>", treeutils.launch_live_grep, "Launch Live Grep")
