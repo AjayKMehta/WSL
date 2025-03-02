@@ -1,74 +1,54 @@
 return {
     {
-        "someone-stole-my-name/yaml-companion.nvim",
+        "cenk1cenk2/schema-companion.nvim",
+        ft = { "yaml", "helm" },
         dependencies = {
-            { "neovim/nvim-lspconfig" },
             { "nvim-lua/plenary.nvim" },
         },
-        keys = {
-            {
-                "<leader>ys",
-                function()
-                    require("yaml-companion").open_ui_select()
-                end,
-                desc = "YAML Schema",
-            },
+        opts = {
+            enable_telescope = true,
         },
-        -- Inspired by https://www.arthurkoziel.com/json-schemas-in-neovim/
-        opts = function()
-            local ss_schemas = require("schemastore").yaml.schemas()
-            return {
-                builtin_matchers = {
-                    -- Detects Kubernetes files based on content
-                    kubernetes = { enabled = true },
-                    cloud_init = { enabled = true },
-                },
+        config = function(_, opts)
+            local sc = require("schema-companion")
+            sc.setup(opts)
 
-                -- Additional schemas available in Telescope picker
-                schemas = {
-                    -- schemas below are automatically loaded, but added
-                    -- them here so that they show up in the statusline
-                    {
-                        name = "GitHub Workflow",
-                        uri = "https://json.schemastore.org/github-workflow.json",
-                    },
-                },
-
-                -- Pass any additional options that will be merged in the final LSP config
-                lspconfig = {
-                    flags = {
-                        debounce_text_changes = 150,
-                    },
-                    settings = {
-                        redhat = { telemetry = { enabled = false } },
-                        yaml = {
-                            validate = true,
-                            format = { enable = true },
-                            hover = true,
-                            completion = true,
-                            schemaStore = {
-                                enable = false,
-                                url = "",
+            require("lspconfig")["yamlls"].setup(sc.setup_client({
+                servers = {
+                    yamlls = {
+                        capabilities = {
+                            -- https://github.com/redhat-developer/yaml-language-server/issues/912#issuecomment-1797097638
+                            textDocument = {
+                                foldingRange = {
+                                    dynamicRegistration = false,
+                                    lineFoldingOnly = true,
+                                },
                             },
-                            schemaDownload = { enable = true },
-                            -- Transitive dependency due to lspconfig
-                            schemas = ss_schemas,
-                            trace = { server = "debug" },
+                        },
+                        settings = {
+                            redhat = { telemetry = { enabled = false } },
+                            yaml = {
+                                validate = true,
+                                format = { enable = true },
+                                hover = true,
+                                completion = true,
+                                schemaStore = {
+                                    enable = false,
+                                    url = "",
+                                    -- url = "https://www.schemastore.org/api/json/catalog.json",
+                                },
+                                schemaDownload = { enable = true },
+                                schemas = require("schemastore").yaml.schemas(),
+                                trace = { server = "debug" },
+                            },
                         },
                     },
                 },
-            }
-        end,
-        config = function(_, opts)
-            local cfg = require("yaml-companion").setup(opts)
-            local lsp = require("utils.lsp")
-            cfg = vim.tbl_deep_extend("force", cfg, { on_attach = lsp.on_attach, capabilities = lsp.capabilities })
-            require("lspconfig")["yamlls"].setup(cfg)
+            }))
         end,
     },
     {
         "cuducos/yaml.nvim",
-        ft = { "yaml" }, -- optional
+        ft = { "yaml", "helm" },
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },

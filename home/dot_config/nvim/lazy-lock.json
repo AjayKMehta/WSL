@@ -119,6 +119,7 @@
   "render-markdown.nvim": { "branch": "main", "commit": "595ac4f7e7c0eaba7bf1d8fd6ec0f6ac91c7e33b" },
   "rest.nvim": { "branch": "main", "commit": "949b585807cc315337602b7824ce60d0aef58bbd" },
   "roslyn.nvim": { "branch": "main", "commit": "633a61c30801a854cf52f4492ec8702a8c4ec0e9" },
+  "schema-companion.nvim": { "branch": "main", "commit": "e52c916b5e0836dc0a2bf348293f8ab3fd6cf5fb" },
   "screenkey.nvim": { "branch": "main", "commit": "16390931d847b1d5d77098daccac4e55654ac9e2" },
   "smartyank.nvim": { "branch": "master", "commit": "0a4554a4ea4cad73dab0a15e559f2128ca03c7b2" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
@@ -142,7 +143,6 @@
   "vimtex": { "branch": "master", "commit": "d7c696d9fe114876b53dc986e32d795cd16dbdcc" },
   "volt": { "branch": "main", "commit": "21a2351697abfed26d4469b88d3ab124d55a1b3f" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
-  "yaml-companion.nvim": { "branch": "main", "commit": "131b0d67bd2e0f1a02e0daf2f3460482221ce3c0" },
   "yaml.nvim": { "branch": "main", "commit": "a7fc7a07076689a7b5f0f6d06347c1e221f0d1b0" },
   "yazi.nvim": { "branch": "main", "commit": "a5f12d4cea8aabf6712d4903d8f0bac2f191c519" }
 }
