@@ -84,6 +84,19 @@ return {
                 desc = "Highlight when yanking (copying) text",
                 callback = require("undo-glow").yank,
             })
+
+            vim.api.nvim_create_autocmd("CursorMoved", {
+                desc = "Highlight when cursor moved significantly",
+                callback = function()
+                    vim.schedule(function()
+                        require("undo-glow").cursor_moved({
+                            animation = {
+                                animation_type = "slide",
+                            },{ "mason", "lazy", "help", "git" }
+                        })
+                    end)
+                end,
+            })
         end,
     },
     {
