@@ -76,11 +76,6 @@ local default_sources = {
         max_item_count = 100,
         option = { show_autosnippets = true },
     },
-    {
-        name = "emoji",
-        group_index = 1,
-        priority = 100,
-    },
     { name = "easy-dotnet", group_index = 1 },
 }
 
@@ -270,6 +265,11 @@ cmp.setup.filetype({ "tex", "plaintex" }, {
 local markdown_sources = vim.deepcopy(tex_sources)
 -- Completions for both checkboxes and callouts
 table.insert(markdown_sources, { name = "render-markdown", group_index = 1, priority = 80 })
+table.insert(markdown_sources, {
+    name = "emoji",
+    group_index = 1,
+    priority = 100,
+})
 cmp.setup.filetype({ "markdown", "rmd", "quarto" }, {
     sources = markdown_sources,
 })

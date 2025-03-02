@@ -246,9 +246,11 @@ return {
     {
         "allaman/emoji.nvim",
         event = "InsertEnter",
+        cmd = "Emoji",
         dependencies = {
+            "nvim-lua/plenary.nvim",
             "hrsh7th/nvim-cmp",
-            "nvim-telescope/telescope.nvim",
+            "folke/snacks.nvim",
         },
         opts = {
             -- default is false
