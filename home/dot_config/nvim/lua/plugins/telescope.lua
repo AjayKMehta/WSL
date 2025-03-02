@@ -17,7 +17,6 @@ return {
                     hide_current_buffer = true,
                 },
             },
-            "catgoose/telescope-helpgrep.nvim",
             "nvim-telescope/telescope-dap.nvim",
         },
     },

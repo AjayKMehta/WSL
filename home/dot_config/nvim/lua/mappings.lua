@@ -153,7 +153,7 @@ map_desc("n", "<leader>fy", function()
 end, "Telescope Search buffers")
 
 map_desc("n", "<leader>fe", "<cmd>Telescope emoji<CR>", "Telescope Search emojis")
-map_desc("n", "<leader>fn", "<cmd>Noice telescope <CR>", "Telescope Noice")
+
 map_desc("n", "<leader>fj", function()
     require("telescope.builtin").jumplist()
 end, "Telescope Jumplist")
@@ -172,17 +172,6 @@ map_desc("n", "<leader>fFc", function()
         workspace = "CWD",
     })
 end, "Telescope frecency (CWD)")
-
-map_desc("n", "<leader>fHl", function()
-    require("telescope-helpgrep").live_grep()
-end, "Telescope Grep help (live grep)")
-
-map_desc("n", "<leader>fHg", function()
-    require("telescope-helpgrep").grep_string()
-end, "Telescope Grep help (grep string)")
-map_desc("n", "<leader>fHt", function()
-    require("telescope.builtin").help_tags()
-end, "Telescope Help tags")
 
 -- NVChad provides git status via <leader>gt
 map_desc("n", "<leader>gb", function()

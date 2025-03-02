@@ -98,8 +98,6 @@ M.config = function()
             "file_browser",
             "frecency",
             "fzf",
-            "helpgrep",
-            "noice",
             "terms",
             "themes",
         },
@@ -109,21 +107,6 @@ M.config = function()
                 override_generic_sorter = true,
                 override_file_sorter = true,
                 case_mode = "smart_case",
-            },
-            helpgrep = {
-                ignore_paths = {
-                    vim.fn.stdpath("state") .. "/lazy/readme",
-                },
-                mappings = {
-                    i = {
-                        ["<CR>"] = actions.select_default,
-                        ["<C-v>"] = actions.select_vertical,
-                    },
-                    n = {
-                        ["<CR>"] = actions.select_default,
-                        ["<C-s>"] = actions.select_horizontal,
-                    },
-                },
             },
             lazy = {
                 show_icon = true,
