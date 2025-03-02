@@ -99,13 +99,9 @@ M.config = function()
             "frecency",
             "fzf",
             "helpgrep",
-            "hoogle",
             "noice",
             "terms",
             "themes",
-            "undo",
-            "luasnip",
-            "togglescope",
         },
         extensions = {
             fzf = {
@@ -153,40 +149,6 @@ M.config = function()
                 hijack_netrw = true,
                 git_status = true,
                 create_from_prompt = false,
-            },
-            undo = {
-                use_delta = true,
-                entry_format = "󰣜 #$ID, $STAT, $TIME",
-                mappings = {
-                    i = {
-                        ["<C-s-cr>"] = require("telescope-undo.actions").restore,
-                    },
-                },
-            },
-            togglescope = {
-                find_files = {
-                    ["<C-\\>"] = {
-                        hidden = true,
-                        no_ignore = true,
-                        togglescope_title = "Find Files (hidden)",
-                    },
-                },
-                live_grep = {
-                    ["<C-\\>"] = {
-                        --- flags are passed to ripgrep using "additional_args"
-                        additional_args = {
-                            --- search through hidden files/directories
-                            "--hidden",
-                            --- search through ignored directories/files
-                            "--no-ignore",
-                            --- specify a glob for the search
-                            "-g",
-                            --- ignore the glob of "package-lock.json"
-                            "!package-lock.json",
-                        },
-                        togglescope_title = "Live Grep (hidden)",
-                    },
-                },
             },
         },
         -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#ripgrep-remove-indentation

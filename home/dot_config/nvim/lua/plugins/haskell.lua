@@ -28,11 +28,4 @@ return {
             require("luasnip").add_snippets("haskell", haskell_snippets, { key = "haskell" })
         end,
     },
-    {
-        "luc-tielen/telescope_hoogle",
-        ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
-        dependencies = {
-            { "nvim-telescope/telescope.nvim" },
-        },
-    },
 }

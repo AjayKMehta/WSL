@@ -70,9 +70,6 @@ end, "Telescope Find buffers")
 
 map_desc("n", "<leader>fh", "<cmd> Telescope file_browser cwd=$HOME <CR>", "Telescope Search home")
 
-map_desc("n", "<leader>ff", function()
-    require("telescope").extensions.togglescope.find_files()
-end, "Telescope Find files")
 
 map_desc("n", "<leader>fcc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope Search config 🔍")
 map_desc("n", "<leader>fcC", function()
@@ -96,18 +93,6 @@ end, "Telescope Keymap ⌨")
 map_desc("n", "<leader>fm", function()
     require("telescope.builtin").man_pages()
 end, "Telescope Man Pages")
-
-map_desc("n", "<leader>fp", function()
-    require("telescope").extensions.togglescope.live_grep({
-        cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy"),
-    })
-end, "Telescope Plugins (grep)")
-
-map_desc("n", "<leader>fu", "<cmd>Telescope undo<CR>", "Telescope Undo tree ")
-
-map_desc("n", "<leader>fw", function()
-    require("telescope").extensions.togglescope.live_grep()
-end, "Telescope Live grep")
 
 local live_multigrep = function(opts)
     local pickers = require("telescope.pickers")
@@ -166,16 +151,6 @@ map_desc("n", "<leader>f/", live_multigrep, "Telescope Live multigrep")
 map_desc("n", "<leader>fy", function()
     require("telescope.builtin").buffers()
 end, "Telescope Search buffers")
-map_desc("n", "<leader>fY", "<cmd>Telescope yaml_schema<CR>", "Telescope YAML schemas")
-
-map_desc("n", "<leader>fls", "<cmd>Telescope lsp_document_symbols<CR>", "Telescope Search Document Symbols")
-map_desc("n", "<leader>flw", "<cmd>Telescope lsp_workspace_symbols<CR>", "Telescope Search Workspace Symbols")
-map_desc(
-    "n",
-    "<leader>fld",
-    "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-    "Telescope Search Dynamic Workspace Symbols"
-)
 
 map_desc("n", "<leader>fe", "<cmd>Telescope emoji<CR>", "Telescope Search emojis")
 map_desc("n", "<leader>fn", "<cmd>Noice telescope <CR>", "Telescope Noice")
@@ -184,23 +159,10 @@ map_desc("n", "<leader>fj", function()
 end, "Telescope Jumplist")
 
 map_desc("n", "<leader>fr", "<cmd>Telescope resume<cr>", "telescope resume previous search")
-map_desc("n", "<leader>fR", function()
-    require("telescope.builtin").registers()
-end, "Telescope Registers")
-
-map_desc("n", "<leader>fs", function()
-    require("telescope").extensions["luasnip"].luasnip()
-end, "Telescope LuaSnip")
-
-map_desc("n", "<leader>ftS", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", "Telescope Todo/Fix/Fixme")
 
 map_desc("n", "<leader>ftt", function()
     require("telescope.builtin").tags()
 end, "Telescope Tags")
-
-map_desc("n", "<leader>fts", function()
-    require("telescope.builtin").treesitter()
-end, "Telescope Treesitter")
 
 map_desc("n", "<leader>fF<leader>", function()
     require("telescope").extensions.frecency.frecency({})
