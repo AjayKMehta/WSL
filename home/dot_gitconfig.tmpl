@@ -99,9 +99,7 @@
     su = submodule update --recursive --remote
 
     ## Merge
-    mnf = merge --no-ff
     mffo = merge --ff-only
-    mnc = merge --no-commit
 [blame]
     coloring = highlightRecent
     markIgnoredLines = true
@@ -111,10 +109,12 @@
     autoupdate = true
 [push]
     followTags = true
+    autoSetupRemote = true
 [fetch]
     prune = true
     parallel = 0
     writeCommitGraph = true
+    fsckobjects = true
 [pull]
     rebase = true
     twohead = ort
@@ -130,17 +130,19 @@
     renames = copies
     renameLimit = 10000
     wsErrorHighlight = all
+    submodule = log
 [difftool]
-    prompt = false
     prompt = false
 [difftool "meld"]
     cmd = meld "$LOCAL" "$REMOTE"
 [difftool "difftastic"]
     cmd = difft "$LOCAL" "$REMOTE"
+[difftool "vscode"]
+    cmd = code --new-window --wait --diff \"$LOCAL\" \"$REMOTE\"
 [merge]
     tool = meld
     log = true
-    conflictStyle = diff3
+    conflictStyle = zdiff3
     renameLimit = 99999
 [mergetool]
     prompt = false
@@ -148,6 +150,8 @@
 [mergetool "meld"]
     cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
     trustExitCode = true
+[mergetool "vscode"]
+    cmd = code --new-window --wait --merge \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\"
 [diff "rstats"]
     xfuncname = "^[[:space:]]*([a-zA-z._]+)[[:space:]]*<-[[:space:]]*function"
 [rebase]
@@ -236,3 +240,7 @@
 # Avoid error when updating Lazy plugins with submodules
 [includeIf "gitdir:lazy"]
     path = ~/lazy.gitconfig
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
