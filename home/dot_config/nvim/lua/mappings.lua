@@ -16,6 +16,7 @@ local disabled = {
         "<leader>fh", -- NvChad maps this to Find help pages
         "<leader>ch", -- NvChad maps this to Toggle nvcheatsheet
         "<leader>cm", -- NvChad maps this to Telescope git commits
+        "<leader>gt", -- NvChad maps this to Telescope git status
         "<leader>n", -- Use as prefix
         "<leader>b", -- Use as prefix
         "<A-i>", -- NvChad maps this to floating terminal
@@ -63,13 +64,9 @@ map_desc("n", "<leader>gg", "<cmd>GHCup <CR>", "ghcup")
 
 --#region Telescope
 
-map_desc("n", "<leader>fb", "<cmd>Telescope file_browser<CR>", "Telescope File browser")
 map_desc("n", "<leader>fB", function()
     require("telescope.builtin").buffers()
 end, "Telescope Find buffers")
-
-map_desc("n", "<leader>fh", "<cmd> Telescope file_browser cwd=$HOME <CR>", "Telescope Search home")
-
 
 map_desc("n", "<leader>fcc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope Search config 🔍")
 map_desc("n", "<leader>fcC", function()
@@ -152,8 +149,6 @@ map_desc("n", "<leader>fy", function()
     require("telescope.builtin").buffers()
 end, "Telescope Search buffers")
 
-map_desc("n", "<leader>fe", "<cmd>Telescope emoji<CR>", "Telescope Search emojis")
-
 map_desc("n", "<leader>fj", function()
     require("telescope.builtin").jumplist()
 end, "Telescope Jumplist")
@@ -172,17 +167,6 @@ map_desc("n", "<leader>fFc", function()
         workspace = "CWD",
     })
 end, "Telescope frecency (CWD)")
-
--- NVChad provides git status via <leader>gt
-map_desc("n", "<leader>gb", function()
-    require("telescope.builtin").git_branches()
-end, "git Checkout branch")
-map_desc("n", "<leader>gc", function()
-    require("telescope.builtin").git_commits()
-end, "git Checkout commit")
-map_desc("n", "<leader>gs", function()
-    require("telescope.builtin").git_stash()
-end, "git stash")
 
 -- Nvim DAP
 

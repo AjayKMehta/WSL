@@ -94,8 +94,6 @@ M.config = function()
         },
         extensions_list = {
             "dap",
-            "emoji",
-            "file_browser",
             "frecency",
             "fzf",
             "terms",
