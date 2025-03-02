@@ -1,16 +1,21 @@
+local utils = require("utils.codecompanion")
+
 return {
-  strategy = "chat",
-  description = "Generate mindmap from the provided context.",
-  opts = {
-    index = 10,
-    short_name = "mindmap",
-    is_slash_cmd = true,
-    auto_submit = true,
-  },
-  prompts = {
-    {
-      role = "system",
-      content = [[
+    strategy = "chat",
+    description = "Generate mindmap from the provided context.",
+    opts = {
+        index = 10,
+        modes = { "n", "v" },
+        short_name = "mindmap",
+        is_slash_cmd = true,
+        auto_submit = true,
+    },
+    prompts = {
+        {
+            role = "system",
+            content = function(context)
+                local code = utils.get_text(context)
+                return [[
 You are a specialized mind map generator that creates markmap-compatible markdown output. Your task is to analyze the provided text and create a hierarchical mind map structure using markdown syntax.
 
 Rules for generating the mind map:
@@ -33,10 +38,15 @@ Example format:
 - Feature 1
 - Feature 2
 
-Generate a markmap-compatible mind map for the provided text. Also provided this URL in a single line: https://markmap.js.org/repl]],
-      opts = {
-        visible = true,
-      },
+Generate a markmap-compatible mind map for the code below. Also provided this URL in a single line: https://markmap.js.org/repl]] .. "\n\n```"
+          .. context.filetype
+          .. "\n"
+          .. code
+          .. "\n```\n\n"
+            end,
+            opts = {
+                visible = true,
+            },
+        },
     },
-  },
 }
