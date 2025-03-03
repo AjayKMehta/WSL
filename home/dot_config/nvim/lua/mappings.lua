@@ -494,18 +494,6 @@ map_desc("n", "<leader>nE", function()
     require("noice").cmd("enable")
 end, "Noice enable")
 
-map({ "n", "i", "s" }, "<c-f>", function()
-    if not require("noice.lsp").scroll(4) then
-        return "<c-f>"
-    end
-end, { silent = true, expr = true, desc = "Noice Scroll forward" })
-
-map({ "n", "i", "s" }, "<c-b>", function()
-    if not require("noice.lsp").scroll(-4) then
-        return "<c-b>"
-    end
-end, { silent = true, expr = true, desc = "Noice Scroll backward" })
-
 -- Doesn't seem to work?
 map_desc("c", "<S-Enter>", function()
     require("noice").redirect(vim.fn.getcmdline())
