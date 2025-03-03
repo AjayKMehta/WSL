@@ -61,48 +61,51 @@ M.on_attach = function(client, bufnr)
     end
 end
 
-M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.get_capabilities = function(register_dynamic)
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
 
--- https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
--- Neovim hasn't added foldingRange to default capabilities, users must add it manually
-M.capabilities.textDocument.foldingRange = {
-    -- https://github.com/seblyng/roslyn.nvim/issues/147#issuecomment-2655112596
-    dynamicRegistration = true,
-    lineFoldingOnly = true,
-}
+    -- https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
+    -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
+    capabilities.textDocument.foldingRange = {
+        -- https://github.com/seblyng/roslyn.nvim/issues/147#issuecomment-2655112596
+        dynamicRegistration = register_dynamic,
+        lineFoldingOnly = true,
+    }
 
-M.capabilities.textDocument.completion.completionItem = {
-    documentationFormat = { "markdown", "plaintext" },
-    snippetSupport = true,
-    preselectSupport = true,
-    insertReplaceSupport = true,
-    labelDetailsSupport = true,
-    deprecatedSupport = true,
-    commitCharactersSupport = true,
-    tagSupport = { valueSet = { 1 } },
-    resolveSupport = {
-        properties = {
-            "documentation",
-            "detail",
-            "additionalTextEdits",
+    capabilities.textDocument.completion.completionItem = {
+        documentationFormat = { "markdown", "plaintext" },
+        snippetSupport = true,
+        preselectSupport = true,
+        insertReplaceSupport = true,
+        labelDetailsSupport = true,
+        deprecatedSupport = true,
+        commitCharactersSupport = true,
+        tagSupport = { valueSet = { 1 } },
+        resolveSupport = {
+            properties = {
+                "documentation",
+                "detail",
+                "additionalTextEdits",
+            },
         },
-    },
-}
+    }
 
-M.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
-M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+    capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local ok, cmp_nvim_lsp = require("utils").is_loaded("cmp_nvim_lsp")
+    local ok, cmp_nvim_lsp = require("utils").is_loaded("cmp_nvim_lsp")
 
-if ok then
-    -- https://github.com/hrsh7th/cmp-nvim-lsp/issues/38#issuecomment-1815265121
-    M.capabilities = vim.tbl_deep_extend("force", M.capabilities, cmp_nvim_lsp.default_capabilities())
-end
+    if ok then
+        -- https://github.com/hrsh7th/cmp-nvim-lsp/issues/38#issuecomment-1815265121
+        capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
+    end
 
----@diagnostic disable-next-line: redefined-local
-local ok, cmp_lsp_file_ops = require("utils").is_loaded("lsp-file-operations")
-if ok then
-    M.capabilities = vim.tbl_deep_extend("force", M.capabilities, cmp_lsp_file_ops.default_capabilities())
+    ---@diagnostic disable-next-line: redefined-local
+    local ok, cmp_lsp_file_ops = require("utils").is_loaded("lsp-file-operations")
+    if ok then
+        capabilities = vim.tbl_deep_extend("force", capabilities, cmp_lsp_file_ops.default_capabilities())
+    end
+    return capabilities
 end
 
 return M

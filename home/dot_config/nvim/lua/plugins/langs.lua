@@ -179,7 +179,7 @@ return {
         "TheLeoP/powershell.nvim",
         ft = { "ps1", "psm1" },
         opts = {
-            capabilities = lsp.capabilities,
+            capabilities = lsp.get_capabilities(true),
             bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services",
             settings = {
                 enableProfileLoading = false,

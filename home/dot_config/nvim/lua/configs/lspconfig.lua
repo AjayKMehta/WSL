@@ -11,7 +11,7 @@ vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, t
 -- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/configs/lspconfig.lua#L29
 -- local on_init = require("nvchad.configs.lspconfig").on_init
 
-local capabilities = lsp.capabilities
+local capabilities = lsp.get_capabilities(true)
 
 dofile(vim.g.base46_cache .. "lsp")
 
@@ -248,17 +248,4 @@ lspconfig.lemminx.setup({
             },
         },
     },
-})
-
--- https://github.com/redhat-developer/yaml-language-server/issues/912#issuecomment-1984586934
-local yaml_caps = vim.lsp.protocol.make_client_capabilities()
-
-yaml_caps.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-}
-lspconfig["yamlls"].setup({
-    on_attach = on_attach,
-    -- on_init = on_init,
-    capabilities = yaml_caps,
 })

@@ -10,20 +10,15 @@ return {
         },
         config = function(_, opts)
             local sc = require("schema-companion")
-            sc.setup(opts)
+            local lsp = require("utils.lsp")
 
+            local capabilities = lsp.get_capabilities(false)
             require("lspconfig")["yamlls"].setup(sc.setup_client({
                 servers = {
                     yamlls = {
-                        capabilities = {
-                            -- https://github.com/redhat-developer/yaml-language-server/issues/912#issuecomment-1797097638
-                            textDocument = {
-                                foldingRange = {
-                                    dynamicRegistration = false,
-                                    lineFoldingOnly = true,
-                                },
-                            },
-                        },
+                        on_attach = lsp.on_attach,
+                        -- https://github.com/redhat-developer/yaml-language-server/issues/912#issuecomment-1797097638
+                        capabilities = capabilities,
                         settings = {
                             redhat = { telemetry = { enabled = false } },
                             yaml = {
@@ -44,6 +39,7 @@ return {
                     },
                 },
             }))
+            sc.setup(opts)
         end,
     },
     {
