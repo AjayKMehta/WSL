@@ -92,7 +92,8 @@ return {
                         require("undo-glow").cursor_moved({
                             animation = {
                                 animation_type = "slide",
-                            },{ "mason", "lazy", "help", "git" }
+                            },
+                            { "mason", "lazy", "help", "git" },
                         })
                     end)
                 end,
@@ -396,6 +397,33 @@ return {
         },
         config = function(_, opts)
             require("various-textobjs").setup(opts)
+
+            -- Based on this:
+            -- https://github.com/chrisgrieser/nvim-various-textobjs?tab=readme-ov-file#smarter-gx
+            vim.keymap.set("n", "gX", function()
+                -- select URL
+                require("various-textobjs").url()
+
+                -- plugin only switches to visual mode when textobj is found
+                local foundURL = vim.fn.mode() == "v"
+                if not foundURL then
+                    return
+                end
+
+                local r = require("utils.registers")
+                local reg = r.get_first_empty_register()
+                if reg == nil then
+                    vim.notify("No empty register!")
+                    return
+                end
+
+                -- retrieve URL with the register as intermediary
+                vim.cmd.normal({ '"' .. reg .. "y", bang = true })
+                local url = vim.fn.getreg(reg)
+                r.clear_register(reg)
+                vim.ui.open(url)
+
+            end, { desc = "Open URL (smart)" })
         end,
     },
 }
