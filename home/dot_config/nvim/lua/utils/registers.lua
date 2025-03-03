@@ -38,4 +38,8 @@ M.get_first_empty_register_with_options = function (options)
     return nil
 end
 
+M.clear_register = function(reg)
+    vim.cmd(":let @" .. reg .. '=""')
+end
+
 return M
