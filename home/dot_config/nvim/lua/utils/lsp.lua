@@ -92,6 +92,9 @@ M.get_capabilities = function(register_dynamic)
 
     capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
     capabilities.textDocument.completion.completionItem.snippetSupport = true
+    capabilities.textDocument.completion.completionItem.resolveSupport = {
+        properties = { "documentation", "detail", "additionalTextEdits" },
+    }
 
     local ok, cmp_nvim_lsp = require("utils").is_loaded("cmp_nvim_lsp")
 

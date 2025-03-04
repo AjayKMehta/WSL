@@ -249,3 +249,32 @@ lspconfig.lemminx.setup({
         },
     },
 })
+
+local sc = require("schema-companion")
+
+lspconfig.yamlls.setup(sc.setup_client({
+    servers = {
+        yamlls = {
+            on_attach = lsp.on_attach,
+            -- https://github.com/redhat-developer/yaml-language-server/issues/912#issuecomment-1797097638
+            capabilities = lsp.get_capabilities(false),
+            settings = {
+                redhat = { telemetry = { enabled = false } },
+                yaml = {
+                    validate = true,
+                    format = { enable = true },
+                    hover = true,
+                    completion = true,
+                    schemaStore = {
+                        enable = false,
+                        url = "",
+                        -- url = "https://www.schemastore.org/api/json/catalog.json",
+                    },
+                    schemaDownload = { enable = true },
+                    schemas = require("schemastore").yaml.schemas(),
+                    trace = { server = "debug" },
+                },
+            },
+        },
+    },
+}))
