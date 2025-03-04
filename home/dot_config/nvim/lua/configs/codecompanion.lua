@@ -1,3 +1,4 @@
+---@diagnostic disable-next-line: different-requires
 local cc = require("codecompanion")
 local ca = require("codecompanion.adapters")
 
@@ -79,7 +80,6 @@ local strategies = {
                     adapter.schema.model.default and " (" .. adapter.schema.model.default .. ")" or ""
                 )
             end,
-
             ---The header name for your messages
             user = "Me",
         },

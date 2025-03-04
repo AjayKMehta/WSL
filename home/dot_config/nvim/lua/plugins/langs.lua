@@ -116,17 +116,6 @@ return {
         config = function()
             local dotnet = require("easy-dotnet")
 
-            local function get_secret_path(secret_guid)
-                local home_dir = vim.fn.expand("~")
-                return home_dir .. "/.microsoft/usersecrets/" .. secret_guid .. "/secrets.json"
-            end
-
-            local function get_sdk_path()
-                local sdk_version =
-                    vim.system({ "dotnet", "--version" }):wait().stdout:gsub("\r", ""):gsub("\n", ""):gsub("\\s+.", "")
-                return vim.fs.joinpath("/usr/share/dotnet/sdk", sdk_version)
-            end
-
             local config = {
                 -- Did this instead;
                 -- sudo ln -s /usr/share/dotnet /usr/lib/dotnet
@@ -135,16 +124,13 @@ return {
                 test_runner = {
                     viewmode = "float",
                     enable_buffer_test_execution = true,
-                    icons = {
-                        project = "󰗀",
-                    },
-                },
-                secrets = {
-                    path = get_secret_path,
                 },
                 csproj_mappings = true,
                 fsproj_mappings = false,
-                auto_bootstrap_namespace = true,
+                auto_bootstrap_namespace = {
+                    type = "block_scoped", -- TODO: Change
+                    enabled = true,
+                },
                 terminal = function(path, action, args)
                     local commands = {
                         run = function()

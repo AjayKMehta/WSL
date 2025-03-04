@@ -1,3 +1,4 @@
+---@diagnostic disable-next-line: different-requires
 local utils = require("utils.codecompanion")
 
 return {
