@@ -423,7 +423,7 @@ return {
             end, { desc = "Open URL (smart)" })
 
             -- https://github.com/chrisgrieser/nvim-various-textobjs?tab=readme-ov-file#delete-surrounding-indentation
-            vim.keymap.set("n", "dsi", function()
+            vim.keymap.set("n", "Dsi", function()
                 -- select outer indentation
                 require("various-textobjs").indentation("outer", "outer")
 

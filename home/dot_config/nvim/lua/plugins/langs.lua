@@ -61,35 +61,59 @@ return {
         cmd = "Dotnet",
         keys = {
             {
-                "<leader>nb",
+                "<leader>nbdq",
                 function()
                     require("easy-dotnet").build_default_quickfix()
                 end,
-                desc = "build",
+                desc = ".NET Build Quickfix (default)",
                 ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
             },
             {
-                "<leader>nB",
+                "<leader>nbq",
                 function()
                     require("easy-dotnet").build_quickfix()
                 end,
-                desc = "build solution",
+                desc = ".NET Build Quickfix",
                 ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
             },
             {
-                "<leader>nr",
+                "<leader>nbs",
                 function()
-                    require("easy-dotnet").run_default()
+                    require("easy-dotnet").build_solution()
                 end,
-                desc = "run",
+                desc = ".NET Build Solution",
                 ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
             },
             {
                 "<leader>nR",
                 function()
-                    require("easy-dotnet").run_solution()
+                    require("easy-dotnet").restore()
                 end,
-                desc = "run solution",
+                desc = ".NET Restore",
+                ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
+            },
+            {
+                "<leader>nrd",
+                function()
+                    require("easy-dotnet").run_default()
+                end,
+                desc = ".NET Run (default)",
+                ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
+            },
+            {
+                "<leader>nrr",
+                function()
+                    require("easy-dotnet").run()
+                end,
+                desc = ".NET Run",
+                ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
+            },
+            {
+                "<leader>nrp",
+                function()
+                    require("easy-dotnet").run_profile()
+                end,
+                desc = ".NET Run Profile",
                 ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
             },
             {
@@ -97,19 +121,37 @@ return {
                 function()
                     require("easy-dotnet").clean()
                 end,
-                desc = "clean solution",
+                desc = ".NET Clean",
                 ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
             },
             {
                 "<leader>nA",
                 "<cmd>Dotnet new<cr>",
-                desc = "new item",
+                desc = ".NET New item",
                 ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
             },
             {
-                "<leader>nT",
-                "<cmd>Dotnet testrunner<cr>",
-                desc = "open test runner",
+                "<leader>nTR",
+                function()
+                    require("easy-dotnet").testrunner()
+                end,
+                desc = ".NET Test Runner",
+                ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
+            },
+            {
+                "<leader>nTD",
+                function()
+                    require("easy-dotnet").test_default()
+                end,
+                desc = ".NET Test (default)",
+                ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
+            },
+            {
+                "<leader>npv",
+                function()
+                    require("easy-dotnet").project_view()
+                end,
+                desc = ".NET Project View",
                 ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
             },
         },
@@ -130,6 +172,10 @@ return {
                 auto_bootstrap_namespace = {
                     type = "block_scoped", -- TODO: Change
                     enabled = true,
+                },
+                mappings = {
+                    run_test_from_buffer = { lhs = "<leader>ntr", desc = "run test from buffer" },
+                    debug_test = { lhs = "<leader>ntd", desc = "debug test" },
                 },
                 terminal = function(path, action, args)
                     local commands = {
