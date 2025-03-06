@@ -162,23 +162,23 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         keys = {
             -- Global Minimap Controls
-            { "<leader>ntg", "<cmd>Neominimap toggle<cr>", desc = "Toggle global minimap" },
-            { "<leader>nrg", "<cmd>Neominimap refresh<cr>", desc = "Refresh global minimap" },
+            { "<leader>mtg", "<cmd>Neominimap toggle<cr>", desc = "Toggle global minimap" },
+            { "<leader>mrg", "<cmd>Neominimap refresh<cr>", desc = "Refresh global minimap" },
 
             -- Window-Specific Minimap Controls
-            { "<leader>ntw", "<cmd>Neominimap winToggle<cr>", desc = "Toggle minimap for current window" },
-            { "<leader>nrw", "<cmd>Neominimap winRefresh<cr>", desc = "Refresh minimap for current window" },
+            { "<leader>mtw", "<cmd>Neominimap winToggle<cr>", desc = "Toggle minimap for current window" },
+            { "<leader>mrw", "<cmd>Neominimap winRefresh<cr>", desc = "Refresh minimap for current window" },
 
             -- Tab-Specific Minimap Controls
-            { "<leader>ntt", "<cmd>Neominimap tabToggle<cr>", desc = "Toggle minimap for current tab" },
-            { "<leader>nrt", "<cmd>Neominimap tabRefresh<cr>", desc = "Refresh minimap for current tab" },
+            { "<leader>mtt", "<cmd>Neominimap tabToggle<cr>", desc = "Toggle minimap for current tab" },
+            { "<leader>mrt", "<cmd>Neominimap tabRefresh<cr>", desc = "Refresh minimap for current tab" },
 
             -- Buffer-Specific Minimap Controls
-            { "<leader>ntb", "<cmd>Neominimap bufToggle<cr>", desc = "Toggle minimap for current buffer" },
-            { "<leader>nrb", "<cmd>Neominimap bufRefresh<cr>", desc = "Refresh minimap for current buffer" },
+            { "<leader>mtb", "<cmd>Neominimap bufToggle<cr>", desc = "Toggle minimap for current buffer" },
+            { "<leader>mrb", "<cmd>Neominimap bufRefresh<cr>", desc = "Refresh minimap for current buffer" },
 
             -- Focus
-            { "<leader>ntf", "<cmd>Neominimap toggleFocus<cr>", desc = "Toggle focus on minimap" },
+            { "<leader>mtf", "<cmd>Neominimap toggleFocus<cr>", desc = "Toggle focus on minimap" },
         },
         init = function()
             vim.g.neominimap = {
