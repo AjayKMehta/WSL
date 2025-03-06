@@ -160,8 +160,6 @@ return {
         },
         cmd = { "RenderMarkdown" },
         keys = {
-            { "<leader>md", "<cmd>RenderMarkdown disable<cr>", desc = "Toggle Markdown Disable" },
-            { "<leader>me", "<cmd>RenderMarkdown enable<cr>", desc = "Toggle Markdown Enable" },
             { "<leader>mt", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" },
         },
         dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
