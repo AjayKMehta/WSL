@@ -88,14 +88,12 @@ return {
             vim.api.nvim_create_autocmd("CursorMoved", {
                 desc = "Highlight when cursor moved significantly",
                 callback = function()
-                    vim.schedule(function()
                         require("undo-glow").cursor_moved({
                             animation = {
                                 animation_type = "slide",
                             },
                             { "mason", "lazy", "help", "git" },
                         })
-                    end)
                 end,
             })
         end,
@@ -422,7 +420,6 @@ return {
                 local url = vim.fn.getreg(reg)
                 r.clear_register(reg)
                 vim.ui.open(url)
-
             end, { desc = "Open URL (smart)" })
         end,
     },
