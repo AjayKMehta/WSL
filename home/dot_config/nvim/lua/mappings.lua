@@ -225,18 +225,18 @@ map_desc({ "n", "v" }, "<Leader>dp", function()
     require("dap.ui.widgets").preview()
 end, "DAP Preview")
 
-map_desc("n", "<leader>rb", function()
+map_desc("n", "<leader>db", function()
     require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 end, "DAP Set conditional breakpoint")
 
-map_desc("n", "<leader>rl", function()
+map_desc("n", "<leader>dl", function()
     require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
 end, "DAP Log message")
 
 --#endregion
 
 --region dap_python
-map_desc("n", "<leader>rt", function()
+map_desc("n", "<leader>dt", function()
     require("dap-python").test_method()
 end, "DAP Debug closest method to cursor")
 
@@ -469,10 +469,6 @@ map_desc("n", "<leader>Or", "<cmd>Octo repo list<cr>", "Octo Repo List")
 
 --#region Noice
 
-map_desc("n", "<leader>nd", function()
-    require("noice").cmd("dismiss")
-end, "Noice dismiss")
-
 map_desc("n", "<leader>ne", function()
     require("noice").cmd("errors")
 end, "Noice errors")
@@ -481,11 +477,6 @@ map_desc("n", "<leader>nh", function()
     require("noice").cmd("history")
 end, "Noice history")
 
--- shows the last message in a popup
-map_desc("n", "<leader>nl", function()
-    require("noice").cmd("last")
-end, "Noice last")
-
 map_desc("n", "<leader>nD", function()
     require("noice").cmd("disable")
 end, "Noice disable")
@@ -493,11 +484,6 @@ end, "Noice disable")
 map_desc("n", "<leader>nE", function()
     require("noice").cmd("enable")
 end, "Noice enable")
-
--- Doesn't seem to work?
-map_desc("c", "<S-Enter>", function()
-    require("noice").redirect(vim.fn.getcmdline())
-end, "Redirect Cmdline")
 
 --#endregion
 
