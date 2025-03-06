@@ -224,6 +224,12 @@ return {
                 local treeutils = require("utils.tree")
                 api.config.mappings.default_on_attach(bufnr)
 
+                local function add_dotnet()
+                    local node = api.tree.get_node_under_cursor()
+                    local path = node.type == "directory" and node.absolute_path or vim.fs.dirname(node.absolute_path)
+                    require("easy-dotnet").create_new_item(path)
+                end
+
                 local function add_ref_to_chat(chat, path, pinned)
                     chat.references:add({
                         id = "<file>" .. path .. "</file>",
@@ -284,9 +290,11 @@ return {
                     end
                 end
 
+                bufmap("A", add_dotnet, "Create file from dotnet template")
+
                 -- https://github.com/olimorris/codecompanion.nvim/discussions/641#discussioncomment-11836380
-                bufmap("<leader>ca", add_refs_to_chat(false), "Add file(s) to Chat" )
-                bufmap( "<leader>cp", add_refs_to_chat(true), "Pin file(s) to Chat" )
+                bufmap("<leader>ca", add_refs_to_chat(false), "Add file(s) to Chat")
+                bufmap("<leader>cp", add_refs_to_chat(true), "Pin file(s) to Chat")
 
                 bufmap("<c-f>", treeutils.launch_find_files, "Launch Find Files")
                 bufmap("<c-g>", treeutils.launch_live_grep, "Launch Live Grep")
