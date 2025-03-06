@@ -69,7 +69,7 @@ local display = {
 
 local strategies = {
     chat = {
-        adapter = "openai", -- "copilot" OR "ollama"
+        adapter = "qwen", --
         -- Below are default values - included for reference.
         roles = {
             ---The header name for the LLM's messages
@@ -82,6 +82,15 @@ local strategies = {
             end,
             ---The header name for your messages
             user = "Me",
+        },
+        tools = {
+            ["mcp"] = {
+                callback = require("mcphub.extensions.codecompanion"),
+                description = "Call tools and resources from the MCP Servers",
+                opts = {
+                    requires_approval = true,
+                },
+            },
         },
         slash_commands = {
             ["buffer"] = {
@@ -124,7 +133,7 @@ local strategies = {
         },
     },
     inline = {
-        adapter = "openai",
+        adapter = "qwen",
         keymaps = {
             accept_change = {
                 modes = { n = "<leader>ca" },
@@ -137,7 +146,7 @@ local strategies = {
         },
     },
     agent = {
-        adapter = "openai",
+        adapter = "llama3",
     },
 }
 
@@ -156,5 +165,4 @@ local config = {
     prompt_library = prompt_library,
 }
 
----@diagnostic disable-next-line: different-requires
 cc.setup(config)
