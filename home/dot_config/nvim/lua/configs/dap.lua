@@ -198,11 +198,24 @@ end
 
 -- .NET
 
-dap.adapters.coreclr = {
-    type = "executable",
-    command = vim.env.HOME .. "/.local/share/nvim/mason/bin/netcoredbg",
-    args = { "--interpreter=vscode" },
-}
+--- Rebuilds the project before starting the debug session
+---@param co thread
+local function rebuild_project(co, path)
+    local spinner = require("easy-dotnet.ui-modules.spinner").new()
+    spinner:start_spinner("Building")
+    vim.fn.jobstart(string.format("dotnet build %s", path), {
+        on_exit = function(_, return_code)
+            if return_code == 0 then
+                spinner:stop_spinner("Built successfully")
+            else
+                spinner:stop_spinner("Build failed with exit code " .. return_code, vim.log.levels.ERROR)
+                error("Build failed")
+            end
+            coroutine.resume(co)
+        end,
+    })
+    coroutine.yield()
+end
 
 local dotnet = require("easy-dotnet")
 local debug_dll = nil
@@ -229,6 +242,8 @@ dap.configurations.cs = {
         end,
         program = function()
             local dll = ensure_dll()
+            local co = coroutine.running()
+            rebuild_project(co, dll.project_path)
             return dll.relative_dll_path
         end,
         cwd = function()
@@ -247,6 +262,12 @@ dap.configurations.cs = {
 dap.listeners.before["event_terminated"]["easy-dotnet"] = function()
     debug_dll = nil
 end
+
+dap.adapters.coreclr = {
+    type = "executable",
+    command = vim.env.HOME .. "/.local/share/nvim/mason/bin/netcoredbg",
+    args = { "--interpreter=vscode" },
+}
 
 -- Bash
 
