@@ -58,14 +58,12 @@ map_desc("n", "<leader>bb", "<cmd>enew<CR>", "Buffer New") -- spellchecker:disab
 
 --#region Telescope
 
-map_desc("n", "<leader>fB", function()
-    require("telescope.builtin").buffers()
-end, "Telescope Find buffers")
-
 map_desc("n", "<leader>fcc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope Search config 🔍")
+
 map_desc("n", "<leader>fcC", function()
     require("telescope.builtin").commands()
 end, "Telescope Commands")
+
 map_desc("n", "<leader>fch", function()
     require("telescope.builtin").command_history()
 end, "Telescope Command History")
@@ -78,66 +76,6 @@ map_desc("n", "<leader>fS", function()
     require("telescope.builtin").search_history()
 end, "Telescope Search History")
 
-map_desc("n", "<leader>fk", function()
-    require("telescope.builtin").keymaps()
-end, "Telescope Keymap ⌨")
-map_desc("n", "<leader>fm", function()
-    require("telescope.builtin").man_pages()
-end, "Telescope Man Pages")
-
-local live_multigrep = function(opts)
-    local pickers = require("telescope.pickers")
-    local finders = require("telescope.finders")
-    local sorters = require("telescope.sorters")
-    local conf = require("telescope.config").values
-    local make_entry = require("telescope.make_entry")
-
-    opts = opts or {}
-    opts.cwd = opts.cwd or vim.fn.getcwd()
-
-    local finder = finders.new_async_job({
-        cwd = opts.cwd,
-        entry_maker = make_entry.gen_from_vimgrep(opts),
-        command_generator = function(prompt)
-            if not prompt or prompt == "" then
-                return nil
-            end
-
-            local pieces = vim.split(prompt, "  ")
-            local args = { "rg" }
-
-            if pieces[1] then
-                table.insert(args, "-e")
-                table.insert(args, pieces[1])
-            end
-
-            if pieces[2] then
-                table.insert(args, "-g")
-                table.insert(args, pieces[2])
-            end
-
-            return vim.list_extend(args, {
-                "--color=never",
-                "--no-heading",
-                "--with-filename",
-                "--line-number",
-                "--column",
-                "--smart-case",
-            })
-        end,
-    })
-
-    pickers
-        .new(opts, {
-            debounce = 100,
-            prompt_title = "Live Multi Grep",
-            previewer = conf.grep_previewer(opts),
-            sorters = sorters.empty(),
-            finder = finder,
-        })
-        :find()
-end
-map_desc("n", "<leader>f/", live_multigrep, "Telescope Live multigrep")
 
 map_desc("n", "<leader>fy", function()
     require("telescope.builtin").buffers()
@@ -148,19 +86,6 @@ map_desc("n", "<leader>fj", function()
 end, "Telescope Jumplist")
 
 map_desc("n", "<leader>fr", "<cmd>Telescope resume<cr>", "telescope resume previous search")
-
-map_desc("n", "<leader>ftt", function()
-    require("telescope.builtin").tags()
-end, "Telescope Tags")
-
-map_desc("n", "<leader>fF<leader>", function()
-    require("telescope").extensions.frecency.frecency({})
-end, "Telescope frecency")
-map_desc("n", "<leader>fFc", function()
-    require("telescope").extensions.frecency.frecency({
-        workspace = "CWD",
-    })
-end, "Telescope frecency (CWD)")
 
 -- Nvim DAP
 
