@@ -11,11 +11,14 @@ local map_desc = utils.map_desc
 -- To disable mappings:
 local disabled = {
     n = {
-        "<leader>fm", -- Duplicate for above
-        "<leader>fb", -- NvChad maps this to Find buffers
-        "<leader>fh", -- NvChad maps this to Find help pages
         "<leader>ch", -- NvChad maps this to Toggle nvcheatsheet
         "<leader>cm", -- NvChad maps this to Telescope git commits
+        "<leader>fa", -- NvChad maps this to Telescope Find all
+        "<leader>fb", -- NvChad maps this to Telescope Find buffers
+        "<leader>ff", -- NvChad maps this to Telescope Find files
+        "<leader>fm", -- NvChad maps this format file
+        "<leader>fh", -- NvChad maps this to Telescope Find help pages
+        "<leader>fw", -- NvChad maps this to Telescope live grep
         "<leader>gt", -- NvChad maps this to Telescope git status
         "<leader>n", -- Use as prefix
         "<leader>b", -- Use as prefix
@@ -57,33 +60,6 @@ map_desc("n", "gV", "`[v`]", "Select the previous yanked area")
 map_desc("n", "<leader>bb", "<cmd>enew<CR>", "Buffer New") -- spellchecker:disable-line
 
 --#region Telescope
-
-map_desc("n", "<leader>fcc", "<cmd> Telescope find_files cwd=$HOME/.config <CR>", "Telescope Search config 🔍")
-
-map_desc("n", "<leader>fcC", function()
-    require("telescope.builtin").commands()
-end, "Telescope Commands")
-
-map_desc("n", "<leader>fch", function()
-    require("telescope.builtin").command_history()
-end, "Telescope Command History")
-
-map_desc("n", "<leader>fcs", function()
-    require("telescope.builtin").colorscheme()
-end, "Telescope Colorschemes")
-
-map_desc("n", "<leader>fS", function()
-    require("telescope.builtin").search_history()
-end, "Telescope Search History")
-
-
-map_desc("n", "<leader>fy", function()
-    require("telescope.builtin").buffers()
-end, "Telescope Search buffers")
-
-map_desc("n", "<leader>fj", function()
-    require("telescope.builtin").jumplist()
-end, "Telescope Jumplist")
 
 map_desc("n", "<leader>fr", "<cmd>Telescope resume<cr>", "telescope resume previous search")
 
@@ -350,20 +326,6 @@ end, "UFO Go to previous closed fold")
 map_desc("n", "zK", function()
     require("ufo").peekFoldedLinesUnderCursor()
 end, "UFO Peek fold")
---#endregion
-
---#region legendary
-
-map_desc("n", "<leader>lk", function()
-    local filters = require("legendary.filters")
-    require("legendary").find({
-        filters = {
-            filters.current_mode(),
-            filters.keymaps(),
-        },
-    })
-end, "Legendary Keymap (current mode)")
-
 --#endregion
 
 --#region outline
