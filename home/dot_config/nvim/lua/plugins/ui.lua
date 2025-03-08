@@ -95,28 +95,6 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     {
-        -- Neovim plugin to improve the default vim.ui interfaces
-        "stevearc/dressing.nvim",
-        lazy = false,
-        config = function()
-            require("dressing").setup({
-                select = {
-                    get_config = function(opts)
-                        if opts.kind == "legendary.nvim" then
-                            return {
-                                telescope = {
-                                    sorter = require("telescope.sorters").fuzzy_with_index_bias({}),
-                                },
-                            }
-                        else
-                            return {}
-                        end
-                    end,
-                },
-            })
-        end,
-    },
-    {
         "Bekaboo/dropbar.nvim",
         cond = function()
             return vim.fn.has("nvim-0.10") == 1

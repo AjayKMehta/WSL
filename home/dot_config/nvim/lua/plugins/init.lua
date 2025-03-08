@@ -125,28 +125,6 @@ return {
         end,
     },
     {
-        "mrjones2014/legendary.nvim",
-        -- since legendary.nvim handles all your keymaps/commands,
-        -- its recommended to load legendary.nvim before other plugins
-        priority = 10000,
-        lazy = false,
-        config = function()
-            require("legendary").setup({
-                extensions = {
-                    nvim_tree = true,
-                    -- automatically load keymaps from lazy.nvim's `keys` option
-                    lazy_nvim = true,
-                    diffview = true,
-                    which_key = {
-                        -- Automatically add which-key tables to legendary
-                        -- see ./doc/WHICH_KEY.md for more details
-                        auto_register = true,
-                    },
-                },
-            })
-        end,
-    },
-    {
         "nvim-tree/nvim-tree.lua",
         opts = {
             filters = {
