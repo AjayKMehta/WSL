@@ -504,6 +504,71 @@ return {
                 end,
                 desc = "Prev Reference",
             },
+            {
+                "<leader>SB",
+                function()
+                    Snacks.picker.buffers()
+                end,
+                desc = "Snacks Find Buffers",
+            },
+            {
+                "<leader>S/",
+                function()
+                    Snacks.picker.grep()
+                end,
+                desc = "Snacks Grep",
+            },
+            {
+                "<leader>SgB",
+                function()
+                    Snacks.picker.grep_buffers()
+                end,
+                desc = "Snacks Grep Open Buffers",
+            },
+            {
+                "<leader>S:",
+                function()
+                    Snacks.picker.command_history()
+                end,
+                desc = "Snacks Command History",
+            },
+            {
+                "<leader>Sn",
+                function()
+                    Snacks.picker.notifications()
+                end,
+                desc = "Snacks Notification History",
+            },
+
+            -- Files
+            {
+                "<leader>Sf",
+                function()
+                    Snacks.picker.smart()
+                end,
+                desc = "Snacks Find Files",
+            },
+            {
+                "<leader>Se",
+                function()
+                    Snacks.explorer()
+                end,
+                desc = "Snacks File Explorer",
+            },
+            {
+                "<leader>Sc",
+                function()
+                    Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+                end,
+                desc = "Snacks Find Config File",
+            },
+            {
+                "<leader>Sr",
+                function()
+                    Snacks.picker.recent()
+                end,
+                desc = "Snacks Recent",
+            },
         },
     },
 }
