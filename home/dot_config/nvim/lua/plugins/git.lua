@@ -72,13 +72,13 @@ return {
 
                 -- Stage
 
-                map("n", "<leader>gs", gs.stage_hunk, "gitsigns Stage hunk")
+                map("n", "<leader>gsh", gs.stage_hunk, "gitsigns Stage hunk")
 
-                map("v", "<leader>gs", function()
+                map("v", "<leader>gsh", function()
                     gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
                 end, "gitsigns Stage hunk")
 
-                map("n", "<leader>gS", gs.stage_buffer, "gitsigns Stage buffer")
+                map("n", "<leader>gsb", gs.stage_buffer, "gitsigns Stage buffer")
 
                 -- Undo stage
 
@@ -108,9 +108,9 @@ return {
 
                 -- Diff
 
-                map("n", "<leader>gd", gs.diffthis, "gitsigns Diff with index")
+                map("n", "<leader>gdi", gs.diffthis, "gitsigns Diff with index")
 
-                map("n", "<leader>gD", function()
+                map("n", "<leader>gdp", function()
                     gs.diffthis("~1")
                 end, "gitsigns Diff with previous commit")
 
