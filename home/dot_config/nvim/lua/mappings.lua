@@ -56,12 +56,6 @@ map_desc("n", "gV", "`[v`]", "Select the previous yanked area")
 -- Use Tab and Shift+Tab to navigate between buffers
 map_desc("n", "<leader>bb", "<cmd>enew<CR>", "Buffer New") -- spellchecker:disable-line
 
---#region ghcup
-
-map_desc("n", "<leader>gg", "<cmd>GHCup <CR>", "ghcup")
-
---#endregion
-
 --#region Telescope
 
 map_desc("n", "<leader>fB", function()

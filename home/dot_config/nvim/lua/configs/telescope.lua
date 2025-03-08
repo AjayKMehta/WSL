@@ -94,7 +94,6 @@ M.config = function()
         },
         extensions_list = {
             "dap",
-            "frecency",
             "fzf",
             "terms",
             "themes",

@@ -3,13 +3,6 @@ local load_config = require("utils").load_config
 return {
     -- Haskell
     {
-        "hasufell/ghcup.vim",
-        lazy = false,
-        dependencies = {
-            { "rbgrouleff/bclose.vim" },
-        },
-    },
-    {
         "mrcjkb/haskell-tools.nvim",
         version = "^4", -- Recommended
         ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
