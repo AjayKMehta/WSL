@@ -89,23 +89,23 @@ map_desc("n", "<leader>fr", "<cmd>Telescope resume<cr>", "telescope resume previ
 
 -- Nvim DAP
 
-map_desc("n", "<leader>fdb", function()
+map_desc("n", "<leader>dlb", function()
     require("telescope").extensions.dap.list_breakpoints()
 end, "DAP List breakpoints")
 
-map_desc("n", "<leader>fdc", function()
+map_desc("n", "<leader>dlc", function()
     require("telescope").extensions.dap.commands()
 end, "DAP List commands")
 
-map_desc("n", "<leader>fdC", function()
+map_desc("n", "<leader>dlC", function()
     require("telescope").extensions.dap.configuration()
 end, "DAP List configuration")
 
-map_desc("n", "<leader>fdf", function()
+map_desc("n", "<leader>dlf", function()
     require("telescope").extensions.dap.frames()
 end, "DAP List frames")
 
-map_desc("n", "<leader>fdv", function()
+map_desc("n", "<leader>dlv", function()
     require("telescope").extensions.dap.variables()
 end, "DAP List variables")
 
@@ -391,10 +391,6 @@ map_desc("n", "<leader>Or", "<cmd>Octo repo list<cr>", "Octo Repo List")
 map_desc("n", "<leader>ne", function()
     require("noice").cmd("errors")
 end, "Noice errors")
-
-map_desc("n", "<leader>nh", function()
-    require("noice").cmd("history")
-end, "Noice history")
 
 map_desc("n", "<leader>nD", function()
     require("noice").cmd("disable")
