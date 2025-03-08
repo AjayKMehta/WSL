@@ -130,7 +130,6 @@ autocmd("User", {
     end,
 })
 
-
 -- https://github.com/seblj/roslyn.nvim/wiki#diagnostic-refresh
 autocmd({ "InsertLeave" }, {
     pattern = "*",
@@ -277,7 +276,7 @@ function M.stop_spinner()
     spinner_state.frame = 1
 end
 
-vim.api.nvim_create_autocmd("User", {
+autocmd("User", {
     pattern = {
         "CodeCompanionRequestStarted",
         "CodeCompanionRequestFinished",
@@ -290,3 +289,29 @@ vim.api.nvim_create_autocmd("User", {
         end
     end,
 })
+
+if require("utils").is_loaded("snacks") then
+    autocmd("BufEnter", {
+        callback = function(args)
+            local buf = args.buf
+            if Snacks.git.get_root(buf) == nil then
+                return
+            end
+            local map_buf = require("utils.mappings").map_buf
+
+            map_buf(buf, "n", "<leader>gf", Snacks.picker.git_files, "Git Find Files")
+
+            map_buf(buf, "n", "<leader>gb", Snacks.picker.git_branches, "Git Branches")
+
+            map_buf(buf, "n", "<leader>gL", Snacks.picker.git_log, "Git Log")
+
+            map_buf(buf, "n", "<leader>gll", Snacks.picker.git_log_line, "Git Log Line")
+
+            map_buf(buf, "n", "<leader>gS", Snacks.picker.git_status, "Git Status")
+
+            map_buf(buf, "n", "<leader>gdh", Snacks.picker.git_diff, "Git Diff (Hunks)")
+
+            map_buf(buf, "n", "<leader>glf",Snacks.picker.git_log_file, "Git Log File")
+        end,
+    })
+end
