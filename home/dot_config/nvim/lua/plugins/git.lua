@@ -96,13 +96,13 @@ return {
 
                 -- Blame
 
-                map("n", "<leader>gbt", gs.toggle_current_line_blame, "gitsigns Toggle current line blame")
+                map("n", "<leader>gBt", gs.toggle_current_line_blame, "gitsigns Toggle current line blame")
 
-                map("n", "<leader>gbl", function()
+                map("n", "<leader>gBl", function()
                     gs.blame_line({ full = true, ignore_whitespace = false })
                 end, "gitsigns blame line")
 
-                map("n", "<leader>gB", function()
+                map("n", "<leader>gBL", function()
                     gs.blame_line({ full = true, ignore_whitespace = true })
                 end, "gitsigns blame line (ignore whitespace)")
 
