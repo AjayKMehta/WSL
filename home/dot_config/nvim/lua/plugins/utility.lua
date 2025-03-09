@@ -505,21 +505,21 @@ return {
                 desc = "Prev Reference",
             },
             {
-                "<leader>SB",
+                "<leader>sB",
                 function()
                     Snacks.picker.buffers()
                 end,
                 desc = "Snacks Find Buffers",
             },
             {
-                "<leader>Sg",
+                "<leader>sg",
                 function()
                     Snacks.picker.grep()
                 end,
                 desc = "Snacks Grep",
             },
             {
-                "<leader>Sw",
+                "<leader>sw",
                 function()
                     Snacks.picker.grep_word()
                 end,
@@ -528,21 +528,21 @@ return {
             },
 
             {
-                "<leader>SgB",
+                "<leader>sgB",
                 function()
                     Snacks.picker.grep_buffers()
                 end,
                 desc = "Snacks Grep Open Buffers",
             },
             {
-                "<leader>S:",
+                "<leader>s:",
                 function()
                     Snacks.picker.command_history()
                 end,
                 desc = "Snacks Command History",
             },
             {
-                "<leader>Sn",
+                "<leader>sn",
                 function()
                     Snacks.picker.notifications()
                 end,
@@ -551,28 +551,28 @@ return {
 
             -- Files
             {
-                "<leader>Sff",
+                "<leader>sff",
                 function()
                     Snacks.picker.smart()
                 end,
                 desc = "Snacks Find Files",
             },
             {
-                "<leader>Se",
+                "<leader>se",
                 function()
                     Snacks.explorer()
                 end,
                 desc = "Snacks File Explorer",
             },
             {
-                "<leader>Sfc",
+                "<leader>sfc",
                 function()
                     Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
                 end,
                 desc = "Snacks Find Config File",
             },
             {
-                "<leader>Sr",
+                "<leader>sr",
                 function()
                     Snacks.picker.recent()
                 end,
@@ -586,74 +586,88 @@ return {
                 desc = "Snacks Registers",
             },
             {
-                "<leader>S/",
+                "<leader>s/",
                 function()
                     Snacks.picker.search_history()
                 end,
                 desc = "Snacks Search History",
             },
             {
-                "<leader>Sa",
+                "<leader>sa",
                 function()
                     Snacks.picker.autocmds()
                 end,
                 desc = "Snacks Autocmds",
             },
             {
-                "<leader>S:",
+                "<leader>s:",
                 function()
                     Snacks.picker.command_history()
                 end,
                 desc = "Snacks Command History",
             },
             {
-                "<leader>Sc",
+                "<leader>sc",
                 function()
                     Snacks.picker.commands()
                 end,
                 desc = "Snacks Commands",
             },
             {
-                "<leader>Sd",
+                "<leader>sd",
                 function()
                     Snacks.picker.diagnostics()
                 end,
                 desc = "Snacks Diagnostics",
             },
             {
-                "<leader>SD",
+                "<leader>sD",
                 function()
                     Snacks.picker.diagnostics_buffer()
                 end,
                 desc = "Snacks Buffer Diagnostics",
             },
             {
-                "<leader>S?",
+                "<leader>s?",
                 function()
                     Snacks.picker.help()
                 end,
                 desc = "Snacks Help Pages",
             },
             {
-                "<leader>SH",
+                "<leader>sH",
                 function()
                     Snacks.picker.highlights()
                 end,
                 desc = "Snacks Highlights",
             },
             {
-                "<leader>Sj",
+                "<leader>sj",
                 function()
                     Snacks.picker.jumps()
                 end,
                 desc = "Snacks Jumps",
             },
             {
-                "<leader>Sk",
+                "<leader>sk",
                 function()
                     Snacks.picker.keymaps()
                 end,
                 desc = "Snacks Keymaps",
+            },
+            {
+                "<leader>sm",
+                function()
+                    Snacks.picker.marks()
+                end,
+                desc = "Marks",
+            },
+            {
+                "<leader>sM",
+                function()
+                    Snacks.picker.man()
+                end,
+                desc = "Man Pages",
             },
         },
     },

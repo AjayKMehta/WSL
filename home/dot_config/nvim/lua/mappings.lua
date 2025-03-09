@@ -18,7 +18,9 @@ local disabled = {
         "<leader>ff", -- NvChad maps this to Telescope Find files
         "<leader>fm", -- NvChad maps this format file
         "<leader>fh", -- NvChad maps this to Telescope Find help pages
+        "<leader>fo", -- NvChad maps this to Telescope Find oldfiles
         "<leader>fw", -- NvChad maps this to Telescope live grep
+        "<leader>fz", -- NvChad maps this to Telescope Find in current buffer
         "<leader>gt", -- NvChad maps this to Telescope git status
         "<leader>n", -- Use as prefix
         "<leader>b", -- Use as prefix
@@ -61,7 +63,7 @@ map_desc("n", "<leader>bb", "<cmd>enew<CR>", "Buffer New") -- spellchecker:disab
 
 --#region Telescope
 
-map_desc("n", "<leader>fr", "<cmd>Telescope resume<cr>", "telescope resume previous search")
+map_desc("n", "<leader>rs", "<cmd>Telescope resume<cr>", "telescope resume previous search")
 
 -- Nvim DAP
 
@@ -197,15 +199,15 @@ local function flash_jump()
     require("flash").jump()
 end
 
-map_desc("n", "<leader>ss", flash_jump, "Flash")
-map_desc({ "o", "x" }, "ss", flash_jump, "Flash")
+map_desc("n", "<leader>fs", flash_jump, "Flash")
+map_desc({ "o", "x" }, "fs", flash_jump, "Flash")
 
 local function flash_ts()
     require("flash").treesitter()
 end
 
-map_desc("n", "<leader>sT", flash_ts, "Flash Treesitter")
-map_desc({ "o", "x" }, "sT", flash_ts, "Flash Treesitter")
+map_desc("n", "<leader>fT", flash_ts, "Flash Treesitter")
+map_desc({ "o", "x" }, "fT", flash_ts, "Flash Treesitter")
 
 local function flash_fwd()
     require("flash").jump({
@@ -213,8 +215,8 @@ local function flash_fwd()
     })
 end
 
-map_desc("n", "<leader>sf", flash_fwd, "Flash Forward")
-map_desc({ "o", "x" }, "sf", flash_fwd, "Flash Forward")
+map_desc("n", "<leader>ff", flash_fwd, "Flash Forward")
+map_desc({ "o", "x" }, "ff", flash_fwd, "Flash Forward")
 
 local function flash_back()
     require("flash").jump({
@@ -222,8 +224,8 @@ local function flash_back()
     })
 end
 
-map_desc("n", "<leader>sb", flash_back, "Flash Backward")
-map_desc({ "o", "x" }, "sb", flash_back, "Flash Backward")
+map_desc("n", "<leader>fb", flash_back, "Flash Backward")
+map_desc({ "o", "x" }, "fb", flash_back, "Flash Backward")
 
 local function flash_cont()
     require("flash").jump({
@@ -231,8 +233,8 @@ local function flash_cont()
     })
 end
 
-map_desc("n", "<leader>sc", flash_cont, "Flash Continue search")
-map_desc({ "o", "x" }, "sc", flash_cont, "Flash Continue search")
+map_desc("n", "<leader>fc", flash_cont, "Flash Continue search")
+map_desc({ "o", "x" }, "fc", flash_cont, "Flash Continue search")
 
 local function flash_diag()
     -- More advanced example that also highlights diagnostics:
@@ -255,18 +257,18 @@ local function flash_diag()
     })
 end
 
-map_desc("n", "<leader>sd", flash_diag, "Flash Diagnostics")
-map_desc({ "o", "x" }, "sd", flash_diag, "Flash Diagnostics")
+map_desc("n", "<leader>fd", flash_diag, "Flash Diagnostics")
+map_desc({ "o", "x" }, "fd", flash_diag, "Flash Diagnostics")
 
-map_desc("o", "sr", function()
+map_desc("o", "fr", function()
     require("flash").remote()
 end, "Flash Remote")
 
-map_desc({ "o", "x" }, "sR", function()
+map_desc({ "o", "x" }, "fR", function()
     require("flash").treesitter_search()
 end, "Flash Treesitter search")
 
-map_desc({ "n", "v" }, "<leader>st", function()
+map_desc({ "n", "v" }, "<leader>ft", function()
     require("flash").toggle()
 end, "Flash Toggle search")
 
@@ -277,7 +279,7 @@ local flash_word = function()
     end
 end
 
-map_desc("n", "<leader>sw", flash_word, "Flash current word")
+map_desc("n", "<leader>fw", flash_word, "Flash current word")
 
 --#endregion
 
