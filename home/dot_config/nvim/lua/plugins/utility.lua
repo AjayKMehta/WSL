@@ -467,6 +467,19 @@ return {
                         },
                     },
                 },
+                matcher = {
+                    frecency = true,
+                },
+                previewers = {
+                    git = {
+                        native = true, -- Use my local git previewer (delta).
+                    },
+                },
+                sources = {
+                    files = { hidden = true },
+                    grep = { hidden = true },
+                    explorer = { hidden = true },
+                },
                 actions = {
                     flash = function(picker)
                         require("flash").jump({
