@@ -18,12 +18,27 @@ return {
             {
                 "JoosepAlviste/nvim-ts-context-commentstring",
                 lazy = false,
-                config = function()
-                    -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring/wiki/Integrations#plugins-with-a-pre-comment-hook
-                    require("ts_context_commentstring").setup({
-                        enable_autocmd = false,
-                    })
+                init = function()
                     vim.g.skip_ts_context_commentstring_module = true
+                end,
+                config = function()
+                    local tsc = require("ts_context_commentstring")
+                    if vim.g.nvim_comment then
+                        tsc.setup({
+                            enable_autocmd = false,
+                        })
+                        local get_option = vim.filetype.get_option
+                        vim.filetype.get_option = function(filetype, option)
+                            return option == "commentstring"
+                                    and require("ts_context_commentstring.internal").calculate_commentstring()
+                                or get_option(filetype, option)
+                        end
+                    else
+                        tsc.setup({
+                            enable_autocmd = false,
+                            pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+                        })
+                    end
                 end,
             },
         },
