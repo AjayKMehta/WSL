@@ -18,7 +18,7 @@ return {
             registries = {
                 "github:mason-org/mason-registry",
                 "github:syndim/mason-registry",
-                "github:Crashdummyy/mason-registry",
+                "github:crashdummyy/mason-registry"
             },
         },
         -- Use config from NvChad
