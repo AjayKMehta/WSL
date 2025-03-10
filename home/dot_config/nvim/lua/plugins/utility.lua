@@ -477,7 +477,6 @@ return {
                 },
                 sources = {
                     files = { hidden = true },
-                    grep = { hidden = true },
                     explorer = { hidden = true },
                 },
                 actions = {
@@ -503,6 +502,7 @@ return {
             },
         },
         keys = {
+            --region LSP
             {
                 "]r",
                 function()
@@ -518,23 +518,61 @@ return {
                 desc = "Prev Reference",
             },
             {
-                "<leader>sB",
+                "<leader>ld",
                 function()
-                    Snacks.picker.buffers()
+                    Snacks.picker.diagnostics({
+                        on_show = function()
+                            vim.cmd.stopinsert()
+                        end,
+                    })
                 end,
-                desc = "Snacks Find Buffers",
+                desc = "Snacks LSP Diagnostics",
             },
             {
-                "<leader>sg",
+                "<leader>lD",
+                function()
+                    Snacks.picker.diagnostics_buffer()
+                end,
+                desc = "Snacks LSP Diagnostics (Buffer)",
+            },
+            --endregion
+
+            {
+                "<leader>sb",
+                function()
+                    Snacks.picker()
+                end,
+                desc = "Snacks picker builtins",
+            },
+            {
+                "<leader>sgg",
                 function()
                     Snacks.picker.grep()
                 end,
                 desc = "Snacks Grep",
             },
             {
+                "<leader>sgh",
+                function()
+                    Snacks.picker.grep({ dirs = { hidden = true } })
+                end,
+                desc = "Snacks Grep (hidden)",
+            },
+            {
+                "<leader>sgc",
+                function()
+                    Snacks.picker.grep({ dirs = { vim.fn.expand("%:h") }, hidden = true })
+                end,
+                desc = "Snacks Grep cwd",
+            },
+            {
                 "<leader>sw",
                 function()
-                    Snacks.picker.grep_word()
+                    Snacks.picker.grep_word({
+                        on_show = function()
+                            vim.cmd.stopinsert()
+                        end,
+                    })
                 end,
                 desc = "Snacks Visual selection or word",
                 mode = { "n", "x" },
@@ -543,14 +581,22 @@ return {
             {
                 "<leader>sgB",
                 function()
-                    Snacks.picker.grep_buffers()
+                    Snacks.picker.grep_buffers({
+                        on_show = function()
+                            vim.cmd.stopinsert()
+                        end,
+                    })
                 end,
                 desc = "Snacks Grep Open Buffers",
             },
             {
                 "<leader>s:",
                 function()
-                    Snacks.picker.command_history()
+                    Snacks.picker.command_history({
+                        on_show = function()
+                            vim.cmd.stopinsert()
+                        end,
+                    })
                 end,
                 desc = "Snacks Command History",
             },
@@ -561,6 +607,41 @@ return {
                 end,
                 desc = "Snacks Notification History",
             },
+            {
+                "<leader>sp",
+                function()
+                    Snacks.picker.projects({ layout = "ivy" })
+                end,
+                desc = "Snacks Find projects",
+            },
+            {
+                "<leader>sP",
+                function()
+                    Snacks.picker.lazy()
+                end,
+                desc = "Snacks Find plugins",
+            },
+            {
+                "<leader>sq",
+                function()
+                    Snacks.picker.qflist()
+                end,
+                desc = "Snacks Quickfix List",
+            },
+            {
+                "<leader>sR",
+                function()
+                    Snacks.picker.resume()
+                end,
+                desc = "Resume",
+            },
+            {
+                "<leader>su",
+                function()
+                    Snacks.picker.undo()
+                end,
+                desc = "Undo History",
+            },
 
             -- Files
             {
@@ -568,7 +649,7 @@ return {
                 function()
                     Snacks.picker.smart()
                 end,
-                desc = "Snacks Find Files",
+                desc = "Snacks Find Old Files",
             },
             {
                 "<leader>se",
@@ -584,6 +665,7 @@ return {
                 end,
                 desc = "Snacks Find Config File",
             },
+
             {
                 "<leader>sr",
                 function()
@@ -620,25 +702,11 @@ return {
                 desc = "Snacks Command History",
             },
             {
-                "<leader>sc",
+                "<leader>sC",
                 function()
                     Snacks.picker.commands()
                 end,
                 desc = "Snacks Commands",
-            },
-            {
-                "<leader>sd",
-                function()
-                    Snacks.picker.diagnostics()
-                end,
-                desc = "Snacks Diagnostics",
-            },
-            {
-                "<leader>sD",
-                function()
-                    Snacks.picker.diagnostics_buffer()
-                end,
-                desc = "Snacks Buffer Diagnostics",
             },
             {
                 "<leader>s?",
@@ -682,6 +750,30 @@ return {
                 end,
                 desc = "Man Pages",
             },
+
+            --region Buffers
+            {
+                "<leader>bd",
+                function()
+                    Snacks.bufdelete()
+                end,
+                desc = "Delete current buffer",
+            },
+            {
+                "<leader>bD",
+                function()
+                    Snacks.bufdelete.other()
+                end,
+                desc = "Delete all buffers except current",
+            },
+            {
+                "<leader>sB",
+                function()
+                    Snacks.picker.buffers()
+                end,
+                desc = "Snacks Find Buffers",
+            },
+            --endregion
         },
     },
 }
