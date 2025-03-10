@@ -478,6 +478,7 @@ return {
                 sources = {
                     files = { hidden = true },
                     explorer = { hidden = true },
+                    keymaps = { layout = { preset = "vertical", fullscreen = true } },
                 },
                 actions = {
                     flash = function(picker)
@@ -518,9 +519,10 @@ return {
                 desc = "Prev Reference",
             },
             {
-                "<leader>ld",
+                "<leader>lSd",
                 function()
                     Snacks.picker.diagnostics({
+                        layout = "ivy",
                         on_show = function()
                             vim.cmd.stopinsert()
                         end,
@@ -529,21 +531,47 @@ return {
                 desc = "Snacks LSP Diagnostics",
             },
             {
-                "<leader>lD",
+                "<leader>lSD",
                 function()
-                    Snacks.picker.diagnostics_buffer()
+                    Snacks.picker.diagnostics_buffer({
+                        layout = "ivy",
+                        on_show = function()
+                            vim.cmd.stopinsert()
+                        end,
+                    })
                 end,
                 desc = "Snacks LSP Diagnostics (Buffer)",
             },
+            {
+                "<leader>ltd",
+                function()
+                    Snacks.picker.lsp_type_definitions({
+                        layout = "ivy",
+                    })
+                end,
+                desc = "Lsp type definitions",
+            },
+            {
+                "<leader>ls",
+                function()
+                    Snacks.picker.lsp_symbols({
+                        layout = "sidebar",
+                    })
+                end,
+                desc = "Lsp document symbols",
+            },
+            {
+                "<leader>lS",
+                function()
+                    Snacks.picker.lsp_workspace_symbols({
+                        layout = "sidebar",
+                    })
+                end,
+                desc = "Lsp workspace symbols",
+            },
             --endregion
 
-            {
-                "<leader>sb",
-                function()
-                    Snacks.picker()
-                end,
-                desc = "Snacks picker builtins",
-            },
+            --region Grep
             {
                 "<leader>sgg",
                 function()
@@ -577,7 +605,6 @@ return {
                 desc = "Snacks Visual selection or word",
                 mode = { "n", "x" },
             },
-
             {
                 "<leader>sgB",
                 function()
@@ -588,6 +615,16 @@ return {
                     })
                 end,
                 desc = "Snacks Grep Open Buffers",
+            },
+            --endregion
+
+            -- region General
+            {
+                "<leader>sb",
+                function()
+                    Snacks.picker()
+                end,
+                desc = "Snacks picker builtins",
             },
             {
                 "<leader>s:",
@@ -641,37 +678,6 @@ return {
                     Snacks.picker.undo()
                 end,
                 desc = "Undo History",
-            },
-
-            -- Files
-            {
-                "<leader>sff",
-                function()
-                    Snacks.picker.smart()
-                end,
-                desc = "Snacks Find Old Files",
-            },
-            {
-                "<leader>se",
-                function()
-                    Snacks.explorer()
-                end,
-                desc = "Snacks File Explorer",
-            },
-            {
-                "<leader>sfc",
-                function()
-                    Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
-                end,
-                desc = "Snacks Find Config File",
-            },
-
-            {
-                "<leader>sr",
-                function()
-                    Snacks.picker.recent()
-                end,
-                desc = "Snacks Recent",
             },
             {
                 '<leader>S"',
@@ -750,6 +756,38 @@ return {
                 end,
                 desc = "Man Pages",
             },
+            --endregion
+
+            --region Files
+            {
+                "<leader>sff",
+                function()
+                    Snacks.picker.smart()
+                end,
+                desc = "Snacks Find Old Files",
+            },
+            {
+                "<leader>se",
+                function()
+                    Snacks.explorer()
+                end,
+                desc = "Snacks File Explorer",
+            },
+            {
+                "<leader>sfc",
+                function()
+                    Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+                end,
+                desc = "Snacks Find Config File",
+            },
+            {
+                "<leader>sr",
+                function()
+                    Snacks.picker.recent()
+                end,
+                desc = "Snacks Recent",
+            },
+            --endregion
 
             --region Buffers
             {
@@ -769,7 +807,23 @@ return {
             {
                 "<leader>sB",
                 function()
-                    Snacks.picker.buffers()
+                    Snacks.picker.buffers({
+                        finder = "buffers",
+                        format = "buffer",
+                        hidden = false,
+                        unloaded = true,
+                        current = true,
+                        layout = "vscode",
+                        sort_lastused = true,
+                        win = {
+                            input = {
+                                keys = {
+                                    ["d"] = "bufdelete",
+                                },
+                            },
+                            list = { keys = { ["d"] = "bufdelete" } },
+                        },
+                    })
                 end,
                 desc = "Snacks Find Buffers",
             },
