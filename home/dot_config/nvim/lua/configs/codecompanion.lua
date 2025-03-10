@@ -166,3 +166,44 @@ local config = {
 }
 
 cc.setup(config)
+
+-- https://github.com/olimorris/codecompanion.nvim/discussions/1090#discussioncomment-12439302
+
+local function compact_reference(messages)
+    local refs = {}
+    local result = {}
+
+    -- First loop to find last occurrence of each reference
+    for i, msg in ipairs(messages) do
+        if msg.opts and msg.opts.reference then
+            refs[msg.opts.reference] = i
+        end
+    end
+
+    -- Second loop to keep messages with unique references
+    for i, msg in ipairs(messages) do
+        local ref = msg.opts and msg.opts.reference
+        if not ref or refs[ref] == i then
+            table.insert(result, msg)
+        end
+    end
+
+    return result
+end
+
+local group = vim.api.nvim_create_augroup("CodeCompanionHooks", {})
+
+vim.api.nvim_create_autocmd({ "User" }, {
+    pattern = "CodeCompanionRequestFinished",
+    group = group,
+    callback = function(request)
+        if request.data.strategy ~= "chat" then
+            return
+        end
+        local current_chat = cc.last_chat()
+        if not current_chat then
+            return
+        end
+        current_chat.messages = compact_reference(current_chat.messages)
+    end,
+})
