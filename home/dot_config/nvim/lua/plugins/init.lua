@@ -386,7 +386,7 @@ return {
     {
         -- Plugin to easily manage multiple terminal windows.
         "akinsho/toggleterm.nvim",
-        cmd = { "ToggleTerm", "ToggleTermAll", "TermExec" },
+        cmd = { "ToggleTerm", "ToggleTermAll", "TermExec", "TermNew" },
         config = load_config("toggleterm"),
     },
 

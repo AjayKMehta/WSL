@@ -17,6 +17,8 @@ return {
                 "dotnet",
                 vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
             },
+            -- TODO: Investigate setting this to "roslyn"
+            filewatching = "auto",
             config = {
                 settings = {
                     ["csharp|background_analysis"] = {

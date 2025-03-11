@@ -299,7 +299,9 @@ if require("utils").is_loaded("snacks") then
             end
             local map_buf = require("utils.mappings").map_buf
 
-            map_buf(buf, "n", "<leader>gf", Snacks.picker.git_files, "Git Find Files")
+            map_buf(buf, "n", "<leader>gf", function()
+                Snacks.picker.git_files({ untracked = true })
+            end, "Git Find Files")
 
             map_buf(buf, "n", "<leader>gb", Snacks.picker.git_branches, "Git Branches")
 
@@ -311,7 +313,7 @@ if require("utils").is_loaded("snacks") then
 
             map_buf(buf, "n", "<leader>gdh", Snacks.picker.git_diff, "Git Diff (Hunks)")
 
-            map_buf(buf, "n", "<leader>glf",Snacks.picker.git_log_file, "Git Log File")
+            map_buf(buf, "n", "<leader>glf", Snacks.picker.git_log_file, "Git Log File")
         end,
     })
 end
