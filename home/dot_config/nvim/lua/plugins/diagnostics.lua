@@ -6,25 +6,75 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         cmd = { "Trouble", "TroubleToggle", "TodoTrouble" },
-        config = function()
-            dofile(vim.g.base46_cache .. "trouble")
-            require("trouble").setup({
-                modes = {
-                    preview_float = {
-                        mode = "diagnostics",
-                        preview = {
-                            type = "float",
-                            relative = "editor",
-                            border = "rounded",
-                            title = "Preview",
-                            title_pos = "center",
-                            position = { 0, -2 },
-                            size = { width = 0.3, height = 0.3 },
-                            zindex = 200,
-                        },
+        opts = {
+            keys = {
+                s = { -- example of a custom action that toggles the severity
+                    action = function(view)
+                        local f = view:get_filter("severity")
+                        local severity = ((f and f.filter.severity or 0) + 1) % 5
+                        view:filter({ severity = severity }, {
+                            id = "severity",
+                            template = "{hl:Title}Filter:{hl} {severity}",
+                            del = severity == 0,
+                        })
+                    end,
+                    desc = "Toggle Severity Filter",
+                },
+            },
+            modes = {
+                preview_float = {
+                    mode = "diagnostics",
+                    preview = {
+                        type = "float",
+                        relative = "editor",
+                        border = "rounded",
+                        title = "Preview",
+                        title_pos = "center",
+                        position = { 0, -2 },
+                        size = { width = 0.3, height = 0.3 },
+                        zindex = 200,
+                    },
+                    diagnostics = {
+                        sort = { "severity", "pos", "filename", "message" },
+                    },
+                    snacks = {
+                        sort = { "pos", "filename", "severity", "message" },
+                    },
+                    snacks_files = {
+                        sort = { "pos", "filename", "severity", "message" },
+                    },
+                    quickfix = {
+                        sort = { "pos", "filename", "severity", "message" },
+                    },
+                    loclist = {
+                        sort = { "pos", "filename", "severity", "message" },
                     },
                 },
-            })
+            },
+        },
+        specs = {
+            "folke/snacks.nvim",
+            opts = function(_, opts)
+                return vim.tbl_deep_extend("force", opts or {}, {
+                    picker = {
+                        actions = require("trouble.sources.snacks").actions,
+                        win = {
+                            input = {
+                                keys = {
+                                    ["<c-t>"] = {
+                                        "trouble_open",
+                                        mode = { "n", "i" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                })
+            end,
+        },
+        config = function(_, opts)
+            dofile(vim.g.base46_cache .. "trouble")
+            require("trouble").setup(opts)
         end,
         lazy = false,
         keys = {
