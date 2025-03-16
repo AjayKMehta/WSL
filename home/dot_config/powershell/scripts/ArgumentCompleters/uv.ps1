@@ -247,6 +247,8 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
         'uv;add' {
             [CompletionResult]::new('-r', '-r', [CompletionResultType]::ParameterName, 'Add all packages listed in the given `requirements.txt` files')
             [CompletionResult]::new('--requirements', '--requirements', [CompletionResultType]::ParameterName, 'Add all packages listed in the given `requirements.txt` files')
+            [CompletionResult]::new('-m', '-m', [CompletionResultType]::ParameterName, 'Apply this marker to all added packages')
+            [CompletionResult]::new('--marker', '--marker', [CompletionResultType]::ParameterName, 'Apply this marker to all added packages')
             [CompletionResult]::new('--optional', '--optional', [CompletionResultType]::ParameterName, 'Add the requirements to the package''s optional dependencies for the specified extra')
             [CompletionResult]::new('--group', '--group', [CompletionResultType]::ParameterName, 'Add the requirements to the specified dependency group')
             [CompletionResult]::new('--rev', '--rev', [CompletionResultType]::ParameterName, 'Commit to use when adding a dependency from Git')
