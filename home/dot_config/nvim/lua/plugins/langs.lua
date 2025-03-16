@@ -57,7 +57,7 @@ return {
     },
     {
         "GustavEikaas/easy-dotnet.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+        dependencies = { "nvim-lua/plenary.nvim", "folke/snacks.nvim" },
         ft = { "cs", "vb", "csproj", "sln", "slnx", "props", "csx", "targets" },
         lazy = true,
         cmd = "Dotnet",
@@ -199,6 +199,7 @@ return {
                     -- TODO: Make this window smaller.
                     require("toggleterm").exec(command, nil, nil, nil, "horizontal")
                 end,
+                picker = "snacks",
             }
 
             dotnet.setup(config)
