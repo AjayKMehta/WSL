@@ -24,6 +24,8 @@ local disabled = {
         "<leader>gt", -- NvChad maps this to Telescope git status
         "<leader>n", -- Use as prefix
         "<leader>b", -- Use as prefix
+        "<leader>ma", -- NvChad maps this to Telescope find marks
+        "<leader>rn", -- NvChad maps this to toggle relative number
         "<A-i>", -- NvChad maps this to floating terminal
         "<A-h>", -- NvChad maps this to horizontal terminal
         "<A-v>", -- NvChad maps this to vertical terminal
