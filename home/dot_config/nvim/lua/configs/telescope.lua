@@ -95,7 +95,6 @@ M.config = function()
         extensions_list = {
             "dap",
             "fzf",
-            "terms",
             "themes",
         },
         extensions = {

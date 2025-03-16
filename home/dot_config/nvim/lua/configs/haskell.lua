@@ -76,8 +76,3 @@ vim.g.haskell_tools = {
         auto_discover = true,
     },
 }
-
-local ok, telescope = pcall(require, "telescope")
-if ok then
-    telescope.load_extension("ht")
-end
