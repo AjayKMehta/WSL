@@ -673,11 +673,25 @@ return {
                 desc = "Resume",
             },
             {
+                "<leader>st",
+                function()
+                    Snacks.picker.treesitter()
+                end,
+                desc = "Snacks Treesitter",
+            },
+            {
                 "<leader>su",
                 function()
                     Snacks.picker.undo()
                 end,
                 desc = "Undo History",
+            },
+            {
+                "<leader>sz",
+                function()
+                    Snacks.picker.zoxide()
+                end,
+                desc = "Snacks Zoxide",
             },
             {
                 '<leader>S"',
@@ -706,6 +720,13 @@ return {
                     Snacks.picker.command_history()
                 end,
                 desc = "Snacks Command History",
+            },
+            {
+                "<leader>sc",
+                function()
+                    Snacks.picker.colorschemes()
+                end,
+                desc = "Snacks Colorschemes",
             },
             {
                 "<leader>sC",
