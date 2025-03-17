@@ -44,31 +44,6 @@ local function diff_source()
     end
 end
 
-local function LspStatus()
-    return require("lsp-progress").progress({
-        format = function(messages)
-            local buf_number = vim.api.nvim_get_current_buf()
-            local active_clients = vim.lsp.get_clients({ bufnr = buf_number })
-            local client_count = #active_clients
-            if #messages > 0 then
-                return " LSP:" .. client_count .. " " .. table.concat(messages, " ")
-            end
-            if #active_clients <= 0 then
-                return " LSP:" .. client_count
-            else
-                local client_names = {}
-                for i, client in ipairs(active_clients) do
-                    if client and client.name ~= "" and client.name ~= "null-ls" then
-                        table.insert(client_names, "[" .. client.name .. "]")
-                        -- print("client[" .. i .. "]:" .. vim.inspect(client.name))
-                    end
-                end
-                return " LSP:" .. client_count .. " " .. table.concat(client_names, " ")
-            end
-        end,
-    })
-end
-
 -- https://codecompanion.olimorris.dev/usage/events#example-lualine-nvim-integration
 local function create_codecompanion_component()
     local M = require("lualine.component"):extend()
@@ -268,7 +243,20 @@ local config = {
         },
         lualine_c = {
             { custom_fname },
-            { LspStatus, cond = utils.has_filename, color = { fg = "#00FDAF" } },
+            {
+                "lsp_status",
+                icon = "", -- f013
+                symbols = {
+                    -- Standard unicode symbols to cycle through for LSP progress:
+                    spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+                    -- Standard unicode symbol for when LSP is done:
+                    done = "✓",
+                    -- Delimiter inserted between LSP names:
+                    separator = " ",
+                },
+                -- List of LSP names to ignore (e.g., `null-ls`):
+                ignore_lsp = {},
+            },
             {
                 function()
                     local formatters = require("conform").list_formatters()
@@ -368,11 +356,3 @@ local config = {
 }
 
 lualine.setup(config)
-
--- Listen for lsp-progress event and refresh lualine
-vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
-vim.api.nvim_create_autocmd("User", {
-    group = "lualine_augroup",
-    pattern = "LspProgressStatusUpdated",
-    callback = lualine.refresh,
-})
