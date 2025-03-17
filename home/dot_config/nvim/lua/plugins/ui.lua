@@ -1,8 +1,6 @@
 local load_config = require("utils").load_config
 
 return {
-    { "tomasiser/vim-code-dark" },
-    { "samharju/synthweave.nvim" },
     {
         "nvim-lualine/lualine.nvim",
         event = "VimEnter",
@@ -57,26 +55,6 @@ return {
                     })
                 end,
             },
-        },
-    },
-    {
-        -- Already included in NvChad.
-        "craftzdog/solarized-osaka.nvim",
-        lazy = false,
-        enabled = false,
-        priority = 1000,
-        opts = {},
-    },
-    {
-        -- Already included in NvChad.
-        "kepano/flexoki-neovim",
-        enabled = false,
-    },
-    {
-        "xiantang/darcula-dark.nvim",
-        enabled = true,
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
         },
     },
     {
