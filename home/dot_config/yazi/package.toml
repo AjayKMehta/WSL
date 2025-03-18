@@ -1,22 +1,22 @@
 [[plugin.deps]]
 use = "Reledia/glow"
-rev = "5ce76dc"
-hash = "52e5f5c602962e7cbf874da28f52ba45"
+rev = "c76bf4f"
+hash = "a6b78bf9af5390e3a85a6951fbb7b93"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "8945e54"
-hash = "771f18427fb75fb19990ce602bb322f4"
+rev = "79193b3"
+hash = "e0d2c8d7e7afe5b82270367098d1a821"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "fd85060"
-hash = "c40e434318a8ceffd01842f8dfb2390e"
+rev = "68326b4"
+hash = "2ac87e1b3a61f5887472899e86535d29"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-macchiato"
-rev = "fd85060"
-hash = "c34feed32d555e79ab9a0c0a7bdda2be"
+rev = "68326b4"
+hash = "3ec21bcfd2735cfcbab61faaf43e59e4"
 
 [[flavor.deps]]
 use = "tkapias/moonfly"
@@ -30,5 +30,5 @@ hash = "d1a9e05ecbbd63bc5bb85a54e7f1e33a"
 
 [[flavor.deps]]
 use = "dangooddd/kanagawa"
-rev = "d98f0c3"
-hash = "cada780385f75abbcfbf5343256b441"
+rev = "31167ed"
+hash = "a04e157148549bacbb2831aab0e6e8cb"
