@@ -58,9 +58,7 @@ dofile(vim.g.base46_cache .. "statusline")
 
 require("autocmds")
 
-vim.schedule(function()
-    require("mappings")
-end)
+require("mappings")
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jqls
 vim.cmd([[au BufRead,BufNewFile *.jq setfiletype jq]])

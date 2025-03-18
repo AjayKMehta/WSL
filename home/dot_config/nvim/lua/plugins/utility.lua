@@ -561,7 +561,7 @@ return {
                 desc = "Lsp document symbols",
             },
             {
-                "<leader>lS",
+                "<leader>lws",
                 function()
                     Snacks.picker.lsp_workspace_symbols({
                         layout = "sidebar",

@@ -381,6 +381,7 @@ return {
             dofile(vim.g.base46_cache .. "nvimtree")
             require("configs.nvimtree")
             require("nvim-tree").setup(opts)
+            vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
         end,
     },
     {

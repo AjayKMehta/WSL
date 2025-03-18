@@ -1,34 +1,14 @@
 -- See mappings here: https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/mappings.lua
-require("nvchad.mappings")
+-- require("nvchad.mappings")
 
 local utils = require("utils.mappings")
 local map = utils.map
 local map_desc = utils.map_desc
--- map("n", ";", ":", { desc = "CMD enter command mode" })
--- map("i", "jk", "<ESC>")
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 -- To disable mappings:
 local disabled = {
     n = {
-        "<leader>ch", -- NvChad maps this to Toggle nvcheatsheet
-        "<leader>cm", -- NvChad maps this to Telescope git commits
-        "<leader>fa", -- NvChad maps this to Telescope Find all
-        "<leader>fb", -- NvChad maps this to Telescope Find buffers
-        "<leader>ff", -- NvChad maps this to Telescope Find files
-        "<leader>fm", -- NvChad maps this format file
-        "<leader>fh", -- NvChad maps this to Telescope Find help pages
-        "<leader>fo", -- NvChad maps this to Telescope Find oldfiles
-        "<leader>fw", -- NvChad maps this to Telescope live grep
-        "<leader>fz", -- NvChad maps this to Telescope Find in current buffer
-        "<leader>gt", -- NvChad maps this to Telescope git status
-        "<leader>n", -- Use as prefix
-        "<leader>b", -- Use as prefix
-        "<leader>ma", -- NvChad maps this to Telescope find marks
-        "<leader>rn", -- NvChad maps this to toggle relative number
-        "<A-i>", -- NvChad maps this to floating terminal
-        "<A-h>", -- NvChad maps this to horizontal terminal
-        "<A-v>", -- NvChad maps this to vertical terminal
+        -- "<leader>ch", -- NvChad maps this to Toggle nvcheatsheet
     },
 }
 
@@ -43,6 +23,18 @@ for mode, mappings in pairs(disabled) do
     end
 end
 
+map_desc({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr>", "general save file")
+map_desc("n", "<Esc>", "<cmd>noh<CR>", "general clear highlights")
+map_desc("n", "<C-c>", "<cmd>%y+<CR>", "general copy whole file")
+
+map_desc("n", "<tab>", function()
+    require("nvchad.tabufline").next()
+end, "buffer goto next")
+
+map_desc("n", "<S-tab>", function()
+    require("nvchad.tabufline").prev()
+end, "buffer goto prev")
+
 map_desc("n", "<leader>tt", function()
     require("base46").toggle_theme()
 end, "NvChad Toggle theme")
@@ -51,9 +43,9 @@ map_desc("n", "<leader>tT", function()
     require("base46").toggle_transparency()
 end, "NvChad Toggle transparency")
 
-map_desc("n", "gli", function()
-    vim.lsp.buf.implementation()
-end, "Lsp Go to implementation")
+map_desc("n", "<leader>th", function()
+    require("nvchad.themes").open()
+end, "telescope nvchad themes")
 
 -- Courtesy of https://www.reddit.com/r/neovim/comments/1ixsk40/comment/mep7kp1/
 map_desc("n", "gV", "`[v`]", "Select the previous yanked area")

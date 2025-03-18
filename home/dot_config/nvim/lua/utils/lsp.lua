@@ -43,9 +43,9 @@ M.on_attach = function(client, bufnr)
 
     map_buf(bufnr, "n", "<leader>lh", vim.lsp.buf.signature_help, "Lsp Show signature help")
 
-    map_buf(bufnr, "n", "<leader>wa", vim.lsp.buf.add_workspace_folder, "Lsp Add workspace folder")
-    map_buf(bufnr, "n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, "Lsp Remove workspace folder")
-    map_buf(bufnr, "n", "<leader>wl", function()
+    map_buf(bufnr, "n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, "Lsp Add workspace folder")
+    map_buf(bufnr, "n", "<leader>lwr", vim.lsp.buf.remove_workspace_folder, "Lsp Remove workspace folder")
+    map_buf(bufnr, "n", "<leader>lwl", function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, "Lsp List workspace folders")
 
