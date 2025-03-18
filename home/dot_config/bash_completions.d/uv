@@ -233,7 +233,7 @@ _uv() {
             return 0
             ;;
         uv__add)
-            opts="-r -m -i -f -U -P -C -p -n -q -v -h -V --requirements --marker --dev --optional --group --editable --no-editable --raw-sources --rev --tag --branch --extra --no-sync --locked --frozen --active --no-active --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --package --script --python --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version [PACKAGES]..."
+            opts="-r -c -m -i -f -U -P -C -p -n -q -v -h -V --requirements --constraints --marker --dev --optional --group --editable --no-editable --raw-sources --rev --tag --branch --extra --no-sync --locked --frozen --active --no-active --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --package --script --python --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version [PACKAGES]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -244,6 +244,14 @@ _uv() {
                     return 0
                     ;;
                 -r)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --constraints)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -c)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -1843,7 +1851,7 @@ _uv() {
             return 0
             ;;
         uv__pip__compile)
-            opts="-c -b -i -f -U -P -C -o -p -n -q -v -h -V --constraints --overrides --build-constraints --extra --all-extras --no-all-extras --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --link-mode --no-sources --refresh --no-refresh --refresh-package --no-deps --deps --output-file --no-strip-extras --strip-extras --no-strip-markers --strip-markers --no-annotate --annotate --no-header --header --annotation-style --custom-compile-command --python --system --no-system --generate-hashes --no-generate-hashes --no-build --build --no-binary --only-binary --python-version --python-platform --universal --no-universal --no-emit-package --emit-index-url --no-emit-index-url --emit-find-links --no-emit-find-links --emit-build-options --no-emit-build-options --emit-marker-expression --no-emit-marker-expression --emit-index-annotation --no-emit-index-annotation --allow-unsafe --no-allow-unsafe --reuse-hashes --no-reuse-hashes --resolver --max-rounds --cert --client-cert --emit-trusted-host --no-emit-trusted-host --config --no-config --emit-options --no-emit-options --pip-args --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --help --version <SRC_FILE>..."
+            opts="-c -b -i -f -U -P -C -o -p -n -q -v -h -V --constraints --overrides --build-constraints --extra --all-extras --no-all-extras --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --link-mode --no-sources --refresh --no-refresh --refresh-package --no-deps --deps --group --output-file --no-strip-extras --strip-extras --no-strip-markers --strip-markers --no-annotate --annotate --no-header --header --annotation-style --custom-compile-command --python --system --no-system --generate-hashes --no-generate-hashes --no-build --build --no-binary --only-binary --python-version --python-platform --universal --no-universal --no-emit-package --emit-index-url --no-emit-index-url --emit-find-links --no-emit-find-links --emit-build-options --no-emit-build-options --emit-marker-expression --no-emit-marker-expression --emit-index-annotation --no-emit-index-annotation --allow-unsafe --no-allow-unsafe --reuse-hashes --no-reuse-hashes --resolver --max-rounds --cert --client-cert --emit-trusted-host --no-emit-trusted-host --config --no-config --emit-options --no-emit-options --pip-args --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --help --version [SRC_FILE]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -1950,6 +1958,10 @@ _uv() {
                     return 0
                     ;;
                 --refresh-package)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --group)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -2119,7 +2131,7 @@ _uv() {
             return 0
             ;;
         uv__pip__install)
-            opts="-r -e -c -b -i -f -U -P -C -p -n -q -v -h -V --requirements --editable --constraints --overrides --build-constraints --extra --all-extras --no-all-extras --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --link-mode --compile-bytecode --no-compile-bytecode --no-sources --refresh --no-refresh --refresh-package --no-deps --deps --require-hashes --no-require-hashes --verify-hashes --no-verify-hashes --python --system --no-system --break-system-packages --no-break-system-packages --target --prefix --no-build --build --no-binary --only-binary --python-version --python-platform --inexact --exact --strict --no-strict --dry-run --disable-pip-version-check --user --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version [PACKAGE]..."
+            opts="-r -e -c -b -i -f -U -P -C -p -n -q -v -h -V --requirements --editable --constraints --overrides --build-constraints --extra --all-extras --no-all-extras --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --link-mode --compile-bytecode --no-compile-bytecode --no-sources --refresh --no-refresh --refresh-package --no-deps --deps --group --require-hashes --no-require-hashes --verify-hashes --no-verify-hashes --python --system --no-system --break-system-packages --no-break-system-packages --target --prefix --no-build --build --no-binary --only-binary --python-version --python-platform --inexact --exact --strict --no-strict --dry-run --disable-pip-version-check --user --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version [PACKAGE]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -2246,6 +2258,10 @@ _uv() {
                     return 0
                     ;;
                 --refresh-package)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --group)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -3175,7 +3191,7 @@ _uv() {
             return 0
             ;;
         uv__python__pin)
-            opts="-n -q -v -h -V --resolved --no-resolved --no-project --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version [REQUEST]"
+            opts="-n -q -v -h -V --resolved --no-resolved --no-project --global --no-cache --cache-dir --python-preference --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version [REQUEST]"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
