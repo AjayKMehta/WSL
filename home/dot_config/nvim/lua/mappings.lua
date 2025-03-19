@@ -23,7 +23,6 @@ for mode, mappings in pairs(disabled) do
     end
 end
 
-map_desc({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr>", "general save file")
 map_desc("n", "<Esc>", "<cmd>noh<CR>", "general clear highlights")
 map_desc("n", "<C-c>", "<cmd>%y+<CR>", "general copy whole file")
 
@@ -49,6 +48,9 @@ end, "telescope nvchad themes")
 
 -- Courtesy of https://www.reddit.com/r/neovim/comments/1ixsk40/comment/mep7kp1/
 map_desc("n", "gV", "`[v`]", "Select the previous yanked area")
+
+map_desc("t", "<Esc>", "<C-\\><C-n>", "Exit terminal mode")
+
 
 -- tabufline (NVChad plugin)
 -- NVChad maps this to <leader>b
@@ -120,7 +122,7 @@ map_desc("n", "<leader>db", function()
     require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 end, "DAP Set conditional breakpoint")
 
-map_desc("n", "<leader>dl", function()
+map_desc("n", "<leader>dlm", function()
     require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
 end, "DAP Log message")
 

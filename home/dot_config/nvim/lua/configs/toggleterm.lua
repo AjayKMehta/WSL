@@ -56,3 +56,9 @@ end
 
 -- if you want these mappings for all terms use term://* instead
 vim.cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")
+
+local exitTerm = function()
+    vim.cmd(":ToggleTerm")
+end
+
+vim.keymap.set("t", "<esc><esc>", exitTerm)
