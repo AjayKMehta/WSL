@@ -9,9 +9,8 @@ local function create_ollama_adapter(name, model, num_ctx)
         env = { url = ollama_url },
         name = name,
         schema = {
-            model = { default = model },
+            model = { default = model, choices = false },
             num_ctx = { default = num_ctx },
-            num_predict = { default = -1 },
         },
     })
 end
@@ -29,16 +28,18 @@ local adapters = {
         return create_ollama_adapter("llama3", "llama3.2:latest", 16384)
     end,
     codellama = create_ollama_adapter("codellama", "codellama:13b", 16384),
+    mixtral = create_ollama_adapter("mixtral", "mixtral:8x7b", 32768),
+    deepseek= create_ollama_adapter("deepseek", "deepseek-r1:8b",32768),
     qwen = function()
         return ca.extend("ollama", {
             env = { url = ollama_url },
             headers = { ["Content-Type"] = "application/json" },
             parameters = { sync = true },
-            name = "qwen2.5-coder",
+            name = "qwen",
             -- https://github.com/ollama/ollama/blob/main/docs/modelfile.md#parameter
             schema = {
                 model = { default = "qwen2.5-coder:14b" },
-                num_ctx = { default = 8192 },
+                num_ctx = { default = 16384 },
                 num_predict = { default = -1 },
             },
         })
