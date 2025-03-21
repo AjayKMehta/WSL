@@ -71,7 +71,6 @@ local display = {
 local strategies = {
     chat = {
         adapter = "qwen", --
-        -- Below are default values - included for reference.
         roles = {
             ---The header name for the LLM's messages
             llm = function(adapter)
