@@ -131,6 +131,17 @@ local strategies = {
                 },
             },
         },
+        keymaps = {
+            -- Adapted from https://github.com/olimorris/codecompanion.nvim/discussions/1153#discussioncomment-12560883
+            send_to_deepseek = {
+                modes = { n = "<S-CR>" },
+                description = "Send to deepseek",
+                callback = function(chat)
+                    chat:apply_model("deepseek-r1:8b")
+                    chat:submit()
+                end,
+            },
+        },
     },
     inline = {
         adapter = "qwen",
