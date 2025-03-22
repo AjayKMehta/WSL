@@ -1,4 +1,7 @@
-local load_config = require("utils").load_config
+local utils = require("utils")
+local load_config = utils.load_config
+local excluded_ftypes = utils.excluded_ftypes
+
 return {
     {
         "kylechui/nvim-surround",
@@ -275,27 +278,7 @@ return {
                 PrevParagraph = { text = "{", prio = 8 },
                 NextParagraph = { text = "}", prio = 8 },
             },
-            disabled_fts = {
-                "checkhealth",
-                "cmp_menu",
-                "flash_prompt",
-                "lazy",
-                "help",
-                "man",
-                "mason",
-                "noice",
-                "notify",
-                "NvimTree",
-                "startify",
-                "oil",
-                "Outline",
-                "qf",
-                "startuptime",
-                "TelescopePrompt",
-                "toggleterm",
-                "dropbar_menu",
-                "trouble",
-            },
+            disabled_fts = excluded_ftypes,
         },
     },
     {

@@ -5,17 +5,17 @@ end
 local ft = require("hlchunk.utils.filetype")
 
 local exclude_filetypes = vim.tbl_deep_extend("force", ft.exclude_filetypes, {
-    terminal = true,
-    startify = true,
-    FTerm = true,
-    ["no-profile"] = true,
-    nvcheatsheet = true,
+    codecompanion = true,
     crunner = true,
     dropbar_menu = true,
-    Outline = true,
+    FTerm = true,
     git = true,
+    ["no-profile"] = true,
+    nvcheatsheet = true,
+    Outline = true,
+    startify = true,
+    terminal = true,
     VoltWindow = true,
-    codecompanion = true,
 })
 
 hlchunk.setup({

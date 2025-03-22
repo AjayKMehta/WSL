@@ -31,26 +31,14 @@ return {
             {
                 "nmac427/guess-indent.nvim",
                 config = function()
+                    local excluded_ftypes = require("utils").excluded_ftypes
                     require("guess-indent").setup({
-                        filetype_exclude = {
-                            "netrw",
-                            "tutor",
-                            "terminal",
-                            "startify",
-                            "FTerm",
-                            "no-profile",
-                            "nvcheatsheet",
-                            "crunner",
-                            "dropbar_menu",
-                            "Outline",
-                            "git",
-                            "VoltWindow",
-                        },
+                        filetype_exclude = excluded_ftypes,
                         buftype_exclude = {
                             "help",
                             "nofile",
-                            "terminal",
                             "prompt",
+                            "terminal",
                         },
                     })
                 end,
@@ -152,20 +140,29 @@ return {
                 log_path = vim.fn.stdpath("data") .. "/neominimap.log",
 
                 -- Minimap will not be created for buffers of these types
-                exclude_filetypes = { "help", "", "bigfile", "codecompanion" },
+                exclude_filetypes = {
+                    "",
+                    "bigfile",
+                    "checkhealth",
+                    "codecompanion",
+                    "help",
+                    "mason",
+                    "startuptime",
+                    "toggleterm",
+                },
 
                 -- Minimap will not be created for buffers of these types
                 exclude_buftypes = {
+                    "FTerm",
+                    "git",
                     "nofile",
                     "nowrite",
+                    "nvcheatsheet",
+                    "Outline",
+                    "prompt",
                     "quickfix",
                     "terminal",
-                    "prompt",
-                    "Outline",
-                    "nvcheatsheet",
-                    "git",
                     "VoltWindow",
-                    "FTerm",
                 },
                 mark = {
                     enabled = true,
