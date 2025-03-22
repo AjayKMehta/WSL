@@ -1,3 +1,5 @@
+local config = require("codecompanion.config")
+
 return {
   strategy = "inline",
   description = "Generate a commit message (advanced)",
@@ -11,7 +13,7 @@ return {
   },
   prompts = {
     {
-      role = "user",
+      role = config.constants.USER_ROLE,
       content = function()
         local diffs = vim.fn.system("git diff --staged")
         if diffs == "" then

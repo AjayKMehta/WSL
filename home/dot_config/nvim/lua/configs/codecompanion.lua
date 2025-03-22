@@ -29,7 +29,7 @@ local adapters = {
     end,
     codellama = create_ollama_adapter("codellama", "codellama:13b", 16384),
     mixtral = create_ollama_adapter("mixtral", "mixtral:8x7b", 32768),
-    deepseek= create_ollama_adapter("deepseek", "deepseek-r1:8b",32768),
+    deepseek = create_ollama_adapter("deepseek", "deepseek-r1:8b", 32768),
     qwen = function()
         return ca.extend("ollama", {
             env = { url = ollama_url },

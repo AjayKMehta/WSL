@@ -1,18 +1,17 @@
+local config = require("codecompanion.config")
 local utils = require("utils.codecompanion")
 
 return {
     strategy = "chat",
     description = "Generate mindmap from the provided context.",
     opts = {
-        index = 10,
-        modes = { "n", "v" },
         short_name = "mindmap",
         is_slash_cmd = true,
         auto_submit = true,
     },
     prompts = {
         {
-            role = "system",
+            role = config.constants.SYSTEM_ROLE,
             content = function(context)
                 local code = utils.get_text(context)
                 return [[

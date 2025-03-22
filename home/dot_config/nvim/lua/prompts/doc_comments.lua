@@ -1,3 +1,5 @@
+local config = require("codecompanion.config")
+
 return {
   strategy = "inline",
   description = "Generate documentation comments.",
@@ -10,7 +12,7 @@ return {
   },
   prompts = {
     {
-      role = "user",
+      role = config.constants.USER_ROLE,
       content = function(context)
         local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
 

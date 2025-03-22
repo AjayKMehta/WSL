@@ -1,3 +1,5 @@
+local config = require("codecompanion.config")
+
 ---@diagnostic disable-next-line: different-requires
 local utils = require("utils.codecompanion")
 
@@ -6,7 +8,6 @@ return {
     description = "Review code",
     opts = {
         mapping = "<leader>cr",
-        modes = { "n", "v" },
         is_slash_cmd = true,
         short_name = "review", -- Run as `:CodeCompanion /review`
         stop_context_insertion = true, -- avoid duplication because visually selecting text
@@ -15,7 +16,7 @@ return {
     },
     prompts = {
         {
-            role = "system",
+            role = config.constants.SYSTEM_ROLE,
             content = function(context)
                 return "I want you to act as a principal"
                     .. ((context.filetype and " " .. context.filetype) or "")
@@ -23,7 +24,7 @@ return {
             end,
         },
         {
-            role = "user",
+            role = config.constants.USER_ROLE,
             content = function(context)
                 local text = utils.get_text(context)
 

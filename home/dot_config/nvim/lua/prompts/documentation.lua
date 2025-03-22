@@ -1,3 +1,4 @@
+local config = require("codecompanion.config")
 ---@diagnostic disable-next-line: different-requires
 local utils = require("utils.codecompanion")
 
@@ -21,7 +22,7 @@ return {
     },
     prompts = {
         {
-            role = "system",
+            role = config.constants.SYSTEM_ROLE,
             content = [[
                 When asked to add documentation, follow these steps:
                 1. **Identify Key Points**: Carefully read the provided code to understand its functionality.
@@ -40,7 +41,7 @@ return {
             },
         },
         {
-            role = "user",
+            role = config.constants.USER_ROLE,
             content = function(context)
                 local text = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
                 local lang = context.filetype or ""
