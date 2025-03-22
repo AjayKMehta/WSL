@@ -64,4 +64,34 @@ M.trunc = function(trunc_width, trunc_len, hide_width, no_ellipsis)
     end
 end
 
+M.excluded_ftypes = {
+    "checkhealth",
+    "cmp_menu",
+    "crunner",
+    "dropbar_menu",
+    "flash_prompt",
+    "FTerm",
+    "git",
+    "help",
+    "lazy",
+    "man",
+    "mason",
+    "netrw",
+    "no-profile",
+    "noice",
+    "notify",
+    "nvcheatsheet",
+    "NvimTree",
+    "oil",
+    "Outline",
+    "qf",
+    "startify",
+    "startuptime",
+    "TelescopePrompt",
+    "toggleterm",
+    "trouble",
+    "tutor",
+    "VoltWindow"
+}
+
 return M
