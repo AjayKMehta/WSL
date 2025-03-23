@@ -347,4 +347,47 @@ return {
             end, { desc = "Delete Surrounding Indentation" })
         end,
     },
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        opts = {
+            fast_wrap = {
+                map = "<m-[>",
+            },
+            check_ts = true,
+            disable_filetype = excluded_ftypes,
+        },
+        config = function(_, opts)
+            local npairs = require("nvim-autopairs")
+
+            npairs.setup(opts)
+
+            -- setup cmp for autopairs
+            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+            require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
+            local Rule = require("nvim-autopairs.rule")
+            local cond = require("nvim-autopairs.conds")
+            npairs.add_rules(
+                { Rule("$$", "$$", { "tex", "latex" }):with_pair(cond.not_after_regex("%$")) },
+                Rule("$", "$", { "tex", "latex" })
+            )
+
+            npairs.add_rules({
+                Rule("<", ">", { "cs", "java" })
+                    :with_pair(cond.not_inside_quote())
+                    :with_pair(cond.before_regex("%a+"))
+                    :with_pair(cond.not_after_text(">"))
+                    -- Move cursor right after inserting pair
+                    :with_move(cond.none())
+                    -- Allow deletion of both brackets at once
+                    :with_del(cond.none())
+                    -- Don't add newline when pressing <CR>
+                    :with_cr(cond.none()),
+            })
+
+            npairs.get_rules("'")[1]:with_pair(cond.not_filetypes({ "ps1" }) and cond.not_before_text("@"))
+            npairs.get_rules('"')[1]:with_pair(cond.not_filetypes({ "ps1" }) and cond.not_before_text("@"))
+        end,
+    },
 }
