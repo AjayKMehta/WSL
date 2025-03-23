@@ -26,13 +26,8 @@ end
 map_desc("n", "<Esc>", "<cmd>noh<CR>", "general clear highlights")
 map_desc("n", "<C-c>", "<cmd>%y+<CR>", "general copy whole file")
 
-map_desc("n", "<tab>", function()
-    require("nvchad.tabufline").next()
-end, "buffer goto next")
-
-map_desc("n", "<S-tab>", function()
-    require("nvchad.tabufline").prev()
-end, "buffer goto prev")
+map_desc("n", "<tab>", "<cmd>bnext<CR>", "buffer goto next")
+map_desc("n", "<S-tab>", "<cmd>bprevious<CR>", "buffer goto previous")
 
 map_desc("n", "<leader>tt", function()
     require("base46").toggle_theme()
@@ -52,10 +47,9 @@ map_desc("n", "gV", "`[v`]", "Select the previous yanked area")
 map_desc("t", "<Esc>", "<C-\\><C-n>", "Exit terminal mode")
 
 
--- tabufline (NVChad plugin)
 -- NVChad maps this to <leader>b
 -- Use Tab and Shift+Tab to navigate between buffers
-map_desc("n", "<leader>bb", "<cmd>enew<CR>", "Buffer New") -- spellchecker:disable-line
+map_desc("n", "<leader>bb", "<cmd>enew<CR>", "Buffer New")
 
 --#region Telescope
 
