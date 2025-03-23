@@ -174,13 +174,32 @@ end
 
 local config = {
     options = {
-        ignore_focus = { "NvimTree", "lspInfo" },
-        theme = "dracula",
+        ignore_focus = {
+            "checkhealth",
+            "codecompanion",
+            "help",
+            "lspInfo",
+            "noice",
+            "notify",
+            "NvimTree",
+        },
+        theme = "ayu",
         icons_enabled = true,
         component_separators = "|",
         section_separators = { left = "", right = "" },
         disabled_filetypes = {
-            statusline = { "NvimTree", "dashboard", "crunner" },
+            statusline = {
+                "checkhealth",
+                "codecompanion",
+                "crunner",
+                "dashboard",
+                "NvimTree",
+            },
+        },
+        refresh = {
+            statusline = 300, -- Note these are in mili second and default is 1000
+            tabline = 300,
+            winbar = 300,
         },
     },
     -- This clobbers bufferline!
