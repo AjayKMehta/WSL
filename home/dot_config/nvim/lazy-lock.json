@@ -31,6 +31,7 @@
   "command-and-cursor.nvim": { "branch": "master", "commit": "43485e6d4f0ffd42414b35e156075e46047563dd" },
   "conform.nvim": { "branch": "master", "commit": "f9ef25a7ef00267b7d13bfc00b0dea22d78702d5" },
   "copilot.vim": { "branch": "release", "commit": "5015939f131627a6a332c9e3ecad9a7cb4c2e549" },
+  "cyberdream.nvim": { "branch": "main", "commit": "339a7b1293568405847b3627247da82a6030a852" },
   "darcula-dark.nvim": { "branch": "main", "commit": "449001be00a4b982deb6b856531cfffa375f8b3a" },
   "devicon-colorscheme.nvim": { "branch": "main", "commit": "de03970159817b40d66945849e9ac3380f58b67f" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
