@@ -211,7 +211,7 @@ local config = {
             { "mason" },
             {
                 "diagnostics",
-                sources = { "nvim_diagnostic" },
+                sources = { "nvim_lsp" },
 
                 -- Displays diagnostics for the defined severity types
                 sections = { "error", "warn", "info", "hint" },
