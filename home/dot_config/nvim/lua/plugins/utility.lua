@@ -519,7 +519,7 @@ return {
                 desc = "Prev Reference",
             },
             {
-                "<leader>lSd",
+                "<leader>lSD",
                 function()
                     Snacks.picker.diagnostics({
                         layout = "ivy",
@@ -531,7 +531,7 @@ return {
                 desc = "Snacks LSP Diagnostics",
             },
             {
-                "<leader>lSD",
+                "<leader>lSd",
                 function()
                     Snacks.picker.diagnostics_buffer({
                         layout = "ivy",
