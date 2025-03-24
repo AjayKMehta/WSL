@@ -3,6 +3,7 @@ local load_config = require("utils").load_config
 return {
     {
         "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         event = "VimEnter",
         config = load_config("lualine"),
     },
@@ -35,10 +36,17 @@ return {
                     require("guess-indent").setup({
                         filetype_exclude = excluded_ftypes,
                         buftype_exclude = {
+                            "FTerm",
+                            "git",
                             "help",
                             "nofile",
+                            "nowrite",
+                            "nvcheatsheet",
+                            "Outline",
                             "prompt",
+                            "quickfix",
                             "terminal",
+                            "VoltWindow",
                         },
                     })
                 end,
@@ -155,6 +163,7 @@ return {
                 exclude_buftypes = {
                     "FTerm",
                     "git",
+                    "help",
                     "nofile",
                     "nowrite",
                     "nvcheatsheet",
