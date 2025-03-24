@@ -179,11 +179,18 @@ local config = {
             "codecompanion",
             "help",
             "lspInfo",
+"no-profile",
             "noice",
             "notify",
+"nvcheatsheet",
             "NvimTree",
+"oil",
+            "Outline",
+            "snacks_picker_input",
+            "tutor",
+            "VoltWindow",
         },
-        theme = "ayu",
+        theme = "dracula",
         icons_enabled = true,
         component_separators = "|",
         section_separators = { left = "", right = "" },
@@ -348,6 +355,7 @@ local config = {
             },
             {
                 "encoding",
+                show_bomb = true,
                 cond = function()
                     return vim.fn.winwidth(0) > 80
                 end,
@@ -370,8 +378,17 @@ local config = {
             },
         },
         lualine_y = { { rstatus, color = rsttcolor } },
+        lualine_z = { "location" },
     },
     extensions = { "nvim-tree", "lazy", "mason", "nvim-dap-ui", "trouble", "toggleterm", "quickfix", minimap_extension },
 }
 
 lualine.setup(config)
+
+vim.api.nvim_create_user_command("LuaLineRefresh", lualine.refresh, { desc = "Lualine Refresh " })
+
+vim.api.nvim_create_user_command("LuaLineDisable", lualine.hide, { desc = "Lualine Disable " })
+
+vim.api.nvim_create_user_command("LuaLineEnable", function()
+    lualine.hide({ unhide = true })
+end, { desc = "Lualine Enable " })
