@@ -105,7 +105,7 @@ lspconfig.lua_ls.setup({
     capabilities = capabilities,
     single_file_support = true,
     settings = {
-        Lua = {},
+        Lua = { hint = { enable = true } },
     },
 })
 
