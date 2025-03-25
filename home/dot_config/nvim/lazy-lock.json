@@ -38,7 +38,6 @@
   "dropbar.nvim": { "branch": "master", "commit": "873ba43f83398fd0e28880cf98fd89e6ce667c51" },
   "easy-dotnet.nvim": { "branch": "main", "commit": "acc5e4676bb3ef114eb15903ca6796d68b252c09" },
   "emoji.nvim": { "branch": "main", "commit": "a79e45d35853bb6446638f4d74c6f778ddebd8e3" },
-  "fidget.nvim": { "branch": "main", "commit": "d9ba6b7bfe29b3119a610892af67602641da778e" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
   "fuzzy.nvim": { "branch": "master", "commit": "68608f6a232f7e73ccf81437bf12108128f15bd4" },

@@ -1,27 +1,5 @@
 return {
     {
-        "j-hui/fidget.nvim",
-        config = function()
-            require("fidget").setup({
-                progress = {
-                    ignore_done_already = true,
-                    ignore_empty_message = true,
-                    display = {
-                        progress_ttl = 10,
-                        skip_history = false,
-                    },
-                },
-                notification = {
-                    -- Automatically override vim.notify() with fidget
-                    override_vim_notify = true,
-                },
-                integration = {
-                    ["nvim-tree"] = { enable = true },
-                },
-            })
-        end,
-    },
-    {
         "folke/noice.nvim",
         enabled = true,
         event = "VeryLazy",
