@@ -67,11 +67,13 @@ end
 M.excluded_ftypes = {
     "checkhealth",
     "cmp_menu",
+    "codecompanion",
     "crunner",
     "dropbar_menu",
     "flash_prompt",
     "FTerm",
     "git",
+    "gitsigns-blame",
     "help",
     "lazy",
     "man",
@@ -85,13 +87,14 @@ M.excluded_ftypes = {
     "oil",
     "Outline",
     "qf",
+    "snacks_picker_input",
     "startify",
     "startuptime",
     "TelescopePrompt",
     "toggleterm",
     "trouble",
     "tutor",
-    "VoltWindow"
+    "VoltWindow",
 }
 
 return M
