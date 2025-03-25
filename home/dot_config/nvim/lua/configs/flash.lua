@@ -2,91 +2,87 @@ local map_desc = require("utils.mappings").map_desc
 local f = require("flash")
 
 local config = {
+    jump = {
+        autojump = true,
+    },
+    highlight = {
+        -- show a backdrop with hl FlashBackdrop
+        backdrop = true,
+        -- Highlight the search matches
+        matches = true,
+        -- extmark priority
+        priority = 5000,
+        groups = {
+            match = "FlashMatch",
+            current = "FlashCurrent",
+            backdrop = "FlashBackdrop",
+            label = "FlashLabel",
+        },
+    },
+    label = { rainbow = { enabled = true } },
+    modes = {
+        -- options used when flash is activated through
+        -- `f`, `F`, `t`, `T`, `;` and `,` motions
+        char = {
+            enabled = true,
+            multi_line = false,
+            autohide = true,
+            jump_labels = function(motion)
+                return vim.v.count == 0 and vim.fn.reg_executing() == "" and vim.fn.reg_recording() == ""
+            end,
+            keys = { "f", "F", "t", "T", ";", "," },
             jump = {
+                -- Don't add to search register (/)
+                register = false,
                 autojump = true,
             },
+        },
+        search = {
+            -- when `true`, flash will be activated during regular search by default.
+            -- You can always toggle when searching with `require("flash").toggle()`
+            enabled = true,
+        },
+        treesitter = {
             highlight = {
-                -- show a backdrop with hl FlashBackdrop
-                backdrop = true,
-                -- Highlight the search matches
+                backdrop = false,
                 matches = true,
-                -- extmark priority
-                priority = 5000,
-                groups = {
-                    match = "FlashMatch",
-                    current = "FlashCurrent",
-                    backdrop = "FlashBackdrop",
-                    label = "FlashLabel",
-                },
             },
-            label = { rainbow = { enabled = true } },
-            modes = {
-                -- options used when flash is activated through
-                -- `f`, `F`, `t`, `T`, `;` and `,` motions
-                char = {
-                    enabled = true,
-                    multi_line = false,
-                    autohide = true,
-                    jump_labels = function(motion)
-                        return vim.v.count == 0 and vim.fn.reg_executing() == "" and vim.fn.reg_recording() == ""
-                    end,
-                    keys = { "f", "F", "t", "T", ";", "," },
-                    jump = {
-                        -- Don't add to search register (/)
-                        register = false,
-                        autojump = true,
-                    },
-                },
-                search = {
-                    -- when `true`, flash will be activated during regular search by default.
-                    -- You can always toggle when searching with `require("flash").toggle()`
-                    enabled = true,
-                },
-                treesitter = {
-                    highlight = {
-                        backdrop = false,
-                        matches = true,
-                    },
-                },
-            },
-            prompt = {
-                enabled = true,
-                prefix = { { " 󰉂 ", "FlashPromptIcon" } },
-            },
-            search = {
-                exclude = {
-                    "checkhealth",
-                    "cmp_menu",
-                    "flash_prompt",
-                    "lazy",
-                    "help",
-                    "man",
-                    "mason",
-                    "noice",
-                    "notify",
-                    "NvimTree",
-                    "startify",
-                    "oil",
-                    "Outline",
-                    "qf",
-                    "startuptime",
-                    "TelescopePrompt",
-                    "toggleterm",
-                    "dropbar_menu",
-                    "Trouble",
-                    "gitsigns-blame",
-                    "VoltWindow",
-                    function(win)
-                        -- exclude non-focusable windows
-                        return not vim.api.nvim_win_get_config(win).focusable
-                    end,
-                },
-            },
-        }
+        },
+    },
+    prompt = {
+        enabled = true,
+        prefix = { { " 󰉂 ", "FlashPromptIcon" } },
+    },
+    search = {
+        exclude = {
+            "cmp_menu",
+            "dropbar_menu",
+            "flash_prompt",
+            "gitsigns-blame",
+            "help",
+            "man",
+            "noice",
+            "notify",
+            "NvimTree",
+            "oil",
+            "Outline",
+            "qf",
+            "startify",
+            "startuptime",
+            "TelescopePrompt",
+            "toggleterm",
+            "Trouble",
+            "VoltWindow",
+            function(win)
+                -- exclude non-focusable windows
+                return not vim.api.nvim_win_get_config(win).focusable
+            end,
+        },
+    },
+}
 
 map_desc("n", "<leader>fs", f.jump, "Flash")
 map_desc({ "o", "x" }, "fs", f.jump, "Flash")
-
 
 map_desc("n", "<leader>fT", f.treesitter, "Flash Treesitter")
 map_desc({ "o", "x" }, "fT", f.treesitter, "Flash Treesitter")

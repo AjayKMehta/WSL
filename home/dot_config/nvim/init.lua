@@ -128,7 +128,7 @@ vim.api.nvim_create_user_command("GrepWord", function(input)
     local cmd = 'vnew | 0r!grep "' .. input.args .. '" #'
 
     -- Try to execute the command
-    local success, err = pcall(vim.api.nvim_command, cmd)
+    local success, err = pcall(vim.cmd, cmd)
     if not success then
         vim.notify("Error executing grep command: " .. tostring(err))
     end
