@@ -521,6 +521,8 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
             [CompletionResult]::new('--refresh', '--refresh', [CompletionResultType]::ParameterName, 'Refresh all cached data')
             [CompletionResult]::new('--no-refresh', '--no-refresh', [CompletionResultType]::ParameterName, 'no-refresh')
             [CompletionResult]::new('--all-packages', '--all-packages', [CompletionResultType]::ParameterName, 'Sync all packages in the workspace')
+            [CompletionResult]::new('--check', '--check', [CompletionResultType]::ParameterName, 'Check if the Python environment is synchronized with the project')
+            [CompletionResult]::new('--no-check', '--no-check', [CompletionResultType]::ParameterName, 'no-check')
             [CompletionResult]::new('-n', '-n', [CompletionResultType]::ParameterName, 'Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation')
             [CompletionResult]::new('--no-cache', '--no-cache', [CompletionResultType]::ParameterName, 'Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation')
             [CompletionResult]::new('--managed-python', '--managed-python', [CompletionResultType]::ParameterName, 'Require use of uv-managed Python versions')
@@ -878,6 +880,7 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Constrain versions using the given requirements files')
             [CompletionResult]::new('--constraints', '--constraints', [CompletionResultType]::ParameterName, 'Constrain versions using the given requirements files')
             [CompletionResult]::new('--overrides', '--overrides', [CompletionResultType]::ParameterName, 'Override versions using the given requirements files')
+            [CompletionResult]::new('--env-file', '--env-file', [CompletionResultType]::ParameterName, 'Load environment variables from a `.env` file')
             [CompletionResult]::new('--index', '--index', [CompletionResultType]::ParameterName, 'The URLs to use when resolving dependencies, in addition to the default index')
             [CompletionResult]::new('--default-index', '--default-index', [CompletionResultType]::ParameterName, 'The URL of the default package index (by default: <https://pypi.org/simple>)')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, '(Deprecated: use `--default-index` instead) The URL of the Python package index (by default: <https://pypi.org/simple>)')
@@ -913,6 +916,7 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
             [CompletionResult]::new('--project', '--project', [CompletionResultType]::ParameterName, 'Run the command within the given project directory')
             [CompletionResult]::new('--config-file', '--config-file', [CompletionResultType]::ParameterName, 'The path to a `uv.toml` file to use for configuration')
             [CompletionResult]::new('--isolated', '--isolated', [CompletionResultType]::ParameterName, 'Run the tool in an isolated virtual environment, ignoring any already-installed tools')
+            [CompletionResult]::new('--no-env-file', '--no-env-file', [CompletionResultType]::ParameterName, 'Avoid reading environment variables from a `.env` file')
             [CompletionResult]::new('--no-index', '--no-index', [CompletionResultType]::ParameterName, 'Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`')
             [CompletionResult]::new('-U', '-U ', [CompletionResultType]::ParameterName, 'Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`')
             [CompletionResult]::new('--upgrade', '--upgrade', [CompletionResultType]::ParameterName, 'Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`')
@@ -967,6 +971,7 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Constrain versions using the given requirements files')
             [CompletionResult]::new('--constraints', '--constraints', [CompletionResultType]::ParameterName, 'Constrain versions using the given requirements files')
             [CompletionResult]::new('--overrides', '--overrides', [CompletionResultType]::ParameterName, 'Override versions using the given requirements files')
+            [CompletionResult]::new('--env-file', '--env-file', [CompletionResultType]::ParameterName, 'Load environment variables from a `.env` file')
             [CompletionResult]::new('--index', '--index', [CompletionResultType]::ParameterName, 'The URLs to use when resolving dependencies, in addition to the default index')
             [CompletionResult]::new('--default-index', '--default-index', [CompletionResultType]::ParameterName, 'The URL of the default package index (by default: <https://pypi.org/simple>)')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, '(Deprecated: use `--default-index` instead) The URL of the Python package index (by default: <https://pypi.org/simple>)')
@@ -1002,6 +1007,7 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
             [CompletionResult]::new('--project', '--project', [CompletionResultType]::ParameterName, 'Run the command within the given project directory')
             [CompletionResult]::new('--config-file', '--config-file', [CompletionResultType]::ParameterName, 'The path to a `uv.toml` file to use for configuration')
             [CompletionResult]::new('--isolated', '--isolated', [CompletionResultType]::ParameterName, 'Run the tool in an isolated virtual environment, ignoring any already-installed tools')
+            [CompletionResult]::new('--no-env-file', '--no-env-file', [CompletionResultType]::ParameterName, 'Avoid reading environment variables from a `.env` file')
             [CompletionResult]::new('--no-index', '--no-index', [CompletionResultType]::ParameterName, 'Ignore the registry index (e.g., PyPI), instead relying on direct URL dependencies and those provided via `--find-links`')
             [CompletionResult]::new('-U', '-U ', [CompletionResultType]::ParameterName, 'Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`')
             [CompletionResult]::new('--upgrade', '--upgrade', [CompletionResultType]::ParameterName, 'Allow package upgrades, ignoring pinned versions in any existing output file. Implies `--refresh`')
@@ -1501,6 +1507,7 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
             break
         }
         'uv;python;find' {
+            [CompletionResult]::new('--script', '--script', [CompletionResultType]::ParameterName, 'Find the environment for a Python script, rather than the current project')
             [CompletionResult]::new('--cache-dir', '--cache-dir', [CompletionResultType]::ParameterName, 'Path to the cache directory')
             [CompletionResult]::new('--python-preference', '--python-preference', [CompletionResultType]::ParameterName, 'python-preference')
             [CompletionResult]::new('--python-fetch', '--python-fetch', [CompletionResultType]::ParameterName, 'Deprecated version of [`Self::python_downloads`]')
