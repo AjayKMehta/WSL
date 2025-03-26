@@ -6,9 +6,6 @@ return {
         "mrcjkb/haskell-tools.nvim",
         version = "^4", -- Recommended
         ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
-        dependencies = {
-            { "nvim-telescope/telescope.nvim", optional = true },
-        },
         config = load_config("haskell"),
     },
     {

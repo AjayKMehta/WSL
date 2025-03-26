@@ -406,13 +406,6 @@ local lua = {
             i(1),
         })
     ),
-    s(
-        { trig = "treq", desc = "require telescope" },
-        fmt([[local {} = require("telescope.{}")]], {
-            d(2, require_var, { 1 }),
-            i(1),
-        })
-    ),
     -- TODO: Finish reviewing.
     s("snippet_node", {
         t('s("'),
