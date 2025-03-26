@@ -335,14 +335,6 @@ return {
 
             ---Highlight tailwind colors, e.g. 'bg-blue-500'
             enable_tailwind = true,
-
-            ---Set custom colors
-            ---Label must be properly escaped with '%' to adhere to `string.gmatch`
-            --- :help string.gmatch
-            custom_colors = {
-                { label = "%-%-theme%-primary%-color", color = "#0f1219" },
-                { label = "%-%-theme%-secondary%-color", color = "#5a5d64" },
-            },
         },
         config = function(_, opts)
             require("nvim-highlight-colors").setup(opts)
@@ -353,13 +345,6 @@ return {
         "moyiz/command-and-cursor.nvim",
         event = "VeryLazy",
         opts = {},
-    },
-    {
-        -- NeoVim plugin for jumping to the other end of the current Tree-sitter node using `%`
-        "yorickpeterse/nvim-tree-pairs",
-        config = function()
-            require("tree-pairs").setup()
-        end,
     },
     {
         -- Displays the keys you are typing in a floating window, just like screenkey does

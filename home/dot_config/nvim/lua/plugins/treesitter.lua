@@ -71,4 +71,11 @@ return {
             highlight_duration = 250, -- How long should above highlight last (in ms)
         },
     },
+    {
+        -- NeoVim plugin for jumping to the other end of the current Tree-sitter node using `%`
+        "yorickpeterse/nvim-tree-pairs",
+        config = function()
+            require("tree-pairs").setup()
+        end,
+    },
 }
