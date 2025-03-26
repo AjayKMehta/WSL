@@ -60,6 +60,9 @@ require("autocmds")
 
 require("mappings")
 
+-- New in v 0.11
+vim.diagnostic.config({ virtual_text = true })
+
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jqls
 vim.cmd([[au BufRead,BufNewFile *.jq setfiletype jq]])
 
