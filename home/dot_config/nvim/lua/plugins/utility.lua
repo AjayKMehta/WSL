@@ -341,12 +341,6 @@ return {
         end,
     },
     {
-        -- Highlight cursor and visual selections in current buffer when entering command mode
-        "moyiz/command-and-cursor.nvim",
-        event = "VeryLazy",
-        opts = {},
-    },
-    {
         -- Displays the keys you are typing in a floating window, just like screenkey does
         "NStefan002/screenkey.nvim",
         cmd = "Screenkey",
