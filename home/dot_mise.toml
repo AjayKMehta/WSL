@@ -9,7 +9,7 @@
     docker-slim = "latest"
     fzf = "latest"
     go = "latest"
-    neovim = "latest"
+    neovim = "0.10.4"
     stylua = "latest"
     usage = "latest"
     eza = {version = "latest", postinstall = 'gh download https://github.com/eza-community/eza/blob/main/completions/bash/eza --outfile ~/.config/bash_completions.d/eza' }
