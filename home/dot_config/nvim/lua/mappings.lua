@@ -41,6 +41,14 @@ map_desc("n", "<leader>th", function()
     require("nvchad.themes").open()
 end, "telescope nvchad themes")
 
+-- Create a function to handle command mode yanking
+local function cmd_yank()
+    vim.fn.setreg('"', vim.fn.getcmdline())
+    vim.notify("Command line text yanked\n")
+end
+
+map_desc("c", "<C-y>", cmd_yank, "Yank command line text" )
+
 -- Courtesy of https://www.reddit.com/r/neovim/comments/1ixsk40/comment/mep7kp1/
 map_desc("n", "gV", "`[v`]", "Select the previous yanked area")
 
