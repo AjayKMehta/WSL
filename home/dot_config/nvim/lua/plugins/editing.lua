@@ -104,12 +104,6 @@ return {
     },
     {
         "smoka7/multicursors.nvim",
-        -- Broken after upgrading neovim to v 0.11
-        -- TODO: Switch to different plugin.
-        enabled = function()
-            local max_version = vim.version.parse("0.11.0")
-            return vim.version.lt(vim.version(), max_version)
-        end,
         event = "VeryLazy",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
@@ -299,7 +293,7 @@ return {
         opts = {
             keymaps = {
                 useDefaults = true,
-                disabledDefaults = { "ii", "ai", "aI" },
+                disabledDefaults = { "ii", "ai", "aI", "C" },
             },
         },
         config = function(_, opts)
