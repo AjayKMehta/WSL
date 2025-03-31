@@ -138,6 +138,7 @@ nvm use stable
 eval "$(mise activate bash)"
 
 # oh my posh
+PROMPT_COMMAND='printf "\033]133;A\007"'
 eval "$(oh-my-posh init bash)"
 
 choose_theme() {
