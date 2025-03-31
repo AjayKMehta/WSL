@@ -15,6 +15,22 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
+-- New in v 0.11
+vim.diagnostic.config({
+    virtual_text = {
+        enabled = true,
+        severity = {
+            max = vim.diagnostic.severity.WARN,
+        },
+    },
+    virtual_lines = {
+        enabled = true,
+        severity = {
+            min = vim.diagnostic.severity.ERROR,
+        },
+    },
+})
+
 local lazy_config = require("configs.lazy")
 
 -- Plugin toggles
@@ -60,12 +76,10 @@ require("autocmds")
 
 require("mappings")
 
--- New in v 0.11
-vim.diagnostic.config({ virtual_text = true })
 -- Floating windows have rounded borders
 -- vim.o.winborder = "rounded"
 
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jqls
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#jqls
 vim.cmd([[au BufRead,BufNewFile *.jq setfiletype jq]])
 
 vim.g.dap_virtual_text = true
