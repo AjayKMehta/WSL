@@ -1,4 +1,4 @@
--- For info on how to configure servers, see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md.
+-- For info on how to configure servers, see https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md.
 
 local lsp = require("utils.lsp")
 local on_attach = lsp.on_attach

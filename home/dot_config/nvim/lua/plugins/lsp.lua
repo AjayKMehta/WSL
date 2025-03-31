@@ -10,7 +10,7 @@ return {
     {
         "adoyle-h/lsp-toggle.nvim",
         dependencies = { "neovim/nvim-lspconfig" },
-        cmd = { "LspToggle" },
+        event = { "BufEnter" },
         opts = {
             create_cmds = true, -- Whether to create user commands
         },

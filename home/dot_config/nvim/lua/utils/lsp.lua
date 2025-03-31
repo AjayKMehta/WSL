@@ -1,4 +1,5 @@
 local M = {}
+local methods = vim.lsp.protocol.Methods
 
 local function is_diag_for_cur_pos()
     local diagnostics = vim.diagnostic.get(0)
@@ -15,10 +16,10 @@ end
 M.on_attach = function(client, bufnr)
     local map_buf = require("utils.mappings").map_buf
     local has_client = client ~= nil
-    if has_client and client.supports_method("codeLensProvider") then
+    if has_client and client:supports_method(methods.workspace_codeLens_refresh) then
         vim.lsp.codelens.refresh()
     end
-    if has_client and client.supports_method("inlayHintProvider") then
+    if has_client and client:supports_method(methods.textDocument_inlayHint) then
         vim.lsp.inlay_hint.enable(true)
         local function toggle_hints()
             local enabled = vim.lsp.inlay_hint.is_enabled()
@@ -35,9 +36,6 @@ M.on_attach = function(client, bufnr)
     map_buf(bufnr, "n", "<leader>ld", vim.lsp.buf.definition, "Lsp Go to definition")
     map_buf(bufnr, "n", "<F12>", vim.lsp.buf.definition, "Lsp Go to definition")
 
-    map_buf(bufnr, "n", "<leader>lT", vim.lsp.buf.type_definition, "Lsp Go to type definition")
-
-
     map_buf(bufnr, "n", "<leader>lh", vim.lsp.buf.signature_help, "Lsp Show signature help")
 
     map_buf(bufnr, "n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, "Lsp Add workspace folder")
@@ -45,6 +43,30 @@ M.on_attach = function(client, bufnr)
     map_buf(bufnr, "n", "<leader>lwl", function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, "Lsp List workspace folders")
+
+    map_buf(bufnr, "n", "[e", function()
+        vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
+    end, "Previous error")
+    map_buf(bufnr,"n", "]e", function()
+        vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
+    end, "Next error")
+
+    if client:supports_method(methods.textDocument_documentHighlight) then
+        local under_cursor_highlights_group =
+            vim.api.nvim_create_augroup("cursor_highlights", { clear = false })
+        vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
+            group = under_cursor_highlights_group,
+            desc = "Highlight references under the cursor",
+            buffer = bufnr,
+            callback = vim.lsp.buf.document_highlight,
+        })
+        vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
+            group = under_cursor_highlights_group,
+            desc = "Clear highlight references",
+            buffer = bufnr,
+            callback = vim.lsp.buf.clear_references,
+        })
+    end
 
     if client.name == "ruff" then
         -- Disable hover in favor of basedpyright

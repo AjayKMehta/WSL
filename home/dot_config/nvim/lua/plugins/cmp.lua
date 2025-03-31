@@ -156,13 +156,6 @@ return {
                     require("cmp").config.compare.order,
                 },
             },
-            window = {
-                completion = require("cmp.config.window").bordered({
-                    winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
-                }),
-                -- TODO: Figure out if this can be toggled.
-                -- documentation = require("cmp.config").disable,
-            },
             -- https://github.com/hrsh7th/nvim-cmp/commit/7aa3f71932c419d716290e132cacbafbaf5bea1c
             view = {
                 entries = {
