@@ -35,11 +35,8 @@ M.on_attach = function(client, bufnr)
     map_buf(bufnr, "n", "<leader>ld", vim.lsp.buf.definition, "Lsp Go to definition")
     map_buf(bufnr, "n", "<F12>", vim.lsp.buf.definition, "Lsp Go to definition")
 
-    map_buf(bufnr, "n", "<leader>lr", vim.lsp.buf.references, "Lsp Show references")
-
     map_buf(bufnr, "n", "<leader>lT", vim.lsp.buf.type_definition, "Lsp Go to type definition")
 
-    map_buf(bufnr, "n", "<leader>li", vim.lsp.buf.implementation, "Lsp Go to implementation")
 
     map_buf(bufnr, "n", "<leader>lh", vim.lsp.buf.signature_help, "Lsp Show signature help")
 
