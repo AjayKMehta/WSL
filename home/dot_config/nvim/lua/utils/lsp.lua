@@ -49,10 +49,6 @@ M.on_attach = function(client, bufnr)
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, "Lsp List workspace folders")
 
-    map_buf(bufnr, "n", "<leader>ra", function()
-        require("nvchad.lsp.renamer")()
-    end, "Lsp NvRenamer")
-
     map_buf(bufnr, { "n", "v" }, "<leader>lc", vim.lsp.buf.code_action, "Lsp Code action")
 
     if client.name == "ruff" then

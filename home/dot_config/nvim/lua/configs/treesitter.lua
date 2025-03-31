@@ -75,21 +75,14 @@ local config = {
             -- Set to false if you have an `updatetime` of ~100.
             clear_on_cursor_move = true,
         },
-        smart_rename = {
-            enable = true,
-            -- Assign keymaps to false to disable them, e.g. `smart_rename = false`.
-            keymaps = {
-                smart_rename = "grr",
-            },
-        },
         navigation = {
             enable = true,
             -- Assign keymaps to false to disable them, e.g. `goto_definition = false`.
             keymaps = {
                 goto_definition = false,
                 -- TODO: Test these out.
-                list_definitions = "gld",
-                list_definitions_toc = "glt",
+                list_definitions = false,
+                list_definitions_toc = false,
                 goto_next_usage = "]U",
                 goto_previous_usage = "[U",
             },
