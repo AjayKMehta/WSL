@@ -17,8 +17,6 @@ dofile(vim.g.base46_cache .. "lsp")
 
 local lspconfig = require("lspconfig")
 
-local mason_path = vim.fn.stdpath("data") .. "/mason"
-
 -- if you just want default config for the servers then put them in a table
 -- for list: help lspconfig-server-configurations.
 local servers = {
@@ -35,9 +33,6 @@ local servers = {
 
     -- Configs
     "taplo",
-
-    -- Graphviz
-    "dotls",
 
     -- R
     "r_language_server",
