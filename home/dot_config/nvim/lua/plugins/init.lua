@@ -49,72 +49,9 @@ return {
     },
     { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
     {
-        "williamboman/mason-lspconfig.nvim",
-        opts = {
-            -- https://mason-registry.dev/registry/list
-            ensure_installed = {
-                -- lua stuff
-                "lua_ls",
-
-                -- web dev
-                "cssls",
-                "html",
-                "ts_ls",
-                "denols",
-                "jsonls",
-                -- "jqls",
-
-                -- docker
-                "docker_compose_language_service",
-                "dockerls",
-
-                -- Python
-                "basedpyright",
-                "ruff",
-                "pylyzer",
-
-                --Haskell
-                "hls",
-
-                -- .NET
-                "powershell_es",
-
-                -- DevOps + Shell
-                "bashls",
-                "yamlls",
-                -- required for bash LSP
-                "codeqlls",
-
-                -- R
-                "r_language_server",
-
-                -- SQL
-                "sqls",
-
-                -- Misc
-                "ast_grep",
-                "vimls",
-
-                -- Markdown
-                "marksman",
-
-                -- LaTeX
-                "texlab",
-
-                -- XML
-                "lemminx",
-            },
-            automatic_installation = true,
-        },
-        config = function(_, opts)
-            require("mason-lspconfig").setup(opts)
-        end,
-    },
-    {
         -- Quickstart configs for Neovim LSP.
         "neovim/nvim-lspconfig",
         dependencies = {
-            { "williamboman/mason-lspconfig.nvim" },
             {
                 "b0o/SchemaStore.nvim",
                 version = false, -- last release is way too old
