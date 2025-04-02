@@ -288,7 +288,6 @@ return {
             startinsert = true,
             float = {
                 close_key = "q",
-                border = "rounded",
                 height = 0.8,
                 width = 0.8,
                 x = 0.5,

@@ -10,7 +10,6 @@ require("toggleterm").setup({
         end
     end,
     float_opts = {
-        border = "rounded",
         width = function(term)
             local columns = vim.api.nvim_get_option("columns")
             local w = math.floor(columns * 0.7)
