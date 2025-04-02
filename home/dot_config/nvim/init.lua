@@ -6,6 +6,9 @@ vim.g.mapleader = " "
 -- This is the default but being explicit :)
 vim.g.maplocalleader = "\\"
 
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
