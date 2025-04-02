@@ -84,12 +84,13 @@ local strategies = {
             user = "Me",
         },
         tools = {
+            -- Let mcphub manage auto approval behavior of tool calls
             ["mcp"] = {
-                callback = require("mcphub.extensions.codecompanion"),
+                -- Prevent mcphub from loading before needed
+                callback = function()
+                    return require("mcphub.extensions.codecompanion")
+                end,
                 description = "Call tools and resources from the MCP Servers",
-                opts = {
-                    requires_approval = true,
-                },
             },
         },
         slash_commands = {

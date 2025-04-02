@@ -18,6 +18,14 @@ return {
                     require("mcphub").setup({
                         port = 3000,
                         config = vim.fn.expand("~/mcpservers.json"),
+                        extensions = {
+                            codecompanion = {
+                                -- Show the mcp tool result in the chat buffer
+                                show_result_in_chat = true,
+                                -- Make chat #variables from MCP server resources
+                                make_vars = true,
+                            },
+                        },
                     })
                 end,
             },
