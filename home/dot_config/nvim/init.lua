@@ -32,6 +32,7 @@ vim.diagnostic.config({
             min = vim.diagnostic.severity.ERROR,
         },
     },
+    update_in_insert = false,
 })
 
 local lazy_config = require("configs.lazy")

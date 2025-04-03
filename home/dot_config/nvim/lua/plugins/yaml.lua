@@ -12,8 +12,6 @@ return {
     {
         "cuducos/yaml.nvim",
         ft = { "yaml", "helm" },
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
+        dependencies = { "folke/snacks.nvim" },
     },
 }
