@@ -91,20 +91,6 @@ local function create_codecompanion_component()
     return M
 end
 
--- https://github.com/smoka7/multicursors.nvim#status-line-module
-local function is_active()
-    local ok, hydra = pcall(require, "hydra.statusline")
-    return ok and hydra.is_active()
-end
-
-local function get_name()
-    local ok, hydra = pcall(require, "hydra.statusline")
-    if ok then
-        return hydra.get_name()
-    end
-    return ""
-end
-
 -- https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#changing-filename-color-based-on--modified-status
 function custom_fname:init(options)
     custom_fname.super.init(self, options)
@@ -179,12 +165,12 @@ local config = {
             "codecompanion",
             "help",
             "lspInfo",
-"no-profile",
+            "no-profile",
             "noice",
             "notify",
-"nvcheatsheet",
+            "nvcheatsheet",
             "NvimTree",
-"oil",
+            "oil",
             "Outline",
             "snacks_picker_input",
             "tutor",
@@ -239,12 +225,25 @@ local config = {
                     color_info = { fg = colors.darkblue },
                     color_hint = { fg = colors.yellow },
                 },
-            },
-            {
-                "buffers",
-                mode = 1,
-                cond = function()
-                    return false
+                -- button: l(left) | r(right) | m(middle)
+                -- modifiers: s(shift) | c(ctrl) | a(alt) | m(meta)...)
+                on_click = function(num_clicks, button, modifiers)
+                    if button == "l" then
+                        local config = {
+                            layout = "ivy",
+                            on_show = function()
+                                vim.cmd.stopinsert()
+                            end,
+                        }
+                        local snacks = require("snacks")
+                        if modifiers == "c" then
+                            snacks.picker.diagnostics(config)
+                        else
+                            snacks.picker.diagnostics_buffer(config)
+                        end
+                    elseif button == "r" then
+                        vim.diagnostic.setloclist()
+                    end
                 end,
             },
         },
@@ -258,6 +257,14 @@ local config = {
                     -- gui = "bold",
                 },
                 fmt = utils.trunc(120, 20, 60, false),
+                on_click = function(num_clicks, button, modifiers)
+                    local snacks = require("snacks")
+                    if button == "l" then
+                        snacks.picker.git_branches()
+                    else
+                        snacks.picker.git_log()
+                    end
+                end,
             },
             {
                 "diff",
@@ -271,11 +278,27 @@ local config = {
                 },
                 symbols = { added = "+", modified = "~", removed = "-" },
                 source = diff_source,
+                on_click = function()
+                    vim.cmd("DiffviewOpen")
+                end,
             },
-            { get_name, cond = is_active },
         },
         lualine_c = {
-            { custom_fname },
+            {
+                custom_fname,
+                on_click = function()
+                    vim.cmd("NvimTreeToggle")
+                end,
+            },
+            {
+                -- other components ...
+                function()
+                    return require("screenkey").get_keys()
+                end,
+                cond = function()
+                   return vim.g.screenkey_statusline_component
+                end,
+            },
             {
                 "lsp_status",
                 icon = "", -- f013
@@ -284,11 +307,16 @@ local config = {
                     spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
                     -- Standard unicode symbol for when LSP is done:
                     done = "✓",
-                    -- Delimiter inserted between LSP names:
                     separator = " ",
                 },
-                -- List of LSP names to ignore (e.g., `null-ls`):
-                ignore_lsp = {},
+                ignore_lsp = { "GitHub Copilot" },
+                on_click = function(num_clicks, button, modifiers)
+                    if button == "l" then
+                        vim.cmd("LspInfo")
+                    else
+                        require("trouble").toggle("lsp_document_symbols")
+                    end
+                end,
             },
             {
                 function()
@@ -327,11 +355,6 @@ local config = {
         },
         lualine_x = {
             create_codecompanion_component(),
-            {
-                "rest",
-                icon = "",
-                fg = "#428890",
-            },
             -- https://github.com/folke/lazy.nvim#-usage
             {
                 require("lazy.status").updates,
@@ -339,17 +362,11 @@ local config = {
                     return package.loaded["lazy"] and require("lazy.status").has_updates
                 end,
                 color = { fg = "#ff9e64" },
+                on_click = function()
+                    vim.cmd("Lazy")
+                end,
             },
             -- https://github.com/folke/noice.nvim?tab=readme-ov-file#-statusline-components
-            {
-                require("noice").api.status.message.get_hl,
-                -- Way too noisy. Would be nice to be able to show only for 2 seconds.
-                cond = function()
-                    return false
-                end,
-                -- cond = require("noice").api.status.message.has,
-                color = { fg = "pink" },
-            },
             {
                 require("noice").api.status.mode.get,
                 cond = require("noice").api.status.mode.has,
@@ -360,6 +377,7 @@ local config = {
                 cond = require("noice").api.status.search.has,
                 color = { fg = "#ff9e64" },
             },
+            { require("mcphub.extensions.lualine") },
             {
                 "encoding",
                 show_bomb = true,
