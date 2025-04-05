@@ -352,7 +352,7 @@ return {
         event = "InsertEnter",
         opts = {
             fast_wrap = {
-                map = "<m-[>",
+                map = "<M-m>",
             },
             check_ts = true,
             disable_filetype = excluded_ftypes,
