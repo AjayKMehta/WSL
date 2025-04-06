@@ -4,11 +4,12 @@ local HEIGHT_RATIO = 0.7
 local WIDTH_RATIO = 0.4
 
 return {
-    -- It's important that you set up the plugins in the following order:
-
-    -- mason.nvim
-    -- mason-lspconfig.nvim
-    -- Setup servers via lspconfig
+    {
+        "b0o/SchemaStore.nvim",
+        version = false, -- last release is way too old
+    },
+    -- NVChad loads this by default.
+    { "neovim/nvim-lspconfig", cond = false },
     {
         "williamboman/mason.nvim",
         opts = {
@@ -18,7 +19,7 @@ return {
             registries = {
                 "github:mason-org/mason-registry",
                 "github:syndim/mason-registry",
-                "github:crashdummyy/mason-registry"
+                "github:crashdummyy/mason-registry",
             },
         },
         -- Use config from NvChad
@@ -48,19 +49,6 @@ return {
         },
     },
     { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
-    {
-        -- Quickstart configs for Neovim LSP.
-        "neovim/nvim-lspconfig",
-        dependencies = {
-            {
-                "b0o/SchemaStore.nvim",
-                version = false, -- last release is way too old
-            },
-        },
-        config = function()
-            require("configs.lspconfig")
-        end,
-    },
     {
         "nvim-tree/nvim-tree.lua",
         opts = {

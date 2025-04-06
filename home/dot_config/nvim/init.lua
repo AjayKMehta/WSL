@@ -58,6 +58,8 @@ vim.g.use_zathura_simple = true
 -- if true, use radian instead of R console.
 vim.g.use_radian = true
 
+require("configs.lsp")
+
 -- load plugins
 require("lazy").setup({
     {
