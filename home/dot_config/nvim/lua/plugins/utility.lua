@@ -499,7 +499,7 @@ return {
                 desc = "Snacks LSP Diagnostics (Buffer)",
             },
             {
-                "<leader>lt",
+                "<leader>ltd",
                 function()
                     Snacks.picker.lsp_type_definitions({
                         layout = "ivy",
