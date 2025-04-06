@@ -67,7 +67,7 @@ conform.setup({
     formatters_by_ft = {
         bash = { "shellcheck" },
         -- dotnet format doesn't work on files or ranges 🙁
-        cs = { "csharpier" },
+        cs = { "dotnet format" },
         cabal = { "cabal_fmt" },
         haskell = { "fourmolu" },
         json = { "fixjson" },
