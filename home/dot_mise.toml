@@ -1,7 +1,6 @@
 [tools]
 deno = { version = "latest", postinstall = 'deno completions bash > ~/.config/bash_completions.d/deno' }
 zoxide = "latest"
-lua-language-server = "latest"
 github-cli = "latest"
 chezmoi = { version = "latest", postinstall = 'chezmoi completion bash > ~/.config/bash_completions.d/chezmoi.sh' }
 delta = { version = "latest", postinstall = 'delta --generate-completion bash > ~/.config/bash_completions.d/delta' }
