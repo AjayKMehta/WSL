@@ -109,6 +109,11 @@ local strategies = {
                     provider = "snacks",
                 },
             },
+            ["help"] = {
+                opts = {
+                    provider = "snacks",
+                },
+            },
             ["symbols"] = {
                 opts = {
                     provider = "snacks",

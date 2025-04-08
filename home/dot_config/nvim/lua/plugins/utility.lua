@@ -507,7 +507,7 @@ return {
                 end,
                 desc = "Lsp type definitions",
             },
-        {
+            {
                 "<leader>ls",
                 function()
                     Snacks.picker.lsp_symbols({
@@ -650,7 +650,7 @@ return {
                 desc = "Snacks Zoxide",
             },
             {
-                '<leader>S"',
+                '<leader>s"',
                 function()
                     Snacks.picker.registers()
                 end,
@@ -669,13 +669,6 @@ return {
                     Snacks.picker.autocmds()
                 end,
                 desc = "Snacks Autocmds",
-            },
-            {
-                "<leader>s:",
-                function()
-                    Snacks.picker.command_history()
-                end,
-                desc = "Snacks Command History",
             },
             {
                 "<leader>sc",
