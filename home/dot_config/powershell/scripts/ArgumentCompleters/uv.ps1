@@ -1521,6 +1521,7 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
             [CompletionResult]::new('--no-project', '--no-project', [CompletionResultType]::ParameterName, 'Avoid discovering a project or workspace')
             [CompletionResult]::new('--system', '--system', [CompletionResultType]::ParameterName, 'Only find system Python interpreters')
             [CompletionResult]::new('--no-system', '--no-system', [CompletionResultType]::ParameterName, 'no-system')
+            [CompletionResult]::new('--show-version', '--show-version', [CompletionResultType]::ParameterName, 'Show the Python version that would be used instead of the path to the interpreter')
             [CompletionResult]::new('-n', '-n', [CompletionResultType]::ParameterName, 'Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation')
             [CompletionResult]::new('--no-cache', '--no-cache', [CompletionResultType]::ParameterName, 'Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation')
             [CompletionResult]::new('--managed-python', '--managed-python', [CompletionResultType]::ParameterName, 'Require use of uv-managed Python versions')
