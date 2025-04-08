@@ -368,10 +368,6 @@ return {
 
             local Rule = require("nvim-autopairs.rule")
             local cond = require("nvim-autopairs.conds")
-            npairs.add_rules(
-                { Rule("$$", "$$", { "tex", "latex" }):with_pair(cond.not_after_regex("%$")) },
-                Rule("$", "$", { "tex", "latex" })
-            )
 
             npairs.add_rules({
                 Rule("<", ">", { "cs", "java" })
@@ -386,8 +382,17 @@ return {
                     :with_cr(cond.none()),
             })
 
-            npairs.get_rules("'")[1]:with_pair(cond.not_filetypes({ "ps1" }) and cond.not_before_text("@"))
-            npairs.get_rules('"')[1]:with_pair(cond.not_filetypes({ "ps1" }) and cond.not_before_text("@"))
+            npairs.get_rules("'")[1]:with_pair(cond.not_filetypes({ "ps1" }))
+            npairs.get_rules('"')[1]:with_pair(cond.not_filetypes({ "ps1" }))
+
+            npairs.add_rule(Rule("@'", "@'", { "ps1" }))
+            npairs.add_rule(Rule('@"', '"@', { "ps1" }))
+            npairs.add_rule(
+                Rule("'", "'", { "ps1" }):with_pair(cond.not_before_text("@")):with_pair(cond.not_inside_quote)
+            )
+            npairs.add_rule(
+                Rule('"', '"', { "ps1" }):with_pair(cond.not_before_text("@")):with_pair(cond.not_inside_quote)
+            )
         end,
     },
 }
