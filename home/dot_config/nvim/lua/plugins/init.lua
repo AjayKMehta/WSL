@@ -9,7 +9,7 @@ return {
         version = false, -- last release is way too old
     },
     -- NVChad loads this by default.
-    { "neovim/nvim-lspconfig", cond = false },
+    { "neovim/nvim-lspconfig", enabled = false },
     {
         "williamboman/mason.nvim",
         opts = {
