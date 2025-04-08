@@ -52,3 +52,6 @@ o.breakindent = true
 
 vim.opt.spelllang = "en_us"
 vim.opt.spell = true
+
+-- https://jdhao.github.io/2019/04/26/words_completion_nvim/
+vim.opt.dictionary:append("/usr/share/dict/words")
