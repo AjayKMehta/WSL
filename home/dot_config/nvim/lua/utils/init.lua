@@ -74,6 +74,7 @@ M.excluded_ftypes = {
     "FTerm",
     "git",
     "gitsigns-blame",
+    "grug-far",
     "help",
     "lazy",
     "man",

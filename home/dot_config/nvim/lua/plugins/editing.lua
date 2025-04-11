@@ -395,4 +395,66 @@ return {
             )
         end,
     },
+    {
+        "MagicDuck/grug-far.nvim",
+        event = { "BufReadPost", "BufNewFile" },
+        config = function()
+            require("grug-far").setup({
+                engine = "ripgrep",
+                engines = {
+                    -- see https://github.com/BurntSushi/ripgrep
+                    ripgrep = {
+                        -- ripgrep executable to use, can be a different path if you need to configure
+                        path = "rg",
+
+                        -- extra args that you always want to pass
+                        -- like for example if you always want context lines around matches
+                        extraArgs = "",
+
+                        -- whether to show diff of the match being replaced as opposed to just the
+                        -- replaced result. It usually makes it easier to understand the change being made
+                        showReplaceDiff = true,
+                    },
+                },
+            })
+            local gf = require("grug-far")
+            local au_group = vim.api.nvim_create_augroup("grug-far-keybindings", { clear = true })
+
+            vim.api.nvim_create_autocmd("FileType", {
+                group = au_group,
+                pattern = { "grug-far" },
+                callback = function()
+                    vim.keymap.set("n", "<localleader>h", function()
+                        local state = unpack(gf.get_instance(0):toggle_flags({ "--hidden" }))
+                        vim.notify("grug-far: toggled --hidden " .. (state and "ON" or "OFF"))
+                    end, { buffer = true })
+                end,
+            })
+
+            -- open a result location and immediately close grug-far.nvim
+            vim.api.nvim_create_autocmd("FileType", {
+                group = au_group,
+                pattern = { "grug-far" },
+                callback = function()
+                    vim.api.nvim_buf_set_keymap(0, "n", "<C-enter>", "<localleader>o<localleader>c", {})
+                end,
+            })
+        end,
+        keys = {
+            {
+                "<leader>g*",
+                function()
+                    require("grug-far").open({ prefills = { search = vim.fn.expand("<cword>") } })
+                end,
+                desc = "Grug Find current word",
+            },
+            {
+                "<leader>gc",
+                function()
+                    require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
+                end,
+                desc = "Grug Find in current file",
+            },
+        },
+    },
 }
