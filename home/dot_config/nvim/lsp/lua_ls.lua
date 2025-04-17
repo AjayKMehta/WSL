@@ -37,6 +37,18 @@ return {
             codeLens = {
                 enable = true,
             },
+            format = {
+
+                enable = true,
+                -- Put format options here
+
+                defaultConfig = {
+                    quote_style = "double",
+                    align_function_params = true,
+                    never_indent_before_if_condition = false,
+                    never_indent_comment_on_if_branch = false,
+                },
+            },
             workspace = {
                 checkThirdParty = "Disable",
                 library = {
