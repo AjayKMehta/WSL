@@ -210,7 +210,6 @@ end
 
 local group = vim.api.nvim_create_augroup("CodeCompanionHooks", {})
 
-
 vim.api.nvim_create_autocmd({ "User" }, {
     pattern = "CodeCompanionRequestFinished",
     group = group,
