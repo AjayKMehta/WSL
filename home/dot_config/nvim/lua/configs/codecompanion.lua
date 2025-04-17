@@ -210,6 +210,7 @@ end
 
 local group = vim.api.nvim_create_augroup("CodeCompanionHooks", {})
 
+
 vim.api.nvim_create_autocmd({ "User" }, {
     pattern = "CodeCompanionRequestFinished",
     group = group,
@@ -222,5 +223,15 @@ vim.api.nvim_create_autocmd({ "User" }, {
             return
         end
         current_chat.messages = compact_reference(current_chat.messages)
+    end,
+})
+
+-- https://github.com/olimorris/codecompanion.nvim/discussions/1236#discussioncomment-12815303
+vim.api.nvim_create_autocmd("User", {
+    pattern = "CodeCompanionRequestStarted",
+    callback = function()
+        vim.defer_fn(function()
+            vim.cmd("stopinsert")
+        end, 1)
     end,
 })
