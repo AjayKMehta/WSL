@@ -16,6 +16,7 @@ return {
             exe = {
                 "dotnet",
                 vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+                "--logLevel=Information",
             },
             -- TODO: Investigate setting this to "roslyn"
             filewatching = "auto",

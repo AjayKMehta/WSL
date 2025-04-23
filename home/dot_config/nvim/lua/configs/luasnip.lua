@@ -54,7 +54,7 @@ local opts = {
 ls.setup(opts)
 
 local parent_path = vim.fn.stdpath("config") .. "/lua/"
-require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load({ exclude = { "javascript", "java", "ruby" } })
 require("luasnip.loaders.from_snipmate").lazy_load({
     paths = { parent_path .. "snippets" },
 })
