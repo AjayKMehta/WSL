@@ -517,7 +517,7 @@ _deno() {
             return 0
             ;;
         deno__add)
-            opts="-h -L -q -D --unstable --unstable-bare-node-builtins --unstable-detect-cjs --unstable-byonm --unstable-lazy-dynamic-imports --unstable-sloppy-imports --unstable-npm-lazy-caching --unstable-lockfile-v5 --unstable-broadcast-channel --unstable-cron --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-otel --unstable-process --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --dev --allow-scripts [packages]..."
+            opts="-h -L -q -D --unstable --unstable-bare-node-builtins --unstable-detect-cjs --unstable-byonm --unstable-lazy-dynamic-imports --unstable-sloppy-imports --unstable-npm-lazy-caching --unstable-lockfile-v5 --unstable-broadcast-channel --unstable-cron --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-otel --unstable-process --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --dev --allow-scripts --npm --jsr [packages]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -1235,7 +1235,7 @@ _deno() {
             return 0
             ;;
         deno__compile)
-            opts="-h -L -q -c -r -A -R -W -N -E -S -I -o --unstable --unstable-bare-node-builtins --unstable-detect-cjs --unstable-byonm --unstable-lazy-dynamic-imports --unstable-sloppy-imports --unstable-npm-lazy-caching --unstable-lockfile-v5 --unstable-broadcast-channel --unstable-cron --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-otel --unstable-process --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --no-check --import-map --no-remote --no-npm --node-modules-dir --vendor --config --no-config --reload --lock --no-lock --cert --unsafely-ignore-certificate-errors --allow-all --allow-read --deny-read --allow-write --deny-write --allow-net --deny-net --allow-env --deny-env --allow-sys --deny-sys --allow-run --deny-run --allow-ffi --deny-ffi --allow-hrtime --deny-hrtime --no-prompt --allow-import --allow-scripts --frozen --cached-only --location --v8-flags --seed --enable-testing-features-do-not-use --strace-ops --eszip-internal-do-not-use --check --include --output --target --no-code-cache --no-terminal --icon --ext --env-file [SCRIPT_ARG]..."
+            opts="-h -L -q -c -r -A -R -W -N -E -S -I -o --unstable --unstable-bare-node-builtins --unstable-detect-cjs --unstable-byonm --unstable-lazy-dynamic-imports --unstable-sloppy-imports --unstable-npm-lazy-caching --unstable-lockfile-v5 --unstable-broadcast-channel --unstable-cron --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-otel --unstable-process --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --no-check --import-map --no-remote --no-npm --node-modules-dir --vendor --config --no-config --reload --lock --no-lock --cert --unsafely-ignore-certificate-errors --allow-all --allow-read --deny-read --allow-write --deny-write --allow-net --deny-net --allow-env --deny-env --allow-sys --deny-sys --allow-run --deny-run --allow-ffi --deny-ffi --allow-hrtime --deny-hrtime --no-prompt --allow-import --allow-scripts --frozen --cached-only --location --v8-flags --seed --enable-testing-features-do-not-use --strace-ops --eszip-internal-do-not-use --check --include --exclude --output --target --no-code-cache --no-terminal --icon --ext --env-file [SCRIPT_ARG]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -1491,6 +1491,21 @@ _deno() {
                     return 0
                     ;;
                 --include)
+                    local oldifs
+                    if [ -n "${IFS+x}" ]; then
+                        oldifs="$IFS"
+                    fi
+                    IFS=$'\n'
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    if [ -n "${oldifs+x}" ]; then
+                        IFS="$oldifs"
+                    fi
+                    if [[ "${BASH_VERSINFO[0]}" -ge 4 ]]; then
+                        compopt -o filenames
+                    fi
+                    return 0
+                    ;;
+                --exclude)
                     local oldifs
                     if [ -n "${IFS+x}" ]; then
                         oldifs="$IFS"
@@ -1992,7 +2007,7 @@ _deno() {
             return 0
             ;;
         deno__fmt)
-            opts="-h -L -q -c --unstable --unstable-bare-node-builtins --unstable-detect-cjs --unstable-byonm --unstable-lazy-dynamic-imports --unstable-sloppy-imports --unstable-npm-lazy-caching --unstable-lockfile-v5 --unstable-broadcast-channel --unstable-cron --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-otel --unstable-process --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --config --no-config --check --ext --ignore --watch --watch-exclude --no-clear-screen --use-tabs --line-width --indent-width --single-quote --prose-wrap --no-semicolons --unstable-css --unstable-html --unstable-component --unstable-yaml --unstable-sql [files]..."
+            opts="-h -L -q -c --unstable --unstable-bare-node-builtins --unstable-detect-cjs --unstable-byonm --unstable-lazy-dynamic-imports --unstable-sloppy-imports --unstable-npm-lazy-caching --unstable-lockfile-v5 --unstable-broadcast-channel --unstable-cron --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-otel --unstable-process --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --config --no-config --check --ext --ignore --permit-no-files --watch --watch-exclude --no-clear-screen --use-tabs --line-width --indent-width --single-quote --prose-wrap --no-semicolons --unstable-css --unstable-html --unstable-component --unstable-yaml --unstable-sql [files]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3241,7 +3256,7 @@ _deno() {
             return 0
             ;;
         deno__install)
-            opts="-h -L -q -c -r -A -R -W -N -E -S -I -n -f -g -e -D --unstable --unstable-bare-node-builtins --unstable-detect-cjs --unstable-byonm --unstable-lazy-dynamic-imports --unstable-sloppy-imports --unstable-npm-lazy-caching --unstable-lockfile-v5 --unstable-broadcast-channel --unstable-cron --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-otel --unstable-process --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --no-check --import-map --no-remote --no-npm --node-modules-dir --vendor --config --no-config --reload --lock --no-lock --cert --unsafely-ignore-certificate-errors --inspect --inspect-brk --inspect-wait --frozen --cached-only --location --v8-flags --seed --enable-testing-features-do-not-use --strace-ops --eszip-internal-do-not-use --allow-all --allow-read --deny-read --allow-write --deny-write --allow-net --deny-net --allow-env --deny-env --allow-sys --deny-sys --allow-run --deny-run --allow-ffi --deny-ffi --allow-hrtime --deny-hrtime --no-prompt --allow-import --check --allow-scripts --name --root --force --global --entrypoint --env-file --dev [cmd]..."
+            opts="-h -L -q -c -r -A -R -W -N -E -S -I -n -f -g -e -D --unstable --unstable-bare-node-builtins --unstable-detect-cjs --unstable-byonm --unstable-lazy-dynamic-imports --unstable-sloppy-imports --unstable-npm-lazy-caching --unstable-lockfile-v5 --unstable-broadcast-channel --unstable-cron --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-otel --unstable-process --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --no-check --import-map --no-remote --no-npm --node-modules-dir --vendor --config --no-config --reload --lock --no-lock --cert --unsafely-ignore-certificate-errors --inspect --inspect-brk --inspect-wait --frozen --cached-only --location --v8-flags --seed --enable-testing-features-do-not-use --strace-ops --eszip-internal-do-not-use --allow-all --allow-read --deny-read --allow-write --deny-write --allow-net --deny-net --allow-env --deny-env --allow-sys --deny-sys --allow-run --deny-run --allow-ffi --deny-ffi --allow-hrtime --deny-hrtime --no-prompt --allow-import --check --allow-scripts --name --root --force --global --entrypoint --env-file --dev --npm --jsr [cmd]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3621,7 +3636,7 @@ _deno() {
             return 0
             ;;
         deno__lint)
-            opts="-h -L -q -c -I --unstable --unstable-bare-node-builtins --unstable-detect-cjs --unstable-byonm --unstable-lazy-dynamic-imports --unstable-sloppy-imports --unstable-npm-lazy-caching --unstable-lockfile-v5 --unstable-broadcast-channel --unstable-cron --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-otel --unstable-process --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --fix --ext --rules --rules-tags --rules-include --rules-exclude --no-config --config --ignore --json --compact --watch --watch-exclude --no-clear-screen --allow-import [files]..."
+            opts="-h -L -q -c -I --unstable --unstable-bare-node-builtins --unstable-detect-cjs --unstable-byonm --unstable-lazy-dynamic-imports --unstable-sloppy-imports --unstable-npm-lazy-caching --unstable-lockfile-v5 --unstable-broadcast-channel --unstable-cron --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-otel --unstable-process --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --fix --ext --rules --rules-tags --rules-include --rules-exclude --no-config --config --ignore --json --compact --permit-no-files --watch --watch-exclude --no-clear-screen --allow-import [files]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -4883,7 +4898,7 @@ _deno() {
             return 0
             ;;
         deno__test)
-            opts="-h -L -q -c -r -A -R -W -N -E -S -I --unstable --unstable-bare-node-builtins --unstable-detect-cjs --unstable-byonm --unstable-lazy-dynamic-imports --unstable-sloppy-imports --unstable-npm-lazy-caching --unstable-lockfile-v5 --unstable-broadcast-channel --unstable-cron --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-otel --unstable-process --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --no-check --import-map --no-remote --no-npm --node-modules-dir --vendor --config --no-config --reload --lock --no-lock --cert --unsafely-ignore-certificate-errors --allow-all --allow-read --deny-read --allow-write --deny-write --allow-net --deny-net --allow-env --deny-env --allow-sys --deny-sys --allow-run --deny-run --allow-ffi --deny-ffi --allow-hrtime --deny-hrtime --no-prompt --allow-import --inspect --inspect-brk --inspect-wait --allow-scripts --frozen --cached-only --location --v8-flags --seed --enable-testing-features-do-not-use --strace-ops --eszip-internal-do-not-use --check --ignore --no-run --trace-leaks --doc --fail-fast --permit-no-files --filter --shuffle --coverage --clean --parallel --watch --watch-exclude --no-clear-screen --junit-path --reporter --hide-stacktraces --env-file --ext [files]... [SCRIPT_ARG]..."
+            opts="-h -L -q -c -r -A -R -W -N -E -S -I --unstable --unstable-bare-node-builtins --unstable-detect-cjs --unstable-byonm --unstable-lazy-dynamic-imports --unstable-sloppy-imports --unstable-npm-lazy-caching --unstable-lockfile-v5 --unstable-broadcast-channel --unstable-cron --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-otel --unstable-process --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --no-check --import-map --no-remote --no-npm --node-modules-dir --vendor --config --no-config --reload --lock --no-lock --cert --unsafely-ignore-certificate-errors --allow-all --allow-read --deny-read --allow-write --deny-write --allow-net --deny-net --allow-env --deny-env --allow-sys --deny-sys --allow-run --deny-run --allow-ffi --deny-ffi --allow-hrtime --deny-hrtime --no-prompt --allow-import --inspect --inspect-brk --inspect-wait --allow-scripts --frozen --cached-only --location --v8-flags --seed --enable-testing-features-do-not-use --strace-ops --eszip-internal-do-not-use --check --ignore --no-run --trace-leaks --doc --fail-fast --permit-no-files --filter --shuffle --coverage --coverage-raw-data-only --clean --parallel --watch --watch-exclude --no-clear-screen --junit-path --reporter --hide-stacktraces --env-file --ext [files]... [SCRIPT_ARG]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
