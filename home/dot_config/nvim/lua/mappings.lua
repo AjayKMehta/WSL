@@ -227,10 +227,10 @@ end, "Neotest Show summary")
 
 --#region ufo
 
-map_desc("n", "]z", function()
+map_desc("n", "]Z", function()
     require("ufo").goNextClosedFold()
 end, "UFO Go to next closed fold")
-map_desc("n", "[z", function()
+map_desc("n", "[Z", function()
     require("ufo").goPreviousClosedFold()
 end, "UFO Go to previous closed fold")
 map_desc("n", "zK", function()
