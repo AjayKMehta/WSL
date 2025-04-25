@@ -6,6 +6,8 @@
 local dap = require("dap")
 local dapui = require("dapui")
 
+local mason_path = vim.fn.stdpath("data") .. "/mason"
+
 -- https://github.com/mfussenegger/nvim-dap/blob/master/doc/dap.txt
 require("dap.ext.vscode").json_decode = require("json5").parse
 
@@ -265,7 +267,7 @@ end
 
 dap.adapters.coreclr = {
     type = "executable",
-    command = vim.env.HOME .. "/.local/share/nvim/mason/bin/netcoredbg",
+    command = mason_path .. "/bin/netcoredbg",
     args = { "--interpreter=vscode" },
 }
 
@@ -273,7 +275,7 @@ dap.adapters.coreclr = {
 
 dap.adapters.bashdb = {
     type = "executable",
-    command = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/bash-debug-adapter",
+    command = mason_path .. "/packages/bash-debug-adapter/bash-debug-adapter",
     name = "bashdb",
 }
 
@@ -283,8 +285,8 @@ dap.configurations.sh = {
         request = "launch",
         name = "Launch file",
         showDebugOutput = true,
-        pathBashdb = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb",
-        pathBashdbLib = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/extension/bashdb_dir",
+        pathBashdb = mason_path .. "/packages/bash-debug-adapter/extension/bashdb_dir/bashdb",
+        pathBashdbLib = mason_path .. "/packages/bash-debug-adapter/extension/bashdb_dir",
         trace = true,
         file = "${file}",
         program = "${file}",
@@ -299,9 +301,10 @@ dap.configurations.sh = {
     },
 }
 
+-- Haskell
+
 -- stack install haskell-dap ghci-dap haskell-debug-adapter
 
--- Haskell
 dap.adapters.haskell = {
     type = "executable",
     command = "haskell-debug-adapter",
@@ -325,17 +328,29 @@ dap.configurations.haskell = {
     },
 }
 
+-- Lua
+dap.adapters["local-lua"] = {
+    type = "executable",
+    command = "node",
+    args = { mason_path .. "/packages/local-lua-debugger-vscode/extension/extension/debugAdapter.js" },
+}
+
 dap.configurations.lua = {
     {
-        type = "nlua",
-        request = "attach",
-        name = "Attach to running Neovim instance",
+        name = "Current file (local-lua-dbg, nlua)",
+        type = "local-lua",
+        request = "launch",
+        cwd = "${workspaceFolder}",
+        program = {
+            lua = "nlua.lua",
+            file = "${file}",
+        },
+        verbose = true,
+        args = {},
     },
 }
 
-dap.adapters.nlua = function(callback, config)
-    callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
-end
+-- PowerShell
 
 -- Disable DAP virtual text when a PowerShell file is opened
 vim.api.nvim_create_autocmd({ "BufRead" }, {
