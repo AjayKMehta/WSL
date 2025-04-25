@@ -61,3 +61,5 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
 else
   eval "$($HOME/.local/bin/mise activate bash)"
 fi
+
+export PATH=$PATH:$HOME/.luarocks/bin:
