@@ -1,426 +1,270 @@
-# bash completion V2 for gh                                   -*- shell-script -*-
+# powershell completion for gh                                   -*- shell-script -*-
 
-__gh_debug()
-{
-    if [[ -n ${BASH_COMP_DEBUG_FILE-} ]]; then
-        echo "$*" >> "${BASH_COMP_DEBUG_FILE}"
-    fi
+function __gh_debug {
+    if ($env:BASH_COMP_DEBUG_FILE) {
+        "$args" | Out-File -Append -FilePath "$env:BASH_COMP_DEBUG_FILE"
+    }
 }
 
-# Macs have bash3 for which the bash-completion package doesn't include
-# _init_completion. This is a minimal version of that function.
-__gh_init_completion()
-{
-    COMPREPLY=()
-    _get_comp_words_by_ref "$@" cur prev words cword
+filter __gh_escapeStringWithSpecialChars {
+    $_ -replace '\s|#|@|\$|;|,|''|\{|\}|\(|\)|"|`|\||<|>|&','`$&'
 }
 
-# This function calls the gh program to obtain the completion
-# results and the directive.  It fills the 'out' and 'directive' vars.
-__gh_get_completion_results() {
-    local requestComp lastParam lastChar args
+[scriptblock]${__ghCompleterBlock} = {
+    param(
+            $WordToComplete,
+            $CommandAst,
+            $CursorPosition
+        )
+
+    # Get the current command line and convert into a string
+    $Command = $CommandAst.CommandElements
+    $Command = "$Command"
+
+    __gh_debug ""
+    __gh_debug "========= starting completion logic =========="
+    __gh_debug "WordToComplete: $WordToComplete Command: $Command CursorPosition: $CursorPosition"
+
+    # The user could have moved the cursor backwards on the command-line.
+    # We need to trigger completion from the $CursorPosition location, so we need
+    # to truncate the command-line ($Command) up to the $CursorPosition location.
+    # Make sure the $Command is longer then the $CursorPosition before we truncate.
+    # This happens because the $Command does not include the last space.
+    if ($Command.Length -gt $CursorPosition) {
+        $Command=$Command.Substring(0,$CursorPosition)
+    }
+    __gh_debug "Truncated command: $Command"
+
+    $ShellCompDirectiveError=1
+    $ShellCompDirectiveNoSpace=2
+    $ShellCompDirectiveNoFileComp=4
+    $ShellCompDirectiveFilterFileExt=8
+    $ShellCompDirectiveFilterDirs=16
+    $ShellCompDirectiveKeepOrder=32
 
     # Prepare the command to request completions for the program.
-    # Calling ${words[0]} instead of directly gh allows handling aliases
-    args=("${words[@]:1}")
-    requestComp="${words[0]} __complete ${args[*]}"
+    # Split the command at the first space to separate the program and arguments.
+    $Program,$Arguments = $Command.Split(" ",2)
 
-    lastParam=${words[$((${#words[@]}-1))]}
-    lastChar=${lastParam:$((${#lastParam}-1)):1}
-    __gh_debug "lastParam ${lastParam}, lastChar ${lastChar}"
+    $RequestComp="$Program __complete $Arguments"
+    __gh_debug "RequestComp: $RequestComp"
 
-    if [[ -z ${cur} && ${lastChar} != = ]]; then
+    # we cannot use $WordToComplete because it
+    # has the wrong values if the cursor was moved
+    # so use the last argument
+    if ($WordToComplete -ne "" ) {
+        $WordToComplete = $Arguments.Split(" ")[-1]
+    }
+    __gh_debug "New WordToComplete: $WordToComplete"
+
+
+    # Check for flag with equal sign
+    $IsEqualFlag = ($WordToComplete -Like "--*=*" )
+    if ( $IsEqualFlag ) {
+        __gh_debug "Completing equal sign flag"
+        # Remove the flag part
+        $Flag,$WordToComplete = $WordToComplete.Split("=",2)
+    }
+
+    if ( $WordToComplete -eq "" -And ( -Not $IsEqualFlag )) {
         # If the last parameter is complete (there is a space following it)
         # We add an extra empty parameter so we can indicate this to the go method.
         __gh_debug "Adding extra empty parameter"
-        requestComp="${requestComp} ''"
-    fi
+        # PowerShell 7.2+ changed the way how the arguments are passed to executables,
+        # so for pre-7.2 or when Legacy argument passing is enabled we need to use
+        # `"`" to pass an empty argument, a "" or '' does not work!!!
+        if ($PSVersionTable.PsVersion -lt [version]'7.2.0' -or
+            ($PSVersionTable.PsVersion -lt [version]'7.3.0' -and -not [ExperimentalFeature]::IsEnabled("PSNativeCommandArgumentPassing")) -or
+            (($PSVersionTable.PsVersion -ge [version]'7.3.0' -or [ExperimentalFeature]::IsEnabled("PSNativeCommandArgumentPassing")) -and
+              $PSNativeCommandArgumentPassing -eq 'Legacy')) {
+             $RequestComp="$RequestComp" + ' `"`"'
+        } else {
+             $RequestComp="$RequestComp" + ' ""'
+        }
+    }
 
-    # When completing a flag with an = (e.g., gh -n=<TAB>)
-    # bash focuses on the part after the =, so we need to remove
-    # the flag part from $cur
-    if [[ ${cur} == -*=* ]]; then
-        cur="${cur#*=}"
-    fi
+    __gh_debug "Calling $RequestComp"
+    # First disable ActiveHelp which is not supported for Powershell
+    ${env:GH_ACTIVE_HELP}=0
 
-    __gh_debug "Calling ${requestComp}"
-    # Use eval to handle any environment variables and such
-    out=$(eval "${requestComp}" 2>/dev/null)
+    #call the command store the output in $out and redirect stderr and stdout to null
+    # $Out is an array contains each line per element
+    Invoke-Expression -OutVariable out "$RequestComp" 2>&1 | Out-Null
 
-    # Extract the directive integer at the very end of the output following a colon (:)
-    directive=${out##*:}
-    # Remove the directive
-    out=${out%:*}
-    if [[ ${directive} == "${out}" ]]; then
-        # There is not directive specified
-        directive=0
-    fi
-    __gh_debug "The completion directive is: ${directive}"
-    __gh_debug "The completions are: ${out}"
-}
+    # get directive from last line
+    [int]$Directive = $Out[-1].TrimStart(':')
+    if ($Directive -eq "") {
+        # There is no directive specified
+        $Directive = 0
+    }
+    __gh_debug "The completion directive is: $Directive"
 
-__gh_process_completion_results() {
-    local shellCompDirectiveError=1
-    local shellCompDirectiveNoSpace=2
-    local shellCompDirectiveNoFileComp=4
-    local shellCompDirectiveFilterFileExt=8
-    local shellCompDirectiveFilterDirs=16
-    local shellCompDirectiveKeepOrder=32
+    # remove directive (last element) from out
+    $Out = $Out | Where-Object { $_ -ne $Out[-1] }
+    __gh_debug "The completions are: $Out"
 
-    if (((directive & shellCompDirectiveError) != 0)); then
+    if (($Directive -band $ShellCompDirectiveError) -ne 0 ) {
         # Error code.  No completion.
         __gh_debug "Received error from custom completion go code"
         return
-    else
-        if (((directive & shellCompDirectiveNoSpace) != 0)); then
-            if [[ $(type -t compopt) == builtin ]]; then
-                __gh_debug "Activating no space"
-                compopt -o nospace
-            else
-                __gh_debug "No space directive not supported in this version of bash"
-            fi
-        fi
-        if (((directive & shellCompDirectiveKeepOrder) != 0)); then
-            if [[ $(type -t compopt) == builtin ]]; then
-                # no sort isn't supported for bash less than < 4.4
-                if [[ ${BASH_VERSINFO[0]} -lt 4 || ( ${BASH_VERSINFO[0]} -eq 4 && ${BASH_VERSINFO[1]} -lt 4 ) ]]; then
-                    __gh_debug "No sort directive not supported in this version of bash"
-                else
-                    __gh_debug "Activating keep order"
-                    compopt -o nosort
-                fi
-            else
-                __gh_debug "No sort directive not supported in this version of bash"
-            fi
-        fi
-        if (((directive & shellCompDirectiveNoFileComp) != 0)); then
-            if [[ $(type -t compopt) == builtin ]]; then
-                __gh_debug "Activating no file completion"
-                compopt +o default
-            else
-                __gh_debug "No file completion directive not supported in this version of bash"
-            fi
-        fi
-    fi
+    }
 
-    # Separate activeHelp from normal completions
-    local completions=()
-    local activeHelp=()
-    __gh_extract_activeHelp
+    $Longest = 0
+    [Array]$Values = $Out | ForEach-Object {
+        #Split the output in name and description
+        $Name, $Description = $_.Split("`t",2)
+        __gh_debug "Name: $Name Description: $Description"
 
-    if (((directive & shellCompDirectiveFilterFileExt) != 0)); then
-        # File extension filtering
-        local fullFilter="" filter filteringCmd
+        # Look for the longest completion so that we can format things nicely
+        if ($Longest -lt $Name.Length) {
+            $Longest = $Name.Length
+        }
 
-        # Do not use quotes around the $completions variable or else newline
-        # characters will be kept.
-        for filter in ${completions[*]}; do
-            fullFilter+="$filter|"
-        done
+        # Set the description to a one space string if there is none set.
+        # This is needed because the CompletionResult does not accept an empty string as argument
+        if (-Not $Description) {
+            $Description = " "
+        }
+        New-Object -TypeName PSCustomObject -Property @{
+            Name = "$Name"
+            Description = "$Description"
+        }
+    }
 
-        filteringCmd="_filedir $fullFilter"
-        __gh_debug "File filtering command: $filteringCmd"
-        $filteringCmd
-    elif (((directive & shellCompDirectiveFilterDirs) != 0)); then
-        # File completion for directories only
 
-        local subdir
-        subdir=${completions[0]}
-        if [[ -n $subdir ]]; then
-            __gh_debug "Listing directories in $subdir"
-            pushd "$subdir" >/dev/null 2>&1 && _filedir -d && popd >/dev/null 2>&1 || return
-        else
-            __gh_debug "Listing directories in ."
-            _filedir -d
-        fi
-    else
-        __gh_handle_completion_types
-    fi
+    $Space = " "
+    if (($Directive -band $ShellCompDirectiveNoSpace) -ne 0 ) {
+        # remove the space here
+        __gh_debug "ShellCompDirectiveNoSpace is called"
+        $Space = ""
+    }
 
-    __gh_handle_special_char "$cur" :
-    __gh_handle_special_char "$cur" =
+    if ((($Directive -band $ShellCompDirectiveFilterFileExt) -ne 0 ) -or
+       (($Directive -band $ShellCompDirectiveFilterDirs) -ne 0 ))  {
+        __gh_debug "ShellCompDirectiveFilterFileExt ShellCompDirectiveFilterDirs are not supported"
 
-    # Print the activeHelp statements before we finish
-    __gh_handle_activeHelp
-}
+        # return here to prevent the completion of the extensions
+        return
+    }
 
-__gh_handle_activeHelp() {
-    # Print the activeHelp statements
-    if ((${#activeHelp[*]} != 0)); then
-        if [ -z $COMP_TYPE ]; then
-            # Bash v3 does not set the COMP_TYPE variable.
-            printf "\n";
-            printf "%s\n" "${activeHelp[@]}"
-            printf "\n"
-            __gh_reprint_commandLine
+    $Values = $Values | Where-Object {
+        # filter the result
+        $_.Name -like "$WordToComplete*"
+
+        # Join the flag back if we have an equal sign flag
+        if ( $IsEqualFlag ) {
+            __gh_debug "Join the equal sign flag back to the completion value"
+            $_.Name = $Flag + "=" + $_.Name
+        }
+    }
+
+    # we sort the values in ascending order by name if keep order isn't passed
+    if (($Directive -band $ShellCompDirectiveKeepOrder) -eq 0 ) {
+        $Values = $Values | Sort-Object -Property Name
+    }
+
+    if (($Directive -band $ShellCompDirectiveNoFileComp) -ne 0 ) {
+        __gh_debug "ShellCompDirectiveNoFileComp is called"
+
+        if ($Values.Length -eq 0) {
+            # Just print an empty string here so the
+            # shell does not start to complete paths.
+            # We cannot use CompletionResult here because
+            # it does not accept an empty string as argument.
+            ""
             return
-        fi
+        }
+    }
 
-        # Only print ActiveHelp on the second TAB press
-        if [ $COMP_TYPE -eq 63 ]; then
-            printf "\n"
-            printf "%s\n" "${activeHelp[@]}"
+    # Get the current mode
+    $Mode = (Get-PSReadLineKeyHandler | Where-Object {$_.Key -eq "Tab" }).Function
+    __gh_debug "Mode: $Mode"
 
-            if ((${#COMPREPLY[*]} == 0)); then
-                # When there are no completion choices from the program, file completion
-                # may kick in if the program has not disabled it; in such a case, we want
-                # to know if any files will match what the user typed, so that we know if
-                # there will be completions presented, so that we know how to handle ActiveHelp.
-                # To find out, we actually trigger the file completion ourselves;
-                # the call to _filedir will fill COMPREPLY if files match.
-                if (((directive & shellCompDirectiveNoFileComp) == 0)); then
-                    __gh_debug "Listing files"
-                    _filedir
-                fi
-            fi
+    $Values | ForEach-Object {
 
-            if ((${#COMPREPLY[*]} != 0)); then
-                # If there are completion choices to be shown, print a delimiter.
-                # Re-printing the command-line will automatically be done
-                # by the shell when it prints the completion choices.
-                printf -- "--"
-            else
-                # When there are no completion choices at all, we need
-                # to re-print the command-line since the shell will
-                # not be doing it itself.
-                __gh_reprint_commandLine
-            fi
-        elif [ $COMP_TYPE -eq 37 ] || [ $COMP_TYPE -eq 42 ]; then
-            # For completion type: menu-complete/menu-complete-backward and insert-completions
-            # the completions are immediately inserted into the command-line, so we first
-            # print the activeHelp message and reprint the command-line since the shell won't.
-            printf "\n"
-            printf "%s\n" "${activeHelp[@]}"
+        # store temporary because switch will overwrite $_
+        $comp = $_
 
-            __gh_reprint_commandLine
-        fi
-    fi
+        # PowerShell supports three different completion modes
+        # - TabCompleteNext (default windows style - on each key press the next option is displayed)
+        # - Complete (works like bash)
+        # - MenuComplete (works like zsh)
+        # You set the mode with Set-PSReadLineKeyHandler -Key Tab -Function <mode>
+
+        # CompletionResult Arguments:
+        # 1) CompletionText text to be used as the auto completion result
+        # 2) ListItemText   text to be displayed in the suggestion list
+        # 3) ResultType     type of completion result
+        # 4) ToolTip        text for the tooltip with details about the object
+
+        switch ($Mode) {
+
+            # bash like
+            "Complete" {
+
+                if ($Values.Length -eq 1) {
+                    __gh_debug "Only one completion left"
+
+                    # insert space after value
+                    $CompletionText = $($comp.Name | __gh_escapeStringWithSpecialChars) + $Space
+                    if ($ExecutionContext.SessionState.LanguageMode -eq "FullLanguage"){
+                        [System.Management.Automation.CompletionResult]::new($CompletionText, "$($comp.Name)", 'ParameterValue', "$($comp.Description)")
+                    } else {
+                        $CompletionText
+                    }
+
+                } else {
+                    # Add the proper number of spaces to align the descriptions
+                    while($comp.Name.Length -lt $Longest) {
+                        $comp.Name = $comp.Name + " "
+                    }
+
+                    # Check for empty description and only add parentheses if needed
+                    if ($($comp.Description) -eq " " ) {
+                        $Description = ""
+                    } else {
+                        $Description = "  ($($comp.Description))"
+                    }
+
+                    $CompletionText = "$($comp.Name)$Description"
+                    if ($ExecutionContext.SessionState.LanguageMode -eq "FullLanguage"){
+                        [System.Management.Automation.CompletionResult]::new($CompletionText, "$($comp.Name)$Description", 'ParameterValue', "$($comp.Description)")
+                    } else {
+                        $CompletionText
+                    }
+                }
+             }
+
+            # zsh like
+            "MenuComplete" {
+                # insert space after value
+                # MenuComplete will automatically show the ToolTip of
+                # the highlighted value at the bottom of the suggestions.
+
+                $CompletionText = $($comp.Name | __gh_escapeStringWithSpecialChars) + $Space
+                if ($ExecutionContext.SessionState.LanguageMode -eq "FullLanguage"){
+                    [System.Management.Automation.CompletionResult]::new($CompletionText, "$($comp.Name)", 'ParameterValue', "$($comp.Description)")
+                } else {
+                    $CompletionText
+                }
+            }
+
+            # TabCompleteNext and in case we get something unknown
+            Default {
+                # Like MenuComplete but we don't want to add a space here because
+                # the user need to press space anyway to get the completion.
+                # Description will not be shown because that's not possible with TabCompleteNext
+
+                $CompletionText = $($comp.Name | __gh_escapeStringWithSpecialChars)
+                if ($ExecutionContext.SessionState.LanguageMode -eq "FullLanguage"){
+                    [System.Management.Automation.CompletionResult]::new($CompletionText, "$($comp.Name)", 'ParameterValue', "$($comp.Description)")
+                } else {
+                    $CompletionText
+                }
+            }
+        }
+
+    }
 }
 
-__gh_reprint_commandLine() {
-    # The prompt format is only available from bash 4.4.
-    # We test if it is available before using it.
-    if (x=${PS1@P}) 2> /dev/null; then
-        printf "%s" "${PS1@P}${COMP_LINE[@]}"
-    else
-        # Can't print the prompt.  Just print the
-        # text the user had typed, it is workable enough.
-        printf "%s" "${COMP_LINE[@]}"
-    fi
-}
-
-# Separate activeHelp lines from real completions.
-# Fills the $activeHelp and $completions arrays.
-__gh_extract_activeHelp() {
-    local activeHelpMarker="_activeHelp_ "
-    local endIndex=${#activeHelpMarker}
-
-    while IFS='' read -r comp; do
-        [[ -z $comp ]] && continue
-
-        if [[ ${comp:0:endIndex} == $activeHelpMarker ]]; then
-            comp=${comp:endIndex}
-            __gh_debug "ActiveHelp found: $comp"
-            if [[ -n $comp ]]; then
-                activeHelp+=("$comp")
-            fi
-        else
-            # Not an activeHelp line but a normal completion
-            completions+=("$comp")
-        fi
-    done <<<"${out}"
-}
-
-__gh_handle_completion_types() {
-    __gh_debug "__gh_handle_completion_types: COMP_TYPE is $COMP_TYPE"
-
-    case $COMP_TYPE in
-    37|42)
-        # Type: menu-complete/menu-complete-backward and insert-completions
-        # If the user requested inserting one completion at a time, or all
-        # completions at once on the command-line we must remove the descriptions.
-        # https://github.com/spf13/cobra/issues/1508
-
-        # If there are no completions, we don't need to do anything
-        (( ${#completions[@]} == 0 )) && return 0
-
-        local tab=$'\t'
-
-        # Strip any description and escape the completion to handled special characters
-        IFS=$'\n' read -ra completions -d '' < <(printf "%q\n" "${completions[@]%%$tab*}")
-
-        # Only consider the completions that match
-        IFS=$'\n' read -ra COMPREPLY -d '' < <(IFS=$'\n'; compgen -W "${completions[*]}" -- "${cur}")
-
-        # compgen looses the escaping so we need to escape all completions again since they will
-        # all be inserted on the command-line.
-        IFS=$'\n' read -ra COMPREPLY -d '' < <(printf "%q\n" "${COMPREPLY[@]}")
-        ;;
-
-    *)
-        # Type: complete (normal completion)
-        __gh_handle_standard_completion_case
-        ;;
-    esac
-}
-
-__gh_handle_standard_completion_case() {
-    local tab=$'\t'
-
-    # If there are no completions, we don't need to do anything
-    (( ${#completions[@]} == 0 )) && return 0
-
-    # Short circuit to optimize if we don't have descriptions
-    if [[ "${completions[*]}" != *$tab* ]]; then
-        # First, escape the completions to handle special characters
-        IFS=$'\n' read -ra completions -d '' < <(printf "%q\n" "${completions[@]}")
-        # Only consider the completions that match what the user typed
-        IFS=$'\n' read -ra COMPREPLY -d '' < <(IFS=$'\n'; compgen -W "${completions[*]}" -- "${cur}")
-
-        # compgen looses the escaping so, if there is only a single completion, we need to
-        # escape it again because it will be inserted on the command-line.  If there are multiple
-        # completions, we don't want to escape them because they will be printed in a list
-        # and we don't want to show escape characters in that list.
-        if (( ${#COMPREPLY[@]} == 1 )); then
-            COMPREPLY[0]=$(printf "%q" "${COMPREPLY[0]}")
-        fi
-        return 0
-    fi
-
-    local longest=0
-    local compline
-    # Look for the longest completion so that we can format things nicely
-    while IFS='' read -r compline; do
-        [[ -z $compline ]] && continue
-
-        # Before checking if the completion matches what the user typed,
-        # we need to strip any description and escape the completion to handle special
-        # characters because those escape characters are part of what the user typed.
-        # Don't call "printf" in a sub-shell because it will be much slower
-        # since we are in a loop.
-        printf -v comp "%q" "${compline%%$tab*}" &>/dev/null || comp=$(printf "%q" "${compline%%$tab*}")
-
-        # Only consider the completions that match
-        [[ $comp == "$cur"* ]] || continue
-
-        # The completions matches.  Add it to the list of full completions including
-        # its description.  We don't escape the completion because it may get printed
-        # in a list if there are more than one and we don't want show escape characters
-        # in that list.
-        COMPREPLY+=("$compline")
-
-        # Strip any description before checking the length, and again, don't escape
-        # the completion because this length is only used when printing the completions
-        # in a list and we don't want show escape characters in that list.
-        comp=${compline%%$tab*}
-        if ((${#comp}>longest)); then
-            longest=${#comp}
-        fi
-    done < <(printf "%s\n" "${completions[@]}")
-
-    # If there is a single completion left, remove the description text and escape any special characters
-    if ((${#COMPREPLY[*]} == 1)); then
-        __gh_debug "COMPREPLY[0]: ${COMPREPLY[0]}"
-        COMPREPLY[0]=$(printf "%q" "${COMPREPLY[0]%%$tab*}")
-        __gh_debug "Removed description from single completion, which is now: ${COMPREPLY[0]}"
-    else
-        # Format the descriptions
-        __gh_format_comp_descriptions $longest
-    fi
-}
-
-__gh_handle_special_char()
-{
-    local comp="$1"
-    local char=$2
-    if [[ "$comp" == *${char}* && "$COMP_WORDBREAKS" == *${char}* ]]; then
-        local word=${comp%"${comp##*${char}}"}
-        local idx=${#COMPREPLY[*]}
-        while ((--idx >= 0)); do
-            COMPREPLY[idx]=${COMPREPLY[idx]#"$word"}
-        done
-    fi
-}
-
-__gh_format_comp_descriptions()
-{
-    local tab=$'\t'
-    local comp desc maxdesclength
-    local longest=$1
-
-    local i ci
-    for ci in ${!COMPREPLY[*]}; do
-        comp=${COMPREPLY[ci]}
-        # Properly format the description string which follows a tab character if there is one
-        if [[ "$comp" == *$tab* ]]; then
-            __gh_debug "Original comp: $comp"
-            desc=${comp#*$tab}
-            comp=${comp%%$tab*}
-
-            # $COLUMNS stores the current shell width.
-            # Remove an extra 4 because we add 2 spaces and 2 parentheses.
-            maxdesclength=$(( COLUMNS - longest - 4 ))
-
-            # Make sure we can fit a description of at least 8 characters
-            # if we are to align the descriptions.
-            if ((maxdesclength > 8)); then
-                # Add the proper number of spaces to align the descriptions
-                for ((i = ${#comp} ; i < longest ; i++)); do
-                    comp+=" "
-                done
-            else
-                # Don't pad the descriptions so we can fit more text after the completion
-                maxdesclength=$(( COLUMNS - ${#comp} - 4 ))
-            fi
-
-            # If there is enough space for any description text,
-            # truncate the descriptions that are too long for the shell width
-            if ((maxdesclength > 0)); then
-                if ((${#desc} > maxdesclength)); then
-                    desc=${desc:0:$(( maxdesclength - 1 ))}
-                    desc+="…"
-                fi
-                comp+="  ($desc)"
-            fi
-            COMPREPLY[ci]=$comp
-            __gh_debug "Final comp: $comp"
-        fi
-    done
-}
-
-__start_gh()
-{
-    local cur prev words cword split
-
-    COMPREPLY=()
-
-    # Call _init_completion from the bash-completion package
-    # to prepare the arguments properly
-    if declare -F _init_completion >/dev/null 2>&1; then
-        _init_completion -n =: || return
-    else
-        __gh_init_completion -n =: || return
-    fi
-
-    __gh_debug
-    __gh_debug "========= starting completion logic =========="
-    __gh_debug "cur is ${cur}, words[*] is ${words[*]}, #words[@] is ${#words[@]}, cword is $cword"
-
-    # The user could have moved the cursor backwards on the command-line.
-    # We need to trigger completion from the $cword location, so we need
-    # to truncate the command-line ($words) up to the $cword location.
-    words=("${words[@]:0:$cword+1}")
-    __gh_debug "Truncated words[*]: ${words[*]},"
-
-    local out directive
-    __gh_get_completion_results
-    __gh_process_completion_results
-}
-
-if [[ $(type -t compopt) = "builtin" ]]; then
-    complete -o default -F __start_gh gh
-else
-    complete -o default -o nospace -F __start_gh gh
-fi
-
-# ex: ts=4 sw=4 et filetype=sh
+Register-ArgumentCompleter -CommandName 'gh' -ScriptBlock ${__ghCompleterBlock}
