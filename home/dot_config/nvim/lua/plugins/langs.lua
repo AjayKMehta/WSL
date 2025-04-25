@@ -13,10 +13,12 @@ return {
         "seblyng/roslyn.nvim",
         ft = { "cs", "vb", "csproj", "sln", "slnx", "props" },
         opts = {
-            exe = {
+            cmd = {
                 "dotnet",
                 vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
                 "--logLevel=Information",
+                "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+                "--stdio",
             },
             -- TODO: Investigate setting this to "roslyn"
             filewatching = "auto",
