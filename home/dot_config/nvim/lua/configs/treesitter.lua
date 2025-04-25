@@ -109,7 +109,6 @@ local config = {
                 ["]l"] = { query = "@loop.outer", desc = "Next loop start" },
 
                 ["]S"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
-                ["]Z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
             },
             goto_next_end = {
                 ["]F"] = { query = "@call.outer", desc = "Next function call end" },
