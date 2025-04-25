@@ -2014,7 +2014,7 @@ _uv() {
                     return 0
                     ;;
                 --torch-backend)
-                    COMPREPLY=($(compgen -W "auto cpu cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "auto cpu cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80" -- "${cur}"))
                     return 0
                     ;;
                 --resolver)
@@ -2306,7 +2306,7 @@ _uv() {
                     return 0
                     ;;
                 --torch-backend)
-                    COMPREPLY=($(compgen -W "auto cpu cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "auto cpu cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80" -- "${cur}"))
                     return 0
                     ;;
                 --cache-dir)
@@ -2620,7 +2620,7 @@ _uv() {
                     return 0
                     ;;
                 --torch-backend)
-                    COMPREPLY=($(compgen -W "auto cpu cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "auto cpu cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80" -- "${cur}"))
                     return 0
                     ;;
                 --python-executable)
