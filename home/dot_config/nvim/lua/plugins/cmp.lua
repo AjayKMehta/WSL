@@ -7,15 +7,18 @@ return {
             -- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#disabling-completion-in-certain-contexts-such-as-comments
             enabled = function()
                 local context = require("cmp.config.context")
-                if vim.api.nvim_buf_get_option(0, "filetype") == "TelescopePrompt" then
+                local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+                if filetype == "TelescopePrompt" or filetype == "snacks_picker_input" then
                     return false
-                    -- keep command mode completion enabled when cursor is in a comment
-                elseif vim.api.nvim_get_mode().mode == "c" then
-                    return true
-                else
-                    -- disable completion in comments
-                    return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
                 end
+
+                -- keep command mode completion enabled when cursor is in a comment
+                if vim.api.nvim_get_mode().mode == "c" then
+                    return true
+                end
+
+                -- disable completion in comments
+                return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
             end,
             experimental = {
                 ghost_text = {
@@ -174,7 +177,7 @@ return {
         config = function(_, opts)
             -- For NvChad-specified settings, see https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/configs/cmp.lua
             require("cmp").setup(opts)
-            load_config("cmp")()
+            require("configs.cmp")
         end,
         dependencies = {
             -- hrsh7th/cmp-nvim-lua not needed bc of neodev
