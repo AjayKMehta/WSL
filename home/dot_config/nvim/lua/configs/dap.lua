@@ -273,9 +273,11 @@ dap.adapters.coreclr = {
 
 -- Bash
 
+local bash_dbg_path = mason_path .. "/packages/bash-debug-adapter"
+
 dap.adapters.bashdb = {
     type = "executable",
-    command = mason_path .. "/packages/bash-debug-adapter/bash-debug-adapter",
+    command = bash_dbg_path .. "/bash-debug-adapter",
     name = "bashdb",
 }
 
@@ -285,8 +287,8 @@ dap.configurations.sh = {
         request = "launch",
         name = "Launch file",
         showDebugOutput = true,
-        pathBashdb = mason_path .. "/packages/bash-debug-adapter/extension/bashdb_dir/bashdb",
-        pathBashdbLib = mason_path .. "/packages/bash-debug-adapter/extension/bashdb_dir",
+        pathBashdb = bash_dbg_path .. "/extension/bashdb_dir/bashdb",
+        pathBashdbLib = bash_dbg_path .. "/extension/bashdb_dir",
         trace = true,
         file = "${file}",
         program = "${file}",
@@ -329,12 +331,16 @@ dap.configurations.haskell = {
 }
 
 -- Lua
+
+-- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#local-lua-debugger-vscode
 dap.adapters["local-lua"] = {
     type = "executable",
     command = "node",
     args = { mason_path .. "/packages/local-lua-debugger-vscode/extension/extension/debugAdapter.js" },
 }
 
+-- https://zignar.net/2023/06/10/debugging-lua-in-neovim/#debugging-lua
+-- https://github.com/mfussenegger/nlua
 dap.configurations.lua = {
     {
         name = "Current file (local-lua-dbg, nlua)",

@@ -122,7 +122,11 @@ return {
                 ["<C-Space>"] = require("cmp").mapping(require("cmp").mapping.complete(), { "i", "c" }),
                 ["<C-e>"] = require("cmp").mapping({
                     i = require("cmp").mapping.abort(),
-                    c = require("cmp").mapping.close(),
+                    c = function()
+                        if require("cmp").visible() then
+                            require("cmp").mapping.close()
+                        end
+                    end,
                 }),
                 ["<C-n>"] = {
                     i = function()
