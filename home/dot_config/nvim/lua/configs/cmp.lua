@@ -57,12 +57,6 @@ local default_sources = {
         entry_filter = limit_lsp_types,
     },
     {
-        name = "treesitter",
-        group_index = 1,
-        keyword_length = 2,
-        priority = 750,
-    },
-    {
         name = "luasnip_choice",
         group_index = 1,
         priority = 650,
@@ -77,6 +71,12 @@ local default_sources = {
         option = { show_autosnippets = true },
     },
     { name = "easy-dotnet", group_index = 1 },
+    {
+        name = "treesitter",
+        group_index = 2,
+        keyword_length = 2,
+        priority = 750,
+    },
 }
 
 -- Do not use cmp.config.sources():
@@ -302,3 +302,8 @@ vim.api.nvim_create_user_command("NvimCmpToggle", toggle_autocomplete, { desc = 
 
 -- Set a keymap:
 vim.api.nvim_set_keymap("n", "<Leader>tc", "<cmd>NvimCmpToggle<CR>", { noremap = true, silent = true })
+
+-- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#add-parentheses-after-selecting-function-or-method-item
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
