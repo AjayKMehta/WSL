@@ -134,6 +134,13 @@ cmp.setup({
     },
 })
 
+local lua_sources = vim.deepcopy(default_sources)
+local lazydev_source = {
+    name = "lazydev",
+    group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+}
+table.insert(lua_sources, 1, lazydev_source )
+
 cmp.setup.filetype({ "gitcommit", "octo" }, {
     sources = cmp.config.sources({
         { name = "git" },
