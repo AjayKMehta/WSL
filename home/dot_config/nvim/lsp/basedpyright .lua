@@ -10,7 +10,6 @@ return {
     "pyrightconfig.json",
     ".git",
   },
-
   settings = {
     basedpyright = {
       -- Using Ruff's import organizer
