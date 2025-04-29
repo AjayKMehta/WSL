@@ -70,7 +70,7 @@ local display = {
 
 local strategies = {
     chat = {
-        adapter = "qwen", --
+        adapter = "copilot",
         roles = {
             ---The header name for the LLM's messages
             llm = function(adapter)
