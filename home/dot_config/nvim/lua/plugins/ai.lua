@@ -7,27 +7,6 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
-            {
-                "ravitemer/mcphub.nvim",
-                dependencies = {
-                    "nvim-lua/plenary.nvim",
-                },
-                build = "npm install -g mcp-hub@latest",
-                config = function()
-                    require("mcphub").setup({
-                        port = 3000,
-                        config = vim.fn.expand("~/mcpservers.json"),
-                        extensions = {
-                            codecompanion = {
-                                -- Show the mcp tool result in the chat buffer
-                                show_result_in_chat = true,
-                                -- Make chat #variables from MCP server resources
-                                make_vars = true,
-                            },
-                        },
-                    })
-                end,
-            },
         },
         cmd = {
             "CodeCompanion",
@@ -80,6 +59,28 @@ return {
 
             vim.g.copilot_no_tab_map = true
             vim.g.copilot_tab_fallback = ""
+        end,
+    },
+    {
+        "ravitemer/mcphub.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        lazy = true,
+        build = "npm install -g mcp-hub@latest",
+        config = function()
+            require("mcphub").setup({
+                port = 3000,
+                config = vim.fn.expand("~/mcpservers.json"),
+                extensions = {
+                    codecompanion = {
+                        -- Show the mcp tool result in the chat buffer
+                        show_result_in_chat = true,
+                        -- Make chat #variables from MCP server resources
+                        make_vars = true,
+                    },
+                },
+            })
         end,
     },
 }
