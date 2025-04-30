@@ -83,16 +83,6 @@ local strategies = {
             ---The header name for your messages
             user = "Me",
         },
-        tools = {
-            -- Let mcphub manage auto approval behavior of tool calls
-            ["mcp"] = {
-                -- Prevent mcphub from loading before needed
-                callback = function()
-                    return require("mcphub.extensions.codecompanion")
-                end,
-                description = "Call tools and resources from the MCP Servers",
-            },
-        },
         slash_commands = {
             ["buffer"] = {
                 opts = {
@@ -175,7 +165,19 @@ local prompt_library = {
     ["Documentation Comments"] = require("prompts.doc_comments"),
 }
 
+local extensions = {
+    mcphub = {
+        callback = "mcphub.extensions.codecompanion",
+        opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
+        },
+    },
+}
+
 local config = {
+    extensions = extensions,
     adapters = adapters,
     display = display,
     strategies = strategies,
