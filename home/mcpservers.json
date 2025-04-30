@@ -1,42 +1,48 @@
 {
+  "nativeMCPServers": [],
   "mcpServers": {
-    "playwright": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@executeautomation/playwright-mcp-server"
-      ]
-    },
-    "memory": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-memory"
-      ]
-    },
-    "time": {
-      "disabled": true,
-      "command": "uvx",
-      "args": [
-        "mcp-server-time"
-      ]
-    },
     "filesystem": {
-      "command": "npx",
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
         "/"
-      ]
+      ],
+      "command": "npx",
+      "env": {
+        "PATH": "/home/ajay/.nvm/versions/node/v21.7.0/bin:/bin"
+      }
     },
     "fetch": {
-      "command": "uvx",
       "args": [
         "mcp-server-fetch"
-      ]
+      ],
+      "command": "uvx"
+    },
+    "memory": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "command": "npx"
+    },
+    "playwright": {
+      "args": [
+        "-y",
+        "@executeautomation/playwright-mcp-server"
+      ],
+      "command": "npx",
+      "env": {
+        "PATH": "/home/ajay/.nvm/versions/node/v21.7.0/bin:/bin"
+      }
+    },
+    "time": {
+      "args": [
+        "mcp-server-time",
+        "--local-timezone",
+        "America/Los_Angeles"
+      ],
+      "disabled": false,
+      "command": "uvx"
     }
-  },
-  "nativeMCPServers": [
-    
-  ]
+  }
 }
