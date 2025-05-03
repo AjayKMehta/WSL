@@ -2,8 +2,27 @@ local M = {}
 -- See https://github.com/neovim/neovim/blob/master/runtime/lua/vim/lsp/protocol.lua
 local methods = vim.lsp.protocol.Methods
 
+local mappings = require("utils.mappings")
+local map_desc =mappings.map_desc
+
+local function toggle_codelens()
+    local enabled = vim.g.lsp_codelens_enable
+    print((enabled and "Disabling" or "Enabling") .. " codelens globally")
+    vim.g.lsp_codelens_enable = not enabled
+end
+
+map_desc("n", "<leader>lTc", toggle_codelens, "LSP Toggle (global) Codelens")
+
+local function toggle_doc_highlight()
+    local enabled = vim.g.lsp_document_highlight_enable
+    print((enabled and "Disabling" or "Enabling") .. " document highlighting globally")
+    vim.g.lsp_document_highlight_enable = not enabled
+end
+
+map_desc("n", "<leader>lTd", toggle_doc_highlight, "LSP Toggle (global) Document highlighting")
+
 M.on_attach = function(client, bufnr)
-    local map_buf = require("utils.mappings").map_buf
+    local map_buf = mappings.map_buf
 
     map_buf(bufnr, "n", "<leader>lD", vim.lsp.buf.declaration, "Lsp Go to declaration")
 
