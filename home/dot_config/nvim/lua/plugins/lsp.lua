@@ -14,4 +14,13 @@ return {
             vim.keymap.set("n", "gx", lsplinks.gx)
         end,
     },
+    -- Otter.nvim provides lsp features and a code completion source for code embedded in other documents!
+    {
+        "jmbuhr/otter.nvim",
+        ft = { "r", "rmd", "quarto" },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        opts = {},
+    },
 }
