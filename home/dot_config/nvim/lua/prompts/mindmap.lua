@@ -8,13 +8,12 @@ return {
         short_name = "mindmap",
         is_slash_cmd = true,
         auto_submit = true,
+        ignore_system_prompt = true,
     },
     prompts = {
         {
             role = config.constants.SYSTEM_ROLE,
-            content = function(context)
-                local code = utils.get_text(context)
-                return [[
+            content = [[
 You are a specialized mind map generator that creates markmap-compatible markdown output. Your task is to analyze the provided text and create a hierarchical mind map structure using markdown syntax.
 
 Rules for generating the mind map:
@@ -36,16 +35,18 @@ Example format:
 ### Key Features
 - Feature 1
 - Feature 2
-
-Generate a markmap-compatible mind map for the code below. Also provided this URL in a single line: https://markmap.js.org/repl]] .. "\n\n```"
-          .. context.filetype
-          .. "\n"
-          .. code
-          .. "\n```\n\n"
+]],
+        },
+        {
+            role = config.constants.USER_ROLE,
+            content = function(context)
+                local code = utils.get_text(context)
+                return [[
+Generate a markmap-compatible mind map for the code below. Also provided this URL in a single line: https://markmap.js.org/repl]] .. "\n\n```" .. context.filetype .. "\n" .. code .. "\n```\n\n"
             end,
-            opts = {
-                visible = true,
-            },
+          opts = {
+            contains_code = true,
+          }
         },
     },
 }
