@@ -4,17 +4,6 @@ local ca = require("codecompanion.adapters")
 
 local ollama_url = "http://localhost:11434"
 
-local function create_ollama_adapter(name, model, num_ctx)
-    return ca.extend("ollama", {
-        env = { url = ollama_url },
-        name = name,
-        schema = {
-            model = { default = model, choices = false },
-            num_ctx = { default = num_ctx },
-        },
-    })
-end
-
 local adapters = {
     copilot = function()
         return ca.extend("copilot", {
@@ -24,18 +13,11 @@ local adapters = {
             },
         })
     end,
-    llama3 = function()
-        return create_ollama_adapter("llama3", "llama3.2:latest", 16384)
-    end,
-    codellama = create_ollama_adapter("codellama", "codellama:13b", 16384),
-    mixtral = create_ollama_adapter("mixtral", "mixtral:8x7b", 32768),
-    deepseek = create_ollama_adapter("deepseek", "deepseek-r1:8b", 32768),
-    qwen = function()
+    ollama = function()
         return ca.extend("ollama", {
             env = { url = ollama_url },
             headers = { ["Content-Type"] = "application/json" },
             parameters = { sync = true },
-            name = "qwen",
             -- https://github.com/ollama/ollama/blob/main/docs/modelfile.md#parameter
             schema = {
                 model = { default = "qwen2.5-coder:14b" },
@@ -70,7 +52,7 @@ local display = {
 
 local strategies = {
     chat = {
-        adapter = "copilot",
+        adapter = "ollama",
         roles = {
             ---The header name for the LLM's messages
             llm = function(adapter)
@@ -140,7 +122,7 @@ local strategies = {
         },
     },
     inline = {
-        adapter = "qwen",
+        adapter = "ollama",
         keymaps = {
             accept_change = {
                 modes = { n = "<leader>ca" },
@@ -153,7 +135,7 @@ local strategies = {
         },
     },
     agent = {
-        adapter = "llama3",
+        adapter = "ollama",
     },
 }
 
