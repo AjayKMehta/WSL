@@ -18,7 +18,6 @@ return {
             -- https://github.com/seblj/roslyn.nvim/issues/11#issuecomment-2294820871
             registries = {
                 "github:mason-org/mason-registry",
-                "github:syndim/mason-registry",
                 "github:crashdummyy/mason-registry",
             },
         },
