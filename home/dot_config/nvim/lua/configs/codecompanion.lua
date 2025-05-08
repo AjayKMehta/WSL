@@ -155,6 +155,24 @@ local extensions = {
             make_slash_commands = true,
             show_result_in_chat = true,
         },
+        history = {
+            enabled = true,
+            opts = {
+                -- Keymap to open history from chat buffer (default: gh)
+                keymap = "gh",
+                -- Automatically generate titles for new chats
+                auto_generate_title = true,
+                ---On exiting and entering neovim, loads the last chat on opening chat
+                continue_last_chat = false,
+                ---When chat is cleared with `gx` delete the chat from history
+                delete_on_clearing_chat = false,
+                -- "telescope", "snacks" or "default"
+                picker = "snacks",
+                enable_logging = true,
+                ---Directory path to save the chats
+                dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
+            },
+        },
     },
 }
 
