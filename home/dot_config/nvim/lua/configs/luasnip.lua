@@ -19,7 +19,6 @@ local opts = {
     -- mapping for cutting selected text so it's usable as SELECT_DEDENT,
     -- SELECT_RAW or TM_SELECTED_TEXT (mapped via xmap).
     cut_selection_keys = "<Tab>",
-    store_selection_keys = "<Tab>",
     ft_func = ft_func.from_pos_or_filetype,
     load_ft_func = ft_func.extend_load_ft({
         markdown = { "lua", "json", "html", "yaml", "css", "html", "javascript", "r", "python" },
