@@ -349,6 +349,7 @@ return {
     },
     {
         "windwp/nvim-autopairs",
+        enabled= vim.g.use_autopairs,
         event = "InsertEnter",
         opts = {
             fast_wrap = {

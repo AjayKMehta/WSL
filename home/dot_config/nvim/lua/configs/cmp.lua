@@ -139,7 +139,7 @@ local lazydev_source = {
     name = "lazydev",
     group_index = 0, -- set group index to 0 to skip loading LuaLS completions
 }
-table.insert(lua_sources, 1, lazydev_source )
+table.insert(lua_sources, 1, lazydev_source)
 
 cmp.setup.filetype({ "gitcommit", "octo" }, {
     sources = cmp.config.sources({
@@ -312,5 +312,7 @@ vim.api.nvim_set_keymap("n", "<Leader>tc", "<cmd>NvimCmpToggle<CR>", { noremap =
 
 -- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#add-parentheses-after-selecting-function-or-method-item
 -- If you want insert `(` after select function or method item
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+if vim.g.use_autopairs then
+    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+end

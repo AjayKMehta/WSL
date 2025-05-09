@@ -46,7 +46,7 @@ local config = {
     },
     auto_install = true,
     autopairs = {
-        enable = true,
+        enable = vim.g.use_autopairs,
     },
     indent = { enable = true, disable = { "python", "css" } },
     autotag = {
