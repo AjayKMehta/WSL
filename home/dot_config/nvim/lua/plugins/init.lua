@@ -11,7 +11,7 @@ return {
     -- NVChad loads this by default.
     { "neovim/nvim-lspconfig", enabled = false },
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = {
             -- https://github.com/williamboman/nvim-lsp-installer/discussions/509#discussioncomment-4009039
             PATH = "prepend", -- "skip" seems to cause the spawning error
