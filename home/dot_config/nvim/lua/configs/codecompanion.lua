@@ -171,6 +171,8 @@ local extensions = {
                 enable_logging = true,
                 ---Directory path to save the chats
                 dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
+                -- Keymap to save the current chat manually
+                save_chat_keymap = "<localleader>sc",
             },
         },
     },
