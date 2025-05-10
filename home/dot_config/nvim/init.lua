@@ -93,7 +93,7 @@ vim.g.dap_virtual_text = true
 -- https://nvchad.com/docs/config/snippets
 vim.g.lua_snippets_path = vim.fn.stdpath("config") .. "/lua/lua_snippets"
 
-vim.g.use_autopairs = false
+vim.g.use_autopairs = true
 
 -- https://github.com/jackMort/ChatGPT.nvim/pull/266#issuecomment-1675376909
 vim.env.OPENAI_API_HOST = "api.openai.com"
