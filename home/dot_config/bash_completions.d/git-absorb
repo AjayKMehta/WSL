@@ -19,7 +19,7 @@ _git-absorb() {
 
     case "${cmd}" in
         git__absorb)
-            opts="-b -n -f -v -r -w -F -h -V --base --dry-run --force --verbose --and-rebase --gen-completions --whole-file --one-fixup-per-commit --help --version"
+            opts="-b -n -f -v -r -w -F -m -h -V --base --dry-run --force-author --force-detach --force --verbose --and-rebase --gen-completions --whole-file --one-fixup-per-commit --message --help --version [REBASE_OPTIONS]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -35,6 +35,14 @@ _git-absorb() {
                     ;;
                 --gen-completions)
                     COMPREPLY=($(compgen -W "bash fish nushell zsh powershell elvish" -- "${cur}"))
+                    return 0
+                    ;;
+                --message)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -m)
+                    COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
                 *)
