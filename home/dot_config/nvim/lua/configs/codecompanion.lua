@@ -26,6 +26,9 @@ local adapters = {
             },
         })
     end,
+    opts = {
+        show_model_choices = true,
+    },
 }
 
 local display = {
