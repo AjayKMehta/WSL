@@ -73,10 +73,22 @@ local strategies = {
                 opts = {
                     provider = "snacks",
                 },
+                keymaps = {
+                    modes = {
+                        i = "<C-b>",
+                        n = { "<C-b>", "gb" },
+                    },
+                },
             },
             ["fetch"] = {
                 opts = {
                     provider = "snacks",
+                },
+                keymaps = {
+                    modes = {
+                        i = "<C-f>",
+                        n = { "<C-f>", "gF" },
+                    },
                 },
             },
             ["file"] = {
@@ -87,6 +99,12 @@ local strategies = {
             ["help"] = {
                 opts = {
                     provider = "snacks",
+                },
+                keymaps = {
+                    modes = {
+                        i = "<C-?>",
+                        n = { "<C-?>", "g?" },
+                    },
                 },
             },
             ["symbols"] = {
