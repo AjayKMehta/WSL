@@ -156,6 +156,12 @@ return {
                         },
                     },
                 },
+                -- https://github.com/olimorris/codecompanion.nvim/discussions/1454#discussioncomment-13200888
+                filetype = {
+                    codecompanion = {
+                        render_modes = { "n", "c", "v" },
+                    },
+                },
             },
         },
         cmd = { "RenderMarkdown" },
