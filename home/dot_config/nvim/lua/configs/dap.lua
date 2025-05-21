@@ -333,26 +333,23 @@ dap.configurations.haskell = {
 
 -- Lua
 
--- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#local-lua-debugger-vscode
-dap.adapters["local-lua"] = {
-    type = "executable",
-    command = "node",
-    args = { mason_path .. "/packages/local-lua-debugger-vscode/extension/extension/debugAdapter.js" },
-}
+dap.adapters.nlua = function(callback, config)
+    callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
+end
 
--- https://zignar.net/2023/06/10/debugging-lua-in-neovim/#debugging-lua
 -- https://github.com/mfussenegger/nlua
 dap.configurations.lua = {
     {
         name = "Current file (local-lua-dbg, nlua)",
-        type = "local-lua",
-        request = "launch",
+        type = "nlua",
+        repl_lang = "lua",
+        request = "attach",
         cwd = "${workspaceFolder}",
+        verbose = true,
         program = {
             lua = "nlua.lua",
             file = "${file}",
         },
-        verbose = true,
         args = {},
     },
 }
