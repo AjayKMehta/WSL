@@ -59,6 +59,7 @@ return {
                             require("dap-python").setup("uv")
                         end,
                     },
+                    { "jbyuki/one-small-step-for-vimkind" },
                 },
             },
         },
