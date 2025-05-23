@@ -87,6 +87,7 @@ cmp.setup({
         -- https://github.com/brenoprata10/nvim-highlight-colors#lspkind-integration
         format = function(entry, item)
             local color_item = require("nvim-highlight-colors").format(entry, { kind = item.kind })
+            local dups = { fuzzy_buffer = 1, async_path = 1, nvim_lsp = 0, luasnip = 1, treesitter = 1 }
             item = lspkind.cmp_format({
                 mode = "text_symbol",
                 maxwidth = {
@@ -122,6 +123,7 @@ cmp.setup({
                         end
                     end
                     vim_item.menu = source
+                    vim_item.dup = dups[entry.source.name] or 0
                     return vim_item
                 end,
             })(entry, item)
@@ -145,7 +147,7 @@ cmp.setup.filetype({ "gitcommit", "octo" }, {
     sources = cmp.config.sources({
         { name = "git" },
     }, {
-        { name = "buffer" },
+        { name = "fuzzy_buffer" },
     }),
 })
 
