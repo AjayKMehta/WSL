@@ -69,101 +69,105 @@ return {
     },
     {
         "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-            file_types = { "markdown", "quarto", "rmd", "org", "norg", "codecompanion" },
-            render_modes = { "n", "c", "t", "v", "V", "\22" },
-            anti_conceal = {
-                -- This enables hiding any added text on the line the cursor is on
-                enabled = true,
-                ignore = {
-                    code_background = true,
-                    sign = true,
-                },
-            },
-            heading = {
-                render_modes = true,
-                icons = { "󰎤 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎰 ", "󰎵 " },
-                position = "inline",
-                signs = { "󰫎 " },
-            },
-            quote = { repeat_linebreak = true },
-            -- Mimic org-indent-mode behavior by indenting everything under a heading based on the
-            -- level of the heading. Indenting starts from level 2 headings onward.
-            indent = {
-                enabled = false,
-            },
-            win_options = {
-                showbreak = { default = "", rendered = "  " },
-                breakindent = { default = false, rendered = true },
-                breakindentopt = { default = "", rendered = "" },
-            },
-            checkbox = {
-                enabled = true,
-                position = "inline",
-                custom = {
-                    later = { raw = "[>]", rendered = "󰒊 ", highlight = "Comment" }, -- nf-md-send
-                    sched = { raw = "[<]", rendered = "󰃰 ", highlight = "Comment" }, -- nf-md-calendar_clock
-                    cancel = { raw = "[~]", rendered = "󰂭 ", highlight = "DiagnosticInfo" },
-                    info = { raw = "[i]", rendered = "󰋼 ", highlight = "DiagnosticInfo" }, -- nf-md-information
-                    idea = { raw = "[I]", rendered = "󰌵 ", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb
-                    star = { raw = "[s]", rendered = "󰓎 ", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
-                    star2 = { raw = "[*]", rendered = "󰓎 ", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
-                    half = { raw = "[/]", rendered = "󰿦 ", highlight = "DiagnosticWarn" }, -- in progress, nf-md-texture_box
-                },
-            },
-            link = {
-                custom = {
-                    jira = {
-                        pattern = "^http[s]?://%a+.atlassian.net/browse",
-                        icon = "󰌃 ",
-                        highlight = "RenderMarkdownLink",
+        opts = function()
+            dofile(vim.g.base46_cache .. "render-markdown")
+
+            return {
+                file_types = { "markdown", "quarto", "rmd", "org", "norg", "codecompanion" },
+                render_modes = { "n", "c", "t", "v", "V", "\22" },
+                anti_conceal = {
+                    -- This enables hiding any added text on the line the cursor is on
+                    enabled = true,
+                    ignore = {
+                        code_background = true,
+                        sign = true,
                     },
-                    conf = {
-                        pattern = "^http[s]?://%a+.atlassian.net/wiki",
-                        icon = " ",
-                        highlight = "RenderMarkdownLink",
-                    }, -- nf-fa-confluence
-                    slack = {
-                        pattern = "^http[s]?://%a+.slack.com",
-                        icon = "󰒱 ",
-                        highlight = "RenderMarkdownLink",
-                    }, -- nf-md-slack
-                    file = {
-                        pattern = "^file:",
-                        icon = "'",
-                        highlight = "RenderMarkdownFileLink",
-                    },
-                    python = { pattern = "%.py$", icon = "󰌠 ", highlight = "RenderMarkdownLink" },
                 },
-            },
-            pipe_table = {
-                preset = "round",
-                cell = "trimmed",
-            },
-            overrides = {
-                buftype = {
-                    -- Particularly for LSP hover
-                    nofile = {
-                        code = {
-                            enabled = true,
-                            sign = false,
-                            style = "normal",
-                            width = "full",
-                            left_pad = 0,
-                            right_pad = 0,
-                            border = "thick",
-                            highlight = "RenderMarkdownCodeNoFile",
+                heading = {
+                    render_modes = true,
+                    icons = { "󰎤 ", "󰎩 ", "󰎬 ", "󰎮 ", "󰎰 ", "󰎵 " },
+                    position = "inline",
+                    signs = { "󰫎 " },
+                },
+                quote = { repeat_linebreak = true },
+                -- Mimic org-indent-mode behavior by indenting everything under a heading based on the
+                -- level of the heading. Indenting starts from level 2 headings onward.
+                indent = {
+                    enabled = false,
+                },
+                win_options = {
+                    showbreak = { default = "", rendered = "  " },
+                    breakindent = { default = false, rendered = true },
+                    breakindentopt = { default = "", rendered = "" },
+                },
+                checkbox = {
+                    enabled = true,
+                    position = "inline",
+                    custom = {
+                        later = { raw = "[>]", rendered = "󰒊 ", highlight = "Comment" }, -- nf-md-send
+                        sched = { raw = "[<]", rendered = "󰃰 ", highlight = "Comment" }, -- nf-md-calendar_clock
+                        cancel = { raw = "[~]", rendered = "󰂭 ", highlight = "DiagnosticInfo" },
+                        info = { raw = "[i]", rendered = "󰋼 ", highlight = "DiagnosticInfo" }, -- nf-md-information
+                        idea = { raw = "[I]", rendered = "󰌵 ", highlight = "DiagnosticWarn" }, -- nf-md-lightbulb
+                        star = { raw = "[s]", rendered = "󰓎 ", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
+                        star2 = { raw = "[*]", rendered = "󰓎 ", highlight = "DiagnosticWarn" }, -- nf-md-star (asterisk * doesn't work)
+                        half = { raw = "[/]", rendered = "󰿦 ", highlight = "DiagnosticWarn" }, -- in progress, nf-md-texture_box
+                    },
+                },
+                link = {
+                    custom = {
+                        jira = {
+                            pattern = "^http[s]?://%a+.atlassian.net/browse",
+                            icon = "󰌃 ",
+                            highlight = "RenderMarkdownLink",
+                        },
+                        conf = {
+                            pattern = "^http[s]?://%a+.atlassian.net/wiki",
+                            icon = " ",
+                            highlight = "RenderMarkdownLink",
+                        }, -- nf-fa-confluence
+                        slack = {
+                            pattern = "^http[s]?://%a+.slack.com",
+                            icon = "󰒱 ",
+                            highlight = "RenderMarkdownLink",
+                        }, -- nf-md-slack
+                        file = {
+                            pattern = "^file:",
+                            icon = "'",
+                            highlight = "RenderMarkdownFileLink",
+                        },
+                        python = { pattern = "%.py$", icon = "󰌠 ", highlight = "RenderMarkdownLink" },
+                    },
+                },
+                pipe_table = {
+                    preset = "round",
+                    cell = "trimmed",
+                },
+                overrides = {
+                    buftype = {
+                        -- Particularly for LSP hover
+                        nofile = {
+                            code = {
+                                enabled = true,
+                                sign = false,
+                                style = "normal",
+                                width = "full",
+                                left_pad = 0,
+                                right_pad = 0,
+                                border = "thick",
+                                highlight = "RenderMarkdownCodeNoFile",
+                            },
+                        },
+                    },
+                    -- https://github.com/olimorris/codecompanion.nvim/discussions/1454#discussioncomment-13200888
+                    filetype = {
+                        codecompanion = {
+                            render_modes = { "n", "c", "v" },
                         },
                     },
                 },
-                -- https://github.com/olimorris/codecompanion.nvim/discussions/1454#discussioncomment-13200888
-                filetype = {
-                    codecompanion = {
-                        render_modes = { "n", "c", "v" },
-                    },
-                },
-            },
-        },
+            }
+        end,
         cmd = { "RenderMarkdown" },
         keys = {
             { "<leader>tm", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" },

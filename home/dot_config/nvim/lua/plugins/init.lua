@@ -11,6 +11,7 @@ return {
     -- NVChad loads this by default.
     { "neovim/nvim-lspconfig", enabled = false },
     {
+        -- NvChad loads base46 integration for mason
         "mason-org/mason.nvim",
         opts = {
             -- https://github.com/williamboman/nvim-lsp-installer/discussions/509#discussioncomment-4009039
@@ -21,6 +22,14 @@ return {
                 "github:crashdummyy/mason-registry",
             },
         },
+        {
+            "nvchad/base46",
+            event = { "BufReadPre", "BufNewFile" },
+            branch = "v3.0",
+            build = function()
+                require("base46").load_all_highlights()
+            end,
+          },
         -- Use config from NvChad
     },
     {
