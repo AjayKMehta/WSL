@@ -333,42 +333,6 @@ dap.configurations.haskell = {
 
 -- Lua
 
--- Content-Length not found in headers.
-dap.adapters.nlua = function(callback, conf)
-    local adapter = {
-        type = "server",
-        -- host = config.host or "172.17.0.1", -- "192.168.0.141",
-        host = conf.host or "127.0.0.1",
-        port = conf.port or 3000,
-    }
-    if conf.start_neovim then
-        local dap_run = dap.run
-        dap.run = function(c)
-            adapter.port = c.port
-            adapter.host = c.host
-        end
-        require("osv").run_this()
-        dap.run = dap_run
-    end
-    callback(adapter)
-end
-
--- https://github.com/mfussenegger/nlua
-dap.configurations.lua = {
-    {
-        name = "Current file (local-lua-dbg, nlua)",
-        type = "nlua",
-        repl_lang = "lua",
-        request = "launch",
-        cwd = "${workspaceFolder}",
-        verbose = true,
-        program = {
-            lua = "nlua.lua",
-            file = "${file}",
-        },
-        args = {},
-    },
-}
 
 -- PowerShell
 
