@@ -19,9 +19,22 @@ return {
             -- https://github.com/seblj/roslyn.nvim/issues/11#issuecomment-2294820871
             registries = {
                 "github:mason-org/mason-registry",
-                "github:crashdummyy/mason-registry",
+                "github:Crashdummyy/mason-registry",
             },
+            ui = {
+              icons = {
+                package_pending = " ",
+                package_installed = " ",
+                package_uninstalled = " ",
+              },
+            },
+            max_concurrent_installers = 10,
         },
+        config = function(_, opts)
+            dofile(vim.g.base46_cache .. "mason")
+            require("mason").setup(opts)
+        end
+    },
         {
             "nvchad/base46",
             event = { "BufReadPre", "BufNewFile" },
@@ -31,7 +44,6 @@ return {
             end,
           },
         -- Use config from NvChad
-    },
     {
         "folke/lazydev.nvim",
         ft = "lua",
