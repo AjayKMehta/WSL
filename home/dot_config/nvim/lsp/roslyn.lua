@@ -25,6 +25,43 @@ end
 
 local function roslyn_handlers()
     return {
+        -- https://github.com/seblyng/roslyn.nvim/wiki#textdocument_vs_onautoinsert
+        ["textDocument/_vs_onAutoInsert"] = function(err, result, _)
+            if err or not result then
+                return
+            end
+            local edit = result._vs_textEdit
+
+            local bufnr = vim.api.nvim_get_current_buf()
+            local start_line = edit.range.start.line
+            local start_char = edit.range.start.character
+            local end_line = edit.range["end"].line
+            local end_char = edit.range["end"].character
+
+            local newText = string.gsub(edit.newText, "\r", "")
+            local lines = vim.split(newText, "\n")
+
+            local placeholder_row = -1
+            local placeholder_col = -1
+
+            -- placeholder handling
+            for i, line in ipairs(lines) do
+                local pos = string.find(line, "%$0")
+                if pos then
+                    lines[i] = string.gsub(line, "%$0", "", 1)
+                    placeholder_row = start_line + i - 1
+                    placeholder_col = pos - 1
+                    break
+                end
+            end
+
+            vim.api.nvim_buf_set_text(bufnr, start_line, start_char, end_line, end_char, lines)
+
+            if placeholder_row ~= -1 and placeholder_col ~= -1 then
+                local win = vim.api.nvim_get_current_win()
+                vim.api.nvim_win_set_cursor(win, { placeholder_row + 1, placeholder_col })
+            end
+        end,
         ["workspace/projectInitializationComplete"] = function(_, _, ctx)
             vim.notify("Roslyn project initialization complete", vim.log.levels.INFO, { title = "roslyn_ls" })
 
@@ -125,6 +162,7 @@ return {
     capabilities = {
         -- HACK: Doesn't show any diagnostics if we do not set this to true
         textDocument = {
+            _vs_onAutoInsert = { dynamicRegistration = false },
             diagnostic = {
                 dynamicRegistration = true,
             },
