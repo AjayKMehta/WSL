@@ -4,7 +4,7 @@ return {
     -- Haskell
     {
         "mrcjkb/haskell-tools.nvim",
-        version = "^5", -- Recommended
+        version = "^6", -- Recommended
         ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
         config = load_config("haskell"),
     },
