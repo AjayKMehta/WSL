@@ -1,10 +1,10 @@
 {
+    "editor.formatOnSave": false,
     "Lua.diagnostics.globals": [
         "vim",
         "Snacks"
     ],
     "peacock.remoteColor": "#478948",
-    "sarif-viewer.connectToGithubCodeScanning": "off",
     "stylua.configPath": "~/stylua.toml",
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#5aa95b",
