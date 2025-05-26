@@ -4,6 +4,8 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         event = { "BufReadPre", "BufNewFile" },
+        lazy = false,
+        branch = "main",
         cmd = {
             "TSInstall",
             "TSInstallSync",
@@ -12,13 +14,14 @@ return {
             "TSUpdateSync",
             "TSUninstall",
         },
-        build = function()
-            require("nvim-treesitter.install").update({ with_sync = true })
-        end,
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter-textobjects",
-        },
+        build = ":TSUpdate",
         config = load_config("treesitter"),
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        lazy = false,
+        branch = "main",
+        config = load_config("treesitter_textobjects"),
     },
     {
         -- Show code context.
@@ -28,6 +31,8 @@ return {
         cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {
+            enable = true,
+            multiwindow = true,
             multiline_threshold = 10,
             min_window_height = 0,
             patterns = {
