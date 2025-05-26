@@ -16,7 +16,6 @@ return {
             require("nvim-treesitter.install").update({ with_sync = true })
         end,
         dependencies = {
-            "nvim-treesitter/nvim-treesitter-refactor",
             "nvim-treesitter/nvim-treesitter-textobjects",
         },
         config = load_config("treesitter"),
