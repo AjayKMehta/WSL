@@ -1,12 +1,16 @@
 _ast-grep() {
     local i cur prev opts cmd
     COMPREPLY=()
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    if [[ "${BASH_VERSINFO[0]}" -ge 4 ]]; then
+        cur="$2"
+    else
+        cur="${COMP_WORDS[COMP_CWORD]}"
+    fi
+    prev="$3"
     cmd=""
     opts=""
 
-    for i in ${COMP_WORDS[@]}
+    for i in "${COMP_WORDS[@]:0:COMP_CWORD}"
     do
         case "${cmd},${i}" in
             ",$1")
@@ -727,7 +731,7 @@ _ast-grep() {
             return 0
             ;;
         ast__grep__scan)
-            opts="-r -j -i -U -A -B -C -c -h --rule --inline-rules --format --report-style --filter --error --warning --info --hint --off --follow --no-ignore --stdin --globs --threads --interactive --update-all --json --color --inspect --after --before --context --config --help [PATHS]..."
+            opts="-r -j -i -U -A -B -C -c -h --rule --inline-rules --format --report-style --include-metadata --filter --error --warning --info --hint --off --follow --no-ignore --stdin --globs --threads --interactive --update-all --json --color --inspect --after --before --context --config --help [PATHS]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
