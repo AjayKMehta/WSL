@@ -6,14 +6,6 @@ return {
         "zeioth/garbage-day.nvim",
         event = "VeryLazy",
     },
-    {
-        "icholy/lsplinks.nvim",
-        config = function()
-            local lsplinks = require("lsplinks")
-            lsplinks.setup()
-            vim.keymap.set("n", "gx", lsplinks.gx)
-        end,
-    },
     -- Otter.nvim provides lsp features and a code completion source for code embedded in other documents!
     {
         "jmbuhr/otter.nvim",
