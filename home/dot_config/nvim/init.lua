@@ -14,7 +14,16 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+          { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+          { out, "WarningMsg" },
+          { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
 end
 vim.opt.runtimepath:prepend(lazypath)
 
@@ -145,6 +154,15 @@ end, {
     nargs = "+",
     desc = "Dump the output of a command at the cursor position",
 })
+
+vim.api.nvim_create_user_command("DumpNew", function(x)
+    local result = vim.cmd(string.format("execute('%s')", x.args))
+    vim.cmd (string.format("vnew | print(%s)", result))
+end, {
+    nargs = "+",
+    desc = "Dump the output of a command in a new tab",
+})
+
 
 vim.api.nvim_create_user_command("GrepWord", function(input)
     if not input.args then
