@@ -41,7 +41,7 @@ conform.setup({
                 },
                 lang_to_formatters = {
                     json = { "jq" },
-                    python = "ruff",
+                    python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
                 },
             },
         },
