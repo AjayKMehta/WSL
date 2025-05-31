@@ -74,10 +74,4 @@ local ensure_installed = {
     "zathurarc",
 }
 
-local already_installed = require("nvim-treesitter.config").installed_parsers()
-local to_install = vim.iter(ensure_installed)
-    :filter(function(parser)
-        return not vim.tbl_contains(already_installed, parser)
-    end)
-    :totable()
-ts.install(to_install)
+ts.install(ensure_installed)
