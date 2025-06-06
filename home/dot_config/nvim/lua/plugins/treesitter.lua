@@ -28,7 +28,7 @@ return {
         "nvim-treesitter/nvim-treesitter-context",
         lazy = false,
         event = "BufReadPost",
-        cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
+        cmd = { "TSContext", },
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {
             enable = true,
