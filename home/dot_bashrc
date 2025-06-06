@@ -8,6 +8,8 @@ for dir in "$HOME/bin" "$HOME/.local/bin"; do
 done
 
 export XDG_CONFIG_HOME="$HOME/.config"
+# https://superuser.com/questions/1262977/open-browser-in-host-system-from-windows-subsystem-for-linux
+export BROWSER='/mnt/c/Program Files/Firefox/firefox.exe'
 
 # If not running interactively, don't do anything
 case $- in
