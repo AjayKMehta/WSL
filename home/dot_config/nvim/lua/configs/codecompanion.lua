@@ -142,20 +142,27 @@ local strategies = {
             },
             next_chat = {
                 modes = {
-                  n = "]c",
+                    n = "]c",
                 },
                 index = 11,
                 callback = "keymaps.next_chat",
                 description = "Next Chat",
-              },
-              previous_chat = {
+            },
+            previous_chat = {
                 modes = {
-                  n = "[c",
+                    n = "[c",
                 },
                 index = 12,
                 callback = "keymaps.previous_chat",
                 description = "Previous Chat",
-              },
+            },
+        },
+        variables = {
+            ["buffer"] = {
+                opts = {
+                    default_params = "watch", -- or "pin"
+                },
+            },
         },
     },
     inline = {
