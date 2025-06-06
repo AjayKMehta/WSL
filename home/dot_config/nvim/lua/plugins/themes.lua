@@ -93,4 +93,7 @@ return {
         lazy = false,
         priority = 1000,
     },
+    {
+        "Koalhack/darcubox-nvim",
+    },
 }

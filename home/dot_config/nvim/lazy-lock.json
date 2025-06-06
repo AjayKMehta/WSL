@@ -32,6 +32,7 @@
   "conform.nvim": { "branch": "master", "commit": "6feb2f28f9a9385e401857b21eeac3c1b66dd628" },
   "copilot.vim": { "branch": "release", "commit": "a9228e015528c9307890c48083c925eb98a64a79" },
   "cyberdream.nvim": { "branch": "main", "commit": "f660ebfd8840e226d2a5368e08108a7aa84fef36" },
+  "darcubox-nvim": { "branch": "main", "commit": "59754cb99fee640da1b64730a17476593af92fd3" },
   "darcula-dark.nvim": { "branch": "main", "commit": "5e8edf8b2aff3bf3d5110799713d29649cb87bbb" },
   "devicon-colorscheme.nvim": { "branch": "main", "commit": "de03970159817b40d66945849e9ac3380f58b67f" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
