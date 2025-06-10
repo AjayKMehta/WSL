@@ -1,5 +1,6 @@
 # features = decorations my-line-numbers emph
 [delta "default"]
+    dark = true
     whitespace-error-style = magenta reverse
     inspect-raw-lines = true
     max-line-distance = 1.0
@@ -39,6 +40,7 @@
 [delta "var-width"]
     width = variable
 [delta "light"]
+    dark = false
     plus-style = "green bold ul #ffeeee"
     minus-style = "red bold ul #ffeeee"
 [delta "decorations"]
