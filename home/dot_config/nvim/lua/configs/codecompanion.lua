@@ -56,6 +56,7 @@ local display = {
 local strategies = {
     chat = {
         adapter = "ollama",
+        model = "qwen2.5-coder:14b",
         roles = {
             ---The header name for the LLM's messages
             llm = function(adapter)
