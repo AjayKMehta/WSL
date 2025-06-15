@@ -3,11 +3,16 @@ return {
     filetypes = { "python" },
     cmd_env = { RUFF_TRACE = "messages" },
     root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
-    -- single_file_support = true,
-    settings = {
-        lint = {
-            preview = true,
+    init_options = {
+        settings = {
+            configurationPreference = "filesystemFirst",
+            format = {
+                preview = true,
+            },
+            lint = {
+                preview = true,
+            },
+            showSyntaxErrors = false,
         },
-        showSyntaxErrors = false,
     },
 }
