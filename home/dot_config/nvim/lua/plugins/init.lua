@@ -22,11 +22,11 @@ return {
                 "github:Crashdummyy/mason-registry",
             },
             ui = {
-              icons = {
-                package_pending = " ",
-                package_installed = " ",
-                package_uninstalled = " ",
-              },
+                icons = {
+                    package_pending = " ",
+                    package_installed = " ",
+                    package_uninstalled = " ",
+                },
             },
             max_concurrent_installers = 10,
         },
@@ -35,15 +35,15 @@ return {
             require("mason").setup(opts)
         end,
     },
-        {
-            "nvchad/base46",
-            event = { "BufReadPre", "BufNewFile" },
-            branch = "v3.0",
-            build = function()
-                require("base46").load_all_highlights()
-            end,
-          },
-        -- Use config from NvChad
+    {
+        "nvchad/base46",
+        event = { "BufReadPre", "BufNewFile" },
+        branch = "v3.0",
+        build = function()
+            require("base46").load_all_highlights()
+        end,
+    },
+    -- Use config from NvChad
     {
         "folke/lazydev.nvim",
         ft = "lua",
