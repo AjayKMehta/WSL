@@ -33,7 +33,7 @@ return {
         config = function(_, opts)
             dofile(vim.g.base46_cache .. "mason")
             require("mason").setup(opts)
-        end
+        end,
     },
         {
             "nvchad/base46",
@@ -280,6 +280,31 @@ return {
                 bufmap("BD", function()
                     api.node.buffer.wipe(api.tree.get_node_under_cursor(), { force = true })
                 end, "Delete")
+
+                -- New in 1.13.0
+                bufmap("<A-w>", function()
+                    api.tree.collapse_all({ keep_buffers = true })
+                end, "Collapse All Keep")
+
+                bufmap("[w", function()
+                    local node = api.tree.get_node_under_cursor()
+                    api.node.collapse(node, { keep_buffers = false })
+                end, "Collapse Node")
+
+                bufmap("[W", function()
+                    local node = api.tree.get_node_under_cursor()
+                    api.node.collapse(node, { keep_buffers = true })
+                end, "Collapse Node (Keep)")
+
+                bufmap("]w", function()
+                    local node = api.tree.get_node_under_cursor()
+                    api.node.expand(node)
+                end, "Expand Node")
+
+                bufmap("]W", function()
+                    local node = api.tree.get_node_under_cursor()
+                    api.tree.expand_all(node)
+                end, "Expand Node (All)")
             end,
             -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#center-a-floating-nvim-tree-window
             view = {
