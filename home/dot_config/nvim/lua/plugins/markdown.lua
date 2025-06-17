@@ -159,9 +159,9 @@ return {
                             },
                         },
                     },
-                    -- https://github.com/olimorris/codecompanion.nvim/discussions/1454#discussioncomment-13200888
                     filetype = {
                         codecompanion = {
+                            -- https://github.com/olimorris/codecompanion.nvim/discussions/1454#discussioncomment-13200888
                             render_modes = { "n", "c", "v" },
                         },
                     },

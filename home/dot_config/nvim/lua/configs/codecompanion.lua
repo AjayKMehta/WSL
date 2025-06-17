@@ -165,6 +165,14 @@ local strategies = {
                 },
             },
         },
+        tools = {
+            ["grep_search"] = {
+                ---@return boolean
+                enabled = function()
+                    return vim.fn.executable("rg") == 1
+                end,
+            },
+        },
     },
     inline = {
         adapter = "ollama",
