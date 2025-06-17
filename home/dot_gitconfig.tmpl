@@ -10,8 +10,7 @@
     untrackedCache = true
     longpaths = true
     symlinks = true
-    # https://stackoverflow.com/questions/72530302/git-warning-empty-last-update-token
-    fsmonitor = false
+    fsmonitor = true
     fsync = committed,added,commit-graph
     fsyncMethod = batch
     sshCommand = ssh -q
@@ -180,6 +179,7 @@
     true-color = always
 [tag]
     sort = version:refname
+    gpgsign = true
 [commit]
     gpgsign = true
 # https://blog.jmorbegoso.com/post/configure-github-gpg-key-in-windows-and-wsl/
