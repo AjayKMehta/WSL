@@ -1,12 +1,16 @@
 _pdu() {
     local i cur prev opts cmd
     COMPREPLY=()
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    if [[ "${BASH_VERSINFO[0]}" -ge 4 ]]; then
+        cur="$2"
+    else
+        cur="${COMP_WORDS[COMP_CWORD]}"
+    fi
+    prev="$3"
     cmd=""
     opts=""
 
-    for i in ${COMP_WORDS[@]}
+    for i in "${COMP_WORDS[@]:0:COMP_CWORD}"
     do
         case "${cmd},${i}" in
             ",$1")
@@ -19,7 +23,7 @@ _pdu() {
 
     case "${cmd}" in
         pdu)
-            opts="-h -V --json-input --json-output --bytes-format --top-down --align-right --quantity --max-depth --total-width --column-width --min-ratio --no-sort --silent-errors --progress --help --version [FILES]..."
+            opts="-h -V --json-input --json-output --bytes-format --top-down --align-right --quantity --max-depth --total-width --column-width --min-ratio --no-sort --silent-errors --progress --threads --help --version [FILES]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -46,6 +50,10 @@ _pdu() {
                     return 0
                     ;;
                 --min-ratio)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --threads)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
