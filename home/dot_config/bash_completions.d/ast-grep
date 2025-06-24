@@ -849,7 +849,7 @@ _ast-grep() {
             return 0
             ;;
         ast__grep__test)
-            opts="-t -U -i -f -c -h --test-dir --snapshot-dir --skip-snapshot-tests --update-all --interactive --filter --config --help"
+            opts="-t -U -i -f -c -h --test-dir --snapshot-dir --skip-snapshot-tests --update-all --interactive --filter --include-off --config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
