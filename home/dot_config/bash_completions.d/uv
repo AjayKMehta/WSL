@@ -153,6 +153,9 @@ _uv() {
             uv__python,uninstall)
                 cmd="uv__python__uninstall"
                 ;;
+            uv__python,upgrade)
+                cmd="uv__python__upgrade"
+                ;;
             uv__self,update)
                 cmd="uv__self__update"
                 ;;
@@ -2021,7 +2024,7 @@ _uv() {
                     return 0
                     ;;
                 --torch-backend)
-                    COMPREPLY=($(compgen -W "auto cpu cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "auto cpu cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
                     return 0
                     ;;
                 --resolver)
@@ -2313,7 +2316,7 @@ _uv() {
                     return 0
                     ;;
                 --torch-backend)
-                    COMPREPLY=($(compgen -W "auto cpu cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "auto cpu cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
                     return 0
                     ;;
                 --cache-dir)
@@ -2627,7 +2630,7 @@ _uv() {
                     return 0
                     ;;
                 --torch-backend)
-                    COMPREPLY=($(compgen -W "auto cpu cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "auto cpu cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
                     return 0
                     ;;
                 --python-executable)
@@ -2964,7 +2967,7 @@ _uv() {
             return 0
             ;;
         uv__python)
-            opts="-n -q -v -h --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help list install find pin dir uninstall"
+            opts="-n -q -v -h --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help list install upgrade find pin dir uninstall"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3283,6 +3286,72 @@ _uv() {
                     return 0
                     ;;
                 -i)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --cache-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --python-preference)
+                    COMPREPLY=($(compgen -W "only-managed managed system only-system" -- "${cur}"))
+                    return 0
+                    ;;
+                --python-fetch)
+                    COMPREPLY=($(compgen -W "automatic manual never" -- "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
+                    return 0
+                    ;;
+                --allow-insecure-host)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --directory)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --project)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --config-file)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        uv__python__upgrade)
+            opts="-i -n -q -v -h --install-dir --mirror --pypy-mirror --python-downloads-json-url --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help [TARGETS]..."
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --install-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -i)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --mirror)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --pypy-mirror)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --python-downloads-json-url)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
