@@ -69,6 +69,7 @@ return {
     },
     {
         "MeanderingProgrammer/render-markdown.nvim",
+        ft = { "markdown", "codecompanion", "quarto", "rmd" },
         opts = function()
             dofile(vim.g.base46_cache .. "render-markdown")
 
@@ -162,10 +163,11 @@ return {
                     filetype = {
                         codecompanion = {
                             -- https://github.com/olimorris/codecompanion.nvim/discussions/1454#discussioncomment-13200888
-                            render_modes = { "n", "c", "v" },
+                            render_modes = { 'n', 'c', 't', 'v', 'V' },
                         },
                     },
                 },
+                completions = { lsp = { enabled = true } },
             }
         end,
         cmd = { "RenderMarkdown" },
