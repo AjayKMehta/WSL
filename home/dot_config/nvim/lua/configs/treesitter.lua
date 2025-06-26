@@ -45,8 +45,10 @@ local ensure_installed = {
     "gitattributes",
     "gitcommit",
     "gitignore",
+    "gpg",
     "haskell",
     "html",
+    "http",
     "javascript",
     "jq",
     "json",
@@ -77,3 +79,6 @@ local ensure_installed = {
 }
 
 ts.install(ensure_installed)
+
+vim.treesitter.language.register("xml", { "csproj", "svg", "xslt" })
+vim.treesitter.language.register("markdown", { "codecompanion", "quarto" })
