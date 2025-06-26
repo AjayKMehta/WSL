@@ -103,7 +103,6 @@ return {
                 },
                 checkbox = {
                     enabled = true,
-                    position = "inline",
                     custom = {
                         later = { raw = "[>]", rendered = "󰒊 ", highlight = "Comment" }, -- nf-md-send
                         sched = { raw = "[<]", rendered = "󰃰 ", highlight = "Comment" }, -- nf-md-calendar_clock
