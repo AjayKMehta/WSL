@@ -130,22 +130,6 @@ vim.api.nvim_set_keymap("i", "<C-q>", "<C-k>", { noremap = true })
 -- Prepend mise shims to PATH
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
--- https://www.youtube.com/watch?v=NecszftvMFI
-vim.filetype.add({
-    extension = {
-        csproj = "xml",
-        jq = "jq",
-        qmd = "markdown",
-    },
-    filename = {
-        ["Directory.Build.targets"] = "xml",
-    },
-    pattern = {
-        ["Directory.*.props"] = "xml",
-        [".*/%.vscode/.*%.json"] = "jsonc",
-    },
-})
-
 -- https://www.reddit.com/r/neovim/comments/1ixsk40/comment/meqnilu
 -- Example: :Dump !ls -a
 vim.api.nvim_create_user_command("Dump", function(x)
