@@ -1,22 +1,17 @@
 {
-  "nativeMCPServers": [],
+  "nativeMCPServers": [
+    
+  ],
   "mcpServers": {
-    "filesystem": {
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "/"
-      ],
-      "command": "npx",
+    "playwright": {
       "env": {
         "PATH": "/home/ajay/.nvm/versions/node/v21.7.0/bin:/bin"
-      }
-    },
-    "fetch": {
+      },
       "args": [
-        "mcp-server-fetch"
+        "-y",
+        "@executeautomation/playwright-mcp-server"
       ],
-      "command": "uvx"
+      "command": "npx"
     },
     "memory": {
       "args": [
@@ -25,24 +20,39 @@
       ],
       "command": "npx"
     },
-    "playwright": {
-      "args": [
-        "-y",
-        "@executeautomation/playwright-mcp-server"
-      ],
-      "command": "npx",
-      "env": {
-        "PATH": "/home/ajay/.nvm/versions/node/v21.7.0/bin:/bin"
-      }
-    },
     "time": {
+      "disabled": false,
+      "autoApprove": [
+        "get_current_time",
+        "convert_time"
+      ],
       "args": [
         "mcp-server-time",
         "--local-timezone",
         "America/Los_Angeles"
       ],
-      "disabled": false,
       "command": "uvx"
+    },
+    "fetch": {
+      "args": [
+        "mcp-server-fetch"
+      ],
+      "command": "uvx"
+    },
+    "filesystem": {
+      "env": {
+        "PATH": "/home/ajay/.nvm/versions/node/v21.7.0/bin:/bin"
+      },
+      "autoApprove": [
+        "list_directory",
+        "list_allowed_directories"
+      ],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/"
+      ],
+      "command": "npx"
     }
   }
 }
