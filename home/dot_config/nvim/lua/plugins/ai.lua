@@ -7,7 +7,10 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
-            { "ravitemer/codecompanion-history.nvim", cmd = "CodeCompanionHistory" },
+            {
+                "ravitemer/codecompanion-history.nvim",
+                config = load_config("codecompanion_history")
+            }
         },
         cmd = {
             "CodeCompanion",
