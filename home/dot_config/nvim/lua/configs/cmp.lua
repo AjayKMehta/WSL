@@ -279,7 +279,7 @@ table.insert(markdown_sources, {
     group_index = 1,
     priority = 100,
 })
-cmp.setup.filetype({ "markdown", "rmd", "quarto" }, {
+cmp.setup.filetype({ "markdown", "rmd", "quarto", "codecompanion" }, {
     sources = markdown_sources,
 })
 
