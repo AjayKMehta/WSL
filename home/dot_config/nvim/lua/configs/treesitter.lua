@@ -13,7 +13,10 @@ local config = {
     highlight = {
         enable = true,
         disable = function(lang, buf)
-            local max_filesize = 200 * 1024 -- 200 KB
+            if vim.bo[buf].filetype == "codecompanion" then
+                return false
+            end
+            local max_filesize = 5 * 1024 * 1024 -- 5MB
             local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
             if ok and stats and stats.size > max_filesize then
                 return true
@@ -21,7 +24,6 @@ local config = {
         end,
         use_languagetree = true,
     },
-
 }
 
 dofile(vim.g.base46_cache .. "semantic_tokens")
