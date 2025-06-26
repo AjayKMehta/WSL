@@ -213,6 +213,8 @@ local extensions = {
             opts = {
                 -- Keymap to open history from chat buffer (default: gh)
                 keymap = "gh",
+                auto_save = true,
+                expiration_days = 90,
                 -- Automatically generate titles for new chats
                 auto_generate_title = true,
                 ---On exiting and entering neovim, loads the last chat on opening chat
