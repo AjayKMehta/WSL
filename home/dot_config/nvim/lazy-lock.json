@@ -86,7 +86,7 @@
   "nvim-cmp-lua-latex-symbols": { "branch": "master", "commit": "89345d6e333c700d13748e8a7ee6fe57279b7f88" },
   "nvim-dap": { "branch": "master", "commit": "14fe46ae16eb272629144a93f7738f5279665a4f" },
   "nvim-dap-python": { "branch": "master", "commit": "261ce649d05bc455a29f9636dc03f8cdaa7e0e2c" },
-  "nvim-dap-ui": { "branch": "master", "commit": "73a26abf4941aa27da59820fd6b028ebcdbcf932" },
+  "nvim-dap-view": { "branch": "main", "commit": "280213aa7a553c03fccf97771e340f991706478c" },
   "nvim-dap-virtual-text": { "branch": "master", "commit": "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6" },
   "nvim-highlight-colors": { "branch": "main", "commit": "b42a5ccec7457b44e89f7ed3b3afb1b375bb2093" },
   "nvim-lint": { "branch": "master", "commit": "2b0039b8be9583704591a13129c600891ac2c596" },

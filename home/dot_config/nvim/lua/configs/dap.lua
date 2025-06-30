@@ -1,10 +1,4 @@
--- https://github.com/rcarriga/nvim-notify/wiki/Usage-Recipes#dap-status-updates
-
--- DAP integration
--- Make sure to also have the snippet with the common helper functions in your config!
-
 local dap = require("dap")
-local dapui = require("dapui")
 
 local mason_path = vim.fn.stdpath("data") .. "/mason"
 
@@ -13,114 +7,50 @@ require("dap.ext.vscode").json_decode = require("json5").parse
 
 dofile(vim.g.base46_cache .. "dap")
 
-local dapui_config = {
-    controls = {
-        element = "repl",
-        enabled = true,
-        icons = {
-            disconnect = "",
-            pause = "",
-            play = "",
-            run_last = "",
-            step_back = "",
-            step_into = "",
-            step_out = "",
-            step_over = "",
-            terminate = "",
-        },
-    },
-    element_mappings = {},
-    expand_lines = true,
-    floating = {
-        border = "single",
-        mappings = {
-            close = { "q", "<Esc>" },
-        },
-    },
-    force_buffers = true,
-    icons = {
-        collapsed = "",
-        current_frame = "",
-        expanded = "",
-    },
-    layouts = {
-        {
-            elements = {
-                {
-                    id = "scopes",
-                    size = 0.25,
-                },
-                {
-                    id = "breakpoints",
-                    size = 0.25,
-                },
-                {
-                    id = "stacks",
-                    size = 0.25,
-                },
-                {
-                    id = "watches",
-                    size = 0.25,
-                },
-            },
-            position = "left",
-            size = 40,
-        },
-        {
-            elements = {
-                {
-                    id = "repl",
-                    size = 0.5,
-                },
-                {
-                    id = "console",
-                    size = 0.5,
-                },
-            },
-            position = "bottom",
-            size = 10,
-        },
-    },
-    mappings = {
-        edit = "e",
-        expand = { "<CR>", "<2-LeftMouse>" },
-        open = "o",
-        remove = "d",
-        repl = "r",
-        toggle = "t",
-    },
-    render = {
-        indent = 1,
-        max_value_lines = 100,
-    },
-}
-
-dapui.setup(dapui_config)
-
-dap.listeners.before.attach.dapui_config = function()
-    dapui.open()
+-- DAP View
+local dv = require("dap-view")
+dap.listeners.before.attach["dap-view-config"] = function()
+    dv.open()
 end
-dap.listeners.before.launch.dapui_config = function()
-    dapui.open()
+dap.listeners.before.launch["dap-view-config"] = function()
+    dv.open()
 end
-dap.listeners.before.event_terminated.dapui_config = function()
-    dapui.close()
+dap.listeners.before.event_terminated["dap-view-config"] = function()
+    dv.close()
+    vim.cmd("DapVirtualTextForceRefresh") -- Clear virtual text after session is terminated
 end
-dap.listeners.before.event_exited.dapui_config = function()
-    dapui.close()
+dap.listeners.before.event_exited["dap-view-config"] = function()
+    dv.close()
 end
 
 -- Setup icons
--- vim.fn.sign_define('DapBreakpoint', {text='', texthl='', linehl='', numhl=''})
 vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#990000" })
 vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#3d59a1" })
 vim.api.nvim_set_hl(0, "DapStopped", { fg = "#9ece6a" })
 
-vim.fn.sign_define("DapBreakpoint", { text = "⬤", texthl = "DapBreakpoint", linehl = "", numhl = "" })
-vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DapBreakpoint", linehl = "", numhl = "" })
-vim.fn.sign_define("DapLogPoint", { text = "󰣕", texthl = "DapLogPoint", linehl = "", numhl = "" })
-vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "", numhl = "" })
-vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "", linehl = "", numhl = "" })
+vim.fn.sign_define(
+    "DapBreakpoint",
+    { text = "🔴", texthl = "DapBreakpoint", linehl = "", numhl = "DapBreakpoint" }
+)
+vim.fn.sign_define(
+    "DapBreakpointCondition",
+    { text = "🟠", texthl = "DapBreakpoint", linehl = "", numhl = "DapBreakpoint" }
+)
+vim.fn.sign_define(
+    "DapLogPoint",
+    { text = "✳️", texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" }
+)
+vim.fn.sign_define(
+    "DapStopped",
+    { text = "⭕", texthl = "", linehl = "DapStopped", numhl = "" }
+)
+vim.fn.sign_define(
+    "DapBreakpointRejected",
+    { text = "🚫", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+)
+
+-- DAP integration with vim-notify
+-- https://github.com/rcarriga/nvim-notify/wiki/Usage-Recipes#dap-status-updates
 
 local client_notifs = {}
 
@@ -147,8 +77,8 @@ local function update_spinner(client_id, token)
 
         notif_data.notification = vim.notify(nil, nil, {
             hide_from_history = true,
-            icon = spinner_frames[new_spinner],
             replace = notif_data.notification,
+            icon = spinner_frames[new_spinner],
         })
 
         vim.defer_fn(function()
@@ -180,7 +110,6 @@ dap.listeners.before["event_progressStart"]["progress-notifications"] = function
     notif_data.notification.spinner = 1, update_spinner("dap", body.progressId)
 end
 
--- https://github.com/rcarriga/nvim-notify/wiki/Usage-Recipes#dap-status-updates
 dap.listeners.before["event_progressUpdate"]["progress-notifications"] = function(session, body)
     local notif_data = get_notif_data("dap", body.progressId)
     notif_data.notification = vim.notify(format_message(body.message, body.percentage), "info", {

@@ -428,3 +428,12 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.treesitter.start()
     end,
 })
+
+
+-- https://igorlfs.github.io/nvim-dap-view/filetypes-autocmds#example-autocommand
+autocmd({ "FileType" }, {
+    pattern = { "dap-view", "dap-view-term", "dap-repl" }, -- dap-repl is set by `nvim-dap`
+    callback = function(evt)
+        vim.keymap.set("n", "q", "<C-w>q", { buffer = evt.buf })
+    end,
+})
