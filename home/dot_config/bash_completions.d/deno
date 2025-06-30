@@ -872,7 +872,7 @@ _deno() {
             return 0
             ;;
         deno__bundle)
-            opts="-h -L -q -c -r -o -I --unstable --unstable-bare-node-builtins --unstable-broadcast-channel --unstable-byonm --unstable-cron --unstable-detect-cjs --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-lazy-dynamic-imports --unstable-lockfile-v5 --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-npm-lazy-caching --unstable-otel --unstable-process --unstable-sloppy-imports --unstable-subdomain-wildcards --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --no-check --import-map --no-remote --no-npm --node-modules-dir --vendor --unstable-node-conditions --config --no-config --reload --lock --no-lock --frozen --cert --unsafely-ignore-certificate-errors --check --output --outdir --external --format --packages --minify --code-splitting --one-file --allow-scripts --allow-import [file]..."
+            opts="-h -L -q -c -r -o -I --unstable --unstable-bare-node-builtins --unstable-broadcast-channel --unstable-byonm --unstable-cron --unstable-detect-cjs --unstable-ffi --unstable-fs --unstable-http --unstable-kv --unstable-lazy-dynamic-imports --unstable-lockfile-v5 --unstable-net --unstable-no-legacy-abort --unstable-node-globals --unstable-npm-lazy-caching --unstable-otel --unstable-process --unstable-sloppy-imports --unstable-subdomain-wildcards --unstable-temporal --unstable-unsafe-proto --unstable-vsock --unstable-webgpu --unstable-worker-options --help --log-level --quiet --no-check --import-map --no-remote --no-npm --node-modules-dir --vendor --unstable-node-conditions --config --no-config --reload --lock --no-lock --frozen --cert --unsafely-ignore-certificate-errors --check --output --outdir --external --format --packages --minify --code-splitting --one-file --sourcemap --watch --platform --allow-scripts --allow-import [file]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -1078,6 +1078,14 @@ _deno() {
                     ;;
                 --one-file)
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --sourcemap)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --platform)
+                    COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
                 --allow-scripts)
