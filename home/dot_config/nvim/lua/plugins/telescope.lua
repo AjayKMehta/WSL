@@ -1,7 +1,6 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
-        -- If you load some function or module within opts, wrap it within a function
         opts = require("configs.telescope").config,
         -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
         dependencies = {
