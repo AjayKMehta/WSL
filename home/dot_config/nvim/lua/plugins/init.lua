@@ -3,6 +3,8 @@ local load_config = require("utils").load_config
 local HEIGHT_RATIO = 0.7
 local WIDTH_RATIO = 0.4
 
+local QuickfixDecorator = require("quickfix-decorator")
+
 return {
     {
         "b0o/SchemaStore.nvim",
@@ -91,6 +93,7 @@ return {
             renderer = {
                 root_folder_label = ":~:s?$?/..?",
                 add_trailing = true,
+                decorators = { "Git", "Open", "Hidden", "Modified", "Bookmark", "Diagnostics", "Copied", "Cut", QuickfixDecorator },
                 highlight_opened_files = "name",
                 highlight_git = "icon",
                 highlight_diagnostics = "icon",
