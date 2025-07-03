@@ -78,11 +78,11 @@ return {
                     end,
                 }),
                 ["<Down>"] = require("cmp").mapping(
-                    require("cmp").mapping.select_next_item({ behavior = require("cmp").SelectBehavior.Insert }),
+                    require("cmp").mapping.select_next_item(),
                     { "i", "c" }
                 ), -- Alternative `Select Previous Item`
                 ["<Up>"] = require("cmp").mapping(
-                    require("cmp").mapping.select_prev_item({ behavior = require("cmp").SelectBehavior.Insert }),
+                    require("cmp").mapping.select_prev_item(),
                     { "i", "c" }
                 ), -- Alternative `Select Next Item`
                 ["<C-y>"] = require("cmp").mapping(
@@ -123,8 +123,9 @@ return {
                 ["<C-e>"] = require("cmp").mapping({
                     i = require("cmp").mapping.abort(),
                     c = function()
-                        if require("cmp").visible() then
-                            require("cmp").mapping.close()
+                        local cmp = require("cmp")
+                        if cmp.visible() then
+                           cmp.mapping.close()
                         end
                     end,
                 }),
