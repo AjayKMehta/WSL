@@ -96,8 +96,8 @@ return {
                 eob = " ",
             }
             vim.o.foldcolumn = "1"
-            vim.o.foldenable = true -- enable fold for nvim-ufo
-            vim.o.foldlevel = 99 -- set high foldlevel for nvim-ufo
+            vim.o.foldenable = true   -- enable fold for nvim-ufo
+            vim.o.foldlevel = 99      -- set high foldlevel for nvim-ufo
             vim.o.foldlevelstart = 99 -- start with all code unfolded
         end,
         config = load_config("ufo"),
@@ -114,20 +114,20 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         keys = {
             -- Global Minimap Controls
-            { "<leader>mtg", "<cmd>Neominimap toggle<cr>", desc = "Toggle global minimap" },
-            { "<leader>mrg", "<cmd>Neominimap refresh<cr>", desc = "Refresh global minimap" },
+            { "<leader>mtg", "<cmd>Neominimap toggle<cr>",      desc = "Toggle global minimap" },
+            { "<leader>mrg", "<cmd>Neominimap refresh<cr>",     desc = "Refresh global minimap" },
 
             -- Window-Specific Minimap Controls
-            { "<leader>mtw", "<cmd>Neominimap winToggle<cr>", desc = "Toggle minimap for current window" },
-            { "<leader>mrw", "<cmd>Neominimap winRefresh<cr>", desc = "Refresh minimap for current window" },
+            { "<leader>mtw", "<cmd>Neominimap winToggle<cr>",   desc = "Toggle minimap for current window" },
+            { "<leader>mrw", "<cmd>Neominimap winRefresh<cr>",  desc = "Refresh minimap for current window" },
 
             -- Tab-Specific Minimap Controls
-            { "<leader>mtt", "<cmd>Neominimap tabToggle<cr>", desc = "Toggle minimap for current tab" },
-            { "<leader>mrt", "<cmd>Neominimap tabRefresh<cr>", desc = "Refresh minimap for current tab" },
+            { "<leader>mtt", "<cmd>Neominimap tabToggle<cr>",   desc = "Toggle minimap for current tab" },
+            { "<leader>mrt", "<cmd>Neominimap tabRefresh<cr>",  desc = "Refresh minimap for current tab" },
 
             -- Buffer-Specific Minimap Controls
-            { "<leader>mtb", "<cmd>Neominimap bufToggle<cr>", desc = "Toggle minimap for current buffer" },
-            { "<leader>mrb", "<cmd>Neominimap bufRefresh<cr>", desc = "Refresh minimap for current buffer" },
+            { "<leader>mtb", "<cmd>Neominimap bufToggle<cr>",   desc = "Toggle minimap for current buffer" },
+            { "<leader>mrb", "<cmd>Neominimap bufRefresh<cr>",  desc = "Refresh minimap for current buffer" },
 
             -- Focus
             { "<leader>mtf", "<cmd>Neominimap toggleFocus<cr>", desc = "Toggle focus on minimap" },
