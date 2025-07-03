@@ -16,10 +16,16 @@ return {
       disableOrganizeImports = true,
       analysis = {
         autoFormatStrings = true,
+        autoImportCompletions = true,
         autoSearchPaths = true,
         diagnosticMode = "openFilesOnly",
         useLibraryCodeForTypes = true,
         typeCheckingMode = "standard",
+        inlayHints = {
+          callArgumentNames = true,
+          genericTypes = true,
+          variableTypes = true,
+        }
       },
       -- https://detachhead.github.io/basedpyright/#/configuration?id=type-check-diagnostics-settings
       -- Severity level can be boolean or a string value of "none", "warning", "information", or "error".
@@ -36,7 +42,7 @@ return {
         reportImportCycles = "error",
         reportConstantRedefinition = "error",
         reportUndefinedVariable = false, -- ruff handles this with F822
-        reportUnusedVariable = false, -- let ruff handle this
+        reportUnusedVariable = false,    -- let ruff handle this
         reportAssertAlwaysTrue = "error",
         reportInconsistentOverload = "warning",
         reportInvalidTypeArguments = "warning",
