@@ -187,4 +187,13 @@ return {
         "stevearc/stickybuf.nvim",
         opts = {},
     },
+    {
+        -- Like peacock extension in VS Code
+        "hampushauffman/peacock.nvim",
+        lazy = false,
+        enabled = false,
+        config = function()
+            require("peacock").setup()
+        end,
+    }
 }
