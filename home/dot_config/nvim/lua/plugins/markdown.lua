@@ -167,6 +167,22 @@ return {
                     },
                 },
                 completions = { lsp = { enabled = true } },
+                -- https://github.com/olimorris/codecompanion.nvim/discussions/1638#discussioncomment-13532012
+                html = {
+                    enabled = true,
+                    tag = {
+                        buf     = { icon = ' ', highlight = 'CodeCompanionChatVariable' },
+                        file    = { icon = ' ', highlight = 'CodeCompanionChatVariable' },
+                        help    = { icon = '󰘥 ', highlight = 'CodeCompanionChatVariable' },
+                        image   = { icon = ' ', highlight = 'CodeCompanionChatVariable' },
+                        symbols = { icon = ' ', highlight = 'CodeCompanionChatVariable' },
+                        url     = { icon = '󰖟 ', highlight = 'CodeCompanionChatVariable' },
+                        var     = { icon = ' ', highlight = 'CodeCompanionChatVariable' },
+                        tool    = { icon = ' ', highlight = 'CodeCompanionChatTool' },
+                        user    = { icon = ' ', highlight = 'CodeCompanionChatTool' },
+                        group   = { icon = ' ', highlight = 'CodeCompanionChatToolGroup' },
+                    },
+                },
             }
         end,
         cmd = { "RenderMarkdown" },
