@@ -166,8 +166,7 @@ bind 'TAB:menu-complete'
 batdiff() {
     git diff --name-only --relative --diff-filter=d | xargs bat --diff
 }
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
+export MANPAGER='less -R'
 
 # https://github.com/akinomyoga/blesh-contrib/blob/master/integration/fzf.md#option-1-set-up-in-blerc
 if [[ ! ${BLE_VERSION-} ]]; then
