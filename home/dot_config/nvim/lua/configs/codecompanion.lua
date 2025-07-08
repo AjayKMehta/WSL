@@ -229,6 +229,19 @@ local extensions = {
             dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
             -- Keymap to save the current chat manually
             save_chat_keymap = "<localleader>sc",
+            title_generation_opts = {
+                adapter = "copilot",
+                model = "gpt-4.1",
+                refresh_every_n_prompts = 0, -- e.g., 3 to refresh after every 3rd user prompt
+                max_refreshes = 3,
+            },
+            summary = {
+                -- Keymap to generate summary (default: "gcs")
+                create_summary_keymap = "gcs",
+                -- Keymap to browse summaries (default: "gbs")
+                browse_summaries_keymap = "gbs",
+                -- Keymap to preview/edit summary (default: "gps")
+                preview_summary_keymap = "gps",
         },
     },
 }
