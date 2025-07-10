@@ -242,8 +242,9 @@ local extensions = {
                 browse_summaries_keymap = "gbs",
                 -- Keymap to preview/edit summary (default: "gps")
                 preview_summary_keymap = "gps",
+            },
         },
-    },
+    }
 }
 
 local config = {
