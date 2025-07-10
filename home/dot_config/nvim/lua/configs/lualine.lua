@@ -296,7 +296,7 @@ local config = {
                     return require("screenkey").get_keys()
                 end,
                 cond = function()
-                   return vim.g.screenkey_statusline_component
+                    return vim.g.screenkey_statusline_component
                 end,
             },
             {
@@ -368,13 +368,21 @@ local config = {
             },
             -- https://github.com/folke/noice.nvim?tab=readme-ov-file#-statusline-components
             {
-                require("noice").api.status.mode.get,
-                cond = require("noice").api.status.mode.has,
+                function()
+                    return require("noice").api.status.mode.get
+                end,
+                cond = function()
+                    return utils.is_loaded("noice") and require("noice").api.status.mode.has
+                end,
                 color = { fg = "#ff9e64" },
             },
             {
-                require("noice").api.status.search.get,
-                cond = require("noice").api.status.search.has,
+                function()
+                    return require("noice").api.status.search.get
+                end,
+                cond = function()
+                    return utils.is_loaded("noice") and require("noice").api.status.search.has
+                end,
                 color = { fg = "#ff9e64" },
             },
             { require("mcphub.extensions.lualine") },
