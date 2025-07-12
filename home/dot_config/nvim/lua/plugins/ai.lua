@@ -9,8 +9,8 @@ return {
             "nvim-treesitter/nvim-treesitter",
             {
                 "ravitemer/codecompanion-history.nvim",
-                config = load_config("codecompanion_history")
-            }
+                config = load_config("codecompanion_history"),
+            },
         },
         cmd = {
             "CodeCompanion",
@@ -78,5 +78,9 @@ return {
                 config = vim.fn.expand("~/mcpservers.json"),
             })
         end,
+    },
+    {
+        -- A simple lualine component for CodeCompanion
+        "franco-ruggeri/codecompanion-lualine.nvim",
     },
 }
