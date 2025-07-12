@@ -26,6 +26,7 @@ return {
     -- https://luals.github.io/wiki/settings/
     settings = {
         Lua = {
+            runtime = { version = "LuaJIT" },
             diagnostics = {
                 globals = { "vim" },
             },
