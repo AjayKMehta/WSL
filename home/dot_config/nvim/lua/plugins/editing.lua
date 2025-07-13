@@ -293,7 +293,7 @@ return {
         opts = {
             keymaps = {
                 useDefaults = true,
-                disabledDefaults = { "ii", "ai", "aI", "C" },
+                disabledDefaults = { "ii", "ai", "aI", "C", "in", "an" },
             },
         },
         config = function(_, opts)
