@@ -2,19 +2,6 @@ return {
     { "tomasiser/vim-code-dark" },
     { "samharju/synthweave.nvim" },
     {
-        -- Already included in NvChad.
-        "craftzdog/solarized-osaka.nvim",
-        lazy = false,
-        enabled = false,
-        priority = 1000,
-        opts = {},
-    },
-    {
-        -- Already included in NvChad.
-        "kepano/flexoki-neovim",
-        enabled = false,
-    },
-    {
         "xiantang/darcula-dark.nvim",
         enabled = true,
         dependencies = {
