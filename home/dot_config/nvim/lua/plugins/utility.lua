@@ -800,4 +800,19 @@ return {
             --endregion
         },
     },
+    {
+        -- Interactive, searchable reference for all Vim commands with detailed
+        -- explanations, beginner tips, and context-aware guidance.
+        "shahshlok/vim-coach.nvim",
+        cond = false,
+        dependencies = {
+            "folke/snacks.nvim",
+        },
+        config = function()
+            require("vim-coach").setup()
+        end,
+        keys = {
+            { "<leader>?", "<cmd>VimCoach<cr>", desc = "Vim Coach" },
+        },
+    },
 }
