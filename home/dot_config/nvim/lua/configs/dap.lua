@@ -1,3 +1,6 @@
+local utils = require("utils.mappings")
+local map_desc = utils.map_desc
+
 local dap = require("dap")
 
 local mason_path = vim.fn.stdpath("data") .. "/mason"
@@ -6,6 +9,31 @@ local mason_path = vim.fn.stdpath("data") .. "/mason"
 require("dap.ext.vscode").json_decode = require("json5").parse
 
 dofile(vim.g.base46_cache .. "dap")
+
+-- Mappings
+-- Keep same as VS + VS Code
+map_desc({ "n", "v" }, "<F9>", "<cmd>DapToggleBreakpoint<CR>", "DAP Toggle breakpoint")
+-- <C-S-F9> doesn't work!
+map_desc("n", "<F8>", "<cmd>DapClearBreakpoints<CR>", "DAP Clear breakpoints")
+map_desc("n", "<F5>", "<cmd>DapContinue<CR>", "DAP Launch debugger")
+map_desc("n", "<F10>", "<cmd>DapStepOver<CR>", "DAP Step over")
+map_desc("n", "<F11>", "<cmd>DapStepInto<CR>", "DAP Step into")
+map_desc("n", "<S-F11>", "<cmd>DapStepOut<CR>", "DAP Step out")
+map_desc("n", "<Leader>dr", "<cmd>DapToggleRepl<CR>", "DAP Toggle REPL")
+map_desc({ "n", "v" }, "<Leader>dh", function()
+    require("dap.ui.widgets").hover()
+end, "DAP Hover")
+map_desc({ "n", "v" }, "<Leader>dp", function()
+    require("dap.ui.widgets").preview()
+end, "DAP Preview")
+
+map_desc({ "n", "v" }, "<leader>dtc", function()
+    require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end, "DAP Set conditional breakpoint")
+
+map_desc("n", "<leader>dlm", function()
+    require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+end, "DAP Set Log Point")
 
 -- DAP View
 local dv = require("dap-view")
