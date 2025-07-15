@@ -1,17 +1,24 @@
 {
-  "nativeMCPServers": [
-    
-  ],
   "mcpServers": {
-    "playwright": {
-      "env": {
-        "PATH": "/home/ajay/.nvm/versions/node/v21.7.0/bin:/bin"
-      },
+    "fetch": {
+      "args": [
+        "mcp-server-fetch"
+      ],
+      "command": "uvx"
+    },
+    "filesystem": {
       "args": [
         "-y",
-        "@executeautomation/playwright-mcp-server"
+        "@modelcontextprotocol/server-filesystem",
+        "/"
       ],
-      "command": "npx"
+      "autoApprove": [
+        "search_files"
+      ],
+      "command": "npx",
+      "env": {
+        "PATH": "/home/ajay/.nvm/versions/node/v21.7.0/bin:/bin"
+      }
     },
     "memory": {
       "args": [
@@ -20,39 +27,36 @@
       ],
       "command": "npx"
     },
-    "time": {
-      "disabled": false,
-      "autoApprove": [
-        "get_current_time",
-        "convert_time"
+    "playwright": {
+      "args": [
+        "-y",
+        "@executeautomation/playwright-mcp-server"
       ],
+      "command": "npx",
+      "env": {
+        "PATH": "/home/ajay/.nvm/versions/node/v21.7.0/bin:/bin"
+      }
+    },
+    "sequentialthinking": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "command": "npx"
+    },
+    "time": {
       "args": [
         "mcp-server-time",
         "--local-timezone",
         "America/Los_Angeles"
       ],
-      "command": "uvx"
-    },
-    "fetch": {
-      "args": [
-        "mcp-server-fetch"
-      ],
-      "command": "uvx"
-    },
-    "filesystem": {
-      "env": {
-        "PATH": "/home/ajay/.nvm/versions/node/v21.7.0/bin:/bin"
-      },
       "autoApprove": [
-        "list_directory",
-        "list_allowed_directories"
+        "get_current_time",
+        "convert_time"
       ],
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "/"
-      ],
-      "command": "npx"
+      "command": "uvx",
+      "disabled": false
     }
-  }
+  },
+  "nativeMCPServers": []
 }
