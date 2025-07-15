@@ -81,11 +81,19 @@ local config = {
     },
 }
 
-map_desc("n", "<leader>fs", f.jump, "Flash")
-map_desc({ "o", "x" }, "fs", f.jump, "Flash")
+map_desc("n", "<leader>fs", function()
+    require("flash").jump()
+end, "Flash")
+map_desc({ "o", "x" }, "fs", function()
+    require("flash").jump()
+end, "Flash")
 
-map_desc("n", "<leader>fT", f.treesitter, "Flash Treesitter")
-map_desc({ "o", "x" }, "fT", f.treesitter, "Flash Treesitter")
+map_desc("n", "<leader>fT", function()
+    require("flash").treesitter()
+end, "Flash Treesitter")
+map_desc({ "o", "x" }, "fT", function()
+    require("flash").treesitter()
+end, "Flash Treesitter")
 
 local function flash_fwd()
     f.jump({
@@ -138,11 +146,13 @@ end
 map_desc("n", "<leader>fd", flash_diag, "Flash Diagnostics")
 map_desc({ "o", "x" }, "fd", flash_diag, "Flash Diagnostics")
 
-map_desc("o", "fr", f.remote, "Flash Remote")
+map_desc("o", "fr", function() require("flash").remote() end, "Flash Remote")
 
-map_desc({ "o", "x" }, "fR", f.treesitter_search, "Flash Treesitter search")
+map_desc({ "o", "x" }, "fR",  function() require("flash").treesitter_search() end, "Flash Treesitter search")
 
-map_desc({ "n", "v" }, "<leader>ft", f.toggle, "Flash Toggle search")
+map_desc({ "n", "v" }, "<leader>ft", function()
+    require("flash").toggle()
+end, "Flash Toggle search")
 
 local flash_word = function()
     local word = vim.fn.expand("<cword>")
