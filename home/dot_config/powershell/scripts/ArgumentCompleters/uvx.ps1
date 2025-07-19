@@ -22,6 +22,7 @@ Register-ArgumentCompleter -Native -CommandName 'uvx' -ScriptBlock {
     $completions = @(switch ($command) {
         'uvx' {
             [CompletionResult]::new('--from', '--from', [CompletionResultType]::ParameterName, 'Use the given package to provide the command')
+            [CompletionResult]::new('-w', '-w', [CompletionResultType]::ParameterName, 'Run with the given packages installed')
             [CompletionResult]::new('--with', '--with', [CompletionResultType]::ParameterName, 'Run with the given packages installed')
             [CompletionResult]::new('--with-editable', '--with-editable', [CompletionResultType]::ParameterName, 'Run with the given packages installed in editable mode')
             [CompletionResult]::new('--with-requirements', '--with-requirements', [CompletionResultType]::ParameterName, 'Run with all packages listed in the given `requirements.txt` files')
