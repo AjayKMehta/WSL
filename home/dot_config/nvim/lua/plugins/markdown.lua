@@ -162,7 +162,7 @@ return {
                     filetype = {
                         codecompanion = {
                             -- https://github.com/olimorris/codecompanion.nvim/discussions/1454#discussioncomment-13200888
-                            render_modes = { 'n', 'c', 't', 'v', 'V' },
+                            render_modes = { "n", "c", "t", "v", "V" },
                         },
                     },
                 },

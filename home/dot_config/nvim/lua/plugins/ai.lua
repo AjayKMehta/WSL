@@ -76,6 +76,7 @@ return {
             require("mcphub").setup({
                 port = 3000,
                 config = vim.fn.expand("~/mcpservers.json"),
+                json_decode = require("json5").parse,
             })
         end,
     },

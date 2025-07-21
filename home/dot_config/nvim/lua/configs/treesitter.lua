@@ -66,6 +66,7 @@ local ensure_installed = {
     "query",
     "r",
     "regex",
+    "rnoweb",
     "sql",
     "terraform",
     "toml",
