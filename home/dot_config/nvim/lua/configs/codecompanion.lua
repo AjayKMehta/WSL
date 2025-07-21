@@ -50,6 +50,9 @@ local display = {
         show_settings = false, -- Show LLM settings at the top of the chat buffer?
         show_token_count = true, -- Show the token count for each response?
         start_in_insert_mode = false, -- Open the chat buffer in insert mode?
+        window = {
+            sticky = true, -- when set to true and `layout` is not `"buffer"`, the chat buffer will remain opened when switching tabs
+        },
     },
 }
 
@@ -244,7 +247,7 @@ local extensions = {
                 preview_summary_keymap = "gps",
             },
         },
-    }
+    },
 }
 
 local config = {
