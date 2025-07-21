@@ -72,3 +72,7 @@ ls.filetype_extend("sh", { "shelldoc" })
 if vim.g.snippet_examples then
     require("snippet_examples")
 end
+
+vim.api.nvim_create_user_command("LuaSnipEdit", function()
+    require("luasnip.loaders").edit_snippet_files()
+end, {})
