@@ -37,24 +37,13 @@ local({
   )
 
   if (interactive()) {
-    auto.loads <- c("magrittr")
-
-    invisible(sapply(auto.loads, library, character.only = TRUE,
-                     warn.conflicts = FALSE, quietly = TRUE))
-
     if (Sys.getenv("TERM_PROGRAM") == "vscode") {
       # activate RStudio Addins on command pallete
       options(vsc.rstudioapi = TRUE)
 
       if ("httpgd" %in% .packages(all.available = TRUE)) {
-        # https://github.com/Ikuyadeu/vscode-R/wiki/R-Session-watcher
-        options(
-          vsc.plot = FALSE,
-          device = function(...) {
-            httpgd::hgd()
-            .vsc.browser(httpgd::hgd_url(), viewer = "Beside")
-          }
-        )
+        # https://github.com/R-nvim/R.nvim/wiki/Configuration#using-httpgd-as-the-default-graphics-device
+        options(device = httpgd::hgd)
 
         # How much of the object to show on hover and autocomplete detail?
         # As controlled by max.level arg of str().
@@ -93,5 +82,10 @@ local({
       rlang::global_entrace()
     }
     require(colorout)
+
+    # https://github.com/R-nvim/cmp-r?tab=readme-ov-file#languageserver
+    # Disable completion from the language server -> use cmp_r instead
+    options(languageserver.server_capabilities =
+        list(completionProvider = FALSE, completionItemResolve = FALSE))
     }
   })
