@@ -277,6 +277,7 @@ cmp.setup.filetype({ "tex", "plaintex" }, {
 })
 
 local markdown_sources = vim.deepcopy(tex_sources)
+table.insert(markdown_sources, { name = "otter", priority = 90 })
 -- Completions for both checkboxes and callouts
 table.insert(markdown_sources, { name = "render-markdown", group_index = 1, priority = 80 })
 table.insert(markdown_sources, {
@@ -295,7 +296,7 @@ local r_source = {
     keyword_length = 2,
 }
 table.insert(r_sources, 1, r_source)
-
+table.insert(r_sources, { name = "otter", priority = 90 })
 cmp.setup.filetype("r", {
     sources = r_sources,
 })
