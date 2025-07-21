@@ -28,7 +28,7 @@ return {
         "nvim-treesitter/nvim-treesitter-context",
         lazy = false,
         event = "BufReadPost",
-        cmd = { "TSContext", },
+        cmd = { "TSContext" },
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {
             enable = true,
@@ -73,6 +73,10 @@ return {
         opts = {
             highlight = true, -- Whether to briefly highlight the node after jumping to it
             highlight_duration = 250, -- How long should above highlight last (in ms)
+            -- Whether to create a visual selection after a movement to a node.
+            -- If true, highlight is disabled and a visual selection is made in
+            -- its place.
+            select = false,
         },
     },
     {

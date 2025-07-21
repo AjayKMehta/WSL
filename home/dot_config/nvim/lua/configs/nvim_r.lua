@@ -6,6 +6,9 @@ vim.g.markdown_fenced_languages = languages
 vim.g.rmd_fenced_languages = languages
 vim.g.R_non_r_compl = 0 -- use omni completion provided by another plugin
 
+vim.g.R_set_omnifunc = {}
+
+vim.g.R_assign = 0
 vim.g.R_rconsole_width = 0 -- Always split horizontally
 vim.g.R_auto_start = 1 -- Doesn't seem to work
 vim.g.R_assign_map = "<M-->"
