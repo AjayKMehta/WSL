@@ -9,7 +9,7 @@ return {
     -- Otter.nvim provides lsp features and a code completion source for code embedded in other documents!
     {
         "jmbuhr/otter.nvim",
-        ft = { "r", "rmd", "quarto" },
+        ft = { "r", "rmd", "markdown" },
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
@@ -19,7 +19,7 @@ return {
 
             -- https://github.com/olimorris/codecompanion.nvim/discussions/1284#discussioncomment-12949708
             vim.api.nvim_create_autocmd("FileType", {
-                pattern = { "r", "rmd", "quarto", "codecompanion" },
+                pattern = { "r", "rmd", "quarto", "codecompanion", "markdown" },
                 callback = function(args)
                     require("otter").activate()
                     local bufnr = args.buf
@@ -42,6 +42,16 @@ return {
                     vim.cmd("buffer " .. currentBuf)
                 end,
             })
+        end,
+    },
+    {
+        "quarto-dev/quarto-nvim",
+        dependencies = {
+            "jmbuhr/otter.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = function()
+            require("quarto").setup()
         end,
     },
 }
