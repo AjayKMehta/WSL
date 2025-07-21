@@ -167,6 +167,19 @@ return {
                     },
                 },
                 completions = { lsp = { enabled = true } },
+                code = {
+                    enabled = true,
+                    -- Determines how code blocks & inline code are rendered.
+                    -- | none     | disables all rendering                   |
+                    -- | normal   | background highlighting + padding        |
+                    -- | language | language heading with icon + sign column |
+                    -- | full     | normal + language                        |
+                    style = "full",
+                    -- Whether to conceal nodes at the top and bottom of code blocks.
+                    conceal_delimiters = true,
+                    -- Turn on / off any language heading related rendering.
+                    language = true,
+                },
                 -- https://github.com/olimorris/codecompanion.nvim/discussions/1638#discussioncomment-13532012
                 html = {
                     enabled = true,
