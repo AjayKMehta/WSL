@@ -236,9 +236,6 @@ return {
             },
             { "amarakon/nvim-cmp-buffer-lines" },
             { "ray-x/cmp-treesitter" },
-            -- TODO: Check if not needed.
-            -- https://github.com/jalvesaq/cmp-nvim-r
-            { "jalvesaq/cmp-nvim-r" },
             { "rcarriga/cmp-dap" },
         },
     },

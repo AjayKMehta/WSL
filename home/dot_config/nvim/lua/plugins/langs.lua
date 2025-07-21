@@ -3,11 +3,108 @@ local lsp = require("utils.lsp")
 
 return {
     {
-        "jalvesaq/Nvim-R",
+        "R-nvim/R.nvim",
+        -- Only required if you also set defaults.lazy = true
         lazy = false,
-        ft = { "r", "rmd", "quarto" },
-        cmd = { "RKill" },
-        config = load_config("nvim_r"),
+        opts = {
+            -- Create a table with the options to be passed to setup()
+            R_args = { "--quiet", "--no-save" },
+            objbr_auto_start = true,
+            objbr_allnames = false, -- Show hidden objects
+            objbr_mappings = {
+                c = "class",
+                g = "dplyr::glimpse",
+                l = "length",
+                n = "names",
+                s = "summary",
+                t = "table",
+            },
+            rmd_environment = "new.env()",
+            hook = {
+                -- This function will be called at the FileType event
+                -- of files supported by R.nvim.
+                on_filetype = function()
+                    local map_buf = require("utils.mappings").map_buf
+
+                    -- Necessary because `]m`, etc. used by treesitter to move to method start/end
+                    map_buf(0, "n", "<Enter>", "<Plug>RDSendLine", "R: Send Line")
+                    map_buf(0, "v", "<Enter>", "<Plug>RDSelection", "R: Send Selection")
+
+                    -- Close the last graphics window:
+                    map_buf(
+                        0,
+                        "n",
+                        "<LocalLeader>cw",
+                        "<Cmd>lua require('r.send').cmd('dev.off()')<CR>",
+                        "R: Close graphics window"
+                    )
+
+                    -- Send the current file name as argument to `file.info()`:
+                    map_buf(0, "n", "<LocalLeader>fi", function()
+                        require("r.send").cmd('file.info("' .. vim.api.nvim_buf_get_name(0) .. '")')
+                    end, "R: Get file info")
+
+                    -- TODO: Look into this
+                    -- if vim.bo.filetype == "rmd" or vim.bo.filetype == "quarto" then
+                    --     map_buf(0, "i", "`", "<Plug>RmdInsertChunk", "Insert chunk")
+                    -- end
+
+                    if vim.bo.filetype == "quarto" then
+                        map_buf(0, "n", "<LocalLeader>qr", "<Plug>RQuartoRender", "Quarto Render")
+                        map_buf(0, "n", "<LocalLeader>qp", "<Plug>RQuartoPreview", "Quarto Preview")
+                        map_buf(0, "n", "<LocalLeader>qs", "<Plug>RQuartoStop", "Quarto Stop")
+                    end
+
+                    local wk = require("which-key")
+                    wk.add({
+                        buffer = true,
+                        mode = { "n", "v" },
+                        { "<localleader>a", group = "all" },
+                        { "<localleader>b", group = "between marks" },
+                        { "<localleader>i", group = "install" },
+                        { "<localleader>k", group = "knit" },
+                        { "<localleader>k", group = "quarto" },
+                    })
+                end,
+            },
+            pdfviewer = "",
+        },
+        dependencies = {
+            {
+                "R-nvim/cmp-r",
+                dependencies = {
+                    "hrsh7th/nvim-cmp",
+                    config = function()
+                        require("cmp_r").setup({ filetypes = { "r", "rmd", "quarto" } })
+                    end,
+                },
+            },
+            "nvim-treesitter/nvim-treesitter",
+        },
+        keys = {
+            -- https://github.com/R-nvim/R.nvim/wiki/Configuration#using-params-in-r-markdown
+            {
+                "<LocalLeader>pr",
+                "<cmd>lua require('r.send').cmd('params <- lapply(knitr::knit_params(readLines(\"' .. vim.fn.expand(\"%:p\") .. '\")), function(x) x$value); class(params) <- \"knit_param_list\"')<CR>",
+                desc = "read params from the YAML header",
+            },
+            -- https://github.com/R-nvim/R.nvim/wiki/Configuration#using-httpgd-as-the-default-graphics-device
+            {
+                "<LocalLeader>gd",
+                "<cmd>lua require('r.send').cmd('tryCatch(httpgd::hgd_browse(),error=function(e) {httpgd::hgd();httpgd::hgd_browse()})')<CR>",
+                desc = "httpgd",
+            },
+        },
+        config = function(_, opts)
+            if vim.g.use_radian then
+                -- https://github.com/randy3k/radian/blob/master/README.md#nvim-r-support
+                vim.g.R_app = "radian"
+                vim.g.R_cmd = "R"
+                vim.g.R_hl_term = 0
+                vim.g.R_bracketed_paste = 1
+            end
+            require("r").setup(opts)
+        end,
     },
     {
         "seblyng/roslyn.nvim",

@@ -114,7 +114,6 @@ cmp.setup({
                         cmdline = ":",
                         path = "",
                         emoji = "✨",
-                        cmp_nvim_r = "R",
                         cmp_r = "R",
                     }
 
@@ -277,7 +276,6 @@ cmp.setup.filetype({ "tex", "plaintex" }, {
 })
 
 local markdown_sources = vim.deepcopy(tex_sources)
-table.insert(markdown_sources, { name = "otter", priority = 90 })
 -- Completions for both checkboxes and callouts
 table.insert(markdown_sources, { name = "render-markdown", group_index = 1, priority = 80 })
 table.insert(markdown_sources, {
@@ -291,7 +289,7 @@ cmp.setup.filetype({ "markdown", "rmd", "quarto", "codecompanion" }, {
 
 local r_sources = vim.deepcopy(default_sources)
 local r_source = {
-    name = "cmp_nvim_r",
+    name = "cmp_r",
     priority = 100,
     keyword_length = 2,
 }
