@@ -72,24 +72,25 @@ function custom_fname:update_status()
     return data
 end
 
+local rstt = {
+    { "-", "#aaaaaa" }, -- 1: ftplugin/* sourced, but nclientserver not started yet.
+    { "S", "#757755" }, -- 2: nclientserver started, but not ready yet.
+    { "S", "#117711" }, -- 3: nclientserver is ready.
+    { "S", "#ff8833" }, -- 4: nclientserver started the TCP server
+    { "S", "#3388ff" }, -- 5: TCP server is ready
+    { "R", "#ff8833" }, -- 6: R started, but nvimcom was not loaded yet.
+    { "R", "#3388ff" }, -- 7: nvimcom is loaded.
+}
+
 local rstatus = function()
-    if not vim.g.rplugin then
+    if not vim.g.R_Nvim_status or vim.g.R_Nvim_status == 0 then
         -- No R file type (R, Quarto, Rmd, Rhelp) opened yet
         return ""
     end
-    if vim.g.rplugin.jobs.R ~= 0 then
-        -- R was launched and nvimrserver started its TCP server
-        return "R"
-    end
-    if vim.g.rplugin.jobs.Server ~= 0 then
-        -- nvimrserver was started
-        return "S"
-    else
-        -- nvimrserver was not started yet
-        return "-"
-    end
+    return rstt[vim.g.R_Nvim_status][1]
 end
 
+-- https://github.com/R-nvim/R.nvim/wiki/Status-line
 local rsttcolor = function()
     if not vim.g.rplugin or not vim.g.rplugin.jobs then
         return { fg = "#000000" }
@@ -338,7 +339,46 @@ local config = {
                 end,
                 color = { fg = "#ff9e64" },
             },
-            { require("mcphub.extensions.lualine") },
+            {
+                function()
+                    -- Check if MCPHub is loaded
+                    if not vim.g.loaded_mcphub then
+                        return "󰐻 -"
+                    end
+
+                    local count = vim.g.mcphub_servers_count or 0
+                    local status = vim.g.mcphub_status or "stopped"
+                    local executing = vim.g.mcphub_executing
+
+                    -- Show "-" when stopped
+                    if status == "stopped" then
+                        return "󰐻 -"
+                    end
+
+                    -- Show spinner when executing, starting, or restarting
+                    if executing or status == "starting" or status == "restarting" then
+                        local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+                        local frame = math.floor(vim.loop.now() / 100) % #frames + 1
+                        return "󰐻 " .. frames[frame]
+                    end
+
+                    return "󰐻 " .. count
+                end,
+                color = function()
+                    if not vim.g.loaded_mcphub then
+                        return { fg = "#6c7086" } -- Gray for not loaded
+                    end
+
+                    local status = vim.g.mcphub_status or "stopped"
+                    if status == "ready" or status == "restarted" then
+                        return { fg = "#50fa7b" } -- Green for connected
+                    elseif status == "starting" or status == "restarting" then
+                        return { fg = "#ffb86c" } -- Orange for connecting
+                    else
+                        return { fg = "#ff5555" } -- Red for error/stopped
+                    end
+                end,
+            },
             {
                 "encoding",
                 show_bomb = true,
