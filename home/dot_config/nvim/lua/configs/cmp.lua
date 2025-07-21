@@ -105,12 +105,17 @@ cmp.setup({
                 -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
                 before = function(entry, vim_item)
                     local menu_icon = {
+                        latex_symbols = "",
+                        otter = "o",
                         treesitter = "🌲",
                         luasnip = "⋗",
-                        buffer = "Ω",
-                        path = "🖫",
+                        nvim_lsp = "",
+                        buffer = "",
+                        cmdline = ":",
+                        path = "",
                         emoji = "✨",
                         cmp_nvim_r = "R",
+                        cmp_r = "R",
                     }
 
                     local source = menu_icon[entry.source.name] or entry.source.name
