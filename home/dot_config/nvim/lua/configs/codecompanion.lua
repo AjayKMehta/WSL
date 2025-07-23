@@ -17,12 +17,30 @@ local adapters = {
         return ca.extend("ollama", {
             env = { url = ollama_url },
             headers = { ["Content-Type"] = "application/json" },
-            parameters = { sync = true },
             -- https://github.com/ollama/ollama/blob/main/docs/modelfile.md#parameter
             schema = {
-                model = { default = "qwen2.5-coder:14b" },
-                num_ctx = { default = 16384 },
-                num_predict = { default = -1 },
+                model = {
+                    default = "qwen3:8b",
+                    choices = {
+                        "qwen3:8b",
+                        "mistral:latest",
+                        "deepseek-r1:8b",
+                        "codellama:13b",
+                        "llama3.2:latest",
+                        "qwen2.5-coder:14b",
+                    },
+                },
+                num_ctx = {
+                    default = 20000,
+                },
+                think = {
+                    default = function(adapter)
+                        local model_name = adapter.model.name:lower()
+                        return vim.iter({ "qwen3:8b", "deepseek-r1:8b" }):any(function(kw)
+                            return string.find(model_name, kw) ~= nil
+                        end)
+                    end,
+                },
             },
         })
     end,
