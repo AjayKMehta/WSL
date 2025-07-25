@@ -183,18 +183,18 @@ map_desc("n", "[I", function()
     move.goto_previous_end("@conditional.outer")
 end, "Go to previous conditional end")
 
-map_desc("n", "]l", function()
+map_desc("n", "]{", function()
     move.goto_next_start("@loop.outer")
 end, "Go to next loop start")
 
-map_desc("n", "[l", function()
+map_desc("n", "[{", function()
     move.goto_previous_start("@loop.outer")
 end, "Go to previous loop start")
 
-map_desc("n", "]L", function()
+map_desc("n", "]}", function()
     move.goto_next_end("@loop.outer")
 end, "Go to next loop end")
 
-map_desc("n", "[L", function()
+map_desc("n", "[{", function()
     move.goto_previous_end("@loop.outer")
 end, "Go to previous loop end")
