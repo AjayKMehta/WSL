@@ -5,6 +5,13 @@ local ca = require("codecompanion.adapters")
 local ollama_url = "http://localhost:11434"
 
 local adapters = {
+    jina = function()
+        return ca.extend("jina", {
+            env = {
+                api_key = "JINA_API_KEY",
+            },
+        })
+    end,
     copilot = function()
         return ca.extend("copilot", {
             schema = {
@@ -17,6 +24,10 @@ local adapters = {
         return ca.extend("ollama", {
             env = { url = ollama_url },
             headers = { ["Content-Type"] = "application/json" },
+            opts = {
+                vision = true,
+                stream = true,
+            },
             -- https://github.com/ollama/ollama/blob/main/docs/modelfile.md#parameter
             schema = {
                 model = {
