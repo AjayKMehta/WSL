@@ -23,6 +23,9 @@ return {
                                 "threads",
                                 "repl",
                             },
+                            controls = {
+                                enabled = true,
+                            },
                         },
                         windows = {
                             terminal = {
