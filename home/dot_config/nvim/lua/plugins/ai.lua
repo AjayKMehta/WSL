@@ -11,6 +11,7 @@ return {
                 "ravitemer/codecompanion-history.nvim",
                 config = load_config("codecompanion_history"),
             },
+            "minusfive/codecompanion-agent-rules"
         },
         cmd = {
             "CodeCompanion",

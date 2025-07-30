@@ -278,6 +278,9 @@ local extensions = {
             },
         },
     },
+    agent_rules = {
+        enabled = true,
+    },
 }
 
 local config = {
