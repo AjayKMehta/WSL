@@ -433,7 +433,31 @@ return {
                 },
                 sources = {
                     files = { hidden = true },
-                    explorer = { hidden = true },
+                    explorer = {
+                        hidden = true,
+                        -- https://github.com/GustavEikaas/easy-dotnet.nvim?tab=readme-ov-file#integrating-with-snacks-explorer
+                        win = {
+                            list = {
+                                keys = {
+                                    ["A"] = "explorer_add_dotnet",
+                                },
+                            },
+                        },
+                        actions = {
+                            explorer_add_dotnet = function(picker)
+                                local dir = picker:dir()
+                                local tree = require("snacks.explorer.tree")
+                                local actions = require("snacks.explorer.actions")
+                                local easydotnet = require("easy-dotnet")
+
+                                easydotnet.create_new_item(dir, function(item_path)
+                                    tree:open(dir)
+                                    tree:refresh(dir)
+                                    actions.update(picker, { target = item_path })
+                                end)
+                            end,
+                        },
+                    },
                     keymaps = { layout = { preset = "vertical", fullscreen = true } },
                 },
                 actions = {
