@@ -440,6 +440,8 @@ return {
                     vim.api.nvim_buf_set_keymap(0, "n", "<C-enter>", "<localleader>o<localleader>c", {})
                 end,
             })
+
+            dofile(vim.g.base46_cache .. "grug_far")
         end,
         keys = {
             {

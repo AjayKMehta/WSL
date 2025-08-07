@@ -162,3 +162,5 @@ local flash_word = function()
 end
 
 map_desc("n", "<leader>fw", flash_word, "Flash current word")
+
+dofile(vim.g.base46_cache .. "flash")
