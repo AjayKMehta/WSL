@@ -60,10 +60,7 @@ vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#990000" })
 vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#3d59a1" })
 vim.api.nvim_set_hl(0, "DapStopped", { fg = "#9ece6a" })
 
-vim.fn.sign_define(
-    "DapBreakpoint",
-    { text = "🔴", texthl = "DapBreakpoint", linehl = "", numhl = "DapBreakpoint" }
-)
+vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "DapBreakpoint", linehl = "", numhl = "DapBreakpoint" })
 vim.fn.sign_define(
     "DapBreakpointCondition",
     { text = "🟠", texthl = "DapBreakpoint", linehl = "", numhl = "DapBreakpoint" }
@@ -72,10 +69,7 @@ vim.fn.sign_define(
     "DapLogPoint",
     { text = "✳️", texthl = "DapLogPoint", linehl = "DapLogPoint", numhl = "DapLogPoint" }
 )
-vim.fn.sign_define(
-    "DapStopped",
-    { text = "⭕", texthl = "", linehl = "DapStopped", numhl = "" }
-)
+vim.fn.sign_define("DapStopped", { text = "⭕", texthl = "", linehl = "DapStopped", numhl = "" })
 vim.fn.sign_define(
     "DapBreakpointRejected",
     { text = "🚫", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
@@ -293,7 +287,6 @@ dap.configurations.haskell = {
 }
 
 -- Lua
-
 
 -- PowerShell
 
