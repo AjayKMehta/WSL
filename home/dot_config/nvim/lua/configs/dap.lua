@@ -17,6 +17,7 @@ map_desc({ "n", "v" }, "<F9>", "<cmd>DapToggleBreakpoint<CR>", "DAP Toggle break
 map_desc("n", "<F8>", "<cmd>DapClearBreakpoints<CR>", "DAP Clear breakpoints")
 map_desc("n", "<F5>", "<cmd>DapContinue<CR>", "DAP Launch debugger")
 map_desc("n", "<F10>", "<cmd>DapStepOver<CR>", "DAP Step over")
+map_desc("n", "<Leader>dc", dap.run_to_cursor, "DAP Run To Cursor")
 map_desc("n", "<F11>", "<cmd>DapStepInto<CR>", "DAP Step into")
 map_desc("n", "<S-F11>", "<cmd>DapStepOut<CR>", "DAP Step out")
 map_desc("n", "<Leader>dr", "<cmd>DapToggleRepl<CR>", "DAP Toggle REPL")
@@ -26,6 +27,9 @@ end, "DAP Hover")
 map_desc({ "n", "v" }, "<Leader>dp", function()
     require("dap.ui.widgets").preview()
 end, "DAP Preview")
+
+map_desc("n", "<leader>dj", dap.down, "DAP Go down stack frame")
+map_desc("n", "<leader>dk", dap.up, "DAP Go up stack frame")
 
 map_desc({ "n", "v" }, "<leader>dtc", function()
     require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
