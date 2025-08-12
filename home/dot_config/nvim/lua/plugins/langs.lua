@@ -219,6 +219,9 @@ return {
         },
         config = function()
             local dotnet = require("easy-dotnet")
+            local function get_secret_path(secret_guid)
+                return vim.fn.expand("~") .. "/.microsoft/usersecrets/" .. secret_guid .. "/secrets.json"
+            end
 
             local config = {
                 -- Did this instead;
@@ -228,18 +231,30 @@ return {
                 test_runner = {
                     viewmode = "float",
                     enable_buffer_test_execution = true,
+                    mappings = {
+                        run_test_from_buffer = { lhs = "<localleader>r", desc = "run test from buffer" },
+                        filter_failed_tests = { lhs = "<localleader>fe", desc = "filter failed tests" },
+                        debug_test = { lhs = "<localleader>d", desc = "debug test" },
+                        go_to_file = { lhs = "g", desc = "go to file" },
+                        run_all = { lhs = "<localleader>R", desc = "run all tests" },
+                        run = { lhs = "<localleader>r", desc = "run test" },
+                        peek_stacktrace = { lhs = "<localleader>p", desc = "peek stacktrace of failed test" },
+                        expand = { lhs = "o", desc = "expand" },
+                        expand_node = { lhs = "E", desc = "expand node" },
+                        expand_all = { lhs = "-", desc = "expand all" },
+                        collapse_all = { lhs = "W", desc = "collapse all" },
+                        close = { lhs = "q", desc = "close testrunner" },
+                        refresh_testrunner = { lhs = "<C-r>", desc = "refresh testrunner" },
+                    },
                 },
                 csproj_mappings = true,
                 fsproj_mappings = false,
                 auto_bootstrap_namespace = {
-                    type = "block_scoped", -- TODO: Change
+                    type = "file_scoped",
                     enabled = true,
                 },
-                mappings = {
-                    run_test_from_buffer = { lhs = "<leader>ntr", desc = "run test from buffer" },
-                    debug_test = { lhs = "<leader>ntd", desc = "debug test" },
-                },
                 terminal = function(path, action, args)
+                    args = args or ""
                     local commands = {
                         run = function()
                             return string.format("dotnet run --project %s %s", path, args)
@@ -253,13 +268,26 @@ return {
                         build = function()
                             return string.format("dotnet build %s %s", path, args)
                         end,
+                        watch = function()
+                            return string.format("dotnet watch --project %s %s", path, args)
+                        end,
                     }
-
-                    local command = commands[action]() .. "\r"
-                    -- TODO: Make this window smaller.
-                    require("toggleterm").exec(command, nil, nil, nil, "horizontal")
+                    local command = commands[action]()
+                    if require("easy-dotnet.extensions").isWindows() == true then
+                        command = command .. "\r"
+                    end
+                    vim.cmd("vsplit")
+                    vim.cmd("term " .. command)
                 end,
+                secrets = {
+                    path = get_secret_path,
+                },
                 picker = "snacks",
+                debugger = {
+                    mappings = {
+                        open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
+                    },
+                },
             }
 
             dotnet.setup(config)
