@@ -112,6 +112,9 @@ local rsttcolor = function()
     return { fg = "#aaaaaa" }
 end
 
+-- https://github.com/GustavEikaas/easy-dotnet.nvim#lualine-config
+local job_indicator = { require("easy-dotnet.ui-modules.jobs").lualine }
+
 local config = {
     options = {
         ignore_focus = {
@@ -200,6 +203,7 @@ local config = {
                     end
                 end,
             },
+            { "mode", job_indicator },
         },
         lualine_b = {
             {
