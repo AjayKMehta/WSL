@@ -64,9 +64,54 @@ return {
         config = load_config("bufferline"),
     },
     {
-        -- Lets you change the color of the original devicons to any color you like.
-        "dgox16/devicon-colorscheme.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        "WilliamHsieh/overlook.nvim",
+        opts = {},
+
+        -- Optional: set up common keybindings
+        keys = {
+            {
+                "<leader>pd",
+                function()
+                    require("overlook.api").peek_definition()
+                end,
+                desc = "Overlook: Peek definition",
+            },
+            {
+                "<leader>pc",
+                function()
+                    require("overlook.api").close_all()
+                end,
+                desc = "Overlook: Close all popup",
+            },
+            {
+                "<leader>pf",
+                function()
+                    require("overlook.api").switch_focus()
+                end,
+                desc = "Overlook: Switch focus",
+            },
+            {
+                "<leader>pt",
+                function()
+                    require("overlook.api").open_in_tab()
+                end,
+                desc = "Overlook: Open popup in tab",
+            },
+            {
+                "<leader>pu",
+                function()
+                    require("overlook.api").restore_popup()
+                end,
+                desc = "Overlook: Restore popup",
+            },
+            {
+                "<leader>pU",
+                function()
+    require("overlook.api").restore_all_popups()
+                end,
+                desc = "Overlook: Restore all popups",
+            },
+        },
     },
     {
         "Bekaboo/dropbar.nvim",
