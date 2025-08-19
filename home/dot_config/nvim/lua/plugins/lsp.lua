@@ -14,12 +14,12 @@ return {
             "nvim-treesitter/nvim-treesitter",
         },
         opts = {},
-        setup = function(_, opts)
+        config = function(_, opts)
             require("otter").setup(opts)
 
             -- https://github.com/olimorris/codecompanion.nvim/discussions/1284#discussioncomment-12949708
             vim.api.nvim_create_autocmd("FileType", {
-                pattern = { "r", "rmd", "quarto", "codecompanion", "markdown" },
+                pattern = { "r", "rmd", "quarto", "codecompanion", "markdown", "toml" }, -- toml for mise
                 callback = function(args)
                     require("otter").activate()
                     local bufnr = args.buf
