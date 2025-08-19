@@ -111,7 +111,7 @@ end, { desc = "Format file or range (in visual mode)" })
 
 --#region Commands
 
-vim.api.nvim_create_user_command("FormatDisable", function(args)
+vim.api.nvim_create_user_command("AutoformatDisable", function(args)
     if args.bang then
         -- FormatDisable! will disable auto-formatting just for this buffer
         vim.b.disable_autoformat = true
@@ -124,7 +124,7 @@ end, {
 })
 
 -- Enable auto-format on save
-vim.api.nvim_create_user_command("FormatEnable", function()
+vim.api.nvim_create_user_command("AutoformatEnable", function()
     vim.b.disable_autoformat = false
     vim.g.disable_autoformat = false
 end, {
