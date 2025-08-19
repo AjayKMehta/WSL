@@ -13,8 +13,9 @@
         "**/.ghcup": true
     },
     "latex-utilities.countWord.docker.enabled": true,
+    "mise.binPath": "/home/ajay/.local/bin/mise",
     "stylua.searchBinaryInPATH": true,
     "stylua.searchParentDirectories": true,
+    "terminal.integrated.defaultProfile.linux": "bash",
     "typos.config": "${env:HOME}/typos.toml",
-    "terminal.integrated.defaultProfile.linux": "bash"
 }

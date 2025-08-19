@@ -76,6 +76,7 @@ return {
             return {
                 file_types = { "markdown", "quarto", "rmd", "org", "norg", "codecompanion" },
                 render_modes = { "n", "c", "t", "v", "V", "\22" },
+                restart_highlighter = true,
                 anti_conceal = {
                     -- This enables hiding any added text on the line the cursor is on
                     enabled = true,
