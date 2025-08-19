@@ -83,4 +83,10 @@ return {
     {
         "Koalhack/darcubox-nvim",
     },
+    {
+        "mitch1000/backpack",
+        config = function()
+            require("backpack").setup()
+        end,
+    },
 }
