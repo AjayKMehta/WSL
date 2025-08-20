@@ -25,6 +25,10 @@ conform.setup({
         },
         injected = {
             options = {
+                ignore_errors = true,
+                lang_to_ft = {
+                    bash = "sh",
+                },
                 -- Map of treesitter language to file extension
                 -- A temporary file name with this extension will be generated during formatting
                 -- because some formatters care about the filename.
@@ -66,9 +70,8 @@ conform.setup({
     -- If you specify more than one formatter, they will be executed in the order you list them.
     formatters_by_ft = {
         bash = { "shellcheck" },
-        -- dotnet format doesn't work on files or ranges 🙁
-        cs = { "dotnet format" },
         cabal = { "cabal_fmt" },
+        cs = { "dotnet format style" },
         haskell = { "fourmolu" },
         json = { "fixjson" },
         json5 = { "fixjson" },
@@ -84,6 +87,7 @@ conform.setup({
             "ruff_organize_imports",
         },
         query = { "format-queries" },
+        r = { "air" },
         sql = { "sql_formatter" },
         tex = { "tex-fmt" },
         toml = { "taplo" },
