@@ -182,7 +182,7 @@ return {
         config = function(_, opts)
             -- For NvChad-specified settings, see https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/configs/cmp.lua
             require("cmp").setup(opts)
-            require("configs.cmp")
+            load_config("cmp")
         end,
         dependencies = {
             -- hrsh7th/cmp-nvim-lua not needed bc of neodev
@@ -234,9 +234,7 @@ return {
                     })
                 end,
             },
-            { "amarakon/nvim-cmp-buffer-lines" },
             { "ray-x/cmp-treesitter" },
-            { "rcarriga/cmp-dap" },
         },
     },
     {
