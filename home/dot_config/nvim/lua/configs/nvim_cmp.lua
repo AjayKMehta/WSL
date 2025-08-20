@@ -264,23 +264,6 @@ cmp.setup.filetype("r", {
     sources = r_sources,
 })
 
--- https://github.com/gitaarik/nvim-cmp-toggle/blob/b3bbf76cf6412738b7c9e48e1419f7bb78e71f99/plugin/nvim_cmp_toggle.lua
-local function toggle_autocomplete()
-    local current_setting = cmp.get_config().completion.autocomplete
-    if current_setting and #current_setting > 0 then
-        cmp.setup({ completion = { autocomplete = false } })
-        vim.notify("Autocomplete disabled")
-    else
-        cmp.setup({ completion = { autocomplete = { cmp.TriggerEvent.TextChanged } } })
-        vim.notify("Autocomplete enabled")
-    end
-end
-
-vim.api.nvim_create_user_command("NvimCmpToggle", toggle_autocomplete, { desc = "Toggle nvim-cmp autocomplete." })
-
--- Set a keymap:
-vim.api.nvim_set_keymap("n", "<Leader>tc", "<cmd>NvimCmpToggle<CR>", { noremap = true, silent = true })
-
 -- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#add-parentheses-after-selecting-function-or-method-item
 -- If you want insert `(` after select function or method item
 if vim.g.use_autopairs then
