@@ -181,11 +181,6 @@ cmp.setup.cmdline({ "/", "?" }, {
             group_index = 1,
             priority = 60,
         },
-        {
-            name = "buffer-lines",
-            group_index = 2,
-            priority = 90,
-        },
     },
     view = {
         entries = { name = "custom", selection_order = "near_cursor" },
@@ -218,33 +213,11 @@ cmp.setup.cmdline(":", {
     },
 })
 
-cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = "dap" },
-    }),
-})
-
 cmp.setup.filetype({ "help", "minifiles", "TelescopePrompt" }, {
     enabled = false,
 })
 
 local tex_sources = vim.deepcopy(default_sources)
-local latex_source = {
-    name = "lua-latex-symbols",
-    group_index = 1,
-    priority = 100,
-    keyword_length = 2,
-}
-table.insert(tex_sources, 1, latex_source)
-
--- TODO: Do we need to list vimtex as source? Seems to work fine without it.
--- table.insert(tex_sources, 2, {
---     name = "vimtex",
---     group_index = 1,
---     priority = 95
--- })
-
 local other_latex_sources = {
     {
         name = "async_path",
@@ -256,14 +229,6 @@ local other_latex_sources = {
         group_index = 2,
         priority = 10,
         keyword_length = 4,
-        option = buffer_option,
-    },
-    {
-        name = "buffer-lines",
-        group_index = 2,
-        priority = 5,
-        keyword_length = 4,
-        max_item_count = 50,
         option = buffer_option,
     },
 }
