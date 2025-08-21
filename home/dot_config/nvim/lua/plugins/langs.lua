@@ -72,12 +72,10 @@ return {
         dependencies = {
             {
                 "R-nvim/cmp-r",
-                dependencies = {
-                    "hrsh7th/nvim-cmp",
-                    config = function()
-                        require("cmp_r").setup({ filetypes = { "r", "rmd", "quarto" } })
-                    end,
-                },
+                cond = not vim.g.use_blink,
+                config = function()
+                    require("cmp_r").setup({ filetypes = { "r", "rmd", "quarto" } })
+                end,
             },
             "nvim-treesitter/nvim-treesitter",
         },

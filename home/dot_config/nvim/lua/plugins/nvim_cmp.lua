@@ -3,6 +3,7 @@ local load_config = require("utils").load_config
 return {
     {
         "hrsh7th/nvim-cmp",
+        cond = not vim.g.use_blink,
         opts = {
             -- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#disabling-completion-in-certain-contexts-such-as-comments
             enabled = function()

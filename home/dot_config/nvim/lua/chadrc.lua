@@ -16,6 +16,7 @@ M.base46 = {
         "yoru",
     },
     integrations = {
+        "blink",
         "bufferline",
         "cmp", -- TODO: REMOVE
         "dap",

@@ -105,6 +105,8 @@ vim.g.lua_snippets_path = vim.fn.stdpath("config") .. "/lua/lua_snippets"
 
 vim.g.use_autopairs = true
 
+vim.g.use_blink = false
+
 -- https://github.com/jackMort/ChatGPT.nvim/pull/266#issuecomment-1675376909
 vim.env.OPENAI_API_HOST = "api.openai.com"
 

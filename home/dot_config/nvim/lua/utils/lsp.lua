@@ -104,6 +104,7 @@ end
 M.get_capabilities = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem = {
+        contextSupport = true,
         documentationFormat = { "markdown", "plaintext" },
         snippetSupport = true,
         preselectSupport = true,
@@ -128,18 +129,18 @@ M.get_capabilities = function()
 
     capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
+    -- TODO: Remove after switching to blink.
     local is_loaded = require("utils").is_loaded
 
-    local ok, cmp_nvim_lsp = is_loaded("cmp_nvim_lsp")
-    if ok then
+    loaded_cmp, cmp_nvim_lsp = is_loaded("cmp_nvim_lsp")
+    if loaded_cmp then
         -- https://github.com/hrsh7th/cmp-nvim-lsp/issues/38#issuecomment-1815265121
         capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
     end
 
-    ---@diagnostic disable-next-line: redefined-local
-    local ok, cmp_lsp_file_ops = is_loaded("lsp-file-operations")
-    if ok then
-        capabilities = vim.tbl_deep_extend("force", capabilities, cmp_lsp_file_ops.default_capabilities())
+    local loaded_blink, blink = is_loaded("blink.cmp")
+    if loaded_blink then
+        capabilities = blink.get_lsp_capabilities(capabilities)
     end
     return capabilities
 end

@@ -347,6 +347,7 @@ return {
             end, { desc = "Delete Surrounding Indentation" })
         end,
     },
+    -- TODO: Remove if not needed - check after blink is set up.
     {
         "windwp/nvim-autopairs",
         enabled = vim.g.use_autopairs,
@@ -363,10 +364,11 @@ return {
 
             npairs.setup(opts)
 
-            -- setup cmp for autopairs
-            local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-            require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
+            if not vim.g.use_blink then
+                -- setup cmp for autopairs
+                local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+                require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+            end
             local Rule = require("nvim-autopairs.rule")
             local cond = require("nvim-autopairs.conds")
 
