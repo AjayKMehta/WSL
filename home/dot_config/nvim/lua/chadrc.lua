@@ -17,7 +17,7 @@ M.base46 = {
     },
     integrations = {
         "bufferline",
-        "cmp",
+        "cmp", -- TODO: REMOVE
         "dap",
         "defaults",
         "devicons",

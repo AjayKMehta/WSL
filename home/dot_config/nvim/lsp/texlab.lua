@@ -20,7 +20,6 @@ return {
                 onOpenAndSave = true,
             },
             diagnosticsDelay = 300,
-            -- TODO: Figure this out
             diagnostics = {
                 ignoredPatterns = {
                     "Overfull",

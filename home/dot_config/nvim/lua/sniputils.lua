@@ -39,7 +39,7 @@ utils.part = function(func, ...)
     end
 end
 
--- TODO: Update this with TS support
+-- TODO: Update this with TreeSitter support
 function utils.get_comment(text)
     vim.validate({
         text = {
