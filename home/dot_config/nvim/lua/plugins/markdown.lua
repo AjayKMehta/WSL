@@ -73,7 +73,7 @@ return {
         opts = function()
             dofile(vim.g.base46_cache .. "render-markdown")
 
-            return {
+            local opts = {
                 file_types = { "markdown", "quarto", "rmd", "org", "norg", "codecompanion" },
                 render_modes = { "n", "c", "t", "v", "V", "\22" },
                 restart_highlighter = true,
@@ -198,6 +198,12 @@ return {
                     },
                 },
             }
+
+            if vim.g.use_blink then
+                opts.completions = { blink = { enabled = true } }
+            end
+
+            return opts
         end,
         cmd = { "RenderMarkdown" },
         keys = {
