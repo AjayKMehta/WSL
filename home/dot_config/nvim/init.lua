@@ -67,6 +67,10 @@ vim.g.use_zathura_simple = true
 -- if true, use radian instead of R console.
 vim.g.use_radian = true
 
+vim.g.use_autopairs = true
+
+vim.g.use_blink = true
+
 require("configs.lsp")
 
 -- load plugins
@@ -98,14 +102,8 @@ require("mappings")
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#jqls
 vim.cmd([[au BufRead,BufNewFile *.jq setfiletype jq]])
 
-vim.g.dap_virtual_text = true
-
 -- https://nvchad.com/docs/config/snippets
 vim.g.lua_snippets_path = vim.fn.stdpath("config") .. "/lua/lua_snippets"
-
-vim.g.use_autopairs = true
-
-vim.g.use_blink = false
 
 -- https://github.com/jackMort/ChatGPT.nvim/pull/266#issuecomment-1675376909
 vim.env.OPENAI_API_HOST = "api.openai.com"
