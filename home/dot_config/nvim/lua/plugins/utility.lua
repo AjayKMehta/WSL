@@ -56,7 +56,7 @@ return {
                     silent = true,
                 },
                 signature = {
-                    enabled = true,
+                    enabled = false,
                 },
             },
             -- you can enable a preset for easier configuration
