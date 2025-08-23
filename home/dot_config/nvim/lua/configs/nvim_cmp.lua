@@ -68,7 +68,12 @@ local default_sources = {
         priority = 700,
         keyword_length = 2,
         max_item_count = 100,
-        option = { show_autosnippets = true },
+        option = { show_autosnippets = true, },
+        -- https://www.reddit.com/r/neovim/comments/160vhde/comment/jxorpq9/
+        entry_filter = function()
+            local context = require("cmp.config.context")
+            return not context.in_treesitter_capture("string") and not context.in_syntax_group("String")
+        end,
     },
     { name = "easy-dotnet", group_index = 1 },
     {
