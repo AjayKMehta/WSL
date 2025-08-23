@@ -8,7 +8,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 
 -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#config-options
 local opts = {
-    updateevents = "TextChanged,TextChangedI",
+    update_events = "TextChanged,TextChangedI",
     delete_check_events = "TextChanged,CursorMoved",
     region_check_events = "CursorMoved,CursorHold,InsertEnter",
     enable_autosnippets = true,
@@ -48,6 +48,7 @@ local opts = {
         s = ls.snippet,
         sn = ls.snippet_node,
     },
+    history = true,
 }
 
 ls.setup(opts)

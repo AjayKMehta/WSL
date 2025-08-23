@@ -3,7 +3,7 @@ local M = {}
 local methods = vim.lsp.protocol.Methods
 
 local mappings = require("utils.mappings")
-local map_desc =mappings.map_desc
+local map_desc = mappings.map_desc
 
 local function toggle_codelens()
     local enabled = vim.g.lsp_codelens_enable
@@ -83,7 +83,6 @@ M.on_attach = function(client, bufnr)
         map_buf(bufnr, "n", "<leader>lh", vim.lsp.buf.signature_help, "Lsp Show signature help")
     end
 
-
     if client:supports_method(methods.textDocument_documentHighlight) then
         local under_cursor_highlights_group = vim.api.nvim_create_augroup("cursor_highlights", { clear = false })
         vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
@@ -121,11 +120,6 @@ M.get_capabilities = function()
             },
         },
     }
-    capabilities.textDocument.completion.completionItem.resolveSupport = {
-        properties = { "documentation", "detail", "additionalTextEdits" },
-    }
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.textDocument.semanticTokens.multilineTokenSupport = true
 
     capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
