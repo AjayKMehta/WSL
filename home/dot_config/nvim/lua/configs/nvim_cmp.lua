@@ -53,7 +53,7 @@ local default_sources = {
         name = "nvim_lsp",
         group_index = 1,
         priority = 1000,
-        keyword_length = 1, -- For C#, want to trigger when '_'
+        keyword_length = 2, -- For C#, want to trigger when '_'
         entry_filter = limit_lsp_types,
     },
     {
@@ -68,7 +68,7 @@ local default_sources = {
         priority = 700,
         keyword_length = 2,
         max_item_count = 100,
-        option = { show_autosnippets = true, },
+        option = { show_autosnippets = true },
         -- https://www.reddit.com/r/neovim/comments/160vhde/comment/jxorpq9/
         entry_filter = function()
             local context = require("cmp.config.context")
@@ -149,16 +149,16 @@ cmp.setup.filetype({ "gitcommit", "octo" }, {
     sources = cmp.config.sources({
         { name = "git" },
     }, {
-        { name = "fuzzy_buffer" },
+        { name = "fuzzy_buffer", keyword_length = 4 },
     }),
 })
 
 cmp.setup.filetype({ "gitrebase" }, {
     sources = cmp.config.sources({
         { name = "git", priority = 100 },
-        { name = "async_path", priority = 50 },
-        { name = "fuzzy_buffer", priority = 50 },
-        { name = "emoji", insert = true, priority = 20 },
+        { name = "async_path", priority = 50, keyword_length = 3 },
+        { name = "fuzzy_buffer", priority = 50, keyword_length = 4 },
+        { name = "emoji", insert = true, priority = 50 },
     }),
 })
 
@@ -173,6 +173,7 @@ cmp.setup.cmdline({ "/", "?" }, {
             name = "fuzzy_buffer",
             group_index = 1,
             priority = 60,
+            keyword_length = 4,
         },
     },
     view = {
@@ -202,6 +203,7 @@ cmp.setup.cmdline(":", {
             name = "fuzzy_buffer",
             group_index = 2,
             priority = 20,
+            keyword_length = 4,
         },
     },
 })
@@ -212,6 +214,7 @@ cmp.setup.filetype({ "help", "minifiles", "TelescopePrompt" }, {
 
 local tex_sources = vim.deepcopy(default_sources)
 local other_latex_sources = {
+    { name = "lua-latex-symbols", priority = 100, keyword_length = 2 },
     {
         name = "async_path",
         group_index = 2,
