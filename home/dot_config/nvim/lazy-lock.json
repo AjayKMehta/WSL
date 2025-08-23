@@ -25,7 +25,6 @@
   "cmp-nvim-lsp": { "branch": "main", "commit": "bd5a7d6db125d4654b50eeae9f5217f24bb22fd3" },
   "cmp-nvim-lua": { "branch": "main", "commit": "f12408bdb54c39c23e67cab726264c10db33ada8" },
   "cmp-r": { "branch": "main", "commit": "602f399c4efde01147cadfebcc884b7aa154f8b7" },
-  "cmp-treesitter": { "branch": "master", "commit": "958fcfa0d8ce46d215e19cc3992c542f576c4123" },
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
   "code_runner.nvim": { "branch": "main", "commit": "65c8d11f507073b915f10faa88ea05bd4fbf69ce" },
   "codecompanion-agent-rules": { "branch": "main", "commit": "f3935899ac3ba9ed1d4cd2312e386015dec312d5" },

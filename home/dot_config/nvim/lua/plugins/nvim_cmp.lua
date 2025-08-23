@@ -235,7 +235,6 @@ return {
                     })
                 end,
             },
-            { "ray-x/cmp-treesitter" },
         },
     },
     {
