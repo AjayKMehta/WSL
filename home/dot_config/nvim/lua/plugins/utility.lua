@@ -840,9 +840,15 @@ return {
     },
     {
         "fei6409/log-highlight.nvim",
-        config = function()
-            require("log-highlight").setup({})
-        end,
+        opts = {
+            keyword = {
+                error = "ERROR_MSG",
+                warning = { "WARN_X", "WARN_Y" },
+                info = { "INFORMATION" },
+                debug = {},
+                pass = {},
+            },
+        },
     },
     {
         "stevearc/quicker.nvim",
