@@ -26,7 +26,6 @@ return {
                     hl_group = "Comment",
                 },
             },
-            -- https://github.com/Aumnescio/dotfiles/blob/758be23d2f064a480915d1fc8339a6c0d2a71b77/nvim/lua/plugins/autocompletion.lua
             performance = {
                 debounce = 25,
                 throttle = 50,

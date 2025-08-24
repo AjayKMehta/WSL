@@ -1,46 +1,11 @@
+local c = require("utils.nvim_cmp")
+local get_buffers_by_size = require("utils").get_buffers_by_size
 -- Use buffer source for `/` and '?'
 local cmp = require("cmp")
-local lspkind = require("lspkind")
-
-local function limit_lsp_types(entry, ctx)
-    local kind = entry:get_kind()
-
-    local has_dot = {
-        cs = true,
-        lua = true,
-        java = true,
-        python = true,
-    }
-    if has_dot[vim.bo.filetype] then
-        local line = ctx.cursor.line
-        local col = ctx.cursor.col
-        local char_before_cursor = string.sub(line, col - 1, col - 1)
-        local char_after_dot = string.sub(line, col, col)
-        local types = require("cmp.types")
-
-        if char_before_cursor == "." and char_after_dot:match("[a-zA-Z]") then
-            return kind == types.lsp.CompletionItemKind.Method
-                or kind == types.lsp.CompletionItemKind.Field
-                or kind == types.lsp.CompletionItemKind.Property
-        elseif string.match(line, "^%s+%w+$") then
-            return kind == types.lsp.CompletionItemKind.Function or kind == types.lsp.CompletionItemKind.Variable
-        end
-    end
-    return kind ~= cmp.lsp.CompletionItemKind.Text
-end
 
 -- Only select visible buffers of 1 MB or less size
 local buffer_option = {
-    get_bufnrs = function()
-        local buf_size_limit = 1024 * 1024
-        local bufs = {}
-        for _, win in ipairs(vim.api.nvim_list_wins()) do
-            local buf = vim.api.nvim_win_get_buf(win)
-            local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
-            bufs[buf] = (byte_size <= buf_size_limit)
-        end
-        return vim.tbl_keys(bufs)
-    end,
+    get_bufnrs = get_buffers_by_size,
 }
 
 dofile(vim.g.base46_cache .. "cmp")
@@ -54,7 +19,7 @@ local default_sources = {
         group_index = 1,
         priority = 1000,
         keyword_length = 2, -- For C#, want to trigger when '_'
-        entry_filter = limit_lsp_types,
+        entry_filter = c.limit_lsp_types,
     },
     {
         name = "luasnip_choice",
@@ -70,10 +35,7 @@ local default_sources = {
         max_item_count = 100,
         option = { show_autosnippets = true },
         -- https://www.reddit.com/r/neovim/comments/160vhde/comment/jxorpq9/
-        entry_filter = function()
-            local context = require("cmp.config.context")
-            return not context.in_treesitter_capture("string") and not context.in_syntax_group("String")
-        end,
+        entry_filter = c.not_in_string,
     },
     { name = "easy-dotnet", group_index = 1 },
 }
@@ -82,60 +44,7 @@ local default_sources = {
 -- https://github.com/hrsh7th/nvim-cmp/discussions/881
 cmp.setup({
     sources = default_sources,
-    formatting = {
-        -- https://github.com/brenoprata10/nvim-highlight-colors#lspkind-integration
-        format = function(entry, item)
-            local color_item = require("nvim-highlight-colors").format(entry, { kind = item.kind })
-            local dups = { fuzzy_buffer = 1, async_path = 1, nvim_lsp = 0, luasnip = 1}
-            item = lspkind.cmp_format({
-                mode = "text_symbol",
-                maxwidth = {
-                    -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-                    -- can also be a function to dynamically calculate max width such as
-                    -- menu = function() return math.floor(0.45 * vim.o.columns) end,
-                    menu = 50, -- leading text (labelDetails)
-                    abbr = 50, -- actual suggestion item
-                },
-                ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-                show_labelDetails = false, -- show labelDetails in menu. Disabled by default
-                preset = "default", --codicons",
-
-                -- The function below will be called before any actual modifications from lspkind
-                -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-                before = function(entry, vim_item)
-                    local menu_icon = {
-                        latex_symbols = "",
-                        otter = "o",
-                        luasnip = "⋗",
-                        nvim_lsp = "",
-                        buffer = "",
-                        cmdline = ":",
-                        path = "",
-                        emoji = "✨",
-                        cmp_r = "R",
-                    }
-
-                    local source = menu_icon[entry.source.name] or entry.source.name
-                    if entry.source.name == "nvim_lsp" then
-                        local client = entry.source.source.client
-                        if client then
-                            source = string.format("λ [%s]", client.name)
-                        else
-                            source = "λ"
-                        end
-                    end
-                    vim_item.menu = source
-                    vim_item.dup = dups[entry.source.name] or 0
-                    return vim_item
-                end,
-            })(entry, item)
-            if color_item.abbr_hl_group then
-                item.kind_hl_group = color_item.abbr_hl_group
-                item.kind = color_item.abbr
-            end
-            return item
-        end,
-    },
+    formatting = { format = c.format },
 })
 
 local lua_sources = vim.deepcopy(default_sources)
@@ -227,6 +136,7 @@ local other_latex_sources = {
         option = buffer_option,
     },
 }
+
 for _, value in ipairs(other_latex_sources) do
     table.insert(tex_sources, value)
 end

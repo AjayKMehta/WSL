@@ -38,6 +38,17 @@ M.is_image = function(filepath)
     return vim.tbl_contains(image_extensions, extension)
 end
 
+M.filter_buffers_by_size = function()
+        local buf_size_limit = 1024 * 1024
+        local bufs = {}
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+            bufs[buf] = (byte_size <= buf_size_limit)
+        end
+        return vim.tbl_keys(bufs)
+    end
+
 M.has_filename = function()
     return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
 end
