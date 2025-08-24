@@ -131,8 +131,8 @@ local other_latex_sources = {
     {
         name = "fuzzy_buffer",
         group_index = 2,
-        priority = 10,
-        keyword_length = 4,
+        priority = 40,
+        keyword_length = 5,
         option = buffer_option,
     },
 }
