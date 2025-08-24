@@ -1,4 +1,4 @@
-# Dot files for WSL 
+# Dot files for WSL
 
 ## Neovim
 
