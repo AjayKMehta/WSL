@@ -202,16 +202,6 @@ return {
                 config = load_config("luasnip"),
             },
             {
-                -- Completion for LaTeX symbols
-                "amarakon/nvim-cmp-lua-latex-symbols",
-                event = "InsertEnter",
-                opts = { cache = true },
-                -- Necessary to avoid runtime errors
-                config = function(_, opts)
-                    require("cmp").setup(opts)
-                end,
-            },
-            {
                 -- Completion for fs paths (async)
                 "FelipeLema/cmp-async-path",
                 url = "https://codeberg.org/FelipeLema/cmp-async-path",

@@ -87,7 +87,6 @@
   "nvim-autopairs": { "branch": "master", "commit": "23320e75953ac82e559c610bec5a90d9c6dfa743" },
   "nvim-bqf": { "branch": "main", "commit": "17680cda3538913e88dd4c6456c837db9ace40ae" },
   "nvim-cmp": { "branch": "main", "commit": "b5311ab3ed9c846b585c0c15b7559be131ec4be9" },
-  "nvim-cmp-lua-latex-symbols": { "branch": "master", "commit": "89345d6e333c700d13748e8a7ee6fe57279b7f88" },
   "nvim-dap": { "branch": "master", "commit": "f777d1d20ed50c2f312e286892c062d9c2f1c6fe" },
   "nvim-dap-python": { "branch": "master", "commit": "bd771691da93846b0fc7e095512146a150218bfd" },
   "nvim-dap-view": { "branch": "main", "commit": "e7dd190b7ef9c620e251d537b6404026d1d7d978" },

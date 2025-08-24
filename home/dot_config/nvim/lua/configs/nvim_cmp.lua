@@ -214,7 +214,6 @@ cmp.setup.filetype({ "help", "minifiles", "TelescopePrompt" }, {
 
 local tex_sources = vim.deepcopy(default_sources)
 local other_latex_sources = {
-    { name = "lua-latex-symbols", priority = 100, keyword_length = 2 },
     {
         name = "async_path",
         group_index = 2,
