@@ -81,35 +81,30 @@ cmp.setup(opts)
 cmp.setup.filetype("lua", { sources = src.lua })
 
 cmp.setup.filetype({ "gitcommit", "octo" }, {
-    sources = cmp.config.sources({
-        { name = "git" },
-    }, {
-        { name = "fuzzy_buffer", keyword_length = 4 },
-    }),
+    sources = cmp.config.sources(
+        {
+            { name = "git" },
+        },
+        -- This has group_index = 2
+        {
+            { name = "fuzzy_buffer", keyword_length = 4 },
+        }
+    ),
 })
 
 cmp.setup.filetype({ "gitrebase" }, {
-    sources = cmp.config.sources({
-        { name = "git", priority = 100 },
-        { name = "async_path", priority = 50, keyword_length = 3 },
-        { name = "fuzzy_buffer", priority = 50, keyword_length = 4 },
-    }),
+    sources = src.gitrebase,
 })
 
+-- TODO: Figure out why not working :(
 cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
     enabled = true,
     completion = {
+        autocomplete = true,
         keyword_length = 2,
     },
-    sources = {
-        {
-            name = "fuzzy_buffer",
-            group_index = 1,
-            priority = 60,
-            keyword_length = 4,
-        },
-    },
+    sources = src.search,
     view = {
         entries = { name = "custom", selection_order = "near_cursor" },
     },
@@ -122,60 +117,44 @@ cmp.setup.cmdline(":", {
         keyword_length = 2, -- Otherwise, can't use :q!
     },
     enabled = true,
-    sources = {
-        {
-            name = "cmdline",
-            group_index = 1,
-            priority = 100,
-        },
-        {
-            name = "async_path",
-            group_index = 1,
-            priority = 80,
-        },
-        {
-            name = "fuzzy_buffer",
-            group_index = 2,
-            priority = 20,
-            keyword_length = 4,
-        },
-    },
+    sources = src.cmdline,
 })
 
-cmp.setup.filetype({ "help", "minifiles", "TelescopePrompt" }, {
-    enabled = false,
-})
-
-local tex_sources = vim.deepcopy(default_sources)
-local other_latex_sources = {
+cmp.setup.filetype(
     {
-        name = "async_path",
-        group_index = 2,
-        priority = 50,
+        "help",
+        "minifiles",
+        "TelescopePrompt",
+        "checkhealth",
+        "cmp_menu",
+        "crunner",
+        "dap-view-help",
+        "dropbar_menu",
+        "flash_prompt",
+        "FTerm",
+        "grug-far",
+        "man",
+        "netrw",
+        "no-profile",
+        "noice",
+        "notify",
+        "nvcheatsheet",
+        "Outline",
+        "startify",
+        "startuptime",
+        "trouble",
     },
     {
-        name = "fuzzy_buffer",
-        group_index = 2,
-        priority = 40,
-        keyword_length = 5,
-        -- Only select visible buffers of 1 MB or less size
-        option = { get_bufnrs = get_buffers_by_size },
-    },
-}
-
-for _, value in ipairs(other_latex_sources) do
-    table.insert(tex_sources, value)
-end
+        enabled = false,
+    }
+)
 
 cmp.setup.filetype({ "tex", "plaintex" }, {
-    sources = tex_sources,
+    sources = src.tex,
 })
 
-local markdown_sources = vim.deepcopy(tex_sources)
--- Completions for both checkboxes and callouts
-table.insert(markdown_sources, { name = "render-markdown", group_index = 1, priority = 80 })
 cmp.setup.filetype({ "markdown", "rmd", "quarto", "codecompanion" }, {
-    sources = markdown_sources,
+    sources = src.markdown,
 })
 
 local r_sources = vim.deepcopy(default_sources)
