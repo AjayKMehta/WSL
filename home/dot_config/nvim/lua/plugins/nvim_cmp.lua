@@ -49,6 +49,7 @@ return {
             completion = {
                 completeopt = "menu,menuone,noinsert,noselect",
                 keyword_length = 2,
+                autocomplete = false,
             },
             mapping = {
                 -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#safely-select-entries-with-cr
@@ -119,7 +120,7 @@ return {
                     c = function()
                         local cmp = require("cmp")
                         if cmp.visible() then
-                           cmp.mapping.close()
+                            cmp.mapping.close()
                         end
                     end,
                 }),
@@ -198,16 +199,19 @@ return {
                 -- Completion for fs paths (async)
                 "FelipeLema/cmp-async-path",
                 url = "https://codeberg.org/FelipeLema/cmp-async-path",
+                cond = not vim.g.use_blink,
             },
             {
                 -- Fuzzy buffer completion
                 "tzachar/cmp-fuzzy-buffer",
                 dependencies = { "tzachar/fuzzy.nvim" },
+                cond = not vim.g.use_blink,
             },
             {
                 -- nvim-cmp source for cmdline
                 "hrsh7th/cmp-cmdline",
                 lazy = false,
+                cond = not vim.g.use_blink,
             },
             {
                 -- Luasnip choice node completion source for nvim-cmp
@@ -224,6 +228,7 @@ return {
         -- Completion plugin for git
         "petertriho/cmp-git",
         dependencies = { "hrsh7th/nvim-cmp", "nvim-lua/plenary.nvim" },
+        cond = not vim.g.use_blink,
         config = load_config("cmp_git"),
         init = function()
             table.insert(require("cmp").get_config().sources, { name = "git" })
@@ -231,16 +236,11 @@ return {
     },
     {
         "allaman/emoji.nvim",
-        event = "InsertEnter",
         cmd = "Emoji",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            "hrsh7th/nvim-cmp",
             "folke/snacks.nvim",
-        },
-        opts = {
-            -- default is false
-            enable_cmp_integration = true,
+            "nvim-telescope/telescope.nvim",
         },
     },
 }

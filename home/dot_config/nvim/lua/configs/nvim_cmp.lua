@@ -67,7 +67,6 @@ cmp.setup.filetype({ "gitrebase" }, {
         { name = "git", priority = 100 },
         { name = "async_path", priority = 50, keyword_length = 3 },
         { name = "fuzzy_buffer", priority = 50, keyword_length = 4 },
-        { name = "emoji", insert = true, priority = 50 },
     }),
 })
 
@@ -148,11 +147,6 @@ cmp.setup.filetype({ "tex", "plaintex" }, {
 local markdown_sources = vim.deepcopy(tex_sources)
 -- Completions for both checkboxes and callouts
 table.insert(markdown_sources, { name = "render-markdown", group_index = 1, priority = 80 })
-table.insert(markdown_sources, {
-    name = "emoji",
-    group_index = 1,
-    priority = 100,
-})
 cmp.setup.filetype({ "markdown", "rmd", "quarto", "codecompanion" }, {
     sources = markdown_sources,
 })
