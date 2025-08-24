@@ -54,14 +54,14 @@ local opts = {
     mapping = require("nvim_cmp.mappings"),
     sorting = {
         comparators = {
-            require("cmp").config.compare.offset,
-            require("cmp").config.compare.exact,
-            require("cmp").config.compare.score,
-            require("cmp").config.compare.receently_used,
-            require("cmp").config.compare.kind,
-            require("cmp").config.compare.sort_text,
-            require("cmp").config.compare.length,
-            require("cmp").config.compare.order,
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.receently_used,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
         },
     },
     -- https://github.com/hrsh7th/nvim-cmp/commit/7aa3f71932c419d716290e132cacbafbaf5bea1c
