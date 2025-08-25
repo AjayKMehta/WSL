@@ -56,7 +56,7 @@ return {
                     silent = true,
                 },
                 signature = {
-                    enabled = false,
+                    enabled = not vim.g.use_blink,
                 },
             },
             -- you can enable a preset for easier configuration
