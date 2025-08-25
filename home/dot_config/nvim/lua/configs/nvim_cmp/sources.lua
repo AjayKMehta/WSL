@@ -102,6 +102,20 @@ local markdown_sources = vim.deepcopy(tex_sources)
 table.insert(markdown_sources, { name = "render-markdown", group_index = 1, priority = 80 })
 M.markdown = markdown_sources
 
+-- r
+local r_sources = vim.deepcopy(default_sources)
+local r_source = {
+    name = "cmp_r",
+    priority = 100,
+    keyword_length = 2,
+}
+table.insert(r_sources, 1, r_source)
+M.r = r_sources
+
+-- rmd/quarto
+local quarto_sources = vim.deepcopy(markdown_sources)
+table.insert(r_sources, 2, r_source)
+
 cmp.register_source("easy-dotnet", require("easy-dotnet").package_completion_source)
 
 return M

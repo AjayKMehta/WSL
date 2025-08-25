@@ -120,53 +120,42 @@ cmp.setup.cmdline(":", {
     sources = src.cmdline,
 })
 
-cmp.setup.filetype(
-    {
-        "help",
-        "minifiles",
-        "TelescopePrompt",
-        "checkhealth",
-        "cmp_menu",
-        "crunner",
-        "dap-view-help",
-        "dropbar_menu",
-        "flash_prompt",
-        "FTerm",
-        "grug-far",
-        "man",
-        "netrw",
-        "no-profile",
-        "noice",
-        "notify",
-        "nvcheatsheet",
-        "Outline",
-        "startify",
-        "startuptime",
-        "trouble",
-    },
-    {
-        enabled = false,
-    }
-)
+cmp.setup.filetype({
+    "help",
+    "minifiles",
+    "TelescopePrompt",
+    "checkhealth",
+    "cmp_menu",
+    "crunner",
+    "dap-view-help",
+    "dropbar_menu",
+    "flash_prompt",
+    "FTerm",
+    "grug-far",
+    "man",
+    "netrw",
+    "no-profile",
+    "noice",
+    "notify",
+    "nvcheatsheet",
+    "Outline",
+    "startify",
+    "startuptime",
+    "trouble",
+}, {
+    enabled = false,
+})
 
 cmp.setup.filetype({ "tex", "plaintex" }, {
     sources = src.tex,
 })
 
-cmp.setup.filetype({ "markdown", "rmd", "quarto", "codecompanion" }, {
+cmp.setup.filetype({ "markdown", "codecompanion" }, {
     sources = src.markdown,
 })
 
-local r_sources = vim.deepcopy(default_sources)
-local r_source = {
-    name = "cmp_r",
-    priority = 100,
-    keyword_length = 2,
-}
-table.insert(r_sources, 1, r_source)
-table.insert(r_sources, { name = "otter", priority = 90 })
-cmp.setup.filetype("r", {
-    sources = r_sources,
+cmp.setup.filetype({ "r", "rmd", "quarto" }, {
+    sources = src.r,
 })
 
 -- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#add-parentheses-after-selecting-function-or-method-item
