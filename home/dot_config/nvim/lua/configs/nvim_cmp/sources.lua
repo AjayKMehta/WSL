@@ -22,7 +22,7 @@ local default_sources = {
         name = "nvim_lsp",
         group_index = 1,
         priority = 100,
-        keyword_length = 2, -- For C#, want to trigger when '_'
+        keyword_length = 2,
         entry_filter = c.limit_lsp_types,
     },
     {
@@ -50,7 +50,7 @@ local lua_sources = vim.deepcopy(default_sources)
 local lazydev_source = {
     name = "lazydev",
     group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-    priority = 100
+    priority = 100,
 }
 table.insert(lua_sources, 1, lazydev_source)
 M.lua = lua_sources
@@ -115,7 +115,15 @@ M.r = r_sources
 -- rmd/quarto
 local quarto_sources = vim.deepcopy(markdown_sources)
 table.insert(r_sources, 2, r_source)
+M.quarto = quarto_sources
 
+--dotnet
 cmp.register_source("easy-dotnet", require("easy-dotnet").package_completion_source)
+
+local dotnet_sources = vim.deepcopy(default_sources)
+-- For C#, want to trigger when '_'
+dotnet_sources[1].keyword_length = 1
+table.insert(dotnet_sources, 2, { name = "easy-dotnet", group_index = 1, priority = 95 })
+M.dotnet = dotnet_sources
 
 return M

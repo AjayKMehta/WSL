@@ -1,5 +1,4 @@
 local c = require("utils.nvim_cmp")
-local get_buffers_by_size = require("utils").get_buffers_by_size
 local cmp = require("cmp")
 local src = require("nvim_cmp.sources")
 dofile(vim.g.base46_cache .. "cmp")
@@ -156,6 +155,14 @@ cmp.setup.filetype({ "markdown", "codecompanion" }, {
 
 cmp.setup.filetype({ "r", "rmd", "quarto" }, {
     sources = src.r,
+})
+
+cmp.setup.filetype({ "rmd", "quarto" }, {
+    sources = src.quarto,
+})
+
+cmp.setup.filetype({ "cs", "csproj", "sln", "slnx", "props" }, {
+    sources = src.dotnet,
 })
 
 -- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#add-parentheses-after-selecting-function-or-method-item

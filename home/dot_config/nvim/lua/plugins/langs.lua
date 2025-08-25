@@ -70,13 +70,7 @@ return {
             pdfviewer = "",
         },
         dependencies = {
-            {
-                "R-nvim/cmp-r",
-                cond = not vim.g.use_blink,
-                config = function()
-                    require("cmp_r").setup({ filetypes = { "r", "rmd", "quarto" } })
-                end,
-            },
+            "R-nvim/cmp-r",
             "nvim-treesitter/nvim-treesitter",
         },
         keys = {
@@ -106,7 +100,7 @@ return {
     },
     {
         "seblyng/roslyn.nvim",
-        ft = { "cs", "vb", "csproj", "sln", "slnx", "props" },
+        ft = { "cs", "csproj", "sln", "slnx", "props" },
         opts = {
 
             -- TODO: Investigate setting this to "roslyn"

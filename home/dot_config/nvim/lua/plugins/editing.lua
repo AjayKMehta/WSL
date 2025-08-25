@@ -462,4 +462,13 @@ return {
             },
         },
     },
+    {
+        "allaman/emoji.nvim",
+        cmd = "Emoji",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "folke/snacks.nvim",
+            "nvim-telescope/telescope.nvim",
+        },
+    },
 }
