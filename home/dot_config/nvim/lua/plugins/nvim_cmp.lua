@@ -40,6 +40,12 @@ return {
             },
             {
                 -- nvim-cmp source for cmdline
+                "hrsh7th/cmp-nvim-lsp",
+                lazy = false,
+                cond = not vim.g.use_blink,
+            },
+            {
+                -- nvim-cmp source for cmdline
                 "hrsh7th/cmp-cmdline",
                 lazy = false,
                 cond = not vim.g.use_blink,
