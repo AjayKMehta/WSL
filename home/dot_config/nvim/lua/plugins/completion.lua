@@ -49,6 +49,7 @@ return {
             },
         },
     },
+    { "chrisgrieser/cmp-nerdfont" },
     {
         -- Completion plugin for git
         "petertriho/cmp-git",
@@ -192,6 +193,7 @@ return {
                     r = { inherit_defaults = true, "cmp_r" },
                     rmarkdown = { inherit_defaults = true, "cmp_r" },
                     quarto = { inherit_defaults = true, "cmp_r" },
+                    markdown = { inherit_defaults = true, "nerdfont" },
                 },
                 providers = {
                     path = {
@@ -251,6 +253,10 @@ return {
                                 return item.kind ~= require("blink.cmp.types").CompletionItemKind.Keyword
                             end, items)
                         end,
+                    },
+                    nerdfont = {
+                        name = "nerdfont",
+                        module = "blink.compat.source",
                     },
                 },
             },

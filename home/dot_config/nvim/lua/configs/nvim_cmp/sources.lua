@@ -100,6 +100,8 @@ M.tex = tex_sources
 local markdown_sources = vim.deepcopy(tex_sources)
 -- Completions for both checkboxes and callouts
 table.insert(markdown_sources, { name = "render-markdown", group_index = 1, priority = 80 })
+table.insert(markdown_sources, { name = "nerdfont", group_index = 1, priority = 60 })
+
 M.markdown = markdown_sources
 
 -- r
