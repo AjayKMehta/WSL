@@ -18,7 +18,7 @@ M.base46 = {
     integrations = {
         "blink",
         "bufferline",
-        "cmp", -- TODO: REMOVE
+        "cmp",
         "dap",
         "defaults",
         "devicons",

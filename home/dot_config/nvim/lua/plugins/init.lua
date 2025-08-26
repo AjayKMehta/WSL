@@ -81,6 +81,8 @@ return {
                 show_on_dirs = true,
                 show_on_open_dirs = true,
                 debounce_delay = 50,
+                -- if true, use severity and icons from vim.diagnostic.Opts
+                diagnostic_opts = false,
                 severity = {
                     min = vim.diagnostic.severity.HINT,
                     max = vim.diagnostic.severity.ERROR,
