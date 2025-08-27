@@ -132,10 +132,6 @@ M.get_capabilities = function()
         capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
     end
 
-    local loaded_blink, blink = is_loaded("blink.cmp")
-    if loaded_blink then
-        capabilities = blink.get_lsp_capabilities(capabilities)
-    end
     return capabilities
 end
 
