@@ -47,13 +47,12 @@ local function cmd_yank()
     vim.notify("Command line text yanked\n")
 end
 
-map_desc("c", "<C-y>", cmd_yank, "Yank command line text" )
+map_desc("c", "<C-y>", cmd_yank, "Yank command line text")
 
 -- Courtesy of https://www.reddit.com/r/neovim/comments/1ixsk40/comment/mep7kp1/
 map_desc("n", "gV", "`[v`]", "Select the previous yanked area")
 
 map_desc("t", "<Esc>", "<C-\\><C-n>", "Exit terminal mode")
-
 
 -- NVChad maps this to <leader>b
 -- Use Tab and Shift+Tab to navigate between buffers
@@ -284,7 +283,6 @@ if not vim.g.nvim_comment then
         end
     end
 
-    map_desc("n", "<Leader>cc", "<cmd>set operatorfunc=v:lua.__toggle_contextual<CR>g@", "Toggle comment")
-    map_desc("x", "<Leader>cc", "<cmd>set operatorfunc=v:lua.__toggle_contextual<CR>g@", "Toggle comment")
+    map_desc({ "n", "x" }, "<Leader>cc", "<cmd>set operatorfunc=v:lua.__toggle_contextual<CR>g@", "Toggle comment")
 end
 --#endregion
