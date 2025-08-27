@@ -14,6 +14,9 @@ return {
         end,
         dependencies = {
             "L3MON4D3/LuaSnip",
+            "R-nvim/cmp-r",
+            "chrisgrieser/cmp-nerdfont",
+            "fionn/cmp-unitex",
             {
                 -- Completion for fs paths (async)
                 "FelipeLema/cmp-async-path",
@@ -50,6 +53,7 @@ return {
         },
     },
     { "chrisgrieser/cmp-nerdfont" },
+    { "fionn/cmp-unitex" },
     {
         -- Completion plugin for git
         "petertriho/cmp-git",
@@ -95,8 +99,10 @@ return {
         "saghen/blink.cmp",
         cond = vim.g.use_blink,
         dependencies = {
-            { "L3MON4D3/LuaSnip" },
-            { "R-nvim/cmp-r" },
+            "L3MON4D3/LuaSnip",
+            "R-nvim/cmp-r",
+            "chrisgrieser/cmp-nerdfont",
+            "fionn/cmp-unitex",
         },
 
         -- use a release tag to download pre-built binaries
@@ -194,11 +200,11 @@ return {
                         return { "lsp", "buffer", "path" }
                     end
 
-                    return { "lsp", "path", "snippets", "buffer", "easy-dotnet", "codecompanion" }
+                    return { "lsp", "path", "snippets", "buffer", "easy-dotnet", "codecompanion", "unitex" }
                 end,
                 per_filetype = {
                     r = { inherit_defaults = true, "cmp_r" },
-                    rmd = { inherit_defaults = true, "cmp_r","nerdfont" },
+                    rmd = { inherit_defaults = true, "cmp_r", "nerdfont" },
                     quarto = { inherit_defaults = true, "cmp_r", "nerdfont" },
                     markdown = { inherit_defaults = true, "nerdfont" },
                 },
@@ -267,6 +273,10 @@ return {
                     },
                     nerdfont = {
                         name = "nerdfont",
+                        module = "blink.compat.source",
+                    },
+                    unitex = {
+                        name = "unitex",
                         module = "blink.compat.source",
                     },
                 },

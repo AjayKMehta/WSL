@@ -41,6 +41,7 @@ local default_sources = {
         -- https://www.reddit.com/r/neovim/comments/160vhde/comment/jxorpq9/
         entry_filter = c.not_in_string,
     },
+    { name = "unitex", keyword_length = 2, priority = 80 },
 }
 
 M.default = default_sources
@@ -81,7 +82,10 @@ M.cmdline = {
 }
 
 -- tex
+
 local tex_sources = vim.deepcopy(default_sources)
+-- Remove unitex
+_ = table.remove(tex_sources, 4)
 local other_latex_sources = {
     {
         name = "async_path",
