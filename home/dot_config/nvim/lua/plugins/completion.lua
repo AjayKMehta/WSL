@@ -131,7 +131,11 @@ return {
             completion = {
                 -- Fuzzy match on text before + after cursor
                 keyword = { range = "full" }, -- prefix
-                ghost_text = { enabled = true },
+
+                ghost_text = {
+                    enabled = true,
+                    show_with_menu = false, -- Don't show when the menu is open
+                },
                 documentation = {
                     auto_show = false,
                     auto_show_delay_ms = 200,
@@ -140,18 +144,21 @@ return {
                 trigger = { show_in_snippet = false },
                 list = {
                     max_items = 20,
+                    -- These can be functions with ctx param
                     selection = {
-                        preselect = false,
-                        auto_insert = false,
+                        preselect = false, -- do not select the first item automatically
+                        auto_insert = true, -- insert preview
                     },
                 },
                 menu = {
-                    auto_show = function(ctx)
-                        return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
-                    end,
+                    align_to = "cursor",
+                    auto_show = false, -- only show menu on manual <C-space>
                     direction_priority = cb.get_menu_direction_priority,
                     draw = {
                         columns = { { "item_idx" }, { "kind_icon" }, { "label", "label_description", gap = 1 } },
+
+                        treesitter = { "lsp" },
+
                         components = {
                             item_idx = {
                                 text = function(ctx)
@@ -187,12 +194,12 @@ return {
                         return { "lsp", "buffer", "path" }
                     end
 
-                    return { "lsp", "path", "snippets", "buffer", "easy-dotnet" }
+                    return { "lsp", "path", "snippets", "buffer", "easy-dotnet", "codecompanion" }
                 end,
                 per_filetype = {
                     r = { inherit_defaults = true, "cmp_r" },
-                    rmarkdown = { inherit_defaults = true, "cmp_r" },
-                    quarto = { inherit_defaults = true, "cmp_r" },
+                    rmd = { inherit_defaults = true, "cmp_r","nerdfont" },
+                    quarto = { inherit_defaults = true, "cmp_r", "nerdfont" },
                     markdown = { inherit_defaults = true, "nerdfont" },
                 },
                 providers = {
@@ -254,6 +261,10 @@ return {
                             end, items)
                         end,
                     },
+                    codecompanion = {
+                        name = "CodeCompanion",
+                        module = "codecompanion.providers.completion.blink",
+                    },
                     nerdfont = {
                         name = "nerdfont",
                         module = "blink.compat.source",
@@ -261,7 +272,10 @@ return {
                 },
             },
 
-            fuzzy = { implementation = "prefer_rust_with_warning" },
+            fuzzy = {
+                implementation = "prefer_rust_with_warning",
+                sorts = { "exact", "score", "sort_text", "kind", "label" },
+            },
             enabled = cb.is_enabled,
 
             cmdline = {
@@ -272,6 +286,7 @@ return {
                     list = {
                         selection = {
                             preselect = false,
+                            auto_insert = false,
                         },
                     },
                     menu = {
