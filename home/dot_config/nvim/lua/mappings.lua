@@ -54,10 +54,6 @@ map_desc("n", "gV", "`[v`]", "Select the previous yanked area")
 
 map_desc("t", "<Esc>", "<C-\\><C-n>", "Exit terminal mode")
 
--- NVChad maps this to <leader>b
--- Use Tab and Shift+Tab to navigate between buffers
-map_desc("n", "<leader>bb", "<cmd>enew<CR>", "Buffer New")
-
 --#region Telescope
 
 map_desc("n", "<leader>rs", "<cmd>Telescope resume<cr>", "telescope resume previous search")
@@ -98,39 +94,6 @@ map_desc({ "n", "v" }, "<A-Left>", fn_move("left"), "mini.move line left")
 map_desc({ "n", "v" }, "<A-Right>", fn_move("right"), "mini.move line right")
 map_desc({ "n", "v" }, "<A-Up>", fn_move("up"), "mini.move line up")
 map_desc({ "n", "v" }, "<A-Down>", fn_move("down"), "mini.move line down")
-
---#endregion
-
---region dap_python
-map_desc("n", "<leader>dt", function()
-    require("dap-python").test_method()
-end, "DAP Debug closest method to cursor")
-
---#endregion
-
---region luasnip
-
-local show_snippet_list = function(...)
-    local sl = require("luasnip.extras.snippet_list")
-    -- keeping the default display behavior but modifying window/buffer
-    local modified_default_display = sl.options.display({
-        buf_opts = { filetype = "lua" },
-        win_opts = { foldmethod = "manual" },
-        get_name = function(buf)
-            return "Custom Display buf " .. buf
-        end,
-    })
-
-    sl.open({ display = modified_default_display })
-end
-
-map_desc("n", "<leader>sl", show_snippet_list, "Snippets List")
-
---#endregion
-
---#region urlview
-
-map_desc("n", "<leader>uu", "<cmd>UrlView<CR>", "UrlView Show URLs")
 
 --#endregion
 
@@ -193,30 +156,6 @@ end, "Neotest Show output")
 map_desc("n", "<leader>tS", function()
     require("neotest").summary.toggle()
 end, "Neotest Show summary")
-
---#endregion
-
---#region ufo
-
-map_desc("n", "]Z", function()
-    require("ufo").goNextClosedFold()
-end, "UFO Go to next closed fold")
-map_desc("n", "[Z", function()
-    require("ufo").goPreviousClosedFold()
-end, "UFO Go to previous closed fold")
-map_desc("n", "zK", function()
-    require("ufo").peekFoldedLinesUnderCursor()
-end, "UFO Peek fold")
---#endregion
-
---#region outline
-
-map_desc("n", "<leader>oo", "<cmd>OutlineOpen<cr>", "Outline Open")
-map_desc("n", "<leader>oc", "<cmd>OutlineClose<cr>", "Outline close")
-map_desc("n", "<leader>ot", "<cmd>Outline<cr>", "Outline Toggle")
-map_desc("n", "<leader>ofo", "<cmd>OutlineFocusOutline<cr>", "Outline Focus")
-map_desc("n", "<leader>ofc", "<cmd>OutlineFocusCode<cr>", "Outline Focus code")
-map_desc("n", "<leader>oF", "<cmd>OutlineFollow<cr>", "Outline Follow")
 
 --#endregion
 

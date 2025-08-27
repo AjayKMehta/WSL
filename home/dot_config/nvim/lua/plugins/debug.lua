@@ -84,8 +84,12 @@ return {
                     "mfussenegger/nvim-dap-python",
                     ft = "python",
                     config = function(_, opts)
-                        require("dap-python").test_runner = "pytest"
-                        require("dap-python").setup("uv")
+                        local dp = require("dap-python")
+                        dp.test_runner = "pytest"
+                        dp.setup("uv")
+                        map_desc("n", "<leader>dt", function()
+                            dp.test_method()
+                        end, "DAP Debug closest method to cursor")
                     end,
                 },
                 {

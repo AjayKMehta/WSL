@@ -1,3 +1,5 @@
+local map_desc = require("utils.mappings").map_desc
+
 -- https://github.com/kevinhwang91/nvim-ufo#customize-fold-text
 local handler = function(virtText, lnum, endLnum, width, truncate)
     local newVirtText = {}
@@ -56,3 +58,13 @@ require("ufo").setup({
         },
     },
 })
+
+map_desc("n", "]Z", function()
+    require("ufo").goNextClosedFold()
+end, "UFO Go to next closed fold")
+map_desc("n", "[Z", function()
+    require("ufo").goPreviousClosedFold()
+end, "UFO Go to previous closed fold")
+map_desc("n", "zK", function()
+    require("ufo").peekFoldedLinesUnderCursor()
+end, "UFO Peek fold")

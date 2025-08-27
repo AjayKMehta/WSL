@@ -77,3 +77,19 @@ end
 vim.api.nvim_create_user_command("LuaSnipEdit", function()
     require("luasnip.loaders").edit_snippet_files()
 end, {})
+
+local show_snippet_list = function(...)
+    local sl = require("luasnip.extras.snippet_list")
+    -- keeping the default display behavior but modifying window/buffer
+    local modified_default_display = sl.options.display({
+        buf_opts = { filetype = "lua" },
+        win_opts = { foldmethod = "manual" },
+        get_name = function(buf)
+            return "Custom Display buf " .. buf
+        end,
+    })
+
+    sl.open({ display = modified_default_display })
+end
+
+require("utils.mappings").map_desc("n", "<leader>sl", show_snippet_list, "Snippets List")
