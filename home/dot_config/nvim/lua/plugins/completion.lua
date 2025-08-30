@@ -132,7 +132,21 @@ return {
                 },
             },
 
-            snippets = { preset = "luasnip" },
+            snippets = {
+                preset = "luasnip",
+                expand = function(snippet)
+                    require("luasnip").lsp_expand(snippet)
+                end,
+                active = function(filter)
+                    if filter and filter.direction then
+                        return require("luasnip").jumpable(filter.direction)
+                    end
+                    return require("luasnip").in_snippet()
+                end,
+                jump = function(direction)
+                    require("luasnip").jump(direction)
+                end,
+            },
 
             -- (Default) Only show the documentation popup when manually triggered
             completion = {
@@ -141,19 +155,20 @@ return {
 
                 ghost_text = {
                     enabled = true,
-                    show_with_menu = false, -- Don't show when the menu is open
+                    show_without_selection = true,
+                    show_with_menu = false,
                 },
                 documentation = {
                     auto_show = false,
                     auto_show_delay_ms = 200,
                     treesitter_highlighting = true,
                 },
-                trigger = { show_in_snippet = false },
+                trigger = { show_in_snippet = false }, --  do not show the completion window automatically when in a snippet
                 list = {
                     max_items = 20,
                     -- These can be functions with ctx param
                     selection = {
-                        preselect = false, -- do not select the first item automatically
+                        preselect = true, -- select the first item automatically
                         auto_insert = true, -- insert preview
                     },
                 },
@@ -212,6 +227,18 @@ return {
                         },
                     },
                 },
+                sources = function()
+                    local type = vim.fn.getcmdtype()
+                    -- Search
+                    if type == "/" or type == "?" then
+                        return { "buffer" }
+                    end
+                    -- Commands
+                    if type == ":" or type == "@" then
+                        return { "cmdline", "path", "buffer" }
+                    end
+                    return {}
+                end,
             },
         },
         opts_extend = { "sources.default" },
