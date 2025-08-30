@@ -35,14 +35,6 @@ M.get_menu_direction_priority = function()
     return { "s", "n" }
 end
 
--- when typing a command, only show when the keyword is 3 characters or longer
-M.cmdline_min_length = function(ctx)
-    if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
-        return 3
-    end
-    return 0
-end
-
 -- https://cmp.saghen.dev/recipes.html#nvim-web-devicons-lspkind
 M.get_kind_icon_text = function(ctx)
     local icon = ctx.kind_icon
