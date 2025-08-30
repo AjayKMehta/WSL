@@ -23,7 +23,7 @@ return {
     },
     {
         -- Move lines and blocks of code
-        "echasnovski/mini.move",
+        "nvim-mini/mini.move",
         version = false,
         opts = { options = { reindent_linewise = true } },
         event = "VeryLazy",
