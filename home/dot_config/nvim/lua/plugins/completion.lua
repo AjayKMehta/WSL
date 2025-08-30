@@ -103,6 +103,7 @@ return {
             "R-nvim/cmp-r",
             "chrisgrieser/cmp-nerdfont",
             "fionn/cmp-unitex",
+            "Kaiser-Yang/blink-cmp-git",
         },
 
         -- use a release tag to download pre-built binaries
