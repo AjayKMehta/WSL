@@ -41,7 +41,7 @@ local default_sources = {
         -- https://www.reddit.com/r/neovim/comments/160vhde/comment/jxorpq9/
         entry_filter = c.not_in_string,
     },
-    { name = "unitex", keyword_length = 2, priority = 80 },
+    { name = "unitex", group_index = 1, keyword_length = 2, priority = 80 },
 }
 
 M.default = default_sources
@@ -78,7 +78,7 @@ M.cmdline = {
         group_index = 1,
         priority = 80,
     },
-    get_fuzzy_buffer_source(2, 20, 4),
+    get_fuzzy_buffer_source(2, 60, 4),
 }
 
 -- tex
@@ -101,9 +101,9 @@ end
 M.tex = tex_sources
 
 -- markdown
-local markdown_sources = vim.deepcopy(tex_sources)
+local markdown_sources = vim.deepcopy(default_sources)
 -- Completions for both checkboxes and callouts
-table.insert(markdown_sources, { name = "render-markdown", group_index = 1, priority = 80 })
+table.insert(markdown_sources, { name = "render-markdown", group_index = 1, priority = 90 })
 table.insert(markdown_sources, { name = "nerdfont", group_index = 1, priority = 60 })
 
 M.markdown = markdown_sources
