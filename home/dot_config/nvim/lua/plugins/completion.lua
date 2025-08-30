@@ -7,9 +7,7 @@ return {
         "hrsh7th/nvim-cmp",
         cond = not vim.g.use_blink,
         event = { "InsertEnter", "CmdlineEnter" },
-        config = function(_, opts)
-            -- For NvChad-specified settings, see https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/configs/cmp.lua
-            require("cmp").setup(opts)
+        config = function()
             load_config("nvim_cmp")
         end,
         dependencies = {
