@@ -60,7 +60,7 @@ local function buf_cancel_build(client)
     return client:exec_cmd({
         title = "cancel",
         command = "texlab.cancelBuild",
-    }, { bufnr = bufnr })
+    }, { bufnr = 0 })
 end
 
 local function dependency_graph(client)
