@@ -3,6 +3,7 @@ local extras = require("luasnip.extras")
 local ft_func = require("luasnip.extras.filetype_functions")
 local types = require("luasnip.util.types")
 local fmt = require("luasnip.extras.fmt").fmt
+local m = require("utils.mappings")
 
 -- require("nvchad.configs.luasnip")
 
@@ -92,4 +93,10 @@ local show_snippet_list = function(...)
     sl.open({ display = modified_default_display })
 end
 
-require("utils.mappings").map_desc("n", "<leader>sl", show_snippet_list, "Snippets List")
+m.map_desc("n", "<leader>sl", show_snippet_list, "Snippets List")
+
+m.map_desc({ "i", "s" }, "<C-C>", function()
+    if ls.choice_active() then
+        ls.change_choice(1)
+    end
+end, "Change choice")

@@ -47,14 +47,6 @@ return {
             fallback()
         end
     end, { "i", "s" }),
-    ["<C-u>"] = require("cmp").mapping(function(fallback)
-        local ls = require("luasnip")
-        if ls.choice_active() then
-            require("luasnip.extras.select_choice")()
-        else
-            fallback()
-        end
-    end, { "i", "s" }),
     -- Tab and Shift + Tab help navigate between snippet nodes.
     -- Complete common string (similar to shell completion behavior).
     ["<C-l>"] = require("cmp").mapping(function(fallback)
