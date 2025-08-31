@@ -67,9 +67,7 @@ vim.g.use_zathura_simple = true
 -- if true, use radian instead of R console.
 vim.g.use_radian = true
 
-vim.g.use_autopairs = true
-
-vim.g.use_blink = true
+vim.g.use_blink = false
 
 require("configs.lsp")
 
