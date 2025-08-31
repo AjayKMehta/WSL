@@ -1,3 +1,4 @@
+local u = require("utils")
 local c = require("utils.nvim_cmp")
 local cmp = require("cmp")
 local src = require("nvim_cmp.sources")
@@ -166,8 +167,8 @@ cmp.setup.filetype({ "cs", "csproj", "sln", "slnx", "props" }, {
 })
 
 -- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#add-parentheses-after-selecting-function-or-method-item
--- If you want insert `(` after select function or method item
-if vim.g.use_autopairs then
-    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+-- setup cmp for autopairs
+local ok, cmp_autopairs = u.is_loaded("nvim-autopairs.completion.cmp")
+if ok then
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 end
