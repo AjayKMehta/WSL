@@ -4,7 +4,7 @@ local config = {
     -- ensure_installed = "all",
     auto_install = true,
     autopairs = {
-        enable = vim.g.use_autopairs,
+        enable = not vim.g.use_blink,
     },
     indent = { enable = true, disable = { "python", "css" } },
     autotag = {
