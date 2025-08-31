@@ -74,10 +74,10 @@ local opts = {
     formatting = { format = c.format },
 }
 
--- Do not use cmp.config.sources():
--- https://github.com/hrsh7th/nvim-cmp/discussions/881
 cmp.setup(opts)
 
+-- Do not use cmp.config.sources():
+-- https://github.com/hrsh7th/nvim-cmp/discussions/881
 cmp.setup.filetype("lua", { sources = src.lua })
 
 cmp.setup.filetype({ "gitcommit", "octo" }, {

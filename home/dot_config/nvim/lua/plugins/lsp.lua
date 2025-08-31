@@ -19,7 +19,7 @@ return {
 
             -- https://github.com/olimorris/codecompanion.nvim/discussions/1284#discussioncomment-12949708
             vim.api.nvim_create_autocmd("FileType", {
-                pattern = { "r", "rmd", "quarto", "codecompanion", "markdown", "toml" }, -- toml for mise
+                pattern = { "markdown", "quarto", "rmd", "codecompanion", "toml" }, -- toml for mise
                 callback = function(args)
                     require("otter").activate()
                     local bufnr = args.buf
