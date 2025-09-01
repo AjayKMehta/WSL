@@ -123,13 +123,17 @@ M.get_capabilities = function()
 
     capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
-    -- TODO: Remove after switching to blink.
     local is_loaded = require("utils").is_loaded
 
     local loaded_cmp, cmp_nvim_lsp = is_loaded("cmp_nvim_lsp")
     if loaded_cmp then
         -- https://github.com/hrsh7th/cmp-nvim-lsp/issues/38#issuecomment-1815265121
         capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
+    end
+
+    if vim.g.use_blink then
+        -- https://www.reddit.com/r/neovim/comments/1n59kir/comment/nbr9ak9/
+        capabilities.textDocument.onTypeFormatting = { dynamicRegistration = false }
     end
 
     return capabilities

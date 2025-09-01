@@ -108,13 +108,10 @@ return {
 
         -- use a release tag to download pre-built binaries
         version = "1.*",
-        -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-        -- build = 'cargo build --release',
 
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
         opts = {
-
             keymap = require("configs.blink.mappings"),
 
             appearance = {
@@ -209,9 +206,11 @@ return {
 
             cmdline = {
                 keymap = {
+                    -- https://cmp.saghen.dev/modes/cmdline.html#keymap-preset
                     preset = "cmdline",
                 },
                 completion = {
+                    ghost_text = { enabled = true },
                     list = {
                         selection = {
                             preselect = false,
