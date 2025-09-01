@@ -264,7 +264,7 @@ local extensions = {
             save_chat_keymap = "<localleader>sc",
             title_generation_opts = {
                 adapter = "copilot",
-                model = "gpt-4.1",
+                model = "claude-3.5-sonnet",
                 refresh_every_n_prompts = 0, -- e.g., 3 to refresh after every 3rd user prompt
                 max_refreshes = 3,
             },
