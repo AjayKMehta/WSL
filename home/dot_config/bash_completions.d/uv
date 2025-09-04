@@ -19,6 +19,9 @@ _uv() {
             uv,add)
                 cmd="uv__add"
                 ;;
+            uv,auth)
+                cmd="uv__auth"
+                ;;
             uv,build)
                 cmd="uv__build"
                 ;;
@@ -81,6 +84,18 @@ _uv() {
                 ;;
             uv,version)
                 cmd="uv__version"
+                ;;
+            uv__auth,dir)
+                cmd="uv__auth__dir"
+                ;;
+            uv__auth,login)
+                cmd="uv__auth__login"
+                ;;
+            uv__auth,logout)
+                cmd="uv__auth__logout"
+                ;;
+            uv__auth,token)
+                cmd="uv__auth__token"
                 ;;
             uv__build__backend,build-editable)
                 cmd="uv__build__backend__build__editable"
@@ -203,7 +218,7 @@ _uv() {
 
     case "${cmd}" in
         uv)
-            opts="-n -q -v -h -V --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version run init add remove version sync lock export tree format tool python pip venv build publish build-backend cache self clean generate-shell-completion help"
+            opts="-n -q -v -h -V --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help --version auth run init add remove version sync lock export tree format tool python pip venv build publish build-backend cache self clean generate-shell-completion help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -253,7 +268,7 @@ _uv() {
             return 0
             ;;
         uv__add)
-            opts="-r -c -m -i -f -U -P -C -p -n -q -v -h --requirements --constraints --marker --dev --optional --group --editable --no-editable --raw --bounds --rev --tag --branch --extra --no-sync --locked --frozen --active --no-active --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --package --script --python --workspace --no-workspace --no-install-project --no-install-workspace --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help [PACKAGES]..."
+            opts="-r -c -m -i -f -U -P -C -p -n -q -v -h --requirements --constraints --marker --dev --optional --group --editable --no-editable --raw --bounds --rev --tag --branch --extra --no-sync --locked --frozen --active --no-active --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --package --script --python --workspace --no-workspace --no-install-project --no-install-workspace --no-install-local --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help [PACKAGES]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -425,6 +440,304 @@ _uv() {
                     ;;
                 -p)
                     COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --cache-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --python-preference)
+                    COMPREPLY=($(compgen -W "only-managed managed system only-system" -- "${cur}"))
+                    return 0
+                    ;;
+                --python-fetch)
+                    COMPREPLY=($(compgen -W "automatic manual never" -- "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
+                    return 0
+                    ;;
+                --allow-insecure-host)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --preview-features)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --directory)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --project)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --config-file)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        uv__auth)
+            opts="-n -q -v -h --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help login logout token dir"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --cache-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --python-preference)
+                    COMPREPLY=($(compgen -W "only-managed managed system only-system" -- "${cur}"))
+                    return 0
+                    ;;
+                --python-fetch)
+                    COMPREPLY=($(compgen -W "automatic manual never" -- "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
+                    return 0
+                    ;;
+                --allow-insecure-host)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --preview-features)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --directory)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --project)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --config-file)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        uv__auth__dir)
+            opts="-n -q -v -h --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help [SERVICE]"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --cache-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --python-preference)
+                    COMPREPLY=($(compgen -W "only-managed managed system only-system" -- "${cur}"))
+                    return 0
+                    ;;
+                --python-fetch)
+                    COMPREPLY=($(compgen -W "automatic manual never" -- "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
+                    return 0
+                    ;;
+                --allow-insecure-host)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --preview-features)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --directory)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --project)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --config-file)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        uv__auth__login)
+            opts="-u -t -n -q -v -h --username --password --token --keyring-provider --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help <SERVICE>"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --username)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -u)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --password)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --token)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -t)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keyring-provider)
+                    COMPREPLY=($(compgen -W "disabled subprocess" -- "${cur}"))
+                    return 0
+                    ;;
+                --cache-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --python-preference)
+                    COMPREPLY=($(compgen -W "only-managed managed system only-system" -- "${cur}"))
+                    return 0
+                    ;;
+                --python-fetch)
+                    COMPREPLY=($(compgen -W "automatic manual never" -- "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
+                    return 0
+                    ;;
+                --allow-insecure-host)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --preview-features)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --directory)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --project)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --config-file)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        uv__auth__logout)
+            opts="-u -n -q -v -h --username --keyring-provider --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help <SERVICE>"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --username)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -u)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keyring-provider)
+                    COMPREPLY=($(compgen -W "disabled subprocess" -- "${cur}"))
+                    return 0
+                    ;;
+                --cache-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --python-preference)
+                    COMPREPLY=($(compgen -W "only-managed managed system only-system" -- "${cur}"))
+                    return 0
+                    ;;
+                --python-fetch)
+                    COMPREPLY=($(compgen -W "automatic manual never" -- "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
+                    return 0
+                    ;;
+                --allow-insecure-host)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --preview-features)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --directory)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --project)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --config-file)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        uv__auth__token)
+            opts="-u -n -q -v -h --username --keyring-provider --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help <SERVICE>"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --username)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -u)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keyring-provider)
+                    COMPREPLY=($(compgen -W "disabled subprocess" -- "${cur}"))
                     return 0
                     ;;
                 --cache-dir)
@@ -1353,7 +1666,7 @@ _uv() {
             return 0
             ;;
         uv__export)
-            opts="-o -i -f -U -P -C -p -n -q -v -h --format --all-packages --package --prune --extra --all-extras --no-extra --no-all-extras --dev --no-dev --only-dev --group --no-group --no-default-groups --only-group --all-groups --no-annotate --annotate --no-header --header --no-editable --hashes --no-hashes --output-file --no-emit-project --no-emit-workspace --no-emit-package --locked --frozen --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --script --python --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
+            opts="-o -i -f -U -P -C -p -n -q -v -h --format --all-packages --package --prune --extra --all-extras --no-extra --no-all-extras --dev --no-dev --only-dev --group --no-group --no-default-groups --only-group --all-groups --no-annotate --annotate --no-header --header --no-editable --hashes --no-hashes --output-file --no-emit-project --no-emit-workspace --no-emit-local --no-emit-package --locked --frozen --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --script --python --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -1995,7 +2308,7 @@ _uv() {
             return 0
             ;;
         uv__pip__check)
-            opts="-p -n -q -v -h --python --system --no-system --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
+            opts="-p -n -q -v -h --python --system --no-system --python-version --python-platform --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -2007,6 +2320,14 @@ _uv() {
                     ;;
                 -p)
                     COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --python-version)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --python-platform)
+                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl riscv64-unknown-linux x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
                     return 0
                     ;;
                 --cache-dir)
@@ -2216,7 +2537,7 @@ _uv() {
                     return 0
                     ;;
                 --python-platform)
-                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl riscv64-unknown-linux x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
                     return 0
                     ;;
                 --no-emit-package)
@@ -2528,7 +2849,7 @@ _uv() {
                     return 0
                     ;;
                 --python-platform)
-                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl riscv64-unknown-linux x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
                     return 0
                     ;;
                 --torch-backend)
@@ -2870,7 +3191,7 @@ _uv() {
                     return 0
                     ;;
                 --python-platform)
-                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl riscv64-unknown-linux x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
                     return 0
                     ;;
                 --torch-backend)
@@ -2941,7 +3262,7 @@ _uv() {
             return 0
             ;;
         uv__pip__tree)
-            opts="-d -i -f -p -n -q -v -h --show-version-specifiers --depth --prune --package --no-dedupe --invert --outdated --strict --no-strict --index --default-index --index-url --extra-index-url --find-links --no-index --index-strategy --keyring-provider --exclude-newer --python --system --no-system --disable-pip-version-check --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
+            opts="-d -i -f -p -n -q -v -h --show-version-specifiers --depth --prune --package --no-dedupe --invert --outdated --show-sizes --strict --no-strict --index --default-index --index-url --extra-index-url --find-links --no-index --index-strategy --keyring-provider --exclude-newer --python --system --no-system --disable-pip-version-check --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3133,7 +3454,7 @@ _uv() {
             return 0
             ;;
         uv__publish)
-            opts="-u -p -t -n -q -v -h --index --username --password --token --trusted-publishing --keyring-provider --publish-url --check-url --skip-existing --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help [FILES]..."
+            opts="-u -p -t -n -q -v -h --index --username --password --token --trusted-publishing --keyring-provider --publish-url --check-url --skip-existing --dry-run --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help [FILES]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3911,7 +4232,7 @@ _uv() {
             return 0
             ;;
         uv__run)
-            opts="-m -w -s -i -f -U -P -C -p -n -q -v -h --extra --all-extras --no-extra --no-all-extras --dev --no-dev --group --no-group --no-default-groups --only-group --all-groups --module --only-dev --no-editable --inexact --exact --env-file --no-env-file --with --with-editable --with-requirements --isolated --active --no-active --no-sync --locked --frozen --script --gui-script --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --all-packages --package --no-project --python --show-resolution --max-recursion-depth --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
+            opts="-m -w -s -i -f -U -P -C -p -n -q -v -h --extra --all-extras --no-extra --no-all-extras --dev --no-dev --group --no-group --no-default-groups --only-group --all-groups --module --only-dev --no-editable --inexact --exact --env-file --no-env-file --with --with-editable --with-requirements --isolated --active --no-active --no-sync --locked --frozen --script --gui-script --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --all-packages --package --no-project --python --show-resolution --max-recursion-depth --python-platform --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -4071,6 +4392,10 @@ _uv() {
                     ;;
                 --max-recursion-depth)
                     COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --python-platform)
+                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl riscv64-unknown-linux x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
                     return 0
                     ;;
                 --cache-dir)
@@ -4275,7 +4600,7 @@ _uv() {
             return 0
             ;;
         uv__sync)
-            opts="-i -f -U -P -C -p -n -q -v -h --extra --output-format --all-extras --no-extra --no-all-extras --dev --no-dev --only-dev --group --no-group --no-default-groups --only-group --all-groups --no-editable --inexact --exact --active --no-active --no-install-project --no-install-workspace --no-install-package --locked --frozen --dry-run --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --all-packages --package --script --python --python-platform --check --no-check --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
+            opts="-i -f -U -P -C -p -n -q -v -h --extra --output-format --all-extras --no-extra --no-all-extras --dev --no-dev --only-dev --group --no-group --no-default-groups --only-group --all-groups --no-editable --inexact --exact --active --no-active --no-install-project --no-install-workspace --no-install-local --no-install-package --locked --frozen --dry-run --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --all-packages --package --script --python --python-platform --check --no-check --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -4426,7 +4751,7 @@ _uv() {
                     return 0
                     ;;
                 --python-platform)
-                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl riscv64-unknown-linux x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
                     return 0
                     ;;
                 --cache-dir)
@@ -4573,7 +4898,7 @@ _uv() {
             return 0
             ;;
         uv__tool__install)
-            opts="-w -e -c -b -i -f -U -P -C -p -n -q -v -h --from --with --with-requirements --editable --with-editable --with-executables-from --constraints --overrides --build-constraints --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --force --python --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help <PACKAGE>"
+            opts="-w -e -c -b -i -f -U -P -C -p -n -q -v -h --from --with --with-requirements --editable --with-editable --with-executables-from --constraints --overrides --build-constraints --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --force --python --python-platform --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help <PACKAGE>"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -4731,6 +5056,10 @@ _uv() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                --python-platform)
+                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl riscv64-unknown-linux x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
+                    return 0
+                    ;;
                 --cache-dir)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
@@ -4825,7 +5154,7 @@ _uv() {
             return 0
             ;;
         uv__tool__run)
-            opts="-w -c -b -i -f -U -P -C -p -n -q -v -h --from --with --with-editable --with-requirements --constraints --build-constraints --overrides --isolated --env-file --no-env-file --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --python --show-resolution --generate-shell-completion --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
+            opts="-w -c -b -i -f -U -P -C -p -n -q -v -h --from --with --with-editable --with-requirements --constraints --build-constraints --overrides --isolated --env-file --no-env-file --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --python --show-resolution --python-platform --generate-shell-completion --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -4981,6 +5310,10 @@ _uv() {
                     ;;
                 -p)
                     COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --python-platform)
+                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl riscv64-unknown-linux x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
                     return 0
                     ;;
                 --generate-shell-completion)
@@ -5131,7 +5464,7 @@ _uv() {
             return 0
             ;;
         uv__tool__upgrade)
-            opts="-p -U -P -i -f -C -n -q -v -h --all --python --upgrade --upgrade-package --index --default-index --index-url --extra-index-url --find-links --no-index --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-setting-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help <NAME>..."
+            opts="-p -U -P -i -f -C -n -q -v -h --all --python --python-platform --upgrade --upgrade-package --index --default-index --index-url --extra-index-url --find-links --no-index --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-setting-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help <NAME>..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -5143,6 +5476,10 @@ _uv() {
                     ;;
                 -p)
                     COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --python-platform)
+                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl riscv64-unknown-linux x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
                     return 0
                     ;;
                 --upgrade-package)
@@ -5285,7 +5622,7 @@ _uv() {
             return 0
             ;;
         uv__tool__uvx)
-            opts="-w -c -b -i -f -U -P -C -p -V -n -q -v -h --from --with --with-editable --with-requirements --constraints --build-constraints --overrides --isolated --env-file --no-env-file --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --python --show-resolution --generate-shell-completion --version --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
+            opts="-w -c -b -i -f -U -P -C -p -V -n -q -v -h --from --with --with-editable --with-requirements --constraints --build-constraints --overrides --isolated --env-file --no-env-file --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --python --show-resolution --python-platform --generate-shell-completion --version --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -5443,6 +5780,10 @@ _uv() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                --python-platform)
+                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl riscv64-unknown-linux x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
+                    return 0
+                    ;;
                 --generate-shell-completion)
                     COMPREPLY=($(compgen -W "bash elvish fish nushell powershell zsh" -- "${cur}"))
                     return 0
@@ -5491,7 +5832,7 @@ _uv() {
             return 0
             ;;
         uv__tree)
-            opts="-d -i -f -U -P -C -p -n -q -v -h --universal --depth --prune --package --no-dedupe --invert --outdated --dev --only-dev --no-dev --group --no-group --no-default-groups --only-group --all-groups --locked --frozen --no-build --build --no-build-package --no-binary --binary --no-binary-package --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --no-sources --script --python-version --python-platform --python --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
+            opts="-d -i -f -U -P -C -p -n -q -v -h --universal --depth --prune --package --no-dedupe --invert --outdated --show-sizes --dev --only-dev --no-dev --group --no-group --no-default-groups --only-group --all-groups --locked --frozen --no-build --build --no-build-package --no-binary --binary --no-binary-package --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --no-sources --script --python-version --python-platform --python --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -5626,7 +5967,7 @@ _uv() {
                     return 0
                     ;;
                 --python-platform)
-                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl riscv64-unknown-linux x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
                     return 0
                     ;;
                 --python)

@@ -23,7 +23,7 @@ _uvx() {
 
     case "${cmd}" in
         uvx)
-            opts="-w -c -b -i -f -U -P -C -p -V -n -q -v -h --from --with --with-editable --with-requirements --constraints --build-constraints --overrides --isolated --env-file --no-env-file --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --python --show-resolution --generate-shell-completion --version --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
+            opts="-w -c -b -i -f -U -P -C -p -V -n -q -v -h --from --with --with-editable --with-requirements --constraints --build-constraints --overrides --isolated --env-file --no-env-file --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --reinstall --no-reinstall --reinstall-package --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --compile-bytecode --no-compile-bytecode --no-sources --no-build --build --no-build-package --no-binary --binary --no-binary-package --refresh --no-refresh --refresh-package --python --show-resolution --python-platform --generate-shell-completion --version --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -179,6 +179,10 @@ _uvx() {
                     ;;
                 -p)
                     COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --python-platform)
+                    COMPREPLY=($(compgen -W "windows linux macos x86_64-pc-windows-msvc aarch64-pc-windows-msvc i686-pc-windows-msvc x86_64-unknown-linux-gnu aarch64-apple-darwin x86_64-apple-darwin aarch64-unknown-linux-gnu aarch64-unknown-linux-musl x86_64-unknown-linux-musl riscv64-unknown-linux x86_64-manylinux2014 x86_64-manylinux_2_17 x86_64-manylinux_2_28 x86_64-manylinux_2_31 x86_64-manylinux_2_32 x86_64-manylinux_2_33 x86_64-manylinux_2_34 x86_64-manylinux_2_35 x86_64-manylinux_2_36 x86_64-manylinux_2_37 x86_64-manylinux_2_38 x86_64-manylinux_2_39 x86_64-manylinux_2_40 aarch64-manylinux2014 aarch64-manylinux_2_17 aarch64-manylinux_2_28 aarch64-manylinux_2_31 aarch64-manylinux_2_32 aarch64-manylinux_2_33 aarch64-manylinux_2_34 aarch64-manylinux_2_35 aarch64-manylinux_2_36 aarch64-manylinux_2_37 aarch64-manylinux_2_38 aarch64-manylinux_2_39 aarch64-manylinux_2_40 wasm32-pyodide2024" -- "${cur}"))
                     return 0
                     ;;
                 --generate-shell-completion)
