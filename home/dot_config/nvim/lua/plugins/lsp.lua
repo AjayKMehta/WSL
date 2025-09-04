@@ -54,4 +54,20 @@ return {
             require("quarto").setup()
         end,
     },
+    {
+        -- displays code lens for references, diagnostics, and git authorship
+        "oribarilan/lensline.nvim",
+        tag = "1.0.0", -- or: branch = 'release/1.x' for latest non-breaking updates
+        event = "LspAttach",
+        cmd = {"LenslineEnable", "LenslineDisable", "LenslineToggleEngine"},
+        config = function()
+            require("lensline").setup({
+                providers = {        {
+          name = "diagnostics",
+          enabled = true,
+          min_level = "WARN", -- only show WARN and ERROR by default (HINT, INFO, WARN, ERROR)
+        },}
+            })
+        end,
+    },
 }
