@@ -280,6 +280,10 @@ return {
                         open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
                     },
                 },
+                diagnostics = {
+                    default_severity = "warning",
+                    setqflist = true,
+                },
             }
 
             dotnet.setup(config)
