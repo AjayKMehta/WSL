@@ -11,7 +11,7 @@ return {
                 "ravitemer/codecompanion-history.nvim",
                 config = load_config("codecompanion_history"),
             },
-            "minusfive/codecompanion-agent-rules"
+            "minusfive/codecompanion-agent-rules",
         },
         cmd = {
             "CodeCompanion",
@@ -70,6 +70,10 @@ return {
         "ravitemer/mcphub.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
+            {
+                "Joakker/lua-json5",
+                build = "./install.sh",
+            },
         },
         lazy = true,
         build = "npm install -g mcp-hub@latest",
