@@ -249,6 +249,16 @@ local config = {
                 end,
             },
             {
+                function()
+                    return ("%s %s")
+                        :format(nvim.ui.icons.ui.Table, require("schema-companion").get_current_schemas() or "none")
+                        :sub(0, 128)
+                end,
+                cond = function()
+                    return package.loaded["schema-companion"]
+                end,
+            },
+            {
                 -- other components ...
                 function()
                     return require("screenkey").get_keys()
