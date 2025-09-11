@@ -19,9 +19,6 @@ _ast-grep() {
             ast__grep,completions)
                 cmd="ast__grep__completions"
                 ;;
-            ast__grep,docs)
-                cmd="ast__grep__docs"
-                ;;
             ast__grep,help)
                 cmd="ast__grep__help"
                 ;;
@@ -42,9 +39,6 @@ _ast-grep() {
                 ;;
             ast__grep__help,completions)
                 cmd="ast__grep__help__completions"
-                ;;
-            ast__grep__help,docs)
-                cmd="ast__grep__help__docs"
                 ;;
             ast__grep__help,help)
                 cmd="ast__grep__help__help"
@@ -113,7 +107,7 @@ _ast-grep() {
 
     case "${cmd}" in
         ast__grep)
-            opts="-c -h -V --config --help --version run scan test new lsp completions docs help"
+            opts="-c -h -V --config --help --version run scan test new lsp completions help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -156,30 +150,8 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__docs)
-            opts="-c -h --config --help"
-            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
-                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-                return 0
-            fi
-            case "${prev}" in
-                --config)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                -c)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                *)
-                    COMPREPLY=()
-                    ;;
-            esac
-            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-            return 0
-            ;;
         ast__grep__help)
-            opts="run scan test new lsp completions docs help"
+            opts="run scan test new lsp completions help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -193,20 +165,6 @@ _ast-grep() {
             return 0
             ;;
         ast__grep__help__completions)
-            opts=""
-            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
-                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-                return 0
-            fi
-            case "${prev}" in
-                *)
-                    COMPREPLY=()
-                    ;;
-            esac
-            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-            return 0
-            ;;
-        ast__grep__help__docs)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -656,7 +614,7 @@ _ast-grep() {
                     return 0
                     ;;
                 --strictness)
-                    COMPREPLY=($(compgen -W "cst smart ast relaxed signature" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "cst smart ast relaxed signature template" -- "${cur}"))
                     return 0
                     ;;
                 --no-ignore)
