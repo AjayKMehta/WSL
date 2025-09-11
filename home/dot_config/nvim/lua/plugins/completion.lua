@@ -170,10 +170,10 @@ return {
                     },
                 },
                 menu = {
-                    align_to = "cursor",
                     auto_show = false, -- only show menu on manual <C-space>
                     direction_priority = cb.get_menu_direction_priority,
                     draw = {
+                        align_to = "cursor",
                         columns = { { "item_idx" }, { "kind_icon" }, { "label", "label_description", gap = 1 } },
 
                         treesitter = { "lsp" },
