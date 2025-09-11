@@ -5,9 +5,11 @@ return {
         dependencies = {
             { "nvim-lua/plenary.nvim" },
         },
-        opts = {
-            enable_telescope = true,
-        },
+        config = function()
+            require("schema-companion").setup({
+                log_level = vim.log.levels.INFO,
+            })
+        end,
     },
     {
         "cuducos/yaml.nvim",
