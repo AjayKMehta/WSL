@@ -5,58 +5,60 @@ local ca = require("codecompanion.adapters")
 local ollama_url = "http://localhost:11434"
 
 local adapters = {
-    jina = function()
-        return ca.extend("jina", {
-            env = {
-                api_key = "JINA_API_KEY",
-            },
-        })
-    end,
-    copilot = function()
-        return ca.extend("copilot", {
-            schema = {
-                model = { default = "claude-3.5-sonnet" },
-                max_tokens = { default = 8192 },
-            },
-        })
-    end,
-    ollama = function()
-        return ca.extend("ollama", {
-            env = { url = ollama_url },
-            headers = { ["Content-Type"] = "application/json" },
-            opts = {
-                vision = true,
-                stream = true,
-            },
-            -- https://github.com/ollama/ollama/blob/main/docs/modelfile.md#parameter
-            schema = {
-                model = {
-                    default = "qwen3:8b",
-                    choices = {
-                        "qwen3:8b",
-                        "mistral:latest",
-                        "deepseek-r1:8b",
-                        "codellama:13b",
-                        "llama3.2:latest",
-                        "qwen2.5-coder:14b",
+    http = {
+        jina = function()
+            return ca.extend("jina", {
+                env = {
+                    api_key = "JINA_API_KEY",
+                },
+            })
+        end,
+        copilot = function()
+            return ca.extend("copilot", {
+                schema = {
+                    model = { default = "claude-3.5-sonnet" },
+                    max_tokens = { default = 8192 },
+                },
+            })
+        end,
+        ollama = function()
+            return ca.extend("ollama", {
+                env = { url = ollama_url },
+                headers = { ["Content-Type"] = "application/json" },
+                opts = {
+                    vision = true,
+                    stream = true,
+                },
+                -- https://github.com/ollama/ollama/blob/main/docs/modelfile.md#parameter
+                schema = {
+                    model = {
+                        default = "qwen3:8b",
+                        choices = {
+                            "qwen3:8b",
+                            "mistral:latest",
+                            "deepseek-r1:8b",
+                            "codellama:13b",
+                            "llama3.2:latest",
+                            "qwen2.5-coder:14b",
+                        },
+                    },
+                    num_ctx = {
+                        default = 20000,
+                    },
+                    think = {
+                        default = function(adapter)
+                            local model_name = adapter.model.name:lower()
+                            return vim.iter({ "qwen3:8b", "deepseek-r1:8b" }):any(function(kw)
+                                return string.find(model_name, kw) ~= nil
+                            end)
+                        end,
                     },
                 },
-                num_ctx = {
-                    default = 20000,
-                },
-                think = {
-                    default = function(adapter)
-                        local model_name = adapter.model.name:lower()
-                        return vim.iter({ "qwen3:8b", "deepseek-r1:8b" }):any(function(kw)
-                            return string.find(model_name, kw) ~= nil
-                        end)
-                    end,
-                },
-            },
-        })
-    end,
-    opts = {
-        show_model_choices = true,
+            })
+        end,
+        opts = {
+            show_model_choices = true,
+        },
     },
 }
 
