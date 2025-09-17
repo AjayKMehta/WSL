@@ -4,6 +4,11 @@ local ca = require("codecompanion.adapters")
 
 local ollama_url = "http://localhost:11434"
 
+local comp_provider = "cmp"
+if vim.g.use_blink then
+    comp_provider = "blink"
+end
+
 local adapters = {
     http = {
         jina = function()
@@ -103,6 +108,10 @@ local strategies = {
             end,
             ---The header name for your messages
             user = "Me",
+        },
+        opts = {
+            -- blink|cmp|coc|default
+            completion_provider = comp_provider,
         },
         slash_commands = {
             ["buffer"] = {
@@ -286,6 +295,16 @@ local extensions = {
 }
 
 local config = {
+    memory = {
+        opts = {
+            chat = {
+                enabled = true,
+                condition = function(chat)
+                    return chat.adapter.type ~= "acp"
+                end,
+            },
+        },
+    },
     extensions = extensions,
     adapters = adapters,
     display = display,
