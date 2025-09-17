@@ -12,12 +12,13 @@
 -- See :h blink-cmp-config-keymap for defining your own keymap
 
 return {
+    -- <C-b>/<C-f> for scrolling signature
     preset = "default",
     -- https://www.reddit.com/r/neovim/comments/1kdg687/how_do_you_reopen_completion_menu_in_blinkcmp/
     ["<C-s>"] = { "show", "show_signature", "hide_signature" },
     ["<C-d>"] = { "show", "show_documentation", "hide_documentation" },
     ["<C-e>"] = { "hide", "show" },
-    ["<C-Space>"] = { "show" },
+    ["<C-Space>"] = { "show", "fallback" },
     ["<CR>"] = { "accept", "fallback" },
 
     ["<C-k>"] = {

@@ -171,11 +171,16 @@ return {
                 },
                 menu = {
                     auto_show = false, -- only show menu on manual <C-space>
+                    auto_show_delay_ms = function(ctx, items)
+                        return vim.bo.filetype == "markdown" and 500 or 200
+                    end,
                     direction_priority = cb.get_menu_direction_priority,
                     draw = {
                         align_to = "cursor",
                         columns = { { "item_idx" }, { "kind_icon" }, { "label", "label_description", gap = 1 } },
 
+                        -- This is the default but being explicit :)
+                        snippet_indicator = "~",
                         treesitter = { "lsp" },
 
                         components = {
@@ -208,6 +213,9 @@ return {
                 keymap = {
                     -- https://cmp.saghen.dev/modes/cmdline.html#keymap-preset
                     preset = "cmdline",
+                    ["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
+                    ["<S-Tab>"] = { "show_and_insert_or_accept_single", "select_prev" },
+                    ["<CR>"] = { "accept", "fallback" },
                 },
                 completion = {
                     ghost_text = { enabled = true },
