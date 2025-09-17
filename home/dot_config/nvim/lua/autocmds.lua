@@ -1,6 +1,4 @@
 require("nvchad.autocmds")
-local spinner = require("utils.spinner")
-
 local autocmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 
 -- Disable persistent undo for files in /private directory
@@ -197,20 +195,6 @@ autocmd("LspAttach", {
                     end, 1)
                 end,
             })
-        end
-    end,
-})
-
-autocmd("User", {
-    pattern = {
-        "CodeCompanionRequestStarted",
-        "CodeCompanionRequestFinished",
-    },
-    callback = function(args)
-        if args.match == "CodeCompanionRequestStarted" then
-            spinner.start_spinner()
-        elseif args.match == "CodeCompanionRequestFinished" then
-            spinner.stop_spinner()
         end
     end,
 })
