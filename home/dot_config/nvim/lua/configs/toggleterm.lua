@@ -26,7 +26,6 @@ require("toggleterm").setup({
     -- https://github.com/akinsho/toggleterm.nvim/wiki/Per-file-type-shell
     shell = function()
         local ft = vim.bo.filetype
-        vim.print("File type: " .. ft)
         if ft == "r" then
             Shell = "radian"
         elseif ft == "ps1" then

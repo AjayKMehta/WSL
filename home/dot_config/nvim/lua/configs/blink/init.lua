@@ -62,17 +62,17 @@ end
 -- You can also add the same function for `kind.highlight` if you want to
 -- keep the highlight groups in sync with the icons.
 M.get_kind_icon_highlight = function(ctx)
-    local hl = ctx.kind_hl
+    local highlight = ctx.kind_hl
     if vim.tbl_contains({ "Path" }, ctx.source_name) then
         local is_loaded, nwd = u.is_loaded("nvim-web-devicons")
         if is_loaded then
             local dev_icon, dev_hl = nwd.get_icon(ctx.label)
             if dev_icon then
-                hl = dev_hl
+                highlight = dev_hl
             end
         end
     end
-    return hl
+    return highlight
 end
 
 return M
