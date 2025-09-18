@@ -10,7 +10,7 @@ $FormatEnumerationLimit = 10
 $PSNativeCommandUseErrorActionPreference = $true
 
 # Make sure mise and shims are in path
-$env:PATH += ':~/.local/bin/mise:~/.local/share/mise/shims'
+$env:PATH += ':~/.local/bin:~/.local/share/mise/shims'
 
 Import-Module PSudo
 
