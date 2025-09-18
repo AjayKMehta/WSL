@@ -163,4 +163,14 @@ end
 
 map_desc("n", "<leader>fw", flash_word, "Flash current word")
 
+-- https://github.com/folke/flash.nvim#-examples
+map_desc({ "n", "x", "o" }, "<c-space>", function()
+    require("flash").treesitter({
+        actions = {
+            ["<c-space>"] = "next",
+            ["<BS>"] = "prev"
+        }
+    })
+end, "Flash TS incremental selection")
+
 dofile(vim.g.base46_cache .. "flash")
