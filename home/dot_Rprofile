@@ -109,19 +109,19 @@ local({
       rlang::global_entrace()
     }
 
-if (requireNamespace("rlang", quietly = TRUE)) {
-  set_ollama_model <- function(model_name, num_ctx) {
-    chat_model <- ellmer::chat_ollama(
-      model = model_name,
-      api_args = list(keep_alive = "30m", num_ctx = num_ctx)
-    )
-    options(
-      .chores_chat = chat_model,
-      # https://simonpcouch.github.io/gander/articles/gander.html#choosing-a-model
-      .gander_chat = chat_model
-    )
-  }
-
+    if (requireNamespace("rlang", quietly = TRUE)) {
+      set_ollama_model <- function(model_name, num_ctx) {
+        chat_model <- ellmer::chat_ollama(
+          model = model_name,
+          api_args = list(keep_alive = "30m", num_ctx = num_ctx)
+        )
+        options(
+          .chores_chat = chat_model,
+          # https://simonpcouch.github.io/gander/articles/gander.html#choosing-a-model
+          .gander_chat = chat_model
+        )
+      }
+    }
     require(colorout)
 
     # https://github.com/R-nvim/cmp-r?tab=readme-ov-file#languageserver
