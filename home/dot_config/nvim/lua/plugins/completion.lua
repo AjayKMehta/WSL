@@ -1,5 +1,4 @@
-local u = require("utils")
-local load_config = u.load_config
+local load_config = require("utils").load_config
 local cb = require("configs.blink")
 
 return {
@@ -17,6 +16,10 @@ return {
             "R-nvim/cmp-r",
             "chrisgrieser/cmp-nerdfont",
             "fionn/cmp-unitex",
+            {
+                "onsails/lspkind.nvim",
+                opts = { preset = "default" } -- codicons
+            },
             {
                 -- Completion for fs paths (async)
                 "FelipeLema/cmp-async-path",
@@ -68,7 +71,6 @@ return {
         "L3MON4D3/LuaSnip",
         dependencies = {
             { "rafamadriz/friendly-snippets" },
-            { "onsails/lspkind.nvim" },
         },
         event = {
             "InsertEnter",
@@ -104,6 +106,10 @@ return {
             "chrisgrieser/cmp-nerdfont",
             "fionn/cmp-unitex",
             "Kaiser-Yang/blink-cmp-git",
+            {
+                "onsails/lspkind.nvim",
+                opts = { preset = "default" } -- codicons
+            },
         },
 
         -- use a release tag to download pre-built binaries
@@ -165,7 +171,7 @@ return {
                     max_items = 20,
                     -- These can be functions with ctx param
                     selection = {
-                        preselect = true, -- select the first item automatically
+                        preselect = true,   -- select the first item automatically
                         auto_insert = true, -- insert preview
                     },
                 },
