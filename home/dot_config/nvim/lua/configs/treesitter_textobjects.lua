@@ -93,27 +93,27 @@ end, "Select inner part of a class")
 
 -- Swap
 
-map_desc("n", "<leader>na", function()
+map_desc("n", "<leader>SA", function()
     swap.swap_next("@parameter.inner")
 end, "Swap parameter with next")
 
-map_desc("n", "<leader>pa", function()
+map_desc("n", "<leader>Sa", function()
     swap.swap_previous("@parameter.inner")
 end, "Swap parameter with previous")
 
-map_desc("n", "<leader>n:", function()
+map_desc("n", "<leader>SP", function()
     swap.swap_next("@property.outer")
 end, "Swap property with next")
 
-map_desc("n", "<leader>p:", function()
+map_desc("n", "<leader>Sp", function()
     swap.swap_previous("@property.outer")
 end, "Swap property with previous")
 
-map_desc("n", "<leader>nm", function()
+map_desc("n", "<leader>SF", function()
     swap.swap_next("@function.outer")
 end, "Swap function with next")
 
-map_desc("n", "<leader>pm", function()
+map_desc("n", "<leader>Sf", function()
     swap.swap_previous("@function.outer")
 end, "Swap function with previous")
 
