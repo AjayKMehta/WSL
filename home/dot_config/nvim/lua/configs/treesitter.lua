@@ -38,6 +38,7 @@ local ensure_installed = {
     "cmake",
     "comment",
     "css",
+    "csv",
     "diff",
     "dockerfile",
     "git_config",
