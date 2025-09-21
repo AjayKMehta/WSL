@@ -66,6 +66,7 @@ return {
             "TSTextobjectGotoNextStart",
             "TSTextobjectGotoPreviousStart",
         },
+        config = load_config("treewalker"),
     },
     {
         -- Rainbow delimiters with Treesitter
