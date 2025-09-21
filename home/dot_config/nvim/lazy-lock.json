@@ -30,7 +30,6 @@
   "cmp-unitex": { "branch": "master", "commit": "3c5cb2dca8f8c9e476921028d71b265b75f3b586" },
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
   "code_runner.nvim": { "branch": "main", "commit": "a0aa4325ea2958ba21d77d181a838e74be6267cd" },
-  "codecompanion-agent-rules": { "branch": "main", "commit": "f3935899ac3ba9ed1d4cd2312e386015dec312d5" },
   "codecompanion-history.nvim": { "branch": "main", "commit": "eb99d256352144cf3b6a1c45608ec25544a0813d" },
   "codecompanion-lualine.nvim": { "branch": "main", "commit": "b264433444715bf07ee9f7d5015086b927ccf7f1" },
   "codecompanion-spinners.nvim": { "branch": "master", "commit": "674e0cdc30dcfa7babc8a24d3da8c84f5c0762f5" },
