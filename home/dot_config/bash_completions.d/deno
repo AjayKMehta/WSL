@@ -541,7 +541,7 @@ _deno() {
                     return 0
                     ;;
                 --connected)
-                    COMPREPLY=($(compgen -f "${cur}"))
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
                     ;;
                 --help)
@@ -5169,7 +5169,7 @@ _deno() {
                     return 0
                     ;;
                 --connected)
-                    COMPREPLY=($(compgen -f "${cur}"))
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
                     ;;
                 --help)
@@ -5518,7 +5518,7 @@ _deno() {
                     return 0
                     ;;
                 --connected)
-                    COMPREPLY=($(compgen -f "${cur}"))
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
                     ;;
                 --help)
@@ -5636,7 +5636,7 @@ _deno() {
                     return 0
                     ;;
                 --connected)
-                    COMPREPLY=($(compgen -f "${cur}"))
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
                     ;;
                 *)
