@@ -37,7 +37,6 @@ vim.g.vimtex_complete_close_braces = 1
 
 vim.g.vimtex_indent_enabled = 0
 
-
 -- Using Treesitter requires these settings
 vim.g.vimtex_syntax_enabled = 0
 -- https://github.com/lervag/vimtex/blob/5e6a8ff1405f0f2480c37bb10fa69ddfb1b6713f/doc/vimtex.txt#L4841
@@ -86,7 +85,6 @@ vim.g.vimtex_quickfix_mode = 2 -- open automatically if errors
 
 -- #endregion
 
-
 -- Error suppression:
 -- https://github.com/lervag/vimtex/blob/master/doc/vimtex.txt
 
@@ -120,3 +118,8 @@ vim.cmd([[
   redraw!
 endfunction
 ]])
+
+-- Use snacks instead of default
+vim.keymap.set("n", "<localleader>lt", function()
+    return require("vimtex.snacks").toc()
+end, { noremap = true, silent = true, desc = "vimtex-toc-open" })
