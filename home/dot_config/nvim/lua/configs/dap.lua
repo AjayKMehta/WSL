@@ -178,57 +178,6 @@ local function rebuild_project(co, path)
 end
 
 require("easy-dotnet.netcoredbg").register_dap_variables_viewer() -- special variables viewer specific for .NET
-local dotnet = require("easy-dotnet")
-local debug_dll = nil
-local function ensure_dll()
-    if debug_dll ~= nil then
-        return debug_dll
-    end
-    local dll = dotnet.get_debug_dll()
-    debug_dll = dll
-    return dll
-end
-
-dap.configurations.cs = {
-    {
-        name = "Program",
-        type = "coreclr",
-        request = "launch",
-        env = function()
-            local dll = ensure_dll()
-            local vars = dotnet.get_environment_variables(dll.project_name, dll.absolute_project_path)
-            return vars or nil
-        end,
-        program = function()
-            local dll = ensure_dll()
-            local co = coroutine.running()
-            rebuild_project(co, dll.project_path)
-            return dll.relative_dll_path
-        end,
-        cwd = function()
-            local dll = ensure_dll()
-            return dll.relative_project_path
-        end,
-    },
-    {
-        name = "Test",
-        type = "coreclr",
-        request = "attach",
-        processId = function()
-            local res = require("easy-dotnet").experimental.start_debugging_test_project()
-            return res.process_id
-        end,
-    },
-}
-dap.listeners.before["event_terminated"]["easy-dotnet"] = function()
-    debug_dll = nil
-end
-
-dap.adapters.coreclr = {
-    type = "executable",
-    command = mason_path .. "/bin/netcoredbg",
-    args = { "--interpreter=vscode" },
-}
 
 -- Bash
 

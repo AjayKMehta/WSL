@@ -69,6 +69,9 @@ vim.g.use_radian = true
 
 vim.g.use_blink = false
 
+-- If true, use roslyn.nvim instead of easy-dotnet LSP
+vim.g.use_roslyn_nvim = true
+
 require("configs.lsp")
 
 -- load plugins

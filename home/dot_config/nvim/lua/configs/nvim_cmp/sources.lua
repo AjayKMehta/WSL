@@ -123,9 +123,6 @@ local quarto_sources = vim.deepcopy(markdown_sources)
 table.insert(r_sources, 2, r_source)
 M.quarto = quarto_sources
 
---dotnet
-cmp.register_source("easy-dotnet", require("easy-dotnet").package_completion_source)
-
 local dotnet_sources = vim.deepcopy(default_sources)
 -- For C#, want to trigger when '_'
 dotnet_sources[1].keyword_length = 1

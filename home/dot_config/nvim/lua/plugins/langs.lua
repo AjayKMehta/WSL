@@ -100,9 +100,9 @@ return {
     },
     {
         "seblyng/roslyn.nvim",
-        ft = { "cs", "csproj", "sln", "slnx", "props" },
+        cond = vim.g.use_roslyn_nvim,
+        ft = { "csproj", "sln", "slnx", "props" },
         opts = {
-
             -- TODO: Investigate setting this to "roslyn"
             filewatching = "auto",
         },
@@ -279,6 +279,13 @@ return {
                     mappings = {
                         open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
                     },
+                    auto_register_dap = true,
+                    bin_path = vim.fn.stdpath("data") .. "/mason" .. "/bin/netcoredbg"
+                },
+                lsp = {
+                    enabled = not vim.g.use_roslyn_nvim,
+                    analyzer_assemblies = {},
+                    roslynator_enabled = true,
                 },
                 diagnostics = {
                     default_severity = "warning",
@@ -287,6 +294,9 @@ return {
             }
 
             dotnet.setup(config)
+            if not vim.g.use_blink then
+                require("cmp").register_source("easy-dotnet", require("easy-dotnet").package_completion_source)
+            end
 
             -- Example command
             vim.api.nvim_create_user_command("Secrets", function()

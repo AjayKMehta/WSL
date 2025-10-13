@@ -53,6 +53,7 @@ return {
                     })
                 end,
             },
+            { "GustavEikaas/easy-dotnet.nvim" },
         },
     },
     { "chrisgrieser/cmp-nerdfont" },
