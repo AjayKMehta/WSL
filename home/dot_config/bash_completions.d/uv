@@ -1566,7 +1566,7 @@ _uv() {
             return 0
             ;;
         uv__cache__prune)
-            opts="-n -q -v -h --ci --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
+            opts="-n -q -v -h --ci --force --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -5104,7 +5104,7 @@ _uv() {
             return 0
             ;;
         uv__tool__list)
-            opts="-n -q -v -h --show-paths --show-version-specifiers --show-with --show-extras --python-preference --no-python-downloads --no-cache --cache-dir --managed-python --no-managed-python --allow-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
+            opts="-n -q -v -h --show-paths --show-version-specifiers --show-with --show-extras --show-python --python-preference --no-python-downloads --no-cache --cache-dir --managed-python --no-managed-python --allow-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
