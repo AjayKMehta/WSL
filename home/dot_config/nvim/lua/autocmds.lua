@@ -180,7 +180,7 @@ autocmd("LspAttach", {
                     -- buffer has changed.
                     vim.defer_fn(function()
                         client:request(
-                        ---@diagnostic disable-next-line: param-type-mismatch
+                            ---@diagnostic disable-next-line: param-type-mismatch
                             "textDocument/_vs_onAutoInsert",
                             params,
                             function(err, result, _)
@@ -213,6 +213,10 @@ if require("utils").is_loaded("snacks") then
             end, "Git Find Files")
 
             map_buf(buf, "n", "<leader>gb", Snacks.picker.git_branches, "Git Branches")
+
+            map_buf(buf, { "n", "v" }, "<leader>gB", function()
+                Snacks.gitbrowse()
+            end, "Git Browse")
 
             map_buf(buf, "n", "<leader>gL", Snacks.picker.git_log, "Git Log")
 
@@ -283,7 +287,6 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.treesitter.start()
     end,
 })
-
 
 -- https://igorlfs.github.io/nvim-dap-view/filetypes-autocmds#example-autocommand
 autocmd({ "FileType" }, {

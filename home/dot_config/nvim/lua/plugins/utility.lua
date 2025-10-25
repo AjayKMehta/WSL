@@ -435,9 +435,14 @@ return {
                     },
                 },
                 sources = {
-                    files = { hidden = true },
+                    diagnostics = { severity = vim.diagnostic.severity.ERROR },
                     explorer = {
+                        diagnostics = true,
+                        diagnostics_open = false,
+                        git_status_open = false,
+                        git_untracked = true,
                         hidden = true,
+                        watch = true,
                         -- https://github.com/GustavEikaas/easy-dotnet.nvim?tab=readme-ov-file#integrating-with-snacks-explorer
                         win = {
                             list = {
@@ -461,6 +466,7 @@ return {
                             end,
                         },
                     },
+                    files = { hidden = true },
                     keymaps = { layout = { preset = "vertical", fullscreen = true } },
                 },
                 actions = {
@@ -500,6 +506,26 @@ return {
                     Snacks.words.jump(-vim.v.count1)
                 end,
                 desc = "Prev Reference",
+            },
+            {
+                "<leader>lI",
+                function()
+                    Snacks.picker.lsp_implementations()
+                end,
+                desc = "Lsp Go to implementations",
+            },
+                        {
+                "<leader>li",
+                function()
+    Snacks.picker.lsp_incoming_calls()
+                end,
+                desc = "Lsp Incoming calls",
+            },            {
+                "<leader>lo",
+                function()
+    Snacks.picker.lsp_outgoing_calls()
+                end,
+                desc = "Lsp Outgoing Calls",
             },
             {
                 "<leader>lSD",
