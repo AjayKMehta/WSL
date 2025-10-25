@@ -240,6 +240,10 @@ return {
                 lua = "lua",
                 python = "python3 -u",
                 r = "Rscript",
+                cs = function(...)
+                    local root_dir = require("lspconfig").util.root_pattern("*.csproj")(vim.loop.cwd())
+                    return "cd " .. root_dir .. " && dotnet run$end"
+                end,
                 ps1 = "pwsh -f $file",
                 shell = "$dir/$fileName",
                 typescript = "deno run",
