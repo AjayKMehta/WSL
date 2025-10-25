@@ -16,6 +16,6 @@ lazygit = "latest"
 ripgrep = { version = "latest", postinstall = 'rg --generate=completion-bash > ~/.config/bash_completions.d/rg' }
 direnv = "latest"
 act = "latest"
-yq = "latest"
+yq = {version = "latest", postinstall = 'yq shell-completion bash > ~/.config/bash_completions.d/yq'}
 minikube = "latest"
 kubectl = "latest"
