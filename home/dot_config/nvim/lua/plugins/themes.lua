@@ -89,4 +89,16 @@ return {
             require("backpack").setup()
         end,
     },
+    {
+        "ricardoraposo/nightwolf.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            theme = "black", -- 'black', 'dark-blue', 'gray', 'dark-gray', 'light'
+            italic = true,
+            transparency = false,
+            palette_overrides = {},
+            highlight_overrides = {},
+        },
+    },
 }
