@@ -335,7 +335,7 @@ return {
     },
     {
         --- Automatically generate C# boilerplate when you create a file inside a C# project
-        "DestopLine/boilersharp.nvim",
+        "angeljreyes/boilersharp.nvim",
         opts = {
             usings = {
                 ---@type "never" | "always" | "auto"
