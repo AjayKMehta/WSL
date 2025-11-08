@@ -467,7 +467,11 @@ return {
                         },
                     },
                     files = { hidden = true },
-                    keymaps = { layout = { preset = "vertical", fullscreen = true } },
+                    git_files = { untracked = true },
+                    keymaps = {
+                        layout = { preset = "vertical", fullscreen = true },
+                        plugs = true,
+                    },
                 },
                 actions = {
                     flash = function(picker)
@@ -514,16 +518,17 @@ return {
                 end,
                 desc = "Lsp Go to implementations",
             },
-                        {
+            {
                 "<leader>li",
                 function()
-    Snacks.picker.lsp_incoming_calls()
+                    Snacks.picker.lsp_incoming_calls()
                 end,
                 desc = "Lsp Incoming calls",
-            },            {
+            },
+            {
                 "<leader>lo",
                 function()
-    Snacks.picker.lsp_outgoing_calls()
+                    Snacks.picker.lsp_outgoing_calls()
                 end,
                 desc = "Lsp Outgoing Calls",
             },
