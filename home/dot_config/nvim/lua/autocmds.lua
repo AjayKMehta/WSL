@@ -227,6 +227,8 @@ if require("utils").is_loaded("snacks") then
             map_buf(buf, "n", "<leader>gdh", Snacks.picker.git_diff, "Git Diff (Hunks)")
 
             map_buf(buf, "n", "<leader>glf", Snacks.picker.git_log_file, "Git Log File")
+
+            map_buf(buf, "n", "<leader>sL", Snacks.lazygit.open, "Snacks Lazygit")
         end,
     })
 end
