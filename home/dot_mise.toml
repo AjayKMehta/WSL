@@ -19,3 +19,4 @@ act = "latest"
 yq = {version = "latest", postinstall = 'yq shell-completion bash > ~/.config/bash_completions.d/yq'}
 minikube = "latest"
 kubectl = "latest"
+bat-extras = "latest"
