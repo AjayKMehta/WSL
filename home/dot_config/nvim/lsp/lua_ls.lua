@@ -27,8 +27,14 @@ return {
     settings = {
         Lua = {
             runtime = { version = "LuaJIT" },
+            -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#snip-env-diagnostics
             diagnostics = {
-                globals = { "vim" },
+                globals = {
+                    "vim",
+                    "s",
+                    "c",
+                    "t",
+                }
             },
             hint = {
                 enable = true,
