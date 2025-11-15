@@ -59,19 +59,6 @@ return {
         config = load_config("codecompanion"),
     },
     {
-        "github/copilot.vim",
-        cond = false,
-        config = function()
-            vim.keymap.set("i", "<M-a>", 'copilot#Accept("")', {
-                expr = true,
-                replace_keycodes = false,
-            })
-
-            vim.g.copilot_no_tab_map = true
-            vim.g.copilot_tab_fallback = ""
-        end,
-    },
-    {
         "ravitemer/mcphub.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",

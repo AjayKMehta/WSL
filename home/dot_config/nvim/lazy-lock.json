@@ -35,7 +35,6 @@
   "codecompanion-spinners.nvim": { "branch": "main", "commit": "86926cbf7554d69d40d2a5c3cf576063814a42d5" },
   "codecompanion.nvim": { "branch": "main", "commit": "991dd81ac37b56b6d13529a08e86a42d183d79dc" },
   "conform.nvim": { "branch": "master", "commit": "cde4da5c1083d3527776fee69536107d98dae6c9" },
-  "copilot.vim": { "branch": "release", "commit": "a9228e015528c9307890c48083c925eb98a64a79" },
   "cyberdream.nvim": { "branch": "main", "commit": "eba11f590026e74915e13d12a53cdbdc9b98d9f9" },
   "dap-breakpoints.nvim": { "branch": "master", "commit": "35b6d70e3d096b2874a67f43b73478ac54ed133f" },
   "darcubox-nvim": { "branch": "main", "commit": "5e102a1f2a997842e1a6361499991160cb2c3606" },
