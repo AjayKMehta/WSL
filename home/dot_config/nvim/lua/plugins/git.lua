@@ -144,7 +144,7 @@ return {
                 -- Navigation
 
                 map({ "n", "v" }, "[h", function()
-                   gs.nav_hunk("prev")
+                    gs.nav_hunk("prev")
                 end, "gitsigns Go to previous hunk")
 
                 map({ "n", "v" }, "]h", function()
