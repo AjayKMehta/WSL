@@ -25,6 +25,33 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         cmd = "Octo",
+        keys = {
+            {
+                "<leader>Oo",
+                "<cmd>Octo<cr>",
+                desc = "Octo",
+            },
+            {
+                "<leader>Oi",
+                "<CMD>Octo issue list<CR>",
+                desc = "octo Issues List",
+            },
+            {
+                "<leader>Op",
+                "<CMD>Octo pr list<CR>",
+                desc = "Octo PR List",
+            },
+            {
+                "<leader>Od",
+                "<CMD>Octo discussion list<CR>",
+                desc = "Octo Discussions List",
+            },
+            {
+                "<leader>Or",
+                "<CMD>Octo repo list<CR>",
+                desc = "Octo Repo List",
+            },
+        },
         config = function()
             require("octo").setup({
                 enable_builtin = true,

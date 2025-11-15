@@ -159,15 +159,6 @@ end, "Neotest Show summary")
 
 --#endregion
 
---#region octo
-
-map_desc("n", "<leader>Oo", "<cmd>Octo<cr>", "Octo")
-map_desc("n", "<leader>Oi", "<cmd>Octo issue list<cr>", "Octo Issue List")
-map_desc("n", "<leader>Op", "<cmd>Octo pr list<cr>", "Octo PR List")
-map_desc("n", "<leader>Or", "<cmd>Octo repo list<cr>", "Octo Repo List")
-
---#endregion
-
 --#region Noice
 
 map_desc("n", "<leader>ne", function()
