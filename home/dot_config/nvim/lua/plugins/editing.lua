@@ -236,6 +236,7 @@ return {
     {
         "tris203/precognition.nvim",
         enabled = true,
+        dependencies = { "chrisgrieser/nvim-spider" },
         event = { "BufRead", "BufNewFile" },
         cmd = { "Precognition" },
         keys = {
