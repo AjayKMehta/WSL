@@ -18,7 +18,7 @@ return {
             "fionn/cmp-unitex",
             {
                 "onsails/lspkind.nvim",
-                opts = { preset = "default" } -- codicons
+                opts = { preset = "default" }, -- codicons
             },
             {
                 -- Completion for fs paths (async)
@@ -109,7 +109,7 @@ return {
             "Kaiser-Yang/blink-cmp-git",
             {
                 "onsails/lspkind.nvim",
-                opts = { preset = "default" } -- codicons
+                opts = { preset = "default" }, -- codicons
             },
         },
 
@@ -172,7 +172,7 @@ return {
                     max_items = 20,
                     -- These can be functions with ctx param
                     selection = {
-                        preselect = true,   -- select the first item automatically
+                        preselect = true, -- select the first item automatically
                         auto_insert = true, -- insert preview
                     },
                 },
@@ -212,7 +212,13 @@ return {
 
             fuzzy = {
                 implementation = "prefer_rust_with_warning",
-                sorts = { "exact", "score", "sort_text", "kind", "label" },
+                sorts = function()
+                    if vim.bo.filetype == "lua" then
+                        return { "score", "label" } -- Prioritize label sorting for Lua files
+                    else
+                        return { "exact", "score", "sort_text", "kind", "label" }
+                    end
+                end,
             },
             enabled = cb.is_enabled,
 
