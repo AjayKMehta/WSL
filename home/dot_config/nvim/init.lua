@@ -55,9 +55,6 @@ vim.g.snippet_examples = true
 vim.g.show_linters = false
 vim.g.show_formatters = false
 
--- if true, use native comment functionality added in nvim 0.10
-vim.g.nvim_comment = true
-
 -- if true, use base46 diffview integration.
 vim.g.diffview_base46 = true
 

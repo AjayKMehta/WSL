@@ -1,49 +1,5 @@
 return {
     {
-        -- Advanced comment plugin with Treesitter support.
-        "numToStr/Comment.nvim",
-        lazy = true,
-        enabled = function()
-            return not vim.g.nvim_comment
-        end,
-        config = function(_, opts)
-            local comment = require("Comment")
-            -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring/wiki/Integrations#commentnvim
-            local pre_hook = {
-                pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-            }
-            comment.setup(vim.tbl_deep_extend("force", opts, pre_hook))
-        end,
-        dependencies = {
-            {
-                "JoosepAlviste/nvim-ts-context-commentstring",
-                lazy = false,
-                init = function()
-                    vim.g.skip_ts_context_commentstring_module = true
-                end,
-                config = function()
-                    local tsc = require("ts_context_commentstring")
-                    if vim.g.nvim_comment then
-                        tsc.setup({
-                            enable_autocmd = false,
-                        })
-                        local get_option = vim.filetype.get_option
-                        vim.filetype.get_option = function(filetype, option)
-                            return option == "commentstring"
-                                    and require("ts_context_commentstring.internal").calculate_commentstring()
-                                or get_option(filetype, option)
-                        end
-                    else
-                        tsc.setup({
-                            enable_autocmd = false,
-                            pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-                        })
-                    end
-                end,
-            },
-        },
-    },
-    {
         -- Generate comments based on treesitter.
         "danymat/neogen",
         dependencies = "nvim-treesitter/nvim-treesitter",

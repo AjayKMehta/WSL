@@ -74,19 +74,17 @@ autocmd("BufReadPost", {
 --     command = "cwindow",
 -- })
 
-if vim.g.nvim_comment then
-    -- https://github.com/neovim/neovim/pull/28176#issuecomment-2051944146
-    local comment_augroup = augroup("CommentIncSpaces", { clear = true })
-    autocmd({ "FileType" }, {
-        group = comment_augroup,
-        desc = "Force commentstring to include spaces",
-        -- group = ...,
-        callback = function(event)
-            local cs = vim.bo[event.buf].commentstring
-            vim.bo[event.buf].commentstring = cs:gsub("(%S)%%s", "%1 %%s"):gsub("%%s(%S)", "%%s %1")
-        end,
-    })
-end
+-- https://github.com/neovim/neovim/pull/28176#issuecomment-2051944146
+local comment_augroup = augroup("CommentIncSpaces", { clear = true })
+autocmd({ "FileType" }, {
+    group = comment_augroup,
+    desc = "Force commentstring to include spaces",
+    -- group = ...,
+    callback = function(event)
+        local cs = vim.bo[event.buf].commentstring
+        vim.bo[event.buf].commentstring = cs:gsub("(%S)%%s", "%1 %%s"):gsub("%%s(%S)", "%%s %1")
+    end,
+})
 
 -- https://www.reddit.com/r/neovim/comments/1cwd181/comment/l4wqmza/
 -- autocmd("BufEnter", {
