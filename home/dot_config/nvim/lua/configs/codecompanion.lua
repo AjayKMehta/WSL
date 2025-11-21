@@ -26,6 +26,24 @@ local adapters = {
                 },
             })
         end,
+        ollama_cloud = function()
+            return ca.extend("ollama", {
+                opts = {
+                    vision = true,
+                },
+                env = {
+                    url = "https://ollama.com",
+                    api_key = "OLLAMA_API_KEY",
+                },
+                headers = {
+                    ["Content-Type"] = "application/json",
+                    ["Authorization"] = "Bearer ${api_key}",
+                },
+                parameters = {
+                    sync = true,
+                },
+            })
+        end,
         ollama = function()
             return ca.extend("ollama", {
                 env = { url = ollama_url },
@@ -232,7 +250,7 @@ local strategies = {
         },
     },
     agent = {
-        adapter = "ollama",
+        adapter = "copilot",
     },
 }
 
