@@ -129,6 +129,11 @@ return {
                 dynamicRegistration = true,
             },
         },
+        workspace = {
+            didChangeWatchedFiles = {
+                dynamicRegistration = true,
+            },
+        },
     },
     settings = {
         ["csharp|background_analysis"] = {
