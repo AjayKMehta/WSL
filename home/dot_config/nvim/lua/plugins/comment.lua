@@ -20,4 +20,14 @@ return {
         version = "*",
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim"},
+        config = function()
+            require("todo-comments").setup({
+                search = { pattern = [[\b(KEYWORDS)(\([^\)]*\))?:]] },
+                highlight = { keyword = "empty", after = "", pattern = [[.*<((KEYWORDS)%(\(.{-1,}\))?):]] }, -- Optional. Just to make it look the same as tree-comment's highlighting
+            })
+        end,
+    },
 }
