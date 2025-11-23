@@ -21,6 +21,8 @@ require("toggleterm").setup({
             return (h < 35) and 35 or h
         end,
     },
+    -- There seems to be a weird interaction between <C-hjkl> mappings and those from tmux-navigator. The latter will cause terminal windows to be non-modifiable.
+    -- Works again after changing persist_* to false in setup 🤷‍♂️
     persist_size = false,
     persist_mode = false,
     -- https://github.com/akinsho/toggleterm.nvim/wiki/Per-file-type-shell
@@ -40,20 +42,6 @@ require("toggleterm").setup({
         return Shell
     end,
 })
-
--- https://github.com/akinsho/toggleterm.nvim#terminal-window-mappings
--- There seems to be a weird interaction between these mappings and those from tmux-navigator. The latter will cause terminal windows to be non-modifiable.
--- Works again after changing persist_* to false in setup 🤷‍♂️
-function _G.set_terminal_keymaps()
-    local opts = { buffer = 0 }
-    vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-    vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-    vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-    vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
-end
-
--- if you want these mappings for all terms use term://* instead
-vim.cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")
 
 local exitTerm = function()
     vim.cmd(":ToggleTerm")
