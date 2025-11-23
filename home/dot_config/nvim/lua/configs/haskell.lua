@@ -27,7 +27,7 @@ vim.g.haskell_tools = {
         hoogle = { mode = "auto" },
         definition = { hoogle_signature_fallback = true },
         hover = { auto_focus = true },
-        repl = { handler = "toggleterm", prefer = "stack" },
+        repl = { prefer = "stack" },
     },
     hls = {
         auto_attach = true,
