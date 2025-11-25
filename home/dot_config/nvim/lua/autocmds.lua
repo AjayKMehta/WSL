@@ -297,7 +297,7 @@ autocmd({ "FileType" }, {
 })
 
 -- https://github.com/akinsho/toggleterm.nvim#terminal-window-mappings\
-local terminal_group = vim.api.augroup("terminal_keymaps", { clear = true })
+local terminal_group = augroup("terminal_keymaps", { clear = true })
 -- if you want these mappings for all terms use term://* instead
 autocmd("TermOpen", {
     pattern = "term://*",
