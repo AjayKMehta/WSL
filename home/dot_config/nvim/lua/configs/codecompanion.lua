@@ -245,7 +245,13 @@ local strategies = {
             },
             reject_change = {
                 modes = { n = "<leader>cr" },
+                opts = { nowait = true },
                 description = "Reject the suggested change",
+            },
+            stop = {
+                modes = { n = "q" },
+                callback = "keymaps.stop",
+                description = "Stop request",
             },
         },
     },
