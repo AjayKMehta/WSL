@@ -174,6 +174,9 @@ return {
             require("mason").setup()
             require("mason-nvim-dap").setup({
                 ensure_installed = { "python", "bash", "coreclr", "haskell", "jq", "stylua" },
+                handlers = {
+                    coreclr = function() end, -- Don't setup netcoredbg adapter, use easy-dotnet.nvim instead
+                },
             })
             -- https://www.reddit.com/r/neovim/comments/1d11ahc/comment/l5rz54s
             local vscode = require("dap.ext.vscode")
