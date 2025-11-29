@@ -82,21 +82,6 @@ end, "DAP List variables")
 
 --#endregion
 
---#region minimove
-
-local function fn_move(dir)
-    return function()
-        require("mini.move").move_line(dir)
-    end
-end
-
-map_desc({ "n", "v" }, "<A-Left>", fn_move("left"), "mini.move line left")
-map_desc({ "n", "v" }, "<A-Right>", fn_move("right"), "mini.move line right")
-map_desc({ "n", "v" }, "<A-Up>", fn_move("up"), "mini.move line up")
-map_desc({ "n", "v" }, "<A-Down>", fn_move("down"), "mini.move line down")
-
---#endregion
-
 --#region code_runner
 
 map_desc("n", "<leader>rc", "<cmd>RunCode<CR>", "CodeRunner Run code")

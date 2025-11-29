@@ -25,7 +25,22 @@ return {
         -- Move lines and blocks of code
         "nvim-mini/mini.move",
         version = false,
-        opts = { options = { reindent_linewise = true } },
+        opts = {
+            mappings = {
+                -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+                left = "<A-Left>",
+                right = "<A-right>",
+                down = "<A-Down>",
+                up = "<A-Up>",
+
+                -- Move current line in Normal mode
+                line_left = "<A-Left>",
+                line_right = "<A-right>",
+                line_down = "<A-Down>",
+                line_up = "<A-Up>",
+            },
+            options = { reindent_linewise = true },
+        },
         event = "VeryLazy",
     },
     {
