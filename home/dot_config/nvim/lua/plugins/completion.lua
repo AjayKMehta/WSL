@@ -169,7 +169,7 @@ return {
                 },
                 trigger = { show_in_snippet = false }, --  do not show the completion window automatically when in a snippet
                 list = {
-                    max_items = 20,
+                    max_items = 15,
                     -- These can be functions with ctx param
                     selection = {
                         preselect = true, -- select the first item automatically

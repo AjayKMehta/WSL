@@ -64,12 +64,14 @@ local opts = {
             cmp.config.compare.order,
         },
     },
-    -- https://github.com/hrsh7th/nvim-cmp/commit/7aa3f71932c419d716290e132cacbafbaf5bea1c
     view = {
         entries = {
             follow_cursor = true,
+            name = "custom",
+            vertical_positioning = "auto",
         },
     },
+    window = { completion = { max_height = 12 } },
     sources = src.default,
     formatting = { format = c.format },
 }
