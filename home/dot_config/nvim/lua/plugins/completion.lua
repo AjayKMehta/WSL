@@ -13,7 +13,6 @@ return {
         end,
         dependencies = {
             "L3MON4D3/LuaSnip",
-            "R-nvim/cmp-r",
             "chrisgrieser/cmp-nerdfont",
             "fionn/cmp-unitex",
             {
@@ -81,12 +80,6 @@ return {
         config = load_config("luasnip"),
     },
     {
-        "R-nvim/cmp-r",
-        config = function()
-            require("cmp_r").setup({ filetypes = { "r", "rmd", "quarto" } })
-        end,
-    },
-    {
         "saghen/blink.compat",
         cond = vim.g.use_blink,
         -- use v2.* for blink.cmp v1.*
@@ -103,7 +96,6 @@ return {
         cond = vim.g.use_blink,
         dependencies = {
             "L3MON4D3/LuaSnip",
-            "R-nvim/cmp-r",
             "chrisgrieser/cmp-nerdfont",
             "fionn/cmp-unitex",
             "Kaiser-Yang/blink-cmp-git",

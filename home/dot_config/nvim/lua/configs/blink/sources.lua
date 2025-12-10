@@ -16,9 +16,8 @@ return {
         gitrebase = { "git", "buffer", "path" },
         plaintex = { "lsp", "snippets", "buffer", "path" },
         tex = { "lsp", "snippets", "buffer", "path" },
-        r = { inherit_defaults = true, "cmp_r" },
-        rmd = { inherit_defaults = true, "cmp_r", "nerdfont" },
-        quarto = { inherit_defaults = true, "cmp_r", "nerdfont" },
+        rmd = { inherit_defaults = true, "nerdfont" },
+        quarto = { inherit_defaults = true, "nerdfont" },
         markdown = { inherit_defaults = true, "nerdfont" },
         codecompanion = { inherit_defaults = true, "nerdfont" },
         cs = { inherit_defaults = true, "easy-dotnet" },
@@ -51,13 +50,6 @@ return {
             -- make lazydev completions top priority
             score_offset = 100,
             fallbacks = { "lsp" },
-        },
-        -- https:// hub.com/R-nvim/cmp-r/issues/14#issuecomment-2817106616
-        cmp_r = {
-            name = "cmp_r",
-            module = "blink.compat.source",
-            score_offset = 100,
-            async = true,
         },
         -- https://github.com/GustavEikaas/easy-dotnet.nvim#using-blinkcmp
         ["easy-dotnet"] = {

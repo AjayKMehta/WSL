@@ -152,16 +152,8 @@ cmp.setup.filetype({ "tex", "plaintex" }, {
     sources = src.tex,
 })
 
-cmp.setup.filetype({ "markdown", "codecompanion" }, {
+cmp.setup.filetype({ "markdown", "codecompanion", "rmd", "quarto" }, {
     sources = src.markdown,
-})
-
-cmp.setup.filetype({ "r", "rmd", "quarto" }, {
-    sources = src.r,
-})
-
-cmp.setup.filetype({ "rmd", "quarto" }, {
-    sources = src.quarto,
 })
 
 cmp.setup.filetype({ "cs", "csproj", "sln", "slnx", "props" }, {

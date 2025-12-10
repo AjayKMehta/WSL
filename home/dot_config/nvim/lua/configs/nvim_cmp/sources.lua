@@ -108,21 +108,6 @@ table.insert(markdown_sources, { name = "nerdfont", group_index = 1, priority = 
 
 M.markdown = markdown_sources
 
--- r
-local r_sources = vim.deepcopy(default_sources)
-local r_source = {
-    name = "cmp_r",
-    priority = 100,
-    keyword_length = 2,
-}
-table.insert(r_sources, 1, r_source)
-M.r = r_sources
-
--- rmd/quarto
-local quarto_sources = vim.deepcopy(markdown_sources)
-table.insert(r_sources, 2, r_source)
-M.quarto = quarto_sources
-
 local dotnet_sources = vim.deepcopy(default_sources)
 -- For C#, want to trigger when '_'
 dotnet_sources[1].keyword_length = 1

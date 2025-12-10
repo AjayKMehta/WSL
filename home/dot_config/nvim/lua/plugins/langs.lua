@@ -70,7 +70,6 @@ return {
             pdfviewer = "",
         },
         dependencies = {
-            "R-nvim/cmp-r",
             "nvim-treesitter/nvim-treesitter",
         },
         keys = {
