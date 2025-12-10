@@ -9,6 +9,10 @@ vim.g.maplocalleader = "\\"
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
 
+-- https://github.com/GustavEikaas/easy-dotnet.nvim/issues/658#issuecomment-3623570790
+-- Set semantic_tokens to have a lower priority than treesitter (100)
+vim.hl.priorities.semantic_tokens = 95
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 

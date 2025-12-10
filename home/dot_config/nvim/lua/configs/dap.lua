@@ -154,6 +154,20 @@ dap.listeners.before["event_progressEnd"]["progress-notifications"] = function(s
     notif_data.spinner = nil
 end
 
+-- https://github.com/GustavEikaas/easy-dotnet.nvim/issues/439#issuecomment-3621886855
+
+-- Dont show the dap ui before a breakpoint is hit
+dap.listeners.after.event_stopped["dap_ui"] = function()
+    dapui.open()
+end
+
+-- ensure dap ui is closed (sometimes it hangs for me if the debugger crashes
+dap.listeners.on_session["dap_ui"] = function(_, new)
+    if new == nil then
+    dapui.close()
+    end
+end
+
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
 
 -- .NET
@@ -237,8 +251,6 @@ dap.configurations.haskell = {
         ghciCmd = "stack ghci --test --no-load --no-build --ghci-options -fprint-evld-with-show",
     },
 }
-
--- Lua
 
 -- PowerShell
 
