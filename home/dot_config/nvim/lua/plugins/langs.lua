@@ -274,12 +274,13 @@ return {
                     path = get_secret_path,
                 },
                 picker = "snacks",
+                notifications = { handler = false },
                 debugger = {
                     mappings = {
                         open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
                     },
                     auto_register_dap = true,
-                    bin_path = vim.fn.stdpath("data") .. "/mason" .. "/bin/netcoredbg"
+                    bin_path = vim.fn.stdpath("data") .. "/mason" .. "/bin/netcoredbg",
                 },
                 lsp = {
                     enabled = not vim.g.use_roslyn_nvim,
