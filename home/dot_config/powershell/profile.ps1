@@ -2,6 +2,10 @@ $env:DELTA_PAGER = 'less -rFX'
 # https://ohmyposh.dev/docs/segments/git
 $env:POSH_GIT_ENABLED = $true
 
+$env:XDG_CONFIG_HOME="$HOME/.config"
+# https://superuser.com/questions/1262977/open-browser-in-host-system-from-windows-subsystem-for-linux
+$env:BROWSER='/mnt/c/Program Files/Firefox/firefox.exe'
+
 # https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_preference_variables?view=powershell-7.4#formatenumerationlimit
 $FormatEnumerationLimit = 10
 
@@ -10,7 +14,15 @@ $FormatEnumerationLimit = 10
 $PSNativeCommandUseErrorActionPreference = $true
 
 # Make sure mise and shims are in path
-$env:PATH += ':~/.local/bin:~/.local/share/mise/shims'
+$env:PATH += ':~/.local/bin'
+if ($env:TERM_PROGRAM -eq 'vscode') {
+    (&mise activate pwsh --shims) | Out-String | Invoke-Expression
+}
+else {
+    (&mise activate pwsh) | Out-String | Invoke-Expression
+}
+
+$env:PATH = "~/.yarn/bin:~/.config/yarn/global/node_modules/.bin:$env:PATH"
 
 Import-Module PSudo
 
