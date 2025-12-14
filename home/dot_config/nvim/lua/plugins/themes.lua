@@ -101,4 +101,17 @@ return {
             highlight_overrides = {},
         },
     },
+    {
+        "loctvl842/monokai-pro.nvim",
+        config = function()
+            require("monokai-pro").setup({
+                transparent_background = false,
+                terminal_colors = true,
+                devicons = true, -- highlight the icons of `nvim-web-devicons`
+                day_night = {
+                    enable = false, -- turn off by default
+                },
+            })
+        end,
+    },
 }

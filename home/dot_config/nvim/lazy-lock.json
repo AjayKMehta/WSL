@@ -76,6 +76,7 @@
   "mini.move": { "branch": "main", "commit": "4d214202d71e0a4066b6288176bbe88f268f9777" },
   "minty": { "branch": "main", "commit": "aafc9e8e0afe6bf57580858a2849578d8d8db9e0" },
   "modus-themes.nvim": { "branch": "master", "commit": "c57c2c56c9f0af04f3b609d11caa840880074784" },
+  "monokai-pro.nvim": { "branch": "master", "commit": "1ac671f6da720cba967d28d25c2f16b8b4e18808" },
   "multicursors.nvim": { "branch": "main", "commit": "72225ea9e4443c3f4b9df91d0193e07c4ee8d382" },
   "neogen": { "branch": "main", "commit": "b2e78708876f4da507839726816010a68e33fec8" },
   "neominimap.nvim": { "branch": "main", "commit": "c827a43e5cad146e007c8b1f2a9744798d029e6f" },
