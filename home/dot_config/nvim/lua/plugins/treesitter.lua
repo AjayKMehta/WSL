@@ -77,7 +77,6 @@ return {
             "TSTextobjectGotoNextStart",
             "TSTextobjectGotoPreviousStart",
         },
-        config = load_config("treewalker"),
     },
     {
         -- Rainbow delimiters with Treesitter
@@ -98,6 +97,7 @@ return {
             -- its place.
             select = false,
         },
+        config = load_config("treewalker"),
     },
     {
         -- NeoVim plugin for jumping to the other end of the current Tree-sitter node using `%`
