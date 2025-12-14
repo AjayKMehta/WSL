@@ -19,7 +19,7 @@ return {
         rmd = { inherit_defaults = true, "nerdfont" },
         quarto = { inherit_defaults = true, "nerdfont" },
         markdown = { inherit_defaults = true, "nerdfont" },
-        codecompanion = { inherit_defaults = true, "nerdfont" },
+        codecompanion = { inherit_defaults = true, "codecompanion", "nerdfont" },
         cs = { inherit_defaults = true, "easy-dotnet" },
         csproj = { inherit_defaults = true, "easy-dotnet" },
         sln = { inherit_defaults = true, "easy-dotnet" },
