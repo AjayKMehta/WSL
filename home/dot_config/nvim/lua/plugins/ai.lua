@@ -45,6 +45,12 @@ return {
             },
             {
                 "<leader>ct",
+                "<cmd>CodeCompanionChat Toggle<cr>",
+                mode = { "n", "v" },
+                desc = "CodeCompanion Toggle Chat",
+            },
+            {
+                "<leader>cT",
                 "<cmd>CodeCompanion /tests<cr>",
                 mode = "v",
                 desc = "CodeCompanion Generate Tests",
