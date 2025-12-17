@@ -1,5 +1,5 @@
 local config = require("codecompanion.config")
-local utils = require("utils.codecompanion")
+local utils = require("prompts.helper")
 
 return {
     strategy = "chat",

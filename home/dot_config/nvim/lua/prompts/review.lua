@@ -1,15 +1,13 @@
 local config = require("codecompanion.config")
-
----@diagnostic disable-next-line: different-requires
-local utils = require("utils.codecompanion")
+local utils = require("prompts.helper")
 
 return {
-    strategy = "chat",
+    interaction = "chat",
     description = "Review code",
     opts = {
         mapping = "<leader>cr",
         is_slash_cmd = true,
-        short_name = "review", -- Run as `:CodeCompanion /review`
+        alias = "review", -- Run as `:CodeCompanion /review`
         stop_context_insertion = true, -- avoid duplication because visually selecting text
         auto_submit = true, -- get the user's input before we action the response
         user_prompt = false,

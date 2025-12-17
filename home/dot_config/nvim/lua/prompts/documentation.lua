@@ -1,22 +1,19 @@
 local config = require("codecompanion.config")
----@diagnostic disable-next-line: different-requires
-local utils = require("utils.codecompanion")
 
 return {
-    description = "Add documentation to the selected code",
-    strategy = "inline",
+    description = "Add documentation for the selected code",
+    interaction = "inline",
     opts = {
-        -- Getting marksman error so disabled for now.
-        -- pre_hook = function()
-        --     local bufnr = vim.api.nvim_create_buf(true, false)
-        --     vim.api.nvim_set_current_buf(bufnr)
-        --     vim.api.nvim_set_option_value("filetype", "markdown", { buf = bufnr })
-        --     return bufnr
-        -- end,
+        pre_hook = function()
+            local bufnr = vim.api.nvim_create_buf(true, false)
+            vim.api.nvim_set_current_buf(bufnr)
+            vim.api.nvim_set_option_value("filetype", "markdown", { buf = bufnr })
+            return bufnr
+        end,
         auto_submit = true,
         is_slash_cmd = true,
         modes = {"v"},
-        short_name = "doc",
+        alias = "document",
         stop_context_insertion = true,
         user_prompt = false,
     },

@@ -92,8 +92,28 @@ local display = {
         prompt = "Prompt ", -- Prompt used for interactive LLM calls
         provider = "snacks",
         opts = {
-            show_default_actions = true, -- Show the default actions in the action palette?
-            show_default_prompt_library = true, -- Show the default prompt library in the action palette?
+            show_preset_actions = true, -- Show the default actions in the action palette?
+            show_preset_prompts = true, -- Show the default prompt library in the action palette?
+        },
+        diff = {
+            enabled = true,
+            provider = "inline",
+            provider_opts = {
+                inline = {
+                    layout = "float", -- float|buffer - Where to display the diff
+                    opts = {
+                        context_lines = 3, -- Number of context lines in hunks
+                        dim = 25, -- Background dim level for floating diff (0-100, [100 full transparent], only applies when layout = "float")
+                        full_width_removed = true, -- Make removed lines span full width
+                        show_keymap_hints = true, -- Show hints above diff
+                        show_removed = true, -- Show removed lines as virtual text
+                    },
+                },
+                split = {
+                    close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
+                    layout = "vertical", -- vertical|horizontal split
+                },
+            },
         },
     },
     chat = {
@@ -111,10 +131,10 @@ local display = {
     },
 }
 
-local strategies = {
+local interactions = {
     chat = {
         adapter = "ollama",
-        model = "qwen2.5-coder:14b",
+        model = "qwen3:8b",
         roles = {
             ---The header name for the LLM's messages
             llm = function(adapter)
@@ -130,6 +150,14 @@ local strategies = {
         opts = {
             -- blink|cmp|coc|default
             completion_provider = comp_provider,
+            ---Decorate the user message before it's sent to the LLM
+            ---@param message string
+            ---@param adapter CodeCompanion.Adapter
+            ---@param context table
+            ---@return string
+            prompt_decorator = function(message, adapter, context)
+                return string.format([[<prompt>%s</prompt>]], message)
+            end,
         },
         slash_commands = {
             ["buffer"] = {
@@ -223,7 +251,7 @@ local strategies = {
         variables = {
             ["buffer"] = {
                 opts = {
-                    default_params = "watch", -- or "pin"
+                    default_params = "diff",
                 },
             },
         },
@@ -233,6 +261,11 @@ local strategies = {
                 enabled = function()
                     return vim.fn.executable("rg") == 1
                 end,
+            },
+            ["create_file"] = {
+                opts = {
+                    require_approval_before = false,
+                },
             },
         },
     },
@@ -258,6 +291,12 @@ local strategies = {
     agent = {
         adapter = "copilot",
     },
+    background = {
+        adapter = {
+            name = "ollama",
+            model = "qwen3:8b",
+        },
+    },
 }
 
 local prompt_library = {
@@ -265,7 +304,13 @@ local prompt_library = {
     ["Advanced Commit Message"] = require("prompts.commit_advanced"),
     ["Review"] = require("prompts.review"),
     ["Mindmap"] = require("prompts.mindmap"),
-    ["Documentation Comments"] = require("prompts.doc_comments"),
+    -- ["Documentation Comments"] = require("prompts.doc_comments"),
+    markdown = {
+        dirs = {
+            vim.fn.getcwd() .. "/.prompts",
+            "~/.config/nvim/lua/prompts",
+        },
+    },
 }
 
 local extensions = {
@@ -315,22 +360,73 @@ local extensions = {
     },
 }
 
-local config = {
-    memory = {
-        opts = {
-            chat = {
-                enabled = true,
-                condition = function(chat)
-                    return chat.adapter.type ~= "acp"
-                end,
+-- Logs stored in ~/.local/state/nvim/codecompanion.log
+local opts = {
+    log_level = "INFO", -- TRACE|DEBUG|ERROR|INFO
+}
+
+local rules = {
+    default = {
+        description = "Default rules",
+        files = {
+            ".clinerules",
+            ".goosehints",
+            ".rules",
+            ".github/copilot-instructions.md",
+            "AGENT.md",
+            "AGENTS.md",
+            { path = "CLAUDE.md", parser = "claude" },
+            { path = "CLAUDE.local.md", parser = "claude" },
+            { path = "~/.claude/CLAUDE.md", parser = "claude" },
+        },
+        is_preset = true,
+    },
+    claude = {
+        description = "Rules for claude",
+        parser = "claude",
+        files = {
+            "CLAUDE.md",
+            "CLAUDE.local.md",
+            "~/.claude/CLAUDE.md",
+        },
+    },
+    copilot = {
+        description = "Rules for copilot",
+        files = {
+            ".github/copilot-instructions.md",
+            ["security"] = {
+                description = "Security",
+                files = {
+                    ".github/instructions/*security*.md",
+                },
+            },
+            ["cicd"] = {
+                description = "CICD",
+                files = {
+                    ".github/instructions/*ci-cd*.md",
+                },
             },
         },
     },
+    opts = {
+        chat = {
+            enabled = true,
+            condition = function(chat)
+                return chat.adapter.type ~= "acp"
+            end,
+            default_rules = "default", -- The rule groups to load
+        },
+    },
+}
+
+local config = {
     extensions = extensions,
     adapters = adapters,
     display = display,
-    strategies = strategies,
+    interactions = interactions,
     prompt_library = prompt_library,
+    rules = rules,
+    opts = opts,
 }
 
 cc.setup(config)
@@ -385,3 +481,6 @@ vim.api.nvim_create_autocmd("User", {
         end, 1)
     end,
 })
+
+-- Expand 'CC' into 'CodeCompanion' in the command line
+vim.cmd([[cab CC CodeCompanion]])
