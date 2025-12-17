@@ -21,7 +21,7 @@ local adapters = {
         copilot = function()
             return ca.extend("copilot", {
                 schema = {
-                    model = { default = "claude-3.5-sonnet" },
+                    model = { default = "claude-haiku-4.5" },
                     max_tokens = { default = 8192 },
                 },
             })
@@ -299,7 +299,7 @@ local extensions = {
             save_chat_keymap = "<localleader>sc",
             title_generation_opts = {
                 adapter = "copilot",
-                model = "claude-3.5-sonnet",
+                model = "claude-haiku-4.5",
                 refresh_every_n_prompts = 0, -- e.g., 3 to refresh after every 3rd user prompt
                 max_refreshes = 3,
             },
