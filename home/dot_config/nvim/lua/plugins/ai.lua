@@ -61,6 +61,22 @@ return {
                 mode = "v",
                 desc = "CodeCompanion Generate Documentation",
             },
+            {
+                "<LocalLeader>d",
+                function()
+                    require("codecompanion").prompt("doccomment")
+                end,
+                mode = "v",
+                desc = "Generate documentation comments",
+            },
+            {
+                "<LocalLeader>D",
+                function()
+                    require("codecompanion").prompt("document")
+                end,
+                mode = "v",
+                desc = "Add documentation for code",
+            },
         },
         config = load_config("codecompanion"),
     },

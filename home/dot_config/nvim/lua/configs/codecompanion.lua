@@ -267,6 +267,12 @@ local interactions = {
                     require_approval_before = false,
                 },
             },
+            ["insert_edit_into_file"] = {
+                opts = {
+                    require_approval_before = { buffer = true },
+                    patching_algorithm = "strategies.chat.tools.catalog.helpers.patch",
+                },
+            },
         },
     },
     inline = {
