@@ -17,7 +17,7 @@ You are an expert programmer who excels at documenting code clearly and concisel
 
 ## user
 
-Please provide documentation in comments for the following code explaining what it does briefly and highlight any important points. Do not include the original code in your output.
+Please provide documentation in comments for the following code explaining what it does briefly and highlight any important points. Do not include the code below in your output.
 
 ```${context.filetype}
 ${context.code}
