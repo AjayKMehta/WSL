@@ -13,6 +13,8 @@ $FormatEnumerationLimit = 10
 # Native commands with non-zero exit codes issue errors according to $ErrorActionPreference.
 $PSNativeCommandUseErrorActionPreference = $true
 
+$PSStyle.Progress.UseOSCIndicator = $true
+
 # Make sure mise and shims are in path
 $env:PATH += ':~/.local/bin'
 if ($env:TERM_PROGRAM -eq 'vscode') {
@@ -51,10 +53,16 @@ $env:COMPLETION_SHELL_PREFERENCE = 'bash'
 Import-Module Microsoft.PowerShell.UnixTabCompletion
 
 # PowerShell parameter completion shim for the dotnet CLI
-Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
-    param($commandName, $wordToComplete, $cursorPosition)
-    dotnet complete --position $cursorPosition "$wordToComplete" | ForEach-Object {
-        [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+$version = [Version](dotnet --version)
+if ($version -and $version.Major -eq 10) {
+    # https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/sdk#native-shell-tab-completion-scripts
+    dotnet completions script pwsh | Out-String | Invoke-Expression -ErrorAction SilentlyContinue
+} else {
+    Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
+        param($commandName, $wordToComplete, $cursorPosition)
+        dotnet complete --position $cursorPosition "$wordToComplete" | ForEach-Object {
+            [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+        }
     }
 }
 
