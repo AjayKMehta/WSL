@@ -3,37 +3,29 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [mgr]
-ratio = [1, 4, 3]
-linemode = "permissions"
-show_hidden = true
-show_symlink = true
-scrolloff = 5
-mouse_events = ["click", "scroll"]
+  ratio = [1, 4, 3]
+  linemode = "permissions"
+  show_hidden = true
+  show_symlink = true
+  scrolloff = 5
+  mouse_events = ["click", "scroll"]
 
 [opener]
-edit = [
-  { run = '${EDITOR:=nvim} "$@"', desc = "$EDITOR", block = true, for = "linux" },
-]
-open = [{ run = 'xdg-open "$1"', desc = "Open", for = "linux" }]
-reveal = [
-  { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
-]
-extract = [
-  { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "linux" },
-]
+  edit = [
+    { run = "${EDITOR:=nvim} %s", desc = "$EDITOR", block = true, for = "linux" },
+  ]
+  open = [{ run = "xdg-open %s1", desc = "Open", for = "linux" }]
+  reveal = [
+    { run = "xdg-open %d1", desc = "Reveal", for = "linux" },
+  ]
+  extract = [
+    { run = "ya pub extract --list %s", desc = "Extract here", for = "linux" },
+  ]
 
 [plugin]
-prepend_previewers = [{ name = "*.md", run = "glow" }]
+  prepend_previewers = [{ url = "*.md", run = "glow" }]
 
-[[plugin.prepend_fetchers]]
-id = "git"
-name = "*"
-run = "git"
-
-[[plugin.prepend_fetchers]]
-id = "git"
-name = "*/"
-run = "git"
+  prepend_fetchers = [{id = "git", run = "git", url = "*"}, {id = "git", run = "git", url = "*/"}]
 
 [preview]
-wrap = "yes"
+  wrap = "yes"
