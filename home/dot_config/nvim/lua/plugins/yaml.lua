@@ -12,7 +12,7 @@ return {
         end,
     },
     {
-        "cuducos/yaml.nvim",
+        "https://tangled.org/cuducos.me/yaml.nvim",
         ft = { "yaml", "helm" },
         dependencies = { "folke/snacks.nvim" },
     },
