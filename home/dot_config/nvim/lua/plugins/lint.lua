@@ -15,7 +15,7 @@ return {
                 json = { "jsonlint" },
                 jsonc = { "jsonlint" },
                 lua = { "selene" },
-                markdown = { "markdownlint" },
+                markdown = { "markdownlint-cli2" },
                 python = { "mypy", "ruff" },
                 sh = { "shellcheck" },
                 tex = { "chktex", "lacheck" },
@@ -29,7 +29,7 @@ return {
             -- Linter config/args
             local linters = lint.linters
             ---- Markdown
-            linters.markdownlint.args = { "--config=" .. vim.env.HOME .. "/.markdownlint.json" }
+            linters["markdownlint-cli2"].args = { "--config=" .. vim.env.HOME .. "/.markdownlint.json" }
             ---- Python
             local ruff_severities = {
                 ["E"] = vim.diagnostic.severity.ERROR,

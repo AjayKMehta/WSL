@@ -17,7 +17,7 @@ conform.setup({
                 vim.env.HOME .. "/.cbfmt.toml",
             },
         },
-        markdownlint = {
+        ["markdownlint-cli2"] = {
             prepend_args = {
                 "--config",
                 vim.env.HOME .. "/.markdownlint.json",
@@ -77,7 +77,7 @@ conform.setup({
         json5 = { "fixjson" },
         jsonc = { "fixjson" },
         lua = { "stylua" },
-        markdown = { "markdownlint", "cbfmt", "injected" },
+        markdown = { "markdownlint-cli2", "cbfmt", "injected" },
         python = {
             -- To fix auto-fixable lint errors.
             "ruff_fix",
