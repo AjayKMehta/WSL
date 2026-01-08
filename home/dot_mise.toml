@@ -1,9 +1,30 @@
 [tools]
-deno = { version = "latest", postinstall = 'deno completions bash > ~/.config/bash_completions.d/deno' }
-github-cli = "latest"
-chezmoi = { version = "latest", postinstall = 'chezmoi completion bash > ~/.config/bash_completions.d/chezmoi.sh' }
+deno.version = "latest"
+deno.postinstall = '''
+deno completions bash > ~/.config/bash_completions.d/deno
+deno completions powershell > ~/.config/powershell/scripts/ArgumentCompleters/deno.ps1
+'''
+
+github-cli.version = "latest"
+github-cli.postinstall = '''
+gh completion -s bash > ~/.config/bash_completions.d/gh
+gh completion -s powershell > ~/.config/powershell/scripts/ArgumentCompleters/gh.ps1
+'''
+
+chezmoi.version = "latest"
+chezmoi.postinstall = '''
+chezmoi completion bash > ~/.config/bash_completions.d/chezmoi.sh
+chezmoi completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/chezmoi.ps1
+'''
+
 grype = { version = "latest", postinstall = 'grype completion bash > ~/.config/bash_completions.d/grype' }
-delta = { version = "latest", postinstall = 'delta --generate-completion bash > ~/.config/bash_completions.d/delta' }
+
+delta.version = "latest"
+delta.postinstall = '''
+delta --generate-completion bash > ~/.config/bash_completions.d/delta
+delta --generate-completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/delta.ps1
+'''
+
 difftastic = "latest"
 docker-slim = "latest"
 fzf = "latest"
@@ -11,12 +32,28 @@ go = "latest"
 neovim = "latest"
 stylua = "latest"
 usage = "latest"
-eza = { version = "latest", postinstall = 'gh download https://github.com/eza-community/eza/blob/main/completions/bash/eza --outfile ~/.config/bash_completions.d/eza' }
+
+eza.version = "latest"
+eza.postinstall = '''
+gh download https://github.com/eza-community/eza/blob/main/completions/bash/eza --outfile ~/.config/bash_completions.d/eza
+gh download https://github.com/eza-community/eza/blob/main/completions/pwsh/_eza.ps1 --outfile ~/.config/powershell/scripts/ArgumentCompleters/eza.ps1
+'''
+
 lazygit = "latest"
-ripgrep = { version = "latest", postinstall = 'rg --generate=completion-bash > ~/.config/bash_completions.d/rg' }
+ripgrep.version = "latest"
+ripgrep.postinstall = '''
+rg --generate=completion-bash > ~/.config/bash_completions.d/rg
+rg --generate=completion-powershell > ~/.config/powershell/scripts/ArgumentCompleters/_rg.ps1
+'''
+
 direnv = "latest"
 act = "latest"
-yq = {version = "latest", postinstall = 'yq shell-completion bash > ~/.config/bash_completions.d/yq'}
+
+yq.version = "latest"
+yq.postinstall = '''
+yq shell-completion bash > ~/.config/bash_completions.d/yq
+yq shell-completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/yq.ps1
+'''
 minikube = "latest"
 kubectl = "latest"
 bat-extras = "latest"
