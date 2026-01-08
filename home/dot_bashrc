@@ -1,3 +1,4 @@
+#!/bin/bash
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -6,6 +7,9 @@
 for dir in "$HOME/bin" "$HOME/.local/bin"; do
     [ -d "$dir" ] && PATH="$dir:$PATH"
 done
+
+# shellcheck source=/dev/null
+[ -s "$HOME/.config/bash_completions.d/gh" ] && . "$HOME/.config/bash_completions.d/gh"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 # https://superuser.com/questions/1262977/open-browser-in-host-system-from-windows-subsystem-for-linux
@@ -91,13 +95,18 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+# Enable color support for ls and grep utilities when available
+if type -P dircolors >/dev/null; then
+  if test -r "$HOME/.dircolors"; then
+    eval "$(dircolors -b "$HOME/.dircolors")"
+  else
+    eval "$(dircolors -b)"
+  fi
+
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -139,9 +148,9 @@ nvm use stable
 
 # Mise
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
-  eval "$($HOME/.local/bin/mise activate bash --shims)"
+  eval "$("$HOME"/.local/bin/mise activate bash --shims)"
 else
-  eval "$($HOME/.local/bin/mise activate bash)"
+  eval "$("$HOME"/.local/bin/mise activate bash)"
 fi
 
 # oh my posh
@@ -154,7 +163,6 @@ choose_theme() {
 }
 
 # ghcup-env
-# shellcheck source=/dev/null
 [[ -f ~/.ghcup/env ]] && source ~/.ghcup/env
 
 # https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2
@@ -182,7 +190,6 @@ if [[ ! ${BLE_VERSION-} ]]; then
   eval "$(fzf --bash)"
 fi
 
-# # shellcheck source=/dev/null
 # Utility script with useful functions
 # shellcheck source=/dev/null
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -210,7 +217,6 @@ rfv() (
 )
 
 # ~/.blerc will be used by default
-# shellcheck disable=SC1090
 source ~/.local/share/blesh/ble.sh
 # source "$HOME/.local/share/blesh/ble.sh" --rcfile "$HOME/.blerc"
 
@@ -222,6 +228,7 @@ function yy() {
     local tmp cwd
 
     # Ensure the cleanup of the temporary file
+    # shellcheck disable=SC2031
     trap 'rm -f -- "$tmp"' EXIT
 
     # Create a temporary file and check its creation
@@ -250,9 +257,7 @@ else
     eval "$(zoxide init bash)"
 fi
 
-# shellcheck source=/dev/null
 . "$HOME/.atuin/bin/env"
-# shellcheck source=/dev/null
 . "$HOME/.cargo/env"
 
 # direnv
