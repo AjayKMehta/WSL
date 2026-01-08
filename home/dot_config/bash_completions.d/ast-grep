@@ -575,7 +575,7 @@ _ast-grep() {
             return 0
             ;;
         ast__grep__run)
-            opts="-p -r -l -j -i -U -A -B -C -c -h --pattern --selector --rewrite --lang --debug-query --strictness --follow --no-ignore --stdin --globs --threads --interactive --update-all --json --color --inspect --after --before --context --heading --config --help [PATHS]..."
+            opts="-p -r -l -j -i -U -A -B -C -c -h --pattern --selector --rewrite --lang --debug-query --strictness --follow --no-ignore --stdin --globs --threads --interactive --update-all --files-with-matches --json --color --inspect --after --before --context --heading --config --help [PATHS]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -689,7 +689,7 @@ _ast-grep() {
             return 0
             ;;
         ast__grep__scan)
-            opts="-r -j -i -U -A -B -C -c -h --rule --inline-rules --format --report-style --include-metadata --filter --error --warning --info --hint --off --follow --no-ignore --stdin --globs --threads --interactive --update-all --json --color --inspect --after --before --context --config --help [PATHS]..."
+            opts="-r -j -i -U -A -B -C -c -h --rule --inline-rules --format --report-style --include-metadata --filter --error --warning --info --hint --off --follow --no-ignore --stdin --globs --threads --interactive --update-all --files-with-matches --json --color --inspect --after --before --context --config --help [PATHS]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -708,7 +708,7 @@ _ast-grep() {
                     return 0
                     ;;
                 --format)
-                    COMPREPLY=($(compgen -W "github" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "github sarif" -- "${cur}"))
                     return 0
                     ;;
                 --report-style)
