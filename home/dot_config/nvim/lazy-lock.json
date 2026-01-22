@@ -34,7 +34,7 @@
   "codecompanion.nvim": { "branch": "main", "commit": "6385e2c94e3c9f5d7e8f22c118ab700cafb573ef" },
   "conform.nvim": { "branch": "master", "commit": "8314f4c9e205e7f30b62147069729f9a1227d8bf" },
   "cyberdream.nvim": { "branch": "main", "commit": "7464438b099c0ebcd42c4b6dd9abbd6ed93cb7f8" },
-  "dap-breakpoints.nvim": { "branch": "master", "commit": "65c10ee66bb386eb3d67dcdf2837dfe406859977" },
+  "dap-breakpoints.nvim": { "branch": "master", "commit": "4683766c43651401db68351dc09034218feafc97" },
   "darcubox-nvim": { "branch": "main", "commit": "4945a37ac2ff5a286a4234756710f13c1572d6cc" },
   "darcula-dark.nvim": { "branch": "main", "commit": "54fd17d266a41de052360935a93af07538ecb2f5" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },

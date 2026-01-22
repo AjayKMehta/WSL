@@ -138,7 +138,7 @@ return {
     },
     {
         "Carcuis/dap-breakpoints.nvim",
-        cmd = { "DapBpToggle", "DapBpNext", "DapBpPrev", "DapBpReveal" },
+        cmd = { "DapBpToggle", "DapBpNext", "DapBpPrev", "DapBpReveal", "DapBpEditException" },
         event = { "BufReadPost", "BufNewFile" },
         config = function()
             require("persistent-breakpoints").setup({
@@ -159,6 +159,7 @@ return {
             map_desc("n", "<leader>dtv", dapbp_api.toggle_virtual_text, "Toggle Breakpoint Virtual Text")
             map_desc("n", "[,", dapbp_api.go_to_previous, "Go to Previous Breakpoint")
             map_desc("n", "],", dapbp_api.go_to_next, "Go to Next Breakpoint")
+            map_desc("n", "<leader>def", dapbp_api.edit_exception_filters, "Edit Exception Breakpoint Filters")
         end,
         dependencies = { "Weissle/persistent-breakpoints.nvim", "mfussenegger/nvim-dap" },
     },
