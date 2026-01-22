@@ -1,0 +1,106 @@
+_zizmor() {
+    local i cur prev opts cmd
+    COMPREPLY=()
+    if [[ "${BASH_VERSINFO[0]}" -ge 4 ]]; then
+        cur="$2"
+    else
+        cur="${COMP_WORDS[COMP_CWORD]}"
+    fi
+    prev="$3"
+    cmd=""
+    opts=""
+
+    for i in "${COMP_WORDS[@]:0:COMP_CWORD}"
+    do
+        case "${cmd},${i}" in
+            ",$1")
+                cmd="zizmor"
+                ;;
+            *)
+                ;;
+        esac
+    done
+
+    case "${cmd}" in
+        zizmor)
+            opts="-p -o -v -q -c -h -V --lsp --stdio --pedantic --persona --offline --gh-token --gh-hostname --no-online-audits --verbose --quiet --no-progress --format --render-links --show-audit-urls --color --config --no-config --no-exit-codes --min-severity --min-confidence --cache-dir --collect --strict-collection --completions --naches --fix --thanks --help --version <INPUTS>..."
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --persona)
+                    COMPREPLY=($(compgen -W "auditor pedantic regular" -- "${cur}"))
+                    return 0
+                    ;;
+                --gh-token)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --gh-hostname)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --format)
+                    COMPREPLY=($(compgen -W "plain json json-v1 sarif github" -- "${cur}"))
+                    return 0
+                    ;;
+                --render-links)
+                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
+                    return 0
+                    ;;
+                --show-audit-urls)
+                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
+                    return 0
+                    ;;
+                --config)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -c)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --min-severity)
+                    COMPREPLY=($(compgen -W "informational low medium high" -- "${cur}"))
+                    return 0
+                    ;;
+                --min-confidence)
+                    COMPREPLY=($(compgen -W "low medium high" -- "${cur}"))
+                    return 0
+                    ;;
+                --cache-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --collect)
+                    COMPREPLY=($(compgen -W "all default workflows actions dependabot" -- "${cur}"))
+                    return 0
+                    ;;
+                --completions)
+                    COMPREPLY=($(compgen -W "bash elvish fish nushell powershell zsh" -- "${cur}"))
+                    return 0
+                    ;;
+                --fix)
+                    COMPREPLY=($(compgen -W "safe unsafe-only all" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+    esac
+}
+
+if [[ "${BASH_VERSINFO[0]}" -eq 4 && "${BASH_VERSINFO[1]}" -ge 4 || "${BASH_VERSINFO[0]}" -gt 4 ]]; then
+    complete -F _zizmor -o nosort -o bashdefault -o default zizmor
+else
+    complete -F _zizmor -o bashdefault -o default zizmor
+fi
