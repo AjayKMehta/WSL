@@ -71,6 +71,7 @@ return {
                 dotfiles = false,
                 custom = { "node_modules" },
             },
+            bookmarks = { persist = true },
             -- git support in nvimtree
             git = {
                 enable = true,
@@ -95,7 +96,17 @@ return {
             renderer = {
                 root_folder_label = ":~:s?$?/..?",
                 add_trailing = true,
-                decorators = { "Git", "Open", "Hidden", "Modified", "Bookmark", "Diagnostics", "Copied", "Cut", QuickfixDecorator },
+                decorators = {
+                    "Git",
+                    "Open",
+                    "Hidden",
+                    "Modified",
+                    "Bookmark",
+                    "Diagnostics",
+                    "Copied",
+                    "Cut",
+                    QuickfixDecorator,
+                },
                 highlight_opened_files = "name",
                 highlight_git = "icon",
                 highlight_diagnostics = "icon",

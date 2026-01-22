@@ -420,7 +420,7 @@ local config = {
         lualine_y = { { rstatus, color = rsttcolor } },
         lualine_z = { "location" },
     },
-    extensions = { "nvim-tree", "lazy", "mason", "nvim-dap-ui", "trouble", "toggleterm", "quickfix", minimap_extension },
+    extensions = { "fzf", "nvim-tree", "lazy", "mason", "nvim-tree","trouble", "toggleterm", "quickfix", minimap_extension },
 }
 
 lualine.setup(config)
