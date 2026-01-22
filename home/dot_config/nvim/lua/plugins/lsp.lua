@@ -50,9 +50,16 @@ return {
             "jmbuhr/otter.nvim",
             "nvim-treesitter/nvim-treesitter",
         },
-        config = function()
-            require("quarto").setup()
-        end,
+        opts = {
+            lspFeatures = {
+                enabled = true,
+                chunks = "curly",
+            },
+            codeRunner = {
+                enabled = true,
+                default_method = "slime",
+            },
+        },
     },
     {
         -- displays code lens for references, diagnostics, and git authorship
