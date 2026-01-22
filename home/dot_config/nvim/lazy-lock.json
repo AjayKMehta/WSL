@@ -62,7 +62,7 @@
   "lensline.nvim": { "branch": "main", "commit": "1dd55c72431e6ce1e16e85c6f9903fd65ff37d8c" },
   "live-preview.nvim": { "branch": "main", "commit": "4b4cd2262f7fed487f112e18ddba46dabf0cb7d2" },
   "log-highlight.nvim": { "branch": "main", "commit": "cac07cf2d1937038f6627a450bef4664f096b120" },
-  "lspkind.nvim": { "branch": "master", "commit": "3ddd1b4edefa425fda5a9f95a4f25578727c0bb3" },
+  "lspkind.nvim": { "branch": "master", "commit": "53374a2dbcb959f1d0d5d3cf6c47c4b029151c6e" },
   "lua-json5": { "branch": "master", "commit": "8ffccf71abf6d9b082045fdab1d318a5357193ea" },
   "lualine.nvim": { "branch": "master", "commit": "47f91c416daef12db467145e16bed5bbfe00add8" },
   "luasnip-latex-snippets.nvim": { "branch": "main", "commit": "a14821dd680dfdd2006b135425cc2a8ab297ebc6" },

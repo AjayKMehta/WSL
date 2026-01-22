@@ -41,7 +41,6 @@ M.format = function(entry, item)
     local _, lspkind = is_loaded("lspkind")
     if lspkind ~= nil then
         item = lspkind.cmp_format({
-            mode = "text_symbol",
             maxwidth = {
                 -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                 -- can also be a function to dynamically calculate max width such as

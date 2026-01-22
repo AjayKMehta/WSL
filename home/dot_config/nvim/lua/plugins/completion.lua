@@ -18,6 +18,9 @@ return {
             {
                 "onsails/lspkind.nvim",
                 opts = { preset = "default" }, -- codicons
+                config = function()
+                    require("lspkind").init()
+                end,
             },
             {
                 -- Completion for fs paths (async)
@@ -102,6 +105,9 @@ return {
             {
                 "onsails/lspkind.nvim",
                 opts = { preset = "default" }, -- codicons
+                config = function()
+                    require("lspkind").init()
+                end,
             },
         },
 

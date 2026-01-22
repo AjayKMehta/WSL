@@ -49,9 +49,7 @@ M.get_kind_icon_text = function(ctx)
     else
         local is_loaded, lk = u.is_loaded("lspkind")
         if is_loaded then
-            icon = lk.symbolic(ctx.kind, {
-                mode = "symbol",
-            })
+            icon = lk.symbol_map[ctx.kind] or ""
         end
     end
     if ctx.item.source_name == "LSP" then

@@ -53,7 +53,30 @@ local opts = {
     },
     mapping = require("nvim_cmp.mappings"),
     sorting = {
-        comparators = {
+        comparators = vim.list_extend(
+            {
+                ---@param l cmp.Entry
+                ---@param r cmp.Entry
+                ---@return boolean|nil
+                function(l, r)
+                    --- Try to compare file/dir entries, give up and delegate if any entry isn't
+                    ---@param i cmp.Entry
+                    ---@return uv.fs_stat.result?
+                    local function stat(i)
+                        local d = i.completion_item.data or {}
+                        return (d.stat or d.lstat) or nil
+                    end
+                    local ls = stat(l)
+                    if not ls then
+                        return nil
+                    end
+                    local lr = stat(r)
+                    if not lr then
+                        return nil
+                    end
+                    return lr.mtime.sec < ls.mtime.sec
+                end,
+            },
             cmp.config.compare.offset,
             cmp.config.compare.exact,
             cmp.config.compare.score,
@@ -62,7 +85,8 @@ local opts = {
             cmp.config.compare.sort_text,
             cmp.config.compare.length,
             cmp.config.compare.order,
-        },
+            cmp.config.default().sorting.comparators
+        ),
     },
     view = {
         entries = {
@@ -73,6 +97,7 @@ local opts = {
     },
     window = { completion = { max_height = 12 } },
     sources = src.default,
+    fields = { "abbr", "icon", "kind", "menu" },
     formatting = { format = c.format },
 }
 
