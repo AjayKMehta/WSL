@@ -67,6 +67,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;history;start' {
+            [CompletionResult]::new('--command-from-env', '--command-from-env', [CompletionResultType]::ParameterName, 'Collects the command from the `ATUIN_COMMAND_LINE` environment variable, which does not need escaping and is more compatible between OS and shells')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -85,8 +86,8 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('--reverse', '--reverse', [CompletionResultType]::ParameterName, 'reverse')
             [CompletionResult]::new('--timezone', '--timezone', [CompletionResultType]::ParameterName, 'Display the command time in another timezone other than the configured default')
             [CompletionResult]::new('--tz', '--tz', [CompletionResultType]::ParameterName, 'Display the command time in another timezone other than the configured default')
-            [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {exit} and {time}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
-            [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {exit} and {time}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
+            [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {exit}, {time}, {session}, and {uuid} Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
+            [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {exit}, {time}, {session}, and {uuid} Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'c')
             [CompletionResult]::new('--cwd', '--cwd', [CompletionResultType]::ParameterName, 'cwd')
             [CompletionResult]::new('-s', '-s', [CompletionResultType]::ParameterName, 's')
@@ -101,8 +102,8 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
         'atuin;history;last' {
             [CompletionResult]::new('--timezone', '--timezone', [CompletionResultType]::ParameterName, 'Display the command time in another timezone other than the configured default')
             [CompletionResult]::new('--tz', '--tz', [CompletionResultType]::ParameterName, 'Display the command time in another timezone other than the configured default')
-            [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host} and {time}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
-            [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host} and {time}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
+            [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {time}, {session}, {uuid} and {relativetime}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
+            [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {time}, {session}, {uuid} and {relativetime}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
             [CompletionResult]::new('--human', '--human', [CompletionResultType]::ParameterName, 'human')
             [CompletionResult]::new('--cmd-only', '--cmd-only', [CompletionResultType]::ParameterName, 'Show only the text of the command')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
@@ -180,6 +181,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('nu-hist-db', 'nu-hist-db', [CompletionResultType]::ParameterValue, 'Import history from the nu history file')
             [CompletionResult]::new('xonsh', 'xonsh', [CompletionResultType]::ParameterValue, 'Import history from xonsh json files')
             [CompletionResult]::new('xonsh-sqlite', 'xonsh-sqlite', [CompletionResultType]::ParameterValue, 'Import history from xonsh sqlite db')
+            [CompletionResult]::new('powershell', 'powershell', [CompletionResultType]::ParameterValue, 'Import history from the powershell history file')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -238,6 +240,11 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
         }
+        'atuin;import;powershell' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
         'atuin;import;help' {
             [CompletionResult]::new('auto', 'auto', [CompletionResultType]::ParameterValue, 'Import history for the current shell')
             [CompletionResult]::new('zsh', 'zsh', [CompletionResultType]::ParameterValue, 'Import history from the zsh history file')
@@ -250,6 +257,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('nu-hist-db', 'nu-hist-db', [CompletionResultType]::ParameterValue, 'Import history from the nu history file')
             [CompletionResult]::new('xonsh', 'xonsh', [CompletionResultType]::ParameterValue, 'Import history from xonsh json files')
             [CompletionResult]::new('xonsh-sqlite', 'xonsh-sqlite', [CompletionResultType]::ParameterValue, 'Import history from xonsh sqlite db')
+            [CompletionResult]::new('powershell', 'powershell', [CompletionResultType]::ParameterValue, 'Import history from the powershell history file')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -286,6 +294,9 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
         'atuin;import;help;xonsh-sqlite' {
             break
         }
+        'atuin;import;help;powershell' {
+            break
+        }
         'atuin;import;help;help' {
             break
         }
@@ -318,6 +329,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {time}, {exit} and {relativetime}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
             [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {time}, {exit} and {relativetime}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
             [CompletionResult]::new('--inline-height', '--inline-height', [CompletionResultType]::ParameterName, 'Set the maximum number of lines Atuin''s interface should take up')
+            [CompletionResult]::new('--result-file', '--result-file', [CompletionResultType]::ParameterName, 'File name to write the result to (hidden from help as this is meant to be used from a script)')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, 'Open interactive search UI')
             [CompletionResult]::new('--interactive', '--interactive', [CompletionResultType]::ParameterName, 'Open interactive search UI')
             [CompletionResult]::new('--shell-up-key-binding', '--shell-up-key-binding', [CompletionResultType]::ParameterName, 'Marker argument used to inform atuin that it was invoked from a shell up-key binding (hidden from help to avoid confusion)')
@@ -1040,6 +1052,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('nu-hist-db', 'nu-hist-db', [CompletionResultType]::ParameterValue, 'Import history from the nu history file')
             [CompletionResult]::new('xonsh', 'xonsh', [CompletionResultType]::ParameterValue, 'Import history from xonsh json files')
             [CompletionResult]::new('xonsh-sqlite', 'xonsh-sqlite', [CompletionResultType]::ParameterValue, 'Import history from xonsh sqlite db')
+            [CompletionResult]::new('powershell', 'powershell', [CompletionResultType]::ParameterValue, 'Import history from the powershell history file')
             break
         }
         'atuin;help;import;auto' {
@@ -1073,6 +1086,9 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;help;import;xonsh-sqlite' {
+            break
+        }
+        'atuin;help;import;powershell' {
             break
         }
         'atuin;help;stats' {
