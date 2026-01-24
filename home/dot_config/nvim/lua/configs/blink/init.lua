@@ -47,16 +47,17 @@ M.get_kind_icon_text = function(ctx)
             end
         end
     else
-        local is_loaded, lk = u.is_loaded("lspkind")
-        if is_loaded then
-            icon = lk.symbol_map[ctx.kind] or ""
-        end
-    end
-    if ctx.item.source_name == "LSP" then
-        local is_loaded, nhc = u.is_loaded("nvim-highlight-colors")
-        local color_item = nhc.format(ctx.item.documentation, { kind = ctx.kind })
-        if color_item and color_item.abbr ~= "" then
-            icon = color_item.abbr
+        if ctx.item.source_name == "LSP" then
+            local is_loaded, nhc = u.is_loaded("nvim-highlight-colors")
+            local color_item = nhc.format(ctx.item.documentation, { kind = ctx.kind })
+            if color_item and color_item.abbr ~= "" then
+                icon = color_item.abbr
+            end
+        else
+            local is_loaded, lk = u.is_loaded("lspkind")
+            if is_loaded then
+                icon = lk.symbol_map[ctx.kind] or ""
+            end
         end
     end
     return icon .. ctx.icon_gap
