@@ -792,7 +792,7 @@ return {
                 function()
                     Snacks.picker.smart()
                 end,
-                desc = "Snacks Find Old Files",
+                desc = "Snacks Find Files",
             },
             {
                 "<leader>se",
