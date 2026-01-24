@@ -1,14 +1,13 @@
 return {
-    { "tomasiser/vim-code-dark" },
     { "samharju/synthweave.nvim" },
     {
+        -- Can also use as theme for lualine
         "xiantang/darcula-dark.nvim",
         enabled = true,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
     },
-    { "nyoom-engineering/oxocarbon.nvim" },
     {
         -- Can also use as theme for lualine:
         -- options = { theme 'citruszest',}
@@ -23,8 +22,7 @@ return {
                     bold = true,
                     italic = true,
                 },
-                -- Override default highlight style in this table
-                -- E.g If you want to override `Constant` highlight style
+                -- Override default highlight style
                 style = {
                     -- This will change Constant foreground color and make it bold.
                     Constant = { fg = "#FFFFFF", bold = true },
