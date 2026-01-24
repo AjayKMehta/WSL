@@ -5,7 +5,9 @@ return {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         event = "VimEnter",
-        config = load_config("lualine"),
+        config = function(_, opts)
+            require("configs.lualine").setup("auto")
+        end,
     },
     {
         -- Despite being part of NvChad, doesn't work!
