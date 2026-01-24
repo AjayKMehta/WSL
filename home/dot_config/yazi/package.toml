@@ -5,45 +5,45 @@ hash = "92b5c58159a51c567f82b618cee2b78"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "03cdd4b"
-hash = "eb301feb9e125adf5aa4f59f2aa54e44"
+rev = "de33976"
+hash = "36a484acf6a0a0219c543ccb4cee218f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:vcs-files"
-rev = "03cdd4b"
-hash = "4ee57085277d616acfa0ef1fef37dc00"
+rev = "de33976"
+hash = "5cfd9b2bd3f8ec4e3245e3426a967f82"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "03cdd4b"
+rev = "de33976"
 hash = "407d19bc4fb46eff5fa8ff8337644847"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "03cdd4b"
+rev = "de33976"
 hash = "492e4757f332e29f982556bf507e043c"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "4a1802a"
-hash = "8d7799e4598ff079fa5ee5c770d9bc08"
+rev = "ca61658"
+hash = "8eabb4e88096f10905a6df62cfaadbf4"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-macchiato"
 rev = "4a1802a"
-hash = "9b9a8e91898a73c1211788a4ed30336"
+hash = "b069dba45e199684b16fa12d385642ed"
 
 [[flavor.deps]]
 use = "tkapias/moonfly"
 rev = "395c686"
-hash = "f1c75db953010661073c665c237c5722"
+hash = "11223984767b762067b2ae07815fb43b"
 
 [[flavor.deps]]
 use = "tkapias/nightfly"
 rev = "599b8ad"
-hash = "d1a9e05ecbbd63bc5bb85a54e7f1e33a"
+hash = "79f760d46e08b2f3708516d1d026e3fa"
 
 [[flavor.deps]]
 use = "dangooddd/kanagawa"
 rev = "04985d1"
-hash = "8fab444fdbdecadb16422fc0a566fd22"
+hash = "c69a63981e254a3a06a11c2bf0e6af1d"
