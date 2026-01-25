@@ -48,6 +48,11 @@ o.grepformat = "%f:%l:%c:%m"
 o.breakindentopt = "list:-1"
 o.breakindent = true
 
+-- https://dev.to/anurag_pramanik/how-to-enable-undercurl-in-neovim-terminal-and-tmux-setup-guide-2ld7
+-- Undercurl
+vim.cmd([[let &t_Cs = "\e[4:3m"]])
+vim.cmd([[let &t_Ce = "\e[4:0m"]])
+
 -- Native spelling functionality
 
 vim.opt.spelllang = "en_us"
