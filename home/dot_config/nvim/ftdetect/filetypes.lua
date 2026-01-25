@@ -16,5 +16,6 @@ vim.filetype.add({
         ["Directory.*.props"] = "xml",
         [".*%.scm"] = "query",
         [".*/%.vscode/.*%.json"] = "jsonc",
+        [".*/.github/workflows/.*%.yml"] = "yaml.ghaction"
     },
 })
