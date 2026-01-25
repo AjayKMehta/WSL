@@ -31,8 +31,10 @@ return {
         end,
     },
     {
+        -- Can also use as theme for lualine
         "projekt0n/github-nvim-theme",
         name = "github-theme",
+        cmd = "GithubThemeInteractive",
         enabled = true,
         lazy = false,
         priority = 1000,
@@ -77,16 +79,13 @@ return {
         "scottmckendry/cyberdream.nvim",
         lazy = false,
         priority = 1000,
+        opts = {
+            italic_comments = true,
+            cache = true,
+        },
     },
-    {
-        "Koalhack/darcubox-nvim",
-    },
-    {
-        "mitch1000/backpack",
-        config = function()
-            require("backpack").setup()
-        end,
-    },
+    -- Nightwolf includes a built-in lualine theme.
+    -- lualine setup: theme = require('nightwolf').lualine(),
     {
         "ricardoraposo/nightwolf.nvim",
         lazy = false,
