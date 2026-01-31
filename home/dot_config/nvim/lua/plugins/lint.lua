@@ -20,6 +20,7 @@ return {
                 sh = { "shellcheck" },
                 tex = { "chktex", "lacheck" },
                 yaml = { "yamllint", "yq" },
+                ghaction = { "actionlint", "zizmor" },
             },
         },
         config = function(_, opts)

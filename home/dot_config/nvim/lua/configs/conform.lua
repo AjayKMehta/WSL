@@ -73,9 +73,6 @@ conform.setup({
         cabal = { "cabal_fmt" },
         cs = { "dotnet format style" },
         haskell = { "fourmolu" },
-        json = { "fixjson" },
-        json5 = { "fixjson" },
-        jsonc = { "fixjson" },
         lua = { "stylua" },
         markdown = { "markdownlint-cli2", "cbfmt", "injected" },
         python = {
