@@ -49,9 +49,11 @@ M.get_kind_icon_text = function(ctx)
     else
         if ctx.item.source_name == "LSP" then
             local is_loaded, nhc = u.is_loaded("nvim-highlight-colors")
-            local color_item = nhc.format(ctx.item.documentation, { kind = ctx.kind })
-            if color_item and color_item.abbr ~= "" then
-                icon = color_item.abbr
+            if is_loaded then
+                local color_item = nhc.format(ctx.item.documentation, { kind = ctx.kind })
+                if color_item and color_item.abbr ~= "" then
+                    icon = color_item.abbr
+                end
             end
         else
             local is_loaded, lk = u.is_loaded("lspkind")
@@ -78,9 +80,11 @@ M.get_kind_icon_highlight = function(ctx)
         end
     elseif ctx.item.source_name == "LSP" then
         local is_loaded, nhc = u.is_loaded("nvim-highlight-colors")
-        local color_item = nhc.format(ctx.item.documentation, { kind = ctx.kind })
-        if color_item and color_item.abbr_hl_group then
-            highlight = color_item.abbr_hl_group
+        if is_loaded then
+            local color_item = nhc.format(ctx.item.documentation, { kind = ctx.kind })
+            if color_item and color_item.abbr_hl_group then
+                highlight = color_item.abbr_hl_group
+            end
         end
     end
     return highlight
