@@ -20,6 +20,7 @@ return require("schema-companion").setup_client(
                 -- Use JSON Schema Store (SchemaStore.nvim)
                 schemas = ss.json.schemas(),
                 validate = { enable = true },
+                format = {enable = true}
             },
         },
     }
