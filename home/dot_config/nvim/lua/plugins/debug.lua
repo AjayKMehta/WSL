@@ -23,6 +23,7 @@ return {
                                 "threads",
                                 "repl",
                             },
+                            default_section = "watches",
                             controls = {
                                 enabled = true,
                             },
@@ -32,10 +33,9 @@ return {
                                 position = "left",
                                 -- List of debug adapters for which the terminal should be ALWAYS hidden
                                 hide = {},
-                                -- Hide the terminal when starting a new session
-                                start_hidden = true,
                             },
                         },
+                        auto_toggle = true,
                     },
                 },
                 {
