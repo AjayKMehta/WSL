@@ -13,7 +13,16 @@ return {
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
-        opts = {},
+        opts = {
+            lsp = {
+                hover = { border = "rounded" },
+            },
+            buffers = {
+                set_filetype = true,
+                write_to_disk = true,
+            },
+            handle_leading_whitespace = true,
+        },
         config = function(_, opts)
             require("otter").setup(opts)
 
