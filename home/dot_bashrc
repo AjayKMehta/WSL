@@ -152,6 +152,8 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
 else
   eval "$("$HOME"/.local/bin/mise activate bash)"
 fi
+# Get rid of annoying "..._comp_initialize: command not found" error
+eval "$(mise completion bash --include-bash-completion-lib)"
 
 # oh my posh
 PROMPT_COMMAND='printf "\033]133;A\007"'
