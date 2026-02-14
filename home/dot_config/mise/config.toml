@@ -6,6 +6,7 @@ legacy_version_file = true # enabled by default (unlike asdf)
 # python-build
 python_compile = true
 idiomatic_version_file_enable_tools = ["node"]
+lockfile = true
 
 [tools]
 # specify single or multiple versions
@@ -22,7 +23,12 @@ stylua = "latest"
 usage = "latest"
 eza = "latest"
 direnv = "latest"
-yq = "latest"
+
+yq.version = "latest"
+yq.postinstall = """
+yq shell-completion bash > ~/.config/bash_completions.d/yq
+yq shell-completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/yq.ps1
+"""
 fx = "latest"
 actionlint = "latest"
 gum = "latest"
