@@ -58,17 +58,46 @@ return {
         dependencies = {
             "jmbuhr/otter.nvim",
             "nvim-treesitter/nvim-treesitter",
+            "Vigemus/iron.nvim",
+        },
+        cmd = {
+            "QuartoPreview",
+            "QuartoClosePreview",
+            "QuartoSend",
+            "QuartoSendAbove",
+            "QuartoSendBelow",
+            "QuartoSendAll",
+            "QuartoSendLine",
         },
         opts = {
+            closepreviewonexit = true,
             lspFeatures = {
                 enabled = true,
                 chunks = "curly",
+                languages = { "r", "python", "bash", "html" },
+                diagnostics = { enabled = true, triggers = { "BufWritePost" } },
+                completion = {
+                    enabled = true,
+                },
             },
             codeRunner = {
                 enabled = true,
-                default_method = "slime",
+                default_method = "iron",
+                never_run = { "yaml" }, -- filetypes which are never sent to a code runner
             },
         },
+        config = function(_, opts)
+            require("quarto").setup(opts)
+            local runner = require("quarto.runner")
+            vim.keymap.set("n", "<localleader>rc", runner.run_cell, { desc = "Run cell", silent = true })
+            vim.keymap.set("n", "<localleader>ra", runner.run_above, { desc = "Run cell and above", silent = true })
+            vim.keymap.set("n", "<localleader>rA", runner.run_all, { desc = "Run all cells", silent = true })
+            vim.keymap.set("n", "<localleader>rl", runner.run_line, { desc = "Run line", silent = true })
+            vim.keymap.set("v", "<localleader>r", runner.run_range, { desc = "Run visual range", silent = true })
+            vim.keymap.set("n", "<localleader>RA", function()
+                runner.run_all(true)
+            end, { desc = "Run all cells of all languages", silent = true })
+        end,
     },
     {
         -- displays code lens for references, diagnostics, and git authorship
