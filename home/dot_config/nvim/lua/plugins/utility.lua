@@ -933,4 +933,75 @@ return {
         event = "VeryLazy",
         opts = {},
     },
+    {
+        "Vigemus/iron.nvim",
+        ft = { "python", "haskell", "r", "lua", "quarto" },
+        cmd = { "IronFocus", "IronHide" },
+        config = function()
+            local iron = require("iron.core")
+            local common = require("iron.fts.common")
+            local view = require("iron.view")
+
+            iron.setup({
+                config = {
+                    -- Whether a repl should be discarded or not
+                    scratch_repl = true,
+                    -- Your repl definitions come here
+                    repl_definition = {
+                        sh = {
+                            -- Can be a table or a function that
+                            -- returns a table
+                            command = { "bash" },
+                        },
+                        python = {
+                            command = { "python3" },
+                            format = common.bracketed_paste_python,
+                            block_dividers = { "# %%", "#%%" },
+                        },
+                        lua = {
+                            command = { "lua" },
+                            format = common.bracketed_paste_lua,
+                        },
+                        r = {
+                            command = { "radian" },
+                            format = common.bracketed_paste,
+                            block_dividers = { "# %%", "#%%" },
+                        },
+                        haskell = {
+                            command = function(meta)
+                                local filename = vim.api.nvim_buf_get_name(meta.current_bufnr)
+                                return { "ghci", filename }
+                            end,
+                        },
+                    },
+                    repl_filetype = function(bufnr, ft)
+                        return ft
+                        -- or return a string name such as the following
+                        -- return "iron"
+                    end,
+                    dap_integration = true,
+                    repl_open_cmd = view.bottom(40),
+                },
+                keymaps = {
+                    toggle_repl = "<leader>ir", -- toggles the repl open and closed.
+                    restart_repl = "<leader>iR", -- calls `IronRestart` to restart the repl
+                    send_motion = "<leader>is",
+                    visual_send = "<leader>is",
+                    send_file = "<leader>if",
+                    send_line = "<leader>il",
+                    send_paragraph = "<leader>ip",
+                    send_until_cursor = "<leader>iu",
+                    send_mark = "<leader>im",
+                    send_code_block = "<leader>ib",
+                    send_code_block_and_move = "<leader>in",
+                    exit = "<leader>iq",
+                    clear = "<leader>ic",
+                },
+                highlight = {
+                    italic = true,
+                },
+                ignore_blank_lines = true,
+            })
+        end,
+    },
 }
