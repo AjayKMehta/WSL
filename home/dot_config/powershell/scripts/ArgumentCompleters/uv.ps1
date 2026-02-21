@@ -1242,6 +1242,7 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
         }
         'uv;format' {
             [CompletionResult]::new('--version', '--version', [CompletionResultType]::ParameterName, 'The version of Ruff to use for formatting')
+            [CompletionResult]::new('--exclude-newer', '--exclude-newer', [CompletionResultType]::ParameterName, 'Limit candidate Ruff versions to those released prior to the given date')
             [CompletionResult]::new('--cache-dir', '--cache-dir', [CompletionResultType]::ParameterName, 'Path to the cache directory')
             [CompletionResult]::new('--python-preference', '--python-preference', [CompletionResultType]::ParameterName, 'python-preference')
             [CompletionResult]::new('--python-fetch', '--python-fetch', [CompletionResultType]::ParameterName, 'Deprecated version of [`Self::python_downloads`]')
@@ -1254,6 +1255,7 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
             [CompletionResult]::new('--check', '--check', [CompletionResultType]::ParameterName, 'Check if files are formatted without applying changes')
             [CompletionResult]::new('--diff', '--diff', [CompletionResultType]::ParameterName, 'Show a diff of formatting changes without applying them')
             [CompletionResult]::new('--no-project', '--no-project', [CompletionResultType]::ParameterName, 'Avoid discovering a project or workspace')
+            [CompletionResult]::new('--show-version', '--show-version', [CompletionResultType]::ParameterName, 'Display the version of Ruff that will be used for formatting')
             [CompletionResult]::new('-n', '-n', [CompletionResultType]::ParameterName, 'Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation')
             [CompletionResult]::new('--no-cache', '--no-cache', [CompletionResultType]::ParameterName, 'Avoid reading from or writing to the cache, instead using a temporary directory for the duration of the operation')
             [CompletionResult]::new('--managed-python', '--managed-python', [CompletionResultType]::ParameterName, 'Require use of uv-managed Python versions [env: UV_MANAGED_PYTHON=]')

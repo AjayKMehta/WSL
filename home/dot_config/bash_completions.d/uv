@@ -2856,7 +2856,7 @@ _uv() {
             return 0
             ;;
         uv__format)
-            opts="-n -q -v -h --check --diff --version --no-project --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help [EXTRA_ARGS]..."
+            opts="-n -q -v -h --check --diff --version --exclude-newer --no-project --show-version --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help [EXTRA_ARGS]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -2867,6 +2867,10 @@ _uv() {
                     if [[ "${BASH_VERSINFO[0]}" -ge 4 ]]; then
                         compopt -o nospace
                     fi
+                    return 0
+                    ;;
+                --exclude-newer)
+                    COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
                 --cache-dir)
