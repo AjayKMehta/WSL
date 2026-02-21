@@ -284,6 +284,7 @@ return {
                 },
                 lsp = {
                     enabled = not vim.g.use_roslyn_nvim,
+                    preload_roslyn = not vim.g.use_roslyn_nvim,
                     analyzer_assemblies = {},
                     roslynator_enabled = true,
                 },

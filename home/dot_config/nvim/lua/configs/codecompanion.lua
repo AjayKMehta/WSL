@@ -42,6 +42,18 @@ local adapters = {
                 parameters = {
                     sync = true,
                 },
+                schema = {
+                    model = {
+                        default = "qwen3-coder:480b-cloud",
+                        choices = {
+                            "gpt-oss:120b-cloud",
+                            "qwen3-coder:480b-cloud",
+                        },
+                    },
+                    num_ctx = {
+                        default = 49152,
+                    },
+                },
             })
         end,
         ollama = function()
@@ -52,21 +64,20 @@ local adapters = {
                     vision = true,
                     stream = true,
                 },
-                -- https://github.com/ollama/ollama/blob/main/docs/modelfile.md#parameter
                 schema = {
                     model = {
                         default = "qwen3:8b",
                         choices = {
-                            "qwen3:8b",
-                            "mistral:latest",
                             "deepseek-r1:8b",
-                            "codellama:13b",
+                            "gemma3:4b",
+                            "glm-4.7-flash:q4_K_M",
                             "llama3.2:latest",
-                            "qwen2.5-coder:14b",
+                            "ministral-3:8b",
+                            "qwen3:8b",
                         },
                     },
                     num_ctx = {
-                        default = 20000,
+                        default = 49152,
                     },
                     think = {
                         default = function(adapter)
