@@ -22,4 +22,29 @@ return {
             require("luasnip").config.setup({ enable_autosnippets = true })
         end,
     },
+    {
+        "Prgebish/sigil.nvim",
+        cmd = { "Sigil", "SigilEnable", "SigilDisable", "SigilBenchmark" },
+        config = function()
+            require("sigil").setup({
+                filetypes = { "tex", "plaintex", "latex", "typst" },
+                unprettify_at_point = true,
+                filetype_symbols = {
+                    tex = {
+                        math = {
+                            { pattern = "\\alpha", replacement = "α", boundary = "left" },
+                            { pattern = "\\beta", replacement = "β", boundary = "left" },
+                            { pattern = "\\gamma", replacement = "γ", boundary = "left" },
+                            { pattern = "\\to", replacement = "→" },
+                            { pattern = "\\leq", replacement = "≤" },
+                        },
+                        any = {
+                            -- Prettified everywhere
+                            { pattern = "->", replacement = "→" },
+                        },
+                    },
+                },
+            })
+        end,
+    },
 }

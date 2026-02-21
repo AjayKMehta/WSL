@@ -128,6 +128,7 @@
   "roslyn.nvim": { "branch": "main", "commit": "56c421a02451cc61c8d63cfe9dc2079453e1ea6d" },
   "schema-companion.nvim": { "branch": "main", "commit": "9a8cbeb9429958524331f49a4bd9c25cfbc2c208" },
   "screenkey.nvim": { "branch": "main", "commit": "16390931d847b1d5d77098daccac4e55654ac9e2" },
+  "sigil.nvim": { "branch": "main", "commit": "62e305ec5cc9f59dcc15e4d5958199d0fd7689a8" },
   "smartyank.nvim": { "branch": "master", "commit": "c4e53e0d9316ca790a6f5d78aad73206a763873b" },
   "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
   "spellwarn.nvim": { "branch": "main", "commit": "47ada88a843f52f7aa90c018cc7ef514587bc3fd" },
