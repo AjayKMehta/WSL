@@ -19,9 +19,9 @@ version = "0.18.2"
 backend = "asdf:delta"
 
 [[tools.deno]]
-version = "2.6.9"
+version = "2.6.10"
 backend = "core:deno"
-"platforms.linux-x64" = { checksum = "blake3:8e0b8cde512c80db41adbd3e0d16e08ca4c89b14a8f20bf1cd0b34020053f121"}
+"platforms.linux-x64" = { checksum = "blake3:e30d9d185ba85d894b1600c53117e5cb4cb5ad81d9b395d40658120f847c4bd9"}
 
 [[tools.difftastic]]
 version = "0.67.0"
@@ -40,11 +40,11 @@ version = "0.23.4"
 backend = "asdf:eza"
 
 [[tools.fzf]]
-version = "0.67.0"
+version = "0.68.0"
 backend = "asdf:fzf"
 
 [[tools.github-cli]]
-version = "2.86.0"
+version = "2.87.0"
 backend = "asdf:github-cli"
 
 [[tools.go]]
@@ -53,7 +53,7 @@ backend = "core:go"
 "platforms.linux-x64" = { checksum = "sha256:aac1b08a0fb0c4e0a7c1555beb7b59180b05dfc5a3d62e40e9de90cd42f88235", url = "https://dl.google.com/go/go1.26.0.linux-amd64.tar.gz"}
 
 [[tools.grype]]
-version = "0.108.0"
+version = "0.109.0"
 backend = "asdf:grype"
 
 [[tools.kubectl]]
@@ -71,13 +71,9 @@ backend = "aqua:evilmartians/lefthook"
 "platforms.linux-x64" = { checksum = "sha256:5d29942bb5954c59d67d8c37184411034e576ed2829e22b0a6d88bba934e4fbb", url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.1/lefthook_2.1.1_Linux_x86_64.gz"}
 
 [[tools.minikube]]
-version = "1.38.0"
+version = "1.38.1"
 backend = "aqua:kubernetes/minikube"
-"platforms.linux-arm64" = { checksum = "sha256:e40a00cd9d6ee5d529e3bbff0638d49df644cb3cc4b41841ca3fe7fc2970f392", url = "https://github.com/kubernetes/minikube/releases/download/v1.38.0/minikube-linux-arm64"}
-"platforms.linux-x64" = { checksum = "sha256:6f3fa62bbc3820dbe1f1cffe4beef62c466a8fb1058837781d20d36233dcfa12", url = "https://github.com/kubernetes/minikube/releases/download/v1.38.0/minikube-linux-amd64"}
-"platforms.macos-arm64" = { checksum = "sha256:51066c42a555f0e455da362901fcf0613f43b7dc58496ffe2a495230cf3f9e41", url = "https://github.com/kubernetes/minikube/releases/download/v1.38.0/minikube-darwin-arm64"}
-"platforms.macos-x64" = { checksum = "sha256:e7eceb12047064c9e93eb37ad8ef93110527f39bd0eb01adb71cea77aec94089", url = "https://github.com/kubernetes/minikube/releases/download/v1.38.0/minikube-darwin-amd64"}
-"platforms.windows-x64" = { checksum = "sha256:52bd096dec2eb407735b14302fbce59891ada55c8451935939f31303ef1bb394", url = "https://github.com/kubernetes/minikube/releases/download/v1.38.0/minikube-windows-amd64.exe"}
+"platforms.linux-x64" = { checksum = "sha256:099477eaf248bcb5bcea8ce78a2898e93ac01461c35189da1848c3de82ecd22e", url = "https://github.com/kubernetes/minikube/releases/download/v1.38.1/minikube-linux-amd64"}
 
 [[tools.neovim]]
 version = "0.11.6"
@@ -97,9 +93,9 @@ backend = "aqua:JohnnyMorganz/StyLua"
 "platforms.windows-x64" = { checksum = "sha256:70fc56d7361c20e858bd9c3b3b643e44dc2e2007b670c816ba7fb032956e3baa", url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.3.1/stylua-windows-x86_64.zip"}
 
 [[tools.usage]]
-version = "2.16.2"
+version = "2.18.0"
 backend = "asdf:usage"
 
 [[tools.yq]]
-version = "4.52.2"
+version = "4.52.4"
 backend = "ubi:mikefarah/yq"
