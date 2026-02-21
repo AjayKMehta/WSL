@@ -44,7 +44,7 @@ version = "0.68.0"
 backend = "asdf:fzf"
 
 [[tools.github-cli]]
-version = "2.87.0"
+version = "2.87.2"
 backend = "asdf:github-cli"
 
 [[tools.go]]
