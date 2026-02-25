@@ -192,6 +192,7 @@ return {
                 show_commit = "c",
                 close = { "<esc>", "q" },
             },
+            blame_options = { "-w", "-M", "-C", "--color-by-age" },
         },
         config = function(_, opts)
             require("blame").setup(opts)
