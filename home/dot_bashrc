@@ -197,6 +197,8 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 
+export FZF_DEFAULT_OPTS_FILE="$HOME/.fzfrc"
+
 # Based on https://junegunn.github.io/fzf/tips/ripgrep-integration/
 # ripgrep->fzf->(neo)vim [QUERY]
 rfv() (
