@@ -142,6 +142,7 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('check', 'check', [CompletionResultType]::ParameterValue, 'Download and type-check without execution.    deno check jsr:@std/http/file-server  Unless --reload is specified, this command will not re-download already cached dependencies  Read more: https://docs.deno.com/go/check')
             [CompletionResult]::new('clean', 'clean', [CompletionResultType]::ParameterValue, 'Remove the cache directory ($DENO_DIR)')
             [CompletionResult]::new('compile', 'compile', [CompletionResultType]::ParameterValue, 'Compiles the given script into a self contained executable.    deno compile --allow-read --allow-net jsr:@std/http/file-server   deno compile --output file_server jsr:@std/http/file-server  Any flags specified which affect runtime behavior will be applied to the resulting binary.  This allows distribution of a Deno application to systems that do not have Deno installed. Under the hood, it bundles a slimmed down version of the Deno runtime along with your JavaScript or TypeScript code.  Cross-compiling to different target architectures is supported using the --target flag. On the first invocation of `deno compile`, Deno will download the relevant binary and cache it in $DENO_DIR.  Read more: https://docs.deno.com/go/compile ')
+            [CompletionResult]::new('create', 'create', [CompletionResultType]::ParameterValue, 'scaffolds a project from a package')
             [CompletionResult]::new('completions', 'completions', [CompletionResultType]::ParameterValue, 'Output shell completion script to standard output.    deno completions bash > /usr/local/etc/bash_completion.d/deno.bash   source /usr/local/etc/bash_completion.d/deno.bash')
             [CompletionResult]::new('coverage', 'coverage', [CompletionResultType]::ParameterValue, 'Print coverage reports from coverage profiles.  Collect a coverage profile with deno test:   deno test --coverage=cov_profile  Print a report to stdout:   deno coverage cov_profile  Include urls that start with the file schema and exclude files ending with test.ts and test.js, for an url to match it must match the include pattern and not match the exclude pattern:   deno coverage --include="^file:" --exclude="test\.(ts|js)" cov_profile  Write a report using the lcov format:   deno coverage --lcov --output=cov.lcov cov_profile/  Generate html reports from lcov:   genhtml -o html_cov cov.lcov  Read more: https://docs.deno.com/go/coverage')
             [CompletionResult]::new('doc', 'doc', [CompletionResultType]::ParameterValue, 'Show documentation for a module.  Output documentation to standard output:     deno doc ./path/to/module.ts  Output documentation in HTML format:     deno doc --html --name="My library" ./path/to/module.ts  Lint a module for documentation diagnostics:     deno doc --lint ./path/to/module.ts  Target a specific symbol:     deno doc ./path/to/module.ts MyClass.someField  Show documentation for runtime built-ins:     deno doc     deno doc --filter Deno.Listener  Read more: https://docs.deno.com/go/doc')
@@ -441,6 +442,7 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--lockfile-only', '--lockfile-only', [CompletionResultType]::ParameterName, 'Install only updating the lockfile')
             [CompletionResult]::new('--npm', '--npm', [CompletionResultType]::ParameterName, 'assume unprefixed package names are npm packages')
             [CompletionResult]::new('--jsr', '--jsr', [CompletionResultType]::ParameterName, 'assume unprefixed package names are jsr packages')
+            [CompletionResult]::new('--save-exact', '--save-exact', [CompletionResultType]::ParameterName, 'Save exact version without the caret (^)')
             break
         }
         'deno;audit' {
@@ -451,6 +453,7 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--lock', '--lock', [CompletionResultType]::ParameterName, 'Check the specified lock file. (If value is not provided, defaults to "./deno.lock")')
             [CompletionResult]::new('--frozen', '--frozen', [CompletionResultType]::ParameterName, 'Error out if lockfile is out of date')
             [CompletionResult]::new('--level', '--level', [CompletionResultType]::ParameterName, 'Only show advisories with severity greater or equal to the one specified')
+            [CompletionResult]::new('--ignore', '--ignore', [CompletionResultType]::ParameterName, 'Ignore advisories matching the given CVE IDs')
             [CompletionResult]::new('--unstable', '--unstable', [CompletionResultType]::ParameterName, 'The `--unstable` flag has been deprecated. Use granular `--unstable-*` flags instead   To view the list of individual unstable feature flags, run this command again with --help=unstable')
             [CompletionResult]::new('--unstable-bare-node-builtins', '--unstable-bare-node-builtins', [CompletionResultType]::ParameterName, 'Enable unstable bare node builtins feature')
             [CompletionResult]::new('--unstable-broadcast-channel', '--unstable-broadcast-channel', [CompletionResultType]::ParameterName, 'Enable unstable `BroadcastChannel` API')
@@ -703,6 +706,7 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--no-config', '--no-config', [CompletionResultType]::ParameterName, 'Disable automatic loading of the configuration file')
             [CompletionResult]::new('--no-lock', '--no-lock', [CompletionResultType]::ParameterName, 'Disable auto discovery of the lock file')
             [CompletionResult]::new('--minify', '--minify', [CompletionResultType]::ParameterName, 'Minify the output')
+            [CompletionResult]::new('--keep-names', '--keep-names', [CompletionResultType]::ParameterName, 'Keep function and class names')
             [CompletionResult]::new('--code-splitting', '--code-splitting', [CompletionResultType]::ParameterName, 'Enable code splitting')
             [CompletionResult]::new('--watch', '--watch', [CompletionResultType]::ParameterName, 'Watch and rebuild on changes')
             break
@@ -829,6 +833,7 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--remote', '--remote', [CompletionResultType]::ParameterName, 'Type-check all modules, including remote ones')
             [CompletionResult]::new('--doc', '--doc', [CompletionResultType]::ParameterName, 'Type-check code blocks in JSDoc as well as actual code')
             [CompletionResult]::new('--doc-only', '--doc-only', [CompletionResultType]::ParameterName, 'Type-check code blocks in JSDoc and Markdown only')
+            [CompletionResult]::new('--check-js', '--check-js', [CompletionResultType]::ParameterName, 'Enable type-checking of JavaScript files (equivalent to `compilerOptions.checkJs: true`)')
             break
         }
         'deno;clean' {
@@ -978,6 +983,48 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--eszip-internal-do-not-use', '--eszip-internal-do-not-use', [CompletionResultType]::ParameterName, 'eszip-internal-do-not-use')
             [CompletionResult]::new('--no-code-cache', '--no-code-cache', [CompletionResultType]::ParameterName, 'Disable V8 code cache feature')
             [CompletionResult]::new('--no-terminal', '--no-terminal', [CompletionResultType]::ParameterName, 'Hide terminal on Windows')
+            [CompletionResult]::new('--self-extracting', '--self-extracting', [CompletionResultType]::ParameterName, 'Create a self-extracting binary that extracts the embedded file system to disk on first run and then runs from there')
+            break
+        }
+        'deno;create' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'h')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'help')
+            [CompletionResult]::new('-L', '-L ', [CompletionResultType]::ParameterName, 'Set log level')
+            [CompletionResult]::new('--log-level', '--log-level', [CompletionResultType]::ParameterName, 'Set log level')
+            [CompletionResult]::new('--unstable', '--unstable', [CompletionResultType]::ParameterName, 'The `--unstable` flag has been deprecated. Use granular `--unstable-*` flags instead   To view the list of individual unstable feature flags, run this command again with --help=unstable')
+            [CompletionResult]::new('--unstable-bare-node-builtins', '--unstable-bare-node-builtins', [CompletionResultType]::ParameterName, 'Enable unstable bare node builtins feature')
+            [CompletionResult]::new('--unstable-broadcast-channel', '--unstable-broadcast-channel', [CompletionResultType]::ParameterName, 'Enable unstable `BroadcastChannel` API')
+            [CompletionResult]::new('--unstable-bundle', '--unstable-bundle', [CompletionResultType]::ParameterName, 'Enable unstable bundle runtime API')
+            [CompletionResult]::new('--unstable-byonm', '--unstable-byonm', [CompletionResultType]::ParameterName, 'unstable-byonm')
+            [CompletionResult]::new('--unstable-cron', '--unstable-cron', [CompletionResultType]::ParameterName, 'Enable unstable `Deno.cron` API')
+            [CompletionResult]::new('--unstable-detect-cjs', '--unstable-detect-cjs', [CompletionResultType]::ParameterName, 'Treats ambiguous .js, .jsx, .ts, .tsx files as CommonJS modules in more cases')
+            [CompletionResult]::new('--unstable-ffi', '--unstable-ffi', [CompletionResultType]::ParameterName, 'Enable unstable FFI APIs')
+            [CompletionResult]::new('--unstable-fs', '--unstable-fs', [CompletionResultType]::ParameterName, 'Enable unstable file system APIs')
+            [CompletionResult]::new('--unstable-http', '--unstable-http', [CompletionResultType]::ParameterName, 'Enable unstable HTTP APIs')
+            [CompletionResult]::new('--unstable-kv', '--unstable-kv', [CompletionResultType]::ParameterName, 'Enable unstable KV APIs')
+            [CompletionResult]::new('--unstable-lazy-dynamic-imports', '--unstable-lazy-dynamic-imports', [CompletionResultType]::ParameterName, 'Lazily loads statically analyzable dynamic imports when not running with type checking. Warning: This may change the order of semver specifier resolution.')
+            [CompletionResult]::new('--unstable-lockfile-v5', '--unstable-lockfile-v5', [CompletionResultType]::ParameterName, 'Enable unstable lockfile v5')
+            [CompletionResult]::new('--unstable-net', '--unstable-net', [CompletionResultType]::ParameterName, 'enable unstable net APIs')
+            [CompletionResult]::new('--unstable-no-legacy-abort', '--unstable-no-legacy-abort', [CompletionResultType]::ParameterName, 'Enable abort signal in Deno.serve without legacy behavior. This will not abort the server when the request is handled successfully.')
+            [CompletionResult]::new('--unstable-node-globals', '--unstable-node-globals', [CompletionResultType]::ParameterName, 'Prefer Node.js globals over Deno globals - currently this refers to `setTimeout` and `setInterval` APIs.')
+            [CompletionResult]::new('--unstable-npm-lazy-caching', '--unstable-npm-lazy-caching', [CompletionResultType]::ParameterName, 'Enable unstable lazy caching of npm dependencies, downloading them only as needed (disabled: all npm packages in package.json are installed on startup; enabled: only npm packages that are actually referenced in an import are installed')
+            [CompletionResult]::new('--unstable-otel', '--unstable-otel', [CompletionResultType]::ParameterName, 'Enable unstable OpenTelemetry features')
+            [CompletionResult]::new('--unstable-process', '--unstable-process', [CompletionResultType]::ParameterName, 'Enable unstable process APIs')
+            [CompletionResult]::new('--unstable-raw-imports', '--unstable-raw-imports', [CompletionResultType]::ParameterName, 'Enable unstable ''bytes'' and ''text'' imports.')
+            [CompletionResult]::new('--unstable-sloppy-imports', '--unstable-sloppy-imports', [CompletionResultType]::ParameterName, 'Enable unstable resolving of specifiers by extension probing, .js to .ts, and directory probing')
+            [CompletionResult]::new('--unstable-subdomain-wildcards', '--unstable-subdomain-wildcards', [CompletionResultType]::ParameterName, 'Enable subdomain wildcards support for the `--allow-net` flag')
+            [CompletionResult]::new('--unstable-temporal', '--unstable-temporal', [CompletionResultType]::ParameterName, 'Enable unstable Temporal API')
+            [CompletionResult]::new('--unstable-tsgo', '--unstable-tsgo', [CompletionResultType]::ParameterName, 'Enable unstable TypeScript Go integration')
+            [CompletionResult]::new('--unstable-unsafe-proto', '--unstable-unsafe-proto', [CompletionResultType]::ParameterName, 'Enable unsafe __proto__ support. This is a security risk.')
+            [CompletionResult]::new('--unstable-vsock', '--unstable-vsock', [CompletionResultType]::ParameterName, 'Enable unstable VSOCK APIs')
+            [CompletionResult]::new('--unstable-webgpu', '--unstable-webgpu', [CompletionResultType]::ParameterName, 'Enable unstable WebGPU APIs')
+            [CompletionResult]::new('--unstable-worker-options', '--unstable-worker-options', [CompletionResultType]::ParameterName, 'Enable unstable Web Worker APIs')
+            [CompletionResult]::new('-q', '-q', [CompletionResultType]::ParameterName, 'Suppress diagnostic output')
+            [CompletionResult]::new('--quiet', '--quiet', [CompletionResultType]::ParameterName, 'Suppress diagnostic output')
+            [CompletionResult]::new('--npm', '--npm', [CompletionResultType]::ParameterName, 'Treat unprefixed package names as npm packages')
+            [CompletionResult]::new('--jsr', '--jsr', [CompletionResultType]::ParameterName, 'Treat unprefixed package names as JSR packages')
+            [CompletionResult]::new('-y', '-y', [CompletionResultType]::ParameterName, 'Bypass the prompt and run with full permissions')
+            [CompletionResult]::new('--yes', '--yes', [CompletionResultType]::ParameterName, 'Bypass the prompt and run with full permissions')
             break
         }
         'deno;completions' {
@@ -1261,6 +1308,7 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--quiet', '--quiet', [CompletionResultType]::ParameterName, 'Suppress diagnostic output')
             [CompletionResult]::new('--no-config', '--no-config', [CompletionResultType]::ParameterName, 'Disable automatic loading of the configuration file')
             [CompletionResult]::new('--check', '--check', [CompletionResultType]::ParameterName, 'Check if the source files are formatted')
+            [CompletionResult]::new('--fail-fast', '--fail-fast', [CompletionResultType]::ParameterName, 'Stop checking files on first format error')
             [CompletionResult]::new('--permit-no-files', '--permit-no-files', [CompletionResultType]::ParameterName, 'Don''t return an error code if no files were found')
             [CompletionResult]::new('--watch', '--watch', [CompletionResultType]::ParameterName, 'Watch for file changes and restart process automatically.   Only local files from entry point module graph are watched.')
             [CompletionResult]::new('--no-clear-screen', '--no-clear-screen', [CompletionResultType]::ParameterName, 'Do not clear terminal screen when under watch mode')
@@ -1307,6 +1355,7 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('-q', '-q', [CompletionResultType]::ParameterName, 'Suppress diagnostic output')
             [CompletionResult]::new('--quiet', '--quiet', [CompletionResultType]::ParameterName, 'Suppress diagnostic output')
             [CompletionResult]::new('--npm', '--npm', [CompletionResultType]::ParameterName, 'Generate a npm create-* project')
+            [CompletionResult]::new('--jsr', '--jsr', [CompletionResultType]::ParameterName, 'Generate a project from a JSR package')
             [CompletionResult]::new('--lib', '--lib', [CompletionResultType]::ParameterName, 'Generate an example library project')
             [CompletionResult]::new('--serve', '--serve', [CompletionResultType]::ParameterName, 'Generate an example project for `deno serve`')
             [CompletionResult]::new('--empty', '--empty', [CompletionResultType]::ParameterName, 'Generate a minimal project with just main.ts and deno.json')
@@ -1486,6 +1535,7 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--dev', '--dev', [CompletionResultType]::ParameterName, 'Add the package as a dev dependency. Note: This only applies when adding to a `package.json` file.')
             [CompletionResult]::new('--npm', '--npm', [CompletionResultType]::ParameterName, 'assume unprefixed package names are npm packages')
             [CompletionResult]::new('--jsr', '--jsr', [CompletionResultType]::ParameterName, 'assume unprefixed package names are jsr packages')
+            [CompletionResult]::new('--save-exact', '--save-exact', [CompletionResultType]::ParameterName, 'Save exact version without the caret (^)')
             [CompletionResult]::new('--lockfile-only', '--lockfile-only', [CompletionResultType]::ParameterName, 'Install only updating the lockfile')
             break
         }
@@ -1603,6 +1653,7 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--dev', '--dev', [CompletionResultType]::ParameterName, 'Add the package as a dev dependency. Note: This only applies when adding to a `package.json` file.')
             [CompletionResult]::new('--npm', '--npm', [CompletionResultType]::ParameterName, 'assume unprefixed package names are npm packages')
             [CompletionResult]::new('--jsr', '--jsr', [CompletionResultType]::ParameterName, 'assume unprefixed package names are jsr packages')
+            [CompletionResult]::new('--save-exact', '--save-exact', [CompletionResultType]::ParameterName, 'Save exact version without the caret (^)')
             [CompletionResult]::new('--lockfile-only', '--lockfile-only', [CompletionResultType]::ParameterName, 'Install only updating the lockfile')
             break
         }
@@ -2499,6 +2550,7 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('check', 'check', [CompletionResultType]::ParameterValue, 'check')
             [CompletionResult]::new('clean', 'clean', [CompletionResultType]::ParameterValue, 'clean')
             [CompletionResult]::new('compile', 'compile', [CompletionResultType]::ParameterValue, 'compile')
+            [CompletionResult]::new('create', 'create', [CompletionResultType]::ParameterValue, 'create')
             [CompletionResult]::new('completions', 'completions', [CompletionResultType]::ParameterValue, 'completions')
             [CompletionResult]::new('coverage', 'coverage', [CompletionResultType]::ParameterValue, 'coverage')
             [CompletionResult]::new('doc', 'doc', [CompletionResultType]::ParameterValue, 'doc')
@@ -2618,6 +2670,15 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             break
         }
         'deno;help;compile' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'h')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'help')
+            [CompletionResult]::new('-L', '-L ', [CompletionResultType]::ParameterName, 'Set log level')
+            [CompletionResult]::new('--log-level', '--log-level', [CompletionResultType]::ParameterName, 'Set log level')
+            [CompletionResult]::new('-q', '-q', [CompletionResultType]::ParameterName, 'Suppress diagnostic output')
+            [CompletionResult]::new('--quiet', '--quiet', [CompletionResultType]::ParameterName, 'Suppress diagnostic output')
+            break
+        }
+        'deno;help;create' {
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'h')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'help')
             [CompletionResult]::new('-L', '-L ', [CompletionResultType]::ParameterName, 'Set log level')
