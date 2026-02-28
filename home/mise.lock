@@ -19,9 +19,13 @@ version = "0.18.2"
 backend = "asdf:delta"
 
 [[tools.deno]]
-version = "2.6.10"
+version = "2.7.1"
 backend = "core:deno"
-"platforms.linux-x64" = { checksum = "blake3:e30d9d185ba85d894b1600c53117e5cb4cb5ad81d9b395d40658120f847c4bd9"}
+"platforms.linux-arm64" = { checksum = "sha256:bfe62e582faceb9885748f00a9f44cd5af458b9d08d7ac8275c4048ff1bb1540", url = "https://dl.deno.land/release/v2.7.1/deno-aarch64-unknown-linux-gnu.zip"}
+"platforms.linux-x64" = { checksum = "sha256:b7154ae42839d7b1453422e2f33c907e5c68fde8fe9f145cd43b8dd083671a6f", url = "https://dl.deno.land/release/v2.7.1/deno-x86_64-unknown-linux-gnu.zip"}
+"platforms.macos-arm64" = { checksum = "sha256:bc3392a0f50be9a1ecb68596530319308639a6f69d99678a0018c47e23a10c1f", url = "https://dl.deno.land/release/v2.7.1/deno-aarch64-apple-darwin.zip"}
+"platforms.macos-x64" = { checksum = "sha256:5478393fc9893c6f3516cee7579453a990834ceebf5ff44aaced2d0f285302d7", url = "https://dl.deno.land/release/v2.7.1/deno-x86_64-apple-darwin.zip"}
+"platforms.windows-x64" = { checksum = "sha256:Algorithm", url = "https://dl.deno.land/release/v2.7.1/deno-x86_64-pc-windows-msvc.zip"}
 
 [[tools.difftastic]]
 version = "0.67.0"
@@ -44,7 +48,7 @@ version = "0.68.0"
 backend = "asdf:fzf"
 
 [[tools.github-cli]]
-version = "2.87.2"
+version = "2.87.3"
 backend = "asdf:github-cli"
 
 [[tools.go]]
@@ -57,9 +61,13 @@ version = "0.109.0"
 backend = "asdf:grype"
 
 [[tools.kubectl]]
-version = "1.35.1"
+version = "1.35.2"
 backend = "aqua:kubernetes/kubectl"
-"platforms.linux-x64" = { checksum = "sha256:36e2f4ac66259232341dd7866952d64a958846470f6a9a6a813b9117bd965207", url = "https://dl.k8s.io/v1.35.1/bin/linux/amd64/kubectl"}
+"platforms.linux-arm64" = { checksum = "sha256:cd859449f54ad2cb05b491c490c13bb836cdd0886ae013c0aed3dd67ff747467", url = "https://dl.k8s.io/v1.35.2/bin/linux/arm64/kubectl"}
+"platforms.linux-x64" = { checksum = "sha256:924eb50779153f20cb668117d141440b95df2f325a64452d78dff9469145e277", url = "https://dl.k8s.io/v1.35.2/bin/linux/amd64/kubectl"}
+"platforms.macos-arm64" = { checksum = "sha256:b0b59cdd7ba20ca20b85214943100e578dd50ddd85242fcddf277a87c2249706", url = "https://dl.k8s.io/v1.35.2/bin/darwin/arm64/kubectl"}
+"platforms.macos-x64" = { checksum = "sha256:163955964d4ed9e66656eab45c0114f5c1110d1b430ace432b20ddc430023df5", url = "https://dl.k8s.io/v1.35.2/bin/darwin/amd64/kubectl"}
+"platforms.windows-x64" = { checksum = "sha256:a6d02010aae330a3031afe7843747d5a18db59c9f0bca415e45fb24bbdccdd2c", url = "https://dl.k8s.io/v1.35.2/bin/windows/amd64/kubectl.exe"}
 
 [[tools.lazygit]]
 version = "0.56.0"
@@ -93,7 +101,7 @@ backend = "aqua:JohnnyMorganz/StyLua"
 "platforms.windows-x64" = { checksum = "sha256:70fc56d7361c20e858bd9c3b3b643e44dc2e2007b670c816ba7fb032956e3baa", url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.3.1/stylua-windows-x86_64.zip"}
 
 [[tools.usage]]
-version = "2.18.0"
+version = "2.18.1"
 backend = "asdf:usage"
 
 [[tools.yq]]
