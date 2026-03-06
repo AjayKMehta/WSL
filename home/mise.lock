@@ -19,13 +19,13 @@ version = "0.18.2"
 backend = "asdf:delta"
 
 [[tools.deno]]
-version = "2.7.1"
+version = "2.7.3"
 backend = "core:deno"
-"platforms.linux-arm64" = { checksum = "sha256:bfe62e582faceb9885748f00a9f44cd5af458b9d08d7ac8275c4048ff1bb1540", url = "https://dl.deno.land/release/v2.7.1/deno-aarch64-unknown-linux-gnu.zip"}
-"platforms.linux-x64" = { checksum = "sha256:b7154ae42839d7b1453422e2f33c907e5c68fde8fe9f145cd43b8dd083671a6f", url = "https://dl.deno.land/release/v2.7.1/deno-x86_64-unknown-linux-gnu.zip"}
-"platforms.macos-arm64" = { checksum = "sha256:bc3392a0f50be9a1ecb68596530319308639a6f69d99678a0018c47e23a10c1f", url = "https://dl.deno.land/release/v2.7.1/deno-aarch64-apple-darwin.zip"}
-"platforms.macos-x64" = { checksum = "sha256:5478393fc9893c6f3516cee7579453a990834ceebf5ff44aaced2d0f285302d7", url = "https://dl.deno.land/release/v2.7.1/deno-x86_64-apple-darwin.zip"}
-"platforms.windows-x64" = { checksum = "sha256:Algorithm", url = "https://dl.deno.land/release/v2.7.1/deno-x86_64-pc-windows-msvc.zip"}
+"platforms.linux-arm64" = { checksum = "sha256:a95cc1f29a5e82350c8b67cfcde2f3fb08591d458d75ce948c7d760e7e1ee816", url = "https://dl.deno.land/release/v2.7.3/deno-aarch64-unknown-linux-gnu.zip"}
+"platforms.linux-x64" = { checksum = "sha256:97692549c433fb2967123ee2ad1b7599f2a0b7b745f9919bb791aee1738c966a", url = "https://dl.deno.land/release/v2.7.3/deno-x86_64-unknown-linux-gnu.zip"}
+"platforms.macos-arm64" = { checksum = "sha256:2592756b13a1f19dddc0da54950d03f3127c1f3c354e87a975c33efacb322860", url = "https://dl.deno.land/release/v2.7.3/deno-aarch64-apple-darwin.zip"}
+"platforms.macos-x64" = { checksum = "sha256:916d96272ca58875e144f52fe241ccd538869ecce0e48b34977cafcf87c3daa9", url = "https://dl.deno.land/release/v2.7.3/deno-x86_64-apple-darwin.zip"}
+"platforms.windows-x64" = { checksum = "sha256:Algorithm", url = "https://dl.deno.land/release/v2.7.3/deno-x86_64-pc-windows-msvc.zip"}
 
 [[tools.difftastic]]
 version = "0.67.0"
@@ -44,7 +44,7 @@ version = "0.23.4"
 backend = "asdf:eza"
 
 [[tools.fzf]]
-version = "0.68.0"
+version = "0.70.0"
 backend = "asdf:fzf"
 
 [[tools.github-cli]]
@@ -74,9 +74,13 @@ version = "0.56.0"
 backend = "asdf:lazygit"
 
 [[tools.lefthook]]
-version = "2.1.1"
+version = "2.1.2"
 backend = "aqua:evilmartians/lefthook"
-"platforms.linux-x64" = { checksum = "sha256:5d29942bb5954c59d67d8c37184411034e576ed2829e22b0a6d88bba934e4fbb", url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.1/lefthook_2.1.1_Linux_x86_64.gz"}
+"platforms.linux-arm64" = { checksum = "sha256:575fb07a5b8bc1dd92968d4cd430fd0f853cff6c978e249b454c64c727072ea8", url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.2/lefthook_2.1.2_Linux_aarch64.gz"}
+"platforms.linux-x64" = { checksum = "sha256:2d123bef0e4494915aeec25044d8033ea7368918280ea5bb5f70af180865f7a1", url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.2/lefthook_2.1.2_Linux_x86_64.gz"}
+"platforms.macos-arm64" = { checksum = "sha256:08f9e9143766f4433d1cf78f6756a683314ff32500b30198eaa64840bae2d6c9", url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.2/lefthook_2.1.2_MacOS_arm64.gz"}
+"platforms.macos-x64" = { checksum = "sha256:3cd010ae90aa497f7dfef3d5cfc6c031ef4e3e8b124afa2cad7cf647008d2109", url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.2/lefthook_2.1.2_MacOS_x86_64.gz"}
+"platforms.windows-x64" = { checksum = "sha256:1b655ae079bcffef6a956dde7d6b2d62ed9047fff617408002bfc6ea85bc3ff4", url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.2/lefthook_2.1.2_Windows_x86_64.gz"}
 
 [[tools.minikube]]
 version = "1.38.1"
@@ -101,7 +105,7 @@ backend = "aqua:JohnnyMorganz/StyLua"
 "platforms.windows-x64" = { checksum = "sha256:70fc56d7361c20e858bd9c3b3b643e44dc2e2007b670c816ba7fb032956e3baa", url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.3.1/stylua-windows-x86_64.zip"}
 
 [[tools.usage]]
-version = "2.18.1"
+version = "2.18.2"
 backend = "asdf:usage"
 
 [[tools.yq]]
