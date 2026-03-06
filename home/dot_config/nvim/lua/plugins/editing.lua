@@ -6,13 +6,64 @@ return {
     {
         "kylechui/nvim-surround",
         lazy = false,
-        opts = { keymaps = {
-            normal_cur = "yr",
-            normal_cur_line = "yR",
-        } },
-        config = function(_, opts)
-            require("nvim-surround").setup(opts)
+        init = function()
+            vim.g.nvim_surround_no_normal_mappings = true
         end,
+        keys = {
+            { "ys", "<Plug>(nvim-surround-normal)", desc = "Add a surrounding pair around a motion (normal mode)" },
+            {
+                "yr",
+                "<Plug>(nvim-surround-normal-cur)",
+                desc = "Add a surrounding pair around the current line (normal mode)",
+            },
+            {
+                "yS",
+                "<Plug>(nvim-surround-normal-line)",
+                desc = "Add a surrounding pair around a motion, on new lines (normal mode)",
+            },
+            {
+                "yR",
+                "<Plug>(nvim-surround-normal-cur-line)",
+                desc = "Add a surrounding pair around the current line, on new lines (normal mode)",
+            },
+            { "ds", "<Plug>(nvim-surround-delete)", desc = "Delete a surrounding pair" },
+            { "cs", "<Plug>(nvim-surround-change)", desc = "Change a surrounding pair" },
+            {
+                "cS",
+                "<Plug>(nvim-surround-change-line)",
+                desc = "Change a surrounding pair, putting replacements on new lines",
+            },
+        },
+        opts = {
+            surrounds = {
+                -- https://github.com/kylechui/nvim-surround/discussions/53#discussioncomment-8593596
+                -- Create generic type: ysiwg on String, enter Foo: Foo<String>
+                g = {
+                    add = function()
+                        local config = require("nvim-surround.config")
+                        local result = config.get_input("Enter the generic name: ")
+                        if result then
+                            return { { result .. "<" }, { ">" } }
+                        end
+                    end,
+                    find = function()
+                        local config = require("nvim-surround.config")
+                        return config.get_selection({ node = "generic_type" })
+                    end,
+                    delete = "^(.-<)().-(>)()$",
+                    change = {
+                        target = "^(.-<)().-(>)()$",
+                        replacement = function()
+                            local config = require("nvim-surround.config")
+                            local result = config.get_input("Enter the generic name: ")
+                            if result then
+                                return { { result .. "<" }, { ">" } }
+                            end
+                        end,
+                    },
+                },
+            },
+        },
     },
     {
         "max397574/better-escape.nvim",
