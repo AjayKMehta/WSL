@@ -32,7 +32,7 @@ function blerc/define-sabbrev-branch {
 blehook/eval-after-load complete blerc/define-sabbrev-branch
 
 # https://github.com/akinomyoga/ble.sh/wiki/Manual-%C2%A71-Introduction#134-bleopt-editor-v04
-bleopt editor=nano
+bleopt editor=nvim
 
 # Setup fzf
 
@@ -41,7 +41,9 @@ ble-import -d integration/fzf-completion
 ble-import -d integration/fzf-key-bindings
 
 # https://github.com/akinomyoga/blesh-contrib/blob/master/integration/fzf.md#pencil-integrationfzf-git
+
 # Using sabbrev below messes up typing gh, gb 🙁
+# So use <C-G> ...
 _ble_contrib_fzf_git_config=key-binding
 
 # Add <C-G> shortcuts, e.g. <C-G><C-B> for branches
@@ -49,3 +51,16 @@ ble-import -d integration/fzf-git
 
 # https://github.com/akinomyoga/blesh-contrib/blob/master/integration/fzf.md#pencil-integrationfzf-menu
 ble-import -d integration/fzf-menu
+
+ble-import config/github483-elapsed-mark-on-error
+
+# Auto-expand exe suffix!
+ble-import -d config/github678-expand-command-suffix -C '
+    bleopt edit_magic_expand+=github678-expand-command-suffix
+    bleopt edit_magic_accept+=github678-expand-command-suffix
+    bleopt github678_expand_command_suffix=exe:sh:bash
+'
+
+# https://github.com/akinomyoga/ble.sh/discussions/499#discussioncomment-10736053
+ble-import config/github499-append-to-last-modified
+ble-bind -f 'M-insert' github499/append-to-last-modified
