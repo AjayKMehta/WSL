@@ -281,6 +281,7 @@ return {
                     },
                     auto_register_dap = true,
                     bin_path = vim.fn.stdpath("data") .. "/mason" .. "/bin/netcoredbg",
+                    console = "integratedTerminal",
                 },
                 lsp = {
                     enabled = not vim.g.use_roslyn_nvim,
