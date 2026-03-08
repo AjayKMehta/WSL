@@ -24,6 +24,9 @@ return {
         csproj = { inherit_defaults = true, "easy-dotnet" },
         sln = { inherit_defaults = true, "easy-dotnet" },
         slnx = { inherit_defaults = true, "easy-dotnet" },
+        sh = { inherit_defaults = true, "env" },
+        zsh = { inherit_defaults = true, "env" },
+        bash = { inherit_defaults = true, "env" },
     },
     providers = {
         path = {
@@ -42,6 +45,13 @@ return {
                 return ctx.trigger.initial_kind ~= "trigger_character"
                 --    and not require("blink.cmp").snippet_active()
             end,
+            opts = {
+                friendly_snippets = true,
+                search_paths = { vim.fn.stdpath("config") .. "/lua/snippets" },
+                global_snippets = { "all" },
+                extended_filetypes = {},
+                ignored_filetypes = {},
+            },
         },
         buffer = { score_offset = -10, min_keyword_length = 4 },
         lazydev = {
@@ -75,6 +85,7 @@ return {
         },
         lsp = {
             name = "LSP",
+            async = true,
             module = "blink.cmp.sources.lsp",
             -- Exclude keywords/constants from autocomplete
             transform_items = function(_, items)
@@ -109,6 +120,19 @@ return {
                 return vim.tbl_contains({ "octo", "gitcommit", "gitrebase" }, vim.bo.filetype)
             end,
             opts = {},
+        },
+        env = {
+            module = "blink-cmp-env",
+            name = "Env",
+            score_offset = -3,
+            opts = {
+                item_kind = function()
+                    return require("blink.cmp.types").CompletionItemKind.Variable
+                    end,
+                show_braces = false,
+                show_documentation_window = true,
+            },
+            max_items = 5,
         },
     },
 }

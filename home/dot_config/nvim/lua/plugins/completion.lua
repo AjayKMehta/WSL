@@ -102,6 +102,7 @@ return {
             "chrisgrieser/cmp-nerdfont",
             "fionn/cmp-unitex",
             "Kaiser-Yang/blink-cmp-git",
+            "bydlw98/blink-cmp-env",
             {
                 "onsails/lspkind.nvim",
                 opts = { preset = "default" }, -- codicons
@@ -225,7 +226,12 @@ return {
                     -- https://cmp.saghen.dev/modes/cmdline.html#keymap-preset
                     preset = "cmdline",
                     ["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
-                    ["<S-Tab>"] = { function(cmp) cmp.show_and_insert_or_accept_single({ initial_selected_item_idx = -1 }) end, "select_prev" },
+                    ["<S-Tab>"] = {
+                        function(cmp)
+                            cmp.show_and_insert_or_accept_single({ initial_selected_item_idx = -1 })
+                        end,
+                        "select_prev",
+                    },
                     ["<CR>"] = { "accept", "fallback" },
                 },
                 completion = {
