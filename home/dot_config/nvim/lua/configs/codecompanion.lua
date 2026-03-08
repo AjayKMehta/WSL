@@ -137,7 +137,17 @@ local display = {
         start_in_insert_mode = false, -- Open the chat buffer in insert mode?
         fold_context = true, -- Fold context in the chat buffer?
         window = {
-            sticky = true, -- when set to true and `layout` is not `"buffer"`, the chat buffer will remain opened when switching tabs
+            sticky = true, -- Chat window follows when switching tabs
+            -- Autosize
+            width = 0,
+            height = 0,
+        },
+    },
+    diff = {
+        enabled = true,
+        word_highlights = {
+            additions = true,
+            deletions = true,
         },
     },
 }
@@ -259,7 +269,7 @@ local interactions = {
                 description = "Previous Chat",
             },
         },
-        variables = {
+        editor_context = {
             ["buffer"] = {
                 opts = {
                     default_params = "diff",
@@ -289,15 +299,6 @@ local interactions = {
     inline = {
         adapter = "ollama",
         keymaps = {
-            accept_change = {
-                modes = { n = "<leader>ca" },
-                description = "Accept the suggested change",
-            },
-            reject_change = {
-                modes = { n = "<leader>cr" },
-                opts = { nowait = true },
-                description = "Reject the suggested change",
-            },
             stop = {
                 modes = { n = "q" },
                 callback = "keymaps.stop",
@@ -312,6 +313,23 @@ local interactions = {
         adapter = {
             name = "ollama",
             model = "qwen3:8b",
+        },
+    },
+    shared = {
+        keymaps = {
+            always_accept = {
+                callback = "keymaps.always_accept",
+                modes = { n = "<leader>cA" },
+            },
+            accept_change = {
+                modes = { n = "<leader>ca" },
+                description = "Accept the suggested change",
+            },
+            reject_change = {
+                modes = { n = "<leader>cr" },
+                opts = { nowait = true },
+                description = "Reject the suggested change",
+            },
         },
     },
 }
@@ -331,14 +349,6 @@ local prompt_library = {
 }
 
 local extensions = {
-    mcphub = {
-        callback = "mcphub.extensions.codecompanion",
-        opts = {
-            make_vars = true,
-            make_slash_commands = true,
-            show_result_in_chat = true,
-        },
-    },
     history = {
         enabled = true,
         opts = {
@@ -380,6 +390,12 @@ local extensions = {
 -- Logs stored in ~/.local/state/nvim/codecompanion.log
 local opts = {
     log_level = "INFO", -- TRACE|DEBUG|ERROR|INFO
+    default_servers = { "sequential-thinking" },
+    per_project_config = {
+      files = {
+        ".codecompanion.lua",
+      },
+    },
 }
 
 local rules = {
@@ -436,6 +452,44 @@ local rules = {
     },
 }
 
+local mcp = {
+    ["tavily-mcp"] = {
+        cmd = { "npx", "-y", "tavily-mcp@latest" },
+        env = {
+            "TAVILY_API_KEY",
+        },
+    },
+    filesystem = {
+        cmd = { "npx", "-y", "@modelcontextprotocol/server-filesystem" },
+        -- TODO: Update this.
+        -- roots = function()
+        --     -- Return a list of names and directories as per:
+        --     -- https://modelcontextprotocol.io/specification/2025-11-25/client/roots#listing-roots
+        -- end,
+    },
+    ["sequential-thinking"] = {
+        cmd = { "npx", "-y", "@modelcontextprotocol/server-sequential-thinking" },
+    },
+    memory = {
+        cmd = { "npx", "-y", "@modelcontextprotocol/server-memory" },
+    },
+    time = {
+        cmd = { "uvx", "mcp-server-time", "--local-timezone", "America/Los_Angeles" },
+        tool_overrides = {
+            get_current_time = {
+                opts = {
+                    require_approval_before = false,
+                },
+            },
+            convert_time = {
+                opts = {
+                    require_approval_before = false,
+                },
+            },
+        },
+    },
+}
+
 local config = {
     extensions = extensions,
     adapters = adapters,
@@ -444,6 +498,7 @@ local config = {
     prompt_library = prompt_library,
     rules = rules,
     opts = opts,
+    mcp = mcp,
 }
 
 cc.setup(config)

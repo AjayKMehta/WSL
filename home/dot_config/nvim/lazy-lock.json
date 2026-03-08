@@ -30,7 +30,7 @@
   "codecompanion-history.nvim": { "branch": "main", "commit": "bc1b4fe06eaaf0aa2399be742e843c22f7f1652a" },
   "codecompanion-lualine.nvim": { "branch": "main", "commit": "3e06ae6c233628103686de37b7abb363e50868ee" },
   "codecompanion-spinners.nvim": { "branch": "main", "commit": "86926cbf7554d69d40d2a5c3cf576063814a42d5" },
-  "codecompanion.nvim": { "branch": "main", "commit": "558518f8d78a44198cd428f6bf8bf48bfa38d76d" },
+  "codecompanion.nvim": { "branch": "main", "commit": "f22fe1b04e47110a26abe70bad537cb9baf9c665" },
   "conform.nvim": { "branch": "master", "commit": "e969e302bced7ffb9a0a0323629f31feb0ca35a6" },
   "cyberdream.nvim": { "branch": "main", "commit": "a68ffa6af98bf1fc88f33a071c51a188ec85c725" },
   "dap-breakpoints.nvim": { "branch": "master", "commit": "4683766c43651401db68351dc09034218feafc97" },
