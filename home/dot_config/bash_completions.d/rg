@@ -270,7 +270,7 @@ _rg() {
           return 0
           ;;
         --hyperlink-format)
-          COMPREPLY=($(compgen -f "${cur}"))
+          COMPREPLY=($(compgen -W "default none cursor file grep+ kitty macvim textmate vscode vscode-insiders vscodium" -- "${cur}"))
           return 0
           ;;
         --iglob)
