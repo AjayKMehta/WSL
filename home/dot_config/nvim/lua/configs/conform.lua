@@ -84,6 +84,8 @@ conform.setup({
             "ruff_organize_imports",
         },
         query = { "format-queries" },
+        quarto = { "injected" },
+        rmd = { "injected" },
         r = { "air" },
         sql = { "sql_formatter" },
         tex = { "tex-fmt" },
