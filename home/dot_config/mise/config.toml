@@ -10,27 +10,70 @@ lockfile = true
 
 [tools]
 # specify single or multiple versions
-neovim = "latest"
-deno = "latest"
-lua-language-server = "latest"
-delta = "latest"
-chezmoi = "latest"
-difftastic = "latest"
-fzf = "latest"
-golang = "latest"
-docker-slim = "latest"
-stylua = "latest"
-usage = "latest"
-eza = "latest"
-direnv = "latest"
+"aqua:nektos/act" = "latest"
+"aqua:rhysd/actionlint" = "latest"
+bat-extras = "latest"
 
-yq.version = "latest"
-yq.postinstall = """
+"aqua:twpayne/chezmoi" = { version = "latest", postinstall = """
+chezmoi completion bash > ~/.config/bash_completions.d/chezmoi.sh
+chezmoi completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/chezmoi.ps1
+""" }
+
+"aqua:dandavison/delta" = {version="latest", postinstall = '''
+delta --generate-completion bash > ~/.config/bash_completions.d/delta
+delta --generate-completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/delta.ps1
+'''}
+
+deno.version = "latest"
+deno.postinstall = '''
+deno completions bash > ~/.config/bash_completions.d/deno
+deno completions powershell > ~/.config/powershell/scripts/ArgumentCompleters/deno.ps1
+'''
+
+"aqua:Wilfred/difftastic" = "latest"
+"aqua:direnv/direnv" = "latest"
+# docker-slim
+"aqua:mintoolkit/mint" = "latest"
+
+
+"aqua:eza-community/eza" = {version = "latest", postinstall = '''
+gh download https://github.com/eza-community/eza/blob/main/completions/bash/eza --outfile ~/.config/bash_completions.d/eza
+gh download https://github.com/eza-community/eza/blob/main/completions/pwsh/_eza.ps1 --outfile ~/.config/powershell/scripts/ArgumentCompleters/eza.ps1
+'''}
+
+fx = "latest"
+"aqua:fzf" = "latest"
+
+# GitHub CLI
+"aqua:cli/cli" = { version = "latest", postinstall = """
+gh completion -s bash > ~/.config/bash_completions.d/gh
+gh completion -s powershell > ~/.config/powershell/scripts/ArgumentCompleters/gh.ps1
+""" }
+
+go = "latest"
+
+"aqua:anchore/grype" = { version = "latest", postinstall = 'grype completion bash > ~/.config/bash_completions.d/grype' }
+
+gum = "latest"
+
+"aqua:kubernetes/kubernetes/kubectl" = "latest"
+"aqua:jesseduffield/lazygit" = "latest"
+lefthook = "latest"
+"aqua:LuaLS/lua-language-server" = "latest"
+minikube = "latest"
+neovim = "latest"
+
+"aqua:BurntSushi/ripgrep" = { version = "latest", postinstall = """
+rg --generate=complete-bash > ~/.config/bash_completions.d/rg
+rg --generate=complete-powershell > ~/.config/powershell/scripts/ArgumentCompleters/_rg.ps1
+""" }
+
+stylua = "latest"
+"aqua:jdx/usage" = "latest"
+
+"aqua:mikefarah/yq" = { version = "latest", postinstall = """
 yq shell-completion bash > ~/.config/bash_completions.d/yq
 yq shell-completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/yq.ps1
-"""
-fx = "latest"
-actionlint = "latest"
-gum = "latest"
-grype = "latest"
+""" }
+
 "aqua:zoxide" = "latest"
