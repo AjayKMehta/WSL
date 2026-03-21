@@ -55,11 +55,11 @@ ble-import -d integration/fzf-menu
 ble-import config/github483-elapsed-mark-on-error
 
 # Auto-expand exe suffix!
-ble-import -d config/github678-expand-command-suffix -C '
-    bleopt edit_magic_expand+=github678-expand-command-suffix
-    bleopt edit_magic_accept+=github678-expand-command-suffix
-    bleopt github678_expand_command_suffix=exe:sh:bash
-'
+# ble-import -d config/github678-expand-command-suffix -C '
+#     bleopt edit_magic_expand+=github678-expand-command-suffix
+#     bleopt edit_magic_accept+=github678-expand-command-suffix
+#     bleopt github678_expand_command_suffix=exe:sh:bash
+# '
 
 # https://github.com/akinomyoga/ble.sh/discussions/499#discussioncomment-10736053
 ble-import config/github499-append-to-last-modified
