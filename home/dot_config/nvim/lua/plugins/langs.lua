@@ -220,10 +220,12 @@ return {
 
                 -- get_sdk_path = get_sdk_path,
                 test_runner = {
+                    auto_start_testrunner = true,
+                    hide_legend = false,
                     viewmode = "float",
-                    enable_buffer_test_execution = true,
                     mappings = {
                         run_test_from_buffer = { lhs = "<localleader>rb", desc = "run test from buffer" },
+                        get_build_errors = { lhs = "<localleader>e", desc = "get build errors" },
                         filter_failed_tests = { lhs = "<localleader>fe", desc = "filter failed tests" },
                         debug_test = { lhs = "<localleader>d", desc = "debug test" },
                         go_to_file = { lhs = "g", desc = "go to file" },
@@ -232,10 +234,10 @@ return {
                         peek_stacktrace = { lhs = "<localleader>p", desc = "peek stacktrace of failed test" },
                         expand = { lhs = "o", desc = "expand" },
                         expand_node = { lhs = "E", desc = "expand node" },
-                        expand_all = { lhs = "-", desc = "expand all" },
                         collapse_all = { lhs = "W", desc = "collapse all" },
                         close = { lhs = "q", desc = "close testrunner" },
                         refresh_testrunner = { lhs = "<C-r>", desc = "refresh testrunner" },
+                        cancel = { lhs = "<C-c>", desc = "cancel in-flight operation" },
                     },
                 },
                 csproj_mappings = true,
