@@ -66,14 +66,13 @@ local adapters = {
                 },
                 schema = {
                     model = {
-                        default = "qwen3:8b",
+                        default = "glm-4.7-flash:q4_K_M",
                         choices = {
                             "deepseek-r1:8b",
-                            "gemma3:4b",
                             "glm-4.7-flash:q4_K_M",
+                            "qwen3.5:9b",
                             "llama3.2:latest",
                             "ministral-3:8b",
-                            "qwen3:8b",
                         },
                     },
                     num_ctx = {
@@ -82,7 +81,7 @@ local adapters = {
                     think = {
                         default = function(adapter)
                             local model_name = adapter.model.name:lower()
-                            return vim.iter({ "qwen3:8b", "deepseek-r1:8b" }):any(function(kw)
+                            return vim.iter({ "glm-4.7-flash:q4_K_M", "qwen3.5:9b" }):any(function(kw)
                                 return string.find(model_name, kw) ~= nil
                             end)
                         end,
@@ -155,7 +154,7 @@ local display = {
 local interactions = {
     chat = {
         adapter = "ollama",
-        model = "qwen3:8b",
+        model = "glm-4.7-flash:q4_K_M",
         roles = {
             ---The header name for the LLM's messages
             llm = function(adapter)
@@ -312,7 +311,7 @@ local interactions = {
     background = {
         adapter = {
             name = "ollama",
-            model = "qwen3:8b",
+            model = "glm-4.7-flash:q4_K_M",
         },
     },
     shared = {
