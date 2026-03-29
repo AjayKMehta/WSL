@@ -44,10 +44,11 @@ ble-import -d integration/fzf-key-bindings
 
 # Using sabbrev below messes up typing gh, gb 🙁
 # So use <C-G> ...
-_ble_contrib_fzf_git_config=key-binding
+# _ble_contrib_fzf_git_config=key-binding
 
 # Add <C-G> shortcuts, e.g. <C-G><C-B> for branches
-ble-import -d integration/fzf-git
+# Stopped working!
+# ble-import -d integration/fzf-git
 
 # https://github.com/akinomyoga/blesh-contrib/blob/master/integration/fzf.md#pencil-integrationfzf-menu
 ble-import -d integration/fzf-menu
