@@ -23,29 +23,6 @@ autocmd({ "FileType" }, {
     end,
 })
 
--- Lint code automatically
-
-local function debounce(ms, fn)
-    local timer = vim.uv.new_timer()
-    return function(...)
-        local argv = { ... }
-        timer:start(ms, 0, function()
-            timer:stop()
-            ---@diagnostic disable-next-line: deprecated
-            vim.schedule_wrap(fn)(unpack(argv))
-        end)
-    end
-end
-
-local lint_augroup = augroup("Autolint", { clear = true })
-
-autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-    group = lint_augroup,
-    callback = debounce(100, function()
-        require("lint").try_lint()
-    end),
-})
-
 -- https://nvchad.com/docs/recipes/#restore_cursor_position
 
 local restore_augroup = augroup("RestoreCursorPos", { clear = true })

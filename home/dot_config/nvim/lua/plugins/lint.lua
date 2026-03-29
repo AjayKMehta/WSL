@@ -80,6 +80,35 @@ return {
             })
             linters.chktex.ignore_exitcode = true
 
+            -- Lint code automatically
+
+            local function debounce(ms, fn)
+                local timer = vim.uv.new_timer()
+                return function(...)
+                    local argv = { ... }
+                    timer:start(ms, 0, function()
+                        timer:stop()
+                        ---@diagnostic disable-next-line: deprecated
+                        vim.schedule_wrap(fn)(unpack(argv))
+                    end)
+                end
+            end
+
+            local lint_augroup = vim.api.nvim_create_augroup("Autolint", { clear = true })
+
+            vim.api.nvim_create_autocmd({
+                "BufEnter",
+                "BufWritePost",
+                "InsertLeave",
+                "TextChanged",
+            }, {
+                desc = "nvim-lint",
+                group = lint_augroup,
+                callback = debounce(100, function()
+                    require("lint").try_lint()
+                end),
+            })
+
             -- Keymap
 
             vim.keymap.set("n", "<leader>ll", lint.try_lint, { desc = "Trigger linting for current file" })
