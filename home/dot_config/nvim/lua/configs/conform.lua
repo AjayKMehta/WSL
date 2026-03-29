@@ -2,6 +2,10 @@ local conform = require("conform")
 
 conform.setup({
     formatters = {
+        panache = {
+            cmd = "panache",
+            args = { "format", "$FILENAME" },
+        },
         -- stack install cabal-fmt
         -- Not listed in Mason registry.
         cabal_fmt = {
@@ -84,8 +88,8 @@ conform.setup({
             "ruff_organize_imports",
         },
         query = { "format-queries" },
-        quarto = { "injected" },
-        rmd = { "injected" },
+        quarto = { "panache", "injected" },
+        rmd = { "panache", "injected" },
         r = { "air" },
         sql = { "sql_formatter" },
         tex = { "tex-fmt" },
