@@ -1,17 +1,5 @@
 local rainbow = require("rainbow-delimiters")
 
-local function init_strategy(bufnr)
-    -- Disabled for very large files, global strategy for large files,
-    -- local strategy otherwise
-    local line_count = vim.api.nvim_buf_line_count(bufnr)
-    if line_count > 10000 then
-        return nil
-    elseif line_count > 1000 then
-        return rainbow.strategy["global"]
-    end
-    return rainbow.strategy["local"]
-end
-
 dofile(vim.g.base46_cache .."rainbowdelimiters")
 
 require("rainbow-delimiters.setup").setup({
@@ -29,10 +17,10 @@ require("rainbow-delimiters.setup").setup({
         end,
     },
     strategy = {
-        [""] = rainbow.strategy["global"],
-        c_sharp = rainbow.strategy["local"],
-        latex = init_strategy,
-        lua = init_strategy,
-        vim = rainbow.strategy["local"],
+        [""] = "rainbow-delimiters.strategy.global",
+        c_sharp = "rainbow-delimiters.strategy.local",
+        latex = "rainbow-delimiters.strategy.local",
+        lua = "rainbow-delimiters.strategy.local",
+        vim = "rainbow-delimiters.strategy.local",
     },
 })
