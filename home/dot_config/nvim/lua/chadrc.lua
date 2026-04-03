@@ -7,9 +7,9 @@ local M = {}
 local highlights = require("highlights")
 
 M.base46 = {
-    theme = "carbonfox",
+    theme = "tokyonight",
     theme_toggle = {
-        "nightowl",
+        "tokyonight",
         "carbonfox",
         "night_owl",
         "tomorrow_night",
