@@ -1,6 +1,57 @@
 require("nvchad.autocmds")
 local autocmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 
+-- TODO: Look into solution based on installed parsers, i.e. no hardcoding.
+-- Based on https://www.reddit.com/r/neovim/comments/1kuj9xm/comment/mubg2cm
+autocmd("FileType", {
+    pattern = {
+        "bash",
+        "c",
+        "cmake",
+        "codecompanion",
+        "css",
+        "diff",
+        "dockerfile",
+        "git_config",
+        "git_rebase",
+        "gitattributes",
+        "gitcommit",
+        "gitignore",
+        "gpg",
+        "haskell",
+        "html",
+        "http",
+        "javascript",
+        "jq",
+        "json",
+        "json5",
+        "lua",
+        "make",
+        "markdown",
+        "mermaid",
+        "ps1", -- PowerShell
+        "python",
+        "quarto",
+        "r",
+        "sql",
+        "toml",
+        "typescript",
+        "vim",
+        "help", -- for vimdoc
+        "xml",
+        "yaml",
+    },
+    callback = function(ev)
+        if not pcall(vim.treesitter.start, ev.buf) then
+            return
+        end
+
+        vim.wo[0][0].foldmethod = "expr"
+        -- vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folds
+        vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- Use treesitter for indentation
+    end,
+})
+
 -- Disable persistent undo for files in /private directory
 
 local noundo_augroup = augroup("DisablePersistentUndoPrivate", { clear = true })
@@ -217,51 +268,6 @@ autocmd("LspAttach", {
             local win = vim.api.nvim_get_current_win()
             vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
         end
-    end,
-})
-
--- TODO: Look into solution based on installed parsers, i.e. no hardcoding.
--- Based on https://www.reddit.com/r/neovim/comments/1kuj9xm/comment/mubg2cm
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = {
-        "bash",
-        "c",
-        "cmake",
-        "codecompanion",
-        "css",
-        "diff",
-        "dockerfile",
-        "gitconfig",
-        "gitrebase",
-        "gitattributes",
-        "gitcommit",
-        "gitignore",
-        "gpg",
-        "haskell",
-        "html",
-        "http",
-        "javascript",
-        "jq",
-        "json",
-        "jsonc",
-        "lua",
-        "make",
-        "markdown",
-        "mermaid",
-        "ps1", -- PowerShell
-        "python",
-        "quarto",
-        "r",
-        "sql",
-        "toml",
-        "typescript",
-        "vim",
-        "help", -- for vimdoc
-        "xml",
-        "yaml",
-    },
-    callback = function()
-        vim.treesitter.start()
     end,
 })
 

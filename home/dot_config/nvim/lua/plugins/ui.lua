@@ -15,6 +15,13 @@ return {
         "lukas-reineke/indent-blankline.nvim",
         enabled = false,
         main = "ibl",
+        opts = {
+            whitespace = {
+                highlight = { "CursorColumn", "Whitespace" },
+                remove_blankline_trail = false,
+            },
+            scope = { enabled = true },
+        },
     },
     {
         -- Use this instead of indent-blankline
@@ -109,7 +116,7 @@ return {
             {
                 "<leader>pU",
                 function()
-    require("overlook.api").restore_all_popups()
+                    require("overlook.api").restore_all_popups()
                 end,
                 desc = "Overlook: Restore all popups",
             },
