@@ -5,6 +5,9 @@ local WIDTH_RATIO = 0.4
 
 local QuickfixDecorator = require("quickfix-decorator")
 
+vim.cmd("packadd nvim.difftool")
+vim.cmd("packadd nvim.undotree")
+
 return {
     {
         "b0o/SchemaStore.nvim",
