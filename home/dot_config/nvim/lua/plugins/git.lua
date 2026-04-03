@@ -8,6 +8,15 @@ return {
         config = load_config("diffview"),
     },
     {
+        "martindur/zdiff.nvim",
+        cmd = "Zdiff",
+        keys = {
+            { "<leader>zd", "<cmd>Zdiff<cr>", desc = "Zdiff (uncommitted)" },
+            { "<leader>zD", "<cmd>Zdiff main<cr>", desc = "Zdiff (vs main)" },
+        },
+        opts = {},
+    },
+    {
         -- A plugin to visualise and resolve merge conflicts.
         "akinsho/git-conflict.nvim",
         version = "*",
