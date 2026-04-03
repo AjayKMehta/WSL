@@ -1,4 +1,4 @@
-require("nvchad.autocmds")
+-- require("nvchad.autocmds")
 local autocmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 
 -- TODO: Look into solution based on installed parsers, i.e. no hardcoding.
@@ -164,7 +164,7 @@ autocmd({ "InsertLeave" }, {
             return
         end
 
-        local buffers = vim.lsp.get_buffers_by_client_id(clients[1].id)
+        local buffers = vim.lsp.get_client_by_id(clients[1].id).attached_buffers
         for _, buf in ipairs(buffers) do
             vim.lsp.util._refresh("textDocument/diagnostic", { bufnr = buf })
         end

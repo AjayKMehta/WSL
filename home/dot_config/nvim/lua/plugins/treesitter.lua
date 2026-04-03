@@ -72,6 +72,8 @@ return {
         "HiPhish/rainbow-delimiters.nvim",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         event = { "BufReadPost", "BufNewFile" },
+        -- Not working since upgrade to Neovim 0.12
+        enabled = false,
         config = load_config("rainbow"),
     },
     {

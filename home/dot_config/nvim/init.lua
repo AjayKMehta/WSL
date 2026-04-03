@@ -9,6 +9,9 @@ vim.g.maplocalleader = "\\"
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
 
+-- https://neovim.io/doc/user/filetype/#ft-query-plugin
+vim.g.query_lint_on = { "BufEnter", "BufWrite" }
+
 -- https://github.com/GustavEikaas/easy-dotnet.nvim/issues/658#issuecomment-3623570790
 -- Set semantic_tokens to have a lower priority than treesitter (100)
 vim.hl.priorities.semantic_tokens = 95
@@ -21,9 +24,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
     if vim.v.shell_error ~= 0 then
         vim.api.nvim_echo({
-          { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-          { out, "WarningMsg" },
-          { "\nPress any key to exit..." },
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out, "WarningMsg" },
+            { "\nPress any key to exit..." },
         }, true, {})
         vim.fn.getchar()
         os.exit(1)
@@ -73,8 +76,6 @@ vim.g.use_blink = false
 -- If true, use roslyn.nvim instead of easy-dotnet LSP
 vim.g.use_roslyn_nvim = true
 
-require("configs.lsp")
-
 -- load plugins
 require("lazy").setup({
     {
@@ -89,6 +90,8 @@ require("lazy").setup({
     },
     { import = "plugins" },
 }, lazy_config)
+
+require("configs.lsp")
 
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
@@ -143,12 +146,11 @@ end, {
 
 vim.api.nvim_create_user_command("DumpNew", function(x)
     local result = vim.cmd(string.format("execute('%s')", x.args))
-    vim.cmd (string.format("vnew | print(%s)", result))
+    vim.cmd(string.format("vnew | print(%s)", result))
 end, {
     nargs = "+",
     desc = "Dump the output of a command in a new tab",
 })
-
 
 vim.api.nvim_create_user_command("GrepWord", function(input)
     if not input.args then

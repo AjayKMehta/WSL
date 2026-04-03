@@ -1,6 +1,4 @@
 local M = {}
--- See https://github.com/neovim/neovim/blob/master/runtime/lua/vim/lsp/protocol.lua
-local methods = vim.lsp.protocol.Methods
 
 local mappings = require("utils.mappings")
 local map_desc = mappings.map_desc
@@ -48,12 +46,12 @@ M.on_attach = function(client, bufnr)
         client.server_capabilities.hoverProvider = false
     end
 
-    if client:supports_method(methods.workspace_codeLens_refresh) then
-        vim.lsp.codelens.refresh()
+    if client:supports_method("workspace/codeLens_refresh") then
+        vim.lsp.codelens.enable(true, { bufnr = bufnr })
     end
     -- Use CTRL-X_CTRL-O to invoke in INSERT mode. Use CTRL-Y to select an item from the completion menu.
     -- Probably should disable nvim-cmp before using.
-    if client:supports_method(methods.textDocument_completion) then
+    if client:supports_method("textDocument/completion") then
         vim.lsp.completion.enable(true, client.id, bufnr, {
             autotrigger = true,
             convert = function(item)
@@ -62,7 +60,19 @@ M.on_attach = function(client, bufnr)
         })
     end
 
-    if client:supports_method(methods.textDocument_inlayHint) then
+    -- https://neovim.io/doc/user/lsp/#lsp-on_type_formatting
+    -- Lets you format as you type.
+    if client:supports_method("textDocument/onTypeFormatting") then
+        vim.lsp.on_type_formatting.enable(true, { client_id = client.id })
+    end
+
+    -- https://neovim.io/doc/user/lsp/#vim.lsp.linked_editing_range.enable()
+    --Useful for HTML/XML: update closing tag based on start ta.
+    if client:supports_method("textDocument/linkedEditingRange") then
+        vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
+    end
+
+    if client:supports_method("textDocument/inlayHint") then
         vim.lsp.inlay_hint.enable(true)
         local function toggle_hints()
             local enabled = vim.lsp.inlay_hint.is_enabled()
@@ -74,16 +84,16 @@ M.on_attach = function(client, bufnr)
         map_buf(bufnr, "n", "<leader>lth", toggle_hints, "Lsp Toggle inlay hints")
     end
 
-    if client:supports_method(methods.textDocument_definition) then
+    if client:supports_method("textDocument/definition") then
         map_buf(bufnr, "n", "<leader>ld", vim.lsp.buf.definition, "Lsp Go to definition")
         map_buf(bufnr, "n", "<F12>", vim.lsp.buf.definition, "Lsp Go to definition")
     end
 
-    if client:supports_method(methods.textDocument_signatureHelp) then
+    if client:supports_method("textDocument/signatureHelp") then
         map_buf(bufnr, "n", "<leader>lh", vim.lsp.buf.signature_help, "Lsp Show signature help")
     end
 
-    if client:supports_method(methods.textDocument_documentHighlight) then
+    if client:supports_method("textDocument/documentHighlight") then
         local under_cursor_highlights_group = vim.api.nvim_create_augroup("cursor_highlights", { clear = false })
         vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
             group = under_cursor_highlights_group,
@@ -97,6 +107,11 @@ M.on_attach = function(client, bufnr)
             buffer = bufnr,
             callback = vim.lsp.buf.clear_references,
         })
+    end
+
+    -- https://neovim.io/doc/user/lsp/#vim.lsp.buf.workspace_diagnostics()
+    if client:supports_method("workspace/diagnostic") then
+        map_buf(bufnr, "n", "<leader>lwd", vim.lsp.buf.workspace_diagnostics, "Lsp Get workspace diagnostics")
     end
 end
 

@@ -28,7 +28,7 @@ local function roslyn_handlers()
         ["workspace/projectInitializationComplete"] = function(_, _, ctx)
             vim.notify("Roslyn project initialization complete", vim.log.levels.INFO, { title = "roslyn_ls" })
 
-            local buffers = vim.lsp.get_buffers_by_client_id(ctx.client_id)
+            local buffers = vim.lsp.get_client_by_id(ctx.client_id).attached_buffers
             for _, buf in ipairs(buffers) do
                 vim.lsp.util._refresh("textDocument/diagnostic", { bufnr = buf })
             end
@@ -75,7 +75,7 @@ return {
         "dotnet",
         vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
         "--logLevel=Information",
-        "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+        "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
         "--stdio",
     },
     filetypes = { "cs" },
