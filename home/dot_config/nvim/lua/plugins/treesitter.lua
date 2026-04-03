@@ -8,10 +8,7 @@ return {
         branch = "main",
         cmd = {
             "TSInstall",
-            "TSInstallSync",
-            "TSInstallInfo",
             "TSUpdate",
-            "TSUpdateSync",
             "TSUninstall",
         },
         build = ":TSUpdate",
@@ -23,6 +20,23 @@ return {
                 local filename = vim.fn.fnamemodify(filepath, ":t")
                 return string.match(filename, ".*mise.*%.toml$") ~= nil
             end, { force = true, all = false })
+        end,
+    },
+    {
+        -- Show code context.
+        "nvim-treesitter/nvim-treesitter-context",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        event = "BufReadPost",
+        cmd = { "TSContext" },
+        opts = {
+            enable = true,
+            multiwindow = true,
+            multiline_threshold = 10,
+            min_window_height = 0,
+        },
+        init = function()
+            vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true })
+            vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", { underline = true })
         end,
     },
     {
@@ -41,31 +55,6 @@ return {
             -- vim.g.no_go_maps = true
         end,
         config = load_config("treesitter_textobjects"),
-    },
-    {
-        -- Show code context.
-        "nvim-treesitter/nvim-treesitter-context",
-        lazy = false,
-        event = "BufReadPost",
-        cmd = { "TSContext" },
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        opts = {
-            enable = true,
-            multiwindow = true,
-            multiline_threshold = 10,
-            min_window_height = 0,
-            patterns = {
-                default = {
-                    "class",
-                    "function",
-                    "method",
-                },
-            },
-        },
-        init = function()
-            vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true })
-            vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", { underline = true })
-        end,
     },
     {
         -- Syntax aware text-objects, select, move, swap, and peek support.
