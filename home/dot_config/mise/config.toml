@@ -65,7 +65,7 @@ gum = "latest"
 lefthook = "latest"
 "aqua:LuaLS/lua-language-server" = "latest"
 minikube = "latest"
-neovim = "latest"
+"aqua:neovim/neovim" = "latest"
 
 "aqua:BurntSushi/ripgrep" = { version = "latest", postinstall = """
 rg --generate=complete-bash > ~/.config/bash_completions.d/rg

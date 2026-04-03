@@ -672,6 +672,70 @@ url = "https://github.com/nektos/act/releases/download/v0.2.86/act_Darwin_x86_64
 checksum = "sha256:f5a0c663f2e3d372119049a0ae74de51b6b9b9e40aa5d2d82f1bd05378da0cdf"
 url = "https://github.com/nektos/act/releases/download/v0.2.86/act_Windows_x86_64.zip"
 
+[[tools."aqua:nektos/act"]]
+version = "0.2.87"
+backend = "aqua:nektos/act"
+
+[tools."aqua:nektos/act"."platforms.linux-arm64"]
+checksum = "sha256:c17a9fe2428a4824f61248ceb8e93db8de95d9163b0f2651ec5ccea0e6f4edc8"
+url = "https://github.com/nektos/act/releases/download/v0.2.87/act_Linux_arm64.tar.gz"
+
+[tools."aqua:nektos/act"."platforms.linux-arm64-musl"]
+checksum = "sha256:c17a9fe2428a4824f61248ceb8e93db8de95d9163b0f2651ec5ccea0e6f4edc8"
+url = "https://github.com/nektos/act/releases/download/v0.2.87/act_Linux_arm64.tar.gz"
+
+[tools."aqua:nektos/act"."platforms.linux-x64"]
+checksum = "sha256:9bbfca7d779f71746233ec65e47fdcb12c4c976c1c97ec085956976fcabee866"
+url = "https://github.com/nektos/act/releases/download/v0.2.87/act_Linux_x86_64.tar.gz"
+
+[tools."aqua:nektos/act"."platforms.linux-x64-musl"]
+checksum = "sha256:9bbfca7d779f71746233ec65e47fdcb12c4c976c1c97ec085956976fcabee866"
+url = "https://github.com/nektos/act/releases/download/v0.2.87/act_Linux_x86_64.tar.gz"
+
+[tools."aqua:nektos/act"."platforms.macos-arm64"]
+checksum = "sha256:dab0091c6f8229f955b83e3822aa24375f7a2852279d5a262446361cc3559d88"
+url = "https://github.com/nektos/act/releases/download/v0.2.87/act_Darwin_arm64.tar.gz"
+
+[tools."aqua:nektos/act"."platforms.macos-x64"]
+checksum = "sha256:41077f98142b02e0bb45b181f57a068f6af86ce887d578a4da1a901b1d8f240a"
+url = "https://github.com/nektos/act/releases/download/v0.2.87/act_Darwin_x86_64.tar.gz"
+
+[tools."aqua:nektos/act"."platforms.windows-x64"]
+checksum = "sha256:bb7c654b27d79fb98947e22ff846408ef8f93aab90dba6af3656b503b8811966"
+url = "https://github.com/nektos/act/releases/download/v0.2.87/act_Windows_x86_64.zip"
+
+[[tools."aqua:neovim/neovim"]]
+version = "0.12.0"
+backend = "aqua:neovim/neovim"
+
+[tools."aqua:neovim/neovim"."platforms.linux-arm64"]
+checksum = "sha256:89024e7be2ef3c8f08e9c002b1eb3e3b36672ee44bd6343cf2d168d38b3736b2"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-linux-arm64.tar.gz"
+
+[tools."aqua:neovim/neovim"."platforms.linux-arm64-musl"]
+checksum = "sha256:89024e7be2ef3c8f08e9c002b1eb3e3b36672ee44bd6343cf2d168d38b3736b2"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-linux-arm64.tar.gz"
+
+[tools."aqua:neovim/neovim"."platforms.linux-x64"]
+checksum = "sha256:160b69125defb16e60b283b69be112fd4850d67ac8f9a752328c20ad43ec34af"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-linux-x86_64.tar.gz"
+
+[tools."aqua:neovim/neovim"."platforms.linux-x64-musl"]
+checksum = "sha256:160b69125defb16e60b283b69be112fd4850d67ac8f9a752328c20ad43ec34af"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-linux-x86_64.tar.gz"
+
+[tools."aqua:neovim/neovim"."platforms.macos-arm64"]
+checksum = "sha256:cf0137d6961785c34926f879b7a5b5fa0371ab0d6e2959e390e2f00b46165ce9"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-macos-arm64.tar.gz"
+
+[tools."aqua:neovim/neovim"."platforms.macos-x64"]
+checksum = "sha256:309b3252a04bf8e4043389d3ea9bbb94e17becea2cde74f11f948b4775bbe3d4"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-macos-x86_64.tar.gz"
+
+[tools."aqua:neovim/neovim"."platforms.windows-x64"]
+checksum = "sha256:7e6d4ac6b22a46e89b0da3ac560635ee39c00081f14093a8851154fb260b7428"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.0/nvim-win64.zip"
+
 [[tools."aqua:rhysd/actionlint"]]
 version = "1.7.11"
 backend = "aqua:rhysd/actionlint"
@@ -703,6 +767,38 @@ url = "https://github.com/rhysd/actionlint/releases/download/v1.7.11/actionlint_
 [tools."aqua:rhysd/actionlint"."platforms.windows-x64"]
 checksum = "sha256:5414b7124a91f4b5abee62e5c9d84802237734f8d15b9b7032732a32c3ebffa3"
 url = "https://github.com/rhysd/actionlint/releases/download/v1.7.11/actionlint_1.7.11_windows_amd64.zip"
+
+[[tools."aqua:rhysd/actionlint"]]
+version = "1.7.12"
+backend = "aqua:rhysd/actionlint"
+
+[tools."aqua:rhysd/actionlint"."platforms.linux-arm64"]
+checksum = "sha256:325e971b6ba9bfa504672e29be93c24981eeb1c07576d730e9f7c8805afff0c6"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_arm64.tar.gz"
+
+[tools."aqua:rhysd/actionlint"."platforms.linux-arm64-musl"]
+checksum = "sha256:325e971b6ba9bfa504672e29be93c24981eeb1c07576d730e9f7c8805afff0c6"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_arm64.tar.gz"
+
+[tools."aqua:rhysd/actionlint"."platforms.linux-x64"]
+checksum = "sha256:8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz"
+
+[tools."aqua:rhysd/actionlint"."platforms.linux-x64-musl"]
+checksum = "sha256:8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_linux_amd64.tar.gz"
+
+[tools."aqua:rhysd/actionlint"."platforms.macos-arm64"]
+checksum = "sha256:aba9ced2dee8d27fecca3dc7feb1a7f9a52caefa1eb46f3271ea66b6e0e6953f"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_darwin_arm64.tar.gz"
+
+[tools."aqua:rhysd/actionlint"."platforms.macos-x64"]
+checksum = "sha256:5b44c3bc2255115c9b69e30efc0fecdf498fdb63c5d58e17084fd5f16324c644"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_darwin_amd64.tar.gz"
+
+[tools."aqua:rhysd/actionlint"."platforms.windows-x64"]
+checksum = "sha256:6e7241b51e6817ea6a047693d8e6fed13b31819c9a0dd6c5a726e1592d22f6e9"
+url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_1.7.12_windows_amd64.zip"
 
 [[tools."aqua:twpayne/chezmoi"]]
 version = "2.70.0"
@@ -886,6 +982,70 @@ url = "https://dl.deno.land/release/v2.7.9/deno-x86_64-apple-darwin.zip"
 checksum = "sha256:Algorithm"
 url = "https://dl.deno.land/release/v2.7.9/deno-x86_64-pc-windows-msvc.zip"
 
+[[tools.deno]]
+version = "2.7.10"
+backend = "core:deno"
+
+[tools.deno."platforms.linux-arm64"]
+checksum = "sha256:01dd43509acf645788f1dce9d32d7533e6f3b58b6f973bee4f8b0ef041ff67e4"
+url = "https://dl.deno.land/release/v2.7.10/deno-aarch64-unknown-linux-gnu.zip"
+
+[tools.deno."platforms.linux-arm64-musl"]
+checksum = "sha256:01dd43509acf645788f1dce9d32d7533e6f3b58b6f973bee4f8b0ef041ff67e4"
+url = "https://dl.deno.land/release/v2.7.10/deno-aarch64-unknown-linux-gnu.zip"
+
+[tools.deno."platforms.linux-x64"]
+checksum = "sha256:fd8e33f02205594a06dbdf5b203117cec675ec9870f39e5f32d8cafc544de2f5"
+url = "https://dl.deno.land/release/v2.7.10/deno-x86_64-unknown-linux-gnu.zip"
+
+[tools.deno."platforms.linux-x64-musl"]
+checksum = "sha256:fd8e33f02205594a06dbdf5b203117cec675ec9870f39e5f32d8cafc544de2f5"
+url = "https://dl.deno.land/release/v2.7.10/deno-x86_64-unknown-linux-gnu.zip"
+
+[tools.deno."platforms.macos-arm64"]
+checksum = "sha256:11daea06670acec142e027c807415ba5820e8f7630c7b2f8be65a0cfcde6eff6"
+url = "https://dl.deno.land/release/v2.7.10/deno-aarch64-apple-darwin.zip"
+
+[tools.deno."platforms.macos-x64"]
+checksum = "sha256:df7e6481dca9893dc874ab971b8b5677d3aff25721160d7e6d90bcec2e85406a"
+url = "https://dl.deno.land/release/v2.7.10/deno-x86_64-apple-darwin.zip"
+
+[tools.deno."platforms.windows-x64"]
+checksum = "sha256:Algorithm"
+url = "https://dl.deno.land/release/v2.7.10/deno-x86_64-pc-windows-msvc.zip"
+
+[[tools.deno]]
+version = "2.7.11"
+backend = "core:deno"
+
+[tools.deno."platforms.linux-arm64"]
+checksum = "sha256:1c9024937e711d17c20bc0fd510147aba6d5315ed6cfbe0fa0e6d3cee8a681b7"
+url = "https://dl.deno.land/release/v2.7.11/deno-aarch64-unknown-linux-gnu.zip"
+
+[tools.deno."platforms.linux-arm64-musl"]
+checksum = "sha256:1c9024937e711d17c20bc0fd510147aba6d5315ed6cfbe0fa0e6d3cee8a681b7"
+url = "https://dl.deno.land/release/v2.7.11/deno-aarch64-unknown-linux-gnu.zip"
+
+[tools.deno."platforms.linux-x64"]
+checksum = "sha256:16990cd4f3728b82b0f1432b233214fe793a0e03c27d77a2ee89f27b3e984097"
+url = "https://dl.deno.land/release/v2.7.11/deno-x86_64-unknown-linux-gnu.zip"
+
+[tools.deno."platforms.linux-x64-musl"]
+checksum = "sha256:16990cd4f3728b82b0f1432b233214fe793a0e03c27d77a2ee89f27b3e984097"
+url = "https://dl.deno.land/release/v2.7.11/deno-x86_64-unknown-linux-gnu.zip"
+
+[tools.deno."platforms.macos-arm64"]
+checksum = "sha256:2da6fd51ad6af3b8711ff327b448b76b1dc8ee75678842aff637b6827205d8bd"
+url = "https://dl.deno.land/release/v2.7.11/deno-aarch64-apple-darwin.zip"
+
+[tools.deno."platforms.macos-x64"]
+checksum = "sha256:a01abae36024b9a6cfa9ffa5fa8325d71993e115fb7a8ab79f2720fe83b7fb5b"
+url = "https://dl.deno.land/release/v2.7.11/deno-x86_64-apple-darwin.zip"
+
+[tools.deno."platforms.windows-x64"]
+checksum = "sha256:Algorithm"
+url = "https://dl.deno.land/release/v2.7.11/deno-x86_64-pc-windows-msvc.zip"
+
 [[tools.fx]]
 version = "39.2.0"
 backend = "aqua:antonmedv/fx"
@@ -1045,14 +1205,6 @@ url = "https://github.com/kubernetes/minikube/releases/download/v1.38.1/minikube
 [tools.minikube."platforms.windows-x64"]
 checksum = "sha256:04215bec5632a976b48eb632856b50f1eaaa183b9c2a5904e11d1bacc4961ff7"
 url = "https://github.com/kubernetes/minikube/releases/download/v1.38.1/minikube-windows-amd64.exe"
-
-[[tools.neovim]]
-version = "0.11.6"
-backend = "asdf:neovim"
-
-[[tools.neovim]]
-version = "0.11.7"
-backend = "asdf:neovim"
 
 [[tools.stylua]]
 version = "2.4.0"
