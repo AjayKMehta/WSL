@@ -4,7 +4,7 @@ experimental = true
 # for example, .nvmrc in the case of node's nvm
 legacy_version_file = true # enabled by default (unlike asdf)
 # python-build
-python_compile = true
+python.compile = true
 idiomatic_version_file_enable_tools = ["node", "dotnet", "python"]
 lockfile = true
 http_timeout = "30s"
@@ -23,10 +23,10 @@ chezmoi completion bash > ~/.config/bash_completions.d/chezmoi.sh
 chezmoi completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/chezmoi.ps1
 """ }
 
-"aqua:dandavison/delta" = {version="latest", postinstall = '''
+"aqua:dandavison/delta" = { version = "latest", postinstall = '''
 delta --generate-completion bash > ~/.config/bash_completions.d/delta
 delta --generate-completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/delta.ps1
-'''}
+''' }
 
 deno.version = "latest"
 deno.postinstall = '''
@@ -40,10 +40,10 @@ deno completions powershell > ~/.config/powershell/scripts/ArgumentCompleters/de
 "aqua:mintoolkit/mint" = "latest"
 
 
-"aqua:eza-community/eza" = {version = "latest", postinstall = '''
+"aqua:eza-community/eza" = { version = "latest", postinstall = '''
 gh download https://github.com/eza-community/eza/blob/main/completions/bash/eza --outfile ~/.config/bash_completions.d/eza
 gh download https://github.com/eza-community/eza/blob/main/completions/pwsh/_eza.ps1 --outfile ~/.config/powershell/scripts/ArgumentCompleters/eza.ps1
-'''}
+''' }
 
 fx = "latest"
 "aqua:fzf" = "latest"
