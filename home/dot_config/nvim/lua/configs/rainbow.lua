@@ -1,8 +1,8 @@
 local rainbow = require("rainbow-delimiters")
 
-dofile(vim.g.base46_cache .."rainbowdelimiters")
+dofile(vim.g.base46_cache .. "rainbowdelimiters")
 
-require("rainbow-delimiters.setup").setup({
+vim.g.rainbow_delimiters = {
     query = {
         [""] = "rainbow-delimiters",
         html = "rainbow-tags",
@@ -23,4 +23,4 @@ require("rainbow-delimiters.setup").setup({
         lua = "rainbow-delimiters.strategy.local",
         vim = "rainbow-delimiters.strategy.local",
     },
-})
+}
