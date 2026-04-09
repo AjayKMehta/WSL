@@ -16,6 +16,8 @@ vim.g.query_lint_on = { "BufEnter", "BufWrite" }
 -- Set semantic_tokens to have a lower priority than treesitter (100)
 vim.hl.priorities.semantic_tokens = 95
 
+vim.g.use_indent_blankline = false
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
@@ -39,7 +41,7 @@ vim.diagnostic.config({
     virtual_text = {
         enabled = true,
         severity = {
-            max = vim.diagnostic.severity.WARN,
+            min = vim.diagnostic.severity.INFO,
         },
     },
     virtual_lines = {

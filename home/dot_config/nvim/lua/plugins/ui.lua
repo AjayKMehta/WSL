@@ -10,10 +10,8 @@ return {
         end,
     },
     {
-        -- Despite being part of NvChad, doesn't work!
-        -- Tried rainbow-delimiters integration also but same story.
         "lukas-reineke/indent-blankline.nvim",
-        enabled = false,
+        enabled = vim.g.use_indent_blankline,
         main = "ibl",
         opts = {
             whitespace = {
@@ -26,7 +24,7 @@ return {
     {
         -- Use this instead of indent-blankline
         "shellRaining/hlchunk.nvim",
-        enabled = true,
+        enabled = not vim.g.use_indent_blankline,
         event = { "BufReadPre", "BufNewFile" },
         cmd = {
             "DisableHLChunk",
