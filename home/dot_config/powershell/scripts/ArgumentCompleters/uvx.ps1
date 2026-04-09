@@ -41,6 +41,7 @@ Register-ArgumentCompleter -Native -CommandName 'uvx' -ScriptBlock {
             [CompletionResult]::new('--find-links', '--find-links', [CompletionResultType]::ParameterName, 'Locations to search for candidate distributions, in addition to those found in the registry indexes')
             [CompletionResult]::new('-P', '-P ', [CompletionResultType]::ParameterName, 'Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`')
             [CompletionResult]::new('--upgrade-package', '--upgrade-package', [CompletionResultType]::ParameterName, 'Allow upgrades for a specific package, ignoring pinned versions in any existing output file. Implies `--refresh-package`')
+            [CompletionResult]::new('--upgrade-group', '--upgrade-group', [CompletionResultType]::ParameterName, 'Allow upgrades for all packages in a dependency group, ignoring pinned versions in any existing output file')
             [CompletionResult]::new('--reinstall-package', '--reinstall-package', [CompletionResultType]::ParameterName, 'Reinstall a specific package, regardless of whether it''s already installed. Implies `--refresh-package`')
             [CompletionResult]::new('--index-strategy', '--index-strategy', [CompletionResultType]::ParameterName, 'The strategy to use when resolving against multiple index URLs')
             [CompletionResult]::new('--keyring-provider', '--keyring-provider', [CompletionResultType]::ParameterName, 'Attempt to use `keyring` for authentication for index URLs')
