@@ -143,19 +143,3 @@ map_desc("n", "<leader>tS", function()
 end, "Neotest Show summary")
 
 --#endregion
-
---#region Noice
-
-map_desc("n", "<leader>ne", function()
-    require("noice").cmd("errors")
-end, "Noice errors")
-
-map_desc("n", "<leader>nD", function()
-    require("noice").cmd("disable")
-end, "Noice disable")
-
-map_desc("n", "<leader>nE", function()
-    require("noice").cmd("enable")
-end, "Noice enable")
-
---#endregion

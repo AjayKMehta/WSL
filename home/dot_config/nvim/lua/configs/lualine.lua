@@ -337,25 +337,6 @@ M.setup = function(theme)
                         vim.cmd("Lazy")
                     end,
                 },
-                -- https://github.com/folke/noice.nvim?tab=readme-ov-file#-statusline-components
-                {
-                    function()
-                        return require("noice").api.status.mode.get
-                    end,
-                    cond = function()
-                        return utils.is_loaded("noice") and require("noice").api.status.mode.has
-                    end,
-                    color = { fg = "#ff9e64" },
-                },
-                {
-                    function()
-                        return require("noice").api.status.search.get
-                    end,
-                    cond = function()
-                        return utils.is_loaded("noice") and require("noice").api.status.search.has
-                    end,
-                    color = { fg = "#ff9e64" },
-                },
                 {
                     "encoding",
                     show_bomb = true,
