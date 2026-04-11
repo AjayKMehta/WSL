@@ -1,4 +1,3 @@
--- require("nvchad.autocmds")
 local autocmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 
 -- TODO: Look into solution based on installed parsers, i.e. no hardcoding.
@@ -291,5 +290,75 @@ autocmd("TermOpen", {
         vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
         vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
         vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+    end,
+})
+
+-- https://www.reddit.com/r/neovim/comments/1sfmgkb/comment/oeyrgua
+autocmd("FileType", {
+    pattern = "msg",
+    callback = function()
+        local ui2 = require("vim._core.ui2")
+        local win = ui2.wins and ui2.wins.msg
+        if win and vim.api.nvim_win_is_valid(win) then
+            vim.api.nvim_set_option_value(
+                "winhighlight",
+                "Normal:NormalFloat,FloatBorder:FloatBorder",
+                { scope = "local", win = win }
+            )
+        end
+    end,
+})
+
+-- https://www.reddit.com/r/neovim/comments/1sfmgkb/comment/of1q457
+autocmd("FileType", {
+    pattern = "cmd",
+    callback = function()
+        local ui2 = require("vim._core.ui2")
+        vim.schedule(function()
+            local win = ui2.wins and ui2.wins.cmd
+            if win and vim.api.nvim_win_is_valid(win) then
+                local win_config = vim.api.nvim_win_get_config(win)
+                local width = win_config.width or math.floor(vim.o.columns * 0.6)
+                local height = win_config.height or 1
+                local row = 3 * (vim.o.lines - height) / 4
+                local col = (vim.o.columns - width) / 2
+                pcall(vim.api.nvim_win_set_config, win, {
+                    relative = "editor",
+                    row = row,
+                    col = col,
+                    width = width,
+                    height = height,
+                    anchor = "NW",
+                    border = "rounded",
+                    style = "minimal",
+                })
+            end
+        end)
+    end,
+})
+
+local ui2 = require("vim._core.ui2")
+local msgs = require("vim._core.ui2.messages")
+local orig_set_pos = msgs.set_pos
+msgs.set_pos = function(tgt)
+    orig_set_pos(tgt)
+    if (tgt == "msg" or tgt == nil) and vim.api.nvim_win_is_valid(ui2.wins.msg) then
+        pcall(vim.api.nvim_win_set_config, ui2.wins.msg, {
+            relative = "editor",
+            anchor = "NE",
+            row = 1,
+            col = vim.o.columns - 1,
+            border = "rounded",
+        })
+    end
+end
+
+-- https://www.reddit.com/r/neovim/comments/1sfmgkb/comment/of1fdnb
+autocmd("LspProgress", {
+    callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        local value = ev.data.params.value
+        local msg = ("[%s] %s %s"):format(client.name, value.kind == "end" and "✓" or "", value.title or "")
+        vim.notify(msg)
     end,
 })
