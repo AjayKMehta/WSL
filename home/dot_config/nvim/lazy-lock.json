@@ -32,6 +32,7 @@
   "codecompanion-lualine.nvim": { "branch": "main", "commit": "3e06ae6c233628103686de37b7abb363e50868ee" },
   "codecompanion-spinners.nvim": { "branch": "main", "commit": "86926cbf7554d69d40d2a5c3cf576063814a42d5" },
   "codecompanion.nvim": { "branch": "main", "commit": "522680a13d6359f16459de3882bd023d07348fe8" },
+  "conflict.nvim": { "branch": "main", "commit": "94f0132f95dbefbf20a666fa21eb0544349e0868" },
   "conform.nvim": { "branch": "master", "commit": "086a40dc7ed8242c03be9f47fbcee68699cc2395" },
   "cyberdream.nvim": { "branch": "main", "commit": "a68ffa6af98bf1fc88f33a071c51a188ec85c725" },
   "dap-breakpoints.nvim": { "branch": "master", "commit": "4683766c43651401db68351dc09034218feafc97" },

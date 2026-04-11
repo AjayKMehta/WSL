@@ -18,11 +18,21 @@ return {
     },
     {
         -- A plugin to visualise and resolve merge conflicts.
-        "akinsho/git-conflict.nvim",
-        version = "*",
-        config = function(_, opts)
+        "niekdomi/conflict.nvim",
+        config = function()
             dofile(vim.g.base46_cache .. "git-conflict")
-            require("git-conflict").setup(opts)
+            require("conflict").setup({
+                default_mappings = {
+                    current = "cc",
+                    incoming = "ci",
+                    both = "cb",
+                    none = false,
+                    next = "]x",
+                    prev = "[x",
+                },
+                show_actions = true, -- Show clickable [Accept Current | ...] labels
+                disable_diagnostics = true, -- Disable LSP/Diagnostics while conflicts exist
+            })
         end,
     },
     {
