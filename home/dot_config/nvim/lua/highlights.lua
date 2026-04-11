@@ -3,7 +3,6 @@
 
 local M = {}
 
--- https://github.com/NvChad/NvChad/issues/1752
 ---@type HLTable
 M.override = {
     CursorLine = {
@@ -17,7 +16,7 @@ M.override = {
 ---@type HLTable
 M.add = {
     NvimTreeOpenedFolderName = { fg = "green", bold = true },
-    -- -- latex https://github.com/lervag/vimtex/blob/master/doc/vimtex.txt#L4724
+    -- latex https://github.com/lervag/vimtex/blob/master/doc/vimtex.txt#L4724
     texCmd = { fg = "sun" },
     texCmdEnv = { fg = "sun" },
     texOpt = { fg = "pink" },

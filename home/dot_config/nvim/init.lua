@@ -109,7 +109,6 @@ require("mappings")
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#jqls
 vim.cmd([[au BufRead,BufNewFile *.jq setfiletype jq]])
 
--- https://nvchad.com/docs/config/snippets
 vim.g.lua_snippets_path = vim.fn.stdpath("config") .. "/lua/lua_snippets"
 
 -- https://github.com/jackMort/ChatGPT.nvim/pull/266#issuecomment-1675376909

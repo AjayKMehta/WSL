@@ -43,13 +43,12 @@ return {
     },
     {
         "nvchad/base46",
-        event = { "BufReadPre", "BufNewFile" },
+        lazy = false,
         branch = "v3.0",
         build = function()
             require("base46").load_all_highlights()
         end,
     },
-    -- Use config from NvChad
     {
         "folke/lazydev.nvim",
         ft = "lua",

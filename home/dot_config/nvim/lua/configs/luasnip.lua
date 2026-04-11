@@ -5,8 +5,6 @@ local types = require("luasnip.util.types")
 local fmt = require("luasnip.extras.fmt").fmt
 local m = require("utils.mappings")
 
--- require("nvchad.configs.luasnip")
-
 -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#config-options
 local opts = {
     update_events = "TextChanged,TextChangedI",
