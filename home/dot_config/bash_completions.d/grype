@@ -523,6 +523,45 @@ _grype_db_delete()
     noun_aliases=()
 }
 
+_grype_db_diff()
+{
+    last_command="grype_db_diff"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--output=")
+    two_word_flags+=("--output")
+    two_word_flags+=("-o")
+    local_nonpersistent_flags+=("--output")
+    local_nonpersistent_flags+=("--output=")
+    local_nonpersistent_flags+=("-o")
+    flags+=("--packages")
+    local_nonpersistent_flags+=("--packages")
+    flags+=("--vulns")
+    local_nonpersistent_flags+=("--vulns")
+    flags+=("--config=")
+    two_word_flags+=("--config")
+    two_word_flags+=("-c")
+    flags+=("--profile=")
+    two_word_flags+=("--profile")
+    flags+=("--quiet")
+    flags+=("-q")
+    flags+=("--verbose")
+    flags+=("-v")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
+}
+
 _grype_db_import()
 {
     last_command="grype_db_import"
@@ -832,6 +871,7 @@ _grype_db()
     commands=()
     commands+=("check")
     commands+=("delete")
+    commands+=("diff")
     commands+=("import")
     commands+=("list")
     commands+=("providers")
