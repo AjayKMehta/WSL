@@ -47,10 +47,7 @@ end
 dap.listeners.before.launch["dap-view-config"] = function()
     dv.open()
 end
-dap.listeners.before.event_terminated["dap-view-config"] = function()
-    dv.close()
-    vim.cmd("DapVirtualTextForceRefresh") -- Clear virtual text after session is terminated
-end
+
 dap.listeners.before.event_exited["dap-view-config"] = function()
     dv.close()
 end
@@ -258,6 +255,6 @@ dap.configurations.haskell = {
 vim.api.nvim_create_autocmd({ "BufRead" }, {
     pattern = { "*.ps1", "*.psm1" },
     callback = function()
-        vim.cmd("DapVirtualTextDisable")
+        vim.cmd("DapViewVirtualTextDisable")
     end,
 })
