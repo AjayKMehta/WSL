@@ -30,11 +30,17 @@ return {
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = { "markdown", "quarto", "rmd", "codecompanion", "toml" }, -- toml for mise
                 callback = function(args)
-                    require("otter").activate()
                     local bufnr = args.buf
+                    if vim.bo[bufnr].buftype ~= "" or vim.api.nvim_buf_get_name(bufnr) == "" then
+                        return
+                    end
+                    require("otter").activate()
                     vim.api.nvim_create_autocmd("BufWritePost", {
                         buffer = bufnr,
                         callback = function()
+                            if vim.bo[bufnr].buftype ~= "" then
+                                return
+                            end
                             require("otter").activate()
                         end,
                     })
