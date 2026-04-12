@@ -47,7 +47,6 @@ M.base46 = {
     transparency = false,
 }
 
--- https://github.com/NvChad/NvChad/issues/1656#issuecomment-2082408141
 M.lsp = { signature = false }
 
 M.colorify = {

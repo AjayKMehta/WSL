@@ -8,7 +8,6 @@ local disabled = {
     },
 }
 
--- https://github.com/NvChad/NvChad/issues/2688#issuecomment-1976174561
 for mode, mappings in pairs(disabled) do
     for _, keys in ipairs(mappings) do
         if vim.fn.mapcheck(keys, mode) ~= "" then
@@ -27,15 +26,11 @@ map_desc("n", "<S-tab>", "<cmd>bprevious<CR>", "buffer goto previous")
 
 map_desc("n", "<leader>tt", function()
     require("base46").toggle_theme()
-end, "NvChad Toggle theme")
+end, "Base46 Toggle theme")
 
 map_desc("n", "<leader>tT", function()
     require("base46").toggle_transparency()
-end, "NvChad Toggle transparency")
-
-map_desc("n", "<leader>th", function()
-    require("nvchad.themes").open()
-end, "telescope nvchad themes")
+end, "Base46 Toggle transparency")
 
 -- Create a function to handle command mode yanking
 local function cmd_yank()
