@@ -60,4 +60,13 @@ M.colorify = {
     },
 }
 
+M.ui = {
+    tabufline = {
+        enabled = false,
+    },
+    statusline = {
+        enabled = false,
+    },
+}
+
 return M
