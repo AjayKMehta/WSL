@@ -1,7 +1,6 @@
 return {
     defaults = { lazy = true },
-    install = { colorscheme = { "nvchad" } },
-
+    install = { colorscheme = { "nightwolf-dark-blue" } },
     ui = {
         icons = {
             ft = "",
