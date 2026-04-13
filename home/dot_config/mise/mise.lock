@@ -97,38 +97,6 @@ checksum = "sha256:a87429ebc75343c9731debfd083b954bbd1e87011f962078b9ade92e33440
 url = "https://github.com/Wilfred/difftastic/releases/download/0.68.0/difft-x86_64-pc-windows-msvc.zip"
 
 [[tools."aqua:anchore/grype"]]
-version = "0.110.0"
-backend = "aqua:anchore/grype"
-
-[tools."aqua:anchore/grype"."platforms.linux-arm64"]
-checksum = "sha256:804041ee69f119022e3e866741a558eae6f2df372a5dc1a5376d456d16f8c931"
-url = "https://github.com/anchore/grype/releases/download/v0.110.0/grype_0.110.0_linux_arm64.tar.gz"
-
-[tools."aqua:anchore/grype"."platforms.linux-arm64-musl"]
-checksum = "sha256:804041ee69f119022e3e866741a558eae6f2df372a5dc1a5376d456d16f8c931"
-url = "https://github.com/anchore/grype/releases/download/v0.110.0/grype_0.110.0_linux_arm64.tar.gz"
-
-[tools."aqua:anchore/grype"."platforms.linux-x64"]
-checksum = "sha256:aaa98d27d2d7efd9317c6a1ad6d9b15f3e65bab320e7d03bde41e251387bb71c"
-url = "https://github.com/anchore/grype/releases/download/v0.110.0/grype_0.110.0_linux_amd64.tar.gz"
-
-[tools."aqua:anchore/grype"."platforms.linux-x64-musl"]
-checksum = "sha256:aaa98d27d2d7efd9317c6a1ad6d9b15f3e65bab320e7d03bde41e251387bb71c"
-url = "https://github.com/anchore/grype/releases/download/v0.110.0/grype_0.110.0_linux_amd64.tar.gz"
-
-[tools."aqua:anchore/grype"."platforms.macos-arm64"]
-checksum = "sha256:9aff01bfcb4510a1b803ef59375b43cd80764fa49aed71f9a3da81c417037411"
-url = "https://github.com/anchore/grype/releases/download/v0.110.0/grype_0.110.0_darwin_arm64.tar.gz"
-
-[tools."aqua:anchore/grype"."platforms.macos-x64"]
-checksum = "sha256:61e767381c395b2fac9ed6016f45de39107761df75f094fc3d9b7822809d07df"
-url = "https://github.com/anchore/grype/releases/download/v0.110.0/grype_0.110.0_darwin_amd64.tar.gz"
-
-[tools."aqua:anchore/grype"."platforms.windows-x64"]
-checksum = "sha256:894154ff277c02ed39c58bd0f6a5f1e3013222e35293698ee9b8b7b60fca32e1"
-url = "https://github.com/anchore/grype/releases/download/v0.110.0/grype_0.110.0_windows_amd64.zip"
-
-[[tools."aqua:anchore/grype"]]
 version = "0.111.0"
 backend = "aqua:anchore/grype"
 
@@ -659,38 +627,6 @@ url = "https://github.com/eth-p/bat-extras/releases/download/v2024.08.24/bat-ext
 
 [tools.bat-extras."platforms.macos-x64"]
 url = "https://github.com/eth-p/bat-extras/releases/download/v2024.08.24/bat-extras-2024.08.24.zip"
-
-[[tools.deno]]
-version = "2.7.11"
-backend = "core:deno"
-
-[tools.deno."platforms.linux-arm64"]
-checksum = "sha256:1c9024937e711d17c20bc0fd510147aba6d5315ed6cfbe0fa0e6d3cee8a681b7"
-url = "https://dl.deno.land/release/v2.7.11/deno-aarch64-unknown-linux-gnu.zip"
-
-[tools.deno."platforms.linux-arm64-musl"]
-checksum = "sha256:1c9024937e711d17c20bc0fd510147aba6d5315ed6cfbe0fa0e6d3cee8a681b7"
-url = "https://dl.deno.land/release/v2.7.11/deno-aarch64-unknown-linux-gnu.zip"
-
-[tools.deno."platforms.linux-x64"]
-checksum = "sha256:16990cd4f3728b82b0f1432b233214fe793a0e03c27d77a2ee89f27b3e984097"
-url = "https://dl.deno.land/release/v2.7.11/deno-x86_64-unknown-linux-gnu.zip"
-
-[tools.deno."platforms.linux-x64-musl"]
-checksum = "sha256:16990cd4f3728b82b0f1432b233214fe793a0e03c27d77a2ee89f27b3e984097"
-url = "https://dl.deno.land/release/v2.7.11/deno-x86_64-unknown-linux-gnu.zip"
-
-[tools.deno."platforms.macos-arm64"]
-checksum = "sha256:2da6fd51ad6af3b8711ff327b448b76b1dc8ee75678842aff637b6827205d8bd"
-url = "https://dl.deno.land/release/v2.7.11/deno-aarch64-apple-darwin.zip"
-
-[tools.deno."platforms.macos-x64"]
-checksum = "sha256:a01abae36024b9a6cfa9ffa5fa8325d71993e115fb7a8ab79f2720fe83b7fb5b"
-url = "https://dl.deno.land/release/v2.7.11/deno-x86_64-apple-darwin.zip"
-
-[tools.deno."platforms.windows-x64"]
-checksum = "sha256:Algorithm"
-url = "https://dl.deno.land/release/v2.7.11/deno-x86_64-pc-windows-msvc.zip"
 
 [[tools.deno]]
 version = "2.7.12"
