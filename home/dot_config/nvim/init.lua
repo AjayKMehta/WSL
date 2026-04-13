@@ -53,8 +53,6 @@ vim.diagnostic.config({
     update_in_insert = false,
 })
 
-local lazy_config = require("configs.lazy")
-
 -- Plugin toggles
 
 -- If true, load snippet examples
@@ -79,6 +77,7 @@ vim.g.use_blink = false
 vim.g.use_roslyn_nvim = true
 
 -- load plugins
+local lazy_config = require("configs.lazy")
 require("lazy").setup({
     {
         "NvChad/NvChad",

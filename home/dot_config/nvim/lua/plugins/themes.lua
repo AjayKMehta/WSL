@@ -111,5 +111,9 @@ return {
             })
         end,
     },
-    { "savq/melange-nvim" }
+    { "savq/melange-nvim" },
+    {
+        "nvzone/minty",
+        cmd = { "Shades", "Huefy" },
+    },
 }

@@ -1,4 +1,3 @@
--- For NvChad-specified settings, see https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/configs/telescope.lua
 local M = {}
 
 M.config = function()
@@ -27,7 +26,7 @@ M.config = function()
         }):sync()
     end
 
-    local settings = {
+    return {
         defaults = {
             set_env = { ["TERM"] = vim.env.TERM },
             mappings = {
@@ -46,6 +45,7 @@ M.config = function()
                     ["<M-a>"] = actions.send_selected_to_qflist + actions.open_qflist,
                     -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#add-mapping-to-toggle-the-preview
                     ["<M-p>"] = actions_layout.toggle_preview,
+                    ["q"] = actions.close,
                 },
             },
             -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#use-terminal-image-viewer-to-preview-images
@@ -87,7 +87,10 @@ M.config = function()
                 horizontal = {
                     prompt_position = "bottom",
                 },
+                width = 0.87,
+                height = 0.80,
             },
+            sorting_strategy = "ascending",
             -- https://www.reddit.com/r/neovim/comments/1cv2tha/comment/l4mmdtc
             prompt_prefix = "󰼛 ",
             selection_caret = "󱞩 ",
@@ -95,7 +98,7 @@ M.config = function()
         extensions_list = {
             "dap",
             "fzf",
-            "emoji"
+            "emoji",
         },
         extensions = {
             fzf = {
@@ -111,7 +114,6 @@ M.config = function()
                     open_in_file_browser = "<M-b>",
                     open_in_find_files = "<C-f>",
                     open_in_live_grep = "<C-g>",
-                    -- open_plugins_picker = "<C-b>",
                     open_lazy_root_find_files = "<C-r>f",
                     open_lazy_root_live_grep = "<C-r>g",
                 },
@@ -143,9 +145,6 @@ M.config = function()
         },
         buffer_previewer_maker = new_maker,
     }
-
-    local conf = require("nvchad.configs.telescope")
-    return vim.tbl_deep_extend("force", conf, settings)
 end
 
 return M

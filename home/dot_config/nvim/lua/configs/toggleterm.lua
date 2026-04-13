@@ -1,6 +1,5 @@
 require("toggleterm").setup({
     direction = "horizontal",
-    -- Doesn't work with terminals created by NvChad keymaps.
     open_mapping = [[<c-\>]],
     size = function(term)
         if term.direction == "horizontal" then
