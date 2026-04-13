@@ -7,12 +7,13 @@ return {
         cond = not vim.g.use_blink,
         event = { "InsertEnter", "CmdlineEnter" },
         config = function(_, opts)
-            -- For NvChad-specified settings, see https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/configs/cmp.lua
             require("cmp").setup(opts)
             load_config("nvim_cmp")
         end,
         dependencies = {
             "L3MON4D3/LuaSnip",
+            "saadparwaiz1/cmp_luasnip",
+            "hrsh7th/cmp-nvim-lua",
             "chrisgrieser/cmp-nerdfont",
             "fionn/cmp-unitex",
             {
