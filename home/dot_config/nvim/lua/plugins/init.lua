@@ -370,9 +370,9 @@ return {
         config = load_config("toggleterm"),
     },
 
-    { "nvchad/volt", lazy = true },
+    { "nvzone/volt", lazy = true },
     {
-        "nvchad/menu",
+        "nvzone/menu",
         lazy = true,
         config = function()
             -- mouse users + nvimtree users!
