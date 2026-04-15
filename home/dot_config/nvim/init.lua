@@ -132,8 +132,8 @@ vim.api.nvim_set_keymap("i", "<C-q>", "<C-k>", { noremap = true })
 
 -- Misc
 
--- Prepend mise shims to PATH
-vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+-- Prepend mason/bin and mise shims to PATH
+vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
 -- https://www.reddit.com/r/neovim/comments/1ixsk40/comment/meqnilu
 -- Example: :Dump !ls -a
