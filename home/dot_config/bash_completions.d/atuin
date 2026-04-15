@@ -19,6 +19,12 @@ _atuin() {
             atuin,account)
                 cmd="atuin__account"
                 ;;
+            atuin,ai)
+                cmd="atuin__ai"
+                ;;
+            atuin,config)
+                cmd="atuin__config"
+                ;;
             atuin,contributors)
                 cmd="atuin__contributors"
                 ;;
@@ -40,8 +46,14 @@ _atuin() {
             atuin,help)
                 cmd="atuin__help"
                 ;;
+            atuin,hex)
+                cmd="atuin__hex"
+                ;;
             atuin,history)
                 cmd="atuin__history"
+                ;;
+            atuin,hook)
+                cmd="atuin__hook"
                 ;;
             atuin,import)
                 cmd="atuin__import"
@@ -73,8 +85,8 @@ _atuin() {
             atuin,search)
                 cmd="atuin__search"
                 ;;
-            atuin,server)
-                cmd="atuin__server"
+            atuin,setup)
+                cmd="atuin__setup"
                 ;;
             atuin,stats)
                 cmd="atuin__stats"
@@ -103,6 +115,9 @@ _atuin() {
             atuin__account,help)
                 cmd="atuin__account__help"
                 ;;
+            atuin__account,link)
+                cmd="atuin__account__link"
+                ;;
             atuin__account,login)
                 cmd="atuin__account__login"
                 ;;
@@ -111,9 +126,6 @@ _atuin() {
                 ;;
             atuin__account,register)
                 cmd="atuin__account__register"
-                ;;
-            atuin__account,verify)
-                cmd="atuin__account__verify"
                 ;;
             atuin__account__help,change-password)
                 cmd="atuin__account__help__change__password"
@@ -124,6 +136,9 @@ _atuin() {
             atuin__account__help,help)
                 cmd="atuin__account__help__help"
                 ;;
+            atuin__account__help,link)
+                cmd="atuin__account__help__link"
+                ;;
             atuin__account__help,login)
                 cmd="atuin__account__help__login"
                 ;;
@@ -133,8 +148,77 @@ _atuin() {
             atuin__account__help,register)
                 cmd="atuin__account__help__register"
                 ;;
-            atuin__account__help,verify)
-                cmd="atuin__account__help__verify"
+            atuin__ai,help)
+                cmd="atuin__ai__help"
+                ;;
+            atuin__ai,init)
+                cmd="atuin__ai__init"
+                ;;
+            atuin__ai,inline)
+                cmd="atuin__ai__inline"
+                ;;
+            atuin__ai__help,help)
+                cmd="atuin__ai__help__help"
+                ;;
+            atuin__ai__help,init)
+                cmd="atuin__ai__help__init"
+                ;;
+            atuin__ai__help,inline)
+                cmd="atuin__ai__help__inline"
+                ;;
+            atuin__config,get)
+                cmd="atuin__config__get"
+                ;;
+            atuin__config,help)
+                cmd="atuin__config__help"
+                ;;
+            atuin__config,print)
+                cmd="atuin__config__print"
+                ;;
+            atuin__config,set)
+                cmd="atuin__config__set"
+                ;;
+            atuin__config__help,get)
+                cmd="atuin__config__help__get"
+                ;;
+            atuin__config__help,help)
+                cmd="atuin__config__help__help"
+                ;;
+            atuin__config__help,print)
+                cmd="atuin__config__help__print"
+                ;;
+            atuin__config__help,set)
+                cmd="atuin__config__help__set"
+                ;;
+            atuin__daemon,help)
+                cmd="atuin__daemon__help"
+                ;;
+            atuin__daemon,restart)
+                cmd="atuin__daemon__restart"
+                ;;
+            atuin__daemon,start)
+                cmd="atuin__daemon__start"
+                ;;
+            atuin__daemon,status)
+                cmd="atuin__daemon__status"
+                ;;
+            atuin__daemon,stop)
+                cmd="atuin__daemon__stop"
+                ;;
+            atuin__daemon__help,help)
+                cmd="atuin__daemon__help__help"
+                ;;
+            atuin__daemon__help,restart)
+                cmd="atuin__daemon__help__restart"
+                ;;
+            atuin__daemon__help,start)
+                cmd="atuin__daemon__help__start"
+                ;;
+            atuin__daemon__help,status)
+                cmd="atuin__daemon__help__status"
+                ;;
+            atuin__daemon__help,stop)
+                cmd="atuin__daemon__help__stop"
                 ;;
             atuin__dotfiles,alias)
                 cmd="atuin__dotfiles__alias"
@@ -232,6 +316,12 @@ _atuin() {
             atuin__help,account)
                 cmd="atuin__help__account"
                 ;;
+            atuin__help,ai)
+                cmd="atuin__help__ai"
+                ;;
+            atuin__help,config)
+                cmd="atuin__help__config"
+                ;;
             atuin__help,contributors)
                 cmd="atuin__help__contributors"
                 ;;
@@ -253,8 +343,14 @@ _atuin() {
             atuin__help,help)
                 cmd="atuin__help__help"
                 ;;
+            atuin__help,hex)
+                cmd="atuin__help__hex"
+                ;;
             atuin__help,history)
                 cmd="atuin__help__history"
+                ;;
+            atuin__help,hook)
+                cmd="atuin__help__hook"
                 ;;
             atuin__help,import)
                 cmd="atuin__help__import"
@@ -286,8 +382,8 @@ _atuin() {
             atuin__help,search)
                 cmd="atuin__help__search"
                 ;;
-            atuin__help,server)
-                cmd="atuin__help__server"
+            atuin__help,setup)
+                cmd="atuin__help__setup"
                 ;;
             atuin__help,stats)
                 cmd="atuin__help__stats"
@@ -313,6 +409,9 @@ _atuin() {
             atuin__help__account,delete)
                 cmd="atuin__help__account__delete"
                 ;;
+            atuin__help__account,link)
+                cmd="atuin__help__account__link"
+                ;;
             atuin__help__account,login)
                 cmd="atuin__help__account__login"
                 ;;
@@ -322,8 +421,32 @@ _atuin() {
             atuin__help__account,register)
                 cmd="atuin__help__account__register"
                 ;;
-            atuin__help__account,verify)
-                cmd="atuin__help__account__verify"
+            atuin__help__ai,init)
+                cmd="atuin__help__ai__init"
+                ;;
+            atuin__help__ai,inline)
+                cmd="atuin__help__ai__inline"
+                ;;
+            atuin__help__config,get)
+                cmd="atuin__help__config__get"
+                ;;
+            atuin__help__config,print)
+                cmd="atuin__help__config__print"
+                ;;
+            atuin__help__config,set)
+                cmd="atuin__help__config__set"
+                ;;
+            atuin__help__daemon,restart)
+                cmd="atuin__help__daemon__restart"
+                ;;
+            atuin__help__daemon,start)
+                cmd="atuin__help__daemon__start"
+                ;;
+            atuin__help__daemon,status)
+                cmd="atuin__help__daemon__status"
+                ;;
+            atuin__help__daemon,stop)
+                cmd="atuin__help__daemon__stop"
                 ;;
             atuin__help__dotfiles,alias)
                 cmd="atuin__help__dotfiles__alias"
@@ -352,6 +475,9 @@ _atuin() {
             atuin__help__dotfiles__var,set)
                 cmd="atuin__help__dotfiles__var__set"
                 ;;
+            atuin__help__hex,init)
+                cmd="atuin__help__hex__init"
+                ;;
             atuin__help__history,dedup)
                 cmd="atuin__help__history__dedup"
                 ;;
@@ -372,6 +498,12 @@ _atuin() {
                 ;;
             atuin__help__history,start)
                 cmd="atuin__help__history__start"
+                ;;
+            atuin__help__history,tail)
+                cmd="atuin__help__history__tail"
+                ;;
+            atuin__help__hook,install)
+                cmd="atuin__help__hook__install"
                 ;;
             atuin__help__import,auto)
                 cmd="atuin__help__import__auto"
@@ -442,12 +574,6 @@ _atuin() {
             atuin__help__scripts,run)
                 cmd="atuin__help__scripts__run"
                 ;;
-            atuin__help__server,default-config)
-                cmd="atuin__help__server__default__config"
-                ;;
-            atuin__help__server,start)
-                cmd="atuin__help__server__start"
-                ;;
             atuin__help__store,pull)
                 cmd="atuin__help__store__pull"
                 ;;
@@ -468,6 +594,18 @@ _atuin() {
                 ;;
             atuin__help__store,verify)
                 cmd="atuin__help__store__verify"
+                ;;
+            atuin__hex,help)
+                cmd="atuin__hex__help"
+                ;;
+            atuin__hex,init)
+                cmd="atuin__hex__init"
+                ;;
+            atuin__hex__help,help)
+                cmd="atuin__hex__help__help"
+                ;;
+            atuin__hex__help,init)
+                cmd="atuin__hex__help__init"
                 ;;
             atuin__history,dedup)
                 cmd="atuin__history__dedup"
@@ -493,6 +631,9 @@ _atuin() {
             atuin__history,start)
                 cmd="atuin__history__start"
                 ;;
+            atuin__history,tail)
+                cmd="atuin__history__tail"
+                ;;
             atuin__history__help,dedup)
                 cmd="atuin__history__help__dedup"
                 ;;
@@ -516,6 +657,21 @@ _atuin() {
                 ;;
             atuin__history__help,start)
                 cmd="atuin__history__help__start"
+                ;;
+            atuin__history__help,tail)
+                cmd="atuin__history__help__tail"
+                ;;
+            atuin__hook,help)
+                cmd="atuin__hook__help"
+                ;;
+            atuin__hook,install)
+                cmd="atuin__hook__install"
+                ;;
+            atuin__hook__help,help)
+                cmd="atuin__hook__help__help"
+                ;;
+            atuin__hook__help,install)
+                cmd="atuin__hook__help__install"
                 ;;
             atuin__import,auto)
                 cmd="atuin__import__auto"
@@ -673,24 +829,6 @@ _atuin() {
             atuin__scripts__help,run)
                 cmd="atuin__scripts__help__run"
                 ;;
-            atuin__server,default-config)
-                cmd="atuin__server__default__config"
-                ;;
-            atuin__server,help)
-                cmd="atuin__server__help"
-                ;;
-            atuin__server,start)
-                cmd="atuin__server__start"
-                ;;
-            atuin__server__help,default-config)
-                cmd="atuin__server__help__default__config"
-                ;;
-            atuin__server__help,help)
-                cmd="atuin__server__help__help"
-                ;;
-            atuin__server__help,start)
-                cmd="atuin__server__help__start"
-                ;;
             atuin__store,help)
                 cmd="atuin__store__help"
                 ;;
@@ -746,7 +884,7 @@ _atuin() {
 
     case "${cmd}" in
         atuin)
-            opts="-h -V --help --version history import stats search sync login logout register key status account kv store dotfiles scripts init info doctor wrapped daemon default-config server uuid contributors gen-completions help"
+            opts="-h -V --help --version setup history hook import stats search sync login logout register key status account kv store dotfiles scripts init info doctor wrapped daemon default-config config ai hex uuid contributors gen-completions help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -760,7 +898,7 @@ _atuin() {
             return 0
             ;;
         atuin__account)
-            opts="-h --help login register logout delete change-password verify help"
+            opts="-h --help login register logout delete change-password link help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -774,7 +912,7 @@ _atuin() {
             return 0
             ;;
         atuin__account__change__password)
-            opts="-c -n -h --current-password --new-password --help"
+            opts="-c -n -t -h --current-password --new-password --totp-code --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -796,6 +934,14 @@ _atuin() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                --totp-code)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -t)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 *)
                     COMPREPLY=()
                     ;;
@@ -804,12 +950,28 @@ _atuin() {
             return 0
             ;;
         atuin__account__delete)
-            opts="-h --help"
+            opts="-p -t -h --password --totp-code --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
+                --password)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -p)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --totp-code)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -t)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 *)
                     COMPREPLY=()
                     ;;
@@ -818,7 +980,7 @@ _atuin() {
             return 0
             ;;
         atuin__account__help)
-            opts="login register logout delete change-password verify help"
+            opts="login register logout delete change-password link help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -860,6 +1022,20 @@ _atuin() {
             return 0
             ;;
         atuin__account__help__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__account__help__link)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -915,9 +1091,9 @@ _atuin() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        atuin__account__help__verify)
-            opts=""
-            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+        atuin__account__link)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
@@ -930,7 +1106,7 @@ _atuin() {
             return 0
             ;;
         atuin__account__login)
-            opts="-u -p -k -h --username --password --key --help"
+            opts="-u -p -k -t -h --username --password --key --totp-code --from-registration --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -957,6 +1133,14 @@ _atuin() {
                     return 0
                     ;;
                 -k)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --totp-code)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -t)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -1019,19 +1203,237 @@ _atuin() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        atuin__account__verify)
-            opts="-t -h --token --help"
+        atuin__ai)
+            opts="-h --help init inline help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__ai__help)
+            opts="init inline help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
-                --token)
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__ai__help__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__ai__help__init)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__ai__help__inline)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__ai__init)
+            opts="-h --help [SHELL]"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__ai__inline)
+            opts="-v -h --verbose --api-endpoint --api-token --hook --help [COMMAND]"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --api-endpoint)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
-                -t)
+                --api-token)
                     COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__config)
+            opts="-h --help get set print help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__config__get)
+            opts="-r -v -h --resolved --verbose --help <KEY>"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__config__help)
+            opts="get set print help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__config__help__get)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__config__help__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__config__help__print)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__config__help__set)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__config__print)
+            opts="-h --help [KEY]"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__config__set)
+            opts="-t -h --type --help <KEY> <VALUE>"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --type)
+                    COMPREPLY=($(compgen -W "auto string boolean integer float" -- "${cur}"))
+                    return 0
+                    ;;
+                -t)
+                    COMPREPLY=($(compgen -W "auto string boolean integer float" -- "${cur}"))
                     return 0
                     ;;
                 *)
@@ -1056,8 +1458,148 @@ _atuin() {
             return 0
             ;;
         atuin__daemon)
-            opts="-h --help"
+            opts="-h --daemonize --show-logs --help start status stop restart help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__daemon__help)
+            opts="start status stop restart help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__daemon__help__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__daemon__help__restart)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__daemon__help__start)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__daemon__help__status)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__daemon__help__stop)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__daemon__restart)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__daemon__start)
+            opts="-h --daemonize --show-logs --force --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__daemon__status)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__daemon__stop)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
@@ -1238,12 +1780,32 @@ _atuin() {
             return 0
             ;;
         atuin__dotfiles__alias__list)
-            opts="-h --help"
+            opts="-r -n -v -h --sort-by --reverse --name --value --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
+                --sort-by)
+                    COMPREPLY=($(compgen -W "name value" -- "${cur}"))
+                    return 0
+                    ;;
+                --name)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -n)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --value)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -v)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 *)
                     COMPREPLY=()
                     ;;
@@ -1518,12 +2080,32 @@ _atuin() {
             return 0
             ;;
         atuin__dotfiles__var__list)
-            opts="-h --help"
+            opts="-r -n -v -h --sort-by --reverse --name --value --exports-only --shell-only --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
+                --sort-by)
+                    COMPREPLY=($(compgen -W "name value" -- "${cur}"))
+                    return 0
+                    ;;
+                --name)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -n)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --value)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -v)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 *)
                     COMPREPLY=()
                     ;;
@@ -1576,7 +2158,7 @@ _atuin() {
             return 0
             ;;
         atuin__help)
-            opts="history import stats search sync login logout register key status account kv store dotfiles scripts init info doctor wrapped daemon default-config server uuid contributors gen-completions help"
+            opts="setup history hook import stats search sync login logout register key status account kv store dotfiles scripts init info doctor wrapped daemon default-config config ai hex uuid contributors gen-completions help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -1590,7 +2172,7 @@ _atuin() {
             return 0
             ;;
         atuin__help__account)
-            opts="login register logout delete change-password verify"
+            opts="login register logout delete change-password link"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -1618,6 +2200,20 @@ _atuin() {
             return 0
             ;;
         atuin__help__account__delete)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__account__link)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -1673,7 +2269,91 @@ _atuin() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        atuin__help__account__verify)
+        atuin__help__ai)
+            opts="init inline"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__ai__init)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__ai__inline)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__config)
+            opts="get set print"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__config__get)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__config__print)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__config__set)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -1702,8 +2382,64 @@ _atuin() {
             return 0
             ;;
         atuin__help__daemon)
-            opts=""
+            opts="start status stop restart"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__daemon__restart)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__daemon__start)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__daemon__status)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__daemon__stop)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
@@ -1911,8 +2647,36 @@ _atuin() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        atuin__help__hex)
+            opts="init"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__hex__init)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         atuin__help__history)
-            opts="start end list last init-store prune dedup"
+            opts="start end tail list last init-store prune dedup"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -2010,6 +2774,48 @@ _atuin() {
             return 0
             ;;
         atuin__help__history__start)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__history__tail)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__hook)
+            opts="install"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__help__hook__install)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -2485,37 +3291,9 @@ _atuin() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        atuin__help__server)
-            opts="start default-config"
+        atuin__help__setup)
+            opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
-                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-                return 0
-            fi
-            case "${prev}" in
-                *)
-                    COMPREPLY=()
-                    ;;
-            esac
-            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-            return 0
-            ;;
-        atuin__help__server__default__config)
-            opts=""
-            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
-                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-                return 0
-            fi
-            case "${prev}" in
-                *)
-                    COMPREPLY=()
-                    ;;
-            esac
-            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-            return 0
-            ;;
-        atuin__help__server__start)
-            opts=""
-            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
@@ -2709,8 +3487,78 @@ _atuin() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        atuin__hex)
+            opts="-h --help init help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__hex__help)
+            opts="init help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__hex__help__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__hex__help__init)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__hex__init)
+            opts="-h --help zsh bash fish nu"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         atuin__history)
-            opts="-h --help start end list last init-store prune dedup help"
+            opts="-h --help start end tail list last init-store prune dedup help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -2780,7 +3628,7 @@ _atuin() {
             return 0
             ;;
         atuin__history__help)
-            opts="start end list last init-store prune dedup help"
+            opts="start end tail list last init-store prune dedup help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -2905,6 +3753,20 @@ _atuin() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        atuin__history__help__tail)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         atuin__history__init__store)
             opts="-h --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
@@ -3002,7 +3864,99 @@ _atuin() {
             return 0
             ;;
         atuin__history__start)
-            opts="-h --command-from-env --help [COMMAND]..."
+            opts="-h --command-from-env --author --intent --help [COMMAND]..."
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --author)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --intent)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__history__tail)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__hook)
+            opts="-h --help [AGENT] install help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__hook__help)
+            opts="install help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__hook__help__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__hook__help__install)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        atuin__hook__install)
+            opts="-h --help <AGENT>"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3408,7 +4362,7 @@ _atuin() {
             return 0
             ;;
         atuin__init)
-            opts="-h --disable-ctrl-r --disable-up-arrow --help zsh bash fish nu xonsh powershell"
+            opts="-h --disable-ctrl-r --disable-up-arrow --disable-ai --help zsh bash fish nu xonsh powershell"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3628,7 +4582,7 @@ _atuin() {
             return 0
             ;;
         atuin__kv__set)
-            opts="-k -n -h --key --namespace --help <VALUE>"
+            opts="-k -n -h --key --namespace --help [VALUE]"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3658,7 +4612,7 @@ _atuin() {
             return 0
             ;;
         atuin__login)
-            opts="-u -p -k -h --username --password --key --help"
+            opts="-u -p -k -t -h --username --password --key --totp-code --from-registration --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3685,6 +4639,14 @@ _atuin() {
                     return 0
                     ;;
                 -k)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --totp-code)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -t)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -4030,7 +4992,7 @@ _atuin() {
             return 0
             ;;
         atuin__search)
-            opts="-c -e -b -i -r -f -h --cwd --exclude-cwd --exit --exclude-exit --before --after --limit --offset --interactive --filter-mode --search-mode --shell-up-key-binding --keymap-mode --human --cmd-only --print0 --delete --delete-it-all --reverse --tz --timezone --format --inline-height --include-duplicates --result-file --help [QUERY]..."
+            opts="-c -e -b -i -r -f -h --cwd --exclude-cwd --exit --exclude-exit --before --after --limit --offset --interactive --filter-mode --search-mode --shell-up-key-binding --keymap-mode --human --cmd-only --print0 --delete --delete-it-all --reverse --tz --timezone --format --inline-height --author --include-duplicates --result-file --help [QUERY]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -4085,7 +5047,7 @@ _atuin() {
                     return 0
                     ;;
                 --search-mode)
-                    COMPREPLY=($(compgen -W "prefix full-text fuzzy skim" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "prefix full-text fuzzy skim daemon-fuzzy" -- "${cur}"))
                     return 0
                     ;;
                 --keymap-mode)
@@ -4112,6 +5074,10 @@ _atuin() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                --author)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --result-file)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
@@ -4123,109 +5089,13 @@ _atuin() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        atuin__server)
-            opts="-h --help start default-config help"
+        atuin__setup)
+            opts="-h --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
-                *)
-                    COMPREPLY=()
-                    ;;
-            esac
-            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-            return 0
-            ;;
-        atuin__server__default__config)
-            opts="-h --help"
-            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
-                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-                return 0
-            fi
-            case "${prev}" in
-                *)
-                    COMPREPLY=()
-                    ;;
-            esac
-            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-            return 0
-            ;;
-        atuin__server__help)
-            opts="start default-config help"
-            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
-                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-                return 0
-            fi
-            case "${prev}" in
-                *)
-                    COMPREPLY=()
-                    ;;
-            esac
-            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-            return 0
-            ;;
-        atuin__server__help__default__config)
-            opts=""
-            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
-                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-                return 0
-            fi
-            case "${prev}" in
-                *)
-                    COMPREPLY=()
-                    ;;
-            esac
-            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-            return 0
-            ;;
-        atuin__server__help__help)
-            opts=""
-            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
-                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-                return 0
-            fi
-            case "${prev}" in
-                *)
-                    COMPREPLY=()
-                    ;;
-            esac
-            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-            return 0
-            ;;
-        atuin__server__help__start)
-            opts=""
-            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
-                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-                return 0
-            fi
-            case "${prev}" in
-                *)
-                    COMPREPLY=()
-                    ;;
-            esac
-            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-            return 0
-            ;;
-        atuin__server__start)
-            opts="-p -h --host --port --help"
-            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
-                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-                return 0
-            fi
-            case "${prev}" in
-                --host)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                --port)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                -p)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
                 *)
                     COMPREPLY=()
                     ;;
@@ -4418,7 +5288,7 @@ _atuin() {
             return 0
             ;;
         atuin__store__pull)
-            opts="-t -h --tag --force --help"
+            opts="-t -h --tag --force --page --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -4429,6 +5299,10 @@ _atuin() {
                     return 0
                     ;;
                 -t)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --page)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -4454,7 +5328,7 @@ _atuin() {
             return 0
             ;;
         atuin__store__push)
-            opts="-t -h --tag --host --force --help"
+            opts="-t -h --tag --host --force --page --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -4469,6 +5343,10 @@ _atuin() {
                     return 0
                     ;;
                 --host)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --page)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;

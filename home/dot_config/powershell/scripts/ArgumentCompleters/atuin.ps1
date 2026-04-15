@@ -25,7 +25,9 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('-V', '-V ', [CompletionResultType]::ParameterName, 'Print version')
             [CompletionResult]::new('--version', '--version', [CompletionResultType]::ParameterName, 'Print version')
+            [CompletionResult]::new('setup', 'setup', [CompletionResultType]::ParameterValue, 'Setup Atuin features')
             [CompletionResult]::new('history', 'history', [CompletionResultType]::ParameterValue, 'Manipulate shell history')
+            [CompletionResult]::new('hook', 'hook', [CompletionResultType]::ParameterValue, 'Manage AI-agent shell hooks')
             [CompletionResult]::new('import', 'import', [CompletionResultType]::ParameterValue, 'Import shell history from file')
             [CompletionResult]::new('stats', 'stats', [CompletionResultType]::ParameterValue, 'Calculate statistics for your history')
             [CompletionResult]::new('search', 'search', [CompletionResultType]::ParameterValue, 'Interactive history search')
@@ -44,13 +46,20 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('info', 'info', [CompletionResultType]::ParameterValue, 'Information about dotfiles locations and ENV vars')
             [CompletionResult]::new('doctor', 'doctor', [CompletionResultType]::ParameterValue, 'Run the doctor to check for common issues')
             [CompletionResult]::new('wrapped', 'wrapped', [CompletionResultType]::ParameterValue, 'wrapped')
-            [CompletionResult]::new('daemon', 'daemon', [CompletionResultType]::ParameterValue, '*Experimental* Start the background daemon')
+            [CompletionResult]::new('daemon', 'daemon', [CompletionResultType]::ParameterValue, '*Experimental* Manage the background daemon')
             [CompletionResult]::new('default-config', 'default-config', [CompletionResultType]::ParameterValue, 'Print the default atuin configuration (config.toml)')
-            [CompletionResult]::new('server', 'server', [CompletionResultType]::ParameterValue, 'Start an atuin server')
+            [CompletionResult]::new('config', 'config', [CompletionResultType]::ParameterValue, 'config')
+            [CompletionResult]::new('ai', 'ai', [CompletionResultType]::ParameterValue, 'Run the AI assistant')
+            [CompletionResult]::new('hex', 'hex', [CompletionResultType]::ParameterValue, 'Terminal emulator for atuin')
             [CompletionResult]::new('uuid', 'uuid', [CompletionResultType]::ParameterValue, 'Generate a UUID')
             [CompletionResult]::new('contributors', 'contributors', [CompletionResultType]::ParameterValue, 'contributors')
             [CompletionResult]::new('gen-completions', 'gen-completions', [CompletionResultType]::ParameterValue, 'Generate shell completions')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'atuin;setup' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
         }
         'atuin;history' {
@@ -58,6 +67,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('start', 'start', [CompletionResultType]::ParameterValue, 'Begins a new command in the history')
             [CompletionResult]::new('end', 'end', [CompletionResultType]::ParameterValue, 'Finishes a new command in the history (adds time, exit code)')
+            [CompletionResult]::new('tail', 'tail', [CompletionResultType]::ParameterValue, 'Stream history events from the daemon as they are received')
             [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'List all items in history')
             [CompletionResult]::new('last', 'last', [CompletionResultType]::ParameterValue, 'Get the last command ran')
             [CompletionResult]::new('init-store', 'init-store', [CompletionResultType]::ParameterValue, 'init-store')
@@ -67,6 +77,8 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;history;start' {
+            [CompletionResult]::new('--author', '--author', [CompletionResultType]::ParameterName, 'Author of this command, eg `ellie`, `claude`, or `copilot`')
+            [CompletionResult]::new('--intent', '--intent', [CompletionResultType]::ParameterName, 'Optional intent/rationale for running this command')
             [CompletionResult]::new('--command-from-env', '--command-from-env', [CompletionResultType]::ParameterName, 'Collects the command from the `ATUIN_COMMAND_LINE` environment variable, which does not need escaping and is more compatible between OS and shells')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
@@ -81,13 +93,18 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
         }
+        'atuin;history;tail' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
         'atuin;history;list' {
             [CompletionResult]::new('-r', '-r', [CompletionResultType]::ParameterName, 'r')
             [CompletionResult]::new('--reverse', '--reverse', [CompletionResultType]::ParameterName, 'reverse')
             [CompletionResult]::new('--timezone', '--timezone', [CompletionResultType]::ParameterName, 'Display the command time in another timezone other than the configured default')
             [CompletionResult]::new('--tz', '--tz', [CompletionResultType]::ParameterName, 'Display the command time in another timezone other than the configured default')
-            [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {exit}, {time}, {session}, and {uuid} Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
-            [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {exit}, {time}, {session}, and {uuid} Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
+            [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {author}, {intent}, {exit}, {time}, {session}, and {uuid} Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
+            [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {author}, {intent}, {exit}, {time}, {session}, and {uuid} Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'c')
             [CompletionResult]::new('--cwd', '--cwd', [CompletionResultType]::ParameterName, 'cwd')
             [CompletionResult]::new('-s', '-s', [CompletionResultType]::ParameterName, 's')
@@ -102,8 +119,8 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
         'atuin;history;last' {
             [CompletionResult]::new('--timezone', '--timezone', [CompletionResultType]::ParameterName, 'Display the command time in another timezone other than the configured default')
             [CompletionResult]::new('--tz', '--tz', [CompletionResultType]::ParameterName, 'Display the command time in another timezone other than the configured default')
-            [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {time}, {session}, {uuid} and {relativetime}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
-            [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {time}, {session}, {uuid} and {relativetime}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
+            [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {author}, {intent}, {time}, {session}, {uuid} and {relativetime}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
+            [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {author}, {intent}, {time}, {session}, {uuid} and {relativetime}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
             [CompletionResult]::new('--human', '--human', [CompletionResultType]::ParameterName, 'human')
             [CompletionResult]::new('--cmd-only', '--cmd-only', [CompletionResultType]::ParameterName, 'Show only the text of the command')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
@@ -135,6 +152,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
         'atuin;history;help' {
             [CompletionResult]::new('start', 'start', [CompletionResultType]::ParameterValue, 'Begins a new command in the history')
             [CompletionResult]::new('end', 'end', [CompletionResultType]::ParameterValue, 'Finishes a new command in the history (adds time, exit code)')
+            [CompletionResult]::new('tail', 'tail', [CompletionResultType]::ParameterValue, 'Stream history events from the daemon as they are received')
             [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'List all items in history')
             [CompletionResult]::new('last', 'last', [CompletionResultType]::ParameterValue, 'Get the last command ran')
             [CompletionResult]::new('init-store', 'init-store', [CompletionResultType]::ParameterValue, 'init-store')
@@ -147,6 +165,9 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;history;help;end' {
+            break
+        }
+        'atuin;history;help;tail' {
             break
         }
         'atuin;history;help;list' {
@@ -165,6 +186,29 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;history;help;help' {
+            break
+        }
+        'atuin;hook' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('install', 'install', [CompletionResultType]::ParameterValue, 'Install hooks for an AI agent to capture commands in atuin history')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'atuin;hook;install' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'atuin;hook;help' {
+            [CompletionResult]::new('install', 'install', [CompletionResultType]::ParameterValue, 'Install hooks for an AI agent to capture commands in atuin history')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'atuin;hook;help;install' {
+            break
+        }
+        'atuin;hook;help;help' {
             break
         }
         'atuin;import' {
@@ -329,6 +373,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {time}, {exit} and {relativetime}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
             [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'Available variables: {command}, {directory}, {duration}, {user}, {host}, {time}, {exit} and {relativetime}. Example: --format "{time} - [{duration}] - {directory}$\t{command}"')
             [CompletionResult]::new('--inline-height', '--inline-height', [CompletionResultType]::ParameterName, 'Set the maximum number of lines Atuin''s interface should take up')
+            [CompletionResult]::new('--author', '--author', [CompletionResultType]::ParameterName, 'Filter by author. Supports $all-user (non-agents), $all-agent, or literal names. Can be specified multiple times')
             [CompletionResult]::new('--result-file', '--result-file', [CompletionResultType]::ParameterName, 'File name to write the result to (hidden from help as this is meant to be used from a script)')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, 'Open interactive search UI')
             [CompletionResult]::new('--interactive', '--interactive', [CompletionResultType]::ParameterName, 'Open interactive search UI')
@@ -359,6 +404,9 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('--password', '--password', [CompletionResultType]::ParameterName, 'password')
             [CompletionResult]::new('-k', '-k', [CompletionResultType]::ParameterName, 'The encryption key for your account')
             [CompletionResult]::new('--key', '--key', [CompletionResultType]::ParameterName, 'The encryption key for your account')
+            [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'The two-factor authentication code for your account, if any')
+            [CompletionResult]::new('--totp-code', '--totp-code', [CompletionResultType]::ParameterName, 'The two-factor authentication code for your account, if any')
+            [CompletionResult]::new('--from-registration', '--from-registration', [CompletionResultType]::ParameterName, 'from-registration')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -398,7 +446,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('logout', 'logout', [CompletionResultType]::ParameterValue, 'Log out')
             [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete your account, and all synced data')
             [CompletionResult]::new('change-password', 'change-password', [CompletionResultType]::ParameterValue, 'Change your password')
-            [CompletionResult]::new('verify', 'verify', [CompletionResultType]::ParameterValue, 'Verify your account')
+            [CompletionResult]::new('link', 'link', [CompletionResultType]::ParameterValue, 'Link your CLI sync account to your Hub account')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -409,6 +457,9 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('--password', '--password', [CompletionResultType]::ParameterName, 'password')
             [CompletionResult]::new('-k', '-k', [CompletionResultType]::ParameterName, 'The encryption key for your account')
             [CompletionResult]::new('--key', '--key', [CompletionResultType]::ParameterName, 'The encryption key for your account')
+            [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'The two-factor authentication code for your account, if any')
+            [CompletionResult]::new('--totp-code', '--totp-code', [CompletionResultType]::ParameterName, 'The two-factor authentication code for your account, if any')
+            [CompletionResult]::new('--from-registration', '--from-registration', [CompletionResultType]::ParameterName, 'from-registration')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -430,6 +481,10 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;account;delete' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'p')
+            [CompletionResult]::new('--password', '--password', [CompletionResultType]::ParameterName, 'password')
+            [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'The two-factor authentication code for your account, if any')
+            [CompletionResult]::new('--totp-code', '--totp-code', [CompletionResultType]::ParameterName, 'The two-factor authentication code for your account, if any')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -439,13 +494,13 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('--current-password', '--current-password', [CompletionResultType]::ParameterName, 'current-password')
             [CompletionResult]::new('-n', '-n', [CompletionResultType]::ParameterName, 'n')
             [CompletionResult]::new('--new-password', '--new-password', [CompletionResultType]::ParameterName, 'new-password')
+            [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'The two-factor authentication code for your account, if any')
+            [CompletionResult]::new('--totp-code', '--totp-code', [CompletionResultType]::ParameterName, 'The two-factor authentication code for your account, if any')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
         }
-        'atuin;account;verify' {
-            [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 't')
-            [CompletionResult]::new('--token', '--token', [CompletionResultType]::ParameterName, 'token')
+        'atuin;account;link' {
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -456,7 +511,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('logout', 'logout', [CompletionResultType]::ParameterValue, 'Log out')
             [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete your account, and all synced data')
             [CompletionResult]::new('change-password', 'change-password', [CompletionResultType]::ParameterValue, 'Change your password')
-            [CompletionResult]::new('verify', 'verify', [CompletionResultType]::ParameterValue, 'Verify your account')
+            [CompletionResult]::new('link', 'link', [CompletionResultType]::ParameterValue, 'Link your CLI sync account to your Hub account')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -475,7 +530,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
         'atuin;account;help;change-password' {
             break
         }
-        'atuin;account;help;verify' {
+        'atuin;account;help;link' {
             break
         }
         'atuin;account;help;help' {
@@ -598,6 +653,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'The tag to push (eg, ''history''). Defaults to all tags')
             [CompletionResult]::new('--tag', '--tag', [CompletionResultType]::ParameterName, 'The tag to push (eg, ''history''). Defaults to all tags')
             [CompletionResult]::new('--host', '--host', [CompletionResultType]::ParameterName, 'The host to push, in the form of a UUID host ID. Defaults to the current host')
+            [CompletionResult]::new('--page', '--page', [CompletionResultType]::ParameterName, 'Page Size How many records to upload at once. Defaults to 100')
             [CompletionResult]::new('--force', '--force', [CompletionResultType]::ParameterName, 'Force push records This will override both host and tag, to be all hosts and all tags. First clear the remote store, then upload all of the local store')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
@@ -606,6 +662,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
         'atuin;store;pull' {
             [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'The tag to push (eg, ''history''). Defaults to all tags')
             [CompletionResult]::new('--tag', '--tag', [CompletionResultType]::ParameterName, 'The tag to push (eg, ''history''). Defaults to all tags')
+            [CompletionResult]::new('--page', '--page', [CompletionResultType]::ParameterName, 'Page Size How many records to download at once. Defaults to 100')
             [CompletionResult]::new('--force', '--force', [CompletionResultType]::ParameterName, 'Force push records This will first wipe the local store, and then download all records from the remote')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
@@ -675,8 +732,15 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;dotfiles;alias;list' {
-            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
-            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--sort-by', '--sort-by', [CompletionResultType]::ParameterName, 'Sort results by field')
+            [CompletionResult]::new('-n', '-n', [CompletionResultType]::ParameterName, 'Filter aliases by name (substring match)')
+            [CompletionResult]::new('--name', '--name', [CompletionResultType]::ParameterName, 'Filter aliases by name (substring match)')
+            [CompletionResult]::new('-v', '-v', [CompletionResultType]::ParameterName, 'Filter aliases by value (substring match)')
+            [CompletionResult]::new('--value', '--value', [CompletionResultType]::ParameterName, 'Filter aliases by value (substring match)')
+            [CompletionResult]::new('-r', '-r', [CompletionResultType]::ParameterName, 'Sort in reverse (descending) order')
+            [CompletionResult]::new('--reverse', '--reverse', [CompletionResultType]::ParameterName, 'Sort in reverse (descending) order')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             break
         }
         'atuin;dotfiles;alias;clear' {
@@ -729,8 +793,17 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;dotfiles;var;list' {
-            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
-            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--sort-by', '--sort-by', [CompletionResultType]::ParameterName, 'Sort results by field')
+            [CompletionResult]::new('-n', '-n', [CompletionResultType]::ParameterName, 'Filter variables by name (substring match)')
+            [CompletionResult]::new('--name', '--name', [CompletionResultType]::ParameterName, 'Filter variables by name (substring match)')
+            [CompletionResult]::new('-v', '-v', [CompletionResultType]::ParameterName, 'Filter variables by value (substring match)')
+            [CompletionResult]::new('--value', '--value', [CompletionResultType]::ParameterName, 'Filter variables by value (substring match)')
+            [CompletionResult]::new('-r', '-r', [CompletionResultType]::ParameterName, 'Sort in reverse (descending) order')
+            [CompletionResult]::new('--reverse', '--reverse', [CompletionResultType]::ParameterName, 'Sort in reverse (descending) order')
+            [CompletionResult]::new('--exports-only', '--exports-only', [CompletionResultType]::ParameterName, 'Show only exported variables')
+            [CompletionResult]::new('--shell-only', '--shell-only', [CompletionResultType]::ParameterName, 'Show only non-exported (shell) variables')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             break
         }
         'atuin;dotfiles;var;help' {
@@ -896,6 +969,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
         'atuin;init' {
             [CompletionResult]::new('--disable-ctrl-r', '--disable-ctrl-r', [CompletionResultType]::ParameterName, 'Disable the binding of CTRL-R to atuin')
             [CompletionResult]::new('--disable-up-arrow', '--disable-up-arrow', [CompletionResultType]::ParameterName, 'Disable the binding of the Up Arrow key to atuin')
+            [CompletionResult]::new('--disable-ai', '--disable-ai', [CompletionResultType]::ParameterName, 'Disable the binding of ? to Atuin AI')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             break
@@ -916,8 +990,61 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;daemon' {
+            [CompletionResult]::new('--daemonize', '--daemonize', [CompletionResultType]::ParameterName, 'Internal flag for daemonization')
+            [CompletionResult]::new('--show-logs', '--show-logs', [CompletionResultType]::ParameterName, 'Also write daemon logs to the console (useful for debugging)')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('start', 'start', [CompletionResultType]::ParameterValue, 'Start the daemon server')
+            [CompletionResult]::new('status', 'status', [CompletionResultType]::ParameterValue, 'Show the daemon''s current status')
+            [CompletionResult]::new('stop', 'stop', [CompletionResultType]::ParameterValue, 'Stop the daemon gracefully')
+            [CompletionResult]::new('restart', 'restart', [CompletionResultType]::ParameterValue, 'Restart the daemon (stop, then start in background)')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'atuin;daemon;start' {
+            [CompletionResult]::new('--daemonize', '--daemonize', [CompletionResultType]::ParameterName, 'daemonize')
+            [CompletionResult]::new('--show-logs', '--show-logs', [CompletionResultType]::ParameterName, 'Also write daemon logs to the console (useful for debugging)')
+            [CompletionResult]::new('--force', '--force', [CompletionResultType]::ParameterName, 'Force start: kill existing daemon process and reset the socket')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'atuin;daemon;status' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'atuin;daemon;stop' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'atuin;daemon;restart' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'atuin;daemon;help' {
+            [CompletionResult]::new('start', 'start', [CompletionResultType]::ParameterValue, 'Start the daemon server')
+            [CompletionResult]::new('status', 'status', [CompletionResultType]::ParameterValue, 'Show the daemon''s current status')
+            [CompletionResult]::new('stop', 'stop', [CompletionResultType]::ParameterValue, 'Stop the daemon gracefully')
+            [CompletionResult]::new('restart', 'restart', [CompletionResultType]::ParameterValue, 'Restart the daemon (stop, then start in background)')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'atuin;daemon;help;start' {
+            break
+        }
+        'atuin;daemon;help;status' {
+            break
+        }
+        'atuin;daemon;help;stop' {
+            break
+        }
+        'atuin;daemon;help;restart' {
+            break
+        }
+        'atuin;daemon;help;help' {
             break
         }
         'atuin;default-config' {
@@ -925,40 +1052,114 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
         }
-        'atuin;server' {
+        'atuin;config' {
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
-            [CompletionResult]::new('start', 'start', [CompletionResultType]::ParameterValue, 'Start the server')
-            [CompletionResult]::new('default-config', 'default-config', [CompletionResultType]::ParameterValue, 'Print server example configuration')
+            [CompletionResult]::new('get', 'get', [CompletionResultType]::ParameterValue, 'Get a configuration value from your config.toml file or after defaults and overrides are applied')
+            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'Set a configuration value in your config.toml file')
+            [CompletionResult]::new('print', 'print', [CompletionResultType]::ParameterValue, 'Print all configuration values from your config.toml file in TOML format')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
-        'atuin;server;start' {
-            [CompletionResult]::new('--host', '--host', [CompletionResultType]::ParameterName, 'The host address to bind')
-            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'The port to bind')
-            [CompletionResult]::new('--port', '--port', [CompletionResultType]::ParameterName, 'The port to bind')
+        'atuin;config;get' {
+            [CompletionResult]::new('-r', '-r', [CompletionResultType]::ParameterName, 'Print the value after defaults and overrides are applied')
+            [CompletionResult]::new('--resolved', '--resolved', [CompletionResultType]::ParameterName, 'Print the value after defaults and overrides are applied')
+            [CompletionResult]::new('-v', '-v', [CompletionResultType]::ParameterName, 'Print both the config file value and the resolved value')
+            [CompletionResult]::new('--verbose', '--verbose', [CompletionResultType]::ParameterName, 'Print both the config file value and the resolved value')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
         }
-        'atuin;server;default-config' {
-            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
-            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+        'atuin;config;set' {
+            [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'Store value as an explicit type')
+            [CompletionResult]::new('--type', '--type', [CompletionResultType]::ParameterName, 'Store value as an explicit type')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             break
         }
-        'atuin;server;help' {
-            [CompletionResult]::new('start', 'start', [CompletionResultType]::ParameterValue, 'Start the server')
-            [CompletionResult]::new('default-config', 'default-config', [CompletionResultType]::ParameterValue, 'Print server example configuration')
+        'atuin;config;print' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            break
+        }
+        'atuin;config;help' {
+            [CompletionResult]::new('get', 'get', [CompletionResultType]::ParameterValue, 'Get a configuration value from your config.toml file or after defaults and overrides are applied')
+            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'Set a configuration value in your config.toml file')
+            [CompletionResult]::new('print', 'print', [CompletionResultType]::ParameterValue, 'Print all configuration values from your config.toml file in TOML format')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
-        'atuin;server;help;start' {
+        'atuin;config;help;get' {
             break
         }
-        'atuin;server;help;default-config' {
+        'atuin;config;help;set' {
             break
         }
-        'atuin;server;help;help' {
+        'atuin;config;help;print' {
+            break
+        }
+        'atuin;config;help;help' {
+            break
+        }
+        'atuin;ai' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('init', 'init', [CompletionResultType]::ParameterValue, 'Initialize shell integration')
+            [CompletionResult]::new('inline', 'inline', [CompletionResultType]::ParameterValue, 'Inline completion mode with small TUI overlay')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'atuin;ai;init' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'atuin;ai;inline' {
+            [CompletionResult]::new('--api-endpoint', '--api-endpoint', [CompletionResultType]::ParameterName, 'Custom API endpoint; defaults to reading from the `ai.endpoint` setting')
+            [CompletionResult]::new('--api-token', '--api-token', [CompletionResultType]::ParameterName, 'Custom API token; defaults to reading from the `ai.api_token` setting')
+            [CompletionResult]::new('-v', '-v', [CompletionResultType]::ParameterName, 'Enable verbose logging')
+            [CompletionResult]::new('--verbose', '--verbose', [CompletionResultType]::ParameterName, 'Enable verbose logging')
+            [CompletionResult]::new('--hook', '--hook', [CompletionResultType]::ParameterName, 'Use the hook mode')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'atuin;ai;help' {
+            [CompletionResult]::new('init', 'init', [CompletionResultType]::ParameterValue, 'Initialize shell integration')
+            [CompletionResult]::new('inline', 'inline', [CompletionResultType]::ParameterValue, 'Inline completion mode with small TUI overlay')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'atuin;ai;help;init' {
+            break
+        }
+        'atuin;ai;help;inline' {
+            break
+        }
+        'atuin;ai;help;help' {
+            break
+        }
+        'atuin;hex' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('init', 'init', [CompletionResultType]::ParameterValue, 'Print shell code to initialize atuin-hex on shell startup')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'atuin;hex;init' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            break
+        }
+        'atuin;hex;help' {
+            [CompletionResult]::new('init', 'init', [CompletionResultType]::ParameterValue, 'Print shell code to initialize atuin-hex on shell startup')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'atuin;hex;help;init' {
+            break
+        }
+        'atuin;hex;help;help' {
             break
         }
         'atuin;uuid' {
@@ -981,7 +1182,9 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;help' {
+            [CompletionResult]::new('setup', 'setup', [CompletionResultType]::ParameterValue, 'Setup Atuin features')
             [CompletionResult]::new('history', 'history', [CompletionResultType]::ParameterValue, 'Manipulate shell history')
+            [CompletionResult]::new('hook', 'hook', [CompletionResultType]::ParameterValue, 'Manage AI-agent shell hooks')
             [CompletionResult]::new('import', 'import', [CompletionResultType]::ParameterValue, 'Import shell history from file')
             [CompletionResult]::new('stats', 'stats', [CompletionResultType]::ParameterValue, 'Calculate statistics for your history')
             [CompletionResult]::new('search', 'search', [CompletionResultType]::ParameterValue, 'Interactive history search')
@@ -1000,18 +1203,24 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('info', 'info', [CompletionResultType]::ParameterValue, 'Information about dotfiles locations and ENV vars')
             [CompletionResult]::new('doctor', 'doctor', [CompletionResultType]::ParameterValue, 'Run the doctor to check for common issues')
             [CompletionResult]::new('wrapped', 'wrapped', [CompletionResultType]::ParameterValue, 'wrapped')
-            [CompletionResult]::new('daemon', 'daemon', [CompletionResultType]::ParameterValue, '*Experimental* Start the background daemon')
+            [CompletionResult]::new('daemon', 'daemon', [CompletionResultType]::ParameterValue, '*Experimental* Manage the background daemon')
             [CompletionResult]::new('default-config', 'default-config', [CompletionResultType]::ParameterValue, 'Print the default atuin configuration (config.toml)')
-            [CompletionResult]::new('server', 'server', [CompletionResultType]::ParameterValue, 'Start an atuin server')
+            [CompletionResult]::new('config', 'config', [CompletionResultType]::ParameterValue, 'config')
+            [CompletionResult]::new('ai', 'ai', [CompletionResultType]::ParameterValue, 'Run the AI assistant')
+            [CompletionResult]::new('hex', 'hex', [CompletionResultType]::ParameterValue, 'Terminal emulator for atuin')
             [CompletionResult]::new('uuid', 'uuid', [CompletionResultType]::ParameterValue, 'Generate a UUID')
             [CompletionResult]::new('contributors', 'contributors', [CompletionResultType]::ParameterValue, 'contributors')
             [CompletionResult]::new('gen-completions', 'gen-completions', [CompletionResultType]::ParameterValue, 'Generate shell completions')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
+        'atuin;help;setup' {
+            break
+        }
         'atuin;help;history' {
             [CompletionResult]::new('start', 'start', [CompletionResultType]::ParameterValue, 'Begins a new command in the history')
             [CompletionResult]::new('end', 'end', [CompletionResultType]::ParameterValue, 'Finishes a new command in the history (adds time, exit code)')
+            [CompletionResult]::new('tail', 'tail', [CompletionResultType]::ParameterValue, 'Stream history events from the daemon as they are received')
             [CompletionResult]::new('list', 'list', [CompletionResultType]::ParameterValue, 'List all items in history')
             [CompletionResult]::new('last', 'last', [CompletionResultType]::ParameterValue, 'Get the last command ran')
             [CompletionResult]::new('init-store', 'init-store', [CompletionResultType]::ParameterValue, 'init-store')
@@ -1023,6 +1232,9 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;help;history;end' {
+            break
+        }
+        'atuin;help;history;tail' {
             break
         }
         'atuin;help;history;list' {
@@ -1038,6 +1250,13 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;help;history;dedup' {
+            break
+        }
+        'atuin;help;hook' {
+            [CompletionResult]::new('install', 'install', [CompletionResultType]::ParameterValue, 'Install hooks for an AI agent to capture commands in atuin history')
+            break
+        }
+        'atuin;help;hook;install' {
             break
         }
         'atuin;help;import' {
@@ -1121,7 +1340,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             [CompletionResult]::new('logout', 'logout', [CompletionResultType]::ParameterValue, 'Log out')
             [CompletionResult]::new('delete', 'delete', [CompletionResultType]::ParameterValue, 'Delete your account, and all synced data')
             [CompletionResult]::new('change-password', 'change-password', [CompletionResultType]::ParameterValue, 'Change your password')
-            [CompletionResult]::new('verify', 'verify', [CompletionResultType]::ParameterValue, 'Verify your account')
+            [CompletionResult]::new('link', 'link', [CompletionResultType]::ParameterValue, 'Link your CLI sync account to your Hub account')
             break
         }
         'atuin;help;account;login' {
@@ -1139,7 +1358,7 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
         'atuin;help;account;change-password' {
             break
         }
-        'atuin;help;account;verify' {
+        'atuin;help;account;link' {
             break
         }
         'atuin;help;kv' {
@@ -1275,20 +1494,58 @@ Register-ArgumentCompleter -Native -CommandName 'atuin' -ScriptBlock {
             break
         }
         'atuin;help;daemon' {
+            [CompletionResult]::new('start', 'start', [CompletionResultType]::ParameterValue, 'Start the daemon server')
+            [CompletionResult]::new('status', 'status', [CompletionResultType]::ParameterValue, 'Show the daemon''s current status')
+            [CompletionResult]::new('stop', 'stop', [CompletionResultType]::ParameterValue, 'Stop the daemon gracefully')
+            [CompletionResult]::new('restart', 'restart', [CompletionResultType]::ParameterValue, 'Restart the daemon (stop, then start in background)')
+            break
+        }
+        'atuin;help;daemon;start' {
+            break
+        }
+        'atuin;help;daemon;status' {
+            break
+        }
+        'atuin;help;daemon;stop' {
+            break
+        }
+        'atuin;help;daemon;restart' {
             break
         }
         'atuin;help;default-config' {
             break
         }
-        'atuin;help;server' {
-            [CompletionResult]::new('start', 'start', [CompletionResultType]::ParameterValue, 'Start the server')
-            [CompletionResult]::new('default-config', 'default-config', [CompletionResultType]::ParameterValue, 'Print server example configuration')
+        'atuin;help;config' {
+            [CompletionResult]::new('get', 'get', [CompletionResultType]::ParameterValue, 'Get a configuration value from your config.toml file or after defaults and overrides are applied')
+            [CompletionResult]::new('set', 'set', [CompletionResultType]::ParameterValue, 'Set a configuration value in your config.toml file')
+            [CompletionResult]::new('print', 'print', [CompletionResultType]::ParameterValue, 'Print all configuration values from your config.toml file in TOML format')
             break
         }
-        'atuin;help;server;start' {
+        'atuin;help;config;get' {
             break
         }
-        'atuin;help;server;default-config' {
+        'atuin;help;config;set' {
+            break
+        }
+        'atuin;help;config;print' {
+            break
+        }
+        'atuin;help;ai' {
+            [CompletionResult]::new('init', 'init', [CompletionResultType]::ParameterValue, 'Initialize shell integration')
+            [CompletionResult]::new('inline', 'inline', [CompletionResultType]::ParameterValue, 'Inline completion mode with small TUI overlay')
+            break
+        }
+        'atuin;help;ai;init' {
+            break
+        }
+        'atuin;help;ai;inline' {
+            break
+        }
+        'atuin;help;hex' {
+            [CompletionResult]::new('init', 'init', [CompletionResultType]::ParameterValue, 'Print shell code to initialize atuin-hex on shell startup')
+            break
+        }
+        'atuin;help;hex;init' {
             break
         }
         'atuin;help;uuid' {
