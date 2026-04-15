@@ -115,12 +115,8 @@ return {
 
         -- use a release tag to download pre-built binaries
         version = "1.*",
-
-        ---@module 'blink.cmp'
-        ---@type blink.cmp.Config
         opts = {
             keymap = require("configs.blink.mappings"),
-
             appearance = {
                 -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
                 -- Adjusts spacing to ensure icons are aligned
@@ -156,7 +152,6 @@ return {
             completion = {
                 -- Fuzzy match on text before + after cursor
                 keyword = { range = "full" }, -- prefix
-
                 ghost_text = {
                     enabled = true,
                     show_without_selection = true,
@@ -185,11 +180,9 @@ return {
                     draw = {
                         align_to = "cursor",
                         columns = { { "item_idx" }, { "kind_icon" }, { "label", "label_description", gap = 1 } },
-
                         -- This is the default but being explicit :)
                         snippet_indicator = "~",
                         treesitter = { "lsp" },
-
                         components = {
                             item_idx = {
                                 text = function(ctx)
@@ -197,7 +190,6 @@ return {
                                 end,
                                 highlight = "BlinkCmpItemIdx", -- optional
                             },
-
                             kind_icon = {
                                 text = cb.get_kind_icon_text,
 
@@ -207,9 +199,7 @@ return {
                     },
                 },
             },
-
             sources = require("configs.blink.sources"),
-
             fuzzy = {
                 implementation = "prefer_rust_with_warning",
                 sorts = function()
@@ -221,7 +211,6 @@ return {
                 end,
             },
             enabled = cb.is_enabled,
-
             cmdline = {
                 keymap = {
                     -- https://cmp.saghen.dev/modes/cmdline.html#keymap-preset
