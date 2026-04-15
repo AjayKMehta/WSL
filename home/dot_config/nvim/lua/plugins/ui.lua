@@ -13,13 +13,24 @@ return {
         "lukas-reineke/indent-blankline.nvim",
         enabled = vim.g.use_indent_blankline,
         main = "ibl",
+        event = "User FilePost",
         opts = {
             whitespace = {
                 highlight = { "CursorColumn", "Whitespace" },
                 remove_blankline_trail = false,
             },
-            scope = { enabled = true },
+            indent = { char = "│", highlight = "IblChar" },
+            scope = { char = "│", highlight = "IblScopeChar" },
         },
+        config = function(_, opts)
+            dofile(vim.g.base46_cache .. "blankline")
+
+            local hooks = require("ibl.hooks")
+            hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+            require("ibl").setup(opts)
+
+            dofile(vim.g.base46_cache .. "blankline")
+        end,
     },
     {
         -- Use this instead of indent-blankline
