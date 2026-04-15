@@ -3,8 +3,6 @@ local load_config = require("utils").load_config
 local HEIGHT_RATIO = 0.7
 local WIDTH_RATIO = 0.4
 
-local QuickfixDecorator = require("quickfix-decorator")
-
 vim.cmd("packadd nvim.difftool")
 vim.cmd("packadd nvim.undotree")
 
@@ -107,7 +105,6 @@ return {
                     "Diagnostics",
                     "Copied",
                     "Cut",
-                    QuickfixDecorator,
                 },
                 highlight_opened_files = "name",
                 highlight_git = "icon",
