@@ -1,6 +1,8 @@
 local map_desc = require("utils.mappings").map_desc
 local f = require("flash")
 
+dofile(vim.g.base46_cache .. "flash")
+
 local config = {
     jump = {
         autojump = true,
@@ -80,6 +82,8 @@ local config = {
         },
     },
 }
+
+f.setup(config)
 
 map_desc("n", "<leader>fs", function()
     require("flash").jump()
@@ -172,5 +176,3 @@ map_desc({ "n", "x", "o" }, "<c-space>", function()
         }
     })
 end, "Flash TS incremental selection")
-
-dofile(vim.g.base46_cache .. "flash")
