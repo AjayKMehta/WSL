@@ -111,6 +111,32 @@ return {
             })
         end,
     },
+    {
+        "hyperb1iss/silkcircuit",
+        lazy = true,
+        opts = {
+            transparent = false,
+            terminal_colors = true,
+            dim_inactive = false,
+            variant = "neon", -- "neon" | "vibrant" | "soft" | "glow" | "dawn"
+
+            styles = {
+                comments = { italic = true },
+                keywords = { bold = true },
+                functions = { bold = true, italic = true },
+                variables = {},
+                strings = { italic = true },
+            },
+
+            integrations = {
+                telescope = true, -- all auto-detected by default
+                neotree = true,
+                notify = true,
+                cmp = true,
+                mini = true,
+            },
+        },
+    },
     { "savq/melange-nvim" },
     {
         "nvzone/minty",
