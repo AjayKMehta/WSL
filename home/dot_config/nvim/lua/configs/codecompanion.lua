@@ -555,3 +555,23 @@ vim.api.nvim_create_autocmd("User", {
 
 -- Expand 'CC' into 'CodeCompanion' in the command line
 vim.cmd([[cab CC CodeCompanion]])
+
+-- https://codecompanion.olimorris.dev/configuration/chat-buffer#checkpoints
+vim.api.nvim_create_autocmd("User", {
+    pattern = "CodeCompanionChatCreated",
+    callback = function(args)
+        local chat = cc.buf_get_chat(args.data.bufnr)
+        chat:add_callback("on_checkpoint", function(c, data)
+            local context_window = data.adapter.meta and data.adapter.meta.context_window
+            if not context_window then
+                return
+            end
+
+            local usage = data.estimated_tokens / context_window
+            if usage > 0.8 then
+                vim.notify(string.format("Context window %.0f%% full", usage * 100), vim.log.levels.WARN)
+                -- Compact data.messages in-place here
+            end
+        end)
+    end,
+})
