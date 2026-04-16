@@ -12,8 +12,6 @@ return {
         lazy = false,
         version = false, -- last release is way too old
     },
-    -- NVChad loads this by default.
-    { "neovim/nvim-lspconfig", enabled = false },
     {
         "mason-org/mason.nvim",
         opts = {

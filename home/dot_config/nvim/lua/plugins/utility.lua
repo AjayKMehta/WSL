@@ -144,7 +144,9 @@ return {
                 python = "python3 -u",
                 r = "Rscript",
                 cs = function(...)
-                    local root_dir = require("lspconfig").util.root_pattern("*.csproj")(vim.loop.cwd())
+                    local root_dir = vim.fs.root(0, function(fname, _)
+                        return fname:match("%.csproj$") ~= nil
+                    end)
                     return "cd " .. root_dir .. " && dotnet run$end"
                 end,
                 ps1 = "pwsh -f $file",
@@ -909,7 +911,7 @@ return {
     },
     {
         "folke/which-key.nvim",
-        keys = { "<leader>", "<localleader>","<c-w>", '"', "'", "`", "c", "v", "g" },
+        keys = { "<leader>", "<localleader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
         cmd = "WhichKey",
         config = function()
             dofile(vim.g.base46_cache .. "whichkey")
