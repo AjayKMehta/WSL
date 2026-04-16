@@ -76,6 +76,8 @@ vim.g.use_blink = false
 -- If true, use roslyn.nvim instead of easy-dotnet LSP
 vim.g.use_roslyn_nvim = true
 
+require("options")
+
 -- load plugins
 local lazy_config = require("configs.lazy")
 require("lazy").setup({
