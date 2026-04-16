@@ -64,6 +64,38 @@ url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.1/lua
 checksum = "sha256:0b0c4ac671629269b847e13239b70ac7271a562e0253c789f590c8a8985addea"
 url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.1/lua-language-server-3.18.1-win32-x64.zip"
 
+[[tools."aqua:LuaLS/lua-language-server"]]
+version = "3.18.2"
+backend = "aqua:LuaLS/lua-language-server"
+
+[tools."aqua:LuaLS/lua-language-server"."platforms.linux-arm64"]
+checksum = "sha256:273af33f26f4a1143f27c96d9f9e1188aba619c71e0807042134f66b4bd27f24"
+url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.2/lua-language-server-3.18.2-linux-arm64.tar.gz"
+
+[tools."aqua:LuaLS/lua-language-server"."platforms.linux-arm64-musl"]
+checksum = "sha256:273af33f26f4a1143f27c96d9f9e1188aba619c71e0807042134f66b4bd27f24"
+url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.2/lua-language-server-3.18.2-linux-arm64.tar.gz"
+
+[tools."aqua:LuaLS/lua-language-server"."platforms.linux-x64"]
+checksum = "sha256:ca71415dd19f19e30aaa35a4915aefca9fdb5fec31b98331cc3d77f778d539c5"
+url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.2/lua-language-server-3.18.2-linux-x64.tar.gz"
+
+[tools."aqua:LuaLS/lua-language-server"."platforms.linux-x64-musl"]
+checksum = "sha256:ca71415dd19f19e30aaa35a4915aefca9fdb5fec31b98331cc3d77f778d539c5"
+url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.2/lua-language-server-3.18.2-linux-x64.tar.gz"
+
+[tools."aqua:LuaLS/lua-language-server"."platforms.macos-arm64"]
+checksum = "sha256:cec99d70b1f612acec4a10a79a03664e3aa0c229d4d8a586cb3f928ec37d509e"
+url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.2/lua-language-server-3.18.2-darwin-arm64.tar.gz"
+
+[tools."aqua:LuaLS/lua-language-server"."platforms.macos-x64"]
+checksum = "sha256:e26cfefe423dd7326fc7c649539e4d4aaa4f35f34d2fefd8af2ed7090b72c556"
+url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.2/lua-language-server-3.18.2-darwin-x64.tar.gz"
+
+[tools."aqua:LuaLS/lua-language-server"."platforms.windows-x64"]
+checksum = "sha256:a4439a8f5e8e9e6505c11f045a7bf45db602124a1e246371c1dbe34924f3cf71"
+url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.2/lua-language-server-3.18.2-win32-x64.zip"
+
 [[tools."aqua:Wilfred/difftastic"]]
 version = "0.68.0"
 backend = "aqua:Wilfred/difftastic"
@@ -314,38 +346,6 @@ url = "https://github.com/jdx/usage/releases/download/v3.2.0/usage-universal-app
 [tools."aqua:jdx/usage"."platforms.windows-x64"]
 checksum = "sha256:9aba23a5d549695cfb5f034849e143205ccf972e5b5d42c24acd32e084d7a165"
 url = "https://github.com/jdx/usage/releases/download/v3.2.0/usage-x86_64-pc-windows-msvc.zip"
-
-[[tools."aqua:jesseduffield/lazygit"]]
-version = "0.61.0"
-backend = "aqua:jesseduffield/lazygit"
-
-[tools."aqua:jesseduffield/lazygit"."platforms.linux-arm64"]
-checksum = "sha256:7c3b1594fbb5ca29c17f875c0240849dd924f29bdeaf819ef26ae2107ccad84c"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.0/lazygit_0.61.0_linux_arm64.tar.gz"
-
-[tools."aqua:jesseduffield/lazygit"."platforms.linux-arm64-musl"]
-checksum = "sha256:7c3b1594fbb5ca29c17f875c0240849dd924f29bdeaf819ef26ae2107ccad84c"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.0/lazygit_0.61.0_linux_arm64.tar.gz"
-
-[tools."aqua:jesseduffield/lazygit"."platforms.linux-x64"]
-checksum = "sha256:4a9702b346283a23a6919c9424617e14788ac00e9cd3c9be266bac48cc6de8eb"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.0/lazygit_0.61.0_linux_x86_64.tar.gz"
-
-[tools."aqua:jesseduffield/lazygit"."platforms.linux-x64-musl"]
-checksum = "sha256:4a9702b346283a23a6919c9424617e14788ac00e9cd3c9be266bac48cc6de8eb"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.0/lazygit_0.61.0_linux_x86_64.tar.gz"
-
-[tools."aqua:jesseduffield/lazygit"."platforms.macos-arm64"]
-checksum = "sha256:7dc684c3c40812de72f7852222d415fecb1c4dae2058b23e5a3c4a5341dc6e9f"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.0/lazygit_0.61.0_darwin_arm64.tar.gz"
-
-[tools."aqua:jesseduffield/lazygit"."platforms.macos-x64"]
-checksum = "sha256:196232de7647094bb51681afb3fc3076d5b4eb70ae99b9cec145462b13aab54f"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.0/lazygit_0.61.0_darwin_x86_64.tar.gz"
-
-[tools."aqua:jesseduffield/lazygit"."platforms.windows-x64"]
-checksum = "sha256:26bb374ee7f3c6e52627262c7f8cc96ab23f96dfd3ef95b3d485d2ef9b842764"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.0/lazygit_0.61.0_windows_x86_64.zip"
 
 [[tools."aqua:jesseduffield/lazygit"]]
 version = "0.61.1"
