@@ -79,16 +79,6 @@ vim.g.use_roslyn_nvim = true
 -- load plugins
 local lazy_config = require("configs.lazy")
 require("lazy").setup({
-    {
-        "NvChad/NvChad",
-        lazy = false,
-        branch = "v2.5",
-        -- Default plugins: https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/plugins/init.lua
-        import = "nvchad.plugins",
-        config = function()
-            require("options")
-        end,
-    },
     { import = "plugins" },
 }, lazy_config)
 
