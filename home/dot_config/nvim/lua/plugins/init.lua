@@ -14,6 +14,7 @@ return {
     },
     {
         "mason-org/mason.nvim",
+        cmd = { "Mason", "MasonInstall", "MasonUpdate" },
         opts = {
             -- https://github.com/williamboman/nvim-lsp-installer/discussions/509#discussioncomment-4009039
             PATH = "prepend", -- "skip" seems to cause the spawning error
@@ -62,6 +63,7 @@ return {
     },
     {
         "nvim-tree/nvim-tree.lua",
+        cmd = { "NvimTreeToggle", "NvimTreeFocus" },
         opts = {
             filters = {
                 -- https://github.com/nvim-tree/nvim-tree.lua/pull/2706
@@ -87,10 +89,7 @@ return {
                     max = vim.diagnostic.severity.ERROR,
                 },
             },
-
-            modified = {
-                enable = true,
-            },
+            modified = { enable = true },
             renderer = {
                 root_folder_label = ":~:s?$?/..?",
                 add_trailing = true,
@@ -162,9 +161,7 @@ return {
                         id = "<file>" .. path .. "</file>",
                         path = path,
                         source = "codecompanion.strategies.chat.slash_commands.file",
-                        opts = {
-                            pinned = pinned,
-                        },
+                        opts = { pinned = pinned },
                     })
                 end
                 -- Function to recursively add files in a directory to chat references
@@ -344,7 +341,6 @@ return {
                 },
                 -- TODO: Switch to adaptive width?
                 -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#toggle-adaptive-width
-
                 width = function()
                     return require("utils").get_width(WIDTH_RATIO, nil, nil)
                 end,
@@ -364,7 +360,7 @@ return {
         cmd = { "ToggleTerm", "ToggleTermAll", "TermExec", "TermNew" },
         config = load_config("toggleterm"),
     },
-
+    { "nvchad/ui", lazy = false },
     { "nvzone/volt", lazy = true },
     {
         "nvzone/menu",
