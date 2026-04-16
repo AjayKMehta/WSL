@@ -34,36 +34,7 @@ return {
                 desc = "Change a surrounding pair, putting replacements on new lines",
             },
         },
-        opts = {
-            surrounds = {
-                -- https://github.com/kylechui/nvim-surround/discussions/53#discussioncomment-8593596
-                -- Create generic type: ysiwg on String, enter Foo: Foo<String>
-                g = {
-                    add = function()
-                        local config = require("nvim-surround.config")
-                        local result = config.get_input("Enter the generic name: ")
-                        if result then
-                            return { { result .. "<" }, { ">" } }
-                        end
-                    end,
-                    find = function()
-                        local config = require("nvim-surround.config")
-                        return config.get_selection({ node = "generic_type" })
-                    end,
-                    delete = "^(.-<)().-(>)()$",
-                    change = {
-                        target = "^(.-<)().-(>)()$",
-                        replacement = function()
-                            local config = require("nvim-surround.config")
-                            local result = config.get_input("Enter the generic name: ")
-                            if result then
-                                return { { result .. "<" }, { ">" } }
-                            end
-                        end,
-                    },
-                },
-            },
-        },
+        config = load_config("nvim_surround"),
     },
     {
         "max397574/better-escape.nvim",
@@ -97,76 +68,7 @@ return {
     {
         "y3owk1n/undo-glow.nvim",
         event = { "VeryLazy" },
-        opts = {
-            animation = {
-                enabled = true,
-                duration = 300,
-                animation_type = "zoom",
-            },
-            highlights = {
-                undo = {
-                    hl_color = { bg = "#DD0000" },
-                },
-                redo = {
-                    hl_color = { bg = "#59dc1c" },
-                },
-                yank = {
-                    hl_color = { bg = "#F1D13C" },
-                },
-                paste = {
-                    hl_color = { bg = "#85496E" },
-                },
-                comment = {
-                    hl_color = { bg = "#605640" },
-                },
-                cursor = {
-                    hl_color = { bg = "#FA8D06" },
-                },
-            },
-            priority = 4096, -- so that it will work with render-markdown.nvim
-        },
-        config = function(_, opts)
-            local undo_glow = require("undo-glow")
-            local m = require("utils.mappings")
-
-            undo_glow.setup(opts)
-
-            m.map_desc("n", "u", undo_glow.undo, "Undo with highlight")
-            m.map_desc("n", "U", undo_glow.redo, "Redo with highlight")
-            m.map_desc("n", "p", undo_glow.paste_below, "Paste below with highlight")
-            m.map_desc("n", "P", undo_glow.paste_above, "Paste above with highlight")
-            -- Don't create keymaps for search because interfere with flash.nvim.
-
-            m.map_desc_dynamic({ "n", "x" }, "gc", function()
-                -- Restore cursor after comment
-                local pos = vim.fn.getpos(".")
-                vim.schedule(function()
-                    vim.fn.setpos(".", pos)
-                end)
-                return undo_glow.comment()
-            end, "Toggle comment with highlight")
-
-            m.map_desc("o", "gc", undo_glow.comment_textobject, "Comment textobject with highlight")
-
-            m.map_desc_dynamic("n", "gcc", undo_glow.comment_line, "Toggle comment line with highlight")
-
-            vim.api.nvim_create_autocmd("TextYankPost", {
-                desc = "Highlight when yanking (copying) text",
-                callback = require("undo-glow").yank,
-            })
-
-            vim.api.nvim_create_autocmd("CursorMoved", {
-                desc = "Highlight when cursor moved significantly",
-                callback = function()
-                    require("undo-glow").cursor_moved({
-                        animation = {
-                            animation_type = "slide",
-                        },
-                        { "mason", "lazy", "help", "git" },
-                    })
-                end,
-            })
-        end,
+        config = load_config("undo_glow"),
     },
     {
         "smoka7/multicursors.nvim",
@@ -175,39 +77,6 @@ return {
             "nvim-treesitter/nvim-treesitter",
             "nvimtools/hydra.nvim",
         },
-        opts = function()
-            local U = require("multicursors.utils")
-            return {
-                -- Uncomment if want to show in lualine instead
-                -- hint_config = false,
-                hint_config = {
-                    float_opts = {
-                        border = "none",
-                    },
-                    position = "bottom-right",
-                },
-                generate_hints = {
-                    normal = true,
-                    insert = true,
-                    extend = true,
-                    config = {
-                        column_count = 1,
-                    },
-                },
-                normal_keys = {
-                    ["/"] = {
-                        method = function()
-                            U.call_on_selections(function(selection)
-                                vim.api.nvim_win_set_cursor(0, { selection.row + 1, selection.col + 1 })
-                                local line_count = selection.end_row - selection.row + 1
-                                vim.cmd("normal " .. line_count .. "gcc")
-                            end)
-                        end,
-                        opts = { desc = "comment selections" },
-                    },
-                },
-            }
-        end,
         cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
         keys = {
             {
@@ -223,6 +92,7 @@ return {
                 desc = "Create a selection for selected text or word under the cursor",
             },
         },
+        config = load_config("multicursors"),
     },
     -- Copy data to system clipboard only when you press 'y'. 'd', 'x' will be filtered out.
     {
