@@ -259,4 +259,17 @@ return {
             require("peacock").setup()
         end,
     },
+    {
+        "nvim-tree/nvim-web-devicons",
+        config = function()
+            dofile(vim.g.base46_cache .. "devicons")
+            require("nvim-web-devicons").setup({
+                override = {
+                    default_icon = { icon = "󰈚", name = "Default" },
+                    lock = { icon = "󰌾", name = "lock" },
+                    ["robots.txt"] = { icon = "󰚩", name = "robots" },
+                },
+            })
+        end,
+    },
 }
