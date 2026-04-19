@@ -168,10 +168,9 @@ M.setup = function(theme)
         -- },
         sections = {
             lualine_a = {
-                { "mason" },
                 {
                     "diagnostics",
-                    sources = { "nvim_lsp" },
+                    sources = { "nvim_diagnostic", "nvim_lsp" },
 
                     -- Displays diagnostics for the defined severity types
                     sections = { "error", "warn", "info", "hint" },
@@ -250,6 +249,17 @@ M.setup = function(theme)
                     on_click = function()
                         vim.cmd("NvimTreeToggle")
                     end,
+                    {
+                        -- Show recording macro indicator
+                        function()
+                            local reg = vim.fn.reg_recording()
+                            if reg ~= "" then
+                                return "⏺ @" .. reg
+                            end
+                            return ""
+                        end,
+                        color = { fg = "#ff00ff", gui = "bold" },
+                    },
                 },
                 {
                     function()
@@ -283,9 +293,9 @@ M.setup = function(theme)
                     ignore_lsp = { "GitHub Copilot" },
                     on_click = function(num_clicks, button, modifiers)
                         if button == "l" then
-                            vim.cmd("LspInfo")
-                        else
                             require("trouble").toggle("lsp_document_symbols")
+                        else
+                            vim.cmd("checkhealth lsp")
                         end
                     end,
                 },
