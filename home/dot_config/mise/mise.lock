@@ -33,38 +33,6 @@ checksum = "sha256:124510b94b6baa3380d051fdf4650eaa80a302c876d611e9dba0b2e18d874
 url = "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-x86_64-pc-windows-msvc.zip"
 
 [[tools."aqua:LuaLS/lua-language-server"]]
-version = "3.18.1"
-backend = "aqua:LuaLS/lua-language-server"
-
-[tools."aqua:LuaLS/lua-language-server"."platforms.linux-arm64"]
-checksum = "sha256:7ee5d247c7e4eb61afcdc714760eeb2a1e8b31941d686d438cc1e28f76228c5e"
-url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.1/lua-language-server-3.18.1-linux-arm64.tar.gz"
-
-[tools."aqua:LuaLS/lua-language-server"."platforms.linux-arm64-musl"]
-checksum = "sha256:7ee5d247c7e4eb61afcdc714760eeb2a1e8b31941d686d438cc1e28f76228c5e"
-url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.1/lua-language-server-3.18.1-linux-arm64.tar.gz"
-
-[tools."aqua:LuaLS/lua-language-server"."platforms.linux-x64"]
-checksum = "sha256:0c4a8a2b085df2e5cb56f075867eebe643c09d6fd3d998c70f9c3b7ab93f29dd"
-url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.1/lua-language-server-3.18.1-linux-x64.tar.gz"
-
-[tools."aqua:LuaLS/lua-language-server"."platforms.linux-x64-musl"]
-checksum = "sha256:0c4a8a2b085df2e5cb56f075867eebe643c09d6fd3d998c70f9c3b7ab93f29dd"
-url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.1/lua-language-server-3.18.1-linux-x64.tar.gz"
-
-[tools."aqua:LuaLS/lua-language-server"."platforms.macos-arm64"]
-checksum = "sha256:ed4f00e24e07a142886460786dced32a682c2d2bce3e0d1eabeb3c27443d2adc"
-url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.1/lua-language-server-3.18.1-darwin-arm64.tar.gz"
-
-[tools."aqua:LuaLS/lua-language-server"."platforms.macos-x64"]
-checksum = "sha256:2d253439f6d3765e66ede9c643eca3577b8db7bc931560388a05a6de92f5c259"
-url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.1/lua-language-server-3.18.1-darwin-x64.tar.gz"
-
-[tools."aqua:LuaLS/lua-language-server"."platforms.windows-x64"]
-checksum = "sha256:0b0c4ac671629269b847e13239b70ac7271a562e0253c789f590c8a8985addea"
-url = "https://github.com/LuaLS/lua-language-server/releases/download/3.18.1/lua-language-server-3.18.1-win32-x64.zip"
-
-[[tools."aqua:LuaLS/lua-language-server"]]
 version = "3.18.2"
 backend = "aqua:LuaLS/lua-language-server"
 
@@ -161,42 +129,42 @@ checksum = "sha256:17f3bfb758b3c18426a89060344d9569f4344b0a606d42b60bd89792f996e
 url = "https://github.com/anchore/grype/releases/download/v0.111.0/grype_0.111.0_windows_amd64.zip"
 
 [[tools."aqua:cli/cli"]]
-version = "2.89.0"
+version = "2.90.0"
 backend = "aqua:cli/cli"
 
 [tools."aqua:cli/cli"."platforms.linux-arm64"]
-checksum = "sha256:9e64a623dfc242990aa5d9b3f507111149c4282f66b68eaad1dc79eeb13b9ce5"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_linux_arm64.tar.gz"
+checksum = "sha256:1139e1ad912fcddb5ef4b957530184c2c30d9937ff65ff4e641fbf6ca5f28c7c"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_linux_arm64.tar.gz"
 provenance = "github-attestations"
 
 [tools."aqua:cli/cli"."platforms.linux-arm64-musl"]
-checksum = "sha256:9e64a623dfc242990aa5d9b3f507111149c4282f66b68eaad1dc79eeb13b9ce5"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_linux_arm64.tar.gz"
+checksum = "sha256:1139e1ad912fcddb5ef4b957530184c2c30d9937ff65ff4e641fbf6ca5f28c7c"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_linux_arm64.tar.gz"
 provenance = "github-attestations"
 
 [tools."aqua:cli/cli"."platforms.linux-x64"]
-checksum = "sha256:d0422caade520530e76c1c558da47daebaa8e1203d6b7ff10ad7d6faba3490d8"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_linux_amd64.tar.gz"
+checksum = "sha256:b2aef7b23ec6899bf27f37a32c57a7935d0a178568ac33dc9bb03842f724195a"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_linux_amd64.tar.gz"
 provenance = "github-attestations"
 
 [tools."aqua:cli/cli"."platforms.linux-x64-musl"]
-checksum = "sha256:d0422caade520530e76c1c558da47daebaa8e1203d6b7ff10ad7d6faba3490d8"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_linux_amd64.tar.gz"
+checksum = "sha256:b2aef7b23ec6899bf27f37a32c57a7935d0a178568ac33dc9bb03842f724195a"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_linux_amd64.tar.gz"
 provenance = "github-attestations"
 
 [tools."aqua:cli/cli"."platforms.macos-arm64"]
-checksum = "sha256:2423d02ec0a2094898c378703a1b28a5846c08700f87461363857cb8cb3fda94"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_macOS_arm64.zip"
+checksum = "sha256:82a6acdc3f445dc316b70e1bc15b9b7c4b4e26fd30b04de461a7829ad6c6e97f"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_macOS_arm64.zip"
 provenance = "github-attestations"
 
 [tools."aqua:cli/cli"."platforms.macos-x64"]
-checksum = "sha256:862e21cac6a71f81e7cd6e5127e3cd344f8537441ad2db94cd208319dd17b6e9"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_macOS_amd64.zip"
+checksum = "sha256:e44d23dd5f0f8534d7a9989177f2c60ac8ffbcdfc6a0a6e5d1f23c4a3b83a9e0"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_macOS_amd64.zip"
 provenance = "github-attestations"
 
 [tools."aqua:cli/cli"."platforms.windows-x64"]
-checksum = "sha256:f3326f6406c98c99701b257d77e2b040eedf83d0176c2c2e9809aa339ceb467e"
-url = "https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_windows_amd64.zip"
+checksum = "sha256:73fcae688eb64ae67828536c9be90db1e5be3f11691a6fa1c1e5418fd24ee10b"
+url = "https://github.com/cli/cli/releases/download/v2.90.0/gh_2.90.0_windows_amd64.zip"
 provenance = "github-attestations"
 
 [[tools."aqua:dandavison/delta"]]
@@ -380,36 +348,36 @@ checksum = "sha256:6024f3094904caaf9b9672b801cba31a65ad36729a0d2c5a03c432f739c06
 url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.1/lazygit_0.61.1_windows_x86_64.zip"
 
 [[tools."aqua:kubernetes/kubernetes/kubectl"]]
-version = "1.35.3"
+version = "1.35.4"
 backend = "aqua:kubernetes/kubernetes/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.linux-arm64"]
-checksum = "sha256:6f0cd088a82dde5d5807122056069e2fac4ed447cc518efc055547ae46525f14"
-url = "https://dl.k8s.io/v1.35.3/bin/linux/arm64/kubectl"
+checksum = "sha256:6a5a4cc4e396d7626a7a693a3044b51c75520f81db30fe6816c2554e53be336f"
+url = "https://dl.k8s.io/v1.35.4/bin/linux/arm64/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.linux-arm64-musl"]
-checksum = "sha256:6f0cd088a82dde5d5807122056069e2fac4ed447cc518efc055547ae46525f14"
-url = "https://dl.k8s.io/v1.35.3/bin/linux/arm64/kubectl"
+checksum = "sha256:6a5a4cc4e396d7626a7a693a3044b51c75520f81db30fe6816c2554e53be336f"
+url = "https://dl.k8s.io/v1.35.4/bin/linux/arm64/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.linux-x64"]
-checksum = "sha256:fd31c7d7129260e608f6faf92d5984c3267ad0b5ead3bced2fe125686e286ad6"
-url = "https://dl.k8s.io/v1.35.3/bin/linux/amd64/kubectl"
+checksum = "sha256:b529430df69a688fd61b64ad2299edb5fd71cb58be2a4779dba624c7d3510efd"
+url = "https://dl.k8s.io/v1.35.4/bin/linux/amd64/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.linux-x64-musl"]
-checksum = "sha256:fd31c7d7129260e608f6faf92d5984c3267ad0b5ead3bced2fe125686e286ad6"
-url = "https://dl.k8s.io/v1.35.3/bin/linux/amd64/kubectl"
+checksum = "sha256:b529430df69a688fd61b64ad2299edb5fd71cb58be2a4779dba624c7d3510efd"
+url = "https://dl.k8s.io/v1.35.4/bin/linux/amd64/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.macos-arm64"]
-checksum = "sha256:280651239d84bab214ba83403666bf6976a5fa0dbdb41404f26eb6f276d34963"
-url = "https://dl.k8s.io/v1.35.3/bin/darwin/arm64/kubectl"
+checksum = "sha256:ec644a2473b64b486987f695dfb1867963ce6d42d267b86e944585a546f92b5d"
+url = "https://dl.k8s.io/v1.35.4/bin/darwin/arm64/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.macos-x64"]
-checksum = "sha256:2f339b1eae2e1792ec08da281b37afbeee94f70bed6b7398e7efd81ba08f8d37"
-url = "https://dl.k8s.io/v1.35.3/bin/darwin/amd64/kubectl"
+checksum = "sha256:dddb01bddb96f78e48e33105ccfa2feedff585a8b2e3b812f5d0f64c7403710a"
+url = "https://dl.k8s.io/v1.35.4/bin/darwin/amd64/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.windows-x64"]
-checksum = "sha256:6c367f9c34be9a13a94eb523dd62006973e1d051adea7d6bcf800dde3f6e84df"
-url = "https://dl.k8s.io/v1.35.3/bin/windows/amd64/kubectl.exe"
+checksum = "sha256:d77d03309bd80de56dafe8ca59ff6f2076e2ed4ee61c6a94657a4b6e945210e6"
+url = "https://dl.k8s.io/v1.35.4/bin/windows/amd64/kubectl.exe"
 
 [[tools."aqua:mikefarah/yq"]]
 version = "4.52.5"
@@ -442,6 +410,38 @@ url = "https://github.com/mikefarah/yq/releases/download/v4.52.5/yq_darwin_amd64
 [tools."aqua:mikefarah/yq"."platforms.windows-x64"]
 checksum = "sha256:47594981f3848a4b4447494adeca9555f908f7cf0a89c4da3fd0243a4631da1c"
 url = "https://github.com/mikefarah/yq/releases/download/v4.52.5/yq_windows_amd64.exe"
+
+[[tools."aqua:mikefarah/yq"]]
+version = "4.53.2"
+backend = "aqua:mikefarah/yq"
+
+[tools."aqua:mikefarah/yq"."platforms.linux-arm64"]
+checksum = "sha256:03061b2a50c7a498de2bbb92d7cb078ce433011f085a4994117c2726be4106ea"
+url = "https://github.com/mikefarah/yq/releases/download/v4.53.2/yq_linux_arm64"
+
+[tools."aqua:mikefarah/yq"."platforms.linux-arm64-musl"]
+checksum = "sha256:03061b2a50c7a498de2bbb92d7cb078ce433011f085a4994117c2726be4106ea"
+url = "https://github.com/mikefarah/yq/releases/download/v4.53.2/yq_linux_arm64"
+
+[tools."aqua:mikefarah/yq"."platforms.linux-x64"]
+checksum = "sha256:d56bf5c6819e8e696340c312bd70f849dc1678a7cda9c2ad63eebd906371d56b"
+url = "https://github.com/mikefarah/yq/releases/download/v4.53.2/yq_linux_amd64"
+
+[tools."aqua:mikefarah/yq"."platforms.linux-x64-musl"]
+checksum = "sha256:d56bf5c6819e8e696340c312bd70f849dc1678a7cda9c2ad63eebd906371d56b"
+url = "https://github.com/mikefarah/yq/releases/download/v4.53.2/yq_linux_amd64"
+
+[tools."aqua:mikefarah/yq"."platforms.macos-arm64"]
+checksum = "sha256:541ba2287560df70f561955e2d7f7e1cd00cf2a15a884f6b5c87a4bfa887bc07"
+url = "https://github.com/mikefarah/yq/releases/download/v4.53.2/yq_darwin_arm64"
+
+[tools."aqua:mikefarah/yq"."platforms.macos-x64"]
+checksum = "sha256:616b0a0f6a5b79d746f05a169c2b9bb40dee00c605ef165b9a1c1681bba738ac"
+url = "https://github.com/mikefarah/yq/releases/download/v4.53.2/yq_darwin_amd64"
+
+[tools."aqua:mikefarah/yq"."platforms.windows-x64"]
+checksum = "sha256:2aee32f1de46a20672f48c25df3018839798bd509143f2ce05fdab1550ff5592"
+url = "https://github.com/mikefarah/yq/releases/download/v4.53.2/yq_windows_amd64.exe"
 
 [[tools."aqua:mintoolkit/mint"]]
 version = "1.41.8"
@@ -605,6 +605,38 @@ url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.1/chezmoi_2.70
 [tools."aqua:twpayne/chezmoi"."platforms.windows-x64"]
 checksum = "sha256:dfd54ea02f4290dd7d072c2c932efcbdbe3af01035f22315986654711c6d97bd"
 url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.1/chezmoi_2.70.1_windows_amd64.zip"
+
+[[tools."aqua:twpayne/chezmoi"]]
+version = "2.70.2"
+backend = "aqua:twpayne/chezmoi"
+
+[tools."aqua:twpayne/chezmoi"."platforms.linux-arm64"]
+checksum = "sha256:99e402af70f457dbf3ad545f62f78892375f2d9361db1c9c354e6d924a3b4fae"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.2/chezmoi_2.70.2_linux_arm64.tar.gz"
+
+[tools."aqua:twpayne/chezmoi"."platforms.linux-arm64-musl"]
+checksum = "sha256:99e402af70f457dbf3ad545f62f78892375f2d9361db1c9c354e6d924a3b4fae"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.2/chezmoi_2.70.2_linux_arm64.tar.gz"
+
+[tools."aqua:twpayne/chezmoi"."platforms.linux-x64"]
+checksum = "sha256:dda79928bf8428c1bb3d48497be00237a6ecc95a2bef7ded573608436ec7270b"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.2/chezmoi_2.70.2_linux_amd64.tar.gz"
+
+[tools."aqua:twpayne/chezmoi"."platforms.linux-x64-musl"]
+checksum = "sha256:dda79928bf8428c1bb3d48497be00237a6ecc95a2bef7ded573608436ec7270b"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.2/chezmoi_2.70.2_linux_amd64.tar.gz"
+
+[tools."aqua:twpayne/chezmoi"."platforms.macos-arm64"]
+checksum = "sha256:30dd21291a9d623fd334d83d97313660beea86f0053f483a30dbbb7a0d5b78ba"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.2/chezmoi_2.70.2_darwin_arm64.tar.gz"
+
+[tools."aqua:twpayne/chezmoi"."platforms.macos-x64"]
+checksum = "sha256:e421d3941db71242350afe5759e2cc12036b3edc14b9370b51df9109f4065ac5"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.2/chezmoi_2.70.2_darwin_amd64.tar.gz"
+
+[tools."aqua:twpayne/chezmoi"."platforms.windows-x64"]
+checksum = "sha256:0dec4f62a04c203da809c670b11c4271315ba1dc3f5d5571883c9d7a6f45bec6"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.2/chezmoi_2.70.2_windows_amd64.zip"
 
 [[tools."aqua:zoxide"]]
 version = "0.9.9"
@@ -789,42 +821,42 @@ checksum = "sha256:b2be80531c6babc8d4e0e6ca95773d58118a2e1582ae006aace08dbc55503
 url = "https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Windows_x86_64.zip"
 
 [[tools.lefthook]]
-version = "2.1.5"
+version = "2.1.6"
 backend = "aqua:evilmartians/lefthook"
 
 [tools.lefthook."platforms.linux-arm64"]
-checksum = "sha256:0823d67541e34d4530d678a9492dba8e1edcfc19cbdbc6d28014cb97a8522c36"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.5/lefthook_2.1.5_Linux_aarch64.gz"
+checksum = "sha256:f85cc031da8e3571418170ab53f1e6e184a086b58683e13660bd5248974159a4"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_Linux_aarch64.gz"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.linux-arm64-musl"]
-checksum = "sha256:0823d67541e34d4530d678a9492dba8e1edcfc19cbdbc6d28014cb97a8522c36"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.5/lefthook_2.1.5_Linux_aarch64.gz"
+checksum = "sha256:f85cc031da8e3571418170ab53f1e6e184a086b58683e13660bd5248974159a4"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_Linux_aarch64.gz"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.linux-x64"]
-checksum = "sha256:0faf5a547afbcedc3f2e9bef46053a73bcbfc2478e47d39bde30784e08f97190"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.5/lefthook_2.1.5_Linux_x86_64.gz"
+checksum = "sha256:fab3d2715a922d9625c9024e6ffb6e1271edd613aa9b213c2049482cde8ae183"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_Linux_x86_64.gz"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.linux-x64-musl"]
-checksum = "sha256:0faf5a547afbcedc3f2e9bef46053a73bcbfc2478e47d39bde30784e08f97190"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.5/lefthook_2.1.5_Linux_x86_64.gz"
+checksum = "sha256:fab3d2715a922d9625c9024e6ffb6e1271edd613aa9b213c2049482cde8ae183"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_Linux_x86_64.gz"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.macos-arm64"]
-checksum = "sha256:f3aeef5fc287c6619a2f043ce3199e514bfc0639739be393a3759dd4470ee292"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.5/lefthook_2.1.5_MacOS_arm64.gz"
+checksum = "sha256:f07c97c32376749edb5b34179c16c6d87dd3e7ca0040aee911f38c821de0daab"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_MacOS_arm64.gz"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.macos-x64"]
-checksum = "sha256:27e48734de8f632e64fff07e8ae9f82514713b9f77e7bf91d8925ef1ea59a901"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.5/lefthook_2.1.5_MacOS_x86_64.gz"
+checksum = "sha256:93c6d51823f94a7f26a2bbb84f59504378b178f55d6c90744169693ed3e89013"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_MacOS_x86_64.gz"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.windows-x64"]
-checksum = "sha256:bf14d028984d24a72887f4f73d8899f5879c11786f4ba79a81c676fb3cefce1e"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.5/lefthook_2.1.5_Windows_x86_64.gz"
+checksum = "sha256:6704b01a72414affcc921740a7d6c621fe60c3082b291c9730900a2c6a352516"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_Windows_x86_64.gz"
 provenance = "github-attestations"
 
 [[tools.minikube]]
