@@ -23,46 +23,22 @@ _zizmor() {
 
     case "${cmd}" in
         zizmor)
-            opts="-p -o -v -q -c -h -V --lsp --stdio --pedantic --persona --offline --gh-token --gh-hostname --no-online-audits --verbose --quiet --no-progress --format --render-links --show-audit-urls --color --config --no-config --no-exit-codes --min-severity --min-confidence --cache-dir --collect --strict-collection --completions --naches --fix --thanks --help --version <INPUTS>..."
+            opts="-p -v -q -o -c -h -V --collect --strict-collection --fix --pedantic --persona --min-severity --min-confidence --verbose --quiet --format --no-progress --color --render-links --show-audit-urls --no-exit-codes --naches --offline --gh-token --github-token --zizmor-github-token --gh-hostname --no-online-audits --cache-dir --lsp --stdio --config --no-config --completions --thanks --help --version <INPUT>..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
+                --collect)
+                    COMPREPLY=($(compgen -W "all default workflows actions dependabot" -- "${cur}"))
+                    return 0
+                    ;;
+                --fix)
+                    COMPREPLY=($(compgen -W "safe unsafe-only all" -- "${cur}"))
+                    return 0
+                    ;;
                 --persona)
                     COMPREPLY=($(compgen -W "auditor pedantic regular" -- "${cur}"))
-                    return 0
-                    ;;
-                --gh-token)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                --gh-hostname)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                --format)
-                    COMPREPLY=($(compgen -W "plain json json-v1 sarif github" -- "${cur}"))
-                    return 0
-                    ;;
-                --render-links)
-                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
-                    return 0
-                    ;;
-                --show-audit-urls)
-                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
-                    return 0
-                    ;;
-                --color)
-                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
-                    return 0
-                    ;;
-                --config)
-                    COMPREPLY=($(compgen -f "${cur}"))
-                    return 0
-                    ;;
-                -c)
-                    COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
                 --min-severity)
@@ -73,20 +49,77 @@ _zizmor() {
                     COMPREPLY=($(compgen -W "low medium high" -- "${cur}"))
                     return 0
                     ;;
-                --cache-dir)
+                --format)
+                    COMPREPLY=($(compgen -W "plain json json-v1 sarif github" -- "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
+                    return 0
+                    ;;
+                --render-links)
+                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
+                    return 0
+                    ;;
+                --show-audit-urls)
+                    COMPREPLY=($(compgen -W "auto always never" -- "${cur}"))
+                    return 0
+                    ;;
+                --gh-token)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
-                --collect)
-                    COMPREPLY=($(compgen -W "all default workflows actions dependabot" -- "${cur}"))
+                --github-token)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --zizmor-github-token)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --gh-hostname)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --cache-dir)
+                    COMPREPLY=()
+                    if [[ "${BASH_VERSINFO[0]}" -ge 4 ]]; then
+                        compopt -o plusdirs
+                    fi
+                    return 0
+                    ;;
+                --config)
+                    local oldifs
+                    if [ -n "${IFS+x}" ]; then
+                        oldifs="$IFS"
+                    fi
+                    IFS=$'\n'
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    if [ -n "${oldifs+x}" ]; then
+                        IFS="$oldifs"
+                    fi
+                    if [[ "${BASH_VERSINFO[0]}" -ge 4 ]]; then
+                        compopt -o filenames
+                    fi
+                    return 0
+                    ;;
+                -c)
+                    local oldifs
+                    if [ -n "${IFS+x}" ]; then
+                        oldifs="$IFS"
+                    fi
+                    IFS=$'\n'
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    if [ -n "${oldifs+x}" ]; then
+                        IFS="$oldifs"
+                    fi
+                    if [[ "${BASH_VERSINFO[0]}" -ge 4 ]]; then
+                        compopt -o filenames
+                    fi
                     return 0
                     ;;
                 --completions)
                     COMPREPLY=($(compgen -W "bash elvish fish nushell powershell zsh" -- "${cur}"))
-                    return 0
-                    ;;
-                --fix)
-                    COMPREPLY=($(compgen -W "safe unsafe-only all" -- "${cur}"))
                     return 0
                     ;;
                 *)
