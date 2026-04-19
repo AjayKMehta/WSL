@@ -137,29 +137,7 @@ return {
     {
         "ravibrock/spellwarn.nvim",
         event = "VeryLazy",
-        opts = {
-            ft_config = { -- spellcheck method: "cursor", "iter", or boolean
-                alpha = false,
-                help = false,
-                lazy = false,
-                checkhealth = false,
-                cabal = false,
-                lspinfo = false,
-                mason = false,
-                python = "iter",
-                markdown = true,
-                ["gitsigns-blame"] = false,
-            },
-            ft_default = false, -- default option for unspecified filetypes
-            max_file_size = nil, -- maximum file size to check in lines (nil for no limit)
-            severity = { -- severity for each spelling error type (false to disable diagnostics for that type)
-                spellbad = "WARN",
-                spellcap = "HINT",
-                spelllocal = "HINT",
-                spellrare = "INFO",
-            },
-            prefix = "possible misspelling(s): ", -- prefix for each diagnostic message
-        },
+        config = load_config("spellwarn"),
     },
     -- Assists with discovering motions
     {
