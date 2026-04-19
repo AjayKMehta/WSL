@@ -1,4 +1,4 @@
-local load_config = require("utils").load_config
+local load_config = require("utils.helpers").load_config
 
 return {
     {
@@ -50,7 +50,7 @@ return {
             {
                 "nmac427/guess-indent.nvim",
                 config = function()
-                    local excluded_ftypes = require("utils").excluded_ftypes
+                    local excluded_ftypes = require("utils.helpers").excluded_ftypes
                     require("guess-indent").setup({
                         filetype_exclude = excluded_ftypes,
                         buftype_exclude = {

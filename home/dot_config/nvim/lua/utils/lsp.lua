@@ -138,7 +138,7 @@ M.get_capabilities = function()
 
     capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
-    local is_loaded = require("utils").is_loaded
+    local is_loaded = require("utils.helpers").is_loaded
 
     local loaded_cmp, cmp_nvim_lsp = is_loaded("cmp_nvim_lsp")
     if loaded_cmp then

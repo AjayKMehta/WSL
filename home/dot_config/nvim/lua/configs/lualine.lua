@@ -2,7 +2,7 @@ local M = {}
 
 M.setup = function(theme)
     local lualine = require("lualine")
-    local utils = require("utils")
+    local utils = require("utils.helpers")
     local custom_fname = require("lualine.components.filename"):extend()
     local highlight = require("lualine.highlight")
     local default_status_colors = { saved = "#228B22", modified = "#C70039" }

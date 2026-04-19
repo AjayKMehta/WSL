@@ -3,7 +3,7 @@ local api = require("nvim-tree.api")
 local openfile = require("nvim-tree.actions.node.open-file")
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
-local utils = require("utils")
+local utils = require("utils.helpers")
 
 local M = {}
 

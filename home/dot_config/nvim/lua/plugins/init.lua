@@ -1,4 +1,4 @@
-local load_config = require("utils").load_config
+local load_config = require("utils.helpers").load_config
 
 local HEIGHT_RATIO = 0.7
 local WIDTH_RATIO = 0.4
@@ -342,7 +342,7 @@ return {
                 -- TODO: Switch to adaptive width?
                 -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#toggle-adaptive-width
                 width = function()
-                    return require("utils").get_width(WIDTH_RATIO, nil, nil)
+                    return require("utils.helpers").get_width(WIDTH_RATIO, nil, nil)
                 end,
             },
         },

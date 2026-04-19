@@ -92,7 +92,7 @@ dofile(vim.g.base46_cache .. "syntax")
 
 require("autocmds")
 
-require("mappings")
+require("utils.mappings")
 
 -- Floating windows have rounded borders
 -- vim.o.winborder = "rounded"

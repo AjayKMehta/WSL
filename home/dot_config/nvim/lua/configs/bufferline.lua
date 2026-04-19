@@ -1,4 +1,4 @@
-local utils = require("utils")
+local utils = require("utils.helpers")
 local _, chroma = pcall(require, "chromabuffer")
 
 chroma.setup({ highlight_template = "default" })

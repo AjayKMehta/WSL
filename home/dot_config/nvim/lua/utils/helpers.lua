@@ -1,5 +1,8 @@
+---@class Utils
 local M = {}
 
+---@param plugin string
+---@return function
 function M.load_config(plugin)
     return function()
         require("configs." .. plugin)
@@ -18,6 +21,8 @@ M.get_width = function(percent, min_width, max_width)
     return result
 end
 
+---@param buf table
+---@return string
 M.get_buf_name = function(buf)
     local max_name_len = M.get_width(0.334, 60, nil)
     local name = buf.name
@@ -38,6 +43,7 @@ M.is_image = function(filepath)
     return vim.tbl_contains(image_extensions, extension)
 end
 
+---@return integer[]
 M.filter_buffers_by_size = function()
         local buf_size_limit = 1024 * 1024
         local bufs = {}
@@ -53,16 +59,17 @@ M.has_filename = function()
     return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
 end
 
+---@param module string
+---@return boolean
 M.is_loaded = function(module)
     return pcall(require, module)
 end
 
---- @param trunc_width number trunctates component when screen width is less then trunc_width
---- @param trunc_len number truncates component to trunc_len number of chars
---- @param hide_width number hides component when window width is smaller then hide_width
---- @param no_ellipsis boolean whether to disable adding '...' at end after truncation
---- @return function that can truncate text according to window width
---- @see https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#truncating-components-in-smaller-window
+---@param trunc_width number
+---@param trunc_len number
+---@param hide_width number
+---@param no_ellipsis boolean
+---@return function
 M.trunc = function(trunc_width, trunc_len, hide_width, no_ellipsis)
     return function(str)
         local win_width = vim.fn.winwidth(0)
@@ -75,6 +82,7 @@ M.trunc = function(trunc_width, trunc_len, hide_width, no_ellipsis)
     end
 end
 
+---@type string[]
 M.excluded_ftypes = {
     "checkhealth",
     "cmp_menu",

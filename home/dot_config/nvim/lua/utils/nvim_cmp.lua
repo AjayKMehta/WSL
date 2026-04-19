@@ -1,6 +1,6 @@
 local cmp = require("cmp")
 local types = require("cmp.types")
-local is_loaded = require("utils").is_loaded
+local is_loaded = require("utils.helpers").is_loaded
 
 local M = {}
 

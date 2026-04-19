@@ -1,4 +1,4 @@
-local utils = require("utils")
+local utils = require("utils.helpers")
 local load_config = utils.load_config
 local excluded_ftypes = utils.excluded_ftypes
 

@@ -224,7 +224,7 @@ autocmd("LspAttach", {
     end,
 })
 
-if require("utils").is_loaded("snacks") then
+if require("utils.helpers").is_loaded("snacks") then
     autocmd("BufEnter", {
         callback = function(args)
             local buf = args.buf

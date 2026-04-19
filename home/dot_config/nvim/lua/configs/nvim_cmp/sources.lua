@@ -1,6 +1,6 @@
 local c = require("utils.nvim_cmp")
 local cmp = require("cmp")
-local get_buffers_by_size = require("utils").get_buffers_by_size
+local get_buffers_by_size = require("utils.helpers").get_buffers_by_size
 
 local function get_fuzzy_buffer_source(grp_idx, priority, kw_length)
     return {

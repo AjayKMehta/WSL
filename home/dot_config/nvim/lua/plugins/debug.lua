@@ -1,4 +1,4 @@
-local load_config = require("utils").load_config
+local load_config = require("utils.helpers").load_config
 
 local map_desc = require("utils.mappings").map_desc
 

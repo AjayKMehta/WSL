@@ -1,4 +1,4 @@
-local u = require("utils")
+local u = require("utils.helpers")
 local excluded_ftypes = u.excluded_ftypes
 
 dofile(vim.g.base46_cache .. "blink")
