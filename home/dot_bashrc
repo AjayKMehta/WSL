@@ -148,9 +148,9 @@ nvm use stable
 
 # Mise
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
-  eval "$("$HOME"/.local/bin/mise activate bash --shims)"
+  eval "$(mise activate bash --shims)"
 else
-  eval "$("$HOME"/.local/bin/mise activate bash)"
+  eval "$(mise activate bash)"
 fi
 # Get rid of annoying "..._comp_initialize: command not found" error
 eval "$(mise completion bash --include-bash-completion-lib)"
