@@ -63,7 +63,7 @@ vim.g.show_linters = false
 vim.g.show_formatters = false
 
 -- if true, use base46 diffview integration.
-vim.g.diffview_base46 = true
+vim.g.diffview_base46 = false
 
 -- if true, use zathura_simple for viewing PDFs with vimtex
 vim.g.use_zathura_simple = true
@@ -71,7 +71,7 @@ vim.g.use_zathura_simple = true
 -- if true, use radian instead of R console.
 vim.g.use_radian = true
 
-vim.g.use_blink = true
+vim.g.use_blink = false
 
 -- If true, use roslyn.nvim instead of easy-dotnet LSP
 vim.g.use_roslyn_nvim = true
@@ -85,6 +85,8 @@ require("lazy").setup({
 }, lazy_config)
 
 require("configs.lsp")
+
+dofile(vim.g.base46_cache .. "git")
 
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")

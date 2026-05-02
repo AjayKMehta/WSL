@@ -38,6 +38,14 @@ return {
             vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true })
             vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", { underline = true })
         end,
+        -- https://github.com/dlyongemallo/diffview.nvim/blob/main/TIPS.md
+        config = function()
+            require("treesitter-context").setup({
+                on_attach = function(buf)
+                    return not vim.b[buf].ts_context_disable
+                end,
+            })
+        end
     },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
@@ -80,7 +88,7 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         cmd = { "Treewalker" },
         opts = {
-            highlight = true, -- Whether to briefly highlight the node after jumping to it
+            highlight = true,         -- Whether to briefly highlight the node after jumping to it
             highlight_duration = 250, -- How long should above highlight last (in ms)
             -- Whether to create a visual selection after a movement to a node.
             -- If true, highlight is disabled and a visual selection is made in

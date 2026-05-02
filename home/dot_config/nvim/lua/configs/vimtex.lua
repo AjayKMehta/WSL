@@ -121,5 +121,7 @@ endfunction
 
 -- Use snacks instead of default
 vim.keymap.set("n", "<localleader>lt", function()
-    return require("vimtex.snacks").toc()
+    return require("vimtex.snacks").toc({
+        layout = { preset = "dropdown" },
+    })
 end, { noremap = true, silent = true, desc = "vimtex-toc-open" })
