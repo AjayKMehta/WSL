@@ -21,6 +21,7 @@ vim.lsp.enable({
     "docker_compose",
     "jsonls",
     "lemminx",
+    "kdl_lsp",
     "ltex",
     "lua_ls",
     "marksman",
