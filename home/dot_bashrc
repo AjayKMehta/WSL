@@ -274,4 +274,18 @@ show_virtual_env() {
 }
 export -f show_virtual_env
 PS1='$(show_virtual_env)'$PS1
-# eval "$(zellij setup --generate-auto-start bash)"
+
+if [[ -n "$ZELLIJ_SESSION_NAME" ]]; then
+    if [[ -z "$ZELLIJ" ]]; then
+        if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
+            # Attaches specifically to the named session
+            zellij attach "$ZELLIJ_SESSION_NAME"
+        else
+            zellij
+        fi
+
+        if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+            exit
+        fi
+    fi
+fi
