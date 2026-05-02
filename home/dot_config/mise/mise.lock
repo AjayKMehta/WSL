@@ -922,3 +922,35 @@ url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.4.1/stylua-m
 [tools.stylua."platforms.windows-x64"]
 checksum = "sha256:9b1627b6034aa7ea0ce80485d2a07e777447548839a40acda6e30824a2bba07a"
 url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.4.1/stylua-windows-x86_64.zip"
+
+[[tools.zellij]]
+version = "0.44.1"
+backend = "aqua:zellij-org/zellij"
+
+[tools.zellij."platforms.linux-arm64"]
+checksum = "sha256:6f028bb569d29be968c961249c5f80d5336ad4ad4b3cd79af8e32afab57b0948"
+url = "https://github.com/zellij-org/zellij/releases/download/v0.44.1/zellij-aarch64-unknown-linux-musl.tar.gz"
+
+[tools.zellij."platforms.linux-arm64-musl"]
+checksum = "sha256:6f028bb569d29be968c961249c5f80d5336ad4ad4b3cd79af8e32afab57b0948"
+url = "https://github.com/zellij-org/zellij/releases/download/v0.44.1/zellij-aarch64-unknown-linux-musl.tar.gz"
+
+[tools.zellij."platforms.linux-x64"]
+checksum = "sha256:669825021d529fca5d939888263c9d2a90762145191fa07581a15250e8af2b49"
+url = "https://github.com/zellij-org/zellij/releases/download/v0.44.1/zellij-x86_64-unknown-linux-musl.tar.gz"
+
+[tools.zellij."platforms.linux-x64-musl"]
+checksum = "sha256:669825021d529fca5d939888263c9d2a90762145191fa07581a15250e8af2b49"
+url = "https://github.com/zellij-org/zellij/releases/download/v0.44.1/zellij-x86_64-unknown-linux-musl.tar.gz"
+
+[tools.zellij."platforms.macos-arm64"]
+checksum = "sha256:544c19a9353f0ecc52877ef1e80b1c1dcbf8f258b4817077f9520099c12cc30c"
+url = "https://github.com/zellij-org/zellij/releases/download/v0.44.1/zellij-aarch64-apple-darwin.tar.gz"
+
+[tools.zellij."platforms.macos-x64"]
+checksum = "sha256:590071e02f7733d25201ec9a97c5bd661ac7da3cbdf2ae52a11685b36654b7dc"
+url = "https://github.com/zellij-org/zellij/releases/download/v0.44.1/zellij-x86_64-apple-darwin.tar.gz"
+
+[tools.zellij."platforms.windows-x64"]
+checksum = "sha256:69d7a913de40388bdb64a440b82e6ed2ac4c7232e88d0899b085c88550ec8b8f"
+url = "https://github.com/zellij-org/zellij/releases/download/v0.44.1/zellij-x86_64-pc-windows-msvc.zip"

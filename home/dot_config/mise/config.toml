@@ -81,3 +81,9 @@ yq shell-completion powershell > ~/.config/powershell/scripts/ArgumentCompleters
 """ }
 
 "aqua:zoxide" = "latest"
+zellij = { version = "latest", postinstall = """
+  zellij setup --generate-completion bash > ~/.config/bash_completions.d/zellij
+  zellij setup --generate-completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/zellij.ps1
+  """ }
+fzf = "latest"
+mkcert = "latest"
