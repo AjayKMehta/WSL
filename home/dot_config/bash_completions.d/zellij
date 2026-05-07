@@ -219,6 +219,12 @@ _zellij() {
             send-keys)
                 cmd+="__send__keys"
                 ;;
+            set-dark-theme)
+                cmd+="__set__dark__theme"
+                ;;
+            set-light-theme)
+                cmd+="__set__light__theme"
+                ;;
             set-pane-borderless)
                 cmd+="__set__pane__borderless"
                 ;;
@@ -266,6 +272,9 @@ _zellij() {
                 ;;
             toggle-pane-pinned)
                 cmd+="__toggle__pane__pinned"
+                ;;
+            toggle-theme)
+                cmd+="__toggle__theme"
                 ;;
             undo-rename-pane)
                 cmd+="__undo__rename__pane"
@@ -358,7 +367,7 @@ _zellij() {
             return 0
             ;;
         zellij__action)
-            opts="-h --help write write-chars paste send-keys resize focus-next-pane focus-previous-pane focus-pane-id move-focus move-focus-or-tab move-pane move-pane-backwards clear dump-screen dump-layout save-session edit-scrollback scroll-up scroll-down scroll-to-bottom scroll-to-top page-scroll-up page-scroll-down half-page-scroll-up half-page-scroll-down toggle-fullscreen toggle-pane-frames toggle-active-sync-tab new-pane edit switch-mode toggle-pane-embed-or-floating toggle-floating-panes show-floating-panes hide-floating-panes are-floating-panes-visible close-pane rename-pane undo-rename-pane go-to-next-tab go-to-previous-tab close-tab go-to-tab go-to-tab-name rename-tab undo-rename-tab go-to-tab-by-id close-tab-by-id rename-tab-by-id new-tab move-tab previous-swap-layout next-swap-layout override-layout query-tab-names start-or-reload-plugin launch-or-focus-plugin launch-plugin rename-session pipe list-clients list-panes list-tabs current-tab-info toggle-pane-pinned stack-panes change-floating-pane-coordinates toggle-pane-borderless set-pane-borderless detach switch-session set-pane-color help"
+            opts="-h --help write write-chars paste send-keys resize focus-next-pane focus-previous-pane focus-pane-id move-focus move-focus-or-tab move-pane move-pane-backwards clear dump-screen dump-layout save-session edit-scrollback scroll-up scroll-down scroll-to-bottom scroll-to-top page-scroll-up page-scroll-down half-page-scroll-up half-page-scroll-down toggle-fullscreen toggle-pane-frames toggle-active-sync-tab new-pane edit switch-mode toggle-pane-embed-or-floating toggle-floating-panes show-floating-panes hide-floating-panes are-floating-panes-visible close-pane rename-pane undo-rename-pane go-to-next-tab go-to-previous-tab close-tab go-to-tab go-to-tab-name rename-tab undo-rename-tab go-to-tab-by-id close-tab-by-id rename-tab-by-id new-tab move-tab previous-swap-layout next-swap-layout override-layout query-tab-names start-or-reload-plugin launch-or-focus-plugin launch-plugin rename-session pipe list-clients list-panes list-tabs current-tab-info toggle-pane-pinned stack-panes change-floating-pane-coordinates toggle-pane-borderless set-pane-borderless detach set-dark-theme set-light-theme toggle-theme switch-session set-pane-color help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -1649,6 +1658,34 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__action__set__dark__theme)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__action__set__light__theme)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__action__set__pane__borderless)
             opts="-p -b -h --pane-id --borderless --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
@@ -1965,6 +2002,20 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__action__toggle__theme)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__action__undo__rename__pane)
             opts="-p -h --pane-id --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
@@ -2098,7 +2149,7 @@ _zellij() {
             return 0
             ;;
         zellij__attach__options)
-            opts="-h --simplified-ui --theme --default-mode --default-shell --default-cwd --default-layout --layout-dir --theme-dir --mouse-mode --pane-frames --mirror-session --on-force-close --scroll-buffer-size --copy-command --copy-clipboard --copy-on-select --osc8-hyperlinks --scrollback-editor --session-name --attach-to-session --auto-layout --session-serialization --serialize-pane-viewport --scrollback-lines-to-serialize --styled-underlines --serialization-interval --disable-session-metadata --support-kitty-keyboard-protocol --web-server --web-sharing --stacked-resize --show-startup-tips --show-release-notes --advanced-mouse-actions --mouse-hover-effects --visual-bell --focus-follows-mouse --mouse-click-through --post-command-discovery-hook --client-async-worker-tasks --help <WEB_SERVER_IP> <WEB_SERVER_PORT> <WEB_SERVER_CERT> <WEB_SERVER_KEY> <ENFORCE_HTTPS_FOR_LOCALHOST>"
+            opts="-h --simplified-ui --theme --theme-dark --theme-light --default-mode --default-shell --default-cwd --default-layout --layout-dir --theme-dir --mouse-mode --pane-frames --mirror-session --on-force-close --scroll-buffer-size --copy-command --copy-clipboard --copy-on-select --osc8-hyperlinks --scrollback-editor --session-name --attach-to-session --auto-layout --session-serialization --serialize-pane-viewport --scrollback-lines-to-serialize --styled-underlines --serialization-interval --disable-session-metadata --support-kitty-keyboard-protocol --web-server --web-sharing --stacked-resize --show-startup-tips --show-release-notes --advanced-mouse-actions --mouse-hover-effects --visual-bell --focus-follows-mouse --mouse-click-through --post-command-discovery-hook --client-async-worker-tasks --help <WEB_SERVER_IP> <WEB_SERVER_PORT> <WEB_SERVER_CERT> <WEB_SERVER_KEY> <ENFORCE_HTTPS_FOR_LOCALHOST>"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -2109,6 +2160,14 @@ _zellij() {
                     return 0
                     ;;
                 --theme)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --theme-dark)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --theme-light)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -2486,7 +2545,7 @@ _zellij() {
             return 0
             ;;
         zellij__options)
-            opts="-h --simplified-ui --theme --default-mode --default-shell --default-cwd --default-layout --layout-dir --theme-dir --mouse-mode --pane-frames --mirror-session --on-force-close --scroll-buffer-size --copy-command --copy-clipboard --copy-on-select --osc8-hyperlinks --scrollback-editor --session-name --attach-to-session --auto-layout --session-serialization --serialize-pane-viewport --scrollback-lines-to-serialize --styled-underlines --serialization-interval --disable-session-metadata --support-kitty-keyboard-protocol --web-server --web-sharing --stacked-resize --show-startup-tips --show-release-notes --advanced-mouse-actions --mouse-hover-effects --visual-bell --focus-follows-mouse --mouse-click-through --post-command-discovery-hook --client-async-worker-tasks --help <WEB_SERVER_IP> <WEB_SERVER_PORT> <WEB_SERVER_CERT> <WEB_SERVER_KEY> <ENFORCE_HTTPS_FOR_LOCALHOST>"
+            opts="-h --simplified-ui --theme --theme-dark --theme-light --default-mode --default-shell --default-cwd --default-layout --layout-dir --theme-dir --mouse-mode --pane-frames --mirror-session --on-force-close --scroll-buffer-size --copy-command --copy-clipboard --copy-on-select --osc8-hyperlinks --scrollback-editor --session-name --attach-to-session --auto-layout --session-serialization --serialize-pane-viewport --scrollback-lines-to-serialize --styled-underlines --serialization-interval --disable-session-metadata --support-kitty-keyboard-protocol --web-server --web-sharing --stacked-resize --show-startup-tips --show-release-notes --advanced-mouse-actions --mouse-hover-effects --visual-bell --focus-follows-mouse --mouse-click-through --post-command-discovery-hook --client-async-worker-tasks --help <WEB_SERVER_IP> <WEB_SERVER_PORT> <WEB_SERVER_CERT> <WEB_SERVER_KEY> <ENFORCE_HTTPS_FOR_LOCALHOST>"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -2497,6 +2556,14 @@ _zellij() {
                     return 0
                     ;;
                 --theme)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --theme-dark)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --theme-light)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;

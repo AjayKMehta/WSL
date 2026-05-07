@@ -66,6 +66,8 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;options' {
             [CompletionResult]::new('--simplified-ui', 'simplified-ui', [CompletionResultType]::ParameterName, 'Allow plugins to use a more simplified layout that is compatible with more fonts (true or false)')
             [CompletionResult]::new('--theme', 'theme', [CompletionResultType]::ParameterName, 'Set the default theme')
+            [CompletionResult]::new('--theme-dark', 'theme-dark', [CompletionResultType]::ParameterName, 'Theme name to apply when the host terminal reports a dark color palette (CSI 2031 / DSR 997). Requires `theme_light` to also be set; if either is missing the static `theme` remains authoritative')
+            [CompletionResult]::new('--theme-light', 'theme-light', [CompletionResultType]::ParameterName, 'Theme name to apply when the host terminal reports a light color palette (CSI 2031 / DSR 997). Requires `theme_dark` to also be set; if either is missing the static `theme` remains authoritative')
             [CompletionResult]::new('--default-mode', 'default-mode', [CompletionResultType]::ParameterName, 'Set the default mode')
             [CompletionResult]::new('--default-shell', 'default-shell', [CompletionResultType]::ParameterName, 'Set the default shell')
             [CompletionResult]::new('--default-cwd', 'default-cwd', [CompletionResultType]::ParameterName, 'Set the default cwd')
@@ -216,6 +218,9 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('toggle-pane-borderless', 'toggle-pane-borderless', [CompletionResultType]::ParameterValue, 'toggle-pane-borderless')
             [CompletionResult]::new('set-pane-borderless', 'set-pane-borderless', [CompletionResultType]::ParameterValue, 'set-pane-borderless')
             [CompletionResult]::new('detach', 'detach', [CompletionResultType]::ParameterValue, 'Detach from the current session')
+            [CompletionResult]::new('set-dark-theme', 'set-dark-theme', [CompletionResultType]::ParameterValue, 'Switch the theme to dark (uses configured `theme_dark`)')
+            [CompletionResult]::new('set-light-theme', 'set-light-theme', [CompletionResultType]::ParameterValue, 'Switch the theme to light (uses configured `theme_light`)')
+            [CompletionResult]::new('toggle-theme', 'toggle-theme', [CompletionResultType]::ParameterValue, 'Toggle between dark and light themes (used configured `theme_dark` and `theme_light`)')
             [CompletionResult]::new('switch-session', 'switch-session', [CompletionResultType]::ParameterValue, 'Switch to a different session')
             [CompletionResult]::new('set-pane-color', 'set-pane-color', [CompletionResultType]::ParameterValue, 'Set the default foreground/background color of a pane')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
@@ -811,6 +816,21 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help information')
             break
         }
+        'zellij;action;set-dark-theme' {
+            [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help information')
+            [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help information')
+            break
+        }
+        'zellij;action;set-light-theme' {
+            [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help information')
+            [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help information')
+            break
+        }
+        'zellij;action;toggle-theme' {
+            [CompletionResult]::new('-h', 'h', [CompletionResultType]::ParameterName, 'Print help information')
+            [CompletionResult]::new('--help', 'help', [CompletionResultType]::ParameterName, 'Print help information')
+            break
+        }
         'zellij;action;switch-session' {
             [CompletionResult]::new('--tab-position', 'tab-position', [CompletionResultType]::ParameterName, 'Optional tab position to focus')
             [CompletionResult]::new('--pane-id', 'pane-id', [CompletionResultType]::ParameterName, 'Optional pane ID to focus (eg. "terminal_1" for terminal pane with id 1, or "plugin_2" for plugin pane with id 2)')
@@ -877,6 +897,8 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;attach;options' {
             [CompletionResult]::new('--simplified-ui', 'simplified-ui', [CompletionResultType]::ParameterName, 'Allow plugins to use a more simplified layout that is compatible with more fonts (true or false)')
             [CompletionResult]::new('--theme', 'theme', [CompletionResultType]::ParameterName, 'Set the default theme')
+            [CompletionResult]::new('--theme-dark', 'theme-dark', [CompletionResultType]::ParameterName, 'Theme name to apply when the host terminal reports a dark color palette (CSI 2031 / DSR 997). Requires `theme_light` to also be set; if either is missing the static `theme` remains authoritative')
+            [CompletionResult]::new('--theme-light', 'theme-light', [CompletionResultType]::ParameterName, 'Theme name to apply when the host terminal reports a light color palette (CSI 2031 / DSR 997). Requires `theme_dark` to also be set; if either is missing the static `theme` remains authoritative')
             [CompletionResult]::new('--default-mode', 'default-mode', [CompletionResultType]::ParameterName, 'Set the default mode')
             [CompletionResult]::new('--default-shell', 'default-shell', [CompletionResultType]::ParameterName, 'Set the default shell')
             [CompletionResult]::new('--default-cwd', 'default-cwd', [CompletionResultType]::ParameterName, 'Set the default cwd')
