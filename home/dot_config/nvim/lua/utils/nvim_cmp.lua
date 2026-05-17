@@ -42,19 +42,24 @@ M.format = function(entry, item)
     if lspkind ~= nil then
         item = lspkind.cmp_format({
             maxwidth = {
-                -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                -- prevent the popup from showing more than provided characters
+                -- (e.g 50 will not show more than 50 characters)
                 -- can also be a function to dynamically calculate max width such as
                 -- menu = function() return math.floor(0.45 * vim.o.columns) end,
                 menu = 50,             -- leading text (labelDetails)
                 abbr = 50,             -- actual suggestion item
             },
-            ellipsis_char = "...",     -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            -- when popup menu exceed maxwidth, the truncated part would show
+            -- ellipsis_char instead (must define maxwidth first)
+            ellipsis_char = "...",
             show_labelDetails = false, -- show labelDetails in menu. Disabled by default
             preset = "default",        --codicons",
 
-            -- The function below will be called before any actual modifications from lspkind
-            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-            before = function(entry, vim_item)
+            -- The function below will be called before any actual modifications
+            -- from lspkind so that you can provide more controls on popup
+            -- customization. (See
+            -- https://github.com/onsails/lspkind-nvim/pull/30)
+            before = function(cmp_entry, vim_item)
                 local menu_icon = {
                     latex_symbols = "",
                     otter = "o",
@@ -66,9 +71,9 @@ M.format = function(entry, item)
                     cmp_r = "R",
                 }
 
-                local source = menu_icon[entry.source.name] or entry.source.name
-                if entry.source.name == "nvim_lsp" then
-                    local client = entry.source.source.client
+                local source = menu_icon[cmp_entry.source.name] or cmp_entry.source.name
+                if cmp_entry.source.name == "nvim_lsp" then
+                    local client = cmp_entry.source.source.client
                     if client then
                         source = string.format("λ [%s]", client.name)
                     else
@@ -76,7 +81,7 @@ M.format = function(entry, item)
                     end
                 end
                 vim_item.menu = source
-                vim_item.dup = dups[entry.source.name] or 0
+                vim_item.dup = dups[cmp_entry.source.name] or 0
                 return vim_item
             end,
         })(entry, item)

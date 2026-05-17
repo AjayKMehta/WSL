@@ -93,7 +93,7 @@ return {
                     return item.kind ~= require("blink.cmp.types").CompletionItemKind.Keyword
                 end, items)
             end,
-            min_keyword_length = function(ctx)
+            min_keyword_length = function(_)
                 if vim.bo.filetype == "cs" then
                     return 1
                 end

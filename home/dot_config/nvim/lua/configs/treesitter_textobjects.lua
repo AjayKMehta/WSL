@@ -1,5 +1,4 @@
 local utils = require("utils.mappings")
-local map = utils.map
 local map_desc = utils.map_desc
 local to = require("nvim-treesitter-textobjects")
 local sel = require("nvim-treesitter-textobjects.select")

@@ -1,5 +1,3 @@
-local rainbow = require("rainbow-delimiters")
-
 dofile(vim.g.base46_cache .. "rainbowdelimiters")
 
 vim.g.rainbow_delimiters = {

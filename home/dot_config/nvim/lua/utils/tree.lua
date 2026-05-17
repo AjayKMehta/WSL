@@ -7,7 +7,7 @@ local utils = require("utils.helpers")
 
 local M = {}
 
-local view_selection = function(prompt_bufnr, map)
+local view_selection = function(prompt_bufnr, _)
     actions.select_default:replace(function()
         actions.close(prompt_bufnr)
         local selection = action_state.get_selected_entry()

@@ -22,7 +22,7 @@ return {
     ["<CR>"] = { "accept", "fallback" },
 
     ["<C-k>"] = {
-        function(cmp)
+        function(_)
             local ls = require("luasnip")
             if ls.expand_or_jumpable() then
                 return ls.expand_or_jump()
@@ -31,7 +31,7 @@ return {
         "fallback",
     },
     ["<C-j>"] = {
-        function(cmp)
+        function(_)
             local ls = require("luasnip")
             if ls.jumpable(-1) then
                 return ls.jump(-1)
@@ -40,7 +40,7 @@ return {
         "fallback",
     },
     ["<C-u>"] = {
-        function(cmp)
+        function(_)
             local ls = require("luasnip")
             if ls.choice_active() then
                 return require("luasnip.extras.select_choice")()
@@ -49,7 +49,7 @@ return {
         "fallback",
     },
     ["<C-n>"] = {
-        function(cmp)
+        function(_)
             local bc = require("blink.cmp")
             local ls = require("luasnip")
             if ls.choice_active() then
@@ -61,7 +61,7 @@ return {
         "fallback",
     },
     ["<C-p>"] = {
-        function(cmp)
+        function(_)
             local bc = require("blink.cmp")
             local ls = require("luasnip")
             if ls.choice_active() then
