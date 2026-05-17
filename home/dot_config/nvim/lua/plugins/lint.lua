@@ -30,29 +30,6 @@ return {
             ---- Markdown
             linters["markdownlint-cli2"].args = { "--config=" .. vim.env.HOME .. "/.markdownlint.json" }
 
-            -- Quarto
-            local function get_file_name()
-                return vim.api.nvim_buf_get_name(0)
-            end
-
-            local severity_map = {
-                ["error"] = vim.diagnostic.severity.ERROR,
-                ["warning"] = vim.diagnostic.severity.WARN,
-                ["information"] = vim.diagnostic.severity.INFO,
-            }
-
-            -- warning[undefined-reference-label]: Reference label '[2]' not found at <stdin>:1:5
-            local pattern = "(%w+)%[([^%]]+)%]:%s?(.+)%s+([^:]+):(%d+):(%d+)"
-            -- This also works: (%w+)%[(%S+)%]:%s?([^:]+)%s(%S+):(%d+):(%d+)
-            local groups = { "severity", "code", "message", "file", "lnum", "col" }
-            local defaults = {["source"] = "panache"}
-
-            linters.panache = {
-                cmd = "panache",
-                args = { "lint", "--message-format", "short", "--stdin-filename", get_file_name },
-                parser = require('lint.parser').from_pattern(pattern, groups, severity_map, defaults)
-            }
-
             ---- TeX
             linters.chktex.args = vim.list_extend(vim.deepcopy(linters.chktex.args), {
                 "-wall",

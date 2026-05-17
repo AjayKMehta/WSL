@@ -39,6 +39,7 @@ hlchunk.setup({
         textobject = "iC",
         max_file_size = 1024 * 1024,
         error_sign = true,
+        straight = true,
     },
     indent = {
         enable = true,

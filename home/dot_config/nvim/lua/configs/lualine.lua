@@ -116,7 +116,7 @@ M.setup = function(theme)
     end
 
     -- https://github.com/GustavEikaas/easy-dotnet.nvim#lualine-config
-    local job_indicator = { require("easy-dotnet.ui-modules.jobs").lualine }
+    local dotnet = require("easy-dotnet")
 
     local config = {
         options = {
@@ -205,7 +205,7 @@ M.setup = function(theme)
                         end
                     end,
                 },
-                { "mode", job_indicator },
+                { "mode", dotnet.lualine.jobs },
             },
             lualine_b = {
                 {
@@ -336,6 +336,9 @@ M.setup = function(theme)
             },
             lualine_x = {
                 "codecompanion",
+                -- Shows the default startup project and its launch profile (if any),
+                -- pushed by the server whenever it changes.
+                { dotnet.lualine.active_project },
                 -- https://github.com/folke/lazy.nvim#-usage
                 {
                     require("lazy.status").updates,
