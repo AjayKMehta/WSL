@@ -222,6 +222,8 @@ return {
                 test_runner = {
                     auto_start_testrunner = true,
                     hide_legend = false,
+                    -- Set to true when using neotest to avoid duplicate signs and conflicting buffer keymaps.
+                    neotest_integration = true,
                     viewmode = "float",
                     mappings = {
                         run_test_from_buffer = { lhs = "<localleader>rb", desc = "run test from buffer" },
@@ -252,6 +254,7 @@ return {
                 picker = "snacks",
                 notifications = { handler = false },
                 debugger = {
+                    apply_value_converters = true,
                     mappings = {
                         open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
                     },

@@ -8,7 +8,6 @@ return {
             "nvim-treesitter/nvim-treesitter",
             "antoinemadec/FixCursorHold.nvim",
             "nvim-neotest/neotest-python",
-            "Issafalcon/neotest-dotnet",
             -- https://github.com/mrcjkb/neotest-haskell/issues/179
             { "mrcjkb/neotest-haskell", tag = "2.0.0" },
         },
@@ -28,12 +27,8 @@ return {
                         runner = "pytest",
                         pytest_discover_instances = true,
                     }),
-                    -- https://github.com/Issafalcon/neotest-dotnet
-                    require("neotest-dotnet")({
-                        -- Extra arguments for nvim-dap configuration
-                        -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
-                        dap = { justMyCode = true },
-                    }),
+                    -- https://github.com/GustavEikaas/easy-dotnet.nvim/blob/main/news.md#neotest-support-389
+                    require("easy-dotnet").neotest(),
                     require("neotest-haskell"),
                 },
             })
