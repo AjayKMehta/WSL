@@ -4,14 +4,14 @@ return {
     {
         "dlyongemallo/diffview.nvim",
         lazy = true,
-        cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewDiffFiles", "DiffviewToggle", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory", "DiffviewLog", "DiffviewRefresh" },
+        cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewDiffFiles", "DiffviewDiffDirs", "DiffviewToggle", "DiffviewMergeFiles","DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory", "DiffviewLog", "DiffviewRefresh" },
         config = load_config("diffview"),
     },
     {
         "martindur/zdiff.nvim",
         cmd = "Zdiff",
         keys = {
-            { "<leader>zd", "<cmd>Zdiff<cr>", desc = "Zdiff (uncommitted)" },
+            { "<leader>zd", "<cmd>Zdiff<cr>",      desc = "Zdiff (uncommitted)" },
             { "<leader>zD", "<cmd>Zdiff main<cr>", desc = "Zdiff (vs main)" },
         },
         opts = {},
@@ -30,7 +30,7 @@ return {
                     next = "]x",
                     prev = "[x",
                 },
-                show_actions = true, -- Show clickable [Accept Current | ...] labels
+                show_actions = true,        -- Show clickable [Accept Current | ...] labels
                 disable_diagnostics = true, -- Disable LSP/Diagnostics while conflicts exist
             })
         end,
@@ -98,9 +98,9 @@ return {
                 untracked = { text = "┆" },
             },
             signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-            numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
-            linehl = true, -- Toggle with `:Gitsigns toggle_linehl`
-            word_diff = true, -- Toggle with `:Gitsigns toggle_word_diff`
+            numhl = true,      -- Toggle with `:Gitsigns toggle_numhl`
+            linehl = true,     -- Toggle with `:Gitsigns toggle_linehl`
+            word_diff = true,  -- Toggle with `:Gitsigns toggle_word_diff`
             trouble = true,
             current_line_blame_opts = {
                 virt_text = true,
