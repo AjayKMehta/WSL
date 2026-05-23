@@ -58,7 +58,7 @@ go = "latest"
 
 "aqua:anchore/grype" = { version = "latest", postinstall = 'grype completion bash > ~/.config/bash_completions.d/grype' }
 
-gum = "latest"
+"aqua:charmbracelet/gum" = "latest"
 
 "aqua:kubernetes/kubernetes/kubectl" = "latest"
 "aqua:jesseduffield/lazygit" = "latest"
