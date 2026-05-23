@@ -79,10 +79,12 @@ local opts = {
             },
             cmp.config.compare.offset,
             cmp.config.compare.exact,
+            -- https://github.com/petertriho/cmp-git#config
+            -- Make sure PRs are sorted by last updated.
+            cmp.config.compare.sort_text,
             cmp.config.compare.score,
             cmp.config.compare.receently_used,
             cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
             cmp.config.compare.length,
             cmp.config.compare.order,
             cmp.config.default().sorting.comparators
