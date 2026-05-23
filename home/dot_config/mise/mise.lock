@@ -124,6 +124,38 @@ url = "https://github.com/anchore/grype/releases/download/v0.112.0/grype_0.112.0
 checksum = "sha256:94ae49ced125fca7590fd35dfa96e36f68760cefff9a653c92fa8f6842777879"
 url = "https://github.com/anchore/grype/releases/download/v0.112.0/grype_0.112.0_windows_amd64.zip"
 
+[[tools."aqua:charmbracelet/gum"]]
+version = "0.17.0"
+backend = "aqua:charmbracelet/gum"
+
+[tools."aqua:charmbracelet/gum"."platforms.linux-arm64"]
+checksum = "sha256:b0b9ed95cbf7c8b7073f17b9591811f5c001e33c7cfd066ca83ce8a07c576f9c"
+url = "https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Linux_arm64.tar.gz"
+
+[tools."aqua:charmbracelet/gum"."platforms.linux-arm64-musl"]
+checksum = "sha256:b0b9ed95cbf7c8b7073f17b9591811f5c001e33c7cfd066ca83ce8a07c576f9c"
+url = "https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Linux_arm64.tar.gz"
+
+[tools."aqua:charmbracelet/gum"."platforms.linux-x64"]
+checksum = "sha256:69ee169bd6387331928864e94d47ed01ef649fbfe875baed1bbf27b5377a6fdb"
+url = "https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Linux_x86_64.tar.gz"
+
+[tools."aqua:charmbracelet/gum"."platforms.linux-x64-musl"]
+checksum = "sha256:69ee169bd6387331928864e94d47ed01ef649fbfe875baed1bbf27b5377a6fdb"
+url = "https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Linux_x86_64.tar.gz"
+
+[tools."aqua:charmbracelet/gum"."platforms.macos-arm64"]
+checksum = "sha256:e2a4b8596efa05821d8c58d0c1afbcd7ad1699ba69c689cc3ff23a4a99c8b237"
+url = "https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Darwin_arm64.tar.gz"
+
+[tools."aqua:charmbracelet/gum"."platforms.macos-x64"]
+checksum = "sha256:cd66576aeebe6cd19c771863c7e8d696e0e1d5387d1e7075666baa67c2052e53"
+url = "https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Darwin_x86_64.tar.gz"
+
+[tools."aqua:charmbracelet/gum"."platforms.windows-x64"]
+checksum = "sha256:b2be80531c6babc8d4e0e6ca95773d58118a2e1582ae006aace08dbc55503072"
+url = "https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Windows_x86_64.zip"
+
 [[tools."aqua:cli/cli"]]
 version = "2.92.0"
 backend = "aqua:cli/cli"
@@ -539,36 +571,36 @@ url = "https://github.com/rhysd/actionlint/releases/download/v1.7.12/actionlint_
 provenance = "github-attestations"
 
 [[tools."aqua:twpayne/chezmoi"]]
-version = "2.70.3"
+version = "2.70.4"
 backend = "aqua:twpayne/chezmoi"
 
 [tools."aqua:twpayne/chezmoi"."platforms.linux-arm64"]
-checksum = "sha256:f094f9baccbe1e5e9744fc70f74974ba1793f2cba550f8b4a9d0fe5310f4a38f"
-url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.3/chezmoi_2.70.3_linux_arm64.tar.gz"
+checksum = "sha256:b2dc1e0ddf8beff09ee14f212271dd9e943d1d97d5f17a3d070ce35a6ada9e14"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.4/chezmoi_2.70.4_linux_arm64.tar.gz"
 
 [tools."aqua:twpayne/chezmoi"."platforms.linux-arm64-musl"]
-checksum = "sha256:f094f9baccbe1e5e9744fc70f74974ba1793f2cba550f8b4a9d0fe5310f4a38f"
-url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.3/chezmoi_2.70.3_linux_arm64.tar.gz"
+checksum = "sha256:b2dc1e0ddf8beff09ee14f212271dd9e943d1d97d5f17a3d070ce35a6ada9e14"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.4/chezmoi_2.70.4_linux_arm64.tar.gz"
 
 [tools."aqua:twpayne/chezmoi"."platforms.linux-x64"]
-checksum = "sha256:ed3a131a7e71798513255d8c05534a14a16d98839820708e839d3403be5b46b2"
-url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.3/chezmoi_2.70.3_linux_amd64.tar.gz"
+checksum = "sha256:7382f585d35647ebb492bd6345466e7f35564068b78285bb029cb2f35056ecf4"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.4/chezmoi_2.70.4_linux_amd64.tar.gz"
 
 [tools."aqua:twpayne/chezmoi"."platforms.linux-x64-musl"]
-checksum = "sha256:dc8a51f3572bf4e26002dd38ad6b9cf438c3bb30d5b31defa6f8ef12266e786c"
-url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.3/chezmoi_2.70.3_linux-musl_amd64.tar.gz"
+checksum = "sha256:cd34113833a1d4eb22f78a83583c3e967e22a05653304e106d45df0066cc4713"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.4/chezmoi_2.70.4_linux-musl_amd64.tar.gz"
 
 [tools."aqua:twpayne/chezmoi"."platforms.macos-arm64"]
-checksum = "sha256:2de26b4217795c2bcf2c5209739f8f0f4c8d687e9441f99e3ca9b51d2269caab"
-url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.3/chezmoi_2.70.3_darwin_arm64.tar.gz"
+checksum = "sha256:0093fa436e9ccccf423323315c0146f6dc77985294bd845cee1f3cf3f63eeb0f"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.4/chezmoi_2.70.4_darwin_arm64.tar.gz"
 
 [tools."aqua:twpayne/chezmoi"."platforms.macos-x64"]
-checksum = "sha256:b1df8211b594375eed78c6685b7e1019e08a0e4e607f28ff452fbb87f62c2211"
-url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.3/chezmoi_2.70.3_darwin_amd64.tar.gz"
+checksum = "sha256:df605c409f16ff9ce002bd2690755c4c0aa6357ca4a065ed2f3cc7936a9f448e"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.4/chezmoi_2.70.4_darwin_amd64.tar.gz"
 
 [tools."aqua:twpayne/chezmoi"."platforms.windows-x64"]
-checksum = "sha256:d6985fd4cbbfda7fb50574a20b7f1fb1cf5c540da121cf1ebfd94461e861a3e3"
-url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.3/chezmoi_2.70.3_windows_amd64.zip"
+checksum = "sha256:760e6f772255c062afb2b370666fc5cbef2116fe110ede18a72d4fa57a6eaea7"
+url = "https://github.com/twpayne/chezmoi/releases/download/v2.70.4/chezmoi_2.70.4_windows_amd64.zip"
 
 [[tools."aqua:zoxide"]]
 version = "0.9.9"
@@ -625,36 +657,36 @@ url = "https://github.com/eth-p/bat-extras/releases/download/v2024.08.24/bat-ext
 url = "https://github.com/eth-p/bat-extras/releases/download/v2024.08.24/bat-extras-2024.08.24.zip"
 
 [[tools.deno]]
-version = "2.7.14"
+version = "2.8.0"
 backend = "core:deno"
 
 [tools.deno."platforms.linux-arm64"]
-checksum = "sha256:b815c919452b5993a7c22df018a88c2f706eea6b5e0aa7802b2b0709edde01e8"
-url = "https://dl.deno.land/release/v2.7.14/deno-aarch64-unknown-linux-gnu.zip"
+checksum = "sha256:933a6a7d2985957271cd2085a5a5a1832398aa221a354daab5635196cf2cbbae"
+url = "https://dl.deno.land/release/v2.8.0/deno-aarch64-unknown-linux-gnu.zip"
 
 [tools.deno."platforms.linux-arm64-musl"]
-checksum = "sha256:b815c919452b5993a7c22df018a88c2f706eea6b5e0aa7802b2b0709edde01e8"
-url = "https://dl.deno.land/release/v2.7.14/deno-aarch64-unknown-linux-gnu.zip"
+checksum = "sha256:933a6a7d2985957271cd2085a5a5a1832398aa221a354daab5635196cf2cbbae"
+url = "https://dl.deno.land/release/v2.8.0/deno-aarch64-unknown-linux-gnu.zip"
 
 [tools.deno."platforms.linux-x64"]
-checksum = "sha256:3287efef53606966469cb6a02781327be22b908959397f976e2996dc1b64ae0f"
-url = "https://dl.deno.land/release/v2.7.14/deno-x86_64-unknown-linux-gnu.zip"
+checksum = "sha256:be2c8b53c8ca1d66be76feb9b1a524419da708b00d4ca074cf5c633c81c1627b"
+url = "https://dl.deno.land/release/v2.8.0/deno-x86_64-unknown-linux-gnu.zip"
 
 [tools.deno."platforms.linux-x64-musl"]
-checksum = "sha256:3287efef53606966469cb6a02781327be22b908959397f976e2996dc1b64ae0f"
-url = "https://dl.deno.land/release/v2.7.14/deno-x86_64-unknown-linux-gnu.zip"
+checksum = "sha256:be2c8b53c8ca1d66be76feb9b1a524419da708b00d4ca074cf5c633c81c1627b"
+url = "https://dl.deno.land/release/v2.8.0/deno-x86_64-unknown-linux-gnu.zip"
 
 [tools.deno."platforms.macos-arm64"]
-checksum = "sha256:aeb5825f83b4a9cd7f9355a1c4ddd666205dacf76ccb7b98c2b10e066bc9e4bb"
-url = "https://dl.deno.land/release/v2.7.14/deno-aarch64-apple-darwin.zip"
+checksum = "sha256:dba813b8b69d6218cffb11252b9e4e6036ca2c9d79843cde367b4b369aaf9634"
+url = "https://dl.deno.land/release/v2.8.0/deno-aarch64-apple-darwin.zip"
 
 [tools.deno."platforms.macos-x64"]
-checksum = "sha256:c89149513bf8e82ab5b351dac544f8c0cada90753bd2f576f46325fb67997ae1"
-url = "https://dl.deno.land/release/v2.7.14/deno-x86_64-apple-darwin.zip"
+checksum = "sha256:d6eb643b7f1afb22139f4aa17c4d97bf7ddab4e01e1820edcb30b9ae5c3a7391"
+url = "https://dl.deno.land/release/v2.8.0/deno-x86_64-apple-darwin.zip"
 
 [tools.deno."platforms.windows-x64"]
 checksum = "sha256:Algorithm"
-url = "https://dl.deno.land/release/v2.7.14/deno-x86_64-pc-windows-msvc.zip"
+url = "https://dl.deno.land/release/v2.8.0/deno-x86_64-pc-windows-msvc.zip"
 
 [[tools.fx]]
 version = "39.2.0"
@@ -785,42 +817,42 @@ checksum = "sha256:b2be80531c6babc8d4e0e6ca95773d58118a2e1582ae006aace08dbc55503
 url = "https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Windows_x86_64.zip"
 
 [[tools.lefthook]]
-version = "2.1.6"
+version = "2.1.8"
 backend = "aqua:evilmartians/lefthook"
 
 [tools.lefthook."platforms.linux-arm64"]
-checksum = "sha256:f85cc031da8e3571418170ab53f1e6e184a086b58683e13660bd5248974159a4"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_Linux_aarch64.gz"
+checksum = "sha256:2c0af40eb3209917733f72329abc2e91e51aa5fab85475ec515978c852c4d470"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.8/lefthook_2.1.8_Linux_aarch64.gz"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.linux-arm64-musl"]
-checksum = "sha256:f85cc031da8e3571418170ab53f1e6e184a086b58683e13660bd5248974159a4"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_Linux_aarch64.gz"
+checksum = "sha256:2c0af40eb3209917733f72329abc2e91e51aa5fab85475ec515978c852c4d470"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.8/lefthook_2.1.8_Linux_aarch64.gz"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.linux-x64"]
-checksum = "sha256:fab3d2715a922d9625c9024e6ffb6e1271edd613aa9b213c2049482cde8ae183"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_Linux_x86_64.gz"
+checksum = "sha256:15420bb2ce30ba5b71e242542b28f06447630011af924a3324ff63a0fee32f8c"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.8/lefthook_2.1.8_Linux_x86_64.gz"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.linux-x64-musl"]
-checksum = "sha256:fab3d2715a922d9625c9024e6ffb6e1271edd613aa9b213c2049482cde8ae183"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_Linux_x86_64.gz"
+checksum = "sha256:15420bb2ce30ba5b71e242542b28f06447630011af924a3324ff63a0fee32f8c"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.8/lefthook_2.1.8_Linux_x86_64.gz"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.macos-arm64"]
-checksum = "sha256:f07c97c32376749edb5b34179c16c6d87dd3e7ca0040aee911f38c821de0daab"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_MacOS_arm64.gz"
+checksum = "sha256:911d530d68ba1495beb32009bf895e296208a556a030d254e8d5641823ba7a25"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.8/lefthook_2.1.8_MacOS_arm64.gz"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.macos-x64"]
-checksum = "sha256:93c6d51823f94a7f26a2bbb84f59504378b178f55d6c90744169693ed3e89013"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_MacOS_x86_64.gz"
+checksum = "sha256:5d95768cf7383e21e5320dc1b351671fca009bc44800ec2366f824f5540d354f"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.8/lefthook_2.1.8_MacOS_x86_64.gz"
 provenance = "github-attestations"
 
 [tools.lefthook."platforms.windows-x64"]
-checksum = "sha256:6704b01a72414affcc921740a7d6c621fe60c3082b291c9730900a2c6a352516"
-url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.6/lefthook_2.1.6_Windows_x86_64.gz"
+checksum = "sha256:13cab0ebb26b89c66bbf53a658c4126bf34202a857412690bb61c14c530b1ecf"
+url = "https://github.com/evilmartians/lefthook/releases/download/v2.1.8/lefthook_2.1.8_Windows_x86_64.gz"
 provenance = "github-attestations"
 
 [[tools.minikube]]
@@ -882,36 +914,36 @@ url = "https://github.com/FiloSottile/mkcert/releases/download/v1.4.4/mkcert-v1.
 url = "https://github.com/FiloSottile/mkcert/releases/download/v1.4.4/mkcert-v1.4.4-windows-amd64.exe"
 
 [[tools.stylua]]
-version = "2.4.1"
+version = "2.5.2"
 backend = "aqua:JohnnyMorganz/StyLua"
 
 [tools.stylua."platforms.linux-arm64"]
-checksum = "sha256:ce8363cf77fb88f31e5cd8fe4cd8a61ff63ac0483bc5e38a1e24c5a894f04035"
-url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.4.1/stylua-linux-aarch64.zip"
+checksum = "sha256:0ef2ebf0b7e5a652b65c4cb96c6d9ffb3981a98547de3c764465bbf54a8d761a"
+url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.5.2/stylua-linux-aarch64.zip"
 
 [tools.stylua."platforms.linux-arm64-musl"]
-checksum = "sha256:f007809cb4d2b3c23abfecc061a276a19e4f74484239d1ed297be8eb6a11a86f"
-url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.4.1/stylua-linux-aarch64-musl.zip"
+checksum = "sha256:b948df6b4bae41af9a70948174372f96a3c14d44e3e017288701539f3db8fb75"
+url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.5.2/stylua-linux-aarch64-musl.zip"
 
 [tools.stylua."platforms.linux-x64"]
-checksum = "sha256:cb9280d967a3f83e443b354a6497b562de4acc1daccf4456df0f7232653d3843"
-url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.4.1/stylua-linux-x86_64-musl.zip"
+checksum = "sha256:ca6f1cf52eaf69e6632b81acef9c197aa24b85eb30d2455a35e7dbe28ae77c72"
+url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.5.2/stylua-linux-x86_64-musl.zip"
 
 [tools.stylua."platforms.linux-x64-musl"]
-checksum = "sha256:cb9280d967a3f83e443b354a6497b562de4acc1daccf4456df0f7232653d3843"
-url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.4.1/stylua-linux-x86_64-musl.zip"
+checksum = "sha256:ca6f1cf52eaf69e6632b81acef9c197aa24b85eb30d2455a35e7dbe28ae77c72"
+url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.5.2/stylua-linux-x86_64-musl.zip"
 
 [tools.stylua."platforms.macos-arm64"]
-checksum = "sha256:c1680c337c8d799b4226a10e8ac6744606fd00b01eb3046120b5226e31306809"
-url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.4.1/stylua-macos-aarch64.zip"
+checksum = "sha256:92ff0889e16324801bc072692974bb67f8161e62010fc90f96c62a17f81f32c7"
+url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.5.2/stylua-macos-aarch64.zip"
 
 [tools.stylua."platforms.macos-x64"]
-checksum = "sha256:985dc2c791ef5f0bfbaea99f18b01322613f5c6985979a8346c346a341043331"
-url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.4.1/stylua-macos-x86_64.zip"
+checksum = "sha256:53c50a1605d0a6345d160a1a5a21db40bcf2bf9cd23c17f7c277a63a1bff3a7f"
+url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.5.2/stylua-macos-x86_64.zip"
 
 [tools.stylua."platforms.windows-x64"]
-checksum = "sha256:9b1627b6034aa7ea0ce80485d2a07e777447548839a40acda6e30824a2bba07a"
-url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.4.1/stylua-windows-x86_64.zip"
+checksum = "sha256:e77d0ea1226b8b389b43f702240091249a96eea25857281f90ea24d0eb9eb969"
+url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.5.2/stylua-windows-x86_64.zip"
 
 [[tools.zellij]]
 version = "0.44.3"
