@@ -118,6 +118,19 @@ M.setup = function(theme)
     -- https://github.com/GustavEikaas/easy-dotnet.nvim#lualine-config
     local dotnet = require("easy-dotnet")
 
+    local function is_macro_recording()
+        local rec = vim.fn.reg_recording()
+        return rec and rec ~= ""
+    end
+
+    local function get_macro_recording()
+        local reg = vim.fn.reg_recording()
+        if not reg or reg == "" then
+            return ""
+        end
+        return "󰑋 " .. reg
+    end
+
     local config = {
         options = {
             ignore_focus = {
@@ -177,7 +190,7 @@ M.setup = function(theme)
 
                     symbols = { error = "", warn = "", info = "", hint = "󰌶" },
                     update_in_insert = true, -- Update diagnostics in insert mode.
-                    always_visible = false, -- Show diagnostics even if there are none.s
+                    always_visible = false,  -- Show diagnostics even if there are none.s
                     diagnostics_color = {
                         color_error = { fg = colors.red },
                         color_warn = { fg = colors.yellow },
@@ -365,7 +378,7 @@ M.setup = function(theme)
                         mac = "", -- e711
                     },
                 },
-                { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+                { "filetype",                   icon_only = true, separator = "", padding = { left = 1, right = 0 } },
                 -- https://github.com/cuducos/yaml.nvim#showing-the-yaml-path-and-value
                 {
                     function(msg)
@@ -374,7 +387,12 @@ M.setup = function(theme)
                     end,
                 },
             },
-            lualine_y = { { rstatus, color = rsttcolor } },
+            lualine_y = { { rstatus, color = rsttcolor }, {
+                get_macro_recording,
+                cond = is_macro_recording,
+                color = { fg = "#333333", bg = "#ff6666" },
+                separator = { left = "", right = "" },
+            }, },
             lualine_z = { "location" },
         },
         extensions = {
