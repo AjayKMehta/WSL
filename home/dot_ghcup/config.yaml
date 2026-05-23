@@ -1,6 +1,9 @@
+build-wrapper: null
 cache: null
+def-ghc-conf-options: null
 downloader: Curl
 gpg-setting: null
+guess-version: null
 keep-dirs: null
 key-bindings: null
 meta-cache: null
@@ -8,5 +11,9 @@ meta-mode: null
 mirrors: null
 no-network: null
 no-verify: null
+pager: null
 platform-override: null
+url-source:
+- GHCupURL
+- 3rdparty
 verbose: null
