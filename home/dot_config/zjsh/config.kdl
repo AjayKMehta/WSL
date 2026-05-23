@@ -1,0 +1,24 @@
+defaults {
+  shell "sh"
+  restart_on_resurrection false
+  icon_project "◆"
+  icon_session "●"
+  icon_resurrectable "↺"
+  icon_path "→"
+}
+
+project "api" {
+  path "/Users/example/work/api"
+  session "api"
+  restart_on_resurrection true
+}
+
+project "infra" {
+  path "/Users/example/work/infra"
+  layout "compact"
+}
+
+project "ops" {
+  path "/Users/example/work/ops"
+  layout_file "/Users/example/.config/zellij/layouts/ops.kdl"
+}
