@@ -3,6 +3,8 @@ local actions = require("diffview.actions")
 
 local config = {
     enhanced_diff_hl = not vim.g.diffview_base46,
+    show_root_path = true, -- Show repository root path in panel headers.
+    watch_index = true,    -- Update views and index buffers when the git index changes.
     diffopt = { algorithm = "histogram", linematch = 60 },
     cleanup_buffers = true,
     persist_selections = { enabled = true },
@@ -21,45 +23,45 @@ local config = {
             layout = "diff2_horizontal",
             winbar_info = true, -- See ':h diffview-config-view.x.winbar_info'
         },
-        file_panel = {
-            listing_style = "tree",         -- One of 'list' or 'tree'
-            tree_options = {                -- Only applies when listing_style is 'tree'
-                flatten_dirs = true,        -- Flatten dirs that only contain one single dir
-                folder_statuses = "always", -- One of 'never', 'only_folded' or 'always'.
-                always_show_marks = true,
-                show_branch_name = true,
-            },
-            win_config = { -- See ':h diffview-config-win_config'
-                position = "left",
-                width = 35,
-                win_opts = {},
-            },
-        },
-        file_history_panel = {
-            log_options = { -- See ':h diffview-config-log_options'
-                git = {
-                    single_file = {
-                        diff_merges = "combined",
-                    },
-                    multi_file = {
-                        diff_merges = "first-parent",
-                    },
-                },
-            },
-            win_config = { -- See ':h diffview-config-win_config'
-                position = "bottom",
-                height = 16,
-                win_opts = {},
-            },
-            commit_subject_max_length = 72,
-            date_format = "auto", -- "auto"|"relative"|"iso"
-        },
         merge_tool = {
             -- Config for conflicted files in diff views during a merge or rebase.
             layout = "diff4_mixed",     -- default is diff3_horizontal
             disable_diagnostics = true, -- Temporarily disable diagnostics for diff buffers while in the view.
             winbar_info = true,         -- See |diffview-config-view.x.winbar_info|
         },
+    },
+    file_panel = {
+        listing_style = "tree",         -- One of 'list' or 'tree'
+        tree_options = {                -- Only applies when listing_style is 'tree'
+            flatten_dirs = true,        -- Flatten dirs that only contain one single dir
+            folder_statuses = "always", -- One of 'never', 'only_folded' or 'always'.
+            always_show_marks = true,
+            show_branch_name = true,
+        },
+        win_config = { -- See ':h diffview-config-win_config'
+            position = "left",
+            width = 35,
+            win_opts = {},
+        },
+    },
+    file_history_panel = {
+        log_options = { -- See ':h diffview-config-log_options'
+            git = {
+                single_file = {
+                    diff_merges = "combined",
+                },
+                multi_file = {
+                    diff_merges = "first-parent",
+                },
+            },
+        },
+        win_config = { -- See ':h diffview-config-win_config'
+            position = "bottom",
+            height = 16,
+            win_opts = {},
+        },
+        commit_subject_max_length = 72,
+        date_format = "auto", -- "auto"|"relative"|"iso"
     },
     keymaps = {
         file_panel = {
