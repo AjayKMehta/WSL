@@ -2099,7 +2099,6 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--dry-run', '--dry-run', [CompletionResultType]::ParameterName, 'Show what would be packed without creating the tarball')
             [CompletionResult]::new('--allow-slow-types', '--allow-slow-types', [CompletionResultType]::ParameterName, 'Skip fast-check type extraction; .d.ts files are omitted from the output')
             [CompletionResult]::new('--allow-dirty', '--allow-dirty', [CompletionResultType]::ParameterName, 'Allow packing if the repository has uncommitted changes')
-            [CompletionResult]::new('--no-deno-shim', '--no-deno-shim', [CompletionResultType]::ParameterName, 'Don''t automatically add @deno/shim-deno dependency')
             [CompletionResult]::new('--no-source-maps', '--no-source-maps', [CompletionResultType]::ParameterName, 'Don''t include source maps in the output')
             break
         }
