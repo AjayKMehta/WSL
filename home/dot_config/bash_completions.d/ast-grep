@@ -17,88 +17,88 @@ _ast-grep() {
                 cmd="ast__grep"
                 ;;
             ast__grep,completions)
-                cmd="ast__grep__completions"
+                cmd="ast__grep__subcmd__completions"
                 ;;
             ast__grep,help)
-                cmd="ast__grep__help"
+                cmd="ast__grep__subcmd__help"
                 ;;
             ast__grep,lsp)
-                cmd="ast__grep__lsp"
+                cmd="ast__grep__subcmd__lsp"
                 ;;
             ast__grep,new)
-                cmd="ast__grep__new"
+                cmd="ast__grep__subcmd__new"
                 ;;
             ast__grep,run)
-                cmd="ast__grep__run"
+                cmd="ast__grep__subcmd__run"
                 ;;
             ast__grep,scan)
-                cmd="ast__grep__scan"
+                cmd="ast__grep__subcmd__scan"
                 ;;
             ast__grep,test)
-                cmd="ast__grep__test"
+                cmd="ast__grep__subcmd__test"
                 ;;
-            ast__grep__help,completions)
-                cmd="ast__grep__help__completions"
+            ast__grep__subcmd__help,completions)
+                cmd="ast__grep__subcmd__help__subcmd__completions"
                 ;;
-            ast__grep__help,help)
-                cmd="ast__grep__help__help"
+            ast__grep__subcmd__help,help)
+                cmd="ast__grep__subcmd__help__subcmd__help"
                 ;;
-            ast__grep__help,lsp)
-                cmd="ast__grep__help__lsp"
+            ast__grep__subcmd__help,lsp)
+                cmd="ast__grep__subcmd__help__subcmd__lsp"
                 ;;
-            ast__grep__help,new)
-                cmd="ast__grep__help__new"
+            ast__grep__subcmd__help,new)
+                cmd="ast__grep__subcmd__help__subcmd__new"
                 ;;
-            ast__grep__help,run)
-                cmd="ast__grep__help__run"
+            ast__grep__subcmd__help,run)
+                cmd="ast__grep__subcmd__help__subcmd__run"
                 ;;
-            ast__grep__help,scan)
-                cmd="ast__grep__help__scan"
+            ast__grep__subcmd__help,scan)
+                cmd="ast__grep__subcmd__help__subcmd__scan"
                 ;;
-            ast__grep__help,test)
-                cmd="ast__grep__help__test"
+            ast__grep__subcmd__help,test)
+                cmd="ast__grep__subcmd__help__subcmd__test"
                 ;;
-            ast__grep__help__new,project)
-                cmd="ast__grep__help__new__project"
+            ast__grep__subcmd__help__subcmd__new,project)
+                cmd="ast__grep__subcmd__help__subcmd__new__subcmd__project"
                 ;;
-            ast__grep__help__new,rule)
-                cmd="ast__grep__help__new__rule"
+            ast__grep__subcmd__help__subcmd__new,rule)
+                cmd="ast__grep__subcmd__help__subcmd__new__subcmd__rule"
                 ;;
-            ast__grep__help__new,test)
-                cmd="ast__grep__help__new__test"
+            ast__grep__subcmd__help__subcmd__new,test)
+                cmd="ast__grep__subcmd__help__subcmd__new__subcmd__test"
                 ;;
-            ast__grep__help__new,util)
-                cmd="ast__grep__help__new__util"
+            ast__grep__subcmd__help__subcmd__new,util)
+                cmd="ast__grep__subcmd__help__subcmd__new__subcmd__util"
                 ;;
-            ast__grep__new,help)
-                cmd="ast__grep__new__help"
+            ast__grep__subcmd__new,help)
+                cmd="ast__grep__subcmd__new__subcmd__help"
                 ;;
-            ast__grep__new,project)
-                cmd="ast__grep__new__project"
+            ast__grep__subcmd__new,project)
+                cmd="ast__grep__subcmd__new__subcmd__project"
                 ;;
-            ast__grep__new,rule)
-                cmd="ast__grep__new__rule"
+            ast__grep__subcmd__new,rule)
+                cmd="ast__grep__subcmd__new__subcmd__rule"
                 ;;
-            ast__grep__new,test)
-                cmd="ast__grep__new__test"
+            ast__grep__subcmd__new,test)
+                cmd="ast__grep__subcmd__new__subcmd__test"
                 ;;
-            ast__grep__new,util)
-                cmd="ast__grep__new__util"
+            ast__grep__subcmd__new,util)
+                cmd="ast__grep__subcmd__new__subcmd__util"
                 ;;
-            ast__grep__new__help,help)
-                cmd="ast__grep__new__help__help"
+            ast__grep__subcmd__new__subcmd__help,help)
+                cmd="ast__grep__subcmd__new__subcmd__help__subcmd__help"
                 ;;
-            ast__grep__new__help,project)
-                cmd="ast__grep__new__help__project"
+            ast__grep__subcmd__new__subcmd__help,project)
+                cmd="ast__grep__subcmd__new__subcmd__help__subcmd__project"
                 ;;
-            ast__grep__new__help,rule)
-                cmd="ast__grep__new__help__rule"
+            ast__grep__subcmd__new__subcmd__help,rule)
+                cmd="ast__grep__subcmd__new__subcmd__help__subcmd__rule"
                 ;;
-            ast__grep__new__help,test)
-                cmd="ast__grep__new__help__test"
+            ast__grep__subcmd__new__subcmd__help,test)
+                cmd="ast__grep__subcmd__new__subcmd__help__subcmd__test"
                 ;;
-            ast__grep__new__help,util)
-                cmd="ast__grep__new__help__util"
+            ast__grep__subcmd__new__subcmd__help,util)
+                cmd="ast__grep__subcmd__new__subcmd__help__subcmd__util"
                 ;;
             *)
                 ;;
@@ -128,7 +128,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__completions)
+        ast__subcmd__grep__subcmd__completions)
             opts="-c -h --config --help bash elvish fish powershell zsh"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -150,7 +150,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__help)
+        ast__subcmd__grep__subcmd__help)
             opts="run scan test new lsp completions help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -164,7 +164,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__help__completions)
+        ast__subcmd__grep__subcmd__help__subcmd__completions)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -178,7 +178,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__help__help)
+        ast__subcmd__grep__subcmd__help__subcmd__help)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -192,7 +192,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__help__lsp)
+        ast__subcmd__grep__subcmd__help__subcmd__lsp)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -206,7 +206,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__help__new)
+        ast__subcmd__grep__subcmd__help__subcmd__new)
             opts="project rule test util"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -220,7 +220,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__help__new__project)
+        ast__subcmd__grep__subcmd__help__subcmd__new__subcmd__project)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -234,7 +234,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__help__new__rule)
+        ast__subcmd__grep__subcmd__help__subcmd__new__subcmd__rule)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -248,7 +248,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__help__new__test)
+        ast__subcmd__grep__subcmd__help__subcmd__new__subcmd__test)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -262,7 +262,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__help__new__util)
+        ast__subcmd__grep__subcmd__help__subcmd__new__subcmd__util)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -276,7 +276,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__help__run)
+        ast__subcmd__grep__subcmd__help__subcmd__run)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -290,7 +290,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__help__scan)
+        ast__subcmd__grep__subcmd__help__subcmd__scan)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -304,7 +304,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__help__test)
+        ast__subcmd__grep__subcmd__help__subcmd__test)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -318,7 +318,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__lsp)
+        ast__subcmd__grep__subcmd__lsp)
             opts="-c -h --config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -340,7 +340,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__new)
+        ast__subcmd__grep__subcmd__new)
             opts="-l -y -c -h --lang --yes --config --help [NAME] project rule test util help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -370,7 +370,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__new__help)
+        ast__subcmd__grep__subcmd__new__subcmd__help)
             opts="project rule test util help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -384,7 +384,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__new__help__help)
+        ast__subcmd__grep__subcmd__new__subcmd__help__subcmd__help)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -398,7 +398,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__new__help__project)
+        ast__subcmd__grep__subcmd__new__subcmd__help__subcmd__project)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -412,7 +412,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__new__help__rule)
+        ast__subcmd__grep__subcmd__new__subcmd__help__subcmd__rule)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -426,7 +426,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__new__help__test)
+        ast__subcmd__grep__subcmd__new__subcmd__help__subcmd__test)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -440,7 +440,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__new__help__util)
+        ast__subcmd__grep__subcmd__new__subcmd__help__subcmd__util)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -454,7 +454,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__new__project)
+        ast__subcmd__grep__subcmd__new__subcmd__project)
             opts="-l -y -c -h --lang --yes --config --help [NAME]"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -484,7 +484,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__new__rule)
+        ast__subcmd__grep__subcmd__new__subcmd__rule)
             opts="-l -y -c -h --lang --yes --config --help [NAME]"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -514,7 +514,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__new__test)
+        ast__subcmd__grep__subcmd__new__subcmd__test)
             opts="-l -y -c -h --lang --yes --config --help [NAME]"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -544,7 +544,7 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__new__util)
+        ast__subcmd__grep__subcmd__new__subcmd__util)
             opts="-l -y -c -h --lang --yes --config --help [NAME]"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -574,8 +574,8 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__run)
-            opts="-p -r -l -j -i -U -A -B -C -c -h --pattern --selector --rewrite --lang --debug-query --strictness --follow --no-ignore --stdin --globs --threads --interactive --update-all --files-with-matches --json --color --inspect --after --before --context --heading --config --help [PATHS]..."
+        ast__subcmd__grep__subcmd__run)
+            opts="-p -k -r -l -j -i -U -A -B -C -c -h --pattern --selector --strictness --kind --rewrite --lang --debug-query --follow --no-ignore --stdin --globs --threads --interactive --update-all --files-with-matches --json --color --inspect --after --before --context --heading --config --help [PATHS]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -590,6 +590,18 @@ _ast-grep() {
                     return 0
                     ;;
                 --selector)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --strictness)
+                    COMPREPLY=($(compgen -W "cst smart ast relaxed signature template" -- "${cur}"))
+                    return 0
+                    ;;
+                --kind)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -k)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -611,10 +623,6 @@ _ast-grep() {
                     ;;
                 --debug-query)
                     COMPREPLY=($(compgen -W "pattern ast cst sexp" -- "${cur}"))
-                    return 0
-                    ;;
-                --strictness)
-                    COMPREPLY=($(compgen -W "cst smart ast relaxed signature template" -- "${cur}"))
                     return 0
                     ;;
                 --no-ignore)
@@ -688,8 +696,8 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__scan)
-            opts="-r -j -i -U -A -B -C -c -h --rule --inline-rules --format --report-style --include-metadata --filter --error --warning --info --hint --off --follow --no-ignore --stdin --globs --threads --interactive --update-all --files-with-matches --json --color --inspect --after --before --context --config --help [PATHS]..."
+        ast__subcmd__grep__subcmd__scan)
+            opts="-r -j -i -U -A -B -C -c -h --rule --inline-rules --format --report-style --include-metadata --filter --error --warning --info --hint --off --follow --no-ignore --stdin --globs --threads --interactive --update-all --files-with-matches --json --color --inspect --after --before --context --max-results --config --help [PATHS]..."
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -791,6 +799,10 @@ _ast-grep() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                --max-results)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --config)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
@@ -806,8 +818,8 @@ _ast-grep() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
-        ast__grep__test)
-            opts="-t -U -i -f -c -h --test-dir --snapshot-dir --skip-snapshot-tests --update-all --interactive --filter --include-off --config --help"
+        ast__subcmd__grep__subcmd__test)
+            opts="-t -U -i -f -c -h --test-dir --snapshot-dir --skip-snapshot-tests --update-all --interactive --filter --include-off --follow --color --config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -831,6 +843,10 @@ _ast-grep() {
                     ;;
                 -f)
                     COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --color)
+                    COMPREPLY=($(compgen -W "auto always ansi never" -- "${cur}"))
                     return 0
                     ;;
                 --config)
