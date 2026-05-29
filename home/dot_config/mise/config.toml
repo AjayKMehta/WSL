@@ -87,3 +87,4 @@ zellij = { version = "latest", postinstall = """
   """ }
 fzf = "latest"
 mkcert = "latest"
+betterleaks = "latest"
