@@ -4,6 +4,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         event = { "BufReadPre", "BufNewFile" },
+        dependencies = { "neovim-treesitter/treesitter-parser-registry" },
         lazy = false,
         branch = "main",
         cmd = {
