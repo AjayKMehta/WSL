@@ -32,18 +32,6 @@ return {
             },
             max_concurrent_installers = 10,
         },
-        config = function(_, opts)
-            dofile(vim.g.base46_cache .. "mason")
-            require("mason").setup(opts)
-        end,
-    },
-    {
-        "nvchad/base46",
-        lazy = false,
-        branch = "v3.0",
-        build = function()
-            require("base46").load_all_highlights()
-        end,
     },
     {
         "folke/lazydev.nvim",
@@ -348,7 +336,6 @@ return {
         },
         dependencies = { "nvim-tree/nvim-web-devicons", "b0o/nvim-tree-preview.lua" },
         config = function(_, opts)
-            dofile(vim.g.base46_cache .. "nvimtree")
             require("configs.nvimtree")
             require("nvim-tree").setup(opts)
             vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
@@ -360,8 +347,6 @@ return {
         cmd = { "ToggleTerm", "ToggleTermAll", "TermExec", "TermNew" },
         config = load_config("toggleterm"),
     },
-    { "nvchad/ui", lazy = false },
-    { "nvzone/volt", lazy = true },
     {
         "nvzone/menu",
         lazy = true,

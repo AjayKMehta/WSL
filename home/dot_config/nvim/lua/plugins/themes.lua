@@ -1,9 +1,15 @@
 return {
-    { "samharju/synthweave.nvim" },
+    {
+        "AvengeMedia/base46",
+        lazy = false,
+        opts = {},
+    },
+    { "samharju/synthweave.nvim", lazy = false },
     {
         -- Can also use as theme for lualine
         "xiantang/darcula-dark.nvim",
         enabled = true,
+        lazy = false,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
@@ -55,16 +61,21 @@ return {
     {
         "miikanissi/modus-themes.nvim",
         priority = 1000,
+        lazy = false,
         opts = {
             -- Theme comes in two styles `modus_operandi` and `modus_vivendi`
             -- `auto` will automatically set style based on background set with vim.o.background
             style = "auto",
-            variant = "default", -- `default`, `tinted`, `deuteranopia` or `tritanopia`
+            variants = {
+                -- `default`, `tinted`, `deuteranopia` or `tritanopia`
+                modus_operandi = "default",
+                modus_vivendi = "default",
+            },
             transparent = false,
-            dim_inactive = true, -- "non-current" windows are dimmed
+            dim_inactive = true,              -- "non-current" windows are dimmed
             hide_inactive_statusline = false,
             line_nr_column_background = true, -- Distinct background colors in line number column.
-            sign_column_background = true, -- Distinct background colors in sign column.
+            sign_column_background = true,    -- Distinct background colors in sign column.
             styles = {
                 -- Style to be applied to different syntax groups
                 -- Value is any valid attr-list value for `:help nvim_set_hl`
@@ -104,7 +115,7 @@ return {
             require("monokai-pro").setup({
                 transparent_background = false,
                 terminal_colors = true,
-                devicons = true, -- highlight the icons of `nvim-web-devicons`
+                devicons = true,    -- highlight the icons of `nvim-web-devicons`
                 day_night = {
                     enable = false, -- turn off by default
                 },
@@ -113,7 +124,7 @@ return {
     },
     {
         "hyperb1iss/silkcircuit",
-        lazy = true,
+        lazy = false,
         opts = {
             transparent = false,
             terminal_colors = true,
@@ -137,9 +148,10 @@ return {
             },
         },
     },
-    { "savq/melange-nvim" },
+    { "savq/melange-nvim",        lazy = false },
     {
         "nvzone/minty",
         cmd = { "Shades", "Huefy" },
+        dependencies = { "nvzone/volt", lazy = true },
     },
 }

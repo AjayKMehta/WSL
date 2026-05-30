@@ -1,8 +1,6 @@
 local map_desc = require("utils.mappings").map_desc
 local f = require("flash")
 
-dofile(vim.g.base46_cache .. "flash")
-
 local config = {
     jump = {
         autojump = true,

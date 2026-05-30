@@ -3,8 +3,6 @@ local on_attach = lsp.on_attach
 
 local capabilities = lsp.get_capabilities()
 
-dofile(vim.g.base46_cache .. "lsp")
-
 vim.lsp.config("*", {
     on_attach = on_attach,
     capabilities = capabilities,

@@ -2,7 +2,6 @@ local u = require("utils.helpers")
 local c = require("utils.nvim_cmp")
 local cmp = require("cmp")
 local src = require("nvim_cmp.sources")
-dofile(vim.g.base46_cache .. "cmp")
 
 local opts = {
     -- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#disabling-completion-in-certain-contexts-such-as-comments

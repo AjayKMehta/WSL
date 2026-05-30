@@ -1,8 +1,8 @@
 local map_desc = require("utils.mappings").map_desc
 local actions = require("diffview.actions")
 
-local config = {
-    enhanced_diff_hl = not vim.g.diffview_base46,
+local opts = {
+    enhanced_diff_hl = true,
     show_root_path = true, -- Show repository root path in panel headers.
     watch_index = true,    -- Update views and index buffers when the git index changes.
     diffopt = { algorithm = "histogram", linematch = 60 },
@@ -46,7 +46,7 @@ local config = {
     },
     file_history_panel = {
         subject_highlight = "merge_aware", -- "ref_aware" (pushed vs unpushed), "merge_aware" (adds merged-to-main/master), or "plain".
-        log_options = { -- See ':h diffview-config-log_options'
+        log_options = {                    -- See ':h diffview-config-log_options'
             git = {
                 single_file = {
                     diff_merges = "combined",
@@ -107,58 +107,28 @@ local config = {
             { "n", "<localleader>ft", actions.toggle_files, { desc = "DiffView Toggle Files" } }
         },
     },
+    hooks = {
+        diff_buf_win_enter = function(bufnr, winid, ctx)
+            -- https://github.com/dlyongemallo/diffview.nvim/blob/main/TIPS.md
+            -- Re-trigger treesitter-context's on_attach evaluation.
+            -- The group name is an internal detail of nvim-treesitter-context
+            -- and may differ across versions; verify it matches your install
+            -- or omit it to fire all BufReadPost handlers.
+            pcall(vim.api.nvim_exec_autocmds, "BufReadPost", {
+                buffer = bufnr,
+                group = "treesitter_context_update",
+            })
+        end,
+        view_closed = function()
+            local ok, tsc = pcall(require, "treesitter-context")
+            if ok and tsc.enabled() then
+                tsc.enable()
+            end
+        end
+    }
 }
 
-
-local update_highlights = function(ctx)
-    -- Highlight 'DiffChange' as 'DiffDelete' on the left, and 'DiffAdd' on
-    -- the right.
-    if ctx.layout_name:match("^diff2") then
-        if ctx.symbol == "a" then
-            vim.opt_local.winhl = table.concat({
-                "DiffAdd:DiffviewDiffAddAsDelete",
-                "DiffDelete:DiffviewDiffDelete",
-                "DiffChange:DiffviewDiffAddAsDelete",
-                "DiffText:DiffviewDiffDelete",
-            }, ",")
-        elseif ctx.symbol == "b" then
-            vim.opt_local.winhl = table.concat({
-                "DiffAdd:DiffviewDiffAdd",
-                "DiffDelete:DiffviewDiffDelete",
-                "DiffChange:DiffviewDiffAdd",
-                "DiffText:DiffviewDiffText",
-            }, ",")
-        end
-    end
-end
-
-if vim.g.diffview_base46 then
-    dofile(vim.g.base46_cache .. "diffview")
-    config.hooks.diff_buf_read = function()
-        vim.opt_local.wrap = false
-    end
-end
-config.hooks.diff_buf_win_enter = function(bufnr, winid, ctx)
-    if vim.g.diffview_base46 then
-        update_highlights(ctx)
-    end
-    -- https://github.com/dlyongemallo/diffview.nvim/blob/main/TIPS.md
-    -- Re-trigger treesitter-context's on_attach evaluation.
-    -- The group name is an internal detail of nvim-treesitter-context
-    -- and may differ across versions; verify it matches your install
-    -- or omit it to fire all BufReadPost handlers.
-    pcall(vim.api.nvim_exec_autocmds, "BufReadPost", {
-        buffer = bufnr,
-        group = "treesitter_context_update",
-    })
-end
-config.hooks.view_closed = function()
-    local ok, tsc = pcall(require, "treesitter-context")
-    if ok and tsc.enabled() then
-        tsc.enable()
-    end
-end
-require("diffview").setup(config)
+require("diffview").setup(opts)
 
 -- Toggle diffview open/close
 map_desc("n", "<leader>Dv", "<cmd>DiffviewToggle<cr>", "Toggle Diffview")

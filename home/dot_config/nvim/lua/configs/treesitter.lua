@@ -26,9 +26,6 @@ local config = {
     },
 }
 
-dofile(vim.g.base46_cache .. "semantic_tokens")
-dofile(vim.g.base46_cache .. "treesitter")
-
 ts.setup(config)
 
 local ensure_installed = {

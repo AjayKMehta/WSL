@@ -20,7 +20,6 @@ return {
         -- A plugin to visualise and resolve merge conflicts.
         "niekdomi/conflict.nvim",
         config = function()
-            dofile(vim.g.base46_cache .. "git-conflict")
             require("conflict").setup({
                 default_mappings = {
                     current = "cc",

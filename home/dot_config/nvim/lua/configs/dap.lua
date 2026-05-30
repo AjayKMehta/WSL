@@ -8,8 +8,6 @@ local mason_path = vim.fn.stdpath("data") .. "/mason"
 -- https://github.com/mfussenegger/nvim-dap/blob/master/doc/dap.txt
 require("dap.ext.vscode").json_decode = require("json5").parse
 
-dofile(vim.g.base46_cache .. "dap")
-
 -- Mappings
 -- Keep same as VS + VS Code
 map_desc({ "n", "v" }, "<F9>", "<cmd>DapToggleBreakpoint<CR>", "DAP Toggle breakpoint")

@@ -47,8 +47,6 @@ return {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = { "markdown", "codecompanion", "quarto", "rmd" },
         opts = function()
-            dofile(vim.g.base46_cache .. "render-markdown")
-
             local opts = {
                 file_types = { "markdown", "quarto", "rmd", "org", "norg", "codecompanion" },
                 render_modes = { "n", "c", "t", "v", "V", "\22" },

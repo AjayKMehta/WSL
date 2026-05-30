@@ -1,5 +1,3 @@
-dofile(vim.g.base46_cache .. "rainbowdelimiters")
-
 vim.g.rainbow_delimiters = {
     query = {
         [""] = "rainbow-delimiters",

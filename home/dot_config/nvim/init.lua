@@ -1,6 +1,5 @@
 local map_desc = require("utils.mappings").map_desc
 
-vim.g.base46_cache = vim.fn.stdpath("data") .. "/nvchad/base46/"
 -- Set these before loading lazy.nvim
 vim.g.mapleader = " "
 -- This is the default but being explicit :)
@@ -62,9 +61,6 @@ vim.g.snippet_examples = true
 vim.g.show_linters = false
 vim.g.show_formatters = false
 
--- if true, use base46 diffview integration.
-vim.g.diffview_base46 = false
-
 -- if true, use zathura_simple for viewing PDFs with vimtex
 vim.g.use_zathura_simple = true
 
@@ -85,12 +81,6 @@ require("lazy").setup({
 }, lazy_config)
 
 require("configs.lsp")
-
-dofile(vim.g.base46_cache .. "git")
-
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")
-dofile(vim.g.base46_cache .. "syntax")
 
 require("autocmds")
 

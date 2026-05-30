@@ -24,14 +24,6 @@ map_desc("n", "<C-c>", "<cmd>%y+<CR>", "general copy whole file")
 map_desc("n", "<tab>", "<cmd>bnext<CR>", "buffer goto next")
 map_desc("n", "<S-tab>", "<cmd>bprevious<CR>", "buffer goto previous")
 
-map_desc("n", "<leader>tt", function()
-    require("base46").toggle_theme()
-end, "Base46 Toggle theme")
-
-map_desc("n", "<leader>tT", function()
-    require("base46").toggle_transparency()
-end, "Base46 Toggle transparency")
-
 -- Create a function to handle command mode yanking
 local function cmd_yank()
     vim.fn.setreg('"', vim.fn.getcmdline())
