@@ -45,6 +45,7 @@ local config = {
         },
     },
     file_history_panel = {
+        subject_highlight = "merge_aware", -- "ref_aware" (pushed vs unpushed), "merge_aware" (adds merged-to-main/master), or "plain".
         log_options = { -- See ':h diffview-config-log_options'
             git = {
                 single_file = {
