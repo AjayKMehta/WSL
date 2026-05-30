@@ -268,6 +268,8 @@ return {
                     set_fold_expr = true,
                     analyzer_assemblies = {},
                     roslynator_enabled = true,
+                    auto_refresh_codelens = true,
+                    suggest_updates = true, -- Periodically suggest roslyn-language-server updates
                 },
                 diagnostics = {
                     default_severity = "warning",
