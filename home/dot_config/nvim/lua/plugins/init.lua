@@ -14,7 +14,7 @@ return {
     },
     {
         "mason-org/mason.nvim",
-        cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+        cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall" },
         opts = {
             -- https://github.com/williamboman/nvim-lsp-installer/discussions/509#discussioncomment-4009039
             PATH = "prepend", -- "skip" seems to cause the spawning error

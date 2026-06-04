@@ -257,7 +257,7 @@ return {
     },
     {
         "windwp/nvim-autopairs",
-        -- cond = not vim.g.use_blink,
+        cond = not vim.g.use_blink,
         event = "InsertEnter",
         opts = {
             fast_wrap = {
