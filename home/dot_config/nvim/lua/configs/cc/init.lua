@@ -4,9 +4,12 @@ local ca = require("codecompanion.adapters")
 
 local ollama_url = "http://localhost:11434"
 
+require("configs.cc.snacks")
+
+-- blink does not work. default works with <C-X> <C-O>.
 local comp_provider = "cmp"
 if vim.g.use_blink then
-    comp_provider = "blink"
+    comp_provider = "default"
 end
 
 local adapters = {
@@ -66,7 +69,7 @@ local adapters = {
                 },
                 schema = {
                     model = {
-                        default = "glm-4.7-flash:q4_K_M",
+                        default = "qwen3.5:9b",
                         choices = {
                             "deepseek-r1:8b",
                             "glm-4.7-flash:q4_K_M",
@@ -81,7 +84,7 @@ local adapters = {
                     think = {
                         default = function(adapter)
                             local model_name = adapter.model.name:lower()
-                            return vim.iter({ "glm-4.7-flash:q4_K_M", "qwen3.5:9b" }):any(function(kw)
+                            return vim.iter({ "qwen3.5:9b", "deepseek-r1:8b" }):any(function(kw)
                                 return string.find(model_name, kw) ~= nil
                             end)
                         end,
@@ -154,7 +157,7 @@ local display = {
 local interactions = {
     chat = {
         adapter = "ollama",
-        model = "glm-4.7-flash:q4_K_M",
+        model = "qwen3.5:9b",
         roles = {
             ---The header name for the LLM's messages
             llm = function(adapter)
@@ -168,7 +171,6 @@ local interactions = {
             user = "Me",
         },
         opts = {
-            -- blink|cmp|coc|default
             completion_provider = comp_provider,
             ---Decorate the user message before it's sent to the LLM
             ---@param message string
@@ -311,7 +313,7 @@ local interactions = {
     background = {
         adapter = {
             name = "ollama",
-            model = "glm-4.7-flash:q4_K_M",
+            model = "qwen3.5:9b",
         },
     },
     shared = {
@@ -347,45 +349,6 @@ local prompt_library = {
     },
 }
 
-local extensions = {
-    history = {
-        enabled = true,
-        opts = {
-            -- Keymap to open history from chat buffer (default: gh)
-            keymap = "gh",
-            auto_save = true,
-            expiration_days = 90,
-            -- Automatically generate titles for new chats
-            auto_generate_title = true,
-            ---On exiting and entering neovim, loads the last chat on opening chat
-            continue_last_chat = false,
-            ---When chat is cleared with `gx` delete the chat from history
-            delete_on_clearing_chat = false,
-            -- "telescope", "snacks" or "default"
-            picker = "snacks",
-            enable_logging = true,
-            ---Directory path to save the chats
-            dir_to_save = vim.fn.stdpath("data") .. "/codecompanion-history",
-            -- Keymap to save the current chat manually
-            save_chat_keymap = "<localleader>sc",
-            title_generation_opts = {
-                adapter = "copilot",
-                model = "claude-haiku-4.5",
-                refresh_every_n_prompts = 0, -- e.g., 3 to refresh after every 3rd user prompt
-                max_refreshes = 3,
-            },
-            summary = {
-                -- Keymap to generate summary (default: "gcs")
-                create_summary_keymap = "gcs",
-                -- Keymap to browse summaries (default: "gbs")
-                browse_summaries_keymap = "gbs",
-                -- Keymap to preview/edit summary (default: "gps")
-                preview_summary_keymap = "gps",
-            },
-        },
-    },
-}
-
 -- Logs stored in ~/.local/state/nvim/codecompanion.log
 local opts = {
     log_level = "INFO", -- TRACE|DEBUG|ERROR|INFO
@@ -394,6 +357,12 @@ local opts = {
       files = {
         ".codecompanion.lua",
       },
+    },
+    triggers = {
+      acp_slash_commands = "\\",
+      editor_context = "#",
+      slash_commands = "/",
+      tools = "@",
     },
 }
 
@@ -490,7 +459,6 @@ local mcp = {
 }
 
 local config = {
-    extensions = extensions,
     adapters = adapters,
     display = display,
     interactions = interactions,
@@ -540,16 +508,6 @@ vim.api.nvim_create_autocmd({ "User" }, {
             return
         end
         current_chat.messages = compact_reference(current_chat.messages)
-    end,
-})
-
--- https://github.com/olimorris/codecompanion.nvim/discussions/1236#discussioncomment-12815303
-vim.api.nvim_create_autocmd("User", {
-    pattern = "CodeCompanionRequestStarted",
-    callback = function()
-        vim.defer_fn(function()
-            vim.cmd("stopinsert")
-        end, 1)
     end,
 })
 

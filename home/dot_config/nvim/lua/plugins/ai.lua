@@ -7,16 +7,6 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
-            {
-                "ravitemer/codecompanion-history.nvim",
-                config = load_config("codecompanion_history"),
-            },
-            {
-                "lalitmee/codecompanion-spinners.nvim",
-                opts = {
-                    style = "snacks",
-                },
-            },
         },
         cmd = {
             "CodeCompanion",
@@ -78,7 +68,7 @@ return {
                 desc = "Add documentation for code",
             },
         },
-        config = load_config("codecompanion"),
+        config = load_config("cc"),
     },
     {
         "ravitemer/mcphub.nvim",
