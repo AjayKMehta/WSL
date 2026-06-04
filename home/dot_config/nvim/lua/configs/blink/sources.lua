@@ -7,7 +7,7 @@ return {
 
         -- By default, the buffer source will only show when the LSP
         -- source is disabled or returns no items.
-        return { "lsp", "snippets", "codecompanion", "unitex" }
+        return { "lsp", "snippets", "unitex" }
     end,
     per_filetype = {
         lua = { inherit_defaults = true, "lazydev" },
@@ -19,7 +19,6 @@ return {
         rmd = { inherit_defaults = true, "nerdfont" },
         quarto = { inherit_defaults = true, "nerdfont" },
         markdown = { inherit_defaults = true, "nerdfont" },
-        codecompanion = { inherit_defaults = true, "codecompanion", "nerdfont" },
         cs = { inherit_defaults = true, "easy-dotnet" },
         csproj = { inherit_defaults = true, "easy-dotnet" },
         sln = { inherit_defaults = true, "easy-dotnet" },
@@ -45,13 +44,6 @@ return {
                 return ctx.trigger.initial_kind ~= "trigger_character"
                 --    and not require("blink.cmp").snippet_active()
             end,
-            opts = {
-                friendly_snippets = true,
-                search_paths = { vim.fn.stdpath("config") .. "/lua/snippets" },
-                global_snippets = { "all" },
-                extended_filetypes = {},
-                ignored_filetypes = {},
-            },
         },
         buffer = { score_offset = -10, min_keyword_length = 4 },
         lazydev = {
@@ -99,10 +91,6 @@ return {
                 end
                 return 2
             end,
-        },
-        codecompanion = {
-            name = "CodeCompanion",
-            module = "codecompanion.providers.completion.blink",
         },
         nerdfont = {
             name = "nerdfont",
