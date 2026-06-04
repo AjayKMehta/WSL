@@ -106,6 +106,8 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--cpu-prof', '--cpu-prof', [CompletionResultType]::ParameterName, 'Start the V8 CPU profiler on startup and write the profile to disk on exit. Profiles are written to the current directory by default')
             [CompletionResult]::new('--cpu-prof-md', '--cpu-prof-md', [CompletionResultType]::ParameterName, 'Generate a human-readable markdown report alongside the CPU profile')
             [CompletionResult]::new('--cpu-prof-flamegraph', '--cpu-prof-flamegraph', [CompletionResultType]::ParameterName, 'Generate an SVG flamegraph alongside the CPU profile')
+            [CompletionResult]::new('--use-env-proxy', '--use-env-proxy', [CompletionResultType]::ParameterName, 'Use HTTP_PROXY, HTTPS_PROXY, and NO_PROXY for node:http/node:https')
+            [CompletionResult]::new('--no-use-env-proxy', '--no-use-env-proxy', [CompletionResultType]::ParameterName, 'no-use-env-proxy')
             [CompletionResult]::new('--unstable', '--unstable', [CompletionResultType]::ParameterName, 'The `--unstable` flag has been deprecated. Use granular `--unstable-*` flags instead   To view the list of individual unstable feature flags, run this command again with --help=unstable')
             [CompletionResult]::new('--unstable-bare-node-builtins', '--unstable-bare-node-builtins', [CompletionResultType]::ParameterName, 'Enable unstable bare node builtins feature')
             [CompletionResult]::new('--unstable-broadcast-channel', '--unstable-broadcast-channel', [CompletionResultType]::ParameterName, 'Enable unstable `BroadcastChannel` API')
@@ -299,6 +301,8 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--cpu-prof', '--cpu-prof', [CompletionResultType]::ParameterName, 'Start the V8 CPU profiler on startup and write the profile to disk on exit. Profiles are written to the current directory by default')
             [CompletionResult]::new('--cpu-prof-md', '--cpu-prof-md', [CompletionResultType]::ParameterName, 'Generate a human-readable markdown report alongside the CPU profile')
             [CompletionResult]::new('--cpu-prof-flamegraph', '--cpu-prof-flamegraph', [CompletionResultType]::ParameterName, 'Generate an SVG flamegraph alongside the CPU profile')
+            [CompletionResult]::new('--use-env-proxy', '--use-env-proxy', [CompletionResultType]::ParameterName, 'Use HTTP_PROXY, HTTPS_PROXY, and NO_PROXY for node:http/node:https')
+            [CompletionResult]::new('--no-use-env-proxy', '--no-use-env-proxy', [CompletionResultType]::ParameterName, 'no-use-env-proxy')
             [CompletionResult]::new('-q', '-q', [CompletionResultType]::ParameterName, 'Suppress diagnostic output')
             [CompletionResult]::new('--quiet', '--quiet', [CompletionResultType]::ParameterName, 'Suppress diagnostic output')
             break
@@ -1022,6 +1026,8 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--no-code-cache', '--no-code-cache', [CompletionResultType]::ParameterName, 'Disable V8 code cache feature')
             [CompletionResult]::new('--no-terminal', '--no-terminal', [CompletionResultType]::ParameterName, 'Hide terminal on Windows')
             [CompletionResult]::new('--self-extracting', '--self-extracting', [CompletionResultType]::ParameterName, 'Create a self-extracting binary that extracts the embedded file system to disk on first run and then runs from there')
+            [CompletionResult]::new('--bundle', '--bundle', [CompletionResultType]::ParameterName, 'Experimental. Bundle the entrypoint with esbuild before embedding, instead of shipping the whole node_modules tree.   Produces a smaller binary with faster startup, at the cost of dropping dynamic require/import patterns that can''t be statically traced.')
+            [CompletionResult]::new('--minify', '--minify', [CompletionResultType]::ParameterName, 'Experimental. Minify the bundled output. Only meaningful with --bundle.   Reduces both the embedded bundle size and runtime memory use, at the cost of less readable stack traces.')
             break
         }
         'deno;create' {
@@ -2217,6 +2223,7 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--cwd', '--cwd', [CompletionResultType]::ParameterName, 'Specify the directory to run the task in')
             [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Filter members of the workspace by name, implies --recursive flag')
             [CompletionResult]::new('--filter', '--filter', [CompletionResultType]::ParameterName, 'Filter members of the workspace by name, implies --recursive flag')
+            [CompletionResult]::new('--env-file', '--env-file', [CompletionResultType]::ParameterName, 'Load environment variables from local file   Only the first environment variable with a given key is used.   Existing process environment variables are not overwritten, so if variables with the same names already exist in the environment, their values will be preserved.   Where multiple declarations for the same environment variable exist in your .env file, the first one encountered is applied. This is determined by the order of the files you pass as arguments.')
             [CompletionResult]::new('--node-modules-dir', '--node-modules-dir', [CompletionResultType]::ParameterName, 'Sets the node modules management mode for npm packages')
             [CompletionResult]::new('--node-modules-linker', '--node-modules-linker', [CompletionResultType]::ParameterName, 'Sets the linker mode for npm packages (isolated or hoisted)')
             [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'Execute tasks with a tunnel to Deno Deploy.      Create a secure connection between your local machine and Deno Deploy,     providing access to centralised environment variables, logging,     and serving from your local environment to the public internet')
