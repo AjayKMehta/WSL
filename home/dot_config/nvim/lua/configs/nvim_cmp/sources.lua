@@ -1,6 +1,6 @@
 local c = require("configs.nvim_cmp.helpers")
 local cmp = require("cmp")
-local get_buffers_by_size = require("utils.helpers").get_buffers_by_size
+local filter_buffers_by_size = require("utils.helpers").filter_buffers_by_size
 
 local function get_fuzzy_buffer_source(grp_idx, priority, kw_length)
     return {
@@ -9,7 +9,7 @@ local function get_fuzzy_buffer_source(grp_idx, priority, kw_length)
         priority = priority,
         keyword_length = kw_length,
         -- Only select visible buffers of 1 MB or less size
-        option = { get_bufnrs = get_buffers_by_size },
+        option = { get_bufnrs = filter_buffers_by_size },
     }
 end
 
