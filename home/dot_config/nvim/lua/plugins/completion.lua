@@ -6,9 +6,8 @@ return {
         "hrsh7th/nvim-cmp",
         cond = not vim.g.use_blink,
         event = { "InsertEnter", "CmdlineEnter" },
-        config = function(_, opts)
-            require("cmp").setup(opts)
-            load_config("nvim_cmp")
+        config = function()
+            require("configs.nvim_cmp")
         end,
         dependencies = {
             "L3MON4D3/LuaSnip",

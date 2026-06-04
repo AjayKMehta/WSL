@@ -1,7 +1,8 @@
 local u = require("utils.helpers")
 local c = require("configs.nvim_cmp.helpers")
 local cmp = require("cmp")
-local src = require("nvim_cmp.sources")
+local src = require("configs.nvim_cmp.sources")
+local mappings = require("configs.nvim_cmp.mappings")
 
 local opts = {
     -- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#disabling-completion-in-certain-contexts-such-as-comments
@@ -50,32 +51,31 @@ local opts = {
         keyword_length = 2,
         autocomplete = false,
     },
-    mapping = require("nvim_cmp.mappings"),
+    mapping = mappings,
     sorting = {
-        comparators = vim.list_extend(
-            {
-                ---@param l cmp.Entry
-                ---@param r cmp.Entry
-                ---@return boolean|nil
-                function(l, r)
-                    --- Try to compare file/dir entries, give up and delegate if any entry isn't
-                    ---@param i cmp.Entry
-                    ---@return uv.fs_stat.result?
-                    local function stat(i)
-                        local d = i.completion_item.data or {}
-                        return (d.stat or d.lstat) or nil
-                    end
-                    local ls = stat(l)
-                    if not ls then
-                        return nil
-                    end
-                    local lr = stat(r)
-                    if not lr then
-                        return nil
-                    end
-                    return lr.mtime.sec < ls.mtime.sec
-                end,
-            },
+        comparators =
+        {
+            ---@param l cmp.Entry
+            ---@param r cmp.Entry
+            ---@return boolean|nil
+            function(l, r)
+                --- Try to compare file/dir entries, give up and delegate if any entry isn't
+                ---@param i cmp.Entry
+                ---@return uv.fs_stat.result?
+                local function stat(i)
+                    local d = i.completion_item.data or {}
+                    return (d.stat or d.lstat) or nil
+                end
+                local ls = stat(l)
+                if not ls then
+                    return nil
+                end
+                local lr = stat(r)
+                if not lr then
+                    return nil
+                end
+                return lr.mtime.sec < ls.mtime.sec
+            end,
             cmp.config.compare.offset,
             cmp.config.compare.exact,
             -- https://github.com/petertriho/cmp-git#config
@@ -85,9 +85,8 @@ local opts = {
             cmp.config.compare.receently_used,
             cmp.config.compare.kind,
             cmp.config.compare.length,
-            cmp.config.compare.order,
-            cmp.config.default().sorting.comparators
-        ),
+            cmp.config.compare.order
+        },
     },
     view = {
         entries = {
@@ -97,7 +96,7 @@ local opts = {
         },
     },
     window = { completion = { max_height = 12 } },
-    sources = src.default,
+    sources = cmp.config.sources(src.default),
     fields = { "abbr", "icon", "kind", "menu" },
     formatting = { format = c.format },
 }
@@ -106,7 +105,7 @@ cmp.setup(opts)
 
 -- Do not use cmp.config.sources():
 -- https://github.com/hrsh7th/nvim-cmp/discussions/881
-cmp.setup.filetype("lua", { sources = src.lua })
+cmp.setup.filetype("lua", cmp.config.sources({ sources = src.lua }))
 
 cmp.setup.filetype({ "gitcommit", "octo" }, {
     sources = cmp.config.sources(
@@ -121,7 +120,7 @@ cmp.setup.filetype({ "gitcommit", "octo" }, {
 })
 
 cmp.setup.filetype({ "gitrebase" }, {
-    sources = src.gitrebase,
+    sources = cmp.config.sources(src.gitrebase),
 })
 
 -- TODO: Figure out why not working :(
@@ -145,7 +144,7 @@ cmp.setup.cmdline(":", {
         keyword_length = 2, -- Otherwise, can't use :q!
     },
     enabled = true,
-    sources = src.cmdline,
+    sources = cmp.config.sources(src.cmdline),
 })
 
 cmp.setup.filetype({
@@ -175,11 +174,12 @@ cmp.setup.filetype({
 })
 
 cmp.setup.filetype({ "tex", "plaintex" }, {
-    sources = src.tex,
+    sources = cmp.config.sources(src.tex),
 })
 
-cmp.setup.filetype({ "markdown", "codecompanion", "rmd", "quarto" }, {
-    sources = src.markdown,
+-- Removed codecompanion as caused problems with codecompanion.nvim.
+cmp.setup.filetype({ "markdown", "rmd", "quarto" }, {
+    sources = cmp.config.sources(src.markdown),
 })
 
 cmp.setup.filetype({ "cs", "csproj", "sln", "slnx", "props" }, {
