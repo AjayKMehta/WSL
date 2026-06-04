@@ -93,36 +93,36 @@ checksum = "sha256:a5adbf57eb1b923b62d1c3596c4f827df143f5b52cfba48bb9e83f41dea90
 url = "https://github.com/Wilfred/difftastic/releases/download/0.69.0/difft-x86_64-pc-windows-msvc.zip"
 
 [[tools."aqua:anchore/grype"]]
-version = "0.112.0"
+version = "0.113.0"
 backend = "aqua:anchore/grype"
 
 [tools."aqua:anchore/grype"."platforms.linux-arm64"]
-checksum = "sha256:7fdeccf065965cc59386c656e5fcc1eb1bdf820e2433000bca7f010b8e6da155"
-url = "https://github.com/anchore/grype/releases/download/v0.112.0/grype_0.112.0_linux_arm64.tar.gz"
+checksum = "sha256:9fb05aff6757913b1c8480a70f2c77f4cc78b03bca3a66d8161ad6136da35462"
+url = "https://github.com/anchore/grype/releases/download/v0.113.0/grype_0.113.0_linux_arm64.tar.gz"
 
 [tools."aqua:anchore/grype"."platforms.linux-arm64-musl"]
-checksum = "sha256:7fdeccf065965cc59386c656e5fcc1eb1bdf820e2433000bca7f010b8e6da155"
-url = "https://github.com/anchore/grype/releases/download/v0.112.0/grype_0.112.0_linux_arm64.tar.gz"
+checksum = "sha256:9fb05aff6757913b1c8480a70f2c77f4cc78b03bca3a66d8161ad6136da35462"
+url = "https://github.com/anchore/grype/releases/download/v0.113.0/grype_0.113.0_linux_arm64.tar.gz"
 
 [tools."aqua:anchore/grype"."platforms.linux-x64"]
-checksum = "sha256:acb14a030010fe9bdb9594b4ae108d9d14ef2f926d936aa0916dc62c89c058ea"
-url = "https://github.com/anchore/grype/releases/download/v0.112.0/grype_0.112.0_linux_amd64.tar.gz"
+checksum = "sha256:d87059d11616446a5dd817a47c21823676b4b24bdaac529695ca404a32ba339d"
+url = "https://github.com/anchore/grype/releases/download/v0.113.0/grype_0.113.0_linux_amd64.tar.gz"
 
 [tools."aqua:anchore/grype"."platforms.linux-x64-musl"]
-checksum = "sha256:acb14a030010fe9bdb9594b4ae108d9d14ef2f926d936aa0916dc62c89c058ea"
-url = "https://github.com/anchore/grype/releases/download/v0.112.0/grype_0.112.0_linux_amd64.tar.gz"
+checksum = "sha256:d87059d11616446a5dd817a47c21823676b4b24bdaac529695ca404a32ba339d"
+url = "https://github.com/anchore/grype/releases/download/v0.113.0/grype_0.113.0_linux_amd64.tar.gz"
 
 [tools."aqua:anchore/grype"."platforms.macos-arm64"]
-checksum = "sha256:58c3c372e334c27e5bd5031cfb5ae85dbe5e782478d52fb5515ea413b6d47da4"
-url = "https://github.com/anchore/grype/releases/download/v0.112.0/grype_0.112.0_darwin_arm64.tar.gz"
+checksum = "sha256:5165a43923a6681b3991917ae7f3534bda572ec72176a5fdd6680c6b35873416"
+url = "https://github.com/anchore/grype/releases/download/v0.113.0/grype_0.113.0_darwin_arm64.tar.gz"
 
 [tools."aqua:anchore/grype"."platforms.macos-x64"]
-checksum = "sha256:2fd7862e20ba43589b84919f05a5e6dd3a5b12d3860aed467bc4dc427926f6eb"
-url = "https://github.com/anchore/grype/releases/download/v0.112.0/grype_0.112.0_darwin_amd64.tar.gz"
+checksum = "sha256:572b285f46744ce35aac8c5129c90e481d57edca10f7b33362bf8f6f1a6c519a"
+url = "https://github.com/anchore/grype/releases/download/v0.113.0/grype_0.113.0_darwin_amd64.tar.gz"
 
 [tools."aqua:anchore/grype"."platforms.windows-x64"]
-checksum = "sha256:94ae49ced125fca7590fd35dfa96e36f68760cefff9a653c92fa8f6842777879"
-url = "https://github.com/anchore/grype/releases/download/v0.112.0/grype_0.112.0_windows_amd64.zip"
+checksum = "sha256:6841e5990698afb714e0eac34e2295207c64636637823b2a861dfec61cdd98fa"
+url = "https://github.com/anchore/grype/releases/download/v0.113.0/grype_0.113.0_windows_amd64.zip"
 
 [[tools."aqua:charmbracelet/gum"]]
 version = "0.17.0"
@@ -657,75 +657,75 @@ url = "https://github.com/eth-p/bat-extras/releases/download/v2024.08.24/bat-ext
 url = "https://github.com/eth-p/bat-extras/releases/download/v2024.08.24/bat-extras-2024.08.24.zip"
 
 [[tools.betterleaks]]
-version = "1.3.1"
+version = "1.4.0"
 backend = "aqua:betterleaks/betterleaks"
 
 [tools.betterleaks."platforms.linux-arm64"]
-checksum = "sha256:8e4145c1f4155757f4a9e1b75facc49ee67525365cde2c38373457d92e2fdc9d"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.3.1/betterleaks_1.3.1_linux_arm64.tar.gz"
+checksum = "sha256:d191eb99b057626cdaf3f83562473075f1e4823c3cb1f00e07ce7596362a3670"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.0/betterleaks_1.4.0_linux_arm64.tar.gz"
 provenance = "cosign"
 
 [tools.betterleaks."platforms.linux-arm64-musl"]
-checksum = "sha256:8e4145c1f4155757f4a9e1b75facc49ee67525365cde2c38373457d92e2fdc9d"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.3.1/betterleaks_1.3.1_linux_arm64.tar.gz"
+checksum = "sha256:d191eb99b057626cdaf3f83562473075f1e4823c3cb1f00e07ce7596362a3670"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.0/betterleaks_1.4.0_linux_arm64.tar.gz"
 provenance = "cosign"
 
 [tools.betterleaks."platforms.linux-x64"]
-checksum = "sha256:7b241c80204538cbb210c94514dc7cdff86430938bd7d5b6e289207959530849"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.3.1/betterleaks_1.3.1_linux_x64.tar.gz"
+checksum = "sha256:e2cb2b909baf64f48abaf2487c1a5874751196bd9d715e4fd68f7f94b0fbf601"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.0/betterleaks_1.4.0_linux_x64.tar.gz"
 provenance = "cosign"
 
 [tools.betterleaks."platforms.linux-x64-musl"]
-checksum = "sha256:7b241c80204538cbb210c94514dc7cdff86430938bd7d5b6e289207959530849"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.3.1/betterleaks_1.3.1_linux_x64.tar.gz"
+checksum = "sha256:e2cb2b909baf64f48abaf2487c1a5874751196bd9d715e4fd68f7f94b0fbf601"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.0/betterleaks_1.4.0_linux_x64.tar.gz"
 provenance = "cosign"
 
 [tools.betterleaks."platforms.macos-arm64"]
-checksum = "sha256:d8840dc2523074900fc053d85af776f667f351ec1ea0158f9ff65861cf011c7d"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.3.1/betterleaks_1.3.1_darwin_arm64.tar.gz"
+checksum = "sha256:28fb6458b9359b160855526219924005a9cd2b187439106f92b85213e4ea6381"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.0/betterleaks_1.4.0_darwin_arm64.tar.gz"
 provenance = "cosign"
 
 [tools.betterleaks."platforms.macos-x64"]
-checksum = "sha256:c121958794898f68f639a9ead08fc5fb78aa7a1e329457083439ade9fbc904f4"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.3.1/betterleaks_1.3.1_darwin_x64.tar.gz"
+checksum = "sha256:50ebb73b0c92fb926f860def60387786806b5085fd8d3ec238ffc473b1e713be"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.0/betterleaks_1.4.0_darwin_x64.tar.gz"
 provenance = "cosign"
 
 [tools.betterleaks."platforms.windows-x64"]
-checksum = "sha256:00db30a6e6263590325026f309e0e93e4860d7d32afca691519bb46616c026e2"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.3.1/betterleaks_1.3.1_windows_x64.zip"
+checksum = "sha256:c7e3e13c2c1036a989251e951b5de67b70c2a21f13cde0a6e63e12c77e1a4690"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.0/betterleaks_1.4.0_windows_x64.zip"
 provenance = "cosign"
 
 [[tools.deno]]
-version = "2.8.1"
+version = "2.8.2"
 backend = "core:deno"
 
 [tools.deno."platforms.linux-arm64"]
-checksum = "sha256:67e9df91870fd0af700df924173e3009ea7ff6956e2c3c3bb86065d6070d0fd6"
-url = "https://dl.deno.land/release/v2.8.1/deno-aarch64-unknown-linux-gnu.zip"
+checksum = "sha256:48647189aee6454ed9b9852fa700a77f92b39465c04c625901d165bc8e937afc"
+url = "https://dl.deno.land/release/v2.8.2/deno-aarch64-unknown-linux-gnu.zip"
 
 [tools.deno."platforms.linux-arm64-musl"]
-checksum = "sha256:67e9df91870fd0af700df924173e3009ea7ff6956e2c3c3bb86065d6070d0fd6"
-url = "https://dl.deno.land/release/v2.8.1/deno-aarch64-unknown-linux-gnu.zip"
+checksum = "sha256:48647189aee6454ed9b9852fa700a77f92b39465c04c625901d165bc8e937afc"
+url = "https://dl.deno.land/release/v2.8.2/deno-aarch64-unknown-linux-gnu.zip"
 
 [tools.deno."platforms.linux-x64"]
-checksum = "sha256:2d7bb6195226ac832e0bf7109a115f0af65ee69ac797a4bbde5b27a06cc242d9"
-url = "https://dl.deno.land/release/v2.8.1/deno-x86_64-unknown-linux-gnu.zip"
+checksum = "sha256:184da7a5267ab649bc08821b3bc3ce6805d8e6985fb82707cb8d5e9fd6535362"
+url = "https://dl.deno.land/release/v2.8.2/deno-x86_64-unknown-linux-gnu.zip"
 
 [tools.deno."platforms.linux-x64-musl"]
-checksum = "sha256:2d7bb6195226ac832e0bf7109a115f0af65ee69ac797a4bbde5b27a06cc242d9"
-url = "https://dl.deno.land/release/v2.8.1/deno-x86_64-unknown-linux-gnu.zip"
+checksum = "sha256:184da7a5267ab649bc08821b3bc3ce6805d8e6985fb82707cb8d5e9fd6535362"
+url = "https://dl.deno.land/release/v2.8.2/deno-x86_64-unknown-linux-gnu.zip"
 
 [tools.deno."platforms.macos-arm64"]
-checksum = "sha256:8154e2de0ee8c1cae31fa88e078724aaef0295fab9fd2ad6f8520389cee908f6"
-url = "https://dl.deno.land/release/v2.8.1/deno-aarch64-apple-darwin.zip"
+checksum = "sha256:02e5eb795c9f763772dfd081429cead9029e0a4a6aaff6d4e5f3ed6d2e94d361"
+url = "https://dl.deno.land/release/v2.8.2/deno-aarch64-apple-darwin.zip"
 
 [tools.deno."platforms.macos-x64"]
-checksum = "sha256:47473845e0522ba11dd279e3dd318e2d84ee200c56b8280594e0ae0b0f827460"
-url = "https://dl.deno.land/release/v2.8.1/deno-x86_64-apple-darwin.zip"
+checksum = "sha256:77cf27f835f1921e49434449675c57432c6314d54edc725e2474cc825546e206"
+url = "https://dl.deno.land/release/v2.8.2/deno-x86_64-apple-darwin.zip"
 
 [tools.deno."platforms.windows-x64"]
 checksum = "sha256:Algorithm"
-url = "https://dl.deno.land/release/v2.8.1/deno-x86_64-pc-windows-msvc.zip"
+url = "https://dl.deno.land/release/v2.8.2/deno-x86_64-pc-windows-msvc.zip"
 
 [[tools.fx]]
 version = "39.2.0"
@@ -792,36 +792,36 @@ checksum = "sha256:521a974dc32e93404265e55bffaf71a59e05e80abdf8ca4afb21a6030dc76
 url = "https://github.com/junegunn/fzf/releases/download/v0.73.1/fzf-0.73.1-windows_amd64.zip"
 
 [[tools.go]]
-version = "1.26.3"
+version = "1.26.4"
 backend = "core:go"
 
 [tools.go."platforms.linux-arm64"]
-checksum = "sha256:9d89a3ea57d141c2b22d70083f2c8459ba3890f2d9e818e7e933b75614936565"
-url = "https://dl.google.com/go/go1.26.3.linux-arm64.tar.gz"
+checksum = "sha256:ef758ae7c6cf9267c9c0ef080b8965f453d89ab2d25d9eb22de4405925238768"
+url = "https://dl.google.com/go/go1.26.4.linux-arm64.tar.gz"
 
 [tools.go."platforms.linux-arm64-musl"]
-checksum = "sha256:9d89a3ea57d141c2b22d70083f2c8459ba3890f2d9e818e7e933b75614936565"
-url = "https://dl.google.com/go/go1.26.3.linux-arm64.tar.gz"
+checksum = "sha256:ef758ae7c6cf9267c9c0ef080b8965f453d89ab2d25d9eb22de4405925238768"
+url = "https://dl.google.com/go/go1.26.4.linux-arm64.tar.gz"
 
 [tools.go."platforms.linux-x64"]
-checksum = "sha256:2b2cfc7148493da5e73981bffbf3353af381d5f93e789c82c79aff64962eb556"
-url = "https://dl.google.com/go/go1.26.3.linux-amd64.tar.gz"
+checksum = "sha256:1153d3d50e0ac764b447adfe05c2bcf08e889d42a02e0fe0259bd47f6733ad7f"
+url = "https://dl.google.com/go/go1.26.4.linux-amd64.tar.gz"
 
 [tools.go."platforms.linux-x64-musl"]
-checksum = "sha256:2b2cfc7148493da5e73981bffbf3353af381d5f93e789c82c79aff64962eb556"
-url = "https://dl.google.com/go/go1.26.3.linux-amd64.tar.gz"
+checksum = "sha256:1153d3d50e0ac764b447adfe05c2bcf08e889d42a02e0fe0259bd47f6733ad7f"
+url = "https://dl.google.com/go/go1.26.4.linux-amd64.tar.gz"
 
 [tools.go."platforms.macos-arm64"]
-checksum = "sha256:875cf54a15311eee2c99b9dd67c68c4a49351d489ab622bf2cfd28c8f2078d3c"
-url = "https://dl.google.com/go/go1.26.3.darwin-arm64.tar.gz"
+checksum = "sha256:b62ad2b6d7d2464f12a5bcad7ff47f19d08325773b5efd21610e445a05a9bf53"
+url = "https://dl.google.com/go/go1.26.4.darwin-arm64.tar.gz"
 
 [tools.go."platforms.macos-x64"]
-checksum = "sha256:278d580b32e299fe4a9c990fcf2d02acfe538c7e551a6ee18f9c7164573d2c63"
-url = "https://dl.google.com/go/go1.26.3.darwin-amd64.tar.gz"
+checksum = "sha256:05dc9b5f9997744520aaebb3d5deaa7c755371aebbfb7f97c2511a9f3367538d"
+url = "https://dl.google.com/go/go1.26.4.darwin-amd64.tar.gz"
 
 [tools.go."platforms.windows-x64"]
-checksum = "sha256:20d2ceafb4ed41b96b879010927b28bc92a5be57a7c1801ce365a9ca51d3224a"
-url = "https://dl.google.com/go/go1.26.3.windows-amd64.zip"
+checksum = "sha256:3ca8fb4630b07c419cbdd51f754e31363cfcfb83b3a5354d9e895c90be2cc345"
+url = "https://dl.google.com/go/go1.26.4.windows-amd64.zip"
 
 [[tools.gum]]
 version = "0.17.0"
