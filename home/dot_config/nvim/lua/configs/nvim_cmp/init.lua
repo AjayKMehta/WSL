@@ -1,5 +1,5 @@
 local u = require("utils.helpers")
-local c = require("utils.nvim_cmp")
+local c = require("configs.nvim_cmp.helpers")
 local cmp = require("cmp")
 local src = require("nvim_cmp.sources")
 

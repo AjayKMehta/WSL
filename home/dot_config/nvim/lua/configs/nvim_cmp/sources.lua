@@ -1,4 +1,4 @@
-local c = require("utils.nvim_cmp")
+local c = require("configs.nvim_cmp.helpers")
 local cmp = require("cmp")
 local get_buffers_by_size = require("utils.helpers").get_buffers_by_size
 
