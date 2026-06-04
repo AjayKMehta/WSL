@@ -72,11 +72,10 @@ return {
     -- name = "roslyn_ls",
     offset_encoding = "utf-8",
     cmd = {
-        "dotnet",
-        vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+        "roslyn-language-server",
+        "--stdio",
         "--logLevel=Information",
         "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
-        "--stdio",
     },
     filetypes = { "cs" },
     handlers = roslyn_handlers(),
