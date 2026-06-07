@@ -180,7 +180,8 @@ local interactions = {
                     exclude_tools = { "memory" }, -- tool names whose results are never edited
                 },
                 compaction = {
-                    trigger = 0.85, -- 85% of the context window
+                    trigger = 0.85,           -- 85% of the context window
+                    min_token_savings = 5000, -- Only compact when at least this amount of tokens will be saved
                 },
             },
             completion_provider = comp_provider,
