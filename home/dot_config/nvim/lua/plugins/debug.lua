@@ -17,11 +17,18 @@ return {
                     "DapViewWatch",
                     "DapViewJump",
                     "DapViewShow",
+                    "DapViewNavigate",
+                    "DapViewHover",
                     "DapViewVirtualTextEnable",
                     "DapViewVirtualTextDisable",
                     "DapViewVirtualTextToggle",
                 },
                 keys = {
+                    {
+                        "<leader>dvc",
+                        "<cmd>DapViewClose<cr>",
+                        desc = "DAP View Close",
+                    },
                     {
                         "<leader>dvd",
                         "<cmd>DapViewVirtualTextDisable<cr>",
@@ -31,6 +38,14 @@ return {
                         "<leader>dve",
                         "<cmd>DapViewVirtualTextEnable<cr>",
                         desc = "DAP Enable Virtual Text",
+                    },
+                    {
+                        "<Leader>dvE", function() require("dap-view").add_expr() end, desc = "DAP Add expression"
+                    },
+                    {
+                        "<leader>dvo",
+                        "<cmd>DapViewOpen<cr>",
+                        desc = "DAP View Open",
                     },
                     {
                         "<leader>dvt",

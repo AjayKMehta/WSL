@@ -1,13 +1,16 @@
 local config = {
     winbar = {
-        sections = {
-            "console",
-            "watches",
-            "scopes",
-            "exceptions",
-            "breakpoints",
-            "threads",
-            "repl",
+        base_sections = {
+            -- Labels can be set dynamically with functions
+            -- Each function receives the window's width and the current section as arguments
+            breakpoints = { label = "Breakpoints", keymap = "B" },
+            scopes = { label = "Scopes", keymap = "S" },
+            exceptions = { label = "Exceptions", keymap = "E" },
+            watches = { label = "Watches", keymap = "W" },
+            threads = { label = "Threads", keymap = "T" },
+            repl = { label = "REPL", keymap = "R" },
+            sessions = { label = "Sessions", keymap = "K" },
+            console = { label = "Console", keymap = "C" },
         },
         default_section = "watches",
         controls = {

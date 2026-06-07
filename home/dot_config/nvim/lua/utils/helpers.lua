@@ -90,6 +90,7 @@ M.excluded_ftypes = {
     "crunner",
     "dap-view",
     "dap-view-help",
+    "dap-view-hover",
     "dap-view-term",
     "dropbar_menu",
     "flash_prompt",

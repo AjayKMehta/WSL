@@ -40,6 +40,7 @@ end, "DAP Set Log Point")
 -- DAP View
 local dv = require("dap-view")
 dap.listeners.before.attach["dap-view-config"] = function()
+    -- Opens both nvim-dap-view windows: views + console.
     dv.open()
 end
 dap.listeners.before.launch["dap-view-config"] = function()
