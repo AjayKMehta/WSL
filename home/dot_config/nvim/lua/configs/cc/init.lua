@@ -113,13 +113,13 @@ local display = {
             provider = "inline",
             provider_opts = {
                 inline = {
-                    layout = "float", -- float|buffer - Where to display the diff
+                    layout = "float",              -- float|buffer - Where to display the diff
                     opts = {
-                        context_lines = 3, -- Number of context lines in hunks
-                        dim = 25, -- Background dim level for floating diff (0-100, [100 full transparent], only applies when layout = "float")
+                        context_lines = 3,         -- Number of context lines in hunks
+                        dim = 25,                  -- Background dim level for floating diff (0-100, [100 full transparent], only applies when layout = "float")
                         full_width_removed = true, -- Make removed lines span full width
-                        show_keymap_hints = true, -- Show hints above diff
-                        show_removed = true, -- Show removed lines as virtual text
+                        show_keymap_hints = true,  -- Show hints above diff
+                        show_removed = true,       -- Show removed lines as virtual text
                     },
                 },
                 split = {
@@ -139,7 +139,9 @@ local display = {
         start_in_insert_mode = false, -- Open the chat buffer in insert mode?
         fold_context = true, -- Fold context in the chat buffer?
         window = {
-            sticky = true, -- Chat window follows when switching tabs
+            sticky = false, -- Chat window follows when switching tabs
+            -- When enabled, `{` / `}` only cycles through chats that are visible in the current tab or not currently visible anywhere
+            pertab = true, -- Treat each tab as having its own chat window?
             -- Autosize
             width = 0,
             height = 0,
@@ -171,6 +173,16 @@ local interactions = {
             user = "Me",
         },
         opts = {
+            context_management = {
+                editing = {
+                    trigger = 0.65,               -- 65% of the context window
+                    keep_cycles = 3,              -- preserve tool results from the last N cycles
+                    exclude_tools = { "memory" }, -- tool names whose results are never edited
+                },
+                compaction = {
+                    trigger = 0.85, -- 85% of the context window
+                },
+            },
             completion_provider = comp_provider,
             ---Decorate the user message before it's sent to the LLM
             ---@param message string
@@ -354,15 +366,15 @@ local opts = {
     log_level = "INFO", -- TRACE|DEBUG|ERROR|INFO
     default_servers = { "sequential-thinking" },
     per_project_config = {
-      files = {
-        ".codecompanion.lua",
-      },
+        files = {
+            ".codecompanion.lua",
+        },
     },
     triggers = {
-      acp_slash_commands = "\\",
-      editor_context = "#",
-      slash_commands = "/",
-      tools = "@",
+        acp_slash_commands = "\\",
+        editor_context = "#",
+        slash_commands = "/",
+        tools = "@",
     },
 }
 
@@ -376,8 +388,8 @@ local rules = {
             ".github/copilot-instructions.md",
             "AGENT.md",
             "AGENTS.md",
-            { path = "CLAUDE.md", parser = "claude" },
-            { path = "CLAUDE.local.md", parser = "claude" },
+            { path = "CLAUDE.md",           parser = "claude" },
+            { path = "CLAUDE.local.md",     parser = "claude" },
             { path = "~/.claude/CLAUDE.md", parser = "claude" },
         },
         is_preset = true,
