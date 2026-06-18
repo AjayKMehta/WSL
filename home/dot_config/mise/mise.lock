@@ -157,42 +157,42 @@ checksum = "sha256:b2be80531c6babc8d4e0e6ca95773d58118a2e1582ae006aace08dbc55503
 url = "https://github.com/charmbracelet/gum/releases/download/v0.17.0/gum_0.17.0_Windows_x86_64.zip"
 
 [[tools."aqua:cli/cli"]]
-version = "2.93.0"
+version = "2.94.0"
 backend = "aqua:cli/cli"
 
 [tools."aqua:cli/cli"."platforms.linux-arm64"]
-checksum = "sha256:c55feb33684abba57e9909737340d5b39282257c0363e1edde6785ac4a413be7"
-url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_linux_arm64.tar.gz"
+checksum = "sha256:705a23b70b0f1b7ba4c302fdcef392ce3edaacfa7ce8e85e4d93d72ea800a538"
+url = "https://github.com/cli/cli/releases/download/v2.94.0/gh_2.94.0_linux_arm64.tar.gz"
 provenance = "github-attestations"
 
 [tools."aqua:cli/cli"."platforms.linux-arm64-musl"]
-checksum = "sha256:c55feb33684abba57e9909737340d5b39282257c0363e1edde6785ac4a413be7"
-url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_linux_arm64.tar.gz"
+checksum = "sha256:705a23b70b0f1b7ba4c302fdcef392ce3edaacfa7ce8e85e4d93d72ea800a538"
+url = "https://github.com/cli/cli/releases/download/v2.94.0/gh_2.94.0_linux_arm64.tar.gz"
 provenance = "github-attestations"
 
 [tools."aqua:cli/cli"."platforms.linux-x64"]
-checksum = "sha256:02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0"
-url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_linux_amd64.tar.gz"
+checksum = "sha256:a757f1ba6db18f4de8cbadb244843a5f89bc75b5e7c6fc127d2bd77fbd12ed62"
+url = "https://github.com/cli/cli/releases/download/v2.94.0/gh_2.94.0_linux_amd64.tar.gz"
 provenance = "github-attestations"
 
 [tools."aqua:cli/cli"."platforms.linux-x64-musl"]
-checksum = "sha256:02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0"
-url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_linux_amd64.tar.gz"
+checksum = "sha256:a757f1ba6db18f4de8cbadb244843a5f89bc75b5e7c6fc127d2bd77fbd12ed62"
+url = "https://github.com/cli/cli/releases/download/v2.94.0/gh_2.94.0_linux_amd64.tar.gz"
 provenance = "github-attestations"
 
 [tools."aqua:cli/cli"."platforms.macos-arm64"]
-checksum = "sha256:a86be4e0a86c26456cf71177d6572d6f1165cf1679e532b72f7f15918ee51fd2"
-url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_macOS_arm64.zip"
+checksum = "sha256:4f9bc1a5e77500737290a307b40b4c396a4d23729f55340f2a83f414410165a1"
+url = "https://github.com/cli/cli/releases/download/v2.94.0/gh_2.94.0_macOS_arm64.zip"
 provenance = "github-attestations"
 
 [tools."aqua:cli/cli"."platforms.macos-x64"]
-checksum = "sha256:009425b9d175c482037fe25181817fd6b1ea3ae1f51cfae0e18f29f33d3152ac"
-url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_macOS_amd64.zip"
+checksum = "sha256:733ee8fa49247d27cd94a6c7384455bdecaa82172a3bcfad63ac1ecc2867251d"
+url = "https://github.com/cli/cli/releases/download/v2.94.0/gh_2.94.0_macOS_amd64.zip"
 provenance = "github-attestations"
 
 [tools."aqua:cli/cli"."platforms.windows-x64"]
-checksum = "sha256:77aa01ed7317295ad550de0ad04f3f276b1ef0e9272e3d002ac28dd99853d211"
-url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_windows_amd64.zip"
+checksum = "sha256:c0766af54195dfa0bcd9a0cb63a45c313fbaffdebb9f736f666e9ba4be8c91e8"
+url = "https://github.com/cli/cli/releases/download/v2.94.0/gh_2.94.0_windows_amd64.zip"
 provenance = "github-attestations"
 
 [[tools."aqua:dandavison/delta"]]
@@ -312,36 +312,36 @@ checksum = "sha256:521a974dc32e93404265e55bffaf71a59e05e80abdf8ca4afb21a6030dc76
 url = "https://github.com/junegunn/fzf/releases/download/v0.73.1/fzf-0.73.1-windows_amd64.zip"
 
 [[tools."aqua:jdx/usage"]]
-version = "3.4.0"
+version = "3.5.0"
 backend = "aqua:jdx/usage"
 
 [tools."aqua:jdx/usage"."platforms.linux-arm64"]
-checksum = "sha256:5cea2993383ccbbdbf9693bec484c47fc3cbcff75ec167618e1e775e5df9ba19"
-url = "https://github.com/jdx/usage/releases/download/v3.4.0/usage-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:a0aab1ecbae1bc48aa3aac6ebb508f5df44a77122bb8d6ea23b86ee9fd699518"
+url = "https://github.com/jdx/usage/releases/download/v3.5.0/usage-aarch64-unknown-linux-musl.tar.gz"
 
 [tools."aqua:jdx/usage"."platforms.linux-arm64-musl"]
-checksum = "sha256:5cea2993383ccbbdbf9693bec484c47fc3cbcff75ec167618e1e775e5df9ba19"
-url = "https://github.com/jdx/usage/releases/download/v3.4.0/usage-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:a0aab1ecbae1bc48aa3aac6ebb508f5df44a77122bb8d6ea23b86ee9fd699518"
+url = "https://github.com/jdx/usage/releases/download/v3.5.0/usage-aarch64-unknown-linux-musl.tar.gz"
 
 [tools."aqua:jdx/usage"."platforms.linux-x64"]
-checksum = "sha256:1a54260df50f1764bc8cbabf8763f2a6314c5025d3b06b512d02898eb28768b3"
-url = "https://github.com/jdx/usage/releases/download/v3.4.0/usage-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:d686d7acff1fc5ffd04be2fefccd342564648d353609fab81e22a3672446c4f0"
+url = "https://github.com/jdx/usage/releases/download/v3.5.0/usage-x86_64-unknown-linux-musl.tar.gz"
 
 [tools."aqua:jdx/usage"."platforms.linux-x64-musl"]
-checksum = "sha256:1a54260df50f1764bc8cbabf8763f2a6314c5025d3b06b512d02898eb28768b3"
-url = "https://github.com/jdx/usage/releases/download/v3.4.0/usage-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:d686d7acff1fc5ffd04be2fefccd342564648d353609fab81e22a3672446c4f0"
+url = "https://github.com/jdx/usage/releases/download/v3.5.0/usage-x86_64-unknown-linux-musl.tar.gz"
 
 [tools."aqua:jdx/usage"."platforms.macos-arm64"]
-checksum = "sha256:e9f7cd9038fec6352eaa001903414edc95bb77386a9573fde21be17991f3f719"
-url = "https://github.com/jdx/usage/releases/download/v3.4.0/usage-universal-apple-darwin.tar.gz"
+checksum = "sha256:dcb1022d2e6cbe0070e3259a48a5e058ca64ecc707b6901b929b388b95bb322c"
+url = "https://github.com/jdx/usage/releases/download/v3.5.0/usage-universal-apple-darwin.tar.gz"
 
 [tools."aqua:jdx/usage"."platforms.macos-x64"]
-checksum = "sha256:e9f7cd9038fec6352eaa001903414edc95bb77386a9573fde21be17991f3f719"
-url = "https://github.com/jdx/usage/releases/download/v3.4.0/usage-universal-apple-darwin.tar.gz"
+checksum = "sha256:dcb1022d2e6cbe0070e3259a48a5e058ca64ecc707b6901b929b388b95bb322c"
+url = "https://github.com/jdx/usage/releases/download/v3.5.0/usage-universal-apple-darwin.tar.gz"
 
 [tools."aqua:jdx/usage"."platforms.windows-x64"]
-checksum = "sha256:2272ad0d264b99986ef8e3d537f774f046db5fe096e8a9375fbb1482f0934e8c"
-url = "https://github.com/jdx/usage/releases/download/v3.4.0/usage-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:4647b8894520c4ab8d8424950fd7bddd2b76aa6c71bdedc90b2464985ab3b8cd"
+url = "https://github.com/jdx/usage/releases/download/v3.5.0/usage-x86_64-pc-windows-msvc.zip"
 
 [[tools."aqua:jesseduffield/lazygit"]]
 version = "0.62.2"
@@ -376,36 +376,36 @@ checksum = "sha256:805bfcb2445273b77a32b7758dfb5d2d8dbd7b80b7336ab868935584a2fad
 url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.2/lazygit_0.62.2_windows_x86_64.zip"
 
 [[tools."aqua:kubernetes/kubernetes/kubectl"]]
-version = "1.36.1"
+version = "1.36.2"
 backend = "aqua:kubernetes/kubernetes/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.linux-arm64"]
-checksum = "sha256:59f7ee8e477fae658447607dc3c8790ac17a1b016c01c622c12070e969e2d4e7"
-url = "https://dl.k8s.io/v1.36.1/bin/linux/arm64/kubectl"
+checksum = "sha256:c957eb8c4bea27a3bb35b269edd9082e27f027f7b76b20b5bf4afebc726c6d3e"
+url = "https://dl.k8s.io/v1.36.2/bin/linux/arm64/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.linux-arm64-musl"]
-checksum = "sha256:59f7ee8e477fae658447607dc3c8790ac17a1b016c01c622c12070e969e2d4e7"
-url = "https://dl.k8s.io/v1.36.1/bin/linux/arm64/kubectl"
+checksum = "sha256:c957eb8c4bea27a3bb35b269edd9082e27f027f7b76b20b5bf4afebc726c6d3e"
+url = "https://dl.k8s.io/v1.36.2/bin/linux/arm64/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.linux-x64"]
-checksum = "sha256:629d3f410e09bf49b64ae7079f7f0bda1191efed311f7d37fdbab0ad5b0ec2b7"
-url = "https://dl.k8s.io/v1.36.1/bin/linux/amd64/kubectl"
+checksum = "sha256:1e9045ec32bea85da43de85f0065358529ea7c7a152eca78154fba5b58c27d82"
+url = "https://dl.k8s.io/v1.36.2/bin/linux/amd64/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.linux-x64-musl"]
-checksum = "sha256:629d3f410e09bf49b64ae7079f7f0bda1191efed311f7d37fdbab0ad5b0ec2b7"
-url = "https://dl.k8s.io/v1.36.1/bin/linux/amd64/kubectl"
+checksum = "sha256:1e9045ec32bea85da43de85f0065358529ea7c7a152eca78154fba5b58c27d82"
+url = "https://dl.k8s.io/v1.36.2/bin/linux/amd64/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.macos-arm64"]
-checksum = "sha256:9092778abaef3079449da4cd70ded0e4be112480c93efcdeace3155968d1d133"
-url = "https://dl.k8s.io/v1.36.1/bin/darwin/arm64/kubectl"
+checksum = "sha256:4408c85c83fd3a31adaa555bdf3c7a6c81f74b19449a9060ba31ab91926f023d"
+url = "https://dl.k8s.io/v1.36.2/bin/darwin/arm64/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.macos-x64"]
-checksum = "sha256:b4973e90ebb00537d735b63d6f8293c1959156e6ff435f6a43c08aeaa1a2e7d7"
-url = "https://dl.k8s.io/v1.36.1/bin/darwin/amd64/kubectl"
+checksum = "sha256:ce6c5e55cd17559e87e4fb5e73ebbbc2511bcf2b695d7a40c1b1461a9817d4b3"
+url = "https://dl.k8s.io/v1.36.2/bin/darwin/amd64/kubectl"
 
 [tools."aqua:kubernetes/kubernetes/kubectl"."platforms.windows-x64"]
-checksum = "sha256:538f4229eee91a17b34724da7daade7687393d6988e33b723c6c306572c13900"
-url = "https://dl.k8s.io/v1.36.1/bin/windows/amd64/kubectl.exe"
+checksum = "sha256:df04d82234b28ffbdcd36e79d596b85da6e9c736e1a7a55ff6910c648ff47af2"
+url = "https://dl.k8s.io/v1.36.2/bin/windows/amd64/kubectl.exe"
 
 [[tools."aqua:mikefarah/yq"]]
 version = "4.53.3"
@@ -500,36 +500,36 @@ checksum = "sha256:0f8cf866ad7e32421a219fc551a0a0ea5d12ead464de12ebfeafd334a5973
 url = "https://github.com/nektos/act/releases/download/v0.2.89/act_Windows_x86_64.zip"
 
 [[tools."aqua:neovim/neovim"]]
-version = "0.12.2"
+version = "0.12.3"
 backend = "aqua:neovim/neovim"
 
 [tools."aqua:neovim/neovim"."platforms.linux-arm64"]
-checksum = "sha256:f697d4e4582b6e4b5c3c26e76e06ce26efa08ba1768e03fd2733fcc422bb0490"
-url = "https://github.com/neovim/neovim/releases/download/v0.12.2/nvim-linux-arm64.tar.gz"
+checksum = "sha256:e055af73fa9c72b37456da8d204fa5c09850bc07e80e9176fe3b87d4afb7a3fc"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.3/nvim-linux-arm64.tar.gz"
 
 [tools."aqua:neovim/neovim"."platforms.linux-arm64-musl"]
-checksum = "sha256:f697d4e4582b6e4b5c3c26e76e06ce26efa08ba1768e03fd2733fcc422bb0490"
-url = "https://github.com/neovim/neovim/releases/download/v0.12.2/nvim-linux-arm64.tar.gz"
+checksum = "sha256:e055af73fa9c72b37456da8d204fa5c09850bc07e80e9176fe3b87d4afb7a3fc"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.3/nvim-linux-arm64.tar.gz"
 
 [tools."aqua:neovim/neovim"."platforms.linux-x64"]
-checksum = "sha256:31cf85945cb600d96cdf69f88bc68bec814acbff50863c5546adef3a1bcef260"
-url = "https://github.com/neovim/neovim/releases/download/v0.12.2/nvim-linux-x86_64.tar.gz"
+checksum = "sha256:c441b547142860bf01bcce39e36cbed185c41112813e15443b16e5237750724d"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.3/nvim-linux-x86_64.tar.gz"
 
 [tools."aqua:neovim/neovim"."platforms.linux-x64-musl"]
-checksum = "sha256:31cf85945cb600d96cdf69f88bc68bec814acbff50863c5546adef3a1bcef260"
-url = "https://github.com/neovim/neovim/releases/download/v0.12.2/nvim-linux-x86_64.tar.gz"
+checksum = "sha256:c441b547142860bf01bcce39e36cbed185c41112813e15443b16e5237750724d"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.3/nvim-linux-x86_64.tar.gz"
 
 [tools."aqua:neovim/neovim"."platforms.macos-arm64"]
-checksum = "sha256:eeddee1009734f9071266e6b1b8a70308cb60cbcc45f5e1c1023adc471450fee"
-url = "https://github.com/neovim/neovim/releases/download/v0.12.2/nvim-macos-arm64.tar.gz"
+checksum = "sha256:532da1d00e465a660fa01c3d4991333d09c52107dce7df937368545daca0a14e"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.3/nvim-macos-arm64.tar.gz"
 
 [tools."aqua:neovim/neovim"."platforms.macos-x64"]
-checksum = "sha256:728321db960a9b6af6c03881892a6abfd743bf759bc62d233f52fa1be64ace3c"
-url = "https://github.com/neovim/neovim/releases/download/v0.12.2/nvim-macos-x86_64.tar.gz"
+checksum = "sha256:4b40e318eb7073321fa5fc06d7f60c3c0de1d7ea50ffbaa8b04286f5484d294f"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.3/nvim-macos-x86_64.tar.gz"
 
 [tools."aqua:neovim/neovim"."platforms.windows-x64"]
-checksum = "sha256:23fe150edbcc976eabe55092e1e9d2e5e237afde69553d170e936f776b405d53"
-url = "https://github.com/neovim/neovim/releases/download/v0.12.2/nvim-win64.zip"
+checksum = "sha256:63daa0a0374f2255d2fb4c0867fcacc64a09c8d7ec1c349f781aff1b8350a8ad"
+url = "https://github.com/neovim/neovim/releases/download/v0.12.3/nvim-win64.zip"
 
 [[tools."aqua:rhysd/actionlint"]]
 version = "1.7.12"
@@ -657,75 +657,75 @@ url = "https://github.com/eth-p/bat-extras/releases/download/v2024.08.24/bat-ext
 url = "https://github.com/eth-p/bat-extras/releases/download/v2024.08.24/bat-extras-2024.08.24.zip"
 
 [[tools.betterleaks]]
-version = "1.4.1"
+version = "1.5.0"
 backend = "aqua:betterleaks/betterleaks"
 
 [tools.betterleaks."platforms.linux-arm64"]
-checksum = "sha256:23ed05ce217c21d39e723c6d970a9fd0b9e9b686eae1aebf9d778fb7a77acc92"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.1/betterleaks_1.4.1_linux_arm64.tar.gz"
+checksum = "sha256:f4e89eccde1cdf0cf048748876757e56705d21f122fa4284a4b84803da288608"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.5.0/betterleaks_1.5.0_linux_arm64.tar.gz"
 provenance = "cosign"
 
 [tools.betterleaks."platforms.linux-arm64-musl"]
-checksum = "sha256:23ed05ce217c21d39e723c6d970a9fd0b9e9b686eae1aebf9d778fb7a77acc92"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.1/betterleaks_1.4.1_linux_arm64.tar.gz"
+checksum = "sha256:f4e89eccde1cdf0cf048748876757e56705d21f122fa4284a4b84803da288608"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.5.0/betterleaks_1.5.0_linux_arm64.tar.gz"
 provenance = "cosign"
 
 [tools.betterleaks."platforms.linux-x64"]
-checksum = "sha256:2635ff988d9194cd3070155138589081a54a3438d79ca9b83268addd2fd844cc"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.1/betterleaks_1.4.1_linux_x64.tar.gz"
+checksum = "sha256:b883e8c61a3a14c90ff46a08c203cf88fe340ed88251d4c049db5530ec0ac54b"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.5.0/betterleaks_1.5.0_linux_x64.tar.gz"
 provenance = "cosign"
 
 [tools.betterleaks."platforms.linux-x64-musl"]
-checksum = "sha256:2635ff988d9194cd3070155138589081a54a3438d79ca9b83268addd2fd844cc"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.1/betterleaks_1.4.1_linux_x64.tar.gz"
+checksum = "sha256:b883e8c61a3a14c90ff46a08c203cf88fe340ed88251d4c049db5530ec0ac54b"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.5.0/betterleaks_1.5.0_linux_x64.tar.gz"
 provenance = "cosign"
 
 [tools.betterleaks."platforms.macos-arm64"]
-checksum = "sha256:0656a339d4a99fc3a037d0d31b70f3b3f4fec1e38459bf837e204540043c9b76"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.1/betterleaks_1.4.1_darwin_arm64.tar.gz"
+checksum = "sha256:a341e534f152bd10fa8309d74e2ab7eadb634f16ddeb7c3f43ca54f8a016905b"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.5.0/betterleaks_1.5.0_darwin_arm64.tar.gz"
 provenance = "cosign"
 
 [tools.betterleaks."platforms.macos-x64"]
-checksum = "sha256:b4eb634ee17ba4713994bef5f95018394003a4f4cc6d38dc78cc63c91be012a6"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.1/betterleaks_1.4.1_darwin_x64.tar.gz"
+checksum = "sha256:bbbbf362ddd0a0c5d37633707206be92501ba5f3291ea45af0c6ab3980ec693d"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.5.0/betterleaks_1.5.0_darwin_x64.tar.gz"
 provenance = "cosign"
 
 [tools.betterleaks."platforms.windows-x64"]
-checksum = "sha256:5dc130fb0e83782bb2b07b2a4d0e1f5f581993ebdd2c88a021ecb21b20813bbc"
-url = "https://github.com/betterleaks/betterleaks/releases/download/v1.4.1/betterleaks_1.4.1_windows_x64.zip"
+checksum = "sha256:210852dc72b037422fafb1d053209b352d271300473c7dafca2560cef68eba15"
+url = "https://github.com/betterleaks/betterleaks/releases/download/v1.5.0/betterleaks_1.5.0_windows_x64.zip"
 provenance = "cosign"
 
 [[tools.deno]]
-version = "2.8.2"
+version = "2.8.3"
 backend = "core:deno"
 
 [tools.deno."platforms.linux-arm64"]
-checksum = "sha256:48647189aee6454ed9b9852fa700a77f92b39465c04c625901d165bc8e937afc"
-url = "https://dl.deno.land/release/v2.8.2/deno-aarch64-unknown-linux-gnu.zip"
+checksum = "sha256:d4589cc1ffcbf1995c92a0127d932aaf832ac70cfdcc6d5b7bf38043cf303575"
+url = "https://dl.deno.land/release/v2.8.3/deno-aarch64-unknown-linux-gnu.zip"
 
 [tools.deno."platforms.linux-arm64-musl"]
-checksum = "sha256:48647189aee6454ed9b9852fa700a77f92b39465c04c625901d165bc8e937afc"
-url = "https://dl.deno.land/release/v2.8.2/deno-aarch64-unknown-linux-gnu.zip"
+checksum = "sha256:d4589cc1ffcbf1995c92a0127d932aaf832ac70cfdcc6d5b7bf38043cf303575"
+url = "https://dl.deno.land/release/v2.8.3/deno-aarch64-unknown-linux-gnu.zip"
 
 [tools.deno."platforms.linux-x64"]
-checksum = "sha256:184da7a5267ab649bc08821b3bc3ce6805d8e6985fb82707cb8d5e9fd6535362"
-url = "https://dl.deno.land/release/v2.8.2/deno-x86_64-unknown-linux-gnu.zip"
+checksum = "sha256:30455b845ffa6082209c3590269c910ad3b7efdf28c9879afd4006c47ae54197"
+url = "https://dl.deno.land/release/v2.8.3/deno-x86_64-unknown-linux-gnu.zip"
 
 [tools.deno."platforms.linux-x64-musl"]
-checksum = "sha256:184da7a5267ab649bc08821b3bc3ce6805d8e6985fb82707cb8d5e9fd6535362"
-url = "https://dl.deno.land/release/v2.8.2/deno-x86_64-unknown-linux-gnu.zip"
+checksum = "sha256:30455b845ffa6082209c3590269c910ad3b7efdf28c9879afd4006c47ae54197"
+url = "https://dl.deno.land/release/v2.8.3/deno-x86_64-unknown-linux-gnu.zip"
 
 [tools.deno."platforms.macos-arm64"]
-checksum = "sha256:02e5eb795c9f763772dfd081429cead9029e0a4a6aaff6d4e5f3ed6d2e94d361"
-url = "https://dl.deno.land/release/v2.8.2/deno-aarch64-apple-darwin.zip"
+checksum = "sha256:88b350be928fdba0e5d8142ff7c101a17133426371e3cf5ed0e0f74e62476f6c"
+url = "https://dl.deno.land/release/v2.8.3/deno-aarch64-apple-darwin.zip"
 
 [tools.deno."platforms.macos-x64"]
-checksum = "sha256:77cf27f835f1921e49434449675c57432c6314d54edc725e2474cc825546e206"
-url = "https://dl.deno.land/release/v2.8.2/deno-x86_64-apple-darwin.zip"
+checksum = "sha256:4254ec12123cfcf88b87703d7acf092a1ea024bdf9be8dd3cd9d4474761cb74e"
+url = "https://dl.deno.land/release/v2.8.3/deno-x86_64-apple-darwin.zip"
 
 [tools.deno."platforms.windows-x64"]
-checksum = "sha256:Algorithm"
-url = "https://dl.deno.land/release/v2.8.2/deno-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:7fdd1f42e6b0855421ecf27bb406e2492ade1087c85e30ebf0deab6280ea743c"
+url = "https://dl.deno.land/release/v2.8.3/deno-x86_64-pc-windows-msvc.zip"
 
 [[tools.fx]]
 version = "39.2.0"
