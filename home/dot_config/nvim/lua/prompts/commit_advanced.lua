@@ -18,7 +18,7 @@ return {
     prompts = {
         {
             role = config.constants.USER_ROLE,
-            content = function(context)
+            content = function(_)
                 local diffs = vim.fn.system("git diff --staged")
                 if diffs == "" then
                     vim.notify(

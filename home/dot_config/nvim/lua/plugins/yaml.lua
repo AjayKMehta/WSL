@@ -14,6 +14,7 @@ return {
     {
         "https://tangled.org/cuducos.me/yaml.nvim",
         ft = { "yaml", "helm" },
+        cmd = { "YAMLView", "YAMLYank", "YAMLYankKey", "YAMLYankValue", "YAMLHighlight", "YAMLRemoveHighlight", "YAMLQuickFix", "YAMLSnacks", "YAMLSort" },
         dependencies = { "folke/snacks.nvim" },
     },
 }

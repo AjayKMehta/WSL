@@ -378,14 +378,9 @@ M.setup = function(theme)
                         mac = "", -- e711
                     },
                 },
-                { "filetype",                   icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-                -- https://github.com/cuducos/yaml.nvim#showing-the-yaml-path-and-value
-                {
-                    function(msg)
-                        msg = require("yaml_nvim").get_yaml_key_and_value()
-                        return msg or ""
-                    end,
-                },
+                { "filetype",                                   icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+                -- https://tangled.org/cuducos.me/yaml.nvim#showing-the-yaml-path-and-value
+                { require("yaml_nvim").get_yaml_key_and_value() },
             },
             lualine_y = { { rstatus, color = rsttcolor }, {
                 get_macro_recording,

@@ -144,7 +144,7 @@
   "vimtex": { "branch": "master", "commit": "24e229914182ff301496a3e2c4214b28c4928d3f" },
   "volt": { "branch": "main", "commit": "620de1321f275ec9d80028c68d1b88b409c0c8b1" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
-  "yaml.nvim": { "branch": "main", "commit": "fe982f6e2d0176307753953754eb14f75a0c7ac0" },
-  "yazi.nvim": { "branch": "main", "commit": "b65e0d6447518aaa3612f0890aa21dc7f45e4e65" },
+  "yaml.nvim": { "branch": "main", "commit": "554b2730f3785e53b74e8371d6e2b451caa1a8df" },
+  "yazi.nvim": { "branch": "main", "commit": "7514be498c56f2a57e5a72faf55c517b9576665b" },
   "zdiff.nvim": { "branch": "main", "commit": "29feeced3a74afdfabbfe250b54962a71b95a25c" }
 }
