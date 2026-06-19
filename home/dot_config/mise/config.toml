@@ -10,7 +10,7 @@ lockfile = true
 http_timeout = "30s"
 jobs = 4
 arch = "x86_64"
-
+minimum_release_age = "24h"
 
 [tools]
 # specify single or multiple versions
@@ -69,7 +69,7 @@ minikube = "latest"
 
 "aqua:BurntSushi/ripgrep" = { version = "latest", postinstall = """
 rg --generate=complete-bash > ~/.config/bash_completions.d/rg
-rg --generate=complete-powershell > ~/.config/powershell/scripts/ArgumentCompleters/_rg.ps1
+rg --generate=complete-powershell > ~/.config/powershell/scripts/ArgumentCompleters/_rg.psg
 """ }
 
 stylua = "latest"
