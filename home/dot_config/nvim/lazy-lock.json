@@ -47,7 +47,7 @@
   "grug-far.nvim": { "branch": "main", "commit": "c995bbacf8229dc096ec1c3d60f8531059c86c1b" },
   "guess-indent.nvim": { "branch": "main", "commit": "84a4987ff36798c2fc1169cbaff67960aed9776f" },
   "haskell-snippets.nvim": { "branch": "master", "commit": "66a7525706b03a730accab3f706d3f0f8078569d" },
-  "haskell-tools.nvim": { "branch": "main", "commit": "2493ed5ac22bff87b10b5fc4c7fdbf0f9ea180b2" },
+  "haskell-tools.nvim": { "branch": "main", "commit": "a834b5b85323c8b2ff41f950d7bee32fd37e908d" },
   "helpview.nvim": { "branch": "main", "commit": "0057599e169ea6ffd53fef77f279cb13b61e174a" },
   "hlchunk.nvim": { "branch": "main", "commit": "06f51922ca43d5cdacf96725c106405fe064c59e" },
   "hydra.nvim": { "branch": "main", "commit": "8c4a9f621ec7cdc30411a1f3b6d5eebb12b469dc" },
