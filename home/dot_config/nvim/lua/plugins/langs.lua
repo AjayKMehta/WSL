@@ -240,6 +240,8 @@ return {
                         close = { lhs = "q", desc = "close testrunner" },
                         refresh_testrunner = { lhs = "<C-r>", desc = "refresh testrunner" },
                         cancel = { lhs = "<C-c>", desc = "cancel in-flight operation" },
+                        next_failure = { lhs = "]f", desc = "jump to next failing test" },
+                        prev_failure = { lhs = "[f", desc = "jump to previous failing test" },
                     },
                 },
                 csproj_mappings = true,
@@ -268,6 +270,9 @@ return {
                     set_fold_expr = true,
                     analyzer_assemblies = {},
                     roslynator_enabled = true,
+                    easy_dotnet_extension_enabled = true, -- Needs to be true for enhanced_rename and create_type_from_usage
+                    enhanced_rename = true, -- auto rename file when renaming class
+                    create_type_from_usage = true, -- code action for creating class from unresolved symbol in a separate file
                     auto_refresh_codelens = true,
                     suggest_updates = true, -- Periodically suggest roslyn-language-server updates
                 },

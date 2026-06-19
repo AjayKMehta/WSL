@@ -35,7 +35,7 @@
   "darcula-dark.nvim": { "branch": "main", "commit": "285c1fe3225ef19ef2639a3080551ee9669f263b" },
   "diffview-plus.nvim": { "branch": "main", "commit": "c65ddb4724cc772a77e9eca1478bff451867b2e2" },
   "dropbar.nvim": { "branch": "master", "commit": "808ba31cde89aec8833e9789f5e04557cd31c9e1" },
-  "easy-dotnet.nvim": { "branch": "main", "commit": "d60090d101c1f039c86f887bb682b0b53b6a30f8" },
+  "easy-dotnet.nvim": { "branch": "main", "commit": "6c33b8cc20fdbd9b8f80fc903d0bc3e0099ca757" },
   "emoji.nvim": { "branch": "main", "commit": "8e4a22a0e2de9b118f14cf0570f3732e2d1008e0" },
   "flash.nvim": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },

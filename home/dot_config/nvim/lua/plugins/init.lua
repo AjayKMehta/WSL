@@ -141,7 +141,7 @@ return {
                 local function add_dotnet()
                     local node = api.tree.get_node_under_cursor()
                     local path = node.type == "directory" and node.absolute_path or vim.fs.dirname(node.absolute_path)
-                    require("easy-dotnet").create_new_item(path)
+                    require("easy-dotnet").create_item(path)
                 end
 
                 local function add_ref_to_chat(chat, path, pinned)
