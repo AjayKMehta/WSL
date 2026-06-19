@@ -2,7 +2,7 @@ local load_config = require("utils.helpers").load_config
 
 return {
     {
-        "dlyongemallo/diffview.nvim",
+        "dlyongemallo/diffview-plus.nvim",
         lazy = true,
         cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewDiffFiles", "DiffviewDiffDirs", "DiffviewToggle", "DiffviewMergeFiles","DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory", "DiffviewLog", "DiffviewRefresh" },
         config = load_config("diffview"),
