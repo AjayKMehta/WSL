@@ -7,6 +7,7 @@ local opts = {
     watch_index = true,    -- Update views and index buffers when the git index changes.
     diffopt = { algorithm = "histogram", linematch = 60 },
     cleanup_buffers = true,
+    restore_session = true, -- Restore open Diffview/FileHistory views from a sourced Vim session.
     persist_selections = { enabled = true },
     view = {
         cycle_layouts = {
