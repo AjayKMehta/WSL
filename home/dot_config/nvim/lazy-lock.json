@@ -33,6 +33,7 @@
   "cyberdream.nvim": { "branch": "main", "commit": "b9cc88378b776f33d3ea77164716f37c3f13ef72" },
   "dap-breakpoints.nvim": { "branch": "master", "commit": "4683766c43651401db68351dc09034218feafc97" },
   "darcula-dark.nvim": { "branch": "main", "commit": "285c1fe3225ef19ef2639a3080551ee9669f263b" },
+  "darktooth.nvim": { "branch": "master", "commit": "d604b809830903d09d078daf3ced29df2f2d7443" },
   "diffview-plus.nvim": { "branch": "main", "commit": "d5c09986681a671613aef0226ef409c01561d64c" },
   "dropbar.nvim": { "branch": "master", "commit": "808ba31cde89aec8833e9789f5e04557cd31c9e1" },
   "easy-dotnet.nvim": { "branch": "main", "commit": "07a41015af3bcbad7dff94191d5ad4b8a67fd202" },

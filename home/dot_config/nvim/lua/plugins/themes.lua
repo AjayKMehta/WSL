@@ -1,15 +1,13 @@
 return {
     {
         "AvengeMedia/base46",
-        lazy = false,
         opts = {},
     },
-    { "samharju/synthweave.nvim", lazy = false },
+    { "samharju/synthweave.nvim"},
     {
         -- Can also use as theme for lualine
         "xiantang/darcula-dark.nvim",
         enabled = true,
-        lazy = false,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
@@ -18,7 +16,6 @@ return {
         -- Can also use as theme for lualine:
         -- options = { theme 'citruszest',}
         "zootedb0t/citruszest.nvim",
-        lazy = false,
         priority = 1000,
         config = function()
             -- For using default config leave this empty.
@@ -42,7 +39,6 @@ return {
         name = "github-theme",
         cmd = "GithubThemeInteractive",
         enabled = true,
-        lazy = false,
         priority = 1000,
         config = function()
             require("github-theme").setup({
@@ -61,7 +57,6 @@ return {
     {
         "miikanissi/modus-themes.nvim",
         priority = 1000,
-        lazy = false,
         opts = {
             -- Theme comes in two styles `modus_operandi` and `modus_vivendi`
             -- `auto` will automatically set style based on background set with vim.o.background
@@ -88,7 +83,6 @@ return {
     },
     {
         "scottmckendry/cyberdream.nvim",
-        lazy = false,
         priority = 1000,
         opts = {
             italic_comments = true,
@@ -99,7 +93,7 @@ return {
     -- lualine setup: theme = require('nightwolf').lualine(),
     {
         "ricardoraposo/nightwolf.nvim",
-        lazy = false,
+        lazy = true,
         priority = 1000,
         opts = {
             theme = "black", -- 'black', 'dark-blue', 'gray', 'dark-gray', 'light'
@@ -130,7 +124,6 @@ return {
             terminal_colors = true,
             dim_inactive = false,
             variant = "neon", -- "neon" | "vibrant" | "soft" | "glow" | "dawn"
-
             styles = {
                 comments = { italic = true },
                 keywords = { bold = true },
@@ -138,7 +131,6 @@ return {
                 variables = {},
                 strings = { italic = true },
             },
-
             integrations = {
                 telescope = true, -- all auto-detected by default
                 neotree = true,
@@ -148,10 +140,13 @@ return {
             },
         },
     },
-    { "savq/melange-nvim",        lazy = false },
+    {
+        "savq/melange-nvim",
+    },
     {
         "nvzone/minty",
         cmd = { "Shades", "Huefy" },
-        dependencies = { "nvzone/volt", lazy = true },
+        dependencies = { "nvzone/volt"},
     },
+    { "al3rez/darktooth.nvim", priority = 1000 },
 }
