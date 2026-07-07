@@ -50,6 +50,13 @@ return {
             local opts = {
                 file_types = { "markdown", "quarto", "rmd", "org", "norg", "codecompanion" },
                 render_modes = { "n", "c", "t", "v", "V", "\22" },
+                -- Maximum file size (in MB) that this plugin will attempt to render.
+                -- File larger than this will effectively be ignored.
+                max_file_size = 10.0,
+                -- Takes buffer as input, if it returns true this plugin will not attach to the buffer.
+                ignore = function()
+                    return false
+                end,
                 restart_highlighter = true,
                 anti_conceal = {
                     -- This enables hiding any added text on the line the cursor is on
@@ -58,6 +65,26 @@ return {
                         code_background = true,
                         sign = true,
                     },
+                },
+                latex = {
+                    enabled = true,
+                    render_modes = false,
+                    -- Executable used to convert latex formula to rendered unicode.
+                    -- If a list is provided the commands run in order until the first success.
+                    converter = { 'latex2text' },
+                    -- Render inline latex formulas.
+                    inline = true,
+                    -- Render block latex formulas.
+                    block = true,
+                -- Determines where latex formula is rendered relative to block.
+                -- | above  | above latex block                               |
+                -- | below  | below latex block                               |
+                -- | center | centered with latex block (must be single line) |
+                    position = 'center',
+                    -- Number of empty lines above latex blocks.
+                    top_pad = 0,
+                    -- Number of empty lines below latex blocks.
+                    bottom_pad = 0,
                 },
                 heading = {
                     render_modes = true,
@@ -142,7 +169,11 @@ return {
                         },
                     },
                 },
-                completions = { lsp = { enabled = true } },
+                completions = {
+                    lsp = { enabled = true },
+                    -- Settings for blink.cmp completions source
+                    blink = { enabled = vim.g.use_blink },
+                },
                 code = {
                     enabled = true,
                     -- Determines how code blocks & inline code are rendered.
