@@ -1008,6 +1008,7 @@ Register-ArgumentCompleter -Native -CommandName 'deno' -ScriptBlock {
             [CompletionResult]::new('--doc', '--doc', [CompletionResultType]::ParameterName, 'Type-check code blocks in JSDoc as well as actual code')
             [CompletionResult]::new('--doc-only', '--doc-only', [CompletionResultType]::ParameterName, 'Type-check code blocks in JSDoc and Markdown only')
             [CompletionResult]::new('--check-js', '--check-js', [CompletionResultType]::ParameterName, 'Enable type-checking of JavaScript files (equivalent to `compilerOptions.checkJs: true`)')
+            [CompletionResult]::new('--desktop', '--desktop', [CompletionResultType]::ParameterName, 'Type-check using the type definitions for `deno desktop`')
             [CompletionResult]::new('--watch', '--watch', [CompletionResultType]::ParameterName, 'Watch for file changes and restart process automatically.   Only local files from entry point module graph are watched.')
             [CompletionResult]::new('--no-clear-screen', '--no-clear-screen', [CompletionResultType]::ParameterName, 'Do not clear terminal screen when under watch mode')
             break
