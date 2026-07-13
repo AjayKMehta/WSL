@@ -65,3 +65,7 @@ ble-import config/github483-elapsed-mark-on-error
 # https://github.com/akinomyoga/ble.sh/discussions/499#discussioncomment-10736053
 ble-import config/github499-append-to-last-modified
 ble-bind -f 'M-insert' github499/append-to-last-modified
+
+bleopt color_scheme=tokyonight
+bleopt menu_align_max=40
+bleopt complete_menu_style=align
