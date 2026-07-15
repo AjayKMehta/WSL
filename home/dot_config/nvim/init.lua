@@ -157,3 +157,5 @@ end, {
 
 -- https://github.com/GustavEikaas/easy-dotnet.nvim/blob/main/docs/lsp.md#2-vs-code-visuals-tip
 vim.api.nvim_set_hl(0, "LspCodeLens", { fg = "#717171", italic = true })
+
+vim.cmd("colorscheme nightwolf-dark-blue")
