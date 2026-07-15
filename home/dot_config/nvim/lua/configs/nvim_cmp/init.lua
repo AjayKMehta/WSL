@@ -123,12 +123,11 @@ cmp.setup.filetype({ "gitrebase" }, {
     sources = cmp.config.sources(src.gitrebase),
 })
 
--- TODO: Figure out why not working :(
 cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
     enabled = true,
     completion = {
-        autocomplete = true,
+        autocomplete = { cmp.TriggerEvent.TextChanged, cmp.TriggerEvent.InsertEnter },
         keyword_length = 2,
     },
     sources = src.search,
