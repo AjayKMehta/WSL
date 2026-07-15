@@ -4,6 +4,7 @@ local actions = require("diffview.actions")
 local opts = {
     enhanced_diff_hl = true,
     show_root_path = true, -- Show repository root path in panel headers.
+    preferred_adapter = "git",
     watch_index = true,    -- Update views and index buffers when the git index changes.
     diffopt = { algorithm = "histogram", linematch = 60 },
     cleanup_buffers = true,
@@ -26,7 +27,7 @@ local opts = {
         },
         merge_tool = {
             -- Config for conflicted files in diff views during a merge or rebase.
-            layout = "diff4_mixed",     -- default is diff3_horizontal
+            layout = "diff4_mixed",
             disable_diagnostics = true, -- Temporarily disable diagnostics for diff buffers while in the view.
             winbar_info = true,         -- See |diffview-config-view.x.winbar_info|
         },
