@@ -229,6 +229,14 @@ keybinds clear-defaults=true {
     // Keybindings shared across all modes, except 'Locked'.
     shared_except "locked" {
         // Put keybindings here if they conflict with Vim or others.
+        bind "Alt u" {
+            DumpScreen "/tmp/zellij-urlview.dump";
+            Run "bash" "-c" "exec \"$HOME/.config/zellij/zellij-urlview/zellij-urlview.sh\" /tmp/zellij-urlview.dump" {
+                floating true
+                close_on_exit true
+                name "zellij-urlview"
+            };
+        }
 
         bind "Alt z" {
             // Disable the autolock plugin.
@@ -361,6 +369,10 @@ plugins {
 load_plugins {
     zellij:link
     autolock
+    "https://github.com/bezbac/zellij-link-extended/releases/download/v0.1.0/zellij-link-extended.wasm" {
+        open_command "open"
+        open_command_args "{url}"
+    }
 }
 web_client {
     font "monospace"
