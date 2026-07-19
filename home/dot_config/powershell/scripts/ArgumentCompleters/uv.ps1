@@ -1233,6 +1233,7 @@ Register-ArgumentCompleter -Native -CommandName 'uv' -ScriptBlock {
             break
         }
         'uv;tree' {
+            [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'The format in which to display the dependency graph')
             [CompletionResult]::new('-d', '-d', [CompletionResultType]::ParameterName, 'Maximum display depth of the dependency tree')
             [CompletionResult]::new('--depth', '--depth', [CompletionResultType]::ParameterName, 'Maximum display depth of the dependency tree')
             [CompletionResult]::new('--prune', '--prune', [CompletionResultType]::ParameterName, 'Prune the given package from the display of the dependency tree')

@@ -4402,7 +4402,7 @@ _uv() {
                     return 0
                     ;;
                 --torch-backend)
-                    COMPREPLY=($(compgen -W "auto cpu cu130 cu129 cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm7.2 rocm7.1 rocm7.0 rocm6.4 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "auto cpu cu132 cu130 cu129 cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm7.2 rocm7.1 rocm7.0 rocm6.4 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
                     return 0
                     ;;
                 --resolver)
@@ -5026,7 +5026,7 @@ _uv() {
                     return 0
                     ;;
                 --torch-backend)
-                    COMPREPLY=($(compgen -W "auto cpu cu130 cu129 cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm7.2 rocm7.1 rocm7.0 rocm6.4 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "auto cpu cu132 cu130 cu129 cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm7.2 rocm7.1 rocm7.0 rocm6.4 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
                     return 0
                     ;;
                 --cache-dir)
@@ -5558,7 +5558,7 @@ _uv() {
                     return 0
                     ;;
                 --torch-backend)
-                    COMPREPLY=($(compgen -W "auto cpu cu130 cu129 cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm7.2 rocm7.1 rocm7.0 rocm6.4 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "auto cpu cu132 cu130 cu129 cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm7.2 rocm7.1 rocm7.0 rocm6.4 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
                     return 0
                     ;;
                 --python-executable)
@@ -8391,7 +8391,7 @@ _uv() {
                     return 0
                     ;;
                 --torch-backend)
-                    COMPREPLY=($(compgen -W "auto cpu cu130 cu129 cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm7.2 rocm7.1 rocm7.0 rocm6.4 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "auto cpu cu132 cu130 cu129 cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm7.2 rocm7.1 rocm7.0 rocm6.4 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
                     return 0
                     ;;
                 --cache-dir)
@@ -8834,7 +8834,7 @@ _uv() {
                     return 0
                     ;;
                 --torch-backend)
-                    COMPREPLY=($(compgen -W "auto cpu cu130 cu129 cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm7.2 rocm7.1 rocm7.0 rocm6.4 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "auto cpu cu132 cu130 cu129 cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm7.2 rocm7.1 rocm7.0 rocm6.4 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
                     return 0
                     ;;
                 --generate-shell-completion)
@@ -9551,7 +9551,7 @@ _uv() {
                     return 0
                     ;;
                 --torch-backend)
-                    COMPREPLY=($(compgen -W "auto cpu cu130 cu129 cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm7.2 rocm7.1 rocm7.0 rocm6.4 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "auto cpu cu132 cu130 cu129 cu128 cu126 cu125 cu124 cu123 cu122 cu121 cu120 cu118 cu117 cu116 cu115 cu114 cu113 cu112 cu111 cu110 cu102 cu101 cu100 cu92 cu91 cu90 cu80 rocm7.2 rocm7.1 rocm7.0 rocm6.4 rocm6.3 rocm6.2.4 rocm6.2 rocm6.1 rocm6.0 rocm5.7 rocm5.6 rocm5.5 rocm5.4.2 rocm5.4 rocm5.3 rocm5.2 rocm5.1.1 rocm4.2 rocm4.1 rocm4.0.1 xpu" -- "${cur}"))
                     return 0
                     ;;
                 --generate-shell-completion)
@@ -9622,12 +9622,16 @@ _uv() {
             return 0
             ;;
         uv__tree)
-            opts="-d -i -f -U -P -C -p -n -q -v -h --universal --depth --prune --package --no-dedupe --invert --outdated --show-sizes --dev --only-dev --no-dev --group --no-group --no-default-groups --only-group --all-groups --locked --frozen --no-build --build --no-build-package --no-binary --binary --no-binary-package --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --upgrade-group --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --no-sources --no-sources-package --script --python-version --python-platform --python --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --system-certs --no-system-certs --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
+            opts="-d -i -f -U -P -C -p -n -q -v -h --universal --format --depth --prune --package --no-dedupe --invert --outdated --show-sizes --dev --only-dev --no-dev --group --no-group --no-default-groups --only-group --all-groups --locked --frozen --no-build --build --no-build-package --no-binary --binary --no-binary-package --index --default-index --index-url --extra-index-url --find-links --no-index --upgrade --no-upgrade --upgrade-package --upgrade-group --index-strategy --keyring-provider --resolution --prerelease --pre --fork-strategy --config-setting --config-settings-package --no-build-isolation --no-build-isolation-package --build-isolation --exclude-newer --exclude-newer-package --link-mode --no-sources --no-sources-package --script --python-version --python-platform --python --no-cache --cache-dir --python-preference --managed-python --no-managed-python --allow-python-downloads --no-python-downloads --python-fetch --quiet --verbose --no-color --color --native-tls --no-native-tls --system-certs --no-system-certs --offline --no-offline --allow-insecure-host --preview --no-preview --preview-features --isolated --show-settings --no-progress --no-installer-metadata --directory --project --config-file --no-config --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
+                --format)
+                    COMPREPLY=($(compgen -W "text json" -- "${cur}"))
+                    return 0
+                    ;;
                 --depth)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
