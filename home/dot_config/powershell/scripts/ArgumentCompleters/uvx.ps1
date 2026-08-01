@@ -47,6 +47,7 @@ Register-ArgumentCompleter -Native -CommandName 'uvx' -ScriptBlock {
             [CompletionResult]::new('--keyring-provider', '--keyring-provider', [CompletionResultType]::ParameterName, 'Attempt to use `keyring` for authentication for index URLs')
             [CompletionResult]::new('--resolution', '--resolution', [CompletionResultType]::ParameterName, 'The strategy to use when selecting between the different compatible versions for a given package requirement')
             [CompletionResult]::new('--prerelease', '--prerelease', [CompletionResultType]::ParameterName, 'The strategy to use when considering pre-release versions')
+            [CompletionResult]::new('--prerelease-package', '--prerelease-package', [CompletionResultType]::ParameterName, 'The strategy to use when considering pre-release versions for a specific package')
             [CompletionResult]::new('--fork-strategy', '--fork-strategy', [CompletionResultType]::ParameterName, 'The strategy to use when selecting multiple versions of a given package across Python versions and platforms')
             [CompletionResult]::new('-C', '-C ', [CompletionResultType]::ParameterName, 'Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs')
             [CompletionResult]::new('--config-setting', '--config-setting', [CompletionResultType]::ParameterName, 'Settings to pass to the PEP 517 build backend, specified as `KEY=VALUE` pairs')
