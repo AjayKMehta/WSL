@@ -1,9 +1,10 @@
 local ls = require("luasnip")
+local extras = require("luasnip.extras")
 
 local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
-local rep = require("luasnip.extras").rep
-local m = require("luasnip.extras").match
+local rep = extras.rep
+local m = extras.match
 
 local s = ls.snippet
 -- Will error out if text node contains newline!
@@ -21,48 +22,44 @@ local isn = ls.indent_snippet_node
 -- This node can store and restore a snippetNode as is.
 local r = ls.restore_node
 local ai = require("luasnip.nodes.absolute_indexer")
+local ms = ls.multi_snippet
 -- Better than referencing by jump index as allows referencing non-sibling nodes
 local k = require("luasnip.nodes.key_indexer").new_key
 local d = ls.dynamic_node
-local l = require("luasnip.extras").lambda
-local dl = require("luasnip.extras").dynamic_lambda
--- local conds_expand = require("luasnip.extras.conditions.expand")
+local l = extras.lambda
+local dl = extras.dynamic_lambda
+local postfix = require("luasnip.extras.postfix").postfix
 
 -- s("foo") same as s({trig = "foo"})
 
 -- <@> denotes cursor position.
 -- <iN> denotes Nth insert node.
 
---#region ChoiceNode
+--#region InsertNode
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#insertnode
 
-local trigger_snippet = s(
-    {
-        trig = "trigger",
-        desc = "Example using choice node with text nodes and highlighting for 1st 2 choices and entire node. Press Ctrl+ U to select choice.",
-    },
-    c(1, {
-        t("Default Option 1"), -- First default choice
-        t("Default Option 2"), -- Second default choice
-        t("Other Option"),
-    }, {
-        active = {
-            -- Set the entire node as highlighted with "Search" highlight group.
-            -- Highlight the first two options specifically with "IncSearch" group.
-            hl_group = "Search",
-            [1] = { hl_group = "IncSearch" },
-            [2] = { hl_group = "IncSearch" },
-        },
-    })
-)
+-- The jump-order doesn't have to follow the "textual" order of the nodes:
+local jump_around = s("ja", {
+    t({ "After jumping forward once, cursor is here ->" }), i(2),
+    t({ "", "After expanding, the cursor is here ->" }), i(1),
+    t({ "", "After jumping once more, the snippet is exited there ->" }), i(0),
+})
+
+-- Jump-indices restart at 1 in nested snippets!
 
 --#endregion
 
 --#region FunctionNode
+
 -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#functionnode
 
+-- Function Nodes insert text based on the content of other nodes using a user-defined function.
+-- f(fn, argnode_references, node_opts)
+
+-- fn: function(argnode_text, parent, user_args1,...,user_argsn) -> text
 local function fn(
-    args, -- text from i(2) in this example i.e. { { "456" } }
-    parent, -- parent snippet or parent node
+    args,     -- text from i(2) in this example i.e. { { "456" } }
+    parent,   -- parent snippet or parent node
     user_args -- user_args from opts.user_args
 )
     return "[" .. args[1][1] .. user_args .. "]"
@@ -72,11 +69,11 @@ end
 -- <i1> = "A", <i2> = "B" leads to
 -- A<-i(1)[Btest]i(2)->B<-i(2) i(0)->
 local trig_snippet = s({ trig = "trig", desc = "Example using function node" }, {
-    i(1), -- insert node
-    t("<-i(1) "), -- text node
+    i(1),                          -- insert node
+    t("<-i(1) "),                  -- text node
     f(
-        fn, -- callback (args, parent, user_args) -> string
-        { 2 }, -- node indice(s) whose text is passed to fn, i.e. i(2)
+        fn,                        -- callback (args, parent, user_args) -> string
+        { 2 },                     -- node indice(s) whose text is passed to fn, i.e. i(2)
         { user_args = { "test" } } -- opts
     ),
     t(" i(2)->"),
@@ -98,6 +95,33 @@ local trig_ai_snippet = s({ trig = "trig_ai", desc = "Example using absolute ind
     end, { ai[2], ai[1] }),
 })
 
+--#endregion
+
+--#region ChoiceNode
+
+-- s(context, nodes, opts)
+local trigger_snippet = s(
+    {
+        trig = "trigger", --  If the text in front of (to the left of) the cursor when ls.expand() is called matches it, the snippet will be expanded.
+        desc =
+        "Example using choice node with text nodes and highlighting for 1st 2 choices and entire node. Press Ctrl+ U to select choice.",
+    },
+    -- c(pos, choices, opts?): LuaSnip.ChoiceNode
+    c(1, {
+        t("Default Option 1"), -- First default choice
+        t("Default Option 2"), -- Second default choice
+        t("Other Option"),
+    }, {
+        active = {
+            -- Set the entire node as highlighted with "Search" highlight group.
+            -- Highlight the first two options specifically with "IncSearch" group.
+            hl_group = "Search",
+            [1] = { hl_group = "IncSearch" },
+            [2] = { hl_group = "IncSearch" },
+        },
+    })
+)
+
 local trig2_snippet = s(
     {
         trig = "trig2",
@@ -115,6 +139,23 @@ local trig2_snippet = s(
     })
 )
 
+--If the choice is a snippetNode like sn(nil, {...nodes...}) the given nodes have to contain an insertNode (e.g. i(1)).
+-- Using an insertNode or textNode directly as a choice is also fine.
+s(
+    {
+        trig = "trig",
+        desc = "Example using choice node with text, insert, and snippet child nodes. Press Ctrl+ U to select choice.",
+    },
+    c(1, {
+        t("some text"),                    -- textNodes are just stopped at.
+        i(nil, "test"),                    -- likewise.
+        sn(nil, { t("some text") }),       -- this will not work as no insertNode!
+        sn(nil, { i(1), t("some text") }), -- this will.
+        -- If no 0-th InsertNode is found in a snippet, one is automatically inserted after all other nodes.
+        i(0),                              -- When you reach here, snippet will be unlinked.
+    })
+)
+
 --#endregion
 
 --#region SnippetNode
@@ -122,67 +163,99 @@ local trig2_snippet = s(
 
 -- SnippetNodes directly insert their contents into the surrounding snippet.
 
--- In `sn(nil, {...nodes...})` nodes has to contain e.g. an i(1), otherwise luasnip will just "jump through" the nodes, making it impossible to change the choice.
-s(
-    {
-        trig = "trig",
-        desc = "Example using choice node with text, insert, and snippet child nodes. Press Ctrl+ U to select choice.",
-    },
-    c(1, {
-        t("some text"), -- textNodes are just stopped at.
-        i(nil, "test"), -- likewise.
-        sn(nil, { t("some text") }), -- this will not work!
-        sn(nil, { i(1), t("some text") }), -- this will.
-        -- If no 0-th InsertNode is found in a snippet, one is automatically inserted after all other nodes.
-        i(0), -- When you reach here, snippet will be unlinked.
-    })
-)
+-- sn(jump_index, nodes, node_opts)
+s("trig", sn(1, {
+    t("basically just text "),
+    i(1, "And an insertNode.")
+}))
 
 --#endregion
 
---#region Match
--- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#match
+--#region IndentSnippetNode
 
--- Match can insert text based on a predicate
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#indentsnippetnode
 
--- 1. When you expand this snippet, the cursor will be placed at the first insert node. The text node will insert two newlines after the cursor, moving the cursor to the next line.
--- <@>\n\n
--- 2. If you type "ABC" and then press the trigger key, the match node will check if the text "ABC" was entered.
--- ABC<@>\n\n
--- 3. If the text matches the pattern, the match node will expand, inserting the text "A" after the cursor.
--- Result: ABC<@>\nA\n
-local match_snippet = s({ trig = "cond_match", desc = "Example using conditional logic. Type ABC to witness ✨" }, {
-    i(1),
-    -- Pass table with 2 entries to t() creates 2 lines with those entries!
-    t({ "", "" }),
-    m(1, "^ABC$", "A"),
+-- By default, all nodes are indented at least as deep as the trigger. With
+-- these nodes it's possible to override that behavior.
+
+-- No indent
+local multiline_snippet = s({
+    trig = "ml",
+    desc = "Example of multiline snippet",
+}, {
+    i(1, "Name"),
+    -- Multiline strings can be defined by passing a table of lines rather than a string:
+    t({ "", "A", "B", "" }),
+    i(2, "Surname"),
 })
 
-local match2_snippet = s(
-    { trig = "palindrome", desc = "Example using conditional logic. Type a palindrome to witness ✨" },
-    {
-        i(1),
-        -- Pass table with 2 entries to t() creates 2 lines with those entries!
-        t({ "", "" }),
-        -- match(argnodes, condition, then, else)
-        m(1, l._1:match(l._1:reverse()), "PALINDROME", "NORMAL"),
-    }
-)
+-- Use InsertSnippetNode to add indent.
+local multiline2_snippet = s({
+    trig = "ml2",
+    desc = "Example of multiline snippet using IndentSnippetNode",
+}, {
+    -- All occurrences of "$PARENT_INDENT" are replaced with the actual indent of the parent.
+    isn(1, t({ "//This is", "A multiline", "comment" }), "$PARENT_INDENT//"),
+})
+
+-- Another nice use case for ISN is inserting text,
+-- e.g. // or some other comment string before the nodes of the snippet:
+local multiline3_snippet = s({
+    trig = "ml3",
+    desc = "Example of multiline snippet using IndentSnippetNode with insert node",
+}, {
+    -- All occurrences of "$PARENT_INDENT" are replaced with the actual indent of the parent.
+    -- Even works with insert node.
+    isn(1, { t({ "//This is", "A multiline", "comment", "" }), i(1, "Hi!") }, "$PARENT_INDENT//"),
+})
 
 --#endregion
 
---#region Dynamic Lambda
+--#region DynamicNode
 
--- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#dynamic-lambda
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#dynamicnode
 
--- Pretty much the same as lambda, but it inserts the resulting text as an insertNode, and, as such, it can be quickly overridden.
+-- Similar to functionNode, but returns a snippetNode instead of just text.
 
-local dl_snippet = s("dl", { i(1), t({ "", "" }), dl(2, l._1 .. l._1, 1) })
+-- This dynamicNode inserts an insertNode which copies the text inside the first insertNode.
+local dynamic_snippet = s({ trig = "dyn", desc = "Dynamic snippet" }, {
+    t("original: "),
+    i(1),
+    t({ "", "copy: " }),
+    -- d(jump_index, function, node-references, opts)
+    d(2, function(args)
+        return sn(nil, {
+            -- jump-indices are local to each snippetNode, so restart at 1.
+            i(1, args[1]),
+        })
+    end, { 1 }),
+})
+
+local dynamic2_snippet = s({
+    trig = "dyn_choice",
+    desc = "Dynamic snippet with choice. Press Ctrl + U to select from dropdown for choice node.",
+}, {
+    t("original: "),
+    i(1),
+    t({ "", "copy: " }),
+    d(2, function(args)
+        return sn(nil, {
+            c(1, { i(1, args[1]), t("Test") }),
+        })
+    end, { 1 }),
+})
 
 --#endregion
 
 --#region RestoreNode
+
 -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#restorenode
+
+-- This node can store and restore a snippetNode as is. This includes changed
+-- choices and changed text.
+
+-- r(jump_index, key, nodes, node_opts)
+-- restoreNodes with the same key share their content.
 
 -- Press Ctrl-N/P to go to next/prev choice
 -- Here the text entered into user_text is preserved upon changing choice.
@@ -215,44 +288,14 @@ local paren2_snippet = s({ trig = "paren_change2", desc = "Example of choice nod
 
 --#endregion
 
---#region DynamicNode
--- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#dynamicnode
-
--- Similar to functionNode, but returns a snippetNode instead of just text.
-
-local dynamic_snippet = s({ trig = "dyn", desc = "Dynamic snippet" }, {
-    t("original: "),
-    i(1),
-    t({ "", "copy: " }),
-    d(2, function(args)
-        return sn(nil, {
-            -- jump-indices are local to each snippetNode, so restart at 1.
-            i(1, args[1]),
-        })
-    end, { 1 }),
-})
-
-local dynamic2_snippet = s({
-    trig = "dyn_choice",
-    desc = "Dynamic snippet with choice. Press Ctrl + U to select from dropdown for choice node.",
-}, {
-    t("original: "),
-    i(1),
-    t({ "", "copy: " }),
-    d(2, function(args)
-        return sn(nil, {
-            c(1, { i(1, args[1]), t("Test") }),
-        })
-    end, { 1 }),
-})
---#endregion
-
 --#region KeyIndexer
+
 -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#key-indexer
 
 -- Allows you to address nodes by key and even works for non-sibling nodes.
 
 local key_snippet = s({ trig = "key", desc = "Snippet with key. Converts insertion to lower-case!" }, {
+    -- First give the node we want to refer to a key
     i(1, "", { key = "first" }),
     c(2, {
         sn(nil, {
@@ -261,7 +304,7 @@ local key_snippet = s({ trig = "key", desc = "Snippet with key. Converts inserti
             t("can access the argnode :"),
             f(function(args)
                 return string.lower(args[1][1])
-            end, k("first")),
+            end, k("first")), -- then pass the same to the functionNode.
         }),
         t("sample_text"),
     }),
@@ -269,22 +312,111 @@ local key_snippet = s({ trig = "key", desc = "Snippet with key. Converts inserti
 
 --#endregion
 
---#region Regex
+--#region Multisnippet
 
--- Type b followed by number and then Tab to trigger.
-local num_capture_snippet = s(
-    { trig = "b(%d)", regTrig = true, desc = "Example of regex triggered snippet" },
-    f(function(args, snip)
-        return "Captured Text: " .. snip.captures[1] .. "."
-    end, {})
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#multisnippet
+
+-- Multisnippet lets a single snippet be associated with multiple contexts.
+
+-- ms(contexts, nodes, opts) -> addable
+
+ms({ "x", "y" }, { t "x or y" })
+
+
+ms({
+    common = { snippetType = "autosnippet" },
+    { trig = "a", snippetType = "snippet" },
+    "b",
+    {
+        trig = "c",
+        condition = function(line_to_cursor)
+            return line_to_cursor == ""
+        end
+    }
+}, {
+    t "a or b (but autotriggered!!)"
+})
+
+--#endregion
+
+--#region Match
+
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#match
+
+-- Match can insert text based on a predicate
+
+-- match(argnodes, condition, then, else)
+
+-- 1. When you expand this snippet, the cursor will be placed at the first insert node. The text node will insert two newlines after the cursor, moving the cursor to the next line.
+-- <@>\n\n
+-- 2. If you type "ABC" and then press the trigger key, the match node will check if the text "ABC" was entered.
+-- ABC<@>\n\n
+-- 3. If the text matches the pattern, the match node will expand, inserting the text "A" after the cursor.
+-- Result: ABC<@>\nA\n
+local match_snippet = s({ trig = "cond_match", desc = "Example using conditional logic. Type ABC to witness ✨" }, {
+    i(1),
+    -- Pass table with 2 entries to t() creates 2 lines with those entries!
+    t({ "", "" }),
+    m(1, "^ABC$", "A"),
+})
+
+local match2_snippet = s(
+    { trig = "palindrome", desc = "Example using conditional logic. Type a palindrome to witness ✨" },
+    {
+        i(1),
+        -- Pass table with 2 entries to t() creates 2 lines with those entries!
+        t({ "", "" }),
+        -- match(argnodes, condition, then, else)
+        --  l._1 is \n-joined text of 1st argnode
+        m(1, l._1:match(l._1:reverse()), "PALINDROME", "NORMAL"),
+    }
 )
+
+--#endregion
+
+--#region Partial
+
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#partial
+
+-- Evaluates a function on expand and inserts its value.
+
+-- partial(fn, params...)
+-- inserts the current year on expansion.
+local year_snippet = s("Y", { extras.partial(os.date, "%Y") })
+
+--#endregion
+
+--#region Dynamic Lambda
+
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#dynamic-lambda
+
+-- Pretty much the same as lambda, but it inserts the resulting text as an insertNode, and, as such, it can be quickly overridden.
+
+local dl_snippet = s("dl", { i(1), t({ "", "" }), dl(2, l._1 .. l._1, 1) })
+
+--#endregion
+
+--#region Postfix
+
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#postfix-snippet
+
+--  A.br => [A]
+local postfix_snippet = postfix(".br", {
+    f(function(_, parent)
+        return "[" .. parent.snippet.env.POSTFIX_MATCH .. "]"
+    end, {}),
+})
 
 --#endregion
 
 --#region fmt
 
+-- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#fmt
+
 -- printf-like notation for defining snippets. It uses format
 -- string with placeholders similar to the ones used with Python's .format().
+
+-- fmt(format:string, nodes:table of nodes, opts:table|nil) -> table of nodes
 local fmt1_snippet = s(
     { trig = "fmt1", desc = "Example using fmt with choice node (Mr.| Ms.)" },
     -- Escape {} by doubling
@@ -317,52 +449,21 @@ local fmt3_snippet = s({
 
 --#endregion
 
---#region IndentSnippetNode
--- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#indentsnippetnode
+--#region Regex
 
--- No indent
-local multiline_snippet = s({
-    trig = "ml",
-    desc = "Example of multiline snippet",
-}, {
-    i(1, "Name"),
-    t({ "", "A", "B", "" }),
-    i(2, "Surname"),
-})
-
--- Use InsertSnippetNode to add indent.
-local multiline2_snippet = s({
-    trig = "ml2",
-    desc = "Example of multiline snippet using IndentSnippetNode",
-}, {
-    -- All occurrences of "$PARENT_INDENT" are replaced with the actual indent of the parent.
-    isn(1, t({ "//This is", "A multiline", "comment" }), "$PARENT_INDENT//"),
-})
-
--- Even works with insert node.
-local multiline3_snippet = s({
-    trig = "ml3",
-    desc = "Example of multiline snippet using IndentSnippetNode with insert node",
-}, {
-    -- All occurrences of "$PARENT_INDENT" are replaced with the actual indent of the parent.
-    isn(1, { t({ "//This is", "A multiline", "comment", "" }), i(1, "Hi!") }, "$PARENT_INDENT//"),
-})
-
---#endregion
-
---#region Condition
-
--- Using the condition, it's possible to allow expansion only in specific cases.
--- TODO: Figure out why this is not working properly.
--- local cond_snippet = s("cond_beg", {
--- 	t("will only expand at the beginning of the line"),
--- }, {
--- 	condition = conds_expand.line_begin,
--- })
+-- Type b followed by number and then Tab to trigger.
+local num_capture_snippet = s(
+    { trig = "b(%d)", regTrig = true, desc = "Example of regex triggered snippet" },
+    f(function(args, snip)
+        return "Captured Text: " .. snip.captures[1] .. "."
+    end, {})
+)
 
 --#endregion
 
 ls.add_snippets("all", {
+    jump_around,
+
     trigger_snippet,
     trig_snippet,
     trig_ai_snippet,
@@ -455,4 +556,10 @@ ls.add_snippets("all", {
             }
         )
     ),
+
+    -- multi_snippet,
+    -- multi_snippet2,
+
+    year_snippet,
+    postfix_snippet
 })
