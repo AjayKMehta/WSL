@@ -19,13 +19,13 @@ minimum_release_age = "24h"
 bat-extras = "latest"
 
 "aqua:twpayne/chezmoi" = { version = "latest", postinstall = """
-chezmoi completion bash > ~/.config/bash_completions.d/chezmoi.sh
-chezmoi completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/chezmoi.ps1
+  chezmoi completion bash > ~/.config/bash_completions.d/chezmoi.sh
+  chezmoi completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/chezmoi.ps1
 """ }
 
 "aqua:dandavison/delta" = { version = "latest", postinstall = '''
-delta --generate-completion bash > ~/.config/bash_completions.d/delta
-delta --generate-completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/delta.ps1
+  delta --generate-completion bash > ~/.config/bash_completions.d/delta
+  delta --generate-completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/delta.ps1
 ''' }
 
 deno.version = "latest"
@@ -41,8 +41,8 @@ deno completions powershell > ~/.config/powershell/scripts/ArgumentCompleters/de
 
 
 "aqua:eza-community/eza" = { version = "latest", postinstall = '''
-gh download https://github.com/eza-community/eza/blob/main/completions/bash/eza --outfile ~/.config/bash_completions.d/eza
-gh download https://github.com/eza-community/eza/blob/main/completions/pwsh/_eza.ps1 --outfile ~/.config/powershell/scripts/ArgumentCompleters/eza.ps1
+  gh download https://github.com/eza-community/eza/blob/main/completions/bash/eza --outfile ~/.config/bash_completions.d/eza
+  gh download https://github.com/eza-community/eza/blob/main/completions/pwsh/_eza.ps1 --outfile ~/.config/powershell/scripts/ArgumentCompleters/eza.ps1
 ''' }
 
 fx = "latest"
@@ -50,8 +50,8 @@ fx = "latest"
 
 # GitHub CLI
 "aqua:cli/cli" = { version = "latest", postinstall = """
-gh completion -s bash > ~/.config/bash_completions.d/gh
-gh completion -s powershell > ~/.config/powershell/scripts/ArgumentCompleters/gh.ps1
+  gh completion -s bash > ~/.config/bash_completions.d/gh
+  gh completion -s powershell > ~/.config/powershell/scripts/ArgumentCompleters/gh.ps1
 """ }
 
 go = "latest"
@@ -68,16 +68,16 @@ minikube = "latest"
 "aqua:neovim/neovim" = "latest"
 
 "aqua:BurntSushi/ripgrep" = { version = "latest", postinstall = """
-rg --generate=complete-bash > ~/.config/bash_completions.d/rg
-rg --generate=complete-powershell > ~/.config/powershell/scripts/ArgumentCompleters/_rg.psg
+  rg --generate=complete-bash > ~/.config/bash_completions.d/rg
+  rg --generate=complete-powershell > ~/.config/powershell/scripts/ArgumentCompleters/_rg.psg
 """ }
 
 stylua = "latest"
 "aqua:jdx/usage" = "latest"
 
 "aqua:mikefarah/yq" = { version = "latest", postinstall = """
-yq shell-completion bash > ~/.config/bash_completions.d/yq
-yq shell-completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/yq.ps1
+  yq shell-completion bash > ~/.config/bash_completions.d/yq
+  yq shell-completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/yq.ps1
 """ }
 
 "aqua:zoxide" = "latest"
@@ -87,6 +87,9 @@ zellij = { version = "latest", postinstall = """
   """ }
 fzf = "latest"
 mkcert = "latest"
-betterleaks = "latest"
+betterleaks = { version = "latest", postinstall = """
+  betterleaks completion bash > ~/.config/bash_completions.d/betterleaks
+  betterleaks completion powershell > ~/.config/powershell/scripts/ArgumentCompleters/bellterleaks.ps1
+""" }
 tirith = "latest"
 hunk = "latest"
