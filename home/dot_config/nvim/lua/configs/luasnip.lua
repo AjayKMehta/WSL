@@ -20,7 +20,8 @@ local opts = {
     cut_selection_keys = "<Tab>",
     ft_func = ft_func.from_pos_or_filetype,
     load_ft_func = ft_func.extend_load_ft({
-        markdown = { "lua", "json", "html", "yaml", "css", "html", "javascript", "r", "python" },
+        markdown = { "lua", "json", "html", "yaml", "css", "html", "r", "python", "latex" },
+        markdown_inline = { "lua", "json", "html", "yaml", "css", "html", "r", "python", "latex" },
         html = { "javascript", "css", "graphql", "json" },
     }),
     ext_opts = {

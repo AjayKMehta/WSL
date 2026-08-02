@@ -74,7 +74,6 @@ local ensure_installed = {
     "vimdoc",
     "xml",
     "yaml",
-    "zathurarc",
 }
 
 ts.install(ensure_installed)
