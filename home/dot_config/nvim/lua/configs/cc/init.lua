@@ -308,6 +308,16 @@ local interactions = {
                     patching_algorithm = "strategies.chat.tools.catalog.helpers.patch",
                 },
             },
+            ["delete_file"] = {
+                opts = {
+                    judge_in_yolo_mode = true,
+                },
+            },
+            ["run_command"] = {
+                opts = {
+                    judge_in_yolo_mode = true,
+                },
+            },
         },
     },
     inline = {
@@ -327,6 +337,11 @@ local interactions = {
         adapter = {
             name = "ollama",
             model = "qwen3.5:9b",
+        },
+        gates = {
+            judge = {
+                enabled = true,
+            },
         },
     },
     shared = {
