@@ -26,7 +26,7 @@ return {
         end,
     }),
     ["<Down>"] = require("cmp").mapping(require("cmp").mapping.select_next_item(), { "i", "c" }), -- Alternative `Select Previous Item`
-    ["<Up>"] = require("cmp").mapping(require("cmp").mapping.select_prev_item(), { "i", "c" }), -- Alternative `Select Next Item`
+    ["<Up>"] = require("cmp").mapping(require("cmp").mapping.select_prev_item(), { "i", "c" }),   -- Alternative `Select Next Item`
     ["<C-y>"] = require("cmp").mapping(
         require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Insert, select = true }),
         { "i" }
@@ -93,6 +93,19 @@ return {
                 cmp.select_prev_item()
             else
                 cmp.complete()
+            end
+        end,
+    },
+    ["<M-f>"] = {
+        i = function()
+            require("luasnip.extras.otf").on_the_fly()
+        end,
+    },
+    ["<C-u>"] = {
+        i = function()
+            local ls = require("luasnip")
+            if ls.choice_active() then
+                return require("luasnip.extras.select_choice")()
             end
         end,
     },

@@ -127,4 +127,5 @@ return {
             cmp.accept({ index = 10 })
         end,
     },
+    -- Mapping for require("luasnip.extras.otf").on_the_fly() does not work :(
 }
