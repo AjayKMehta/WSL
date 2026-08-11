@@ -25,6 +25,7 @@ local config = {
                     end
                 end,
             },
+            label = "generic"
         },
     },
 }
