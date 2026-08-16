@@ -37,6 +37,11 @@ return {
         config = load_config("nvim_surround"),
     },
     {
+        "gregorias/nvim-surround-wk",
+        lazy = false,
+        config = true,
+    },
+    {
         "max397574/better-escape.nvim",
         event = "InsertEnter",
         config = function()

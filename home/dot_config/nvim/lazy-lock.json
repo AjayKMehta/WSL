@@ -95,6 +95,7 @@
   "nvim-nio": { "branch": "master", "commit": "edcc181a875301dd21840189aa2f2f9ad69fc172" },
   "nvim-spider": { "branch": "main", "commit": "38f74f733734566bec3b23a9dcf968a5a5559cd6" },
   "nvim-surround": { "branch": "main", "commit": "8b47db616ef658b8fc27e61db2896aa2f40134de" },
+  "nvim-surround-wk": { "branch": "main", "commit": "d8f4058cab1f0a4805e0e9f7e1415607681265f6" },
   "nvim-tree-pairs": { "branch": "main", "commit": "5fce834773cb31087cb0c2814a3462d1428e67b5" },
   "nvim-tree-preview.lua": { "branch": "main", "commit": "3f188af9a60aaf83fc732077478d2d90dbccd55f" },
   "nvim-tree.lua": { "branch": "master", "commit": "b2aadda94b107480c48e548d6db51c6840b7b33c" },
