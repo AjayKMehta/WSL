@@ -116,11 +116,11 @@ return {
                 desc = "Spider w",
                 mode = { "n", "o", "x" },
             },
-            { "<M-e>", "<cmd>lua require('spider').motion('e')<CR>", desc = "Spider e", mode = { "n", "o", "x" } },
-            { "<M-b>", "<cmd>lua require('spider').motion('b')<CR>", desc = "Spider b", mode = { "n", "o", "x" } },
-            { "gE", "<cmd>lua require('spider').motion('ge')<CR>", desc = "Spider ge", mode = { "n", "o", "x" } },
+            { "<M-e>", "<cmd>lua require('spider').motion('e')<CR>",  desc = "Spider e",  mode = { "n", "o", "x" } },
+            { "<M-b>", "<cmd>lua require('spider').motion('b')<CR>",  desc = "Spider b",  mode = { "n", "o", "x" } },
+            { "gE",    "<cmd>lua require('spider').motion('ge')<CR>", desc = "Spider ge", mode = { "n", "o", "x" } },
             -- https://github.com/chrisgrieser/nvim-spider?tab=readme-ov-file#operator-pending-mode-the-case-of-cw
-            { "cw", "c<cmd>lua require('spider').motion('e')<CR>", mode = "n" },
+            { "cw",    "c<cmd>lua require('spider').motion('e')<CR>", mode = "n" },
             {
                 "1",
                 "<cmd>lua require('spider').motion('w', { customPatterns = {'%d+'}})<CR>",
@@ -279,11 +279,11 @@ return {
                     :with_pair(cond.not_inside_quote())
                     :with_pair(cond.before_regex("%a+"))
                     :with_pair(cond.not_after_text(">"))
-                    -- Move cursor right after inserting pair
+                -- Move cursor right after inserting pair
                     :with_move(cond.none())
-                    -- Allow deletion of both brackets at once
+                -- Allow deletion of both brackets at once
                     :with_del(cond.none())
-                    -- Don't add newline when pressing <CR>
+                -- Don't add newline when pressing <CR>
                     :with_cr(cond.none()),
             })
 
