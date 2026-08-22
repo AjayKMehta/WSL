@@ -74,8 +74,9 @@ local adapters = {
                             "deepseek-r1:8b",
                             "glm-4.7-flash:q4_K_M",
                             "qwen3.5:9b",
-                            "llama3.2:latest",
+                            "batiai/gemma4-e2b:q4",
                             "ministral-3:8b",
+                            "hf.co/unsloth/DeepSeek-R1-0528-Qwen3-8B-GGUF:Q4_K_XL"
                         },
                     },
                     num_ctx = {
