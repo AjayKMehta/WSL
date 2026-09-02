@@ -37,7 +37,6 @@ end
 
 -- https://github.com/brenoprata10/nvim-highlight-colors#lspkind-integration
 M.format = function(entry, item)
-    local dups = { fuzzy_buffer = 1, async_path = 1, nvim_lsp = 0, luasnip = 1 }
     local _, lspkind = is_loaded("lspkind")
     if lspkind ~= nil then
         item = lspkind.cmp_format({
@@ -46,8 +45,8 @@ M.format = function(entry, item)
                 -- (e.g 50 will not show more than 50 characters)
                 -- can also be a function to dynamically calculate max width such as
                 -- menu = function() return math.floor(0.45 * vim.o.columns) end,
-                menu = 50,             -- leading text (labelDetails)
-                abbr = 50,             -- actual suggestion item
+                menu = 50, -- leading text (labelDetails)
+                abbr = 50, -- actual suggestion item
             },
             -- when popup menu exceed maxwidth, the truncated part would show
             -- ellipsis_char instead (must define maxwidth first)
@@ -81,7 +80,8 @@ M.format = function(entry, item)
                     end
                 end
                 vim_item.menu = source
-                vim_item.dup = dups[cmp_entry.source.name] or 0
+                vim_item.dup = ({ fuzzy_buffer = 1, async_path = 1, nvim_lsp = 0, luasnip = 1 })[cmp_entry.source.name] or
+                0
                 return vim_item
             end,
         })(entry, item)
