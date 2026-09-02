@@ -319,6 +319,11 @@ local interactions = {
                     judge_in_yolo_mode = true,
                 },
             },
+            ["web_search"] = {
+                opts = {
+                    adapter = "duckduckgo",
+                },
+            },
         },
     },
     inline = {
