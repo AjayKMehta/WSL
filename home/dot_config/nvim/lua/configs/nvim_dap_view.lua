@@ -28,7 +28,7 @@ local config = {
     virtual_text = {
         -- Control with `DapViewVirtualTextToggle`
         enabled = true,
-        format = function(variable, _, _)
+        format = function(variable)
             -- Strip out excessive whitespace
             return " " .. variable.value:gsub("%s+", " ")
         end,
