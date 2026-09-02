@@ -3854,7 +3854,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__attach)
-            opts="-c -b -f -t -r -h --create --create-background --index --force-run-commands --token --remember --forget --ca-cert --insecure --help options help"
+            opts="-c -b -f -t -r -h --create --create-background --index --force-run-commands --token --remember --forget --ca-cert --insecure --close-on-exit --start-suspended --help options help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3926,7 +3926,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__attach__subcmd__options)
-            opts="-h --simplified-ui --theme --theme-dark --theme-light --default-mode --default-shell --default-cwd --default-layout --layout-dir --theme-dir --mouse-mode --pane-frames --pane-frame-style --mirror-session --on-force-close --scroll-buffer-size --copy-command --copy-clipboard --copy-on-select --osc8-hyperlinks --scrollback-editor --session-name --attach-to-session --auto-layout --session-serialization --serialize-pane-viewport --scrollback-lines-to-serialize --styled-underlines --serialization-interval --disable-session-metadata --support-kitty-keyboard-protocol --support-kitty-graphics-protocol --web-server --web-sharing --stacked-resize --stacked-pane-list --show-startup-tips --show-release-notes --advanced-mouse-actions --mouse-scroll-resize --mouse-hover-effects --mouse-hover-tips --visual-bell --focus-follows-mouse --mouse-click-through --osc133-command-selection --word-separators --host-notification-protocol --post-command-discovery-hook --client-async-worker-tasks --nested-session-handling --dangerously-enable-paste-buffer-read --help true false"
+            opts="-h --simplified-ui --theme --theme-dark --theme-light --explicit-theme-hue --default-mode --default-shell --default-cwd --default-layout --layout-dir --theme-dir --mouse-mode --pane-frames --pane-frame-style --mirror-session --on-force-close --scroll-buffer-size --copy-command --copy-clipboard --copy-on-select --osc8-hyperlinks --scrollback-editor --session-name --attach-to-session --auto-layout --session-serialization --serialize-pane-viewport --scrollback-lines-to-serialize --styled-underlines --serialization-interval --disable-session-metadata --support-kitty-keyboard-protocol --support-kitty-graphics-protocol --web-server --web-sharing --stacked-resize --stacked-pane-list --show-startup-tips --show-release-notes --advanced-mouse-actions --mouse-scroll-resize --scroll-mode-sync --mouse-hover-effects --mouse-hover-tips --visual-bell --focus-follows-mouse --mouse-click-through --osc133-command-selection --word-separators --host-notification-protocol --post-command-discovery-hook --client-async-worker-tasks --nested-session-handling --dangerously-enable-paste-buffer-read --help true false"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3946,6 +3946,10 @@ _zellij() {
                     ;;
                 --theme-light)
                     COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --explicit-theme-hue)
+                    COMPREPLY=($(compgen -W "light dark" -- "${cur}"))
                     return 0
                     ;;
                 --default-mode)
@@ -4089,6 +4093,10 @@ _zellij() {
                     return 0
                     ;;
                 --mouse-scroll-resize)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --scroll-mode-sync)
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
                     ;;
@@ -5678,7 +5686,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__options)
-            opts="-h --simplified-ui --theme --theme-dark --theme-light --default-mode --default-shell --default-cwd --default-layout --layout-dir --theme-dir --mouse-mode --pane-frames --pane-frame-style --mirror-session --on-force-close --scroll-buffer-size --copy-command --copy-clipboard --copy-on-select --osc8-hyperlinks --scrollback-editor --session-name --attach-to-session --auto-layout --session-serialization --serialize-pane-viewport --scrollback-lines-to-serialize --styled-underlines --serialization-interval --disable-session-metadata --support-kitty-keyboard-protocol --support-kitty-graphics-protocol --web-server --web-sharing --stacked-resize --stacked-pane-list --show-startup-tips --show-release-notes --advanced-mouse-actions --mouse-scroll-resize --mouse-hover-effects --mouse-hover-tips --visual-bell --focus-follows-mouse --mouse-click-through --osc133-command-selection --word-separators --host-notification-protocol --post-command-discovery-hook --client-async-worker-tasks --nested-session-handling --dangerously-enable-paste-buffer-read --help true false"
+            opts="-h --simplified-ui --theme --theme-dark --theme-light --explicit-theme-hue --default-mode --default-shell --default-cwd --default-layout --layout-dir --theme-dir --mouse-mode --pane-frames --pane-frame-style --mirror-session --on-force-close --scroll-buffer-size --copy-command --copy-clipboard --copy-on-select --osc8-hyperlinks --scrollback-editor --session-name --attach-to-session --auto-layout --session-serialization --serialize-pane-viewport --scrollback-lines-to-serialize --styled-underlines --serialization-interval --disable-session-metadata --support-kitty-keyboard-protocol --support-kitty-graphics-protocol --web-server --web-sharing --stacked-resize --stacked-pane-list --show-startup-tips --show-release-notes --advanced-mouse-actions --mouse-scroll-resize --scroll-mode-sync --mouse-hover-effects --mouse-hover-tips --visual-bell --focus-follows-mouse --mouse-click-through --osc133-command-selection --word-separators --host-notification-protocol --post-command-discovery-hook --client-async-worker-tasks --nested-session-handling --dangerously-enable-paste-buffer-read --help true false"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -5698,6 +5706,10 @@ _zellij() {
                     ;;
                 --theme-light)
                     COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --explicit-theme-hue)
+                    COMPREPLY=($(compgen -W "light dark" -- "${cur}"))
                     return 0
                     ;;
                 --default-mode)
@@ -5841,6 +5853,10 @@ _zellij() {
                     return 0
                     ;;
                 --mouse-scroll-resize)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --scroll-mode-sync)
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
                     ;;
