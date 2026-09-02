@@ -271,10 +271,11 @@ return {
                     analyzer_assemblies = {},
                     roslynator_enabled = true,
                     easy_dotnet_extension_enabled = true, -- Needs to be true for enhanced_rename and create_type_from_usage
-                    enhanced_rename = true, -- auto rename file when renaming class
-                    create_type_from_usage = true, -- code action for creating class from unresolved symbol in a separate file
+                    enhanced_rename = true,               -- auto rename file when renaming class
+                    create_type_from_usage = true,        -- code action for creating class from unresolved symbol in a separate file
                     auto_refresh_codelens = true,
-                    suggest_updates = true, -- Periodically suggest roslyn-language-server updates
+                    suggest_updates = true,               -- Periodically suggest roslyn-language-server updates
+                    auto_load_projects = true
                 },
                 diagnostics = {
                     default_severity = "warning",
