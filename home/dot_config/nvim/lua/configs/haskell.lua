@@ -71,7 +71,6 @@ vim.g.haskell_tools = {
         },
     },
     dap = {
-        logLevel = "Info",
         auto_discover = true,
     },
 }
