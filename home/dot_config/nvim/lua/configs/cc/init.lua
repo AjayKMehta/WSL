@@ -96,6 +96,9 @@ local adapters = {
         opts = {
             show_model_choices = true,
         },
+        extend = {
+            markitdown = { opts = { timeout = 300000 } }, -- milliseconds
+        },
     },
 }
 
@@ -256,6 +259,16 @@ local interactions = {
                     contains_code = false,
                 },
             },
+            ["skills"] = {
+                opts = {
+                    provider = "snacks",
+                },
+            },
+            ["skills-group"] = {
+                opts = {
+                    provider = "snacks",
+                },
+            }
         },
         keymaps = {
             -- Adapted from https://github.com/olimorris/codecompanion.nvim/discussions/1153#discussioncomment-12560883
@@ -491,6 +504,15 @@ local mcp = {
         },
     },
 }
+local skills = {
+    dirs = {
+        "~/.config/codecompanion/skills",
+        ".codecompanion/skills",
+        "~/.claude/skills",
+        ".claude/skills",
+        "~/.agents/skills"
+    },
+}
 
 local config = {
     adapters = adapters,
@@ -500,6 +522,7 @@ local config = {
     rules = rules,
     opts = opts,
     mcp = mcp,
+    skills = skills
 }
 
 cc.setup(config)
