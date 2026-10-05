@@ -324,12 +324,12 @@ local interactions = {
             },
             ["delete_file"] = {
                 opts = {
-                    judge_in_yolo_mode = true,
+                    judge = true,
                 },
             },
             ["run_command"] = {
                 opts = {
-                    judge_in_yolo_mode = true,
+                    judge = true,
                 },
             },
             ["web_search"] = {
