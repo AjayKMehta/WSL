@@ -37,6 +37,9 @@
         "activityBarTop.background": "#5aa95b",
         "activityBarTop.foreground": "#15202b",
         "activityBarTop.inactiveForeground": "#15202b99",
-        "commandCenter.foreground": "#e7e7e7"
+        "commandCenter.foreground": "#e7e7e7",
+        "activityBar.activeBorder": "#15202b",
+        "activityBarTop.activeBorder": "#15202b",
+        "statusBar.inactiveBackground": "#478948"
     }
 }
