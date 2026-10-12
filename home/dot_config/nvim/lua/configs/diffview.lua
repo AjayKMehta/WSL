@@ -91,22 +91,16 @@ local opts = {
             },
             ["<leader>e"] = false,
             ["<leader>b"] = false,
-            { "n", "<localleader>ff", actions.focus_files,  { desc = "DiffView Focus Files" } },
-            { "n", "<localleader>ft", actions.toggle_files, { desc = "DiffView Toggle Files" } }
         },
         file_history_panel = {
             ["<leader>e"] = false,
             ["<leader>b"] = false,
-            { "n", "<localleader>ff", actions.focus_files,  { desc = "DiffView Focus Files" } },
-            { "n", "<localleader>ft", actions.toggle_files, { desc = "DiffView Toggle Files" } }
         },
         view = {
             -- Disable the default normal mode mapping
             ["gx"] = false,
             ["<leader>e"] = false,
             ["<leader>b"] = false,
-            { "n", "<localleader>ff", actions.focus_files,  { desc = "DiffView Focus Files" } },
-            { "n", "<localleader>ft", actions.toggle_files, { desc = "DiffView Toggle Files" } }
         },
     },
     hooks = {
