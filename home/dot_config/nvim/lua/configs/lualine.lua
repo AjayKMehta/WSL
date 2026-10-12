@@ -7,20 +7,6 @@ M.setup = function(theme)
     local highlight = require("lualine.highlight")
     local default_status_colors = { saved = "#228B22", modified = "#C70039" }
 
-    local neominimap = require("neominimap.statusline")
-    local minimap_extension = {
-        sections = {
-            lualine_c = {
-                neominimap.fullname,
-            },
-            lualine_z = {
-                neominimap.position,
-                "progress",
-            },
-        },
-        filetypes = { "neominimap" },
-    }
-
     local colors = {
         bg = "#202328",
         fg = "#bbc2cf",
@@ -399,7 +385,6 @@ M.setup = function(theme)
             "trouble",
             "toggleterm",
             "quickfix",
-            minimap_extension,
         },
     }
 
