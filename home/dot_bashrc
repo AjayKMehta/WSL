@@ -155,6 +155,9 @@ fi
 # Get rid of annoying "..._comp_initialize: command not found" error
 eval "$(mise completion bash --include-bash-completion-lib)"
 
+# Append the global .NET tools path so it takes precedence over the active shell environment
+export PATH="$PATH:$HOME/.dotnet/tools"
+
 # oh my posh
 PROMPT_COMMAND='printf "\033]133;A\007"'
 eval "$(oh-my-posh init bash)"
