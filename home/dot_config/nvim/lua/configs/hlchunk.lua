@@ -69,3 +69,13 @@ hlchunk.setup({
         exclude_filetypes = exclude_filetypes,
     },
 })
+
+local status_ok, wk = pcall(require, "which-key")
+if not status_ok then
+    return
+end
+
+wk.add({
+    mode = { "o", "x" },
+    { "iC", desc = "Chunk" },
+})
