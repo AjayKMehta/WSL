@@ -13,6 +13,7 @@
   "blink.compat": { "branch": "main", "commit": "2ed6d9a28b07fa6f3bface818470605f8896408c" },
   "boilersharp.nvim": { "branch": "master", "commit": "91dc854d8dc4170815d6a5c0fbdaefa823204fe1" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
+  "celeste_comment.nvim": { "branch": "main", "commit": "7faffcdb5a3f9c75e98580a85a62e1ecb890b9bc" },
   "chromabuffer": { "branch": "main", "commit": "d17b1f245fd20ac2a798764c37538ce2a4224922" },
   "citruszest.nvim": { "branch": "main", "commit": "e6fed9ec3d0ac190b1387379c138ba5e23a1f4f9" },
   "cmp-async-path": { "branch": "main", "commit": "98185a91d49ff5dd249aebf2f7456e18063fa2a0" },
