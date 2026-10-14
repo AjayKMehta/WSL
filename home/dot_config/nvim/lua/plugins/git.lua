@@ -216,4 +216,20 @@ return {
             require("blame").setup(opts)
         end,
     },
+    {
+        "NeogitOrg/neogit",
+        lazy = true,
+        dependencies = {
+
+            -- For a custom log pager
+            "m00qek/baleia.nvim", -- optional
+
+            "folke/snacks.nvim",  -- optional
+        },
+        cmd = "Neogit",
+        keys = {
+            -- { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
+        },
+        config = { integrations = { diffview = true } }
+    }
 }
