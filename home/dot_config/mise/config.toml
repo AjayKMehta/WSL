@@ -12,6 +12,7 @@ jobs = 4
 arch = "x86_64"
 minimum_release_age = "24h"
 tool_update.check_duration = "24h"
+self_update.auto = true
 
 [tools]
 # specify single or multiple versions
