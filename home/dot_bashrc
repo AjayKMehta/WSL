@@ -13,7 +13,7 @@ done
 
 export XDG_CONFIG_HOME="$HOME/.config"
 # https://superuser.com/questions/1262977/open-browser-in-host-system-from-windows-subsystem-for-linux
-export BROWSER='/mnt/c/Program Files/Firefox/firefox.exe'
+export BROWSER="/mnt/c/Program Files/Firefox/firefox.exe"
 
 # If not running interactively, don't do anything
 case $- in
@@ -230,6 +230,7 @@ source ~/.local/share/blesh/ble.sh
 
 # Must come after sourcing ble.sh!
 # '--disable-ctrl-r' doesn't work!
+. "$HOME/.atuin/bin/env"
 eval "$(atuin init bash --disable-up-arrow)"
 
 function yy() {
@@ -265,7 +266,6 @@ else
     eval "$(zoxide init bash)"
 fi
 
-. "$HOME/.atuin/bin/env"
 . "$HOME/.cargo/env"
 
 # direnv
@@ -292,3 +292,10 @@ if [[ -n "$ZELLIJ_SESSION_NAME" ]]; then
         fi
     fi
 fi
+export PATH="/home/ajay/.dotnetup:$PATH"
+
+# dotnetup: begin
+if [ -x '/home/ajay/.dotnetup/dotnetup' ]; then
+    eval "$('/home/ajay/.dotnetup/dotnetup' env script --shell bash --dotnet --dotnetup)"
+fi
+# dotnetup: end
