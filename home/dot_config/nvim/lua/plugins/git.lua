@@ -172,4 +172,11 @@ return {
             end,
         },
     },
+    {
+        "CoreyKaylor/diffbandit.nvim",
+        cmd = { "DiffBandit", "DiffBanditBuffers", "DiffBanditCommitPanel", "DiffBanditFolderDiff", "DiffBanditGit", "DiffBanditGitCheckout", "DiffBanditGitCommit", "DiffBanditGitCompare", "DiffBanditGitCurrent", "DiffBanditGitLog", "DiffBanditGitMenu", "DiffBanditMerge" },
+        config = function()
+            require("diffbandit").setup()
+        end,
+    }
 }
