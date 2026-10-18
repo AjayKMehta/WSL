@@ -51,6 +51,18 @@ return {
                 "<CMD>Octo repo list<CR>",
                 desc = "Octo Repo List",
             },
+            {
+                "<leader>On",
+                "<CMD>Octo notification list<CR>",
+                desc = "List GitHub Notifications",
+            },
+            {
+                "<leader>Os",
+                function()
+                    require("octo.utils").create_base_search_command { include_current_repo = true }
+                end,
+                desc = "Search GitHub",
+            },
         },
         config = function()
             require("octo").setup({
