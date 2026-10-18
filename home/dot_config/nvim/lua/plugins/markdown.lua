@@ -31,19 +31,6 @@ return {
         },
     },
     {
-        "brianhuster/live-preview.nvim",
-        dependencies = {
-            "folke/snacks.nvim",
-        },
-        ft = { "markdown", "gitcommit", "quarto", "rmd" },
-        cmd = { "LivePreview" },
-        opts = {
-            port = 8888,
-            dynamic_root = true,
-        },
-        port = 8888,
-    },
-    {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = { "markdown", "codecompanion", "quarto", "rmd" },
         opts = function()

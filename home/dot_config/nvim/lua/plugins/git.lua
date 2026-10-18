@@ -17,24 +17,6 @@ return {
         opts = {},
     },
     {
-        -- A plugin to visualise and resolve merge conflicts.
-        "niekdomi/conflict.nvim",
-        config = function()
-            require("conflict").setup({
-                default_mappings = {
-                    current = "cc",
-                    incoming = "ci",
-                    both = "cb",
-                    none = false,
-                    next = "]x",
-                    prev = "[x",
-                },
-                show_actions = true,        -- Show clickable [Accept Current | ...] labels
-                disable_diagnostics = true, -- Disable LSP/Diagnostics while conflicts exist
-            })
-        end,
-    },
-    {
         -- Edit and review GitHub issues and pull requests from the Neovim.
         "pwntester/octo.nvim",
         dependencies = {
@@ -190,46 +172,4 @@ return {
             end,
         },
     },
-    {
-        -- fugitive.vim style git blame visualizer for Neovim.
-        "FabijanZulj/blame.nvim",
-        cmd = {
-            "BlameToggle",
-        },
-        opts = {
-            date_format = "%d.%m.%Y",
-            virtual_style = "right",
-            merge_consecutive = true,
-            max_summary_width = 30,
-            colors = nil,
-            commit_detail_view = "vsplit",
-            mappings = {
-                commit_info = "i",
-                stack_push = "<TAB>",
-                stack_pop = "<BS>",
-                show_commit = "c",
-                close = { "<esc>", "q" },
-            },
-            blame_options = { "-w", "-M", "-C", "--color-by-age" },
-        },
-        config = function(_, opts)
-            require("blame").setup(opts)
-        end,
-    },
-    {
-        "NeogitOrg/neogit",
-        lazy = true,
-        dependencies = {
-
-            -- For a custom log pager
-            "m00qek/baleia.nvim", -- optional
-
-            "folke/snacks.nvim",  -- optional
-        },
-        cmd = "Neogit",
-        keys = {
-            -- { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
-        },
-        config = { integrations = { diffview = true } }
-    }
 }
