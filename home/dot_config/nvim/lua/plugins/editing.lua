@@ -388,7 +388,7 @@ return {
                 line_add_below        = "g/o",
                 -- Insert comment above (n)
                 line_add_above        = "g/O",
-                -- Insert comment at end of line (n)
+                -- Append comment at end of line (n)
                 line_add_eol          = "g/A",
                 -- Invert comment per line (n, x)
                 line_invert           = "g/I",

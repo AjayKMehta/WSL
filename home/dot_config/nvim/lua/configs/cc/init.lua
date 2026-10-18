@@ -316,7 +316,7 @@ local interactions = {
                     require_approval_before = false,
                 },
             },
-            ["insert_edit_into_file"] = {
+            ["edit_file"] = {
                 opts = {
                     require_approval_before = { buffer = true },
                     patching_algorithm = "strategies.chat.tools.catalog.helpers.patch",
@@ -508,8 +508,6 @@ local skills = {
     dirs = {
         "~/.config/codecompanion/skills",
         ".codecompanion/skills",
-        "~/.claude/skills",
-        ".claude/skills",
         "~/.agents/skills"
     },
 }
