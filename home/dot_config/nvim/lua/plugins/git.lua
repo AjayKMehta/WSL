@@ -81,108 +81,119 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
-        opts = {
-            signs = {
-                add = { text = "┃" },
-                change = { text = "▎" },
-                delete = { text = "󰍵" },
-                topdelete = { text = "➤" },
-                changedelete = { text = "~" },
-                untracked = { text = "┆" },
-            },
-            signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-            numhl = true,      -- Toggle with `:Gitsigns toggle_numhl`
-            linehl = true,     -- Toggle with `:Gitsigns toggle_linehl`
-            word_diff = true,  -- Toggle with `:Gitsigns toggle_word_diff`
-            trouble = true,
-            current_line_blame_opts = {
-                virt_text = true,
-                virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-                delay = 300,
-                ignore_whitespace = false,
-                virt_text_priority = 100,
-            },
-            on_attach = function(bufnr)
-                local gs = package.loaded.gitsigns
+        event = { "BufReadPost", "BufNewFile" },
+        cmd = "Gitsigns",
+        config = function()
+            local gs = require("gitsigns")
+            local opts = {
+                signs = {
+                    add = { text = "┃" },
+                    change = { text = "▎" },
+                    delete = { text = "󰍵" },
+                    topdelete = { text = "➤" },
+                    changedelete = { text = "~" },
+                    untracked = { text = "┆" },
+                },
+                current_line_blame = true,
+                signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+                numhl = true,      -- Toggle with `:Gitsigns toggle_numhl`
+                linehl = true,     -- Toggle with `:Gitsigns toggle_linehl`
+                word_diff = true,  -- Toggle with `:Gitsigns toggle_word_diff`
+                trouble = true,
+                current_line_blame_opts = {
+                    virt_text = true,
+                    virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+                    delay = 300,
+                    ignore_whitespace = false,
+                    virt_text_priority = 100,
+                },
+                on_attach = function(bufnr)
+                    local gs = require("gitsigns")
 
-                local map = function(mode, keys, cmd, desc)
-                    return vim.keymap.set(mode, keys, cmd, { buffer = bufnr, desc = desc })
-                end
+                    local map = function(mode, keys, cmd, desc)
+                        return vim.keymap.set(mode, keys, cmd, { buffer = bufnr, desc = desc })
+                    end
 
-                -- Stage
+                    -- Textobject
 
-                map("n", "<leader>gsh", gs.stage_hunk, "gitsigns Stage hunk")
+                    map({ "o", "x" }, "ih", "<Cmd>Gitsigns select_hunk<CR>", "Current hunk")
 
-                map("v", "<leader>gsh", function()
-                    gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-                end, "gitsigns Stage hunk")
+                    -- Stage
 
-                map("n", "<leader>gsb", gs.stage_buffer, "gitsigns Stage buffer")
+                    map("n", "<leader>gsh", gs.stage_hunk, "gitsigns Stage hunk")
 
-                -- Undo stage
+                    map("v", "<leader>gsh", function()
+                        gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+                    end, "gitsigns Stage hunk")
 
-                -- Use stage_hunk() on staged lines
+                    map("n", "<leader>gsb", gs.stage_buffer, "gitsigns Stage buffer")
 
-                map("n", "<leader>gU", gs.reset_buffer_index, "gitsigns Unstage all hunks for current buffer")
+                    -- Undo stage
 
-                -- Reset
+                    -- Use stage_hunk() on staged lines
 
-                map("n", "<leader>gr", gs.reset_hunk, "gitsigns Reset hunk")
+                    map("n", "<leader>gU", gs.reset_buffer_index, "gitsigns Unstage all hunks for current buffer")
 
-                map("v", "<leader>gr", function()
-                    gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-                end, "gitsigns Reset hunk")
+                    -- Reset
 
-                -- Blame
+                    map("n", "<leader>gr", gs.reset_hunk, "gitsigns Reset hunk")
 
-                map("n", "<leader>gBt", gs.toggle_current_line_blame, "gitsigns Toggle current line blame")
+                    map("v", "<leader>gr", function()
+                        gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+                    end, "gitsigns Reset hunk")
 
-                map("n", "<leader>gBl", function()
-                    gs.blame_line({ full = true, ignore_whitespace = false })
-                end, "gitsigns blame line")
+                    -- Blame
 
-                map("n", "<leader>gBL", function()
-                    gs.blame_line({ full = true, ignore_whitespace = true })
-                end, "gitsigns blame line (ignore whitespace)")
+                    map("n", "<leader>gBt", gs.toggle_current_line_blame, "gitsigns Toggle current line blame")
 
-                -- Diff
+                    map("n", "<leader>gBl", function()
+                        gs.blame_line({ full = true, ignore_whitespace = false })
+                    end, "gitsigns blame line")
 
-                map("n", "<leader>gdi", gs.diffthis, "gitsigns Diff with index")
+                    map("n", "<leader>gBL", function()
+                        gs.blame_line({ full = true, ignore_whitespace = true })
+                    end, "gitsigns blame line (ignore whitespace)")
 
-                map("n", "<leader>gdp", function()
-                    gs.diffthis("~1")
-                end, "gitsigns Diff with previous commit")
+                    -- Diff
 
-                -- Navigation
+                    map("n", "<leader>gdi", gs.diffthis, "gitsigns Diff with index")
 
-                map({ "n", "v" }, "[h", function()
-                    gs.nav_hunk("prev")
-                end, "gitsigns Go to previous hunk")
+                    map("n", "<leader>gdp", function()
+                        gs.diffthis("~1")
+                    end, "gitsigns Diff with previous commit")
 
-                map({ "n", "v" }, "]h", function()
-                    gs.nav_hunk("next")
-                end, "gitsigns Go to next hunk")
+                    -- Navigation
 
-                map({ "n", "v" }, "[H", function()
-                    gs.nav_hunk("first")
-                end, "gitsigns Go to first hunk")
+                    map({ "n", "v" }, "[h", function()
+                        gs.nav_hunk("prev")
+                    end, "gitsigns Go to previous hunk")
 
-                map({ "n", "v" }, "]H", function()
-                    gs.nav_hunk("last")
-                end, "gitsigns Go to last hunk")
+                    map({ "n", "v" }, "]h", function()
+                        gs.nav_hunk("next")
+                    end, "gitsigns Go to next hunk")
 
-                -- Preview
+                    map({ "n", "v" }, "[H", function()
+                        gs.nav_hunk("first")
+                    end, "gitsigns Go to first hunk")
 
-                map("n", "<leader>gp", gs.preview_hunk, "gitsigns Preview hunk")
-                map("n", "<leader>gi", gs.preview_hunk_inline, "gitsigns Preview hunk inline")
+                    map({ "n", "v" }, "]H", function()
+                        gs.nav_hunk("last")
+                    end, "gitsigns Go to last hunk")
 
-                -- Quickfix list
+                    -- Preview
 
-                map("n", "<leader>gq", function()
-                    gs.setqflist("all")
-                end, "gitsigns Populate quickfix list with hunks")
-            end,
-        },
+                    map("n", "<leader>gp", gs.preview_hunk, "gitsigns Preview hunk")
+                    map("n", "<leader>gi", gs.preview_hunk_inline, "gitsigns Preview hunk inline")
+
+                    -- Quickfix list
+
+                    map("n", "<leader>gq", function()
+                        gs.setqflist("all")
+                    end, "gitsigns Populate quickfix list with hunks")
+                end,
+            }
+            gs.setup(opts)
+        end,
     },
     {
         "CoreyKaylor/diffbandit.nvim",
