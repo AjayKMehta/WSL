@@ -12,6 +12,7 @@ jobs = 4
 arch = "x86_64"
 minimum_release_age = "24h"
 tool_update.check_duration = "24h"
+self_update.minimum_release_age = "1h"
 self_update.auto = true
 
 [tools]
@@ -96,5 +97,4 @@ betterleaks = { version = "latest", postinstall = """
 """, auto_update = true }
 tirith = "latest"
 hunk = "latest"
-dotnet = "10.0.400"
 gopass = "latest"
