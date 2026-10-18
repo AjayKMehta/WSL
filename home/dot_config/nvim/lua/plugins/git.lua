@@ -4,7 +4,7 @@ return {
     {
         "dlyongemallo/diffview-plus.nvim",
         lazy = true,
-        cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewDiffFiles", "DiffviewDiffDirs", "DiffviewToggle", "DiffviewMergeFiles","DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory", "DiffviewLog", "DiffviewRefresh" },
+        cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewDiffFiles", "DiffviewDiffDirs", "DiffviewToggle", "DiffviewMergeFiles", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory", "DiffviewLog", "DiffviewRefresh", "DiffviewWorktreeOverview" },
         config = load_config("diffview"),
     },
     {
