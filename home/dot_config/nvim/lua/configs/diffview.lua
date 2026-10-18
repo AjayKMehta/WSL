@@ -130,10 +130,12 @@ require("diffview").setup(opts)
 map_desc("n", "<leader>Dv", "<cmd>DiffviewToggle<cr>", "Toggle Diffview")
 
 map_desc("n", "<leader>Dc", "<cmd>DiffviewClose<cr>", "Diffview close")
-
--- Diff working directory
 map_desc("n", "<leader>Doo", "<cmd>DiffviewOpen<cr>", "Diffview open")
 map_desc("n", "<leader>Don", "<cmd>DiffviewOpen -uno<cr>", "Diffview open (no untracked)")
+
+-- Diffview worktrees
+
+map_desc("n", "<leader>Dw", "<cmd>DiffviewWorktreeOverview<cr>", "Diffview Worktrees")
 
 -- File History
 map_desc("n", "<leader>Dh", "<cmd>DiffviewFileHistory %<cr>", "Diffview File history (current file)")
