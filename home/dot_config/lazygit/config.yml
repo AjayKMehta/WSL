@@ -1,5 +1,17 @@
+gui:
+  nerdFontsVersion: 3
+  showDivergenceFromBaseBranch: arrowAndNumber
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+      command: delta --syntax-theme={{if eq .colorScheme "light"}}Github{{else}}Dracula{{end}} --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+    - type: extDiff
+      command: difft --color=always --background={{colorScheme}} --context={{diffContext}}
   parseEmoji: true
+  os:
+    copyToClipboardCmd: >
+      if [[ "$TERM" =~ ^(screen|tmux) ]]; then
+        printf "\033Ptmux;\033\033]52;c;$(printf {{text}} | base64 -w 0)\a\033\\" > /dev/tty
+      else
+        printf "\033]52;c;$(printf {{text}} | base64 -w 0)\a" > /dev/tty
+      fi
