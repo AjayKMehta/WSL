@@ -7,6 +7,11 @@ git:
       command: delta --syntax-theme={{if eq .colorScheme "light"}}Github{{else}}Dracula{{end}} --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
     - type: extDiff
       command: difft --color=always --background={{colorScheme}} --context={{diffContext}}
+    - type: rawGit
+      args: [--color-words]
+      name: color-words
+    - type: rawGit # git's default diff
+      name: default
   parseEmoji: true
   os:
     copyToClipboardCmd: >
