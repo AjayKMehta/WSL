@@ -8,6 +8,7 @@ autocmd("FileType", {
         "c",
         "cmake",
         "codecompanion",
+        "codecompanion_chat_input",
         "css",
         "diff",
         "dockerfile",

@@ -150,6 +150,10 @@ local display = {
             width = 0,
             height = 0,
         },
+        input = {
+            layout = "split", -- Can be "buffer" or "split"
+            height = 8,       -- lines
+        },
     },
     diff = {
         enabled = true,
