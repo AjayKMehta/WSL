@@ -23,6 +23,7 @@ vim.lsp.enable({
     "ltex",
     "lua_ls",
     "marksman",
+    "mise",
     "panache",
     "powershell",
     "r_language_server",
