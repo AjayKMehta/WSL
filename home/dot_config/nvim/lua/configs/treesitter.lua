@@ -79,7 +79,7 @@ local ensure_installed = {
 ts.install(ensure_installed)
 
 vim.treesitter.language.register("xml", { "csproj", "svg", "xslt" })
-vim.treesitter.language.register("markdown", { "codecompanion", "quarto" })
+vim.treesitter.language.register("markdown", { "codecompanion", "codecompanion_chat_input", "quarto" })
 
 -- https://github.com/R-nvim/R.nvim/wiki/Configuration#support-for-webr-and-pyodide
 vim.treesitter.language.register("r", "webr")

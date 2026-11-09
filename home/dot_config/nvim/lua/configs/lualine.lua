@@ -122,10 +122,10 @@ M.setup = function(theme)
             ignore_focus = {
                 "checkhealth",
                 "codecompanion",
+                "codecompanion_chat_input",
                 "help",
                 "lspInfo",
                 "no-profile",
-                "noice",
                 "notify",
                 "nvcheatsheet",
                 "NvimTree",
@@ -143,6 +143,7 @@ M.setup = function(theme)
                 statusline = {
                     "checkhealth",
                     "codecompanion",
+                    "codecompanion_chat_input",
                     "crunner",
                     "dashboard",
                     "netrw",

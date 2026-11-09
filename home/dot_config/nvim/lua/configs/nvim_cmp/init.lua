@@ -161,7 +161,6 @@ cmp.setup.filetype({
     "man",
     "netrw",
     "no-profile",
-    "noice",
     "notify",
     "nvcheatsheet",
     "Outline",

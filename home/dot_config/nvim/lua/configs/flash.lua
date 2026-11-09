@@ -61,7 +61,6 @@ local config = {
             "gitsigns-blame",
             "help",
             "man",
-            "noice",
             "notify",
             "NvimTree",
             "oil",
