@@ -23,6 +23,7 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
         'ast-grep' {
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
             [CompletionResult]::new('--config', '--config', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
+            [CompletionResult]::new('--custom-languages', '--custom-languages', [CompletionResultType]::ParameterName, 'Control how sgconfig.yml handles native custom language libraries (default: ignore)')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             [CompletionResult]::new('-V', '-V ', [CompletionResultType]::ParameterName, 'Print version')
@@ -32,6 +33,7 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
             [CompletionResult]::new('test', 'test', [CompletionResultType]::ParameterValue, 'Test ast-grep rules')
             [CompletionResult]::new('new', 'new', [CompletionResultType]::ParameterValue, 'Create new ast-grep project or items like rules/tests')
             [CompletionResult]::new('lsp', 'lsp', [CompletionResultType]::ParameterValue, 'Start language server')
+            [CompletionResult]::new('outline', 'outline', [CompletionResultType]::ParameterValue, 'Explore code structure for symbols, imports, exports, and members')
             [CompletionResult]::new('completions', 'completions', [CompletionResultType]::ParameterValue, 'Generate shell completion script')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
@@ -45,8 +47,8 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
             [CompletionResult]::new('--kind', '--kind', [CompletionResultType]::ParameterName, 'AST kind to match')
             [CompletionResult]::new('-r', '-r', [CompletionResultType]::ParameterName, 'String to replace the matched AST node')
             [CompletionResult]::new('--rewrite', '--rewrite', [CompletionResultType]::ParameterName, 'String to replace the matched AST node')
-            [CompletionResult]::new('-l', '-l', [CompletionResultType]::ParameterName, 'The language of the pattern. Supported languages are: [Bash, C, Cpp, CSharp, Css, Dart, Elixir, Go, Haskell, Hcl, Html, Java, JavaScript, Json, Kotlin, Lua, Markdown, Nix, Php, Python, Ruby, Rust, Scala, Solidity, Swift, Tsx, TypeScript, Yaml]')
-            [CompletionResult]::new('--lang', '--lang', [CompletionResultType]::ParameterName, 'The language of the pattern. Supported languages are: [Bash, C, Cpp, CSharp, Css, Dart, Elixir, Go, Haskell, Hcl, Html, Java, JavaScript, Json, Kotlin, Lua, Markdown, Nix, Php, Python, Ruby, Rust, Scala, Solidity, Swift, Tsx, TypeScript, Yaml]')
+            [CompletionResult]::new('-l', '-l', [CompletionResultType]::ParameterName, 'The language of the pattern. Supported languages are: [Bash, C, Cpp, CSharp, Css, Dart, Elixir, Go, Haskell, Hcl, Html, Java, JavaScript, Json, Kotlin, Lua, Markdown, Nix, Php, Python, Ruby, Rust, Scala, Solidity, Swift, Tsx, TypeScript, Yaml, Zig]')
+            [CompletionResult]::new('--lang', '--lang', [CompletionResultType]::ParameterName, 'The language of the pattern. Supported languages are: [Bash, C, Cpp, CSharp, Css, Dart, Elixir, Go, Haskell, Hcl, Html, Java, JavaScript, Json, Kotlin, Lua, Markdown, Nix, Php, Python, Ruby, Rust, Scala, Solidity, Swift, Tsx, TypeScript, Yaml, Zig]')
             [CompletionResult]::new('--debug-query', '--debug-query', [CompletionResultType]::ParameterName, 'Print query pattern''s tree-sitter AST. Requires lang be set explicitly')
             [CompletionResult]::new('--no-ignore', '--no-ignore', [CompletionResultType]::ParameterName, 'Do not respect hidden file system or ignore files (.gitignore, .ignore, etc.)')
             [CompletionResult]::new('--globs', '--globs', [CompletionResultType]::ParameterName, 'Include or exclude file paths')
@@ -64,6 +66,7 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
             [CompletionResult]::new('--heading', '--heading', [CompletionResultType]::ParameterName, 'Controls whether to print the file name as heading')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
             [CompletionResult]::new('--config', '--config', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
+            [CompletionResult]::new('--custom-languages', '--custom-languages', [CompletionResultType]::ParameterName, 'Control how sgconfig.yml handles native custom language libraries (default: ignore)')
             [CompletionResult]::new('--follow', '--follow', [CompletionResultType]::ParameterName, 'Follow symbolic links')
             [CompletionResult]::new('--stdin', '--stdin', [CompletionResultType]::ParameterName, 'Enable search code from StdIn')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, 'Start interactive edit session')
@@ -82,6 +85,7 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
             [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, 'Output warning/error messages in different formats')
             [CompletionResult]::new('--report-style', '--report-style', [CompletionResultType]::ParameterName, 'report-style')
             [CompletionResult]::new('--filter', '--filter', [CompletionResultType]::ParameterName, 'Scan the codebase with rules with ids matching REGEX')
+            [CompletionResult]::new('--min-severity', '--min-severity', [CompletionResultType]::ParameterName, 'Set the minimum severity of rules to scan')
             [CompletionResult]::new('--error', '--error', [CompletionResultType]::ParameterName, 'Set rule severity to error')
             [CompletionResult]::new('--warning', '--warning', [CompletionResultType]::ParameterName, 'Set rule severity to warning')
             [CompletionResult]::new('--info', '--info', [CompletionResultType]::ParameterName, 'Set rule severity to info')
@@ -103,6 +107,7 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
             [CompletionResult]::new('--max-results', '--max-results', [CompletionResultType]::ParameterName, 'Show at most NUM results and stop running once the limit is reached')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
             [CompletionResult]::new('--config', '--config', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
+            [CompletionResult]::new('--custom-languages', '--custom-languages', [CompletionResultType]::ParameterName, 'Control how sgconfig.yml handles native custom language libraries (default: ignore)')
             [CompletionResult]::new('--include-metadata', '--include-metadata', [CompletionResultType]::ParameterName, 'Include rule metadata in the json output')
             [CompletionResult]::new('--follow', '--follow', [CompletionResultType]::ParameterName, 'Follow symbolic links')
             [CompletionResult]::new('--stdin', '--stdin', [CompletionResultType]::ParameterName, 'Enable search code from StdIn')
@@ -124,6 +129,7 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
             [CompletionResult]::new('--color', '--color', [CompletionResultType]::ParameterName, 'Controls output color')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
             [CompletionResult]::new('--config', '--config', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
+            [CompletionResult]::new('--custom-languages', '--custom-languages', [CompletionResultType]::ParameterName, 'Control how sgconfig.yml handles native custom language libraries (default: ignore)')
             [CompletionResult]::new('--skip-snapshot-tests', '--skip-snapshot-tests', [CompletionResultType]::ParameterName, 'Only check if the test code is valid, without checking rule output. Turn it on when you want to ignore the output of rules. Conflicts with --update-all')
             [CompletionResult]::new('-U', '-U ', [CompletionResultType]::ParameterName, 'Update the content of all snapshots that have changed in test. Conflicts with --skip-snapshot-tests')
             [CompletionResult]::new('--update-all', '--update-all', [CompletionResultType]::ParameterName, 'Update the content of all snapshots that have changed in test. Conflicts with --skip-snapshot-tests')
@@ -140,6 +146,7 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
             [CompletionResult]::new('--lang', '--lang', [CompletionResultType]::ParameterName, 'The language of the item to create')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
             [CompletionResult]::new('--config', '--config', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
+            [CompletionResult]::new('--custom-languages', '--custom-languages', [CompletionResultType]::ParameterName, 'Control how sgconfig.yml handles native custom language libraries (default: ignore)')
             [CompletionResult]::new('-y', '-y', [CompletionResultType]::ParameterName, 'Accept all default options without interactive input during creation')
             [CompletionResult]::new('--yes', '--yes', [CompletionResultType]::ParameterName, 'Accept all default options without interactive input during creation')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
@@ -156,6 +163,7 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
             [CompletionResult]::new('--lang', '--lang', [CompletionResultType]::ParameterName, 'The language of the item to create')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
             [CompletionResult]::new('--config', '--config', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
+            [CompletionResult]::new('--custom-languages', '--custom-languages', [CompletionResultType]::ParameterName, 'Control how sgconfig.yml handles native custom language libraries (default: ignore)')
             [CompletionResult]::new('-y', '-y', [CompletionResultType]::ParameterName, 'Accept all default options without interactive input during creation')
             [CompletionResult]::new('--yes', '--yes', [CompletionResultType]::ParameterName, 'Accept all default options without interactive input during creation')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
@@ -167,6 +175,7 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
             [CompletionResult]::new('--lang', '--lang', [CompletionResultType]::ParameterName, 'The language of the item to create')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
             [CompletionResult]::new('--config', '--config', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
+            [CompletionResult]::new('--custom-languages', '--custom-languages', [CompletionResultType]::ParameterName, 'Control how sgconfig.yml handles native custom language libraries (default: ignore)')
             [CompletionResult]::new('-y', '-y', [CompletionResultType]::ParameterName, 'Accept all default options without interactive input during creation')
             [CompletionResult]::new('--yes', '--yes', [CompletionResultType]::ParameterName, 'Accept all default options without interactive input during creation')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
@@ -178,6 +187,7 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
             [CompletionResult]::new('--lang', '--lang', [CompletionResultType]::ParameterName, 'The language of the item to create')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
             [CompletionResult]::new('--config', '--config', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
+            [CompletionResult]::new('--custom-languages', '--custom-languages', [CompletionResultType]::ParameterName, 'Control how sgconfig.yml handles native custom language libraries (default: ignore)')
             [CompletionResult]::new('-y', '-y', [CompletionResultType]::ParameterName, 'Accept all default options without interactive input during creation')
             [CompletionResult]::new('--yes', '--yes', [CompletionResultType]::ParameterName, 'Accept all default options without interactive input during creation')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
@@ -189,6 +199,7 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
             [CompletionResult]::new('--lang', '--lang', [CompletionResultType]::ParameterName, 'The language of the item to create')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
             [CompletionResult]::new('--config', '--config', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
+            [CompletionResult]::new('--custom-languages', '--custom-languages', [CompletionResultType]::ParameterName, 'Control how sgconfig.yml handles native custom language libraries (default: ignore)')
             [CompletionResult]::new('-y', '-y', [CompletionResultType]::ParameterName, 'Accept all default options without interactive input during creation')
             [CompletionResult]::new('--yes', '--yes', [CompletionResultType]::ParameterName, 'Accept all default options without interactive input during creation')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
@@ -221,15 +232,42 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
         'ast-grep;lsp' {
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
             [CompletionResult]::new('--config', '--config', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
-            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
-            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--custom-languages', '--custom-languages', [CompletionResultType]::ParameterName, 'Control how sgconfig.yml handles native custom language libraries (default: ignore)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            break
+        }
+        'ast-grep;outline' {
+            [CompletionResult]::new('-l', '-l', [CompletionResultType]::ParameterName, 'Specify the input language')
+            [CompletionResult]::new('--lang', '--lang', [CompletionResultType]::ParameterName, 'Specify the input language')
+            [CompletionResult]::new('--json', '--json', [CompletionResultType]::ParameterName, 'Output outline entries in structured JSON')
+            [CompletionResult]::new('--color', '--color', [CompletionResultType]::ParameterName, 'Controls output color')
+            [CompletionResult]::new('--items', '--items', [CompletionResultType]::ParameterName, 'Select which top-level items to include')
+            [CompletionResult]::new('--type', '--type', [CompletionResultType]::ParameterName, 'Keep only top-level items with these comma-separated symbol types')
+            [CompletionResult]::new('--match', '--match', [CompletionResultType]::ParameterName, 'Keep only top-level items matching this regex')
+            [CompletionResult]::new('--view', '--view', [CompletionResultType]::ParameterName, 'Select the text presentation')
+            [CompletionResult]::new('--outline-rules', '--outline-rules', [CompletionResultType]::ParameterName, 'Load additional outline extractor definitions')
+            [CompletionResult]::new('--no-ignore', '--no-ignore', [CompletionResultType]::ParameterName, 'Do not respect hidden file system or ignore files (.gitignore, .ignore, etc.)')
+            [CompletionResult]::new('--globs', '--globs', [CompletionResultType]::ParameterName, 'Include or exclude file paths')
+            [CompletionResult]::new('-j', '-j', [CompletionResultType]::ParameterName, 'Set the approximate number of threads to use')
+            [CompletionResult]::new('--threads', '--threads', [CompletionResultType]::ParameterName, 'Set the approximate number of threads to use')
+            [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
+            [CompletionResult]::new('--config', '--config', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
+            [CompletionResult]::new('--custom-languages', '--custom-languages', [CompletionResultType]::ParameterName, 'Control how sgconfig.yml handles native custom language libraries (default: ignore)')
+            [CompletionResult]::new('--pub-members', '--pub-members', [CompletionResultType]::ParameterName, 'Display only public members in member views')
+            [CompletionResult]::new('--no-default-outline-rules', '--no-default-outline-rules', [CompletionResultType]::ParameterName, 'Do not load bundled outline extractor definitions')
+            [CompletionResult]::new('--follow', '--follow', [CompletionResultType]::ParameterName, 'Follow symbolic links')
+            [CompletionResult]::new('--stdin', '--stdin', [CompletionResultType]::ParameterName, 'Enable search code from StdIn')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             break
         }
         'ast-grep;completions' {
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
             [CompletionResult]::new('--config', '--config', [CompletionResultType]::ParameterName, 'Path to ast-grep root config, default is sgconfig.yml')
-            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
-            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--custom-languages', '--custom-languages', [CompletionResultType]::ParameterName, 'Control how sgconfig.yml handles native custom language libraries (default: ignore)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             break
         }
         'ast-grep;help' {
@@ -238,6 +276,7 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
             [CompletionResult]::new('test', 'test', [CompletionResultType]::ParameterValue, 'Test ast-grep rules')
             [CompletionResult]::new('new', 'new', [CompletionResultType]::ParameterValue, 'Create new ast-grep project or items like rules/tests')
             [CompletionResult]::new('lsp', 'lsp', [CompletionResultType]::ParameterValue, 'Start language server')
+            [CompletionResult]::new('outline', 'outline', [CompletionResultType]::ParameterValue, 'Explore code structure for symbols, imports, exports, and members')
             [CompletionResult]::new('completions', 'completions', [CompletionResultType]::ParameterValue, 'Generate shell completion script')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
@@ -271,6 +310,9 @@ Register-ArgumentCompleter -Native -CommandName 'ast-grep' -ScriptBlock {
             break
         }
         'ast-grep;help;lsp' {
+            break
+        }
+        'ast-grep;help;outline' {
             break
         }
         'ast-grep;help;completions' {
