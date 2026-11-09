@@ -98,3 +98,4 @@ betterleaks = { version = "latest", postinstall = """
 tirith = "latest"
 hunk = "latest"
 gopass = "latest"
+opencode = { version = "latest", allow_builds = ["@opencode/cli"] }
