@@ -23,14 +23,14 @@ _zizmor() {
 
     case "${cmd}" in
         zizmor)
-            opts="-p -v -q -o -c -h -V --collect --strict-collection --fix --pedantic --persona --min-severity --min-confidence --verbose --quiet --format --no-progress --color --render-links --show-audit-urls --no-exit-codes --naches --offline --gh-token --github-token --zizmor-github-token --gh-hostname --no-online-audits --cache-dir --lsp --stdio --config --no-config --completions --thanks --help --version <INPUT>..."
+            opts="-p -v -q -o -c -h -V --collect --strict-collection --ignore-lockfile --fix --pedantic --persona --min-severity --min-confidence --no-ignores --verbose --quiet --format --no-progress --color --render-links --show-audit-urls --no-exit-codes --naches --offline --gh-token --github-token --zizmor-github-token --gh-hostname --no-online-audits --cache-dir --lsp --stdio --config --no-config --completions --thanks --help --version"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
                 --collect)
-                    COMPREPLY=($(compgen -W "all default workflows actions dependabot" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "all default workflows actions dependabot pre-commit" -- "${cur}"))
                     return 0
                     ;;
                 --fix)
