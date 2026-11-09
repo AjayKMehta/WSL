@@ -35,7 +35,7 @@ return {
         ft = { "markdown", "codecompanion", "quarto", "rmd" },
         opts = function()
             local opts = {
-                file_types = { "markdown", "quarto", "rmd", "org", "norg", "codecompanion" },
+                file_types = { "markdown", "quarto", "rmd", "org", "norg", "codecompanion", "codecompanion_chat_input" },
                 render_modes = { "n", "c", "t", "v", "V", "\22" },
                 -- Maximum file size (in MB) that this plugin will attempt to render.
                 -- File larger than this will effectively be ignored.
@@ -204,4 +204,16 @@ return {
         },
         dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
     },
+    {
+        "delphinus/md-render.nvim",
+        version = "*",
+        cmd = "MdRender",
+        dependencies = {
+            { "nvim-tree/nvim-web-devicons", version = "*" },
+        },
+        keys = {
+            { "<leader>mP", "<Plug>(md-render-preview)",     desc = "Markdown preview (toggle)" },
+            { "<leader>mt", "<Plug>(md-render-preview-tab)", desc = "Markdown preview in tab (toggle)" },
+        },
+    }
 }
