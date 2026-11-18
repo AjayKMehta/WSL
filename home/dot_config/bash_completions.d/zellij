@@ -85,6 +85,9 @@ _zellij() {
             zellij,plugin)
                 cmd="zellij__subcmd__plugin"
                 ;;
+            zellij,prompt)
+                cmd="zellij__subcmd__prompt"
+                ;;
             zellij,r)
                 cmd="zellij__subcmd__run"
                 ;;
@@ -97,6 +100,9 @@ _zellij() {
             zellij,subscribe)
                 cmd="zellij__subcmd__subscribe"
                 ;;
+            zellij,terminal)
+                cmd="zellij__subcmd__terminal"
+                ;;
             zellij,w)
                 cmd="zellij__subcmd__watch"
                 ;;
@@ -105,6 +111,12 @@ _zellij() {
                 ;;
             zellij,web)
                 cmd="zellij__subcmd__web"
+                ;;
+            zellij__subcmd__action,apply-floating-swap-layout)
+                cmd="zellij__subcmd__action__subcmd__apply__subcmd__floating__subcmd__swap__subcmd__layout"
+                ;;
+            zellij__subcmd__action,apply-tiled-swap-layout)
+                cmd="zellij__subcmd__action__subcmd__apply__subcmd__tiled__subcmd__swap__subcmd__layout"
                 ;;
             zellij__subcmd__action,are-floating-panes-visible)
                 cmd="zellij__subcmd__action__subcmd__are__subcmd__floating__subcmd__panes__subcmd__visible"
@@ -130,6 +142,9 @@ _zellij() {
             zellij__subcmd__action,detach)
                 cmd="zellij__subcmd__action__subcmd__detach"
                 ;;
+            zellij__subcmd__action,dismiss-info-popups)
+                cmd="zellij__subcmd__action__subcmd__dismiss__subcmd__info__subcmd__popups"
+                ;;
             zellij__subcmd__action,dump-layout)
                 cmd="zellij__subcmd__action__subcmd__dump__subcmd__layout"
                 ;;
@@ -154,8 +169,17 @@ _zellij() {
             zellij__subcmd__action,focus-previous-pane)
                 cmd="zellij__subcmd__action__subcmd__focus__subcmd__previous__subcmd__pane"
                 ;;
+            zellij__subcmd__action,go-to-next-attention)
+                cmd="zellij__subcmd__action__subcmd__go__subcmd__to__subcmd__next__subcmd__attention"
+                ;;
+            zellij__subcmd__action,go-to-next-session)
+                cmd="zellij__subcmd__action__subcmd__go__subcmd__to__subcmd__next__subcmd__session"
+                ;;
             zellij__subcmd__action,go-to-next-tab)
                 cmd="zellij__subcmd__action__subcmd__go__subcmd__to__subcmd__next__subcmd__tab"
+                ;;
+            zellij__subcmd__action,go-to-previous-session)
+                cmd="zellij__subcmd__action__subcmd__go__subcmd__to__subcmd__previous__subcmd__session"
                 ;;
             zellij__subcmd__action,go-to-previous-tab)
                 cmd="zellij__subcmd__action__subcmd__go__subcmd__to__subcmd__previous__subcmd__tab"
@@ -178,8 +202,14 @@ _zellij() {
             zellij__subcmd__action,help)
                 cmd="zellij__subcmd__action__subcmd__help"
                 ;;
+            zellij__subcmd__action,hide-bars)
+                cmd="zellij__subcmd__action__subcmd__hide__subcmd__bars"
+                ;;
             zellij__subcmd__action,hide-floating-panes)
                 cmd="zellij__subcmd__action__subcmd__hide__subcmd__floating__subcmd__panes"
+                ;;
+            zellij__subcmd__action,ignore-pane-output)
+                cmd="zellij__subcmd__action__subcmd__ignore__subcmd__pane__subcmd__output"
                 ;;
             zellij__subcmd__action,launch-or-focus-plugin)
                 cmd="zellij__subcmd__action__subcmd__launch__subcmd__or__subcmd__focus__subcmd__plugin"
@@ -196,6 +226,12 @@ _zellij() {
             zellij__subcmd__action,list-tabs)
                 cmd="zellij__subcmd__action__subcmd__list__subcmd__tabs"
                 ;;
+            zellij__subcmd__action,mark-all-seen)
+                cmd="zellij__subcmd__action__subcmd__mark__subcmd__all__subcmd__seen"
+                ;;
+            zellij__subcmd__action,mark-pane-seen)
+                cmd="zellij__subcmd__action__subcmd__mark__subcmd__pane__subcmd__seen"
+                ;;
             zellij__subcmd__action,move-focus)
                 cmd="zellij__subcmd__action__subcmd__move__subcmd__focus"
                 ;;
@@ -211,6 +247,15 @@ _zellij() {
             zellij__subcmd__action,move-tab)
                 cmd="zellij__subcmd__action__subcmd__move__subcmd__tab"
                 ;;
+            zellij__subcmd__action,mute-pane)
+                cmd="zellij__subcmd__action__subcmd__mute__subcmd__pane"
+                ;;
+            zellij__subcmd__action,mute-session)
+                cmd="zellij__subcmd__action__subcmd__mute__subcmd__session"
+                ;;
+            zellij__subcmd__action,mute-tab)
+                cmd="zellij__subcmd__action__subcmd__mute__subcmd__tab"
+                ;;
             zellij__subcmd__action,new-pane)
                 cmd="zellij__subcmd__action__subcmd__new__subcmd__pane"
                 ;;
@@ -219,6 +264,9 @@ _zellij() {
                 ;;
             zellij__subcmd__action,next-swap-layout)
                 cmd="zellij__subcmd__action__subcmd__next__subcmd__swap__subcmd__layout"
+                ;;
+            zellij__subcmd__action,open-context-menu)
+                cmd="zellij__subcmd__action__subcmd__open__subcmd__context__subcmd__menu"
                 ;;
             zellij__subcmd__action,override-layout)
                 cmd="zellij__subcmd__action__subcmd__override__subcmd__layout"
@@ -280,6 +328,9 @@ _zellij() {
             zellij__subcmd__action,set-light-theme)
                 cmd="zellij__subcmd__action__subcmd__set__subcmd__light__subcmd__theme"
                 ;;
+            zellij__subcmd__action,set-pane-border-style)
+                cmd="zellij__subcmd__action__subcmd__set__subcmd__pane__subcmd__border__subcmd__style"
+                ;;
             zellij__subcmd__action,set-pane-borderless)
                 cmd="zellij__subcmd__action__subcmd__set__subcmd__pane__subcmd__borderless"
                 ;;
@@ -288,6 +339,12 @@ _zellij() {
                 ;;
             zellij__subcmd__action,set-pane-frame-style)
                 cmd="zellij__subcmd__action__subcmd__set__subcmd__pane__subcmd__frame__subcmd__style"
+                ;;
+            zellij__subcmd__action,set-resurrect-command)
+                cmd="zellij__subcmd__action__subcmd__set__subcmd__resurrect__subcmd__command"
+                ;;
+            zellij__subcmd__action,show-bars)
+                cmd="zellij__subcmd__action__subcmd__show__subcmd__bars"
                 ;;
             zellij__subcmd__action,show-floating-panes)
                 cmd="zellij__subcmd__action__subcmd__show__subcmd__floating__subcmd__panes"
@@ -307,11 +364,17 @@ _zellij() {
             zellij__subcmd__action,toggle-active-sync-tab)
                 cmd="zellij__subcmd__action__subcmd__toggle__subcmd__active__subcmd__sync__subcmd__tab"
                 ;;
+            zellij__subcmd__action,toggle-bars)
+                cmd="zellij__subcmd__action__subcmd__toggle__subcmd__bars"
+                ;;
             zellij__subcmd__action,toggle-floating-panes)
                 cmd="zellij__subcmd__action__subcmd__toggle__subcmd__floating__subcmd__panes"
                 ;;
             zellij__subcmd__action,toggle-fullscreen)
                 cmd="zellij__subcmd__action__subcmd__toggle__subcmd__fullscreen"
+                ;;
+            zellij__subcmd__action,toggle-mirror-resize)
+                cmd="zellij__subcmd__action__subcmd__toggle__subcmd__mirror__subcmd__resize"
                 ;;
             zellij__subcmd__action,toggle-no-ui-fullscreen)
                 cmd="zellij__subcmd__action__subcmd__toggle__subcmd__no__subcmd__ui__subcmd__fullscreen"
@@ -328,8 +391,17 @@ _zellij() {
             zellij__subcmd__action,toggle-pane-pinned)
                 cmd="zellij__subcmd__action__subcmd__toggle__subcmd__pane__subcmd__pinned"
                 ;;
+            zellij__subcmd__action,toggle-session)
+                cmd="zellij__subcmd__action__subcmd__toggle__subcmd__session"
+                ;;
+            zellij__subcmd__action,toggle-stack-list-orientation)
+                cmd="zellij__subcmd__action__subcmd__toggle__subcmd__stack__subcmd__list__subcmd__orientation"
+                ;;
             zellij__subcmd__action,toggle-theme)
                 cmd="zellij__subcmd__action__subcmd__toggle__subcmd__theme"
+                ;;
+            zellij__subcmd__action,toggle-tray-icon)
+                cmd="zellij__subcmd__action__subcmd__toggle__subcmd__tray__subcmd__icon"
                 ;;
             zellij__subcmd__action,undo-rename-pane)
                 cmd="zellij__subcmd__action__subcmd__undo__subcmd__rename__subcmd__pane"
@@ -337,11 +409,20 @@ _zellij() {
             zellij__subcmd__action,undo-rename-tab)
                 cmd="zellij__subcmd__action__subcmd__undo__subcmd__rename__subcmd__tab"
                 ;;
+            zellij__subcmd__action,watch-pane)
+                cmd="zellij__subcmd__action__subcmd__watch__subcmd__pane"
+                ;;
             zellij__subcmd__action,write)
                 cmd="zellij__subcmd__action__subcmd__write"
                 ;;
             zellij__subcmd__action,write-chars)
                 cmd="zellij__subcmd__action__subcmd__write__subcmd__chars"
+                ;;
+            zellij__subcmd__action__subcmd__help,apply-floating-swap-layout)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__apply__subcmd__floating__subcmd__swap__subcmd__layout"
+                ;;
+            zellij__subcmd__action__subcmd__help,apply-tiled-swap-layout)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__apply__subcmd__tiled__subcmd__swap__subcmd__layout"
                 ;;
             zellij__subcmd__action__subcmd__help,are-floating-panes-visible)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__are__subcmd__floating__subcmd__panes__subcmd__visible"
@@ -367,6 +448,9 @@ _zellij() {
             zellij__subcmd__action__subcmd__help,detach)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__detach"
                 ;;
+            zellij__subcmd__action__subcmd__help,dismiss-info-popups)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__dismiss__subcmd__info__subcmd__popups"
+                ;;
             zellij__subcmd__action__subcmd__help,dump-layout)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__dump__subcmd__layout"
                 ;;
@@ -391,8 +475,17 @@ _zellij() {
             zellij__subcmd__action__subcmd__help,focus-previous-pane)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__focus__subcmd__previous__subcmd__pane"
                 ;;
+            zellij__subcmd__action__subcmd__help,go-to-next-attention)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__go__subcmd__to__subcmd__next__subcmd__attention"
+                ;;
+            zellij__subcmd__action__subcmd__help,go-to-next-session)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__go__subcmd__to__subcmd__next__subcmd__session"
+                ;;
             zellij__subcmd__action__subcmd__help,go-to-next-tab)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__go__subcmd__to__subcmd__next__subcmd__tab"
+                ;;
+            zellij__subcmd__action__subcmd__help,go-to-previous-session)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__go__subcmd__to__subcmd__previous__subcmd__session"
                 ;;
             zellij__subcmd__action__subcmd__help,go-to-previous-tab)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__go__subcmd__to__subcmd__previous__subcmd__tab"
@@ -415,8 +508,14 @@ _zellij() {
             zellij__subcmd__action__subcmd__help,help)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__help"
                 ;;
+            zellij__subcmd__action__subcmd__help,hide-bars)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__hide__subcmd__bars"
+                ;;
             zellij__subcmd__action__subcmd__help,hide-floating-panes)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__hide__subcmd__floating__subcmd__panes"
+                ;;
+            zellij__subcmd__action__subcmd__help,ignore-pane-output)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__ignore__subcmd__pane__subcmd__output"
                 ;;
             zellij__subcmd__action__subcmd__help,launch-or-focus-plugin)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__launch__subcmd__or__subcmd__focus__subcmd__plugin"
@@ -433,6 +532,12 @@ _zellij() {
             zellij__subcmd__action__subcmd__help,list-tabs)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__list__subcmd__tabs"
                 ;;
+            zellij__subcmd__action__subcmd__help,mark-all-seen)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__mark__subcmd__all__subcmd__seen"
+                ;;
+            zellij__subcmd__action__subcmd__help,mark-pane-seen)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__mark__subcmd__pane__subcmd__seen"
+                ;;
             zellij__subcmd__action__subcmd__help,move-focus)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__move__subcmd__focus"
                 ;;
@@ -448,6 +553,15 @@ _zellij() {
             zellij__subcmd__action__subcmd__help,move-tab)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__move__subcmd__tab"
                 ;;
+            zellij__subcmd__action__subcmd__help,mute-pane)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__mute__subcmd__pane"
+                ;;
+            zellij__subcmd__action__subcmd__help,mute-session)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__mute__subcmd__session"
+                ;;
+            zellij__subcmd__action__subcmd__help,mute-tab)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__mute__subcmd__tab"
+                ;;
             zellij__subcmd__action__subcmd__help,new-pane)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__new__subcmd__pane"
                 ;;
@@ -456,6 +570,9 @@ _zellij() {
                 ;;
             zellij__subcmd__action__subcmd__help,next-swap-layout)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__next__subcmd__swap__subcmd__layout"
+                ;;
+            zellij__subcmd__action__subcmd__help,open-context-menu)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__open__subcmd__context__subcmd__menu"
                 ;;
             zellij__subcmd__action__subcmd__help,override-layout)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__override__subcmd__layout"
@@ -517,6 +634,9 @@ _zellij() {
             zellij__subcmd__action__subcmd__help,set-light-theme)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__set__subcmd__light__subcmd__theme"
                 ;;
+            zellij__subcmd__action__subcmd__help,set-pane-border-style)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__set__subcmd__pane__subcmd__border__subcmd__style"
+                ;;
             zellij__subcmd__action__subcmd__help,set-pane-borderless)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__set__subcmd__pane__subcmd__borderless"
                 ;;
@@ -525,6 +645,12 @@ _zellij() {
                 ;;
             zellij__subcmd__action__subcmd__help,set-pane-frame-style)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__set__subcmd__pane__subcmd__frame__subcmd__style"
+                ;;
+            zellij__subcmd__action__subcmd__help,set-resurrect-command)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__set__subcmd__resurrect__subcmd__command"
+                ;;
+            zellij__subcmd__action__subcmd__help,show-bars)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__show__subcmd__bars"
                 ;;
             zellij__subcmd__action__subcmd__help,show-floating-panes)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__show__subcmd__floating__subcmd__panes"
@@ -544,11 +670,17 @@ _zellij() {
             zellij__subcmd__action__subcmd__help,toggle-active-sync-tab)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__active__subcmd__sync__subcmd__tab"
                 ;;
+            zellij__subcmd__action__subcmd__help,toggle-bars)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__bars"
+                ;;
             zellij__subcmd__action__subcmd__help,toggle-floating-panes)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__floating__subcmd__panes"
                 ;;
             zellij__subcmd__action__subcmd__help,toggle-fullscreen)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__fullscreen"
+                ;;
+            zellij__subcmd__action__subcmd__help,toggle-mirror-resize)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__mirror__subcmd__resize"
                 ;;
             zellij__subcmd__action__subcmd__help,toggle-no-ui-fullscreen)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__no__subcmd__ui__subcmd__fullscreen"
@@ -565,14 +697,26 @@ _zellij() {
             zellij__subcmd__action__subcmd__help,toggle-pane-pinned)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__pane__subcmd__pinned"
                 ;;
+            zellij__subcmd__action__subcmd__help,toggle-session)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__session"
+                ;;
+            zellij__subcmd__action__subcmd__help,toggle-stack-list-orientation)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__stack__subcmd__list__subcmd__orientation"
+                ;;
             zellij__subcmd__action__subcmd__help,toggle-theme)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__theme"
+                ;;
+            zellij__subcmd__action__subcmd__help,toggle-tray-icon)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__tray__subcmd__icon"
                 ;;
             zellij__subcmd__action__subcmd__help,undo-rename-pane)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__undo__subcmd__rename__subcmd__pane"
                 ;;
             zellij__subcmd__action__subcmd__help,undo-rename-tab)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__undo__subcmd__rename__subcmd__tab"
+                ;;
+            zellij__subcmd__action__subcmd__help,watch-pane)
+                cmd="zellij__subcmd__action__subcmd__help__subcmd__watch__subcmd__pane"
                 ;;
             zellij__subcmd__action__subcmd__help,write)
                 cmd="zellij__subcmd__action__subcmd__help__subcmd__write"
@@ -631,6 +775,9 @@ _zellij() {
             zellij__subcmd__help,plugin)
                 cmd="zellij__subcmd__help__subcmd__plugin"
                 ;;
+            zellij__subcmd__help,prompt)
+                cmd="zellij__subcmd__help__subcmd__prompt"
+                ;;
             zellij__subcmd__help,run)
                 cmd="zellij__subcmd__help__subcmd__run"
                 ;;
@@ -640,11 +787,20 @@ _zellij() {
             zellij__subcmd__help,subscribe)
                 cmd="zellij__subcmd__help__subcmd__subscribe"
                 ;;
+            zellij__subcmd__help,terminal)
+                cmd="zellij__subcmd__help__subcmd__terminal"
+                ;;
             zellij__subcmd__help,watch)
                 cmd="zellij__subcmd__help__subcmd__watch"
                 ;;
             zellij__subcmd__help,web)
                 cmd="zellij__subcmd__help__subcmd__web"
+                ;;
+            zellij__subcmd__help__subcmd__action,apply-floating-swap-layout)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__apply__subcmd__floating__subcmd__swap__subcmd__layout"
+                ;;
+            zellij__subcmd__help__subcmd__action,apply-tiled-swap-layout)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__apply__subcmd__tiled__subcmd__swap__subcmd__layout"
                 ;;
             zellij__subcmd__help__subcmd__action,are-floating-panes-visible)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__are__subcmd__floating__subcmd__panes__subcmd__visible"
@@ -670,6 +826,9 @@ _zellij() {
             zellij__subcmd__help__subcmd__action,detach)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__detach"
                 ;;
+            zellij__subcmd__help__subcmd__action,dismiss-info-popups)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__dismiss__subcmd__info__subcmd__popups"
+                ;;
             zellij__subcmd__help__subcmd__action,dump-layout)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__dump__subcmd__layout"
                 ;;
@@ -694,8 +853,17 @@ _zellij() {
             zellij__subcmd__help__subcmd__action,focus-previous-pane)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__focus__subcmd__previous__subcmd__pane"
                 ;;
+            zellij__subcmd__help__subcmd__action,go-to-next-attention)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__go__subcmd__to__subcmd__next__subcmd__attention"
+                ;;
+            zellij__subcmd__help__subcmd__action,go-to-next-session)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__go__subcmd__to__subcmd__next__subcmd__session"
+                ;;
             zellij__subcmd__help__subcmd__action,go-to-next-tab)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__go__subcmd__to__subcmd__next__subcmd__tab"
+                ;;
+            zellij__subcmd__help__subcmd__action,go-to-previous-session)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__go__subcmd__to__subcmd__previous__subcmd__session"
                 ;;
             zellij__subcmd__help__subcmd__action,go-to-previous-tab)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__go__subcmd__to__subcmd__previous__subcmd__tab"
@@ -715,8 +883,14 @@ _zellij() {
             zellij__subcmd__help__subcmd__action,half-page-scroll-up)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__half__subcmd__page__subcmd__scroll__subcmd__up"
                 ;;
+            zellij__subcmd__help__subcmd__action,hide-bars)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__hide__subcmd__bars"
+                ;;
             zellij__subcmd__help__subcmd__action,hide-floating-panes)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__hide__subcmd__floating__subcmd__panes"
+                ;;
+            zellij__subcmd__help__subcmd__action,ignore-pane-output)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__ignore__subcmd__pane__subcmd__output"
                 ;;
             zellij__subcmd__help__subcmd__action,launch-or-focus-plugin)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__launch__subcmd__or__subcmd__focus__subcmd__plugin"
@@ -733,6 +907,12 @@ _zellij() {
             zellij__subcmd__help__subcmd__action,list-tabs)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__list__subcmd__tabs"
                 ;;
+            zellij__subcmd__help__subcmd__action,mark-all-seen)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__mark__subcmd__all__subcmd__seen"
+                ;;
+            zellij__subcmd__help__subcmd__action,mark-pane-seen)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__mark__subcmd__pane__subcmd__seen"
+                ;;
             zellij__subcmd__help__subcmd__action,move-focus)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__move__subcmd__focus"
                 ;;
@@ -748,6 +928,15 @@ _zellij() {
             zellij__subcmd__help__subcmd__action,move-tab)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__move__subcmd__tab"
                 ;;
+            zellij__subcmd__help__subcmd__action,mute-pane)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__mute__subcmd__pane"
+                ;;
+            zellij__subcmd__help__subcmd__action,mute-session)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__mute__subcmd__session"
+                ;;
+            zellij__subcmd__help__subcmd__action,mute-tab)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__mute__subcmd__tab"
+                ;;
             zellij__subcmd__help__subcmd__action,new-pane)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__new__subcmd__pane"
                 ;;
@@ -756,6 +945,9 @@ _zellij() {
                 ;;
             zellij__subcmd__help__subcmd__action,next-swap-layout)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__next__subcmd__swap__subcmd__layout"
+                ;;
+            zellij__subcmd__help__subcmd__action,open-context-menu)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__open__subcmd__context__subcmd__menu"
                 ;;
             zellij__subcmd__help__subcmd__action,override-layout)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__override__subcmd__layout"
@@ -817,6 +1009,9 @@ _zellij() {
             zellij__subcmd__help__subcmd__action,set-light-theme)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__set__subcmd__light__subcmd__theme"
                 ;;
+            zellij__subcmd__help__subcmd__action,set-pane-border-style)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__set__subcmd__pane__subcmd__border__subcmd__style"
+                ;;
             zellij__subcmd__help__subcmd__action,set-pane-borderless)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__set__subcmd__pane__subcmd__borderless"
                 ;;
@@ -825,6 +1020,12 @@ _zellij() {
                 ;;
             zellij__subcmd__help__subcmd__action,set-pane-frame-style)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__set__subcmd__pane__subcmd__frame__subcmd__style"
+                ;;
+            zellij__subcmd__help__subcmd__action,set-resurrect-command)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__set__subcmd__resurrect__subcmd__command"
+                ;;
+            zellij__subcmd__help__subcmd__action,show-bars)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__show__subcmd__bars"
                 ;;
             zellij__subcmd__help__subcmd__action,show-floating-panes)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__show__subcmd__floating__subcmd__panes"
@@ -844,11 +1045,17 @@ _zellij() {
             zellij__subcmd__help__subcmd__action,toggle-active-sync-tab)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__active__subcmd__sync__subcmd__tab"
                 ;;
+            zellij__subcmd__help__subcmd__action,toggle-bars)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__bars"
+                ;;
             zellij__subcmd__help__subcmd__action,toggle-floating-panes)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__floating__subcmd__panes"
                 ;;
             zellij__subcmd__help__subcmd__action,toggle-fullscreen)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__fullscreen"
+                ;;
+            zellij__subcmd__help__subcmd__action,toggle-mirror-resize)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__mirror__subcmd__resize"
                 ;;
             zellij__subcmd__help__subcmd__action,toggle-no-ui-fullscreen)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__no__subcmd__ui__subcmd__fullscreen"
@@ -865,14 +1072,26 @@ _zellij() {
             zellij__subcmd__help__subcmd__action,toggle-pane-pinned)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__pane__subcmd__pinned"
                 ;;
+            zellij__subcmd__help__subcmd__action,toggle-session)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__session"
+                ;;
+            zellij__subcmd__help__subcmd__action,toggle-stack-list-orientation)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__stack__subcmd__list__subcmd__orientation"
+                ;;
             zellij__subcmd__help__subcmd__action,toggle-theme)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__theme"
+                ;;
+            zellij__subcmd__help__subcmd__action,toggle-tray-icon)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__tray__subcmd__icon"
                 ;;
             zellij__subcmd__help__subcmd__action,undo-rename-pane)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__undo__subcmd__rename__subcmd__pane"
                 ;;
             zellij__subcmd__help__subcmd__action,undo-rename-tab)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__undo__subcmd__rename__subcmd__tab"
+                ;;
+            zellij__subcmd__help__subcmd__action,watch-pane)
+                cmd="zellij__subcmd__help__subcmd__action__subcmd__watch__subcmd__pane"
                 ;;
             zellij__subcmd__help__subcmd__action,write)
                 cmd="zellij__subcmd__help__subcmd__action__subcmd__write"
@@ -883,6 +1102,108 @@ _zellij() {
             zellij__subcmd__help__subcmd__attach,options)
                 cmd="zellij__subcmd__help__subcmd__attach__subcmd__options"
                 ;;
+            zellij__subcmd__help__subcmd__prompt,choose)
+                cmd="zellij__subcmd__help__subcmd__prompt__subcmd__choose"
+                ;;
+            zellij__subcmd__help__subcmd__prompt,confirm)
+                cmd="zellij__subcmd__help__subcmd__prompt__subcmd__confirm"
+                ;;
+            zellij__subcmd__help__subcmd__prompt,form)
+                cmd="zellij__subcmd__help__subcmd__prompt__subcmd__form"
+                ;;
+            zellij__subcmd__help__subcmd__prompt,input)
+                cmd="zellij__subcmd__help__subcmd__prompt__subcmd__input"
+                ;;
+            zellij__subcmd__help__subcmd__prompt,menu)
+                cmd="zellij__subcmd__help__subcmd__prompt__subcmd__menu"
+                ;;
+            zellij__subcmd__help__subcmd__prompt,notify)
+                cmd="zellij__subcmd__help__subcmd__prompt__subcmd__notify"
+                ;;
+            zellij__subcmd__help__subcmd__prompt,number)
+                cmd="zellij__subcmd__help__subcmd__prompt__subcmd__number"
+                ;;
+            zellij__subcmd__help__subcmd__prompt,select)
+                cmd="zellij__subcmd__help__subcmd__prompt__subcmd__select"
+                ;;
+            zellij__subcmd__help__subcmd__prompt,toggle)
+                cmd="zellij__subcmd__help__subcmd__prompt__subcmd__toggle"
+                ;;
+            zellij__subcmd__help__subcmd__terminal,options)
+                cmd="zellij__subcmd__help__subcmd__terminal__subcmd__options"
+                ;;
+            zellij__subcmd__prompt,choose)
+                cmd="zellij__subcmd__prompt__subcmd__choose"
+                ;;
+            zellij__subcmd__prompt,confirm)
+                cmd="zellij__subcmd__prompt__subcmd__confirm"
+                ;;
+            zellij__subcmd__prompt,form)
+                cmd="zellij__subcmd__prompt__subcmd__form"
+                ;;
+            zellij__subcmd__prompt,help)
+                cmd="zellij__subcmd__prompt__subcmd__help"
+                ;;
+            zellij__subcmd__prompt,input)
+                cmd="zellij__subcmd__prompt__subcmd__input"
+                ;;
+            zellij__subcmd__prompt,menu)
+                cmd="zellij__subcmd__prompt__subcmd__menu"
+                ;;
+            zellij__subcmd__prompt,notify)
+                cmd="zellij__subcmd__prompt__subcmd__notify"
+                ;;
+            zellij__subcmd__prompt,number)
+                cmd="zellij__subcmd__prompt__subcmd__number"
+                ;;
+            zellij__subcmd__prompt,select)
+                cmd="zellij__subcmd__prompt__subcmd__select"
+                ;;
+            zellij__subcmd__prompt,toggle)
+                cmd="zellij__subcmd__prompt__subcmd__toggle"
+                ;;
+            zellij__subcmd__prompt__subcmd__help,choose)
+                cmd="zellij__subcmd__prompt__subcmd__help__subcmd__choose"
+                ;;
+            zellij__subcmd__prompt__subcmd__help,confirm)
+                cmd="zellij__subcmd__prompt__subcmd__help__subcmd__confirm"
+                ;;
+            zellij__subcmd__prompt__subcmd__help,form)
+                cmd="zellij__subcmd__prompt__subcmd__help__subcmd__form"
+                ;;
+            zellij__subcmd__prompt__subcmd__help,help)
+                cmd="zellij__subcmd__prompt__subcmd__help__subcmd__help"
+                ;;
+            zellij__subcmd__prompt__subcmd__help,input)
+                cmd="zellij__subcmd__prompt__subcmd__help__subcmd__input"
+                ;;
+            zellij__subcmd__prompt__subcmd__help,menu)
+                cmd="zellij__subcmd__prompt__subcmd__help__subcmd__menu"
+                ;;
+            zellij__subcmd__prompt__subcmd__help,notify)
+                cmd="zellij__subcmd__prompt__subcmd__help__subcmd__notify"
+                ;;
+            zellij__subcmd__prompt__subcmd__help,number)
+                cmd="zellij__subcmd__prompt__subcmd__help__subcmd__number"
+                ;;
+            zellij__subcmd__prompt__subcmd__help,select)
+                cmd="zellij__subcmd__prompt__subcmd__help__subcmd__select"
+                ;;
+            zellij__subcmd__prompt__subcmd__help,toggle)
+                cmd="zellij__subcmd__prompt__subcmd__help__subcmd__toggle"
+                ;;
+            zellij__subcmd__terminal,help)
+                cmd="zellij__subcmd__terminal__subcmd__help"
+                ;;
+            zellij__subcmd__terminal,options)
+                cmd="zellij__subcmd__terminal__subcmd__options"
+                ;;
+            zellij__subcmd__terminal__subcmd__help,help)
+                cmd="zellij__subcmd__terminal__subcmd__help__subcmd__help"
+                ;;
+            zellij__subcmd__terminal__subcmd__help,options)
+                cmd="zellij__subcmd__terminal__subcmd__help__subcmd__options"
+                ;;
             *)
                 ;;
         esac
@@ -890,7 +1211,7 @@ _zellij() {
 
     case "${cmd}" in
         zellij)
-            opts="-s -l -n -c -d -h -V --max-panes --data-dir --server --session --layout --layout-string --new-session-with-layout --config --config-dir --debug --help --version options setup web action ac list-sessions ls list-aliases la attach a watch w kill-session k delete-session d kill-all-sessions ka delete-all-sessions da run r plugin p edit e pipe subscribe help"
+            opts="-s -l -n -c -d -h -V --max-panes --data-dir --server --session --layout --layout-string --new-session-with-layout --config --config-dir --debug --help --version options setup web action ac list-sessions ls list-aliases la attach a watch w kill-session k delete-session d kill-all-sessions ka delete-all-sessions da run r plugin p edit e pipe subscribe prompt terminal help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -956,12 +1277,56 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__action)
-            opts="-h --help write write-chars paste send-keys resize focus-next-pane focus-previous-pane focus-pane-id focus-last-pane move-focus move-focus-or-tab move-pane move-pane-backwards clear dump-screen dump-layout save-session edit-scrollback scroll-up scroll-down scroll-to-bottom scroll-to-top page-scroll-up page-scroll-down half-page-scroll-up half-page-scroll-down toggle-fullscreen toggle-no-ui-fullscreen toggle-pane-frames set-pane-frame-style toggle-active-sync-tab new-pane edit switch-mode toggle-pane-embed-or-floating toggle-floating-panes show-floating-panes hide-floating-panes are-floating-panes-visible close-pane rename-pane undo-rename-pane go-to-next-tab go-to-previous-tab close-tab go-to-tab go-to-tab-name rename-tab undo-rename-tab go-to-tab-by-id close-tab-by-id rename-tab-by-id new-tab move-tab previous-swap-layout next-swap-layout override-layout query-tab-names start-or-reload-plugin launch-or-focus-plugin launch-plugin rename-session pipe list-clients list-panes list-tabs current-tab-info toggle-pane-pinned stack-panes change-floating-pane-coordinates toggle-pane-borderless set-pane-borderless detach set-dark-theme set-light-theme toggle-theme switch-session set-pane-color help"
+            opts="-h --help write write-chars paste send-keys resize focus-next-pane focus-previous-pane focus-pane-id focus-last-pane move-focus move-focus-or-tab move-pane move-pane-backwards clear dump-screen dump-layout save-session edit-scrollback scroll-up scroll-down scroll-to-bottom scroll-to-top page-scroll-up page-scroll-down half-page-scroll-up half-page-scroll-down toggle-fullscreen toggle-no-ui-fullscreen toggle-pane-frames toggle-stack-list-orientation set-pane-frame-style toggle-bars hide-bars show-bars toggle-active-sync-tab new-pane edit switch-mode toggle-pane-embed-or-floating toggle-floating-panes show-floating-panes hide-floating-panes are-floating-panes-visible close-pane rename-pane undo-rename-pane go-to-next-tab go-to-previous-tab close-tab go-to-tab go-to-tab-name rename-tab undo-rename-tab go-to-tab-by-id close-tab-by-id rename-tab-by-id new-tab move-tab previous-swap-layout next-swap-layout apply-tiled-swap-layout apply-floating-swap-layout override-layout query-tab-names start-or-reload-plugin launch-or-focus-plugin launch-plugin rename-session pipe list-clients list-panes list-tabs current-tab-info toggle-pane-pinned toggle-mirror-resize mute-pane ignore-pane-output watch-pane mute-tab mute-session toggle-session go-to-previous-session go-to-next-session go-to-next-attention toggle-tray-icon mark-pane-seen mark-all-seen stack-panes change-floating-pane-coordinates toggle-pane-borderless set-pane-borderless set-pane-border-style detach set-dark-theme set-light-theme toggle-theme dismiss-info-popups open-context-menu switch-session set-pane-color set-resurrect-command help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
             case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__apply__subcmd__floating__subcmd__swap__subcmd__layout)
+            opts="-t -h --tab-id --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --tab-id)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -t)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__apply__subcmd__tiled__subcmd__swap__subcmd__layout)
+            opts="-t -h --tab-id --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --tab-id)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -t)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 *)
                     COMPREPLY=()
                     ;;
@@ -992,7 +1357,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__action__subcmd__change__subcmd__floating__subcmd__pane__subcmd__coordinates)
-            opts="-p -x -y -b -h --pane-id --x --y --width --height --pinned --borderless --help"
+            opts="-p -x -y -b -h --pane-id --x --y --width --height --pinned --borderless --border-style --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -1040,6 +1405,10 @@ _zellij() {
                     ;;
                 -b)
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --border-style)
+                    COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
                 *)
@@ -1157,6 +1526,20 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__dismiss__subcmd__info__subcmd__popups)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__dump__subcmd__layout)
             opts="-h --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
@@ -1198,7 +1581,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__action__subcmd__edit)
-            opts="-d -l -f -i -x -y -b -h --direction --line-number --floating --in-place --close-replaced-pane --cwd --x --y --width --height --pinned --near-current-pane --no-focus --borderless --tab-id --help"
+            opts="-d -l -f -i -x -y -b -h --direction --line-number --floating --in-place --close-replaced-pane --cwd --x --y --width --height --pinned --near-current-pane --no-focus --borderless --tab-id --border-style --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -1261,6 +1644,10 @@ _zellij() {
                     return 0
                     ;;
                 --tab-id)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --border-style)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -1349,7 +1736,49 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__go__subcmd__to__subcmd__next__subcmd__attention)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__go__subcmd__to__subcmd__next__subcmd__session)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__go__subcmd__to__subcmd__next__subcmd__tab)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__go__subcmd__to__subcmd__previous__subcmd__session)
             opts="-h --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -1464,8 +1893,36 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__action__subcmd__help)
-            opts="write write-chars paste send-keys resize focus-next-pane focus-previous-pane focus-pane-id focus-last-pane move-focus move-focus-or-tab move-pane move-pane-backwards clear dump-screen dump-layout save-session edit-scrollback scroll-up scroll-down scroll-to-bottom scroll-to-top page-scroll-up page-scroll-down half-page-scroll-up half-page-scroll-down toggle-fullscreen toggle-no-ui-fullscreen toggle-pane-frames set-pane-frame-style toggle-active-sync-tab new-pane edit switch-mode toggle-pane-embed-or-floating toggle-floating-panes show-floating-panes hide-floating-panes are-floating-panes-visible close-pane rename-pane undo-rename-pane go-to-next-tab go-to-previous-tab close-tab go-to-tab go-to-tab-name rename-tab undo-rename-tab go-to-tab-by-id close-tab-by-id rename-tab-by-id new-tab move-tab previous-swap-layout next-swap-layout override-layout query-tab-names start-or-reload-plugin launch-or-focus-plugin launch-plugin rename-session pipe list-clients list-panes list-tabs current-tab-info toggle-pane-pinned stack-panes change-floating-pane-coordinates toggle-pane-borderless set-pane-borderless detach set-dark-theme set-light-theme toggle-theme switch-session set-pane-color help"
+            opts="write write-chars paste send-keys resize focus-next-pane focus-previous-pane focus-pane-id focus-last-pane move-focus move-focus-or-tab move-pane move-pane-backwards clear dump-screen dump-layout save-session edit-scrollback scroll-up scroll-down scroll-to-bottom scroll-to-top page-scroll-up page-scroll-down half-page-scroll-up half-page-scroll-down toggle-fullscreen toggle-no-ui-fullscreen toggle-pane-frames toggle-stack-list-orientation set-pane-frame-style toggle-bars hide-bars show-bars toggle-active-sync-tab new-pane edit switch-mode toggle-pane-embed-or-floating toggle-floating-panes show-floating-panes hide-floating-panes are-floating-panes-visible close-pane rename-pane undo-rename-pane go-to-next-tab go-to-previous-tab close-tab go-to-tab go-to-tab-name rename-tab undo-rename-tab go-to-tab-by-id close-tab-by-id rename-tab-by-id new-tab move-tab previous-swap-layout next-swap-layout apply-tiled-swap-layout apply-floating-swap-layout override-layout query-tab-names start-or-reload-plugin launch-or-focus-plugin launch-plugin rename-session pipe list-clients list-panes list-tabs current-tab-info toggle-pane-pinned toggle-mirror-resize mute-pane ignore-pane-output watch-pane mute-tab mute-session toggle-session go-to-previous-session go-to-next-session go-to-next-attention toggle-tray-icon mark-pane-seen mark-all-seen stack-panes change-floating-pane-coordinates toggle-pane-borderless set-pane-borderless set-pane-border-style detach set-dark-theme set-light-theme toggle-theme dismiss-info-popups open-context-menu switch-session set-pane-color set-resurrect-command help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__apply__subcmd__floating__subcmd__swap__subcmd__layout)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__apply__subcmd__tiled__subcmd__swap__subcmd__layout)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
@@ -1576,6 +2033,20 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__action__subcmd__help__subcmd__detach)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__dismiss__subcmd__info__subcmd__popups)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -1701,7 +2172,49 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__help__subcmd__go__subcmd__to__subcmd__next__subcmd__attention)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__go__subcmd__to__subcmd__next__subcmd__session)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__help__subcmd__go__subcmd__to__subcmd__next__subcmd__tab)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__go__subcmd__to__subcmd__previous__subcmd__session)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -1813,7 +2326,35 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__help__subcmd__hide__subcmd__bars)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__help__subcmd__hide__subcmd__floating__subcmd__panes)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__ignore__subcmd__pane__subcmd__output)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -1897,6 +2438,34 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__help__subcmd__mark__subcmd__all__subcmd__seen)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__mark__subcmd__pane__subcmd__seen)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__help__subcmd__move__subcmd__focus)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
@@ -1967,6 +2536,48 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__help__subcmd__mute__subcmd__pane)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__mute__subcmd__session)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__mute__subcmd__tab)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__help__subcmd__new__subcmd__pane)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
@@ -1996,6 +2607,20 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__action__subcmd__help__subcmd__next__subcmd__swap__subcmd__layout)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__open__subcmd__context__subcmd__menu)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -2289,6 +2914,20 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__help__subcmd__set__subcmd__pane__subcmd__border__subcmd__style)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__help__subcmd__set__subcmd__pane__subcmd__borderless)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
@@ -2318,6 +2957,34 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__action__subcmd__help__subcmd__set__subcmd__pane__subcmd__frame__subcmd__style)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__set__subcmd__resurrect__subcmd__command)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__show__subcmd__bars)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -2415,6 +3082,20 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__bars)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__floating__subcmd__panes)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
@@ -2430,6 +3111,20 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__fullscreen)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__mirror__subcmd__resize)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -2513,7 +3208,49 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__session)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__stack__subcmd__list__subcmd__orientation)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__theme)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__help__subcmd__toggle__subcmd__tray__subcmd__icon)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -2555,6 +3292,20 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__help__subcmd__watch__subcmd__pane)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__help__subcmd__write)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
@@ -2583,6 +3334,20 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__hide__subcmd__bars)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__hide__subcmd__floating__subcmd__panes)
             opts="-t -h --tab-id --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
@@ -2595,6 +3360,28 @@ _zellij() {
                     return 0
                     ;;
                 -t)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__ignore__subcmd__pane__subcmd__output)
+            opts="-p -h --pane-id --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --pane-id)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -p)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -2699,6 +3486,42 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__mark__subcmd__all__subcmd__seen)
+            opts="-h --this-session --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__mark__subcmd__pane__subcmd__seen)
+            opts="-p -h --pane-id --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --pane-id)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -p)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__move__subcmd__focus)
             opts="-h --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
@@ -2793,8 +3616,66 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__mute__subcmd__pane)
+            opts="-p -h --pane-id --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --pane-id)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -p)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__mute__subcmd__session)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__mute__subcmd__tab)
+            opts="-t -h --tab-id --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --tab-id)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -t)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__new__subcmd__pane)
-            opts="-d -p -f -i -n -c -s -x -y -b -h --direction --plugin --cwd --floating --in-place --close-replaced-pane --pane-id --name --close-on-exit --start-suspended --configuration --skip-plugin-cache --x --y --width --height --pinned --stacked --blocking --block-until-exit-success --block-until-exit-failure --block-until-exit --near-current-pane --no-focus --borderless --tab-id --help"
+            opts="-d -p -f -i -n -c -s -x -y -b -h --direction --plugin --cwd --floating --in-place --close-replaced-pane --pane-id --name --close-on-exit --start-suspended --notify --configuration --skip-plugin-cache --x --y --width --height --pinned --stacked --blocking --block-until-exit-success --block-until-exit-failure --block-until-exit --near-current-pane --no-focus --borderless --tab-id --border-style --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -2872,6 +3753,10 @@ _zellij() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                --border-style)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 *)
                     COMPREPLY=()
                     ;;
@@ -2944,6 +3829,20 @@ _zellij() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__open__subcmd__context__subcmd__menu)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
                 *)
                     COMPREPLY=()
                     ;;
@@ -3040,7 +3939,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__action__subcmd__pipe)
-            opts="-n -a -p -c -l -s -f -i -w -t -h --name --args --plugin --plugin-configuration --force-launch-plugin --skip-plugin-cache --floating-plugin --in-place-plugin --plugin-cwd --plugin-title --help"
+            opts="-n -a -p -c -l -s -f -i -w -t -h --name --args --plugin --plugin-configuration --force-launch-plugin --skip-plugin-cache --floating-plugin --in-place-plugin --plugin-cwd --plugin-title --popup --popup-no-focus --popup-capture-all-keys --popup-outside-click --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3107,6 +4006,14 @@ _zellij() {
                     return 0
                     ;;
                 -t)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --popup)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --popup-outside-click)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -3399,6 +4306,32 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__set__subcmd__pane__subcmd__border__subcmd__style)
+            opts="-p -h --pane-id --border-style --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --pane-id)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -p)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --border-style)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__set__subcmd__pane__subcmd__borderless)
             opts="-p -b -h --pane-id --borderless --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
@@ -3453,6 +4386,46 @@ _zellij() {
             ;;
         zellij__subcmd__action__subcmd__set__subcmd__pane__subcmd__frame__subcmd__style)
             opts="-h --help full titles none"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__set__subcmd__resurrect__subcmd__command)
+            opts="-p -h --pane-id --cwd --clear --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --pane-id)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -p)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --cwd)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__show__subcmd__bars)
+            opts="-h --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3524,7 +4497,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__action__subcmd__switch__subcmd__mode)
-            opts="-h --help normal locked resize pane tab scroll enter-search search rename-tab rename-pane session move prompt tmux"
+            opts="-h --help normal locked resize pane tab scroll enter-search search rename-tab rename-pane session move prompt tmux rename-session"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3538,7 +4511,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__action__subcmd__switch__subcmd__session)
-            opts="-l -c -h --tab-position --pane-id --layout --layout-string --layout-dir --cwd --help"
+            opts="-l -c -h --tab-position --pane-id --layout --layout-string --layout-dir --cwd --close-current --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3605,6 +4578,20 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__toggle__subcmd__bars)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__toggle__subcmd__floating__subcmd__panes)
             opts="-t -h --tab-id --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
@@ -3642,6 +4629,20 @@ _zellij() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__toggle__subcmd__mirror__subcmd__resize)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
                 *)
                     COMPREPLY=()
                     ;;
@@ -3751,7 +4752,57 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__toggle__subcmd__session)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__toggle__subcmd__stack__subcmd__list__subcmd__orientation)
+            opts="-p -h --pane-id --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --pane-id)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -p)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__toggle__subcmd__theme)
+            opts="-h --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__action__subcmd__toggle__subcmd__tray__subcmd__icon)
             opts="-h --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -3809,6 +4860,28 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__action__subcmd__watch__subcmd__pane)
+            opts="-p -h --pane-id --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --pane-id)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -p)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__action__subcmd__write)
             opts="-p -h --pane-id --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
@@ -3854,7 +4927,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__attach)
-            opts="-c -b -f -t -r -h --create --create-background --index --force-run-commands --token --remember --forget --ca-cert --insecure --close-on-exit --start-suspended --help options help"
+            opts="-c -f -t -r -b -h --create --index --force-run-commands --token --remember --forget --ca-cert --insecure --close-on-exit --start-suspended --create-background --help options help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3926,7 +4999,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__attach__subcmd__options)
-            opts="-h --simplified-ui --theme --theme-dark --theme-light --explicit-theme-hue --default-mode --default-shell --default-cwd --default-layout --layout-dir --theme-dir --mouse-mode --pane-frames --pane-frame-style --mirror-session --on-force-close --scroll-buffer-size --copy-command --copy-clipboard --copy-on-select --osc8-hyperlinks --scrollback-editor --session-name --attach-to-session --auto-layout --session-serialization --serialize-pane-viewport --scrollback-lines-to-serialize --styled-underlines --serialization-interval --disable-session-metadata --support-kitty-keyboard-protocol --support-kitty-graphics-protocol --web-server --web-sharing --stacked-resize --stacked-pane-list --show-startup-tips --show-release-notes --advanced-mouse-actions --mouse-scroll-resize --scroll-mode-sync --mouse-hover-effects --mouse-hover-tips --visual-bell --focus-follows-mouse --mouse-click-through --osc133-command-selection --word-separators --host-notification-protocol --post-command-discovery-hook --client-async-worker-tasks --nested-session-handling --dangerously-enable-paste-buffer-read --help true false"
+            opts="-h --simplified-ui --theme --theme-dark --theme-light --explicit-theme-hue --default-mode --default-shell --default-cwd --default-layout --layout-dir --theme-dir --keybinds-dir --keybinds-preset --keybinds-primary --keybinds-secondary --keybinds-unlock --mouse-mode --pane-frames --pane-frame-style --mirror-session --on-force-close --scroll-buffer-size --copy-command --copy-clipboard --copy-on-select --osc8-hyperlinks --scrollback-editor --session-name --attach-to-session --auto-layout --session-serialization --serialize-pane-viewport --scrollback-lines-to-serialize --styled-underlines --serialization-interval --disable-session-metadata --support-kitty-keyboard-protocol --support-kitty-graphics-protocol --grapheme-clusters --mirror-resizes-source-pane --live-view-release-key --web-server --web-sharing --stacked-resize --stacked-pane-list --stacked-pane-list-orientation --show-startup-tips --show-release-notes --advanced-mouse-actions --mouse-scroll-resize --scroll-mode-sync --mouse-hover-effects --mouse-hover-tips --visual-bell --focus-follows-mouse --mouse-click-through --context-menu-enabled --osc133-command-selection --word-separators --host-notification-protocol --post-command-discovery-hook --client-async-worker-tasks --nested-session-handling --dangerously-enable-paste-buffer-read --session-indicator --swap-layout-notification --on-quit --bars-hidden-on-start --hidden-bars-notification --mode-hints-when-bars-hidden --help true false true false"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -3953,7 +5026,7 @@ _zellij() {
                     return 0
                     ;;
                 --default-mode)
-                    COMPREPLY=($(compgen -W "normal locked resize pane tab scroll enter-search search rename-tab rename-pane session move prompt tmux" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "normal locked resize pane tab scroll enter-search search rename-tab rename-pane session move prompt tmux rename-session" -- "${cur}"))
                     return 0
                     ;;
                 --default-shell)
@@ -3973,6 +5046,26 @@ _zellij() {
                     return 0
                     ;;
                 --theme-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-preset)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-primary)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-secondary)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-unlock)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -4064,6 +5157,18 @@ _zellij() {
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
                     ;;
+                --grapheme-clusters)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --mirror-resizes-source-pane)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --live-view-release-key)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --web-server)
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
@@ -4078,6 +5183,10 @@ _zellij() {
                     ;;
                 --stacked-pane-list)
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --stacked-pane-list-orientation)
+                    COMPREPLY=($(compgen -W "vertical horizontal" -- "${cur}"))
                     return 0
                     ;;
                 --show-startup-tips)
@@ -4120,6 +5229,10 @@ _zellij() {
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
                     ;;
+                --context-menu-enabled)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
                 --osc133-command-selection)
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
@@ -4145,6 +5258,30 @@ _zellij() {
                     return 0
                     ;;
                 --dangerously-enable-paste-buffer-read)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --session-indicator)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --swap-layout-notification)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --on-quit)
+                    COMPREPLY=($(compgen -W "ask_quit ask_detach quit detach" -- "${cur}"))
+                    return 0
+                    ;;
+                --bars-hidden-on-start)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --hidden-bars-notification)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --mode-hints-when-bars-hidden)
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
                     ;;
@@ -4184,7 +5321,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__edit)
-            opts="-l -d -i -f -x -y -b -h --line-number --direction --in-place --close-replaced-pane --floating --cwd --x --y --width --height --pinned --near-current-pane --no-focus --borderless --tab-id --help"
+            opts="-l -d -i -f -x -y -b -h --line-number --direction --in-place --close-replaced-pane --floating --cwd --x --y --width --height --pinned --near-current-pane --no-focus --borderless --tab-id --border-style --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -4250,6 +5387,10 @@ _zellij() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                --border-style)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 *)
                     COMPREPLY=()
                     ;;
@@ -4258,7 +5399,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__help)
-            opts="options setup web action list-sessions list-aliases attach watch kill-session delete-session kill-all-sessions delete-all-sessions run plugin edit pipe subscribe help"
+            opts="options setup web action list-sessions list-aliases attach watch kill-session delete-session kill-all-sessions delete-all-sessions run plugin edit pipe subscribe prompt terminal help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -4272,8 +5413,36 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__help__subcmd__action)
-            opts="write write-chars paste send-keys resize focus-next-pane focus-previous-pane focus-pane-id focus-last-pane move-focus move-focus-or-tab move-pane move-pane-backwards clear dump-screen dump-layout save-session edit-scrollback scroll-up scroll-down scroll-to-bottom scroll-to-top page-scroll-up page-scroll-down half-page-scroll-up half-page-scroll-down toggle-fullscreen toggle-no-ui-fullscreen toggle-pane-frames set-pane-frame-style toggle-active-sync-tab new-pane edit switch-mode toggle-pane-embed-or-floating toggle-floating-panes show-floating-panes hide-floating-panes are-floating-panes-visible close-pane rename-pane undo-rename-pane go-to-next-tab go-to-previous-tab close-tab go-to-tab go-to-tab-name rename-tab undo-rename-tab go-to-tab-by-id close-tab-by-id rename-tab-by-id new-tab move-tab previous-swap-layout next-swap-layout override-layout query-tab-names start-or-reload-plugin launch-or-focus-plugin launch-plugin rename-session pipe list-clients list-panes list-tabs current-tab-info toggle-pane-pinned stack-panes change-floating-pane-coordinates toggle-pane-borderless set-pane-borderless detach set-dark-theme set-light-theme toggle-theme switch-session set-pane-color"
+            opts="write write-chars paste send-keys resize focus-next-pane focus-previous-pane focus-pane-id focus-last-pane move-focus move-focus-or-tab move-pane move-pane-backwards clear dump-screen dump-layout save-session edit-scrollback scroll-up scroll-down scroll-to-bottom scroll-to-top page-scroll-up page-scroll-down half-page-scroll-up half-page-scroll-down toggle-fullscreen toggle-no-ui-fullscreen toggle-pane-frames toggle-stack-list-orientation set-pane-frame-style toggle-bars hide-bars show-bars toggle-active-sync-tab new-pane edit switch-mode toggle-pane-embed-or-floating toggle-floating-panes show-floating-panes hide-floating-panes are-floating-panes-visible close-pane rename-pane undo-rename-pane go-to-next-tab go-to-previous-tab close-tab go-to-tab go-to-tab-name rename-tab undo-rename-tab go-to-tab-by-id close-tab-by-id rename-tab-by-id new-tab move-tab previous-swap-layout next-swap-layout apply-tiled-swap-layout apply-floating-swap-layout override-layout query-tab-names start-or-reload-plugin launch-or-focus-plugin launch-plugin rename-session pipe list-clients list-panes list-tabs current-tab-info toggle-pane-pinned toggle-mirror-resize mute-pane ignore-pane-output watch-pane mute-tab mute-session toggle-session go-to-previous-session go-to-next-session go-to-next-attention toggle-tray-icon mark-pane-seen mark-all-seen stack-panes change-floating-pane-coordinates toggle-pane-borderless set-pane-borderless set-pane-border-style detach set-dark-theme set-light-theme toggle-theme dismiss-info-popups open-context-menu switch-session set-pane-color set-resurrect-command"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__apply__subcmd__floating__subcmd__swap__subcmd__layout)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__apply__subcmd__tiled__subcmd__swap__subcmd__layout)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
@@ -4384,6 +5553,20 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__help__subcmd__action__subcmd__detach)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__dismiss__subcmd__info__subcmd__popups)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -4509,7 +5692,49 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__help__subcmd__action__subcmd__go__subcmd__to__subcmd__next__subcmd__attention)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__go__subcmd__to__subcmd__next__subcmd__session)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__help__subcmd__action__subcmd__go__subcmd__to__subcmd__next__subcmd__tab)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__go__subcmd__to__subcmd__previous__subcmd__session)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -4607,7 +5832,35 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__help__subcmd__action__subcmd__hide__subcmd__bars)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__help__subcmd__action__subcmd__hide__subcmd__floating__subcmd__panes)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__ignore__subcmd__pane__subcmd__output)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -4691,6 +5944,34 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__help__subcmd__action__subcmd__mark__subcmd__all__subcmd__seen)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__mark__subcmd__pane__subcmd__seen)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__help__subcmd__action__subcmd__move__subcmd__focus)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
@@ -4761,6 +6042,48 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__help__subcmd__action__subcmd__mute__subcmd__pane)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__mute__subcmd__session)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__mute__subcmd__tab)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__help__subcmd__action__subcmd__new__subcmd__pane)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
@@ -4790,6 +6113,20 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__help__subcmd__action__subcmd__next__subcmd__swap__subcmd__layout)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__open__subcmd__context__subcmd__menu)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -5083,6 +6420,20 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__help__subcmd__action__subcmd__set__subcmd__pane__subcmd__border__subcmd__style)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__help__subcmd__action__subcmd__set__subcmd__pane__subcmd__borderless)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
@@ -5112,6 +6463,34 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__help__subcmd__action__subcmd__set__subcmd__pane__subcmd__frame__subcmd__style)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__set__subcmd__resurrect__subcmd__command)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__show__subcmd__bars)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -5209,6 +6588,20 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__bars)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__floating__subcmd__panes)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
@@ -5224,6 +6617,20 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__fullscreen)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__mirror__subcmd__resize)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -5307,7 +6714,49 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__session)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__stack__subcmd__list__subcmd__orientation)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__theme)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__toggle__subcmd__tray__subcmd__icon)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -5336,6 +6785,20 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__help__subcmd__action__subcmd__undo__subcmd__rename__subcmd__tab)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__action__subcmd__watch__subcmd__pane)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
@@ -5559,6 +7022,146 @@ _zellij() {
             COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
             return 0
             ;;
+        zellij__subcmd__help__subcmd__prompt)
+            opts="confirm choose input number toggle select menu form notify"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__prompt__subcmd__choose)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__prompt__subcmd__confirm)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__prompt__subcmd__form)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__prompt__subcmd__input)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__prompt__subcmd__menu)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__prompt__subcmd__notify)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__prompt__subcmd__number)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__prompt__subcmd__select)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__prompt__subcmd__toggle)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
         zellij__subcmd__help__subcmd__run)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
@@ -5590,6 +7193,34 @@ _zellij() {
         zellij__subcmd__help__subcmd__subscribe)
             opts=""
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__terminal)
+            opts="options"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__help__subcmd__terminal__subcmd__options)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
             fi
@@ -5686,7 +7317,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__options)
-            opts="-h --simplified-ui --theme --theme-dark --theme-light --explicit-theme-hue --default-mode --default-shell --default-cwd --default-layout --layout-dir --theme-dir --mouse-mode --pane-frames --pane-frame-style --mirror-session --on-force-close --scroll-buffer-size --copy-command --copy-clipboard --copy-on-select --osc8-hyperlinks --scrollback-editor --session-name --attach-to-session --auto-layout --session-serialization --serialize-pane-viewport --scrollback-lines-to-serialize --styled-underlines --serialization-interval --disable-session-metadata --support-kitty-keyboard-protocol --support-kitty-graphics-protocol --web-server --web-sharing --stacked-resize --stacked-pane-list --show-startup-tips --show-release-notes --advanced-mouse-actions --mouse-scroll-resize --scroll-mode-sync --mouse-hover-effects --mouse-hover-tips --visual-bell --focus-follows-mouse --mouse-click-through --osc133-command-selection --word-separators --host-notification-protocol --post-command-discovery-hook --client-async-worker-tasks --nested-session-handling --dangerously-enable-paste-buffer-read --help true false"
+            opts="-h --simplified-ui --theme --theme-dark --theme-light --explicit-theme-hue --default-mode --default-shell --default-cwd --default-layout --layout-dir --theme-dir --keybinds-dir --keybinds-preset --keybinds-primary --keybinds-secondary --keybinds-unlock --mouse-mode --pane-frames --pane-frame-style --mirror-session --on-force-close --scroll-buffer-size --copy-command --copy-clipboard --copy-on-select --osc8-hyperlinks --scrollback-editor --session-name --attach-to-session --auto-layout --session-serialization --serialize-pane-viewport --scrollback-lines-to-serialize --styled-underlines --serialization-interval --disable-session-metadata --support-kitty-keyboard-protocol --support-kitty-graphics-protocol --grapheme-clusters --mirror-resizes-source-pane --live-view-release-key --web-server --web-sharing --stacked-resize --stacked-pane-list --stacked-pane-list-orientation --show-startup-tips --show-release-notes --advanced-mouse-actions --mouse-scroll-resize --scroll-mode-sync --mouse-hover-effects --mouse-hover-tips --visual-bell --focus-follows-mouse --mouse-click-through --context-menu-enabled --osc133-command-selection --word-separators --host-notification-protocol --post-command-discovery-hook --client-async-worker-tasks --nested-session-handling --dangerously-enable-paste-buffer-read --session-indicator --swap-layout-notification --on-quit --bars-hidden-on-start --hidden-bars-notification --mode-hints-when-bars-hidden --help true false true false"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -5713,7 +7344,7 @@ _zellij() {
                     return 0
                     ;;
                 --default-mode)
-                    COMPREPLY=($(compgen -W "normal locked resize pane tab scroll enter-search search rename-tab rename-pane session move prompt tmux" -- "${cur}"))
+                    COMPREPLY=($(compgen -W "normal locked resize pane tab scroll enter-search search rename-tab rename-pane session move prompt tmux rename-session" -- "${cur}"))
                     return 0
                     ;;
                 --default-shell)
@@ -5733,6 +7364,26 @@ _zellij() {
                     return 0
                     ;;
                 --theme-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-preset)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-primary)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-secondary)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-unlock)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -5824,6 +7475,18 @@ _zellij() {
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
                     ;;
+                --grapheme-clusters)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --mirror-resizes-source-pane)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --live-view-release-key)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --web-server)
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
@@ -5838,6 +7501,10 @@ _zellij() {
                     ;;
                 --stacked-pane-list)
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --stacked-pane-list-orientation)
+                    COMPREPLY=($(compgen -W "vertical horizontal" -- "${cur}"))
                     return 0
                     ;;
                 --show-startup-tips)
@@ -5880,6 +7547,10 @@ _zellij() {
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
                     ;;
+                --context-menu-enabled)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
                 --osc133-command-selection)
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
@@ -5905,6 +7576,30 @@ _zellij() {
                     return 0
                     ;;
                 --dangerously-enable-paste-buffer-read)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --session-indicator)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --swap-layout-notification)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --on-quit)
+                    COMPREPLY=($(compgen -W "ask_quit ask_detach quit detach" -- "${cur}"))
+                    return 0
+                    ;;
+                --bars-hidden-on-start)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --hidden-bars-notification)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --mode-hints-when-bars-hidden)
                     COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
                     ;;
@@ -5962,7 +7657,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__plugin)
-            opts="-c -f -i -s -x -y -b -h --configuration --floating --in-place --close-replaced-pane --skip-plugin-cache --x --y --width --height --pinned --no-focus --borderless --tab-id --help"
+            opts="-c -f -i -s -x -y -b -h --configuration --floating --in-place --close-replaced-pane --skip-plugin-cache --x --y --width --height --pinned --no-focus --borderless --tab-id --border-style --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -6016,6 +7711,496 @@ _zellij() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                --border-style)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt)
+            opts="-h --title --timeout --help confirm choose input number toggle select menu form notify help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --title)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --timeout)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__choose)
+            opts="-0 -h --item --multi --labels --null --selected --default --json --at-mouse --at-cursor --at-center --capture-all-keys --outside-click --title --timeout --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --item)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --selected)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --default)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --outside-click)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --title)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --timeout)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__confirm)
+            opts="-h --yes --no --default --json --at-mouse --at-cursor --at-center --capture-all-keys --outside-click --title --timeout --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --yes)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --no)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --default)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --outside-click)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --title)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --timeout)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__form)
+            opts="-h --spec --default --json --at-mouse --at-cursor --at-center --capture-all-keys --outside-click --title --timeout --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --spec)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --default)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --outside-click)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --title)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --timeout)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__help)
+            opts="confirm choose input number toggle select menu form notify help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__help__subcmd__choose)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__help__subcmd__confirm)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__help__subcmd__form)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__help__subcmd__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__help__subcmd__input)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__help__subcmd__menu)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__help__subcmd__notify)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__help__subcmd__number)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__help__subcmd__select)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__help__subcmd__toggle)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__input)
+            opts="-h --placeholder --validate --required --default --json --at-mouse --at-cursor --at-center --capture-all-keys --outside-click --title --timeout --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --placeholder)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --validate)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --default)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --outside-click)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --title)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --timeout)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__menu)
+            opts="-h --item --default --json --at-mouse --at-cursor --at-center --capture-all-keys --outside-click --title --timeout --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --item)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --default)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --outside-click)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --title)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --timeout)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__notify)
+            opts="-h --at --no-pane-name --no-tab-name --title --timeout --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --at)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --title)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --timeout)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__number)
+            opts="-h --min --max --step --default --json --at-mouse --at-cursor --at-center --capture-all-keys --outside-click --title --timeout --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --min)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --max)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --step)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --default)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --outside-click)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --title)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --timeout)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__select)
+            opts="-h --default --json --at-mouse --at-cursor --at-center --capture-all-keys --outside-click --title --timeout --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --default)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --outside-click)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --title)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --timeout)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__prompt__subcmd__toggle)
+            opts="-h --default --json --at-mouse --at-cursor --at-center --capture-all-keys --outside-click --title --timeout --help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --default)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --outside-click)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --title)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --timeout)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 *)
                     COMPREPLY=()
                     ;;
@@ -6024,7 +8209,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__run)
-            opts="-d -f -i -n -c -s -x -y -b -h --direction --cwd --floating --in-place --close-replaced-pane --name --close-on-exit --start-suspended --x --y --width --height --pinned --stacked --blocking --block-until-exit-success --block-until-exit-failure --block-until-exit --near-current-pane --no-focus --borderless --tab-id --help"
+            opts="-d -f -i -n -c -s -x -y -b -h --direction --cwd --floating --in-place --close-replaced-pane --name --close-on-exit --start-suspended --notify --x --y --width --height --pinned --stacked --blocking --block-until-exit-success --block-until-exit-failure --block-until-exit --near-current-pane --no-focus --borderless --tab-id --border-style --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -6090,6 +8275,10 @@ _zellij() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                --border-style)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 *)
                     COMPREPLY=()
                     ;;
@@ -6098,7 +8287,7 @@ _zellij() {
             return 0
             ;;
         zellij__subcmd__setup)
-            opts="-h --dump-config --clean --check --dump-layout --dump-swap-layout --dump-plugins --generate-completion --generate-auto-start --help"
+            opts="-h --dump-config --clean --check --dump-layout --dump-swap-layout --dump-keybinds --dump-plugins --generate-completion --generate-auto-start --install-desktop-entry --uninstall-desktop-entry --copy-to-permanent-folder --replace-existing --make-default-terminal --keybinding-preset --help"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
@@ -6112,6 +8301,10 @@ _zellij() {
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
+                --dump-keybinds)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
                 --dump-plugins)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
@@ -6121,6 +8314,10 @@ _zellij() {
                     return 0
                     ;;
                 --generate-auto-start)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinding-preset)
                     COMPREPLY=($(compgen -f "${cur}"))
                     return 0
                     ;;
@@ -6160,6 +8357,412 @@ _zellij() {
                     ;;
                 -f)
                     COMPREPLY=($(compgen -W "raw json" -- "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__terminal)
+            opts="-c -f -t -r -e -h --create --index --force-run-commands --token --remember --forget --ca-cert --insecure --close-on-exit --start-suspended --watch --headless --record --rows --cols --cell-width --cell-height --duration-secs --startup-mode --standalone --socket-dir --inbox --sessions --working-directory --hold --background --help options help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --index)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --token)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -t)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --ca-cert)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --record)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --rows)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --cols)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --cell-width)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --cell-height)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --duration-secs)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --startup-mode)
+                    COMPREPLY=($(compgen -W "windowed maximized fullscreen remember" -- "${cur}"))
+                    return 0
+                    ;;
+                --socket-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                -e)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --working-directory)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__terminal__subcmd__help)
+            opts="options help"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__terminal__subcmd__help__subcmd__help)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__terminal__subcmd__help__subcmd__options)
+            opts=""
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 4 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+            return 0
+            ;;
+        zellij__subcmd__terminal__subcmd__options)
+            opts="-h --simplified-ui --theme --theme-dark --theme-light --explicit-theme-hue --default-mode --default-shell --default-cwd --default-layout --layout-dir --theme-dir --keybinds-dir --keybinds-preset --keybinds-primary --keybinds-secondary --keybinds-unlock --mouse-mode --pane-frames --pane-frame-style --mirror-session --on-force-close --scroll-buffer-size --copy-command --copy-clipboard --copy-on-select --osc8-hyperlinks --scrollback-editor --session-name --attach-to-session --auto-layout --session-serialization --serialize-pane-viewport --scrollback-lines-to-serialize --styled-underlines --serialization-interval --disable-session-metadata --support-kitty-keyboard-protocol --support-kitty-graphics-protocol --grapheme-clusters --mirror-resizes-source-pane --live-view-release-key --web-server --web-sharing --stacked-resize --stacked-pane-list --stacked-pane-list-orientation --show-startup-tips --show-release-notes --advanced-mouse-actions --mouse-scroll-resize --scroll-mode-sync --mouse-hover-effects --mouse-hover-tips --visual-bell --focus-follows-mouse --mouse-click-through --context-menu-enabled --osc133-command-selection --word-separators --host-notification-protocol --post-command-discovery-hook --client-async-worker-tasks --nested-session-handling --dangerously-enable-paste-buffer-read --session-indicator --swap-layout-notification --on-quit --bars-hidden-on-start --hidden-bars-notification --mode-hints-when-bars-hidden --help true false true false"
+            if [[ ${cur} == -* || ${COMP_CWORD} -eq 3 ]] ; then
+                COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+                return 0
+            fi
+            case "${prev}" in
+                --simplified-ui)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --theme)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --theme-dark)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --theme-light)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --explicit-theme-hue)
+                    COMPREPLY=($(compgen -W "light dark" -- "${cur}"))
+                    return 0
+                    ;;
+                --default-mode)
+                    COMPREPLY=($(compgen -W "normal locked resize pane tab scroll enter-search search rename-tab rename-pane session move prompt tmux rename-session" -- "${cur}"))
+                    return 0
+                    ;;
+                --default-shell)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --default-cwd)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --default-layout)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --layout-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --theme-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-dir)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-preset)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-primary)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-secondary)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --keybinds-unlock)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --mouse-mode)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --pane-frames)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --pane-frame-style)
+                    COMPREPLY=($(compgen -W "full titles none" -- "${cur}"))
+                    return 0
+                    ;;
+                --mirror-session)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --on-force-close)
+                    COMPREPLY=($(compgen -W "quit detach" -- "${cur}"))
+                    return 0
+                    ;;
+                --scroll-buffer-size)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --copy-command)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --copy-clipboard)
+                    COMPREPLY=($(compgen -W "system primary" -- "${cur}"))
+                    return 0
+                    ;;
+                --copy-on-select)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --osc8-hyperlinks)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --scrollback-editor)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --session-name)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --attach-to-session)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --auto-layout)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --session-serialization)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --serialize-pane-viewport)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --scrollback-lines-to-serialize)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --styled-underlines)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --serialization-interval)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --disable-session-metadata)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --support-kitty-keyboard-protocol)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --support-kitty-graphics-protocol)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --grapheme-clusters)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --mirror-resizes-source-pane)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --live-view-release-key)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --web-server)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --web-sharing)
+                    COMPREPLY=($(compgen -W "on off disabled" -- "${cur}"))
+                    return 0
+                    ;;
+                --stacked-resize)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --stacked-pane-list)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --stacked-pane-list-orientation)
+                    COMPREPLY=($(compgen -W "vertical horizontal" -- "${cur}"))
+                    return 0
+                    ;;
+                --show-startup-tips)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --show-release-notes)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --advanced-mouse-actions)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --mouse-scroll-resize)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --scroll-mode-sync)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --mouse-hover-effects)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --mouse-hover-tips)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --visual-bell)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --focus-follows-mouse)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --mouse-click-through)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --context-menu-enabled)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --osc133-command-selection)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --word-separators)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --host-notification-protocol)
+                    COMPREPLY=($(compgen -W "auto osc9 osc99 bell off" -- "${cur}"))
+                    return 0
+                    ;;
+                --post-command-discovery-hook)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --client-async-worker-tasks)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --nested-session-handling)
+                    COMPREPLY=($(compgen -W "ask fullscreen descend never" -- "${cur}"))
+                    return 0
+                    ;;
+                --dangerously-enable-paste-buffer-read)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --session-indicator)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --swap-layout-notification)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --on-quit)
+                    COMPREPLY=($(compgen -W "ask_quit ask_detach quit detach" -- "${cur}"))
+                    return 0
+                    ;;
+                --bars-hidden-on-start)
+                    COMPREPLY=($(compgen -f "${cur}"))
+                    return 0
+                    ;;
+                --hidden-bars-notification)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
+                    return 0
+                    ;;
+                --mode-hints-when-bars-hidden)
+                    COMPREPLY=($(compgen -W "true false" -- "${cur}"))
                     return 0
                     ;;
                 *)

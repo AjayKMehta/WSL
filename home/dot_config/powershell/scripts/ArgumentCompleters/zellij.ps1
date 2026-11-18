@@ -69,6 +69,8 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('e', 'e', [CompletionResultType]::ParameterValue, 'Edit file with default $EDITOR / $VISUAL Returns: Created pane ID (format: terminal_<id>)')
             [CompletionResult]::new('pipe', 'pipe', [CompletionResultType]::ParameterValue, 'Send data to one or more plugins, launch them if they are not running')
             [CompletionResult]::new('subscribe', 'subscribe', [CompletionResultType]::ParameterValue, 'Subscribe to pane render updates (viewport and scrollback)')
+            [CompletionResult]::new('prompt', 'prompt', [CompletionResultType]::ParameterValue, 'Show a UI element to the person at the terminal and print their answer (e.g. zellij prompt confirm "Deploy?")')
+            [CompletionResult]::new('terminal', 'terminal', [CompletionResultType]::ParameterValue, 'Open a session in the Zellij terminal, without another terminal emulator')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -84,6 +86,11 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--default-layout', '--default-layout', [CompletionResultType]::ParameterName, 'Set the default layout')
             [CompletionResult]::new('--layout-dir', '--layout-dir', [CompletionResultType]::ParameterName, 'Set the layout_dir, defaults to subdirectory of config dir')
             [CompletionResult]::new('--theme-dir', '--theme-dir', [CompletionResultType]::ParameterName, 'Set the theme_dir, defaults to subdirectory of config dir')
+            [CompletionResult]::new('--keybinds-dir', '--keybinds-dir', [CompletionResultType]::ParameterName, 'Set the keybinds_dir, defaults to subdirectory of config dir')
+            [CompletionResult]::new('--keybinds-preset', '--keybinds-preset', [CompletionResultType]::ParameterName, 'Use this keybinding preset for this session: a name from the keybinds folder, a built-in preset, or a path to a preset file')
+            [CompletionResult]::new('--keybinds-primary', '--keybinds-primary', [CompletionResultType]::ParameterName, 'The primary leader key for the keybinding preset (for example "Ctrl")')
+            [CompletionResult]::new('--keybinds-secondary', '--keybinds-secondary', [CompletionResultType]::ParameterName, 'The secondary leader key for the keybinding preset (for example "Alt")')
+            [CompletionResult]::new('--keybinds-unlock', '--keybinds-unlock', [CompletionResultType]::ParameterName, 'The unlock key for the keybinding preset (for example "Ctrl g")')
             [CompletionResult]::new('--mouse-mode', '--mouse-mode', [CompletionResultType]::ParameterName, 'Set the handling of mouse events (true or false) Can be temporarily bypassed by the [SHIFT] key')
             [CompletionResult]::new('--pane-frames', '--pane-frames', [CompletionResultType]::ParameterName, 'Set display of the pane frames (true or false)')
             [CompletionResult]::new('--pane-frame-style', '--pane-frame-style', [CompletionResultType]::ParameterName, 'pane-frame-style')
@@ -106,10 +113,14 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--disable-session-metadata', '--disable-session-metadata', [CompletionResultType]::ParameterName, 'If true, will disable writing session metadata to disk')
             [CompletionResult]::new('--support-kitty-keyboard-protocol', '--support-kitty-keyboard-protocol', [CompletionResultType]::ParameterName, 'Whether to enable support for the Kitty keyboard protocol (must also be supported by the host terminal), defaults to true if the terminal supports it')
             [CompletionResult]::new('--support-kitty-graphics-protocol', '--support-kitty-graphics-protocol', [CompletionResultType]::ParameterName, 'Whether to enable support for the Kitty graphics (image) protocol (must also be supported by the host terminal), defaults to true if the terminal supports it')
+            [CompletionResult]::new('--grapheme-clusters', '--grapheme-clusters', [CompletionResultType]::ParameterName, 'Count each grapheme cluster (an emoji sequence, a letter with its accents) as one unit of width, as the Unicode standard does (true or false, default true). When false, widths are counted per code point and programs may still ask for clusters with mode 2027')
+            [CompletionResult]::new('--mirror-resizes-source-pane', '--mirror-resizes-source-pane', [CompletionResultType]::ParameterName, 'Whether a focused mirror of a pane may resize that pane''s program to the mirror''s size, and whether new mirrors resize their source pane by default (true or false, default true)')
+            [CompletionResult]::new('--live-view-release-key', '--live-view-release-key', [CompletionResultType]::ParameterName, 'An extra key that gives typing back to a plugin while a live pane view inside it is taking the keyboard (default: none, Alt Enter, the inbox key or a click outside always do it; a key written twice means pressing it twice)')
             [CompletionResult]::new('--web-server', '--web-server', [CompletionResultType]::ParameterName, 'Whether to make sure a local web server is running when a new Zellij session starts. This web server will allow creating new sessions and attaching to existing ones that have opted in to being shared in the browser')
             [CompletionResult]::new('--web-sharing', '--web-sharing', [CompletionResultType]::ParameterName, 'Whether to allow new sessions to be shared through a local web server, assuming one is running (see the `web_server` option for more details)')
             [CompletionResult]::new('--stacked-resize', '--stacked-resize', [CompletionResultType]::ParameterName, 'Whether to stack panes when resizing beyond a certain size default is true')
             [CompletionResult]::new('--stacked-pane-list', '--stacked-pane-list', [CompletionResultType]::ParameterName, 'stacked-pane-list')
+            [CompletionResult]::new('--stacked-pane-list-orientation', '--stacked-pane-list-orientation', [CompletionResultType]::ParameterName, 'Whether new stacks show their titles in a column (vertical) or in a row (horizontal) default is vertical')
             [CompletionResult]::new('--show-startup-tips', '--show-startup-tips', [CompletionResultType]::ParameterName, 'Whether to show startup tips when starting a new session default is true')
             [CompletionResult]::new('--show-release-notes', '--show-release-notes', [CompletionResultType]::ParameterName, 'Whether to show release notes on first run of a new version default is true')
             [CompletionResult]::new('--advanced-mouse-actions', '--advanced-mouse-actions', [CompletionResultType]::ParameterName, 'Whether to enable mouse hover effects and pane grouping functionality default is true')
@@ -120,13 +131,20 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--visual-bell', '--visual-bell', [CompletionResultType]::ParameterName, 'Whether to show visual bell indicators (pane/tab frame flash and [!] suffix) default is true')
             [CompletionResult]::new('--focus-follows-mouse', '--focus-follows-mouse', [CompletionResultType]::ParameterName, 'Whether to focus panes on mouse hover (true or false) default is false')
             [CompletionResult]::new('--mouse-click-through', '--mouse-click-through', [CompletionResultType]::ParameterName, 'Whether clicking a pane to focus it also sends the click into the pane (true or false) default is false')
+            [CompletionResult]::new('--context-menu-enabled', '--context-menu-enabled', [CompletionResultType]::ParameterName, 'Whether a right click opens the right-click menu (true or false), default is true')
             [CompletionResult]::new('--osc133-command-selection', '--osc133-command-selection', [CompletionResultType]::ParameterName, 'Whether triple-clicking inside shell-marked (OSC 133) command output selects the command and its output rather than the logical line default is true')
             [CompletionResult]::new('--word-separators', '--word-separators', [CompletionResultType]::ParameterName, 'Characters that terminate a word when double-clicking to select it, in addition to whitespace (which is always a separator) default is "[]{}<>()"')
             [CompletionResult]::new('--host-notification-protocol', '--host-notification-protocol', [CompletionResultType]::ParameterName, 'host-notification-protocol')
             [CompletionResult]::new('--post-command-discovery-hook', '--post-command-discovery-hook', [CompletionResultType]::ParameterName, 'A command to run after the discovery of running commands when serializing, for the purpose of manipulating the command (eg. with a regex) before it gets serialized')
-            [CompletionResult]::new('--client-async-worker-tasks', '--client-async-worker-tasks', [CompletionResultType]::ParameterName, 'Number of async worker tasks to spawn per active client')
+            [CompletionResult]::new('--client-async-worker-tasks', '--client-async-worker-tasks', [CompletionResultType]::ParameterName, 'Number of background threads used by `zellij attach <url>` when it connects to a session on another machine. One set is made for that program, not one per client; the web server, browser clients and local sessions are not affected')
             [CompletionResult]::new('--nested-session-handling', '--nested-session-handling', [CompletionResultType]::ParameterName, 'How to handle a nested Zellij session detected inside a pane (ask, fullscreen, descend, never)')
             [CompletionResult]::new('--dangerously-enable-paste-buffer-read', '--dangerously-enable-paste-buffer-read', [CompletionResultType]::ParameterName, 'dangerously-enable-paste-buffer-read')
+            [CompletionResult]::new('--session-indicator', '--session-indicator', [CompletionResultType]::ParameterName, 'Whether to show the other sessions indicator in the tab bar and compact bar (true or false), default is true')
+            [CompletionResult]::new('--swap-layout-notification', '--swap-layout-notification', [CompletionResultType]::ParameterName, 'Whether to briefly show the new swap layout name when it is changed (true or false), default is true')
+            [CompletionResult]::new('--on-quit', '--on-quit', [CompletionResultType]::ParameterName, 'What the quit action does: ask_quit (ask, Quit preselected), ask_detach (ask, Detach preselected), quit or detach. Default is ask_quit')
+            [CompletionResult]::new('--bars-hidden-on-start', '--bars-hidden-on-start', [CompletionResultType]::ParameterName, 'Which bars a new session starts with hidden: bar names separated by commas (eg. tab-bar,status-bar), all or none. Default is none')
+            [CompletionResult]::new('--hidden-bars-notification', '--hidden-bars-notification', [CompletionResultType]::ParameterName, 'Whether to briefly show what was hidden and how to show it again when bars are hidden (true or false), default is true')
+            [CompletionResult]::new('--mode-hints-when-bars-hidden', '--mode-hints-when-bars-hidden', [CompletionResultType]::ParameterName, 'Whether to show the current mode''s keys in a corner while a bar that would show them is hidden (true or false), default is true')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             break
@@ -134,12 +152,19 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;setup' {
             [CompletionResult]::new('--dump-layout', '--dump-layout', [CompletionResultType]::ParameterName, 'Dump specified layout to stdout')
             [CompletionResult]::new('--dump-swap-layout', '--dump-swap-layout', [CompletionResultType]::ParameterName, 'Dump the specified swap layout file to stdout')
+            [CompletionResult]::new('--dump-keybinds', '--dump-keybinds', [CompletionResultType]::ParameterName, 'Dump the specified keybinding preset to stdout')
             [CompletionResult]::new('--dump-plugins', '--dump-plugins', [CompletionResultType]::ParameterName, 'Dump the builtin plugins to DIR or "DATA DIR" if unspecified')
             [CompletionResult]::new('--generate-completion', '--generate-completion', [CompletionResultType]::ParameterName, 'Generates completion for the specified shell')
             [CompletionResult]::new('--generate-auto-start', '--generate-auto-start', [CompletionResultType]::ParameterName, 'Generates auto-start script for the specified shell')
+            [CompletionResult]::new('--keybinding-preset', '--keybinding-preset', [CompletionResultType]::ParameterName, 'Choose the keybinding preset (for example "unlock-first") and save it to the config file')
             [CompletionResult]::new('--dump-config', '--dump-config', [CompletionResultType]::ParameterName, 'Dump the default configuration file to stdout')
             [CompletionResult]::new('--clean', '--clean', [CompletionResultType]::ParameterName, 'Disables loading of configuration file at default location, loads the defaults that zellij ships with')
             [CompletionResult]::new('--check', '--check', [CompletionResultType]::ParameterName, 'Checks the configuration of zellij and displays currently used directories')
+            [CompletionResult]::new('--install-desktop-entry', '--install-desktop-entry', [CompletionResultType]::ParameterName, 'Install the desktop entry, as the setup screen does: a launcher and icons on Linux, a Start menu shortcut and an "Open Zellij here" Explorer item on Windows')
+            [CompletionResult]::new('--uninstall-desktop-entry', '--uninstall-desktop-entry', [CompletionResultType]::ParameterName, 'Remove the desktop entry Zellij installed, as the setup screen''s Uninstall button does')
+            [CompletionResult]::new('--copy-to-permanent-folder', '--copy-to-permanent-folder', [CompletionResultType]::ParameterName, 'Copy this Zellij to a permanent folder, or update an older Zellij that is already installed, as the setup screen does')
+            [CompletionResult]::new('--replace-existing', '--replace-existing', [CompletionResultType]::ParameterName, 'Replace a different file that is in the way of --copy-to-permanent-folder')
+            [CompletionResult]::new('--make-default-terminal', '--make-default-terminal', [CompletionResultType]::ParameterName, 'Make Zellij the default terminal, installing the desktop entry if it is missing, as the setup screen does')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -198,7 +223,11 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('toggle-fullscreen', 'toggle-fullscreen', [CompletionResultType]::ParameterValue, 'Toggle between fullscreen focus pane and normal layout')
             [CompletionResult]::new('toggle-no-ui-fullscreen', 'toggle-no-ui-fullscreen', [CompletionResultType]::ParameterValue, 'Toggle between fullscreen over the entire display (including the UI bars) and normal layout')
             [CompletionResult]::new('toggle-pane-frames', 'toggle-pane-frames', [CompletionResultType]::ParameterValue, 'Toggle frames around panes in the UI')
+            [CompletionResult]::new('toggle-stack-list-orientation', 'toggle-stack-list-orientation', [CompletionResultType]::ParameterValue, 'Switch the focused stack between showing its titles in a column (vertical) and in a row (horizontal)')
             [CompletionResult]::new('set-pane-frame-style', 'set-pane-frame-style', [CompletionResultType]::ParameterValue, 'set-pane-frame-style')
+            [CompletionResult]::new('toggle-bars', 'toggle-bars', [CompletionResultType]::ParameterValue, 'Show all bars if any are hidden, otherwise hide the named bars (all bars if none are named)')
+            [CompletionResult]::new('hide-bars', 'hide-bars', [CompletionResultType]::ParameterValue, 'Hide the named bars (all bars if none are named) in every tab')
+            [CompletionResult]::new('show-bars', 'show-bars', [CompletionResultType]::ParameterValue, 'Show all hidden bars')
             [CompletionResult]::new('toggle-active-sync-tab', 'toggle-active-sync-tab', [CompletionResultType]::ParameterValue, 'Toggle between sending text commands to all panes on the current tab and normal mode')
             [CompletionResult]::new('new-pane', 'new-pane', [CompletionResultType]::ParameterValue, 'Open a new pane in the specified direction [right|down] If no direction is specified, will try to use the biggest available space. Returns: Created pane ID (format: terminal_<id> or plugin_<id>)')
             [CompletionResult]::new('edit', 'edit', [CompletionResultType]::ParameterValue, 'Open the specified file in a new zellij pane with your default EDITOR Returns: Created pane ID (format: terminal_<id>)')
@@ -225,6 +254,8 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('move-tab', 'move-tab', [CompletionResultType]::ParameterValue, 'Move the focused tab in the specified direction. [right|left]')
             [CompletionResult]::new('previous-swap-layout', 'previous-swap-layout', [CompletionResultType]::ParameterValue, 'previous-swap-layout')
             [CompletionResult]::new('next-swap-layout', 'next-swap-layout', [CompletionResultType]::ParameterValue, 'next-swap-layout')
+            [CompletionResult]::new('apply-tiled-swap-layout', 'apply-tiled-swap-layout', [CompletionResultType]::ParameterValue, 'Apply the tiled swap layout with the given name, leaving floating pane visibility and focus untouched')
+            [CompletionResult]::new('apply-floating-swap-layout', 'apply-floating-swap-layout', [CompletionResultType]::ParameterValue, 'Apply the floating swap layout with the given name, leaving floating pane visibility and focus untouched')
             [CompletionResult]::new('override-layout', 'override-layout', [CompletionResultType]::ParameterValue, 'Override the layout of the active tab')
             [CompletionResult]::new('query-tab-names', 'query-tab-names', [CompletionResultType]::ParameterValue, 'Query all tab names')
             [CompletionResult]::new('start-or-reload-plugin', 'start-or-reload-plugin', [CompletionResultType]::ParameterValue, 'start-or-reload-plugin')
@@ -237,16 +268,33 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('list-tabs', 'list-tabs', [CompletionResultType]::ParameterValue, 'List all tabs with their information')
             [CompletionResult]::new('current-tab-info', 'current-tab-info', [CompletionResultType]::ParameterValue, 'Get information about the currently active tab')
             [CompletionResult]::new('toggle-pane-pinned', 'toggle-pane-pinned', [CompletionResultType]::ParameterValue, 'toggle-pane-pinned')
+            [CompletionResult]::new('toggle-mirror-resize', 'toggle-mirror-resize', [CompletionResultType]::ParameterValue, 'Toggle whether the live view in the focused plugin pane resizes the program of the pane it shows')
+            [CompletionResult]::new('mute-pane', 'mute-pane', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of a pane (the focused pane by default)')
+            [CompletionResult]::new('ignore-pane-output', 'ignore-pane-output', [CompletionResultType]::ParameterValue, 'Stop or start reporting new output of a pane (the focused pane by default)')
+            [CompletionResult]::new('watch-pane', 'watch-pane', [CompletionResultType]::ParameterValue, 'Watch a pane: notify each time its command finishes or its output goes quiet, until turned off again (toggles; the focused pane by default)')
+            [CompletionResult]::new('mute-tab', 'mute-tab', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of all panes in a tab (the active tab by default)')
+            [CompletionResult]::new('mute-session', 'mute-session', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of the whole session')
+            [CompletionResult]::new('toggle-session', 'toggle-session', [CompletionResultType]::ParameterValue, 'Switch to the session this client was in before (run again to return), or to the next running session if there is none')
+            [CompletionResult]::new('go-to-previous-session', 'go-to-previous-session', [CompletionResultType]::ParameterValue, 'Go back to the previous session in this client''s history')
+            [CompletionResult]::new('go-to-next-session', 'go-to-next-session', [CompletionResultType]::ParameterValue, 'Go forward in this client''s session history')
+            [CompletionResult]::new('go-to-next-attention', 'go-to-next-attention', [CompletionResultType]::ParameterValue, 'Jump to the next pane that needs attention in any session, switching session if needed')
+            [CompletionResult]::new('toggle-tray-icon', 'toggle-tray-icon', [CompletionResultType]::ParameterValue, 'Show or hide the desktop app''s tray / menu-bar icon until the app restarts (sessions and notifications continue)')
+            [CompletionResult]::new('mark-pane-seen', 'mark-pane-seen', [CompletionResultType]::ParameterValue, 'Mark a pane as seen, clearing past events (the focused pane by default)')
+            [CompletionResult]::new('mark-all-seen', 'mark-all-seen', [CompletionResultType]::ParameterValue, 'Mark every pane of every running session as seen')
             [CompletionResult]::new('stack-panes', 'stack-panes', [CompletionResultType]::ParameterValue, 'Stack pane ids Ids are a space separated list of pane ids. They should either be in the form of `terminal_<int>` (eg. terminal_1), `plugin_<int>` (eg. plugin_1) or bare integers in which case they''ll be considered terminals (eg. 1 is the equivalent of terminal_1)')
             [CompletionResult]::new('change-floating-pane-coordinates', 'change-floating-pane-coordinates', [CompletionResultType]::ParameterValue, 'change-floating-pane-coordinates')
             [CompletionResult]::new('toggle-pane-borderless', 'toggle-pane-borderless', [CompletionResultType]::ParameterValue, 'toggle-pane-borderless')
             [CompletionResult]::new('set-pane-borderless', 'set-pane-borderless', [CompletionResultType]::ParameterValue, 'set-pane-borderless')
+            [CompletionResult]::new('set-pane-border-style', 'set-pane-border-style', [CompletionResultType]::ParameterValue, 'Change the border line style of an existing pane')
             [CompletionResult]::new('detach', 'detach', [CompletionResultType]::ParameterValue, 'Detach from the current session')
             [CompletionResult]::new('set-dark-theme', 'set-dark-theme', [CompletionResultType]::ParameterValue, 'Switch the theme to dark (uses configured `theme_dark`)')
             [CompletionResult]::new('set-light-theme', 'set-light-theme', [CompletionResultType]::ParameterValue, 'Switch the theme to light (uses configured `theme_light`)')
             [CompletionResult]::new('toggle-theme', 'toggle-theme', [CompletionResultType]::ParameterValue, 'Toggle between dark and light themes (used configured `theme_dark` and `theme_light`)')
+            [CompletionResult]::new('dismiss-info-popups', 'dismiss-info-popups', [CompletionResultType]::ParameterValue, 'Close the information popups (such as `zellij prompt notify`) shown to you')
+            [CompletionResult]::new('open-context-menu', 'open-context-menu', [CompletionResultType]::ParameterValue, 'Open the right-click menu for the focused pane, at that pane''s position')
             [CompletionResult]::new('switch-session', 'switch-session', [CompletionResultType]::ParameterValue, 'Switch to a different session')
             [CompletionResult]::new('set-pane-color', 'set-pane-color', [CompletionResultType]::ParameterValue, 'Set the default foreground/background color of a pane')
+            [CompletionResult]::new('set-resurrect-command', 'set-resurrect-command', [CompletionResultType]::ParameterValue, 'Set the command a terminal pane will be resurrected with, instead of the detected one. The command stays in effect until cleared with --clear or until the pane is closed')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -282,7 +330,11 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('toggle-fullscreen', 'toggle-fullscreen', [CompletionResultType]::ParameterValue, 'Toggle between fullscreen focus pane and normal layout')
             [CompletionResult]::new('toggle-no-ui-fullscreen', 'toggle-no-ui-fullscreen', [CompletionResultType]::ParameterValue, 'Toggle between fullscreen over the entire display (including the UI bars) and normal layout')
             [CompletionResult]::new('toggle-pane-frames', 'toggle-pane-frames', [CompletionResultType]::ParameterValue, 'Toggle frames around panes in the UI')
+            [CompletionResult]::new('toggle-stack-list-orientation', 'toggle-stack-list-orientation', [CompletionResultType]::ParameterValue, 'Switch the focused stack between showing its titles in a column (vertical) and in a row (horizontal)')
             [CompletionResult]::new('set-pane-frame-style', 'set-pane-frame-style', [CompletionResultType]::ParameterValue, 'set-pane-frame-style')
+            [CompletionResult]::new('toggle-bars', 'toggle-bars', [CompletionResultType]::ParameterValue, 'Show all bars if any are hidden, otherwise hide the named bars (all bars if none are named)')
+            [CompletionResult]::new('hide-bars', 'hide-bars', [CompletionResultType]::ParameterValue, 'Hide the named bars (all bars if none are named) in every tab')
+            [CompletionResult]::new('show-bars', 'show-bars', [CompletionResultType]::ParameterValue, 'Show all hidden bars')
             [CompletionResult]::new('toggle-active-sync-tab', 'toggle-active-sync-tab', [CompletionResultType]::ParameterValue, 'Toggle between sending text commands to all panes on the current tab and normal mode')
             [CompletionResult]::new('new-pane', 'new-pane', [CompletionResultType]::ParameterValue, 'Open a new pane in the specified direction [right|down] If no direction is specified, will try to use the biggest available space. Returns: Created pane ID (format: terminal_<id> or plugin_<id>)')
             [CompletionResult]::new('edit', 'edit', [CompletionResultType]::ParameterValue, 'Open the specified file in a new zellij pane with your default EDITOR Returns: Created pane ID (format: terminal_<id>)')
@@ -309,6 +361,8 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('move-tab', 'move-tab', [CompletionResultType]::ParameterValue, 'Move the focused tab in the specified direction. [right|left]')
             [CompletionResult]::new('previous-swap-layout', 'previous-swap-layout', [CompletionResultType]::ParameterValue, 'previous-swap-layout')
             [CompletionResult]::new('next-swap-layout', 'next-swap-layout', [CompletionResultType]::ParameterValue, 'next-swap-layout')
+            [CompletionResult]::new('apply-tiled-swap-layout', 'apply-tiled-swap-layout', [CompletionResultType]::ParameterValue, 'Apply the tiled swap layout with the given name, leaving floating pane visibility and focus untouched')
+            [CompletionResult]::new('apply-floating-swap-layout', 'apply-floating-swap-layout', [CompletionResultType]::ParameterValue, 'Apply the floating swap layout with the given name, leaving floating pane visibility and focus untouched')
             [CompletionResult]::new('override-layout', 'override-layout', [CompletionResultType]::ParameterValue, 'Override the layout of the active tab')
             [CompletionResult]::new('query-tab-names', 'query-tab-names', [CompletionResultType]::ParameterValue, 'Query all tab names')
             [CompletionResult]::new('start-or-reload-plugin', 'start-or-reload-plugin', [CompletionResultType]::ParameterValue, 'start-or-reload-plugin')
@@ -321,16 +375,33 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('list-tabs', 'list-tabs', [CompletionResultType]::ParameterValue, 'List all tabs with their information')
             [CompletionResult]::new('current-tab-info', 'current-tab-info', [CompletionResultType]::ParameterValue, 'Get information about the currently active tab')
             [CompletionResult]::new('toggle-pane-pinned', 'toggle-pane-pinned', [CompletionResultType]::ParameterValue, 'toggle-pane-pinned')
+            [CompletionResult]::new('toggle-mirror-resize', 'toggle-mirror-resize', [CompletionResultType]::ParameterValue, 'Toggle whether the live view in the focused plugin pane resizes the program of the pane it shows')
+            [CompletionResult]::new('mute-pane', 'mute-pane', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of a pane (the focused pane by default)')
+            [CompletionResult]::new('ignore-pane-output', 'ignore-pane-output', [CompletionResultType]::ParameterValue, 'Stop or start reporting new output of a pane (the focused pane by default)')
+            [CompletionResult]::new('watch-pane', 'watch-pane', [CompletionResultType]::ParameterValue, 'Watch a pane: notify each time its command finishes or its output goes quiet, until turned off again (toggles; the focused pane by default)')
+            [CompletionResult]::new('mute-tab', 'mute-tab', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of all panes in a tab (the active tab by default)')
+            [CompletionResult]::new('mute-session', 'mute-session', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of the whole session')
+            [CompletionResult]::new('toggle-session', 'toggle-session', [CompletionResultType]::ParameterValue, 'Switch to the session this client was in before (run again to return), or to the next running session if there is none')
+            [CompletionResult]::new('go-to-previous-session', 'go-to-previous-session', [CompletionResultType]::ParameterValue, 'Go back to the previous session in this client''s history')
+            [CompletionResult]::new('go-to-next-session', 'go-to-next-session', [CompletionResultType]::ParameterValue, 'Go forward in this client''s session history')
+            [CompletionResult]::new('go-to-next-attention', 'go-to-next-attention', [CompletionResultType]::ParameterValue, 'Jump to the next pane that needs attention in any session, switching session if needed')
+            [CompletionResult]::new('toggle-tray-icon', 'toggle-tray-icon', [CompletionResultType]::ParameterValue, 'Show or hide the desktop app''s tray / menu-bar icon until the app restarts (sessions and notifications continue)')
+            [CompletionResult]::new('mark-pane-seen', 'mark-pane-seen', [CompletionResultType]::ParameterValue, 'Mark a pane as seen, clearing past events (the focused pane by default)')
+            [CompletionResult]::new('mark-all-seen', 'mark-all-seen', [CompletionResultType]::ParameterValue, 'Mark every pane of every running session as seen')
             [CompletionResult]::new('stack-panes', 'stack-panes', [CompletionResultType]::ParameterValue, 'Stack pane ids Ids are a space separated list of pane ids. They should either be in the form of `terminal_<int>` (eg. terminal_1), `plugin_<int>` (eg. plugin_1) or bare integers in which case they''ll be considered terminals (eg. 1 is the equivalent of terminal_1)')
             [CompletionResult]::new('change-floating-pane-coordinates', 'change-floating-pane-coordinates', [CompletionResultType]::ParameterValue, 'change-floating-pane-coordinates')
             [CompletionResult]::new('toggle-pane-borderless', 'toggle-pane-borderless', [CompletionResultType]::ParameterValue, 'toggle-pane-borderless')
             [CompletionResult]::new('set-pane-borderless', 'set-pane-borderless', [CompletionResultType]::ParameterValue, 'set-pane-borderless')
+            [CompletionResult]::new('set-pane-border-style', 'set-pane-border-style', [CompletionResultType]::ParameterValue, 'Change the border line style of an existing pane')
             [CompletionResult]::new('detach', 'detach', [CompletionResultType]::ParameterValue, 'Detach from the current session')
             [CompletionResult]::new('set-dark-theme', 'set-dark-theme', [CompletionResultType]::ParameterValue, 'Switch the theme to dark (uses configured `theme_dark`)')
             [CompletionResult]::new('set-light-theme', 'set-light-theme', [CompletionResultType]::ParameterValue, 'Switch the theme to light (uses configured `theme_light`)')
             [CompletionResult]::new('toggle-theme', 'toggle-theme', [CompletionResultType]::ParameterValue, 'Toggle between dark and light themes (used configured `theme_dark` and `theme_light`)')
+            [CompletionResult]::new('dismiss-info-popups', 'dismiss-info-popups', [CompletionResultType]::ParameterValue, 'Close the information popups (such as `zellij prompt notify`) shown to you')
+            [CompletionResult]::new('open-context-menu', 'open-context-menu', [CompletionResultType]::ParameterValue, 'Open the right-click menu for the focused pane, at that pane''s position')
             [CompletionResult]::new('switch-session', 'switch-session', [CompletionResultType]::ParameterValue, 'Switch to a different session')
             [CompletionResult]::new('set-pane-color', 'set-pane-color', [CompletionResultType]::ParameterValue, 'Set the default foreground/background color of a pane')
+            [CompletionResult]::new('set-resurrect-command', 'set-resurrect-command', [CompletionResultType]::ParameterValue, 'Set the command a terminal pane will be resurrected with, instead of the detected one. The command stays in effect until cleared with --clear or until the pane is closed')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -718,12 +789,56 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
         }
+        'zellij;action;toggle-stack-list-orientation' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'Target the stack holding a specific pane by ID (eg. terminal_1, plugin_2, or 3)')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'Target the stack holding a specific pane by ID (eg. terminal_1, plugin_2, or 3)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;toggle-stack-list-orientation' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'Target the stack holding a specific pane by ID (eg. terminal_1, plugin_2, or 3)')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'Target the stack holding a specific pane by ID (eg. terminal_1, plugin_2, or 3)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
         'zellij;action;set-pane-frame-style' {
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
         }
         'zellij;ac;set-pane-frame-style' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;toggle-bars' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;toggle-bars' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;hide-bars' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;hide-bars' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;show-bars' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;show-bars' {
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -761,6 +876,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--pinned', '--pinned', [CompletionResultType]::ParameterName, 'Whether to pin a floating pane so that it is always on top')
             [CompletionResult]::new('--borderless', '--borderless', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
             [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('--floating', '--floating', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, 'Open the new pane in place of the current pane, temporarily suspending it')
@@ -770,6 +886,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--close-on-exit', '--close-on-exit', [CompletionResultType]::ParameterName, 'Close the pane immediately when its command exits')
             [CompletionResult]::new('-s', '-s', [CompletionResultType]::ParameterName, 'Start the command suspended, only running it after the you first press ENTER')
             [CompletionResult]::new('--start-suspended', '--start-suspended', [CompletionResultType]::ParameterName, 'Start the command suspended, only running it after the you first press ENTER')
+            [CompletionResult]::new('--notify', '--notify', [CompletionResultType]::ParameterName, 'Watch the pane: notify each time its command finishes or its output goes quiet, until the watch is turned off')
             [CompletionResult]::new('--skip-plugin-cache', '--skip-plugin-cache', [CompletionResultType]::ParameterName, 'skip-plugin-cache')
             [CompletionResult]::new('--stacked', '--stacked', [CompletionResultType]::ParameterName, 'stacked')
             [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'Block until the command has finished and its pane has been closed')
@@ -802,6 +919,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--pinned', '--pinned', [CompletionResultType]::ParameterName, 'Whether to pin a floating pane so that it is always on top')
             [CompletionResult]::new('--borderless', '--borderless', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
             [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('--floating', '--floating', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, 'Open the new pane in place of the current pane, temporarily suspending it')
@@ -811,6 +929,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--close-on-exit', '--close-on-exit', [CompletionResultType]::ParameterName, 'Close the pane immediately when its command exits')
             [CompletionResult]::new('-s', '-s', [CompletionResultType]::ParameterName, 'Start the command suspended, only running it after the you first press ENTER')
             [CompletionResult]::new('--start-suspended', '--start-suspended', [CompletionResultType]::ParameterName, 'Start the command suspended, only running it after the you first press ENTER')
+            [CompletionResult]::new('--notify', '--notify', [CompletionResultType]::ParameterName, 'Watch the pane: notify each time its command finishes or its output goes quiet, until the watch is turned off')
             [CompletionResult]::new('--skip-plugin-cache', '--skip-plugin-cache', [CompletionResultType]::ParameterName, 'skip-plugin-cache')
             [CompletionResult]::new('--stacked', '--stacked', [CompletionResultType]::ParameterName, 'stacked')
             [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'Block until the command has finished and its pane has been closed')
@@ -840,6 +959,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--borderless', '--borderless', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
             [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('--floating', '--floating', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, 'Open the new pane in place of the current pane, temporarily suspending it')
@@ -867,6 +987,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--borderless', '--borderless', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
             [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('--floating', '--floating', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, 'Open the new pane in place of the current pane, temporarily suspending it')
@@ -1198,11 +1319,39 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
         }
+        'zellij;action;apply-tiled-swap-layout' {
+            [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            break
+        }
+        'zellij;ac;apply-tiled-swap-layout' {
+            [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            break
+        }
+        'zellij;action;apply-floating-swap-layout' {
+            [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            break
+        }
+        'zellij;ac;apply-floating-swap-layout' {
+            [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            break
+        }
         'zellij;action;override-layout' {
             [CompletionResult]::new('--layout-string', '--layout-string', [CompletionResultType]::ParameterName, 'Raw KDL layout string to use directly (instead of a layout file path)')
             [CompletionResult]::new('--layout-dir', '--layout-dir', [CompletionResultType]::ParameterName, 'Default folder to look for layouts')
             [CompletionResult]::new('--retain-existing-terminal-panes', '--retain-existing-terminal-panes', [CompletionResultType]::ParameterName, 'Retain existing terminal panes that do not fit in the layout (default: false)')
-            [CompletionResult]::new('--retain-existing-plugin-panes', '--retain-existing-plugin-panes', [CompletionResultType]::ParameterName, 'Retain existing plugin panes that do not fit with the layout default: false)')
+            [CompletionResult]::new('--retain-existing-plugin-panes', '--retain-existing-plugin-panes', [CompletionResultType]::ParameterName, 'Retain existing plugin panes that do not fit with the layout (default: false)')
             [CompletionResult]::new('--apply-only-to-active-tab', '--apply-only-to-active-tab', [CompletionResultType]::ParameterName, 'Only apply the layout to the active tab (uses just the first layout tab if it has multiple)')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
@@ -1212,7 +1361,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--layout-string', '--layout-string', [CompletionResultType]::ParameterName, 'Raw KDL layout string to use directly (instead of a layout file path)')
             [CompletionResult]::new('--layout-dir', '--layout-dir', [CompletionResultType]::ParameterName, 'Default folder to look for layouts')
             [CompletionResult]::new('--retain-existing-terminal-panes', '--retain-existing-terminal-panes', [CompletionResultType]::ParameterName, 'Retain existing terminal panes that do not fit in the layout (default: false)')
-            [CompletionResult]::new('--retain-existing-plugin-panes', '--retain-existing-plugin-panes', [CompletionResultType]::ParameterName, 'Retain existing plugin panes that do not fit with the layout default: false)')
+            [CompletionResult]::new('--retain-existing-plugin-panes', '--retain-existing-plugin-panes', [CompletionResultType]::ParameterName, 'Retain existing plugin panes that do not fit with the layout (default: false)')
             [CompletionResult]::new('--apply-only-to-active-tab', '--apply-only-to-active-tab', [CompletionResultType]::ParameterName, 'Only apply the layout to the active tab (uses just the first layout tab if it has multiple)')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
@@ -1335,10 +1484,14 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--plugin-cwd', '--plugin-cwd', [CompletionResultType]::ParameterName, 'If launching a plugin, specify its working directory')
             [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'If launching a plugin, specify its pane title')
             [CompletionResult]::new('--plugin-title', '--plugin-title', [CompletionResultType]::ParameterName, 'If launching a plugin, specify its pane title')
+            [CompletionResult]::new('--popup', '--popup', [CompletionResultType]::ParameterName, 'If launching a plugin, open it as a popup for the user looking at the calling pane (pane, center, mouse, cursor, top-left, top-right, bottom-left or bottom-right)')
+            [CompletionResult]::new('--popup-outside-click', '--popup-outside-click', [CompletionResultType]::ParameterName, 'What a click outside the --popup does: block (ignore it) or close (close the popup) (e.g. --popup mouse --popup-outside-click close)')
             [CompletionResult]::new('-l', '-l', [CompletionResultType]::ParameterName, 'Launch a new plugin even if one is already running')
             [CompletionResult]::new('--force-launch-plugin', '--force-launch-plugin', [CompletionResultType]::ParameterName, 'Launch a new plugin even if one is already running')
             [CompletionResult]::new('-s', '-s', [CompletionResultType]::ParameterName, 'If launching a new plugin, skip cache and force-compile the plugin')
             [CompletionResult]::new('--skip-plugin-cache', '--skip-plugin-cache', [CompletionResultType]::ParameterName, 'If launching a new plugin, skip cache and force-compile the plugin')
+            [CompletionResult]::new('--popup-no-focus', '--popup-no-focus', [CompletionResultType]::ParameterName, 'Open the --popup as an information popup that does not take key focus (e.g. --popup top-right --popup-no-focus)')
+            [CompletionResult]::new('--popup-capture-all-keys', '--popup-capture-all-keys', [CompletionResultType]::ParameterName, 'Send every key to the --popup, including the ones bound to Zellij actions (e.g. --popup center --popup-capture-all-keys)')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -1360,10 +1513,14 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--plugin-cwd', '--plugin-cwd', [CompletionResultType]::ParameterName, 'If launching a plugin, specify its working directory')
             [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'If launching a plugin, specify its pane title')
             [CompletionResult]::new('--plugin-title', '--plugin-title', [CompletionResultType]::ParameterName, 'If launching a plugin, specify its pane title')
+            [CompletionResult]::new('--popup', '--popup', [CompletionResultType]::ParameterName, 'If launching a plugin, open it as a popup for the user looking at the calling pane (pane, center, mouse, cursor, top-left, top-right, bottom-left or bottom-right)')
+            [CompletionResult]::new('--popup-outside-click', '--popup-outside-click', [CompletionResultType]::ParameterName, 'What a click outside the --popup does: block (ignore it) or close (close the popup) (e.g. --popup mouse --popup-outside-click close)')
             [CompletionResult]::new('-l', '-l', [CompletionResultType]::ParameterName, 'Launch a new plugin even if one is already running')
             [CompletionResult]::new('--force-launch-plugin', '--force-launch-plugin', [CompletionResultType]::ParameterName, 'Launch a new plugin even if one is already running')
             [CompletionResult]::new('-s', '-s', [CompletionResultType]::ParameterName, 'If launching a new plugin, skip cache and force-compile the plugin')
             [CompletionResult]::new('--skip-plugin-cache', '--skip-plugin-cache', [CompletionResultType]::ParameterName, 'If launching a new plugin, skip cache and force-compile the plugin')
+            [CompletionResult]::new('--popup-no-focus', '--popup-no-focus', [CompletionResultType]::ParameterName, 'Open the --popup as an information popup that does not take key focus (e.g. --popup top-right --popup-no-focus)')
+            [CompletionResult]::new('--popup-capture-all-keys', '--popup-capture-all-keys', [CompletionResultType]::ParameterName, 'Send every key to the --popup, including the ones bound to Zellij actions (e.g. --popup center --popup-capture-all-keys)')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -1474,6 +1631,158 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
         }
+        'zellij;action;toggle-mirror-resize' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;toggle-mirror-resize' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;mute-pane' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;mute-pane' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;ignore-pane-output' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;ignore-pane-output' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;watch-pane' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;watch-pane' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;mute-tab' {
+            [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'Target a specific tab by its ID')
+            [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by its ID')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;mute-tab' {
+            [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'Target a specific tab by its ID')
+            [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by its ID')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;mute-session' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;mute-session' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;toggle-session' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;toggle-session' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;go-to-previous-session' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;go-to-previous-session' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;go-to-next-session' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;go-to-next-session' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;go-to-next-attention' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;go-to-next-attention' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;toggle-tray-icon' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;toggle-tray-icon' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;mark-pane-seen' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;mark-pane-seen' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'Target a specific pane by ID (eg. terminal_1 or 3)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;mark-all-seen' {
+            [CompletionResult]::new('--this-session', '--this-session', [CompletionResultType]::ParameterName, 'Only mark the panes of the current session')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;mark-all-seen' {
+            [CompletionResult]::new('--this-session', '--this-session', [CompletionResultType]::ParameterName, 'Only mark the panes of the current session')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
         'zellij;action;stack-panes' {
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
@@ -1496,6 +1805,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--pinned', '--pinned', [CompletionResultType]::ParameterName, 'Whether to pin a floating pane so that it is always on top')
             [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'change this pane to be with/without a border (warning: will make it impossible to move with the mouse if without a border)')
             [CompletionResult]::new('--borderless', '--borderless', [CompletionResultType]::ParameterName, 'change this pane to be with/without a border (warning: will make it impossible to move with the mouse if without a border)')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -1512,6 +1822,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--pinned', '--pinned', [CompletionResultType]::ParameterName, 'Whether to pin a floating pane so that it is always on top')
             [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'change this pane to be with/without a border (warning: will make it impossible to move with the mouse if without a border)')
             [CompletionResult]::new('--borderless', '--borderless', [CompletionResultType]::ParameterName, 'change this pane to be with/without a border (warning: will make it impossible to move with the mouse if without a border)')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -1544,6 +1855,22 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'The pane_id of the pane, eg. terminal_1, plugin_2 or 3 (equivalent to terminal_3)')
             [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'Whether the pane should be borderless (flag present) or bordered (flag absent)')
             [CompletionResult]::new('--borderless', '--borderless', [CompletionResultType]::ParameterName, 'Whether the pane should be borderless (flag present) or bordered (flag absent)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;set-pane-border-style' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'The pane_id of the pane, eg. terminal_1, plugin_2 or 3 (equivalent to terminal_3)')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'The pane_id of the pane, eg. terminal_1, plugin_2 or 3 (equivalent to terminal_3)')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;set-pane-border-style' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'The pane_id of the pane, eg. terminal_1, plugin_2 or 3 (equivalent to terminal_3)')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'The pane_id of the pane, eg. terminal_1, plugin_2 or 3 (equivalent to terminal_3)')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -1588,6 +1915,26 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
         }
+        'zellij;action;dismiss-info-popups' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;dismiss-info-popups' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;open-context-menu' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;open-context-menu' {
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
         'zellij;action;switch-session' {
             [CompletionResult]::new('--tab-position', '--tab-position', [CompletionResultType]::ParameterName, 'Optional tab position to focus')
             [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'Optional pane ID to focus (eg. "terminal_1" for terminal pane with id 1, or "plugin_2" for plugin pane with id 2)')
@@ -1597,6 +1944,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--layout-dir', '--layout-dir', [CompletionResultType]::ParameterName, 'Default folder to look for layouts')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Change the working directory when switching')
             [CompletionResult]::new('--cwd', '--cwd', [CompletionResultType]::ParameterName, 'Change the working directory when switching')
+            [CompletionResult]::new('--close-current', '--close-current', [CompletionResultType]::ParameterName, 'Close the current session after switching, if no command has been run in it and no other client is attached')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -1610,6 +1958,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--layout-dir', '--layout-dir', [CompletionResultType]::ParameterName, 'Default folder to look for layouts')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Change the working directory when switching')
             [CompletionResult]::new('--cwd', '--cwd', [CompletionResultType]::ParameterName, 'Change the working directory when switching')
+            [CompletionResult]::new('--close-current', '--close-current', [CompletionResultType]::ParameterName, 'Close the current session after switching, if no command has been run in it and no other client is attached')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -1630,6 +1979,24 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--fg', '--fg', [CompletionResultType]::ParameterName, 'Foreground color (e.g. "#00e000", "rgb:00/e0/00")')
             [CompletionResult]::new('--bg', '--bg', [CompletionResultType]::ParameterName, 'Background color (e.g. "#001a3a", "rgb:00/1a/3a")')
             [CompletionResult]::new('--reset', '--reset', [CompletionResultType]::ParameterName, 'Reset pane colors to terminal defaults')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;action;set-resurrect-command' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'The pane_id of the terminal pane, eg. terminal_1 or 3 (equivalent to terminal_3). Defaults to $ZELLIJ_PANE_ID if not provided')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'The pane_id of the terminal pane, eg. terminal_1 or 3 (equivalent to terminal_3). Defaults to $ZELLIJ_PANE_ID if not provided')
+            [CompletionResult]::new('--cwd', '--cwd', [CompletionResultType]::ParameterName, 'Working directory to resurrect the pane in')
+            [CompletionResult]::new('--clear', '--clear', [CompletionResultType]::ParameterName, 'Remove a previously set resurrect command')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;ac;set-resurrect-command' {
+            [CompletionResult]::new('-p', '-p', [CompletionResultType]::ParameterName, 'The pane_id of the terminal pane, eg. terminal_1 or 3 (equivalent to terminal_3). Defaults to $ZELLIJ_PANE_ID if not provided')
+            [CompletionResult]::new('--pane-id', '--pane-id', [CompletionResultType]::ParameterName, 'The pane_id of the terminal pane, eg. terminal_1 or 3 (equivalent to terminal_3). Defaults to $ZELLIJ_PANE_ID if not provided')
+            [CompletionResult]::new('--cwd', '--cwd', [CompletionResultType]::ParameterName, 'Working directory to resurrect the pane in')
+            [CompletionResult]::new('--clear', '--clear', [CompletionResultType]::ParameterName, 'Remove a previously set resurrect command')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
@@ -1664,7 +2031,11 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('toggle-fullscreen', 'toggle-fullscreen', [CompletionResultType]::ParameterValue, 'Toggle between fullscreen focus pane and normal layout')
             [CompletionResult]::new('toggle-no-ui-fullscreen', 'toggle-no-ui-fullscreen', [CompletionResultType]::ParameterValue, 'Toggle between fullscreen over the entire display (including the UI bars) and normal layout')
             [CompletionResult]::new('toggle-pane-frames', 'toggle-pane-frames', [CompletionResultType]::ParameterValue, 'Toggle frames around panes in the UI')
+            [CompletionResult]::new('toggle-stack-list-orientation', 'toggle-stack-list-orientation', [CompletionResultType]::ParameterValue, 'Switch the focused stack between showing its titles in a column (vertical) and in a row (horizontal)')
             [CompletionResult]::new('set-pane-frame-style', 'set-pane-frame-style', [CompletionResultType]::ParameterValue, 'set-pane-frame-style')
+            [CompletionResult]::new('toggle-bars', 'toggle-bars', [CompletionResultType]::ParameterValue, 'Show all bars if any are hidden, otherwise hide the named bars (all bars if none are named)')
+            [CompletionResult]::new('hide-bars', 'hide-bars', [CompletionResultType]::ParameterValue, 'Hide the named bars (all bars if none are named) in every tab')
+            [CompletionResult]::new('show-bars', 'show-bars', [CompletionResultType]::ParameterValue, 'Show all hidden bars')
             [CompletionResult]::new('toggle-active-sync-tab', 'toggle-active-sync-tab', [CompletionResultType]::ParameterValue, 'Toggle between sending text commands to all panes on the current tab and normal mode')
             [CompletionResult]::new('new-pane', 'new-pane', [CompletionResultType]::ParameterValue, 'Open a new pane in the specified direction [right|down] If no direction is specified, will try to use the biggest available space. Returns: Created pane ID (format: terminal_<id> or plugin_<id>)')
             [CompletionResult]::new('edit', 'edit', [CompletionResultType]::ParameterValue, 'Open the specified file in a new zellij pane with your default EDITOR Returns: Created pane ID (format: terminal_<id>)')
@@ -1691,6 +2062,8 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('move-tab', 'move-tab', [CompletionResultType]::ParameterValue, 'Move the focused tab in the specified direction. [right|left]')
             [CompletionResult]::new('previous-swap-layout', 'previous-swap-layout', [CompletionResultType]::ParameterValue, 'previous-swap-layout')
             [CompletionResult]::new('next-swap-layout', 'next-swap-layout', [CompletionResultType]::ParameterValue, 'next-swap-layout')
+            [CompletionResult]::new('apply-tiled-swap-layout', 'apply-tiled-swap-layout', [CompletionResultType]::ParameterValue, 'Apply the tiled swap layout with the given name, leaving floating pane visibility and focus untouched')
+            [CompletionResult]::new('apply-floating-swap-layout', 'apply-floating-swap-layout', [CompletionResultType]::ParameterValue, 'Apply the floating swap layout with the given name, leaving floating pane visibility and focus untouched')
             [CompletionResult]::new('override-layout', 'override-layout', [CompletionResultType]::ParameterValue, 'Override the layout of the active tab')
             [CompletionResult]::new('query-tab-names', 'query-tab-names', [CompletionResultType]::ParameterValue, 'Query all tab names')
             [CompletionResult]::new('start-or-reload-plugin', 'start-or-reload-plugin', [CompletionResultType]::ParameterValue, 'start-or-reload-plugin')
@@ -1703,16 +2076,33 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('list-tabs', 'list-tabs', [CompletionResultType]::ParameterValue, 'List all tabs with their information')
             [CompletionResult]::new('current-tab-info', 'current-tab-info', [CompletionResultType]::ParameterValue, 'Get information about the currently active tab')
             [CompletionResult]::new('toggle-pane-pinned', 'toggle-pane-pinned', [CompletionResultType]::ParameterValue, 'toggle-pane-pinned')
+            [CompletionResult]::new('toggle-mirror-resize', 'toggle-mirror-resize', [CompletionResultType]::ParameterValue, 'Toggle whether the live view in the focused plugin pane resizes the program of the pane it shows')
+            [CompletionResult]::new('mute-pane', 'mute-pane', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of a pane (the focused pane by default)')
+            [CompletionResult]::new('ignore-pane-output', 'ignore-pane-output', [CompletionResultType]::ParameterValue, 'Stop or start reporting new output of a pane (the focused pane by default)')
+            [CompletionResult]::new('watch-pane', 'watch-pane', [CompletionResultType]::ParameterValue, 'Watch a pane: notify each time its command finishes or its output goes quiet, until turned off again (toggles; the focused pane by default)')
+            [CompletionResult]::new('mute-tab', 'mute-tab', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of all panes in a tab (the active tab by default)')
+            [CompletionResult]::new('mute-session', 'mute-session', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of the whole session')
+            [CompletionResult]::new('toggle-session', 'toggle-session', [CompletionResultType]::ParameterValue, 'Switch to the session this client was in before (run again to return), or to the next running session if there is none')
+            [CompletionResult]::new('go-to-previous-session', 'go-to-previous-session', [CompletionResultType]::ParameterValue, 'Go back to the previous session in this client''s history')
+            [CompletionResult]::new('go-to-next-session', 'go-to-next-session', [CompletionResultType]::ParameterValue, 'Go forward in this client''s session history')
+            [CompletionResult]::new('go-to-next-attention', 'go-to-next-attention', [CompletionResultType]::ParameterValue, 'Jump to the next pane that needs attention in any session, switching session if needed')
+            [CompletionResult]::new('toggle-tray-icon', 'toggle-tray-icon', [CompletionResultType]::ParameterValue, 'Show or hide the desktop app''s tray / menu-bar icon until the app restarts (sessions and notifications continue)')
+            [CompletionResult]::new('mark-pane-seen', 'mark-pane-seen', [CompletionResultType]::ParameterValue, 'Mark a pane as seen, clearing past events (the focused pane by default)')
+            [CompletionResult]::new('mark-all-seen', 'mark-all-seen', [CompletionResultType]::ParameterValue, 'Mark every pane of every running session as seen')
             [CompletionResult]::new('stack-panes', 'stack-panes', [CompletionResultType]::ParameterValue, 'Stack pane ids Ids are a space separated list of pane ids. They should either be in the form of `terminal_<int>` (eg. terminal_1), `plugin_<int>` (eg. plugin_1) or bare integers in which case they''ll be considered terminals (eg. 1 is the equivalent of terminal_1)')
             [CompletionResult]::new('change-floating-pane-coordinates', 'change-floating-pane-coordinates', [CompletionResultType]::ParameterValue, 'change-floating-pane-coordinates')
             [CompletionResult]::new('toggle-pane-borderless', 'toggle-pane-borderless', [CompletionResultType]::ParameterValue, 'toggle-pane-borderless')
             [CompletionResult]::new('set-pane-borderless', 'set-pane-borderless', [CompletionResultType]::ParameterValue, 'set-pane-borderless')
+            [CompletionResult]::new('set-pane-border-style', 'set-pane-border-style', [CompletionResultType]::ParameterValue, 'Change the border line style of an existing pane')
             [CompletionResult]::new('detach', 'detach', [CompletionResultType]::ParameterValue, 'Detach from the current session')
             [CompletionResult]::new('set-dark-theme', 'set-dark-theme', [CompletionResultType]::ParameterValue, 'Switch the theme to dark (uses configured `theme_dark`)')
             [CompletionResult]::new('set-light-theme', 'set-light-theme', [CompletionResultType]::ParameterValue, 'Switch the theme to light (uses configured `theme_light`)')
             [CompletionResult]::new('toggle-theme', 'toggle-theme', [CompletionResultType]::ParameterValue, 'Toggle between dark and light themes (used configured `theme_dark` and `theme_light`)')
+            [CompletionResult]::new('dismiss-info-popups', 'dismiss-info-popups', [CompletionResultType]::ParameterValue, 'Close the information popups (such as `zellij prompt notify`) shown to you')
+            [CompletionResult]::new('open-context-menu', 'open-context-menu', [CompletionResultType]::ParameterValue, 'Open the right-click menu for the focused pane, at that pane''s position')
             [CompletionResult]::new('switch-session', 'switch-session', [CompletionResultType]::ParameterValue, 'Switch to a different session')
             [CompletionResult]::new('set-pane-color', 'set-pane-color', [CompletionResultType]::ParameterValue, 'Set the default foreground/background color of a pane')
+            [CompletionResult]::new('set-resurrect-command', 'set-resurrect-command', [CompletionResultType]::ParameterValue, 'Set the command a terminal pane will be resurrected with, instead of the detected one. The command stays in effect until cleared with --clear or until the pane is closed')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -1803,7 +2193,19 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;action;help;toggle-pane-frames' {
             break
         }
+        'zellij;action;help;toggle-stack-list-orientation' {
+            break
+        }
         'zellij;action;help;set-pane-frame-style' {
+            break
+        }
+        'zellij;action;help;toggle-bars' {
+            break
+        }
+        'zellij;action;help;hide-bars' {
+            break
+        }
+        'zellij;action;help;show-bars' {
             break
         }
         'zellij;action;help;toggle-active-sync-tab' {
@@ -1884,6 +2286,12 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;action;help;next-swap-layout' {
             break
         }
+        'zellij;action;help;apply-tiled-swap-layout' {
+            break
+        }
+        'zellij;action;help;apply-floating-swap-layout' {
+            break
+        }
         'zellij;action;help;override-layout' {
             break
         }
@@ -1920,6 +2328,45 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;action;help;toggle-pane-pinned' {
             break
         }
+        'zellij;action;help;toggle-mirror-resize' {
+            break
+        }
+        'zellij;action;help;mute-pane' {
+            break
+        }
+        'zellij;action;help;ignore-pane-output' {
+            break
+        }
+        'zellij;action;help;watch-pane' {
+            break
+        }
+        'zellij;action;help;mute-tab' {
+            break
+        }
+        'zellij;action;help;mute-session' {
+            break
+        }
+        'zellij;action;help;toggle-session' {
+            break
+        }
+        'zellij;action;help;go-to-previous-session' {
+            break
+        }
+        'zellij;action;help;go-to-next-session' {
+            break
+        }
+        'zellij;action;help;go-to-next-attention' {
+            break
+        }
+        'zellij;action;help;toggle-tray-icon' {
+            break
+        }
+        'zellij;action;help;mark-pane-seen' {
+            break
+        }
+        'zellij;action;help;mark-all-seen' {
+            break
+        }
         'zellij;action;help;stack-panes' {
             break
         }
@@ -1930,6 +2377,9 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             break
         }
         'zellij;action;help;set-pane-borderless' {
+            break
+        }
+        'zellij;action;help;set-pane-border-style' {
             break
         }
         'zellij;action;help;detach' {
@@ -1944,10 +2394,19 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;action;help;toggle-theme' {
             break
         }
+        'zellij;action;help;dismiss-info-popups' {
+            break
+        }
+        'zellij;action;help;open-context-menu' {
+            break
+        }
         'zellij;action;help;switch-session' {
             break
         }
         'zellij;action;help;set-pane-color' {
+            break
+        }
+        'zellij;action;help;set-resurrect-command' {
             break
         }
         'zellij;action;help;help' {
@@ -1983,7 +2442,11 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('toggle-fullscreen', 'toggle-fullscreen', [CompletionResultType]::ParameterValue, 'Toggle between fullscreen focus pane and normal layout')
             [CompletionResult]::new('toggle-no-ui-fullscreen', 'toggle-no-ui-fullscreen', [CompletionResultType]::ParameterValue, 'Toggle between fullscreen over the entire display (including the UI bars) and normal layout')
             [CompletionResult]::new('toggle-pane-frames', 'toggle-pane-frames', [CompletionResultType]::ParameterValue, 'Toggle frames around panes in the UI')
+            [CompletionResult]::new('toggle-stack-list-orientation', 'toggle-stack-list-orientation', [CompletionResultType]::ParameterValue, 'Switch the focused stack between showing its titles in a column (vertical) and in a row (horizontal)')
             [CompletionResult]::new('set-pane-frame-style', 'set-pane-frame-style', [CompletionResultType]::ParameterValue, 'set-pane-frame-style')
+            [CompletionResult]::new('toggle-bars', 'toggle-bars', [CompletionResultType]::ParameterValue, 'Show all bars if any are hidden, otherwise hide the named bars (all bars if none are named)')
+            [CompletionResult]::new('hide-bars', 'hide-bars', [CompletionResultType]::ParameterValue, 'Hide the named bars (all bars if none are named) in every tab')
+            [CompletionResult]::new('show-bars', 'show-bars', [CompletionResultType]::ParameterValue, 'Show all hidden bars')
             [CompletionResult]::new('toggle-active-sync-tab', 'toggle-active-sync-tab', [CompletionResultType]::ParameterValue, 'Toggle between sending text commands to all panes on the current tab and normal mode')
             [CompletionResult]::new('new-pane', 'new-pane', [CompletionResultType]::ParameterValue, 'Open a new pane in the specified direction [right|down] If no direction is specified, will try to use the biggest available space. Returns: Created pane ID (format: terminal_<id> or plugin_<id>)')
             [CompletionResult]::new('edit', 'edit', [CompletionResultType]::ParameterValue, 'Open the specified file in a new zellij pane with your default EDITOR Returns: Created pane ID (format: terminal_<id>)')
@@ -2010,6 +2473,8 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('move-tab', 'move-tab', [CompletionResultType]::ParameterValue, 'Move the focused tab in the specified direction. [right|left]')
             [CompletionResult]::new('previous-swap-layout', 'previous-swap-layout', [CompletionResultType]::ParameterValue, 'previous-swap-layout')
             [CompletionResult]::new('next-swap-layout', 'next-swap-layout', [CompletionResultType]::ParameterValue, 'next-swap-layout')
+            [CompletionResult]::new('apply-tiled-swap-layout', 'apply-tiled-swap-layout', [CompletionResultType]::ParameterValue, 'Apply the tiled swap layout with the given name, leaving floating pane visibility and focus untouched')
+            [CompletionResult]::new('apply-floating-swap-layout', 'apply-floating-swap-layout', [CompletionResultType]::ParameterValue, 'Apply the floating swap layout with the given name, leaving floating pane visibility and focus untouched')
             [CompletionResult]::new('override-layout', 'override-layout', [CompletionResultType]::ParameterValue, 'Override the layout of the active tab')
             [CompletionResult]::new('query-tab-names', 'query-tab-names', [CompletionResultType]::ParameterValue, 'Query all tab names')
             [CompletionResult]::new('start-or-reload-plugin', 'start-or-reload-plugin', [CompletionResultType]::ParameterValue, 'start-or-reload-plugin')
@@ -2022,16 +2487,33 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('list-tabs', 'list-tabs', [CompletionResultType]::ParameterValue, 'List all tabs with their information')
             [CompletionResult]::new('current-tab-info', 'current-tab-info', [CompletionResultType]::ParameterValue, 'Get information about the currently active tab')
             [CompletionResult]::new('toggle-pane-pinned', 'toggle-pane-pinned', [CompletionResultType]::ParameterValue, 'toggle-pane-pinned')
+            [CompletionResult]::new('toggle-mirror-resize', 'toggle-mirror-resize', [CompletionResultType]::ParameterValue, 'Toggle whether the live view in the focused plugin pane resizes the program of the pane it shows')
+            [CompletionResult]::new('mute-pane', 'mute-pane', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of a pane (the focused pane by default)')
+            [CompletionResult]::new('ignore-pane-output', 'ignore-pane-output', [CompletionResultType]::ParameterValue, 'Stop or start reporting new output of a pane (the focused pane by default)')
+            [CompletionResult]::new('watch-pane', 'watch-pane', [CompletionResultType]::ParameterValue, 'Watch a pane: notify each time its command finishes or its output goes quiet, until turned off again (toggles; the focused pane by default)')
+            [CompletionResult]::new('mute-tab', 'mute-tab', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of all panes in a tab (the active tab by default)')
+            [CompletionResult]::new('mute-session', 'mute-session', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of the whole session')
+            [CompletionResult]::new('toggle-session', 'toggle-session', [CompletionResultType]::ParameterValue, 'Switch to the session this client was in before (run again to return), or to the next running session if there is none')
+            [CompletionResult]::new('go-to-previous-session', 'go-to-previous-session', [CompletionResultType]::ParameterValue, 'Go back to the previous session in this client''s history')
+            [CompletionResult]::new('go-to-next-session', 'go-to-next-session', [CompletionResultType]::ParameterValue, 'Go forward in this client''s session history')
+            [CompletionResult]::new('go-to-next-attention', 'go-to-next-attention', [CompletionResultType]::ParameterValue, 'Jump to the next pane that needs attention in any session, switching session if needed')
+            [CompletionResult]::new('toggle-tray-icon', 'toggle-tray-icon', [CompletionResultType]::ParameterValue, 'Show or hide the desktop app''s tray / menu-bar icon until the app restarts (sessions and notifications continue)')
+            [CompletionResult]::new('mark-pane-seen', 'mark-pane-seen', [CompletionResultType]::ParameterValue, 'Mark a pane as seen, clearing past events (the focused pane by default)')
+            [CompletionResult]::new('mark-all-seen', 'mark-all-seen', [CompletionResultType]::ParameterValue, 'Mark every pane of every running session as seen')
             [CompletionResult]::new('stack-panes', 'stack-panes', [CompletionResultType]::ParameterValue, 'Stack pane ids Ids are a space separated list of pane ids. They should either be in the form of `terminal_<int>` (eg. terminal_1), `plugin_<int>` (eg. plugin_1) or bare integers in which case they''ll be considered terminals (eg. 1 is the equivalent of terminal_1)')
             [CompletionResult]::new('change-floating-pane-coordinates', 'change-floating-pane-coordinates', [CompletionResultType]::ParameterValue, 'change-floating-pane-coordinates')
             [CompletionResult]::new('toggle-pane-borderless', 'toggle-pane-borderless', [CompletionResultType]::ParameterValue, 'toggle-pane-borderless')
             [CompletionResult]::new('set-pane-borderless', 'set-pane-borderless', [CompletionResultType]::ParameterValue, 'set-pane-borderless')
+            [CompletionResult]::new('set-pane-border-style', 'set-pane-border-style', [CompletionResultType]::ParameterValue, 'Change the border line style of an existing pane')
             [CompletionResult]::new('detach', 'detach', [CompletionResultType]::ParameterValue, 'Detach from the current session')
             [CompletionResult]::new('set-dark-theme', 'set-dark-theme', [CompletionResultType]::ParameterValue, 'Switch the theme to dark (uses configured `theme_dark`)')
             [CompletionResult]::new('set-light-theme', 'set-light-theme', [CompletionResultType]::ParameterValue, 'Switch the theme to light (uses configured `theme_light`)')
             [CompletionResult]::new('toggle-theme', 'toggle-theme', [CompletionResultType]::ParameterValue, 'Toggle between dark and light themes (used configured `theme_dark` and `theme_light`)')
+            [CompletionResult]::new('dismiss-info-popups', 'dismiss-info-popups', [CompletionResultType]::ParameterValue, 'Close the information popups (such as `zellij prompt notify`) shown to you')
+            [CompletionResult]::new('open-context-menu', 'open-context-menu', [CompletionResultType]::ParameterValue, 'Open the right-click menu for the focused pane, at that pane''s position')
             [CompletionResult]::new('switch-session', 'switch-session', [CompletionResultType]::ParameterValue, 'Switch to a different session')
             [CompletionResult]::new('set-pane-color', 'set-pane-color', [CompletionResultType]::ParameterValue, 'Set the default foreground/background color of a pane')
+            [CompletionResult]::new('set-resurrect-command', 'set-resurrect-command', [CompletionResultType]::ParameterValue, 'Set the command a terminal pane will be resurrected with, instead of the detected one. The command stays in effect until cleared with --clear or until the pane is closed')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -2122,7 +2604,19 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;ac;help;toggle-pane-frames' {
             break
         }
+        'zellij;ac;help;toggle-stack-list-orientation' {
+            break
+        }
         'zellij;ac;help;set-pane-frame-style' {
+            break
+        }
+        'zellij;ac;help;toggle-bars' {
+            break
+        }
+        'zellij;ac;help;hide-bars' {
+            break
+        }
+        'zellij;ac;help;show-bars' {
             break
         }
         'zellij;ac;help;toggle-active-sync-tab' {
@@ -2203,6 +2697,12 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;ac;help;next-swap-layout' {
             break
         }
+        'zellij;ac;help;apply-tiled-swap-layout' {
+            break
+        }
+        'zellij;ac;help;apply-floating-swap-layout' {
+            break
+        }
         'zellij;ac;help;override-layout' {
             break
         }
@@ -2239,6 +2739,45 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;ac;help;toggle-pane-pinned' {
             break
         }
+        'zellij;ac;help;toggle-mirror-resize' {
+            break
+        }
+        'zellij;ac;help;mute-pane' {
+            break
+        }
+        'zellij;ac;help;ignore-pane-output' {
+            break
+        }
+        'zellij;ac;help;watch-pane' {
+            break
+        }
+        'zellij;ac;help;mute-tab' {
+            break
+        }
+        'zellij;ac;help;mute-session' {
+            break
+        }
+        'zellij;ac;help;toggle-session' {
+            break
+        }
+        'zellij;ac;help;go-to-previous-session' {
+            break
+        }
+        'zellij;ac;help;go-to-next-session' {
+            break
+        }
+        'zellij;ac;help;go-to-next-attention' {
+            break
+        }
+        'zellij;ac;help;toggle-tray-icon' {
+            break
+        }
+        'zellij;ac;help;mark-pane-seen' {
+            break
+        }
+        'zellij;ac;help;mark-all-seen' {
+            break
+        }
         'zellij;ac;help;stack-panes' {
             break
         }
@@ -2249,6 +2788,9 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             break
         }
         'zellij;ac;help;set-pane-borderless' {
+            break
+        }
+        'zellij;ac;help;set-pane-border-style' {
             break
         }
         'zellij;ac;help;detach' {
@@ -2263,10 +2805,19 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;ac;help;toggle-theme' {
             break
         }
+        'zellij;ac;help;dismiss-info-popups' {
+            break
+        }
+        'zellij;ac;help;open-context-menu' {
+            break
+        }
         'zellij;ac;help;switch-session' {
             break
         }
         'zellij;ac;help;set-pane-color' {
+            break
+        }
+        'zellij;ac;help;set-resurrect-command' {
             break
         }
         'zellij;ac;help;help' {
@@ -2311,8 +2862,6 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--ca-cert', '--ca-cert', [CompletionResultType]::ParameterName, 'Path to a custom CA certificate (PEM format) for verifying the remote server')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Create a session if one does not exist')
             [CompletionResult]::new('--create', '--create', [CompletionResultType]::ParameterName, 'Create a session if one does not exist')
-            [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'Create a detached session in the background if one does not exist')
-            [CompletionResult]::new('--create-background', '--create-background', [CompletionResultType]::ParameterName, 'Create a detached session in the background if one does not exist')
             [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'If resurrecting a dead session, immediately run all its commands on startup')
             [CompletionResult]::new('--force-run-commands', '--force-run-commands', [CompletionResultType]::ParameterName, 'If resurrecting a dead session, immediately run all its commands on startup')
             [CompletionResult]::new('-r', '-r', [CompletionResultType]::ParameterName, 'Save session for automatic re-authentication (4 weeks)')
@@ -2321,6 +2870,8 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--insecure', '--insecure', [CompletionResultType]::ParameterName, 'Skip TLS certificate validation (DANGEROUS — development only)')
             [CompletionResult]::new('--close-on-exit', '--close-on-exit', [CompletionResultType]::ParameterName, 'Close the initial command''s pane immediately when it exits')
             [CompletionResult]::new('--start-suspended', '--start-suspended', [CompletionResultType]::ParameterName, 'Start the initial command suspended, only running it after you first press ENTER')
+            [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'Create a detached session in the background if one does not exist')
+            [CompletionResult]::new('--create-background', '--create-background', [CompletionResultType]::ParameterName, 'Create a detached session in the background if one does not exist')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('options', 'options', [CompletionResultType]::ParameterValue, 'Change the behaviour of zellij')
@@ -2334,8 +2885,6 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--ca-cert', '--ca-cert', [CompletionResultType]::ParameterName, 'Path to a custom CA certificate (PEM format) for verifying the remote server')
             [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Create a session if one does not exist')
             [CompletionResult]::new('--create', '--create', [CompletionResultType]::ParameterName, 'Create a session if one does not exist')
-            [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'Create a detached session in the background if one does not exist')
-            [CompletionResult]::new('--create-background', '--create-background', [CompletionResultType]::ParameterName, 'Create a detached session in the background if one does not exist')
             [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'If resurrecting a dead session, immediately run all its commands on startup')
             [CompletionResult]::new('--force-run-commands', '--force-run-commands', [CompletionResultType]::ParameterName, 'If resurrecting a dead session, immediately run all its commands on startup')
             [CompletionResult]::new('-r', '-r', [CompletionResultType]::ParameterName, 'Save session for automatic re-authentication (4 weeks)')
@@ -2344,6 +2893,8 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--insecure', '--insecure', [CompletionResultType]::ParameterName, 'Skip TLS certificate validation (DANGEROUS — development only)')
             [CompletionResult]::new('--close-on-exit', '--close-on-exit', [CompletionResultType]::ParameterName, 'Close the initial command''s pane immediately when it exits')
             [CompletionResult]::new('--start-suspended', '--start-suspended', [CompletionResultType]::ParameterName, 'Start the initial command suspended, only running it after you first press ENTER')
+            [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'Create a detached session in the background if one does not exist')
+            [CompletionResult]::new('--create-background', '--create-background', [CompletionResultType]::ParameterName, 'Create a detached session in the background if one does not exist')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             [CompletionResult]::new('options', 'options', [CompletionResultType]::ParameterValue, 'Change the behaviour of zellij')
@@ -2362,6 +2913,11 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--default-layout', '--default-layout', [CompletionResultType]::ParameterName, 'Set the default layout')
             [CompletionResult]::new('--layout-dir', '--layout-dir', [CompletionResultType]::ParameterName, 'Set the layout_dir, defaults to subdirectory of config dir')
             [CompletionResult]::new('--theme-dir', '--theme-dir', [CompletionResultType]::ParameterName, 'Set the theme_dir, defaults to subdirectory of config dir')
+            [CompletionResult]::new('--keybinds-dir', '--keybinds-dir', [CompletionResultType]::ParameterName, 'Set the keybinds_dir, defaults to subdirectory of config dir')
+            [CompletionResult]::new('--keybinds-preset', '--keybinds-preset', [CompletionResultType]::ParameterName, 'Use this keybinding preset for this session: a name from the keybinds folder, a built-in preset, or a path to a preset file')
+            [CompletionResult]::new('--keybinds-primary', '--keybinds-primary', [CompletionResultType]::ParameterName, 'The primary leader key for the keybinding preset (for example "Ctrl")')
+            [CompletionResult]::new('--keybinds-secondary', '--keybinds-secondary', [CompletionResultType]::ParameterName, 'The secondary leader key for the keybinding preset (for example "Alt")')
+            [CompletionResult]::new('--keybinds-unlock', '--keybinds-unlock', [CompletionResultType]::ParameterName, 'The unlock key for the keybinding preset (for example "Ctrl g")')
             [CompletionResult]::new('--mouse-mode', '--mouse-mode', [CompletionResultType]::ParameterName, 'Set the handling of mouse events (true or false) Can be temporarily bypassed by the [SHIFT] key')
             [CompletionResult]::new('--pane-frames', '--pane-frames', [CompletionResultType]::ParameterName, 'Set display of the pane frames (true or false)')
             [CompletionResult]::new('--pane-frame-style', '--pane-frame-style', [CompletionResultType]::ParameterName, 'pane-frame-style')
@@ -2384,10 +2940,14 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--disable-session-metadata', '--disable-session-metadata', [CompletionResultType]::ParameterName, 'If true, will disable writing session metadata to disk')
             [CompletionResult]::new('--support-kitty-keyboard-protocol', '--support-kitty-keyboard-protocol', [CompletionResultType]::ParameterName, 'Whether to enable support for the Kitty keyboard protocol (must also be supported by the host terminal), defaults to true if the terminal supports it')
             [CompletionResult]::new('--support-kitty-graphics-protocol', '--support-kitty-graphics-protocol', [CompletionResultType]::ParameterName, 'Whether to enable support for the Kitty graphics (image) protocol (must also be supported by the host terminal), defaults to true if the terminal supports it')
+            [CompletionResult]::new('--grapheme-clusters', '--grapheme-clusters', [CompletionResultType]::ParameterName, 'Count each grapheme cluster (an emoji sequence, a letter with its accents) as one unit of width, as the Unicode standard does (true or false, default true). When false, widths are counted per code point and programs may still ask for clusters with mode 2027')
+            [CompletionResult]::new('--mirror-resizes-source-pane', '--mirror-resizes-source-pane', [CompletionResultType]::ParameterName, 'Whether a focused mirror of a pane may resize that pane''s program to the mirror''s size, and whether new mirrors resize their source pane by default (true or false, default true)')
+            [CompletionResult]::new('--live-view-release-key', '--live-view-release-key', [CompletionResultType]::ParameterName, 'An extra key that gives typing back to a plugin while a live pane view inside it is taking the keyboard (default: none, Alt Enter, the inbox key or a click outside always do it; a key written twice means pressing it twice)')
             [CompletionResult]::new('--web-server', '--web-server', [CompletionResultType]::ParameterName, 'Whether to make sure a local web server is running when a new Zellij session starts. This web server will allow creating new sessions and attaching to existing ones that have opted in to being shared in the browser')
             [CompletionResult]::new('--web-sharing', '--web-sharing', [CompletionResultType]::ParameterName, 'Whether to allow new sessions to be shared through a local web server, assuming one is running (see the `web_server` option for more details)')
             [CompletionResult]::new('--stacked-resize', '--stacked-resize', [CompletionResultType]::ParameterName, 'Whether to stack panes when resizing beyond a certain size default is true')
             [CompletionResult]::new('--stacked-pane-list', '--stacked-pane-list', [CompletionResultType]::ParameterName, 'stacked-pane-list')
+            [CompletionResult]::new('--stacked-pane-list-orientation', '--stacked-pane-list-orientation', [CompletionResultType]::ParameterName, 'Whether new stacks show their titles in a column (vertical) or in a row (horizontal) default is vertical')
             [CompletionResult]::new('--show-startup-tips', '--show-startup-tips', [CompletionResultType]::ParameterName, 'Whether to show startup tips when starting a new session default is true')
             [CompletionResult]::new('--show-release-notes', '--show-release-notes', [CompletionResultType]::ParameterName, 'Whether to show release notes on first run of a new version default is true')
             [CompletionResult]::new('--advanced-mouse-actions', '--advanced-mouse-actions', [CompletionResultType]::ParameterName, 'Whether to enable mouse hover effects and pane grouping functionality default is true')
@@ -2398,13 +2958,20 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--visual-bell', '--visual-bell', [CompletionResultType]::ParameterName, 'Whether to show visual bell indicators (pane/tab frame flash and [!] suffix) default is true')
             [CompletionResult]::new('--focus-follows-mouse', '--focus-follows-mouse', [CompletionResultType]::ParameterName, 'Whether to focus panes on mouse hover (true or false) default is false')
             [CompletionResult]::new('--mouse-click-through', '--mouse-click-through', [CompletionResultType]::ParameterName, 'Whether clicking a pane to focus it also sends the click into the pane (true or false) default is false')
+            [CompletionResult]::new('--context-menu-enabled', '--context-menu-enabled', [CompletionResultType]::ParameterName, 'Whether a right click opens the right-click menu (true or false), default is true')
             [CompletionResult]::new('--osc133-command-selection', '--osc133-command-selection', [CompletionResultType]::ParameterName, 'Whether triple-clicking inside shell-marked (OSC 133) command output selects the command and its output rather than the logical line default is true')
             [CompletionResult]::new('--word-separators', '--word-separators', [CompletionResultType]::ParameterName, 'Characters that terminate a word when double-clicking to select it, in addition to whitespace (which is always a separator) default is "[]{}<>()"')
             [CompletionResult]::new('--host-notification-protocol', '--host-notification-protocol', [CompletionResultType]::ParameterName, 'host-notification-protocol')
             [CompletionResult]::new('--post-command-discovery-hook', '--post-command-discovery-hook', [CompletionResultType]::ParameterName, 'A command to run after the discovery of running commands when serializing, for the purpose of manipulating the command (eg. with a regex) before it gets serialized')
-            [CompletionResult]::new('--client-async-worker-tasks', '--client-async-worker-tasks', [CompletionResultType]::ParameterName, 'Number of async worker tasks to spawn per active client')
+            [CompletionResult]::new('--client-async-worker-tasks', '--client-async-worker-tasks', [CompletionResultType]::ParameterName, 'Number of background threads used by `zellij attach <url>` when it connects to a session on another machine. One set is made for that program, not one per client; the web server, browser clients and local sessions are not affected')
             [CompletionResult]::new('--nested-session-handling', '--nested-session-handling', [CompletionResultType]::ParameterName, 'How to handle a nested Zellij session detected inside a pane (ask, fullscreen, descend, never)')
             [CompletionResult]::new('--dangerously-enable-paste-buffer-read', '--dangerously-enable-paste-buffer-read', [CompletionResultType]::ParameterName, 'dangerously-enable-paste-buffer-read')
+            [CompletionResult]::new('--session-indicator', '--session-indicator', [CompletionResultType]::ParameterName, 'Whether to show the other sessions indicator in the tab bar and compact bar (true or false), default is true')
+            [CompletionResult]::new('--swap-layout-notification', '--swap-layout-notification', [CompletionResultType]::ParameterName, 'Whether to briefly show the new swap layout name when it is changed (true or false), default is true')
+            [CompletionResult]::new('--on-quit', '--on-quit', [CompletionResultType]::ParameterName, 'What the quit action does: ask_quit (ask, Quit preselected), ask_detach (ask, Detach preselected), quit or detach. Default is ask_quit')
+            [CompletionResult]::new('--bars-hidden-on-start', '--bars-hidden-on-start', [CompletionResultType]::ParameterName, 'Which bars a new session starts with hidden: bar names separated by commas (eg. tab-bar,status-bar), all or none. Default is none')
+            [CompletionResult]::new('--hidden-bars-notification', '--hidden-bars-notification', [CompletionResultType]::ParameterName, 'Whether to briefly show what was hidden and how to show it again when bars are hidden (true or false), default is true')
+            [CompletionResult]::new('--mode-hints-when-bars-hidden', '--mode-hints-when-bars-hidden', [CompletionResultType]::ParameterName, 'Whether to show the current mode''s keys in a corner while a bar that would show them is hidden (true or false), default is true')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             break
@@ -2421,6 +2988,11 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--default-layout', '--default-layout', [CompletionResultType]::ParameterName, 'Set the default layout')
             [CompletionResult]::new('--layout-dir', '--layout-dir', [CompletionResultType]::ParameterName, 'Set the layout_dir, defaults to subdirectory of config dir')
             [CompletionResult]::new('--theme-dir', '--theme-dir', [CompletionResultType]::ParameterName, 'Set the theme_dir, defaults to subdirectory of config dir')
+            [CompletionResult]::new('--keybinds-dir', '--keybinds-dir', [CompletionResultType]::ParameterName, 'Set the keybinds_dir, defaults to subdirectory of config dir')
+            [CompletionResult]::new('--keybinds-preset', '--keybinds-preset', [CompletionResultType]::ParameterName, 'Use this keybinding preset for this session: a name from the keybinds folder, a built-in preset, or a path to a preset file')
+            [CompletionResult]::new('--keybinds-primary', '--keybinds-primary', [CompletionResultType]::ParameterName, 'The primary leader key for the keybinding preset (for example "Ctrl")')
+            [CompletionResult]::new('--keybinds-secondary', '--keybinds-secondary', [CompletionResultType]::ParameterName, 'The secondary leader key for the keybinding preset (for example "Alt")')
+            [CompletionResult]::new('--keybinds-unlock', '--keybinds-unlock', [CompletionResultType]::ParameterName, 'The unlock key for the keybinding preset (for example "Ctrl g")')
             [CompletionResult]::new('--mouse-mode', '--mouse-mode', [CompletionResultType]::ParameterName, 'Set the handling of mouse events (true or false) Can be temporarily bypassed by the [SHIFT] key')
             [CompletionResult]::new('--pane-frames', '--pane-frames', [CompletionResultType]::ParameterName, 'Set display of the pane frames (true or false)')
             [CompletionResult]::new('--pane-frame-style', '--pane-frame-style', [CompletionResultType]::ParameterName, 'pane-frame-style')
@@ -2443,10 +3015,14 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--disable-session-metadata', '--disable-session-metadata', [CompletionResultType]::ParameterName, 'If true, will disable writing session metadata to disk')
             [CompletionResult]::new('--support-kitty-keyboard-protocol', '--support-kitty-keyboard-protocol', [CompletionResultType]::ParameterName, 'Whether to enable support for the Kitty keyboard protocol (must also be supported by the host terminal), defaults to true if the terminal supports it')
             [CompletionResult]::new('--support-kitty-graphics-protocol', '--support-kitty-graphics-protocol', [CompletionResultType]::ParameterName, 'Whether to enable support for the Kitty graphics (image) protocol (must also be supported by the host terminal), defaults to true if the terminal supports it')
+            [CompletionResult]::new('--grapheme-clusters', '--grapheme-clusters', [CompletionResultType]::ParameterName, 'Count each grapheme cluster (an emoji sequence, a letter with its accents) as one unit of width, as the Unicode standard does (true or false, default true). When false, widths are counted per code point and programs may still ask for clusters with mode 2027')
+            [CompletionResult]::new('--mirror-resizes-source-pane', '--mirror-resizes-source-pane', [CompletionResultType]::ParameterName, 'Whether a focused mirror of a pane may resize that pane''s program to the mirror''s size, and whether new mirrors resize their source pane by default (true or false, default true)')
+            [CompletionResult]::new('--live-view-release-key', '--live-view-release-key', [CompletionResultType]::ParameterName, 'An extra key that gives typing back to a plugin while a live pane view inside it is taking the keyboard (default: none, Alt Enter, the inbox key or a click outside always do it; a key written twice means pressing it twice)')
             [CompletionResult]::new('--web-server', '--web-server', [CompletionResultType]::ParameterName, 'Whether to make sure a local web server is running when a new Zellij session starts. This web server will allow creating new sessions and attaching to existing ones that have opted in to being shared in the browser')
             [CompletionResult]::new('--web-sharing', '--web-sharing', [CompletionResultType]::ParameterName, 'Whether to allow new sessions to be shared through a local web server, assuming one is running (see the `web_server` option for more details)')
             [CompletionResult]::new('--stacked-resize', '--stacked-resize', [CompletionResultType]::ParameterName, 'Whether to stack panes when resizing beyond a certain size default is true')
             [CompletionResult]::new('--stacked-pane-list', '--stacked-pane-list', [CompletionResultType]::ParameterName, 'stacked-pane-list')
+            [CompletionResult]::new('--stacked-pane-list-orientation', '--stacked-pane-list-orientation', [CompletionResultType]::ParameterName, 'Whether new stacks show their titles in a column (vertical) or in a row (horizontal) default is vertical')
             [CompletionResult]::new('--show-startup-tips', '--show-startup-tips', [CompletionResultType]::ParameterName, 'Whether to show startup tips when starting a new session default is true')
             [CompletionResult]::new('--show-release-notes', '--show-release-notes', [CompletionResultType]::ParameterName, 'Whether to show release notes on first run of a new version default is true')
             [CompletionResult]::new('--advanced-mouse-actions', '--advanced-mouse-actions', [CompletionResultType]::ParameterName, 'Whether to enable mouse hover effects and pane grouping functionality default is true')
@@ -2457,13 +3033,20 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--visual-bell', '--visual-bell', [CompletionResultType]::ParameterName, 'Whether to show visual bell indicators (pane/tab frame flash and [!] suffix) default is true')
             [CompletionResult]::new('--focus-follows-mouse', '--focus-follows-mouse', [CompletionResultType]::ParameterName, 'Whether to focus panes on mouse hover (true or false) default is false')
             [CompletionResult]::new('--mouse-click-through', '--mouse-click-through', [CompletionResultType]::ParameterName, 'Whether clicking a pane to focus it also sends the click into the pane (true or false) default is false')
+            [CompletionResult]::new('--context-menu-enabled', '--context-menu-enabled', [CompletionResultType]::ParameterName, 'Whether a right click opens the right-click menu (true or false), default is true')
             [CompletionResult]::new('--osc133-command-selection', '--osc133-command-selection', [CompletionResultType]::ParameterName, 'Whether triple-clicking inside shell-marked (OSC 133) command output selects the command and its output rather than the logical line default is true')
             [CompletionResult]::new('--word-separators', '--word-separators', [CompletionResultType]::ParameterName, 'Characters that terminate a word when double-clicking to select it, in addition to whitespace (which is always a separator) default is "[]{}<>()"')
             [CompletionResult]::new('--host-notification-protocol', '--host-notification-protocol', [CompletionResultType]::ParameterName, 'host-notification-protocol')
             [CompletionResult]::new('--post-command-discovery-hook', '--post-command-discovery-hook', [CompletionResultType]::ParameterName, 'A command to run after the discovery of running commands when serializing, for the purpose of manipulating the command (eg. with a regex) before it gets serialized')
-            [CompletionResult]::new('--client-async-worker-tasks', '--client-async-worker-tasks', [CompletionResultType]::ParameterName, 'Number of async worker tasks to spawn per active client')
+            [CompletionResult]::new('--client-async-worker-tasks', '--client-async-worker-tasks', [CompletionResultType]::ParameterName, 'Number of background threads used by `zellij attach <url>` when it connects to a session on another machine. One set is made for that program, not one per client; the web server, browser clients and local sessions are not affected')
             [CompletionResult]::new('--nested-session-handling', '--nested-session-handling', [CompletionResultType]::ParameterName, 'How to handle a nested Zellij session detected inside a pane (ask, fullscreen, descend, never)')
             [CompletionResult]::new('--dangerously-enable-paste-buffer-read', '--dangerously-enable-paste-buffer-read', [CompletionResultType]::ParameterName, 'dangerously-enable-paste-buffer-read')
+            [CompletionResult]::new('--session-indicator', '--session-indicator', [CompletionResultType]::ParameterName, 'Whether to show the other sessions indicator in the tab bar and compact bar (true or false), default is true')
+            [CompletionResult]::new('--swap-layout-notification', '--swap-layout-notification', [CompletionResultType]::ParameterName, 'Whether to briefly show the new swap layout name when it is changed (true or false), default is true')
+            [CompletionResult]::new('--on-quit', '--on-quit', [CompletionResultType]::ParameterName, 'What the quit action does: ask_quit (ask, Quit preselected), ask_detach (ask, Detach preselected), quit or detach. Default is ask_quit')
+            [CompletionResult]::new('--bars-hidden-on-start', '--bars-hidden-on-start', [CompletionResultType]::ParameterName, 'Which bars a new session starts with hidden: bar names separated by commas (eg. tab-bar,status-bar), all or none. Default is none')
+            [CompletionResult]::new('--hidden-bars-notification', '--hidden-bars-notification', [CompletionResultType]::ParameterName, 'Whether to briefly show what was hidden and how to show it again when bars are hidden (true or false), default is true')
+            [CompletionResult]::new('--mode-hints-when-bars-hidden', '--mode-hints-when-bars-hidden', [CompletionResultType]::ParameterName, 'Whether to show the current mode''s keys in a corner while a bar that would show them is hidden (true or false), default is true')
             [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
             break
@@ -2572,6 +3155,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--borderless', '--borderless', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
             [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('--floating', '--floating', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, 'Open the new pane in place of the current pane, temporarily suspending it')
@@ -2581,6 +3165,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--close-on-exit', '--close-on-exit', [CompletionResultType]::ParameterName, 'Close the pane immediately when its command exits')
             [CompletionResult]::new('-s', '-s', [CompletionResultType]::ParameterName, 'Start the command suspended, only running after you first presses ENTER')
             [CompletionResult]::new('--start-suspended', '--start-suspended', [CompletionResultType]::ParameterName, 'Start the command suspended, only running after you first presses ENTER')
+            [CompletionResult]::new('--notify', '--notify', [CompletionResultType]::ParameterName, 'Watch the pane: notify each time its command finishes or its output goes quiet, until the watch is turned off')
             [CompletionResult]::new('--stacked', '--stacked', [CompletionResultType]::ParameterName, 'stacked')
             [CompletionResult]::new('--blocking', '--blocking', [CompletionResultType]::ParameterName, 'Block until the command has finished and its pane has been closed')
             [CompletionResult]::new('--block-until-exit-success', '--block-until-exit-success', [CompletionResultType]::ParameterName, 'Block until the command exits successfully (exit status 0) OR its pane has been closed')
@@ -2608,6 +3193,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--borderless', '--borderless', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
             [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('--floating', '--floating', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, 'Open the new pane in place of the current pane, temporarily suspending it')
@@ -2617,6 +3203,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--close-on-exit', '--close-on-exit', [CompletionResultType]::ParameterName, 'Close the pane immediately when its command exits')
             [CompletionResult]::new('-s', '-s', [CompletionResultType]::ParameterName, 'Start the command suspended, only running after you first presses ENTER')
             [CompletionResult]::new('--start-suspended', '--start-suspended', [CompletionResultType]::ParameterName, 'Start the command suspended, only running after you first presses ENTER')
+            [CompletionResult]::new('--notify', '--notify', [CompletionResultType]::ParameterName, 'Watch the pane: notify each time its command finishes or its output goes quiet, until the watch is turned off')
             [CompletionResult]::new('--stacked', '--stacked', [CompletionResultType]::ParameterName, 'stacked')
             [CompletionResult]::new('--blocking', '--blocking', [CompletionResultType]::ParameterName, 'Block until the command has finished and its pane has been closed')
             [CompletionResult]::new('--block-until-exit-success', '--block-until-exit-success', [CompletionResultType]::ParameterName, 'Block until the command exits successfully (exit status 0) OR its pane has been closed')
@@ -2641,6 +3228,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--borderless', '--borderless', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
             [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('--floating', '--floating', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, 'Open the new pane in place of the current pane, temporarily suspending it')
@@ -2666,6 +3254,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--borderless', '--borderless', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
             [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('--floating', '--floating', [CompletionResultType]::ParameterName, 'Open the new pane in floating mode')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, 'Open the new pane in place of the current pane, temporarily suspending it')
@@ -2694,6 +3283,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--borderless', '--borderless', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, 'Open the new pane in place of the current pane, temporarily suspending it')
             [CompletionResult]::new('--in-place', '--in-place', [CompletionResultType]::ParameterName, 'Open the new pane in place of the current pane, temporarily suspending it')
             [CompletionResult]::new('--close-replaced-pane', '--close-replaced-pane', [CompletionResultType]::ParameterName, 'Close the replaced pane instead of suspending it (only effective with --in-place)')
@@ -2721,6 +3311,7 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('-b', '-b', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--borderless', '--borderless', [CompletionResultType]::ParameterName, 'start this pane without a border (warning: will make it impossible to move with the mouse)')
             [CompletionResult]::new('--tab-id', '--tab-id', [CompletionResultType]::ParameterName, 'Target a specific tab by ID')
+            [CompletionResult]::new('--border-style', '--border-style', [CompletionResultType]::ParameterName, 'Border line style, eg. "double" or "top:double,left:single,rounded"')
             [CompletionResult]::new('-i', '-i', [CompletionResultType]::ParameterName, 'Open the new pane in place of the current pane, temporarily suspending it')
             [CompletionResult]::new('--in-place', '--in-place', [CompletionResultType]::ParameterName, 'Open the new pane in place of the current pane, temporarily suspending it')
             [CompletionResult]::new('--close-replaced-pane', '--close-replaced-pane', [CompletionResultType]::ParameterName, 'Close the replaced pane instead of suspending it (only effective with --in-place)')
@@ -2757,6 +3348,328 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
             break
         }
+        'zellij;prompt' {
+            [CompletionResult]::new('--title', '--title', [CompletionResultType]::ParameterName, 'Title shown at the top of the popup (e.g. --title "Git")')
+            [CompletionResult]::new('--timeout', '--timeout', [CompletionResultType]::ParameterName, 'How long the popup stays open; an unanswered prompt then exits 124 and a notice just closes (e.g. --timeout 30s)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('confirm', 'confirm', [CompletionResultType]::ParameterValue, 'Ask a yes/no question; the exit code is the answer (e.g. zellij prompt confirm "Force push?" --yes Push --no Cancel)')
+            [CompletionResult]::new('choose', 'choose', [CompletionResultType]::ParameterValue, 'Choose one or more items from the arguments or from stdin, one per line (e.g. git branch | zellij prompt choose)')
+            [CompletionResult]::new('input', 'input', [CompletionResultType]::ParameterValue, 'Ask for a line of text (e.g. zellij prompt input "Commit message" --required)')
+            [CompletionResult]::new('number', 'number', [CompletionResultType]::ParameterValue, 'Ask for a whole number (e.g. zellij prompt number Port --min 1 --max 65535 --default 8080)')
+            [CompletionResult]::new('toggle', 'toggle', [CompletionResultType]::ParameterValue, 'Ask for on or off; prints true or false (e.g. zellij prompt toggle "Enable CI" --default on)')
+            [CompletionResult]::new('select', 'select', [CompletionResultType]::ParameterValue, 'Choose one value from a dropdown (e.g. zellij prompt select License MIT Apache-2.0)')
+            [CompletionResult]::new('menu', 'menu', [CompletionResultType]::ParameterValue, 'Show a menu and print the chosen item (e.g. zellij prompt menu Open Rename Delete)')
+            [CompletionResult]::new('form', 'form', [CompletionResultType]::ParameterValue, 'Show several fields described in JSON and print one JSON object (e.g. zellij prompt form --spec form.json)')
+            [CompletionResult]::new('notify', 'notify', [CompletionResultType]::ParameterValue, 'Show a notice that does not take the keyboard and return at once with exit 0 (e.g. zellij prompt notify "Build finished" --timeout 5s)')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'zellij;prompt;confirm' {
+            [CompletionResult]::new('--yes', '--yes', [CompletionResultType]::ParameterName, 'Label of the confirming button (e.g. --yes Push)')
+            [CompletionResult]::new('--no', '--no', [CompletionResultType]::ParameterName, 'Label of the refusing button (e.g. --no Cancel)')
+            [CompletionResult]::new('--default', '--default', [CompletionResultType]::ParameterName, 'Initial value, and the answer used when --timeout runs out (e.g. --default 8080)')
+            [CompletionResult]::new('--outside-click', '--outside-click', [CompletionResultType]::ParameterName, 'What a click outside the popup does: block (ignore it) or close (cancel the prompt) (e.g. --outside-click close)')
+            [CompletionResult]::new('--title', '--title', [CompletionResultType]::ParameterName, 'Title shown at the top of the popup (e.g. --title "Git")')
+            [CompletionResult]::new('--timeout', '--timeout', [CompletionResultType]::ParameterName, 'How long the popup stays open; an unanswered prompt then exits 124 and a notice just closes (e.g. --timeout 30s)')
+            [CompletionResult]::new('--json', '--json', [CompletionResultType]::ParameterName, 'Print JSON with the result and why the prompt ended (e.g. {"result":"cancelled"})')
+            [CompletionResult]::new('--at-mouse', '--at-mouse', [CompletionResultType]::ParameterName, 'Open the popup where the mouse pointer last was, or at your cursor if the mouse has not moved yet (e.g. --at-mouse)')
+            [CompletionResult]::new('--at-cursor', '--at-cursor', [CompletionResultType]::ParameterName, 'Open the popup just below your cursor, in the pane you are focused on (e.g. --at-cursor)')
+            [CompletionResult]::new('--at-center', '--at-center', [CompletionResultType]::ParameterName, 'Open the popup in the middle of the screen instead of over the calling pane (e.g. --at-center)')
+            [CompletionResult]::new('--capture-all-keys', '--capture-all-keys', [CompletionResultType]::ParameterName, 'Send every key to the prompt, including the ones bound to Zellij actions (e.g. --capture-all-keys)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;prompt;choose' {
+            [CompletionResult]::new('--item', '--item', [CompletionResultType]::ParameterName, 'An item written as value=Label (e.g. --item "rm=Delete file")')
+            [CompletionResult]::new('--selected', '--selected', [CompletionResultType]::ParameterName, 'An item ticked in advance (e.g. --selected b)')
+            [CompletionResult]::new('--default', '--default', [CompletionResultType]::ParameterName, 'Initial value, and the answer used when --timeout runs out (e.g. --default 8080)')
+            [CompletionResult]::new('--outside-click', '--outside-click', [CompletionResultType]::ParameterName, 'What a click outside the popup does: block (ignore it) or close (cancel the prompt) (e.g. --outside-click close)')
+            [CompletionResult]::new('--title', '--title', [CompletionResultType]::ParameterName, 'Title shown at the top of the popup (e.g. --title "Git")')
+            [CompletionResult]::new('--timeout', '--timeout', [CompletionResultType]::ParameterName, 'How long the popup stays open; an unanswered prompt then exits 124 and a notice just closes (e.g. --timeout 30s)')
+            [CompletionResult]::new('--multi', '--multi', [CompletionResultType]::ParameterName, 'Allow ticking several items (e.g. zellij prompt choose --multi a b c)')
+            [CompletionResult]::new('--labels', '--labels', [CompletionResultType]::ParameterName, 'Each stdin line is value<TAB>label (e.g. printf ''main\tMain branch\n'' | zellij prompt choose --labels)')
+            [CompletionResult]::new('-0', '-0', [CompletionResultType]::ParameterName, 'Input and output are NUL-separated (e.g. find . -print0 | zellij prompt choose -0)')
+            [CompletionResult]::new('--null', '--null', [CompletionResultType]::ParameterName, 'Input and output are NUL-separated (e.g. find . -print0 | zellij prompt choose -0)')
+            [CompletionResult]::new('--json', '--json', [CompletionResultType]::ParameterName, 'Print JSON with the result and why the prompt ended (e.g. {"result":"cancelled"})')
+            [CompletionResult]::new('--at-mouse', '--at-mouse', [CompletionResultType]::ParameterName, 'Open the popup where the mouse pointer last was, or at your cursor if the mouse has not moved yet (e.g. --at-mouse)')
+            [CompletionResult]::new('--at-cursor', '--at-cursor', [CompletionResultType]::ParameterName, 'Open the popup just below your cursor, in the pane you are focused on (e.g. --at-cursor)')
+            [CompletionResult]::new('--at-center', '--at-center', [CompletionResultType]::ParameterName, 'Open the popup in the middle of the screen instead of over the calling pane (e.g. --at-center)')
+            [CompletionResult]::new('--capture-all-keys', '--capture-all-keys', [CompletionResultType]::ParameterName, 'Send every key to the prompt, including the ones bound to Zellij actions (e.g. --capture-all-keys)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;prompt;input' {
+            [CompletionResult]::new('--placeholder', '--placeholder', [CompletionResultType]::ParameterName, 'Text shown while the field is empty (e.g. --placeholder "what changed")')
+            [CompletionResult]::new('--validate', '--validate', [CompletionResultType]::ParameterName, 'A regular expression the answer must match (e.g. --validate ''^[a-z-]+$'')')
+            [CompletionResult]::new('--default', '--default', [CompletionResultType]::ParameterName, 'Initial value, and the answer used when --timeout runs out (e.g. --default 8080)')
+            [CompletionResult]::new('--outside-click', '--outside-click', [CompletionResultType]::ParameterName, 'What a click outside the popup does: block (ignore it) or close (cancel the prompt) (e.g. --outside-click close)')
+            [CompletionResult]::new('--title', '--title', [CompletionResultType]::ParameterName, 'Title shown at the top of the popup (e.g. --title "Git")')
+            [CompletionResult]::new('--timeout', '--timeout', [CompletionResultType]::ParameterName, 'How long the popup stays open; an unanswered prompt then exits 124 and a notice just closes (e.g. --timeout 30s)')
+            [CompletionResult]::new('--required', '--required', [CompletionResultType]::ParameterName, 'Refuse an empty answer (e.g. --required)')
+            [CompletionResult]::new('--json', '--json', [CompletionResultType]::ParameterName, 'Print JSON with the result and why the prompt ended (e.g. {"result":"cancelled"})')
+            [CompletionResult]::new('--at-mouse', '--at-mouse', [CompletionResultType]::ParameterName, 'Open the popup where the mouse pointer last was, or at your cursor if the mouse has not moved yet (e.g. --at-mouse)')
+            [CompletionResult]::new('--at-cursor', '--at-cursor', [CompletionResultType]::ParameterName, 'Open the popup just below your cursor, in the pane you are focused on (e.g. --at-cursor)')
+            [CompletionResult]::new('--at-center', '--at-center', [CompletionResultType]::ParameterName, 'Open the popup in the middle of the screen instead of over the calling pane (e.g. --at-center)')
+            [CompletionResult]::new('--capture-all-keys', '--capture-all-keys', [CompletionResultType]::ParameterName, 'Send every key to the prompt, including the ones bound to Zellij actions (e.g. --capture-all-keys)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;prompt;number' {
+            [CompletionResult]::new('--min', '--min', [CompletionResultType]::ParameterName, 'Smallest allowed value (e.g. --min 1)')
+            [CompletionResult]::new('--max', '--max', [CompletionResultType]::ParameterName, 'Largest allowed value (e.g. --max 65535)')
+            [CompletionResult]::new('--step', '--step', [CompletionResultType]::ParameterName, 'Step used by the arrow keys (e.g. --step 10)')
+            [CompletionResult]::new('--default', '--default', [CompletionResultType]::ParameterName, 'Initial value, and the answer used when --timeout runs out (e.g. --default 8080)')
+            [CompletionResult]::new('--outside-click', '--outside-click', [CompletionResultType]::ParameterName, 'What a click outside the popup does: block (ignore it) or close (cancel the prompt) (e.g. --outside-click close)')
+            [CompletionResult]::new('--title', '--title', [CompletionResultType]::ParameterName, 'Title shown at the top of the popup (e.g. --title "Git")')
+            [CompletionResult]::new('--timeout', '--timeout', [CompletionResultType]::ParameterName, 'How long the popup stays open; an unanswered prompt then exits 124 and a notice just closes (e.g. --timeout 30s)')
+            [CompletionResult]::new('--json', '--json', [CompletionResultType]::ParameterName, 'Print JSON with the result and why the prompt ended (e.g. {"result":"cancelled"})')
+            [CompletionResult]::new('--at-mouse', '--at-mouse', [CompletionResultType]::ParameterName, 'Open the popup where the mouse pointer last was, or at your cursor if the mouse has not moved yet (e.g. --at-mouse)')
+            [CompletionResult]::new('--at-cursor', '--at-cursor', [CompletionResultType]::ParameterName, 'Open the popup just below your cursor, in the pane you are focused on (e.g. --at-cursor)')
+            [CompletionResult]::new('--at-center', '--at-center', [CompletionResultType]::ParameterName, 'Open the popup in the middle of the screen instead of over the calling pane (e.g. --at-center)')
+            [CompletionResult]::new('--capture-all-keys', '--capture-all-keys', [CompletionResultType]::ParameterName, 'Send every key to the prompt, including the ones bound to Zellij actions (e.g. --capture-all-keys)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;prompt;toggle' {
+            [CompletionResult]::new('--default', '--default', [CompletionResultType]::ParameterName, 'Initial value, and the answer used when --timeout runs out (e.g. --default 8080)')
+            [CompletionResult]::new('--outside-click', '--outside-click', [CompletionResultType]::ParameterName, 'What a click outside the popup does: block (ignore it) or close (cancel the prompt) (e.g. --outside-click close)')
+            [CompletionResult]::new('--title', '--title', [CompletionResultType]::ParameterName, 'Title shown at the top of the popup (e.g. --title "Git")')
+            [CompletionResult]::new('--timeout', '--timeout', [CompletionResultType]::ParameterName, 'How long the popup stays open; an unanswered prompt then exits 124 and a notice just closes (e.g. --timeout 30s)')
+            [CompletionResult]::new('--json', '--json', [CompletionResultType]::ParameterName, 'Print JSON with the result and why the prompt ended (e.g. {"result":"cancelled"})')
+            [CompletionResult]::new('--at-mouse', '--at-mouse', [CompletionResultType]::ParameterName, 'Open the popup where the mouse pointer last was, or at your cursor if the mouse has not moved yet (e.g. --at-mouse)')
+            [CompletionResult]::new('--at-cursor', '--at-cursor', [CompletionResultType]::ParameterName, 'Open the popup just below your cursor, in the pane you are focused on (e.g. --at-cursor)')
+            [CompletionResult]::new('--at-center', '--at-center', [CompletionResultType]::ParameterName, 'Open the popup in the middle of the screen instead of over the calling pane (e.g. --at-center)')
+            [CompletionResult]::new('--capture-all-keys', '--capture-all-keys', [CompletionResultType]::ParameterName, 'Send every key to the prompt, including the ones bound to Zellij actions (e.g. --capture-all-keys)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;prompt;select' {
+            [CompletionResult]::new('--default', '--default', [CompletionResultType]::ParameterName, 'Initial value, and the answer used when --timeout runs out (e.g. --default 8080)')
+            [CompletionResult]::new('--outside-click', '--outside-click', [CompletionResultType]::ParameterName, 'What a click outside the popup does: block (ignore it) or close (cancel the prompt) (e.g. --outside-click close)')
+            [CompletionResult]::new('--title', '--title', [CompletionResultType]::ParameterName, 'Title shown at the top of the popup (e.g. --title "Git")')
+            [CompletionResult]::new('--timeout', '--timeout', [CompletionResultType]::ParameterName, 'How long the popup stays open; an unanswered prompt then exits 124 and a notice just closes (e.g. --timeout 30s)')
+            [CompletionResult]::new('--json', '--json', [CompletionResultType]::ParameterName, 'Print JSON with the result and why the prompt ended (e.g. {"result":"cancelled"})')
+            [CompletionResult]::new('--at-mouse', '--at-mouse', [CompletionResultType]::ParameterName, 'Open the popup where the mouse pointer last was, or at your cursor if the mouse has not moved yet (e.g. --at-mouse)')
+            [CompletionResult]::new('--at-cursor', '--at-cursor', [CompletionResultType]::ParameterName, 'Open the popup just below your cursor, in the pane you are focused on (e.g. --at-cursor)')
+            [CompletionResult]::new('--at-center', '--at-center', [CompletionResultType]::ParameterName, 'Open the popup in the middle of the screen instead of over the calling pane (e.g. --at-center)')
+            [CompletionResult]::new('--capture-all-keys', '--capture-all-keys', [CompletionResultType]::ParameterName, 'Send every key to the prompt, including the ones bound to Zellij actions (e.g. --capture-all-keys)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;prompt;menu' {
+            [CompletionResult]::new('--item', '--item', [CompletionResultType]::ParameterName, 'An item written as value=Label (e.g. --item "rm=Delete")')
+            [CompletionResult]::new('--default', '--default', [CompletionResultType]::ParameterName, 'Initial value, and the answer used when --timeout runs out (e.g. --default 8080)')
+            [CompletionResult]::new('--outside-click', '--outside-click', [CompletionResultType]::ParameterName, 'What a click outside the popup does: block (ignore it) or close (cancel the prompt) (e.g. --outside-click close)')
+            [CompletionResult]::new('--title', '--title', [CompletionResultType]::ParameterName, 'Title shown at the top of the popup (e.g. --title "Git")')
+            [CompletionResult]::new('--timeout', '--timeout', [CompletionResultType]::ParameterName, 'How long the popup stays open; an unanswered prompt then exits 124 and a notice just closes (e.g. --timeout 30s)')
+            [CompletionResult]::new('--json', '--json', [CompletionResultType]::ParameterName, 'Print JSON with the result and why the prompt ended (e.g. {"result":"cancelled"})')
+            [CompletionResult]::new('--at-mouse', '--at-mouse', [CompletionResultType]::ParameterName, 'Open the popup where the mouse pointer last was, or at your cursor if the mouse has not moved yet (e.g. --at-mouse)')
+            [CompletionResult]::new('--at-cursor', '--at-cursor', [CompletionResultType]::ParameterName, 'Open the popup just below your cursor, in the pane you are focused on (e.g. --at-cursor)')
+            [CompletionResult]::new('--at-center', '--at-center', [CompletionResultType]::ParameterName, 'Open the popup in the middle of the screen instead of over the calling pane (e.g. --at-center)')
+            [CompletionResult]::new('--capture-all-keys', '--capture-all-keys', [CompletionResultType]::ParameterName, 'Send every key to the prompt, including the ones bound to Zellij actions (e.g. --capture-all-keys)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;prompt;form' {
+            [CompletionResult]::new('--spec', '--spec', [CompletionResultType]::ParameterName, 'File with the form description; read from stdin when not given (e.g. --spec form.json)')
+            [CompletionResult]::new('--default', '--default', [CompletionResultType]::ParameterName, 'Initial value, and the answer used when --timeout runs out (e.g. --default 8080)')
+            [CompletionResult]::new('--outside-click', '--outside-click', [CompletionResultType]::ParameterName, 'What a click outside the popup does: block (ignore it) or close (cancel the prompt) (e.g. --outside-click close)')
+            [CompletionResult]::new('--title', '--title', [CompletionResultType]::ParameterName, 'Title shown at the top of the popup (e.g. --title "Git")')
+            [CompletionResult]::new('--timeout', '--timeout', [CompletionResultType]::ParameterName, 'How long the popup stays open; an unanswered prompt then exits 124 and a notice just closes (e.g. --timeout 30s)')
+            [CompletionResult]::new('--json', '--json', [CompletionResultType]::ParameterName, 'Print JSON with the result and why the prompt ended (e.g. {"result":"cancelled"})')
+            [CompletionResult]::new('--at-mouse', '--at-mouse', [CompletionResultType]::ParameterName, 'Open the popup where the mouse pointer last was, or at your cursor if the mouse has not moved yet (e.g. --at-mouse)')
+            [CompletionResult]::new('--at-cursor', '--at-cursor', [CompletionResultType]::ParameterName, 'Open the popup just below your cursor, in the pane you are focused on (e.g. --at-cursor)')
+            [CompletionResult]::new('--at-center', '--at-center', [CompletionResultType]::ParameterName, 'Open the popup in the middle of the screen instead of over the calling pane (e.g. --at-center)')
+            [CompletionResult]::new('--capture-all-keys', '--capture-all-keys', [CompletionResultType]::ParameterName, 'Send every key to the prompt, including the ones bound to Zellij actions (e.g. --capture-all-keys)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;prompt;notify' {
+            [CompletionResult]::new('--at', '--at', [CompletionResultType]::ParameterName, 'Where to show it: top-right, top-left, bottom-right, bottom-left, pane, center, mouse or cursor (e.g. --at bottom-right)')
+            [CompletionResult]::new('--title', '--title', [CompletionResultType]::ParameterName, 'Title shown at the top of the popup (e.g. --title "Git")')
+            [CompletionResult]::new('--timeout', '--timeout', [CompletionResultType]::ParameterName, 'How long the popup stays open; an unanswered prompt then exits 124 and a notice just closes (e.g. --timeout 30s)')
+            [CompletionResult]::new('--no-pane-name', '--no-pane-name', [CompletionResultType]::ParameterName, 'Leave out the line with the name of the pane that sent the notice (e.g. --no-pane-name)')
+            [CompletionResult]::new('--no-tab-name', '--no-tab-name', [CompletionResultType]::ParameterName, 'Leave out the line with the tab name, shown when the pane that sent the notice is in another tab (e.g. --no-tab-name)')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            break
+        }
+        'zellij;prompt;help' {
+            [CompletionResult]::new('confirm', 'confirm', [CompletionResultType]::ParameterValue, 'Ask a yes/no question; the exit code is the answer (e.g. zellij prompt confirm "Force push?" --yes Push --no Cancel)')
+            [CompletionResult]::new('choose', 'choose', [CompletionResultType]::ParameterValue, 'Choose one or more items from the arguments or from stdin, one per line (e.g. git branch | zellij prompt choose)')
+            [CompletionResult]::new('input', 'input', [CompletionResultType]::ParameterValue, 'Ask for a line of text (e.g. zellij prompt input "Commit message" --required)')
+            [CompletionResult]::new('number', 'number', [CompletionResultType]::ParameterValue, 'Ask for a whole number (e.g. zellij prompt number Port --min 1 --max 65535 --default 8080)')
+            [CompletionResult]::new('toggle', 'toggle', [CompletionResultType]::ParameterValue, 'Ask for on or off; prints true or false (e.g. zellij prompt toggle "Enable CI" --default on)')
+            [CompletionResult]::new('select', 'select', [CompletionResultType]::ParameterValue, 'Choose one value from a dropdown (e.g. zellij prompt select License MIT Apache-2.0)')
+            [CompletionResult]::new('menu', 'menu', [CompletionResultType]::ParameterValue, 'Show a menu and print the chosen item (e.g. zellij prompt menu Open Rename Delete)')
+            [CompletionResult]::new('form', 'form', [CompletionResultType]::ParameterValue, 'Show several fields described in JSON and print one JSON object (e.g. zellij prompt form --spec form.json)')
+            [CompletionResult]::new('notify', 'notify', [CompletionResultType]::ParameterValue, 'Show a notice that does not take the keyboard and return at once with exit 0 (e.g. zellij prompt notify "Build finished" --timeout 5s)')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'zellij;prompt;help;confirm' {
+            break
+        }
+        'zellij;prompt;help;choose' {
+            break
+        }
+        'zellij;prompt;help;input' {
+            break
+        }
+        'zellij;prompt;help;number' {
+            break
+        }
+        'zellij;prompt;help;toggle' {
+            break
+        }
+        'zellij;prompt;help;select' {
+            break
+        }
+        'zellij;prompt;help;menu' {
+            break
+        }
+        'zellij;prompt;help;form' {
+            break
+        }
+        'zellij;prompt;help;notify' {
+            break
+        }
+        'zellij;prompt;help;help' {
+            break
+        }
+        'zellij;terminal' {
+            [CompletionResult]::new('--index', '--index', [CompletionResultType]::ParameterName, 'Number of the session index in the active sessions ordered creation date')
+            [CompletionResult]::new('-t', '-t', [CompletionResultType]::ParameterName, 'Authentication token for remote sessions')
+            [CompletionResult]::new('--token', '--token', [CompletionResultType]::ParameterName, 'Authentication token for remote sessions')
+            [CompletionResult]::new('--ca-cert', '--ca-cert', [CompletionResultType]::ParameterName, 'Path to a custom CA certificate (PEM format) for verifying the remote server')
+            [CompletionResult]::new('--record', '--record', [CompletionResultType]::ParameterName, 'Record the received message stream to a fixture file')
+            [CompletionResult]::new('--rows', '--rows', [CompletionResultType]::ParameterName, 'Rows to advertise while headless')
+            [CompletionResult]::new('--cols', '--cols', [CompletionResultType]::ParameterName, 'Columns to advertise while headless')
+            [CompletionResult]::new('--cell-width', '--cell-width', [CompletionResultType]::ParameterName, 'Character cell width in pixels to advertise while headless')
+            [CompletionResult]::new('--cell-height', '--cell-height', [CompletionResultType]::ParameterName, 'Character cell height in pixels to advertise while headless')
+            [CompletionResult]::new('--duration-secs', '--duration-secs', [CompletionResultType]::ParameterName, 'Detach after this many seconds')
+            [CompletionResult]::new('--startup-mode', '--startup-mode', [CompletionResultType]::ParameterName, 'Open the window windowed, maximized, fullscreen, or the way the last one was closed (remember), overriding startup_mode in the terminal section of the configuration')
+            [CompletionResult]::new('--socket-dir', '--socket-dir', [CompletionResultType]::ParameterName, 'Use this folder for session sockets instead of the default, so this window, its desktop app and its sessions are separate from every other Zellij (same as setting ZELLIJ_SOCKET_DIR)')
+            [CompletionResult]::new('-e', '-e', [CompletionResultType]::ParameterName, 'Run this command (and every argument after it) as the first pane, close the pane when it exits, and wait for it, exiting with its exit code (as terminal emulators do)')
+            [CompletionResult]::new('--working-directory', '--working-directory', [CompletionResultType]::ParameterName, 'Start in this folder instead of the current one')
+            [CompletionResult]::new('-c', '-c', [CompletionResultType]::ParameterName, 'Create a session if one does not exist')
+            [CompletionResult]::new('--create', '--create', [CompletionResultType]::ParameterName, 'Create a session if one does not exist')
+            [CompletionResult]::new('-f', '-f', [CompletionResultType]::ParameterName, 'If resurrecting a dead session, immediately run all its commands on startup')
+            [CompletionResult]::new('--force-run-commands', '--force-run-commands', [CompletionResultType]::ParameterName, 'If resurrecting a dead session, immediately run all its commands on startup')
+            [CompletionResult]::new('-r', '-r', [CompletionResultType]::ParameterName, 'Save session for automatic re-authentication (4 weeks)')
+            [CompletionResult]::new('--remember', '--remember', [CompletionResultType]::ParameterName, 'Save session for automatic re-authentication (4 weeks)')
+            [CompletionResult]::new('--forget', '--forget', [CompletionResultType]::ParameterName, 'Delete saved session before connecting')
+            [CompletionResult]::new('--insecure', '--insecure', [CompletionResultType]::ParameterName, 'Skip TLS certificate validation (DANGEROUS — development only)')
+            [CompletionResult]::new('--close-on-exit', '--close-on-exit', [CompletionResultType]::ParameterName, 'Close the initial command''s pane immediately when it exits')
+            [CompletionResult]::new('--start-suspended', '--start-suspended', [CompletionResultType]::ParameterName, 'Start the initial command suspended, only running it after you first press ENTER')
+            [CompletionResult]::new('--watch', '--watch', [CompletionResultType]::ParameterName, 'Follow the screen of the session''s first client, read-only')
+            [CompletionResult]::new('--headless', '--headless', [CompletionResultType]::ParameterName, 'Render nothing and open no window; for fixture capture and debugging')
+            [CompletionResult]::new('--standalone', '--standalone', [CompletionResultType]::ParameterName, 'Open this window on its own instead of handing it to the running desktop app (no tray, no notifications from this process)')
+            [CompletionResult]::new('--inbox', '--inbox', [CompletionResultType]::ParameterName, 'Show or hide the inbox panel of the running desktop app (starting it if needed), for a desktop keyboard shortcut')
+            [CompletionResult]::new('--sessions', '--sessions', [CompletionResultType]::ParameterName, 'Show or hide the sessions panel of the running desktop app (starting it if needed), for a desktop keyboard shortcut')
+            [CompletionResult]::new('--hold', '--hold', [CompletionResultType]::ParameterName, 'Keep the command''s pane open after the command exits, showing its output (requires a command)')
+            [CompletionResult]::new('--background', '--background', [CompletionResultType]::ParameterName, 'Start the desktop app without opening a window')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help')
+            [CompletionResult]::new('options', 'options', [CompletionResultType]::ParameterValue, 'Change the behaviour of zellij')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'zellij;terminal;options' {
+            [CompletionResult]::new('--simplified-ui', '--simplified-ui', [CompletionResultType]::ParameterName, 'Allow plugins to use a more simplified layout that is compatible with more fonts (true or false)')
+            [CompletionResult]::new('--theme', '--theme', [CompletionResultType]::ParameterName, 'Set the default theme')
+            [CompletionResult]::new('--theme-dark', '--theme-dark', [CompletionResultType]::ParameterName, 'Theme name to apply when the host terminal reports a dark color palette (CSI 2031 / DSR 997). Requires `theme_light` to also be set; if either is missing the static `theme` remains authoritative')
+            [CompletionResult]::new('--theme-light', '--theme-light', [CompletionResultType]::ParameterName, 'Theme name to apply when the host terminal reports a light color palette (CSI 2031 / DSR 997). Requires `theme_dark` to also be set; if either is missing the static `theme` remains authoritative')
+            [CompletionResult]::new('--explicit-theme-hue', '--explicit-theme-hue', [CompletionResultType]::ParameterName, 'Pin the session to a dark or light appearance ("dark" or "light"), resolved before the first render and kept authoritative over ambient host terminal reports (CSI 2031 / DSR 997). When unset, the session follows the host terminal')
+            [CompletionResult]::new('--default-mode', '--default-mode', [CompletionResultType]::ParameterName, 'Set the default mode')
+            [CompletionResult]::new('--default-shell', '--default-shell', [CompletionResultType]::ParameterName, 'Set the default shell')
+            [CompletionResult]::new('--default-cwd', '--default-cwd', [CompletionResultType]::ParameterName, 'Set the default cwd')
+            [CompletionResult]::new('--default-layout', '--default-layout', [CompletionResultType]::ParameterName, 'Set the default layout')
+            [CompletionResult]::new('--layout-dir', '--layout-dir', [CompletionResultType]::ParameterName, 'Set the layout_dir, defaults to subdirectory of config dir')
+            [CompletionResult]::new('--theme-dir', '--theme-dir', [CompletionResultType]::ParameterName, 'Set the theme_dir, defaults to subdirectory of config dir')
+            [CompletionResult]::new('--keybinds-dir', '--keybinds-dir', [CompletionResultType]::ParameterName, 'Set the keybinds_dir, defaults to subdirectory of config dir')
+            [CompletionResult]::new('--keybinds-preset', '--keybinds-preset', [CompletionResultType]::ParameterName, 'Use this keybinding preset for this session: a name from the keybinds folder, a built-in preset, or a path to a preset file')
+            [CompletionResult]::new('--keybinds-primary', '--keybinds-primary', [CompletionResultType]::ParameterName, 'The primary leader key for the keybinding preset (for example "Ctrl")')
+            [CompletionResult]::new('--keybinds-secondary', '--keybinds-secondary', [CompletionResultType]::ParameterName, 'The secondary leader key for the keybinding preset (for example "Alt")')
+            [CompletionResult]::new('--keybinds-unlock', '--keybinds-unlock', [CompletionResultType]::ParameterName, 'The unlock key for the keybinding preset (for example "Ctrl g")')
+            [CompletionResult]::new('--mouse-mode', '--mouse-mode', [CompletionResultType]::ParameterName, 'Set the handling of mouse events (true or false) Can be temporarily bypassed by the [SHIFT] key')
+            [CompletionResult]::new('--pane-frames', '--pane-frames', [CompletionResultType]::ParameterName, 'Set display of the pane frames (true or false)')
+            [CompletionResult]::new('--pane-frame-style', '--pane-frame-style', [CompletionResultType]::ParameterName, 'pane-frame-style')
+            [CompletionResult]::new('--mirror-session', '--mirror-session', [CompletionResultType]::ParameterName, 'Mirror session when multiple users are connected (true or false)')
+            [CompletionResult]::new('--on-force-close', '--on-force-close', [CompletionResultType]::ParameterName, 'Set behaviour on force close (quit or detach)')
+            [CompletionResult]::new('--scroll-buffer-size', '--scroll-buffer-size', [CompletionResultType]::ParameterName, 'scroll-buffer-size')
+            [CompletionResult]::new('--copy-command', '--copy-command', [CompletionResultType]::ParameterName, 'Switch to using a user supplied command for clipboard instead of OSC52')
+            [CompletionResult]::new('--copy-clipboard', '--copy-clipboard', [CompletionResultType]::ParameterName, 'OSC52 destination clipboard')
+            [CompletionResult]::new('--copy-on-select', '--copy-on-select', [CompletionResultType]::ParameterName, 'Automatically copy when selecting text (true or false)')
+            [CompletionResult]::new('--osc8-hyperlinks', '--osc8-hyperlinks', [CompletionResultType]::ParameterName, 'Enable OSC8 hyperlink output (true or false)')
+            [CompletionResult]::new('--scrollback-editor', '--scrollback-editor', [CompletionResultType]::ParameterName, 'Explicit full path to open the scrollback editor (default is $EDITOR or $VISUAL)')
+            [CompletionResult]::new('--session-name', '--session-name', [CompletionResultType]::ParameterName, 'The name of the session to create when starting Zellij')
+            [CompletionResult]::new('--attach-to-session', '--attach-to-session', [CompletionResultType]::ParameterName, 'Whether to attach to a session specified in "session-name" if it exists')
+            [CompletionResult]::new('--auto-layout', '--auto-layout', [CompletionResultType]::ParameterName, 'Whether to lay out panes in a predefined set of layouts whenever possible')
+            [CompletionResult]::new('--session-serialization', '--session-serialization', [CompletionResultType]::ParameterName, 'Whether sessions should be serialized to the HD so that they can be later resurrected, default is true')
+            [CompletionResult]::new('--serialize-pane-viewport', '--serialize-pane-viewport', [CompletionResultType]::ParameterName, 'Whether pane viewports are serialized along with the session, default is false')
+            [CompletionResult]::new('--scrollback-lines-to-serialize', '--scrollback-lines-to-serialize', [CompletionResultType]::ParameterName, 'Scrollback lines to serialize along with the pane viewport when serializing sessions, 0 defaults to the scrollback size. If this number is higher than the scrollback size, it will also default to the scrollback size')
+            [CompletionResult]::new('--styled-underlines', '--styled-underlines', [CompletionResultType]::ParameterName, 'Whether to use ANSI styled underlines')
+            [CompletionResult]::new('--serialization-interval', '--serialization-interval', [CompletionResultType]::ParameterName, 'The interval at which to serialize sessions for resurrection (in seconds)')
+            [CompletionResult]::new('--disable-session-metadata', '--disable-session-metadata', [CompletionResultType]::ParameterName, 'If true, will disable writing session metadata to disk')
+            [CompletionResult]::new('--support-kitty-keyboard-protocol', '--support-kitty-keyboard-protocol', [CompletionResultType]::ParameterName, 'Whether to enable support for the Kitty keyboard protocol (must also be supported by the host terminal), defaults to true if the terminal supports it')
+            [CompletionResult]::new('--support-kitty-graphics-protocol', '--support-kitty-graphics-protocol', [CompletionResultType]::ParameterName, 'Whether to enable support for the Kitty graphics (image) protocol (must also be supported by the host terminal), defaults to true if the terminal supports it')
+            [CompletionResult]::new('--grapheme-clusters', '--grapheme-clusters', [CompletionResultType]::ParameterName, 'Count each grapheme cluster (an emoji sequence, a letter with its accents) as one unit of width, as the Unicode standard does (true or false, default true). When false, widths are counted per code point and programs may still ask for clusters with mode 2027')
+            [CompletionResult]::new('--mirror-resizes-source-pane', '--mirror-resizes-source-pane', [CompletionResultType]::ParameterName, 'Whether a focused mirror of a pane may resize that pane''s program to the mirror''s size, and whether new mirrors resize their source pane by default (true or false, default true)')
+            [CompletionResult]::new('--live-view-release-key', '--live-view-release-key', [CompletionResultType]::ParameterName, 'An extra key that gives typing back to a plugin while a live pane view inside it is taking the keyboard (default: none, Alt Enter, the inbox key or a click outside always do it; a key written twice means pressing it twice)')
+            [CompletionResult]::new('--web-server', '--web-server', [CompletionResultType]::ParameterName, 'Whether to make sure a local web server is running when a new Zellij session starts. This web server will allow creating new sessions and attaching to existing ones that have opted in to being shared in the browser')
+            [CompletionResult]::new('--web-sharing', '--web-sharing', [CompletionResultType]::ParameterName, 'Whether to allow new sessions to be shared through a local web server, assuming one is running (see the `web_server` option for more details)')
+            [CompletionResult]::new('--stacked-resize', '--stacked-resize', [CompletionResultType]::ParameterName, 'Whether to stack panes when resizing beyond a certain size default is true')
+            [CompletionResult]::new('--stacked-pane-list', '--stacked-pane-list', [CompletionResultType]::ParameterName, 'stacked-pane-list')
+            [CompletionResult]::new('--stacked-pane-list-orientation', '--stacked-pane-list-orientation', [CompletionResultType]::ParameterName, 'Whether new stacks show their titles in a column (vertical) or in a row (horizontal) default is vertical')
+            [CompletionResult]::new('--show-startup-tips', '--show-startup-tips', [CompletionResultType]::ParameterName, 'Whether to show startup tips when starting a new session default is true')
+            [CompletionResult]::new('--show-release-notes', '--show-release-notes', [CompletionResultType]::ParameterName, 'Whether to show release notes on first run of a new version default is true')
+            [CompletionResult]::new('--advanced-mouse-actions', '--advanced-mouse-actions', [CompletionResultType]::ParameterName, 'Whether to enable mouse hover effects and pane grouping functionality default is true')
+            [CompletionResult]::new('--mouse-scroll-resize', '--mouse-scroll-resize', [CompletionResultType]::ParameterName, 'Whether Ctrl+ScrollWheel resizes panes default is true')
+            [CompletionResult]::new('--scroll-mode-sync', '--scroll-mode-sync', [CompletionResultType]::ParameterName, 'Whether scrolling a pane implicitly enters (and leaving the scroll implicitly exits) Scroll mode default is true')
+            [CompletionResult]::new('--mouse-hover-effects', '--mouse-hover-effects', [CompletionResultType]::ParameterName, 'Whether to enable mouse hover visual effects (frame highlight and help text) default is true')
+            [CompletionResult]::new('--mouse-hover-tips', '--mouse-hover-tips', [CompletionResultType]::ParameterName, 'Whether to show mouse hover help-text tips (resize help and group shortcuts) default is true')
+            [CompletionResult]::new('--visual-bell', '--visual-bell', [CompletionResultType]::ParameterName, 'Whether to show visual bell indicators (pane/tab frame flash and [!] suffix) default is true')
+            [CompletionResult]::new('--focus-follows-mouse', '--focus-follows-mouse', [CompletionResultType]::ParameterName, 'Whether to focus panes on mouse hover (true or false) default is false')
+            [CompletionResult]::new('--mouse-click-through', '--mouse-click-through', [CompletionResultType]::ParameterName, 'Whether clicking a pane to focus it also sends the click into the pane (true or false) default is false')
+            [CompletionResult]::new('--context-menu-enabled', '--context-menu-enabled', [CompletionResultType]::ParameterName, 'Whether a right click opens the right-click menu (true or false), default is true')
+            [CompletionResult]::new('--osc133-command-selection', '--osc133-command-selection', [CompletionResultType]::ParameterName, 'Whether triple-clicking inside shell-marked (OSC 133) command output selects the command and its output rather than the logical line default is true')
+            [CompletionResult]::new('--word-separators', '--word-separators', [CompletionResultType]::ParameterName, 'Characters that terminate a word when double-clicking to select it, in addition to whitespace (which is always a separator) default is "[]{}<>()"')
+            [CompletionResult]::new('--host-notification-protocol', '--host-notification-protocol', [CompletionResultType]::ParameterName, 'host-notification-protocol')
+            [CompletionResult]::new('--post-command-discovery-hook', '--post-command-discovery-hook', [CompletionResultType]::ParameterName, 'A command to run after the discovery of running commands when serializing, for the purpose of manipulating the command (eg. with a regex) before it gets serialized')
+            [CompletionResult]::new('--client-async-worker-tasks', '--client-async-worker-tasks', [CompletionResultType]::ParameterName, 'Number of background threads used by `zellij attach <url>` when it connects to a session on another machine. One set is made for that program, not one per client; the web server, browser clients and local sessions are not affected')
+            [CompletionResult]::new('--nested-session-handling', '--nested-session-handling', [CompletionResultType]::ParameterName, 'How to handle a nested Zellij session detected inside a pane (ask, fullscreen, descend, never)')
+            [CompletionResult]::new('--dangerously-enable-paste-buffer-read', '--dangerously-enable-paste-buffer-read', [CompletionResultType]::ParameterName, 'dangerously-enable-paste-buffer-read')
+            [CompletionResult]::new('--session-indicator', '--session-indicator', [CompletionResultType]::ParameterName, 'Whether to show the other sessions indicator in the tab bar and compact bar (true or false), default is true')
+            [CompletionResult]::new('--swap-layout-notification', '--swap-layout-notification', [CompletionResultType]::ParameterName, 'Whether to briefly show the new swap layout name when it is changed (true or false), default is true')
+            [CompletionResult]::new('--on-quit', '--on-quit', [CompletionResultType]::ParameterName, 'What the quit action does: ask_quit (ask, Quit preselected), ask_detach (ask, Detach preselected), quit or detach. Default is ask_quit')
+            [CompletionResult]::new('--bars-hidden-on-start', '--bars-hidden-on-start', [CompletionResultType]::ParameterName, 'Which bars a new session starts with hidden: bar names separated by commas (eg. tab-bar,status-bar), all or none. Default is none')
+            [CompletionResult]::new('--hidden-bars-notification', '--hidden-bars-notification', [CompletionResultType]::ParameterName, 'Whether to briefly show what was hidden and how to show it again when bars are hidden (true or false), default is true')
+            [CompletionResult]::new('--mode-hints-when-bars-hidden', '--mode-hints-when-bars-hidden', [CompletionResultType]::ParameterName, 'Whether to show the current mode''s keys in a corner while a bar that would show them is hidden (true or false), default is true')
+            [CompletionResult]::new('-h', '-h', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, 'Print help (see more with ''--help'')')
+            break
+        }
+        'zellij;terminal;help' {
+            [CompletionResult]::new('options', 'options', [CompletionResultType]::ParameterValue, 'Change the behaviour of zellij')
+            [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
+            break
+        }
+        'zellij;terminal;help;options' {
+            break
+        }
+        'zellij;terminal;help;help' {
+            break
+        }
         'zellij;help' {
             [CompletionResult]::new('options', 'options', [CompletionResultType]::ParameterValue, 'Change the behaviour of zellij')
             [CompletionResult]::new('setup', 'setup', [CompletionResultType]::ParameterValue, 'Setup zellij and check its configuration')
@@ -2775,6 +3688,8 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('edit', 'edit', [CompletionResultType]::ParameterValue, 'Edit file with default $EDITOR / $VISUAL Returns: Created pane ID (format: terminal_<id>)')
             [CompletionResult]::new('pipe', 'pipe', [CompletionResultType]::ParameterValue, 'Send data to one or more plugins, launch them if they are not running')
             [CompletionResult]::new('subscribe', 'subscribe', [CompletionResultType]::ParameterValue, 'Subscribe to pane render updates (viewport and scrollback)')
+            [CompletionResult]::new('prompt', 'prompt', [CompletionResultType]::ParameterValue, 'Show a UI element to the person at the terminal and print their answer (e.g. zellij prompt confirm "Deploy?")')
+            [CompletionResult]::new('terminal', 'terminal', [CompletionResultType]::ParameterValue, 'Open a session in the Zellij terminal, without another terminal emulator')
             [CompletionResult]::new('help', 'help', [CompletionResultType]::ParameterValue, 'Print this message or the help of the given subcommand(s)')
             break
         }
@@ -2817,7 +3732,11 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('toggle-fullscreen', 'toggle-fullscreen', [CompletionResultType]::ParameterValue, 'Toggle between fullscreen focus pane and normal layout')
             [CompletionResult]::new('toggle-no-ui-fullscreen', 'toggle-no-ui-fullscreen', [CompletionResultType]::ParameterValue, 'Toggle between fullscreen over the entire display (including the UI bars) and normal layout')
             [CompletionResult]::new('toggle-pane-frames', 'toggle-pane-frames', [CompletionResultType]::ParameterValue, 'Toggle frames around panes in the UI')
+            [CompletionResult]::new('toggle-stack-list-orientation', 'toggle-stack-list-orientation', [CompletionResultType]::ParameterValue, 'Switch the focused stack between showing its titles in a column (vertical) and in a row (horizontal)')
             [CompletionResult]::new('set-pane-frame-style', 'set-pane-frame-style', [CompletionResultType]::ParameterValue, 'set-pane-frame-style')
+            [CompletionResult]::new('toggle-bars', 'toggle-bars', [CompletionResultType]::ParameterValue, 'Show all bars if any are hidden, otherwise hide the named bars (all bars if none are named)')
+            [CompletionResult]::new('hide-bars', 'hide-bars', [CompletionResultType]::ParameterValue, 'Hide the named bars (all bars if none are named) in every tab')
+            [CompletionResult]::new('show-bars', 'show-bars', [CompletionResultType]::ParameterValue, 'Show all hidden bars')
             [CompletionResult]::new('toggle-active-sync-tab', 'toggle-active-sync-tab', [CompletionResultType]::ParameterValue, 'Toggle between sending text commands to all panes on the current tab and normal mode')
             [CompletionResult]::new('new-pane', 'new-pane', [CompletionResultType]::ParameterValue, 'Open a new pane in the specified direction [right|down] If no direction is specified, will try to use the biggest available space. Returns: Created pane ID (format: terminal_<id> or plugin_<id>)')
             [CompletionResult]::new('edit', 'edit', [CompletionResultType]::ParameterValue, 'Open the specified file in a new zellij pane with your default EDITOR Returns: Created pane ID (format: terminal_<id>)')
@@ -2844,6 +3763,8 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('move-tab', 'move-tab', [CompletionResultType]::ParameterValue, 'Move the focused tab in the specified direction. [right|left]')
             [CompletionResult]::new('previous-swap-layout', 'previous-swap-layout', [CompletionResultType]::ParameterValue, 'previous-swap-layout')
             [CompletionResult]::new('next-swap-layout', 'next-swap-layout', [CompletionResultType]::ParameterValue, 'next-swap-layout')
+            [CompletionResult]::new('apply-tiled-swap-layout', 'apply-tiled-swap-layout', [CompletionResultType]::ParameterValue, 'Apply the tiled swap layout with the given name, leaving floating pane visibility and focus untouched')
+            [CompletionResult]::new('apply-floating-swap-layout', 'apply-floating-swap-layout', [CompletionResultType]::ParameterValue, 'Apply the floating swap layout with the given name, leaving floating pane visibility and focus untouched')
             [CompletionResult]::new('override-layout', 'override-layout', [CompletionResultType]::ParameterValue, 'Override the layout of the active tab')
             [CompletionResult]::new('query-tab-names', 'query-tab-names', [CompletionResultType]::ParameterValue, 'Query all tab names')
             [CompletionResult]::new('start-or-reload-plugin', 'start-or-reload-plugin', [CompletionResultType]::ParameterValue, 'start-or-reload-plugin')
@@ -2856,16 +3777,33 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             [CompletionResult]::new('list-tabs', 'list-tabs', [CompletionResultType]::ParameterValue, 'List all tabs with their information')
             [CompletionResult]::new('current-tab-info', 'current-tab-info', [CompletionResultType]::ParameterValue, 'Get information about the currently active tab')
             [CompletionResult]::new('toggle-pane-pinned', 'toggle-pane-pinned', [CompletionResultType]::ParameterValue, 'toggle-pane-pinned')
+            [CompletionResult]::new('toggle-mirror-resize', 'toggle-mirror-resize', [CompletionResultType]::ParameterValue, 'Toggle whether the live view in the focused plugin pane resizes the program of the pane it shows')
+            [CompletionResult]::new('mute-pane', 'mute-pane', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of a pane (the focused pane by default)')
+            [CompletionResult]::new('ignore-pane-output', 'ignore-pane-output', [CompletionResultType]::ParameterValue, 'Stop or start reporting new output of a pane (the focused pane by default)')
+            [CompletionResult]::new('watch-pane', 'watch-pane', [CompletionResultType]::ParameterValue, 'Watch a pane: notify each time its command finishes or its output goes quiet, until turned off again (toggles; the focused pane by default)')
+            [CompletionResult]::new('mute-tab', 'mute-tab', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of all panes in a tab (the active tab by default)')
+            [CompletionResult]::new('mute-session', 'mute-session', [CompletionResultType]::ParameterValue, 'Mute or unmute the attention status of the whole session')
+            [CompletionResult]::new('toggle-session', 'toggle-session', [CompletionResultType]::ParameterValue, 'Switch to the session this client was in before (run again to return), or to the next running session if there is none')
+            [CompletionResult]::new('go-to-previous-session', 'go-to-previous-session', [CompletionResultType]::ParameterValue, 'Go back to the previous session in this client''s history')
+            [CompletionResult]::new('go-to-next-session', 'go-to-next-session', [CompletionResultType]::ParameterValue, 'Go forward in this client''s session history')
+            [CompletionResult]::new('go-to-next-attention', 'go-to-next-attention', [CompletionResultType]::ParameterValue, 'Jump to the next pane that needs attention in any session, switching session if needed')
+            [CompletionResult]::new('toggle-tray-icon', 'toggle-tray-icon', [CompletionResultType]::ParameterValue, 'Show or hide the desktop app''s tray / menu-bar icon until the app restarts (sessions and notifications continue)')
+            [CompletionResult]::new('mark-pane-seen', 'mark-pane-seen', [CompletionResultType]::ParameterValue, 'Mark a pane as seen, clearing past events (the focused pane by default)')
+            [CompletionResult]::new('mark-all-seen', 'mark-all-seen', [CompletionResultType]::ParameterValue, 'Mark every pane of every running session as seen')
             [CompletionResult]::new('stack-panes', 'stack-panes', [CompletionResultType]::ParameterValue, 'Stack pane ids Ids are a space separated list of pane ids. They should either be in the form of `terminal_<int>` (eg. terminal_1), `plugin_<int>` (eg. plugin_1) or bare integers in which case they''ll be considered terminals (eg. 1 is the equivalent of terminal_1)')
             [CompletionResult]::new('change-floating-pane-coordinates', 'change-floating-pane-coordinates', [CompletionResultType]::ParameterValue, 'change-floating-pane-coordinates')
             [CompletionResult]::new('toggle-pane-borderless', 'toggle-pane-borderless', [CompletionResultType]::ParameterValue, 'toggle-pane-borderless')
             [CompletionResult]::new('set-pane-borderless', 'set-pane-borderless', [CompletionResultType]::ParameterValue, 'set-pane-borderless')
+            [CompletionResult]::new('set-pane-border-style', 'set-pane-border-style', [CompletionResultType]::ParameterValue, 'Change the border line style of an existing pane')
             [CompletionResult]::new('detach', 'detach', [CompletionResultType]::ParameterValue, 'Detach from the current session')
             [CompletionResult]::new('set-dark-theme', 'set-dark-theme', [CompletionResultType]::ParameterValue, 'Switch the theme to dark (uses configured `theme_dark`)')
             [CompletionResult]::new('set-light-theme', 'set-light-theme', [CompletionResultType]::ParameterValue, 'Switch the theme to light (uses configured `theme_light`)')
             [CompletionResult]::new('toggle-theme', 'toggle-theme', [CompletionResultType]::ParameterValue, 'Toggle between dark and light themes (used configured `theme_dark` and `theme_light`)')
+            [CompletionResult]::new('dismiss-info-popups', 'dismiss-info-popups', [CompletionResultType]::ParameterValue, 'Close the information popups (such as `zellij prompt notify`) shown to you')
+            [CompletionResult]::new('open-context-menu', 'open-context-menu', [CompletionResultType]::ParameterValue, 'Open the right-click menu for the focused pane, at that pane''s position')
             [CompletionResult]::new('switch-session', 'switch-session', [CompletionResultType]::ParameterValue, 'Switch to a different session')
             [CompletionResult]::new('set-pane-color', 'set-pane-color', [CompletionResultType]::ParameterValue, 'Set the default foreground/background color of a pane')
+            [CompletionResult]::new('set-resurrect-command', 'set-resurrect-command', [CompletionResultType]::ParameterValue, 'Set the command a terminal pane will be resurrected with, instead of the detected one. The command stays in effect until cleared with --clear or until the pane is closed')
             break
         }
         'zellij;help;action;write' {
@@ -2955,7 +3893,19 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;help;action;toggle-pane-frames' {
             break
         }
+        'zellij;help;action;toggle-stack-list-orientation' {
+            break
+        }
         'zellij;help;action;set-pane-frame-style' {
+            break
+        }
+        'zellij;help;action;toggle-bars' {
+            break
+        }
+        'zellij;help;action;hide-bars' {
+            break
+        }
+        'zellij;help;action;show-bars' {
             break
         }
         'zellij;help;action;toggle-active-sync-tab' {
@@ -3036,6 +3986,12 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;help;action;next-swap-layout' {
             break
         }
+        'zellij;help;action;apply-tiled-swap-layout' {
+            break
+        }
+        'zellij;help;action;apply-floating-swap-layout' {
+            break
+        }
         'zellij;help;action;override-layout' {
             break
         }
@@ -3072,6 +4028,45 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;help;action;toggle-pane-pinned' {
             break
         }
+        'zellij;help;action;toggle-mirror-resize' {
+            break
+        }
+        'zellij;help;action;mute-pane' {
+            break
+        }
+        'zellij;help;action;ignore-pane-output' {
+            break
+        }
+        'zellij;help;action;watch-pane' {
+            break
+        }
+        'zellij;help;action;mute-tab' {
+            break
+        }
+        'zellij;help;action;mute-session' {
+            break
+        }
+        'zellij;help;action;toggle-session' {
+            break
+        }
+        'zellij;help;action;go-to-previous-session' {
+            break
+        }
+        'zellij;help;action;go-to-next-session' {
+            break
+        }
+        'zellij;help;action;go-to-next-attention' {
+            break
+        }
+        'zellij;help;action;toggle-tray-icon' {
+            break
+        }
+        'zellij;help;action;mark-pane-seen' {
+            break
+        }
+        'zellij;help;action;mark-all-seen' {
+            break
+        }
         'zellij;help;action;stack-panes' {
             break
         }
@@ -3082,6 +4077,9 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             break
         }
         'zellij;help;action;set-pane-borderless' {
+            break
+        }
+        'zellij;help;action;set-pane-border-style' {
             break
         }
         'zellij;help;action;detach' {
@@ -3096,10 +4094,19 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
         'zellij;help;action;toggle-theme' {
             break
         }
+        'zellij;help;action;dismiss-info-popups' {
+            break
+        }
+        'zellij;help;action;open-context-menu' {
+            break
+        }
         'zellij;help;action;switch-session' {
             break
         }
         'zellij;help;action;set-pane-color' {
+            break
+        }
+        'zellij;help;action;set-resurrect-command' {
             break
         }
         'zellij;help;list-sessions' {
@@ -3143,6 +4150,52 @@ Register-ArgumentCompleter -Native -CommandName 'zellij' -ScriptBlock {
             break
         }
         'zellij;help;subscribe' {
+            break
+        }
+        'zellij;help;prompt' {
+            [CompletionResult]::new('confirm', 'confirm', [CompletionResultType]::ParameterValue, 'Ask a yes/no question; the exit code is the answer (e.g. zellij prompt confirm "Force push?" --yes Push --no Cancel)')
+            [CompletionResult]::new('choose', 'choose', [CompletionResultType]::ParameterValue, 'Choose one or more items from the arguments or from stdin, one per line (e.g. git branch | zellij prompt choose)')
+            [CompletionResult]::new('input', 'input', [CompletionResultType]::ParameterValue, 'Ask for a line of text (e.g. zellij prompt input "Commit message" --required)')
+            [CompletionResult]::new('number', 'number', [CompletionResultType]::ParameterValue, 'Ask for a whole number (e.g. zellij prompt number Port --min 1 --max 65535 --default 8080)')
+            [CompletionResult]::new('toggle', 'toggle', [CompletionResultType]::ParameterValue, 'Ask for on or off; prints true or false (e.g. zellij prompt toggle "Enable CI" --default on)')
+            [CompletionResult]::new('select', 'select', [CompletionResultType]::ParameterValue, 'Choose one value from a dropdown (e.g. zellij prompt select License MIT Apache-2.0)')
+            [CompletionResult]::new('menu', 'menu', [CompletionResultType]::ParameterValue, 'Show a menu and print the chosen item (e.g. zellij prompt menu Open Rename Delete)')
+            [CompletionResult]::new('form', 'form', [CompletionResultType]::ParameterValue, 'Show several fields described in JSON and print one JSON object (e.g. zellij prompt form --spec form.json)')
+            [CompletionResult]::new('notify', 'notify', [CompletionResultType]::ParameterValue, 'Show a notice that does not take the keyboard and return at once with exit 0 (e.g. zellij prompt notify "Build finished" --timeout 5s)')
+            break
+        }
+        'zellij;help;prompt;confirm' {
+            break
+        }
+        'zellij;help;prompt;choose' {
+            break
+        }
+        'zellij;help;prompt;input' {
+            break
+        }
+        'zellij;help;prompt;number' {
+            break
+        }
+        'zellij;help;prompt;toggle' {
+            break
+        }
+        'zellij;help;prompt;select' {
+            break
+        }
+        'zellij;help;prompt;menu' {
+            break
+        }
+        'zellij;help;prompt;form' {
+            break
+        }
+        'zellij;help;prompt;notify' {
+            break
+        }
+        'zellij;help;terminal' {
+            [CompletionResult]::new('options', 'options', [CompletionResultType]::ParameterValue, 'Change the behaviour of zellij')
+            break
+        }
+        'zellij;help;terminal;options' {
             break
         }
         'zellij;help;help' {
