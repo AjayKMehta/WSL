@@ -198,8 +198,6 @@ return {
     {
         "CoreyKaylor/diffbandit.nvim",
         cmd = { "DiffBanditApplyLeftHunk", "DiffBanditApplyRightHunk", "DiffBandit", "DiffBanditBuffers", "DiffBanditCommitPanel", "DiffBanditDiscardHunk", "DiffBanditFolderDiff", "DiffBanditGit", "DiffBanditGitCheckout", "DiffBanditGitCommit", "DiffBanditGitCompare", "DiffBanditGitCurrent", "DiffBanditGitLog", "DiffBanditGitMenu", "DiffBanditMerge", "DiffBanditStageHunk", "DiffBanditToggleStageHunk", "DiffBanditUndo", "DiffBanditUnstageHunk" },
-        config = function()
-            require("diffbandit").setup()
-        end,
+        opts = {}
     }
 }

@@ -12,6 +12,7 @@ done
 [ -s "$HOME/.config/bash_completions.d/gh" ] && . "$HOME/.config/bash_completions.d/gh"
 
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
 # https://superuser.com/questions/1262977/open-browser-in-host-system-from-windows-subsystem-for-linux
 export BROWSER="/mnt/c/Program Files/Firefox/firefox.exe"
 
@@ -160,12 +161,7 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 
 # oh my posh
 PROMPT_COMMAND='printf "\033]133;A\007"'
-eval "$(oh-my-posh init bash)"
-
-choose_theme() {
-   x=$(gum file /root/.cache/oh-my-posh/themes/)
-   eval "$(oh-my-posh init bash -c "$x")"
-}
+eval "$(oh-my-posh init bash --config hunk)"
 
 # ghcup-env
 [[ -f ~/.ghcup/env ]] && source ~/.ghcup/env
