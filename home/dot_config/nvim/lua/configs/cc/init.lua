@@ -142,10 +142,18 @@ local display = {
         show_token_count = true, -- Show the token count for each response?
         start_in_insert_mode = false, -- Open the chat buffer in insert mode?
         fold_context = true, -- Fold context in the chat buffer?
+        title = {
+            position = "winbar", -- Can be "buffer", "winbar" or false
+            text = {
+                buffer = function(metadata)
+                    return string.format("%s (%s)", metadata.title or "CodeCompanion.nvim", metadata.adapter.name)
+                end,
+            },
+        },
         window = {
             sticky = false, -- Chat window follows when switching tabs
             -- When enabled, `{` / `}` only cycles through chats that are visible in the current tab or not currently visible anywhere
-            pertab = true, -- Treat each tab as having its own chat window?
+            pertab = true,  -- Treat each tab as having its own chat window?
             -- Autosize
             width = 0,
             height = 0,
