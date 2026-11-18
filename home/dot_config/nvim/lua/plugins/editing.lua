@@ -380,6 +380,12 @@ return {
         "celeste3z/celeste_comment.nvim",
         lazy = false,
         opts = {
+            cms_confs = {
+                lua = { "--%s", "--[[%s]]" },
+                sh = { "#%s", ": <<'COMMENT'\n%s\nCOMMENT" },
+                bash = { "#%s", ": <<'COMMENT'\n%s\nCOMMENT" },
+            },
+            use_default_mappings = true,
             mappings = {
                 auto_textobject       = "a/",
                 auto_textobject_inner = "i/",
@@ -392,6 +398,26 @@ return {
                 line_add_eol          = "g/A",
                 -- Invert comment per line (n, x)
                 line_invert           = "g/I",
+                line_paste_before     = "gcP",
+                line_paste_after      = "gcp",
+                block_paste_before    = "gbP",
+                block_paste_after     = "gbp",
+            },
+            hooks = {
+                pre_commit_edits = function()
+                    local ok, undo_glow = pcall(require, "undo-glow")
+                    if not ok then
+                        return
+                    end
+
+                    -- Merge user config for UgComment (colors, duration, animation)
+                    local ug_opts = require("undo-glow.utils").merge_command_opts("UgComment", {
+                        operation = "comment",
+                    })
+
+                    -- Listen for the upcoming TextEdit changes and apply the glow
+                    undo_glow.highlight_changes(ug_opts)
+                end,
             }
         }
     }
